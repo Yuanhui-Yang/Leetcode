@@ -218,3 +218,4 @@
 | 416 | [Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/partition-equal-subset-sum.cpp) | Medium |
 | 419 | [Battleships in a Board](https://leetcode.com/problems/battleships-in-a-board/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/battleships-in-a-board.cpp) | Medium |
 | 422 | [Valid Word Square](https://leetcode.com/problems/valid-word-square/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/valid-word-square.cpp) | Easy |
+| 423 | [Reconstruct Original Digits from English](https://leetcode.com/problems/reconstruct-original-digits-from-english/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/reconstruct-original-digits-from-english.cpp) | Medium |
