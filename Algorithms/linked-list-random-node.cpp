@@ -1,7 +1,6 @@
 // 382. Linked List Random Node
 // https://leetcode.com/problems/linked-list-random-node/
 // https://en.wikipedia.org/wiki/Reservoir_sampling
-// https://discuss.leetcode.com/topic/53812/using-reservoir-sampling-o-1-space-o-n-time-complexity-c/2
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -11,6 +10,7 @@ struct ListNode {
 	ListNode *next;
 	ListNode(int x) : val(x), next(NULL) {}
 };
+// BEGIN: https://discuss.leetcode.com/topic/53812/using-reservoir-sampling-o-1-space-o-n-time-complexity-c/
 class Solution {
 public:
 	/** @param head The linked list's head.
@@ -32,7 +32,7 @@ public:
 private:
 	ListNode *head;
 };
-
+// END: https://discuss.leetcode.com/topic/53812/using-reservoir-sampling-o-1-space-o-n-time-complexity-c/
 /**
  * Your Solution object will be instantiated and called as such:
  * Solution obj = new Solution(head);
