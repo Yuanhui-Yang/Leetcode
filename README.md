@@ -166,7 +166,8 @@
 | 332 | [Reconstruct Itinerary](https://leetcode.com/problems/reconstruct-itinerary/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/reconstruct-itinerary.cpp) | Medium |
 | 333 | [Largest BST Subtree](https://leetcode.com/problems/largest-bst-subtree/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/largest-bst-subtree.cpp) | Medium |
 | 334 | [Increasing Triplet Subsequence](https://leetcode.com/problems/increasing-triplet-subsequence/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/increasing-triplet-subsequence.cpp) | Medium |
-| 339 | [Nested List Weight Sum](https://leetcode.com/problems/nested-list-weight-sum/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/nested-list-weight-sum.cpp) | Easy | 
+| 339 | [Nested List Weight Sum](https://leetcode.com/problems/nested-list-weight-sum/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/nested-list-weight-sum.cpp) | Easy |
+| 341 | [Flatten Nested List Iterator](https://leetcode.com/problems/flatten-nested-list-iterator/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/flatten-nested-list-iterator.cpp) | Medium |
 | 342 | [Power of Four](https://leetcode.com/problems/power-of-four/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/power-of-four.cpp) | Easy |
 | 343 | [Integer Break](https://leetcode.com/problems/integer-break) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/integer-break.cpp) | Medium |
 | 346 | [Moving Average from Data Stream](https://leetcode.com/problems/moving-average-from-data-stream/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/moving-average-from-data-stream.cpp) | Easy |
