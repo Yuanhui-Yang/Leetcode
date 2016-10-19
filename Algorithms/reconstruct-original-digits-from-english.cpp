@@ -1,10 +1,10 @@
 // 423. Reconstruct Original Digits from English
 // https://leetcode.com/problems/reconstruct-original-digits-from-english/
-// BEGIN: https://discuss.leetcode.com/topic/63386/one-pass-o-n-java-solution-simple-and-clear
 #include <iostream>
 #include <string>
 #include <vector>
 using namespace std;
+// BEGIN: https://discuss.leetcode.com/topic/63386/one-pass-o-n-java-solution-simple-and-clear
 class Solution {
 public:
 	string originalDigits(string s) {
