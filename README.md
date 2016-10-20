@@ -143,6 +143,7 @@
 | 285 | [Inorder Successor in BST](https://leetcode.com/problems/inorder-successor-in-bst/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/inorder-successor-in-bst.cpp) | Medium |
 | 286 | [Walls and Gates](https://leetcode.com/problems/walls-and-gates/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/walls-and-gates.cpp) | Medium |
 | 287 | [Find the Duplicate Number](https://leetcode.com/problems/find-the-duplicate-number/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/find-the-duplicate-number.cpp) | Hard |
+| 289 | [Game of Life](https://leetcode.com/problems/game-of-life/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/game-of-life.cpp) | Medium |
 | 293 | [Flip Game](https://leetcode.com/problems/flip-game/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/flip-game.cpp) | Easy |
 | 294 | [Flip Game II](https://leetcode.com/problems/flip-game-ii/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/flip-game-ii.cpp) | Medium |
 | 296 | [Best Meeting Point](https://leetcode.com/problems/best-meeting-point/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/best-meeting-point.cpp) | Hard |
