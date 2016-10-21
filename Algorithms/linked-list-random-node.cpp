@@ -22,8 +22,7 @@ public:
 
 	/** Returns a random node's value. */
 	int getRandom() {
-		int result = 0;
-		int n = 1;
+		int result = 0, n = 1;
 		for (ListNode *it = this->head; it; it = it->next)
 			if (rand() % n++ == 0)
 				result = it->val;
