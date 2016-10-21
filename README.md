@@ -225,3 +225,4 @@
 | 419 | [Battleships in a Board](https://leetcode.com/problems/battleships-in-a-board/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/battleships-in-a-board.cpp) | Medium |
 | 422 | [Valid Word Square](https://leetcode.com/problems/valid-word-square/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/valid-word-square.cpp) | Easy |
 | 423 | [Reconstruct Original Digits from English](https://leetcode.com/problems/reconstruct-original-digits-from-english/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/reconstruct-original-digits-from-english.cpp) | Medium |
+| 424 | [Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/longest-repeating-character-replacement.cpp) | Medium |
