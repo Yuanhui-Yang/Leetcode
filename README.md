@@ -143,6 +143,7 @@
 | 277 | [Find the Celebrity](https://leetcode.com/problems/find-the-celebrity/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/find-the-celebrity.cpp) | Medium |
 | 279 | [Perfect Squares](https://leetcode.com/problems/perfect-squares/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/perfect-squares.cpp) | Medium |
 | 281 | [Zigzag Iterator](https://leetcode.com/problems/zigzag-iterator/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/zigzag-iterator.cpp) | Medium |
+| 284 | [Peeking Iterator](https://leetcode.com/problems/peeking-iterator/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/peeking-iterator.cpp) | Medium |
 | 285 | [Inorder Successor in BST](https://leetcode.com/problems/inorder-successor-in-bst/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/inorder-successor-in-bst.cpp) | Medium |
 | 286 | [Walls and Gates](https://leetcode.com/problems/walls-and-gates/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/walls-and-gates.cpp) | Medium |
 | 287 | [Find the Duplicate Number](https://leetcode.com/problems/find-the-duplicate-number/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/find-the-duplicate-number.cpp) | Hard |
