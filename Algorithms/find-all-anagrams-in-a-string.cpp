@@ -4,36 +4,58 @@
 #include <string>
 #include <vector>
 using namespace std;
-// BEGIN: Approach 1
+// BEGIN: https://discuss.leetcode.com/topic/64390/c-o-n-solution
 class Solution {
 public:
 	vector<int> findAnagrams(string s, string p) {
 		vector<int> result;
 		if (s.size() < p.size()) return result;
 		const int NASCILL = 256, m = s.size(), n = p.size();
-		vector<int> hashmap(NASCILL, 0);
-		for (const auto &i : p) hashmap[i]++;
-		for (int i = 0; i < m; ) {
-			if (hashmap[s[i]] == 0) {
-				i++;
-				continue;
-			}
-			int j = i;
-			vector<int> x = hashmap;
-			while (j < m && hashmap[s[j]] && x[s[j]]) x[s[j++]]--;
-			if ((j - i) == n) result.push_back(i);
-			if (j == m) return result;
-			if (j < m && hashmap[s[j]] == 0) {
-				i = ++j;
-				continue;
-			}
-			i++;
+		vector<int> sHashmap(NASCILL, 0), pHashmap(NASCILL, 0);
+		for (int i = 0; i < n; i++) {
+			sHashmap[s[i]]++;
+			pHashmap[p[i]]++;
+		}
+		if (sHashmap == pHashmap) result.push_back(0);
+		for (int i = n; i < m; i++) {
+			sHashmap[s[i - n]]--;
+			sHashmap[s[i]]++;
+			if (sHashmap == pHashmap) result.push_back(i - n + 1);
 		}
 		return result;
 	}
 };
-// END: Approach 1
+// END: https://discuss.leetcode.com/topic/64390/c-o-n-solution
 // BEGIN: Approach 2
+// class Solution {
+// public:
+// 	vector<int> findAnagrams(string s, string p) {
+// 		vector<int> result;
+// 		if (s.size() < p.size()) return result;
+// 		const int NASCILL = 256, m = s.size(), n = p.size();
+// 		vector<int> hashmap(NASCILL, 0);
+// 		for (const auto &i : p) hashmap[i]++;
+// 		for (int i = 0; i < m; ) {
+// 			if (hashmap[s[i]] == 0) {
+// 				i++;
+// 				continue;
+// 			}
+// 			int j = i;
+// 			vector<int> x = hashmap;
+// 			while (j < m && hashmap[s[j]] && x[s[j]]) x[s[j++]]--;
+// 			if ((j - i) == n) result.push_back(i);
+// 			if (j == m) return result;
+// 			if (j < m && hashmap[s[j]] == 0) {
+// 				i = ++j;
+// 				continue;
+// 			}
+// 			i++;
+// 		}
+// 		return result;
+// 	}
+// };
+// END: Approach 2
+// BEGIN: Approach 3
 // class Solution {
 // public:
 // 	vector<int> findAnagrams(string s, string p) {
@@ -53,7 +75,7 @@ public:
 // 		return result;
 // 	}
 // };
-// END: Approach 2
+// END: Approach 3
 int main(void) {
 	Solution solution;
 	for (const auto &i : solution.findAnagrams("cbaebabacd", "abc")) cout << i << '\t';
