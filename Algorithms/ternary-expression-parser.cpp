@@ -1,9 +1,9 @@
 // 439. Ternary Expression Parser
 // https://leetcode.com/problems/ternary-expression-parser/
-// BEGIN: https://discuss.leetcode.com/topic/64418/5ms-c-fast-solution
 #include <iostream>
 #include <string>
 using namespace std;
+// BEGIN: https://discuss.leetcode.com/topic/64418/5ms-c-fast-solution
 class Solution {
 public:
 	string parseTernary(string expression) {
