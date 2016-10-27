@@ -2,6 +2,8 @@
 // https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/
 #include <iostream>
 #include <string>
+#include <vector>
+#include <iterator>
 using namespace std;
 // BEGIN: https://discuss.leetcode.com/topic/35976/7-lines-easy-java-solution/
 class Solution {
@@ -38,17 +40,40 @@ public:
 // 				diff--;
 // 				continue;
 // 			}
-// 			diff += 1;
+// 			diff++;
 // 		}
 // 		return diff == 0;
 // 	}
 // };
+// BEGIN: http://www.programcreek.com/2015/01/leetcode-verify-preorder-serialization-of-a-binary-tree-java/
+// BEGIN: https://discuss.leetcode.com/topic/35977/simple-python-solution-using-stack-with-explanation
+// class Solution {
+// public:
+// 	bool isValidSerialization(string preorder) {
+// 		vector<string> stack;
+// 		const int n = preorder.size();
+// 		for (int i = 0, j = 0; i < n; j = ++i) {
+// 			while (i < n && preorder[i] != ',') i++;
+// 			stack.push_back(preorder.substr(j, i - j));
+// 			while (stack.size() >= 3 && stack[stack.size() - 1] == "#" && stack[stack.size() - 2] == "#" && stack[stack.size() - 3] != "#") {
+// 				stack.pop_back();
+// 				stack.pop_back();
+// 				stack.pop_back();
+// 				stack.push_back("#");
+// 			}
+// 		}
+// 		return stack.size() == 1 && stack.front() == "#";
+// 	}
+// };
+// END: https://discuss.leetcode.com/topic/35977/simple-python-solution-using-stack-with-explanation
+// END: http://www.programcreek.com/2015/01/leetcode-verify-preorder-serialization-of-a-binary-tree-java/
 int main(void) {
 	Solution solution;
 	cout << boolalpha << solution.isValidSerialization("#") << "\tPassed\n";
 	cout << boolalpha << solution.isValidSerialization("#,#") << "\tPassed\n";
 	cout << boolalpha << solution.isValidSerialization("#,#,#") << "\tPassed\n";
 	cout << boolalpha << solution.isValidSerialization("1,#") << "\tPassed\n";
+	cout << boolalpha << solution.isValidSerialization("1,#,#,#,#") << "\tPassed\n";
 	cout << boolalpha << solution.isValidSerialization("7,2,#,2,#,#,#,6,#") << "\tPassed\n";
 	cout << boolalpha << solution.isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#") << "\tPassed\n";
 	cout << boolalpha << solution.isValidSerialization("9,#,#,1") << "\tPassed\n";
