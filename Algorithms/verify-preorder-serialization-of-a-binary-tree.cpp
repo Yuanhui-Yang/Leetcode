@@ -7,11 +7,10 @@ using namespace std;
 class Solution {
 public:
 	bool isValidSerialization(string preorder) {
-		const int n = preorder.size();
 		int diff = 1;
-		for (int i = 0, j = 0; i < n; j = ++i) {
+		for (size_t i = 0, j = 0; i < preorder.size(); j = ++i) {
 			if (--diff < 0) return false;
-			while (i < n && preorder[i] != ',') i++;
+			while (i < preorder.size() && preorder[i] != ',') i++;
 			if (preorder.substr(j, i - j) != "#") diff += 2;
 		}
 		return diff == 0;
