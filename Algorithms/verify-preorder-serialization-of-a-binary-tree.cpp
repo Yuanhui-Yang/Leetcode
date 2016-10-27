@@ -17,14 +17,40 @@ public:
 	}
 };
 // END: https://discuss.leetcode.com/topic/35976/7-lines-easy-java-solution/
+// class Solution {
+// public:
+// 	bool isValidSerialization(string preorder) {
+// 		int diff = 0;
+// 		const int n = preorder.size();
+// 		for (int i = 0, j = 0; i < n; j = ++i) {
+// 			if (i == 0) {
+// 				while (i < n && preorder[i] != ',') i++;
+// 				if (preorder.substr(j, i - j) == "#") {
+// 					if (i == n) return true;
+// 					else return false;
+// 				}
+// 				diff = 2;
+// 				continue;
+// 			}
+// 			if (diff <= 0) return false;
+// 			while (i < n && preorder[i] != ',') i++;
+// 			if (preorder.substr(j, i - j) == "#") {
+// 				diff--;
+// 				continue;
+// 			}
+// 			diff += 1;
+// 		}
+// 		return diff == 0;
+// 	}
+// };
 int main(void) {
 	Solution solution;
 	cout << boolalpha << solution.isValidSerialization("#") << "\tPassed\n";
 	cout << boolalpha << solution.isValidSerialization("#,#") << "\tPassed\n";
 	cout << boolalpha << solution.isValidSerialization("#,#,#") << "\tPassed\n";
+	cout << boolalpha << solution.isValidSerialization("1,#") << "\tPassed\n";
 	cout << boolalpha << solution.isValidSerialization("7,2,#,2,#,#,#,6,#") << "\tPassed\n";
 	cout << boolalpha << solution.isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#") << "\tPassed\n";
-	cout << boolalpha << solution.isValidSerialization("1,#") << "\tPassed\n";
 	cout << boolalpha << solution.isValidSerialization("9,#,#,1") << "\tPassed\n";
 	cout << "\nPassed All\n";
 	return 0;
