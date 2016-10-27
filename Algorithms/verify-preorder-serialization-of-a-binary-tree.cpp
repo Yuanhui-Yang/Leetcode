@@ -8,22 +8,11 @@ class Solution {
 public:
 	bool isValidSerialization(string preorder) {
 		const int n = preorder.size();
-		int diff = 0;
+		int diff = 1;
 		for (int i = 0, j = 0; i < n; j = ++i) {
-			if (i == 0) {
-				while (i < n && preorder[i] != ',') i++;
-				if (i == n && preorder.substr(j, i - j) == "#") return true;
-				if (i < n && preorder.substr(j, i - j) == "#") return false;
-				diff += 2;
-				continue;
-			}
-			while (i < n && preorder[i] != ',') i++;
-			if (preorder.substr(j, i - j) == "#") {
-				if (--diff < 0) return false;
-				continue;
-			}
 			if (--diff < 0) return false;
-			diff += 2;
+			while (i < n && preorder[i] != ',') i++;
+			if (preorder.substr(j, i - j) != "#") diff += 2;
 		}
 		return diff == 0;
 	}
