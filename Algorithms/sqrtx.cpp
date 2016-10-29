@@ -9,12 +9,12 @@ public:
 		size_t begin = 0, end = x, target = x;
 		while (begin + 1 < end) {
 			size_t mid = begin + (end - begin) / 2;
-			if (mid * mid == target) return mid;
+			if (mid * mid == target) return (int)mid;
 			else if (mid * mid < target) begin = mid;
 			else end = mid;
 		}
-		if (end * end <= target) return end;
-		return begin;
+		if (end * end <= target) return (int)end;
+		return (int)begin;
 	}
 };
 // BEGIN: http://www.cnblogs.com/AnnieKim/archive/2013/04/18/3028607.html
