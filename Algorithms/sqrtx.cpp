@@ -3,56 +3,30 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-// BEGIN: http://www.cnblogs.com/AnnieKim/archive/2013/04/18/3028607.html
 class Solution {
 public:
 	int mySqrt(int x) {
-		size_t r = x;
-		while (r * r > (size_t)x) r = (r + x / r) / 2;
-		return (int) r; 
+		size_t begin = 0, end = x;
+		while (begin + 1 < end) {
+			size_t mid = begin + (end - begin) / 2;
+			if (mid * mid == (size_t)x) return mid;
+			else if (mid * mid < (size_t)x) begin = mid;
+			else end = mid;
+		}
+		if (end * end <= (size_t)x) return end;
+		return begin;
 	}
 };
-// END: http://www.cnblogs.com/AnnieKim/archive/2013/04/18/3028607.html
+// BEGIN: http://www.cnblogs.com/AnnieKim/archive/2013/04/18/3028607.html
 // class Solution {
 // public:
-// 	int mySqrt(const int& x) {
-// 		if (x == 0) {
-// 			return 0;
-// 		}
-// 		size_t left(1);
-// 		size_t right(x);
-// 		size_t mid(left + (right - left) / 2);
-// 		while (left < right) {
-// 			if (mid * mid == x) {
-// 				return mid;
-// 			}
-// 			else if (mid * mid < x) {
-// 				if ((mid + 1) * (mid + 1) == x) {
-// 					return mid + 1;
-// 				}
-// 				else if ((mid + 1) * (mid + 1) > x) {
-// 					return mid;
-// 				}
-// 				else {
-// 					left = mid + 1;
-// 				}
-// 			}
-// 			else {
-// 				if ((mid - 1) * (mid - 1) == x) {
-// 					return mid - 1;
-// 				}
-// 				else if ((mid - 1) * (mid - 1) < x) {
-// 					return mid - 1;
-// 				}
-// 				else {
-// 					right = mid - 1;
-// 				}
-// 			}
-// 			mid = left + (right - left) / 2;
-// 		}
-// 		return mid;
+// 	int mySqrt(int x) {
+// 		size_t r = x;
+// 		while (r * r > (size_t)x) r = (r + x / r) / 2;
+// 		return (int) r; 
 // 	}
 // };
+// END: http://www.cnblogs.com/AnnieKim/archive/2013/04/18/3028607.html
 int main(void) {
 	Solution solution;
 	vector<int> a({2, 3, 7, 2147395599});
