@@ -6,14 +6,14 @@ using namespace std;
 class Solution {
 public:
 	int mySqrt(int x) {
-		size_t begin = 0, end = x;
+		size_t begin = 0, end = x, target = x;
 		while (begin + 1 < end) {
 			size_t mid = begin + (end - begin) / 2;
-			if (mid * mid == (size_t)x) return mid;
-			else if (mid * mid < (size_t)x) begin = mid;
+			if (mid * mid == target) return mid;
+			else if (mid * mid < target) begin = mid;
 			else end = mid;
 		}
-		if (end * end <= (size_t)x) return end;
+		if (end * end <= target) return end;
 		return begin;
 	}
 };
