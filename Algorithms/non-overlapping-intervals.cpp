@@ -1,5 +1,5 @@
 // 435. Non-overlapping Intervals
-// https://leetcode.com/contest/11/problems/non-overlapping-intervals/
+// https://leetcode.com/problems/non-overlapping-intervals/
 #include <iostream>
 #include <vector>
 #include <algorithm>
