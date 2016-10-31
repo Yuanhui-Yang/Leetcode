@@ -1,5 +1,5 @@
 // 441. Arranging Coins
-// https://leetcode.com/contest/11/problems/arranging-coins/
+// https://leetcode.com/problems/arranging-coins/
 #include <iostream>
 #include <cmath>
 using namespace std;
