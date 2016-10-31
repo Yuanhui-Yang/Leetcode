@@ -20,9 +20,10 @@ public:
 		const int n = intervals.size();
 		for (int i = 0; i < n; i++)
 			start2index.push_back(make_pair(intervals[i].start, i));
-		sort(begin(start2index), end(start2index), [](const pair<int, int>& a, const pair<int, int>& b) {
-			return a.first < b.first;
-		});
+		sort(begin(start2index), end(start2index));
+		// sort(begin(start2index), end(start2index), [](const pair<int, int>& a, const pair<int, int>& b) {
+		// 	return a.first < b.first;
+		// });
 		for (const auto &i : intervals) {
 			vector<pair<int, int>>::iterator it = lower_bound(begin(start2index), end(start2index), make_pair(i.end, -1));
 			// vector<pair<int, int>>::iterator it = lower_bound(begin(start2index), end(start2index), make_pair(i.end, -1), [](const pair<int, int>& a, const pair<int, int>& b) {
