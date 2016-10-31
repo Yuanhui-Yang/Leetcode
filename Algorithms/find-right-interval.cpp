@@ -1,6 +1,7 @@
 // 436. Find Right Interval
 // https://leetcode.com/problems/find-right-interval/
 #include <iostream>
+#include <map>
 #include <vector>
 #include <algorithm>
 #include <climits>
@@ -16,24 +17,38 @@ class Solution {
 public:
 	vector<int> findRightInterval(vector<Interval>& intervals) {
 		vector<int> result;
-		vector<pair<int, int>> start2index;
+		map<int, int> start2index;
 		const int n = intervals.size();
-		for (int i = 0; i < n; i++)
-			start2index.push_back(make_pair(intervals[i].start, i));
-		sort(begin(start2index), end(start2index));
-		// sort(begin(start2index), end(start2index), [](const pair<int, int>& a, const pair<int, int>& b) {
-		// 	return a.first < b.first;
-		// });
+		for (int i = 0; i < n; i++) start2index[intervals[i].start] = i;
 		for (const auto &i : intervals) {
-			vector<pair<int, int>>::iterator it = lower_bound(begin(start2index), end(start2index), make_pair(i.end, INT_MIN));
-			// vector<pair<int, int>>::iterator it = lower_bound(begin(start2index), end(start2index), make_pair(i.end, INT_MIN), [](const pair<int, int>& a, const pair<int, int>& b) {
-			// 	return a.first < b.first;
-			// });
+			map<int, int>::iterator it = start2index.lower_bound(i.end);
 			result.push_back(it == end(start2index) ? -1 : it->second);
 		}
 		return result;
 	}
 };
+// class Solution {
+// public:
+// 	vector<int> findRightInterval(vector<Interval>& intervals) {
+// 		vector<int> result;
+// 		vector<pair<int, int>> start2index;
+// 		const int n = intervals.size();
+// 		for (int i = 0; i < n; i++)
+// 			start2index.push_back(make_pair(intervals[i].start, i));
+// 		sort(begin(start2index), end(start2index));
+// 		// sort(begin(start2index), end(start2index), [](const pair<int, int>& a, const pair<int, int>& b) {
+// 		// 	return a.first < b.first;
+// 		// });
+// 		for (const auto &i : intervals) {
+// 			vector<pair<int, int>>::iterator it = lower_bound(begin(start2index), end(start2index), make_pair(i.end, INT_MIN));
+// 			// vector<pair<int, int>>::iterator it = lower_bound(begin(start2index), end(start2index), make_pair(i.end, INT_MIN), [](const pair<int, int>& a, const pair<int, int>& b) {
+// 			// 	return a.first < b.first;
+// 			// });
+// 			result.push_back(it == end(start2index) ? -1 : it->second);
+// 		}
+// 		return result;
+// 	}
+// };
 // BEGIN: Time Limit Exceeded
 // class Solution {
 // public:
