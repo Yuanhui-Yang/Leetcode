@@ -240,3 +240,4 @@
 | 438 | [Find All Anagrams in a String](https://leetcode.com/problems/find-all-anagrams-in-a-string/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/find-all-anagrams-in-a-string.cpp) | Easy |
 | 439 | [Ternary Expression Parser](https://leetcode.com/problems/ternary-expression-parser/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/ternary-expression-parser.cpp) | Medium |
 | 441 | [Arranging Coins](https://leetcode.com/problems/arranging-coins/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/arranging-coins.cpp) | Easy |
+| 442 | [Find All Duplicates in an Array](https://leetcode.com/problems/find-all-duplicates-in-an-array/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/find-all-duplicates-in-an-array.cpp) | Medium |
