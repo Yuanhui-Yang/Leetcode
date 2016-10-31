@@ -25,8 +25,8 @@ public:
 		// 	return a.first < b.first;
 		// });
 		for (const auto &i : intervals) {
-			vector<pair<int, int>>::iterator it = lower_bound(begin(start2index), end(start2index), make_pair(i.end, -1));
-			// vector<pair<int, int>>::iterator it = lower_bound(begin(start2index), end(start2index), make_pair(i.end, -1), [](const pair<int, int>& a, const pair<int, int>& b) {
+			vector<pair<int, int>>::iterator it = lower_bound(begin(start2index), end(start2index), make_pair(i.end, INT_MIN));
+			// vector<pair<int, int>>::iterator it = lower_bound(begin(start2index), end(start2index), make_pair(i.end, INT_MIN), [](const pair<int, int>& a, const pair<int, int>& b) {
 			// 	return a.first < b.first;
 			// });
 			result.push_back(it == end(start2index) ? -1 : it->second);
