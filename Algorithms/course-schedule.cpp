@@ -14,7 +14,7 @@ public:
 		vector<int> indegrees = this->generateIndegrees(numCourses, graph);
 		for (int i = 0; i < numCourses; ++i) {
 			int j;
-			for (j = 0; indegrees[j] && j < numCourses; ++j) ;
+			for (j = 0; j < numCourses && indegrees[j]; ++j) ;
 			if (j == numCourses) return false;
 			indegrees[j] = numeric_limits<int>::min();
 			for (const auto &k : graph[j]) --indegrees[k];
