@@ -11,11 +11,11 @@ public:
 	int guessNumber(int n) {
 		size_t left = 1, right = n;
 		while (guess(right) > 0) right <<= 1;
-		if (guess(right) == 0) return (int)right;
+		if (guess(right) == 0) return right;
 		while (left + 1 < right) {
 			size_t mid = left + (right - left) / 2;
 			int x = guess(mid);
-			if (x == 0) return (int)mid;
+			if (x == 0) return mid;
 			if (x < 0) right = mid;
 			if (x > 0) left = mid;
 		}
