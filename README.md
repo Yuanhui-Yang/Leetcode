@@ -246,3 +246,5 @@
 | 441 | [Arranging Coins](https://leetcode.com/problems/arranging-coins/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/arranging-coins.cpp) | Easy |
 | 442 | [Find All Duplicates in an Array](https://leetcode.com/problems/find-all-duplicates-in-an-array/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/find-all-duplicates-in-an-array.cpp) | Medium |
 | 444 | [Sequence Reconstruction](https://leetcode.com/problems/sequence-reconstruction/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/sequence-reconstruction.cpp) | Medium |
+| 447 | [Number of Boomerangs](https://leetcode.com/problems/number-of-boomerangs/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/number-of-boomerangs.cpp) | Easy |
+| 452 | [Minimum Number of Arrows to Burst Balloons](https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/minimum-number-of-arrows-to-burst-balloons.cpp) | Medium |
