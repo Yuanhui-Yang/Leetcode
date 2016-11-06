@@ -248,3 +248,4 @@
 | 444 | [Sequence Reconstruction](https://leetcode.com/problems/sequence-reconstruction/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/sequence-reconstruction.cpp) | Medium |
 | 447 | [Number of Boomerangs](https://leetcode.com/problems/number-of-boomerangs/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/number-of-boomerangs.cpp) | Easy |
 | 452 | [Minimum Number of Arrows to Burst Balloons](https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/minimum-number-of-arrows-to-burst-balloons.cpp) | Medium |
+| 453 | [Minimum Moves to Equal Array Elements](https://leetcode.com/problems/minimum-moves-to-equal-array-elements/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/minimum-moves-to-equal-array-elements.cpp) | Easy |
