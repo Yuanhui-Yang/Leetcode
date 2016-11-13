@@ -1,4 +1,5 @@
 // 459. Repeated Substring Pattern
+// https://leetcode.com/problems/repeated-substring-pattern/
 #include <iostream>
 #include <string>
 using namespace std;
