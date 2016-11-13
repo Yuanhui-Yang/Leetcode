@@ -17,7 +17,7 @@ public:
 		for (int i = 1; i < n; i++) {
 			for (int j = 0; j < i; j++) {
 				long long diff = (long long)A[i] - (long long)A[j];
-				if (diff > (long long)INT_MAX || diff < (long long)INT_MIN) continue;
+				if (diff > (long long)INT_MAX || diff <= (long long)INT_MIN) continue;
 				if (!OPT[i].count(diff)) OPT[i][diff] = 0;
 				OPT[i][diff]++;
 				if (OPT[j].count(diff)) {
