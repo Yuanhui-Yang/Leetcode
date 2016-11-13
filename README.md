@@ -253,4 +253,5 @@
 | 452 | [Minimum Number of Arrows to Burst Balloons](https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/minimum-number-of-arrows-to-burst-balloons.cpp) | Medium |
 | 453 | [Minimum Moves to Equal Array Elements](https://leetcode.com/problems/minimum-moves-to-equal-array-elements/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/minimum-moves-to-equal-array-elements.cpp) | Easy |
 | 454 | [4Sum II](https://leetcode.com/problems/4sum-ii/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/4sum-ii.cpp) | Medium |
+| 456 | [132 Pattern](https://leetcode.com/problems/132-pattern/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/132-pattern.cpp) | Medium |
 | 459 | [Repeated Substring Pattern](https://leetcode.com/problems/repeated-substring-pattern/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/repeated-substring-pattern.cpp) | Easy |
