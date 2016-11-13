@@ -9,11 +9,10 @@ class Solution {
 public:
 	int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D) {
 		int result = 0;
-		unordered_map<int, int> hashmap = this->helper(C, D);
-		for (const auto &i : A)
-			for (const auto &j : B)
-				if (hashmap.count(- i - j))
-					result += hashmap[- i - j];
+		unordered_map<int, int> hashmap1 = this->helper(A, B), hashmap2 = this->helper(C, D);
+		for (const auto &i : hashmap1)
+			if (hashmap2.count(-i.first))
+				result += i.second * hashmap2[-i.first];
 		return result;
 	}
 private:
@@ -25,6 +24,26 @@ private:
 		return result;
 	}
 };
+// class Solution {
+// public:
+// 	int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D) {
+// 		int result = 0;
+// 		unordered_map<int, int> hashmap = this->helper(C, D);
+// 		for (const auto &i : A)
+// 			for (const auto &j : B)
+// 				if (hashmap.count(- i - j))
+// 					result += hashmap[- i - j];
+// 		return result;
+// 	}
+// private:
+// 	unordered_map<int, int> helper(vector<int>& A, vector<int>& B) {
+// 		unordered_map<int, int> result;
+// 		for (const auto &i : A)
+// 			for (const auto &j : B)
+// 				result[i + j]++;
+// 		return result;
+// 	}
+// };
 int main(void) {
 	Solution solution;
 	vector<int> A, B, C, D;
