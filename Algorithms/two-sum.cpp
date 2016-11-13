@@ -24,7 +24,7 @@ public:
 	}
 };
 // END: https://discuss.leetcode.com/topic/3294/accepted-c-o-n-solution/
-int main(int argc, char** argv) {
+int main(void) {
 	Solution solution;
 	vector<int> nums = {2, 7, 11, 15};
 	int target = 9;
