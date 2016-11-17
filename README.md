@@ -206,6 +206,7 @@
 | 370 | [Range Addition](https://leetcode.com/problems/range-addition/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/range-addition.cpp) | Medium |
 | 371 | [Sum of Two Integers](https://leetcode.com/problems/sum-of-two-integers/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/sum-of-two-integers.cpp) | Easy |
 | 374 | [Guess Number Higher or Lower](https://leetcode.com/problems/guess-number-higher-or-lower/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/guess-number-higher-or-lower.cpp) | Easy |
+| 375 | [Guess Number Higher or Lower II](https://leetcode.com/problems/guess-number-higher-or-lower-ii/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/guess-number-higher-or-lower-ii.cpp) | Medium |
 | 376 | [Wiggle Subsequence](https://leetcode.com/problems/wiggle-subsequence/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/wiggle-subsequence.cpp) | Medium |
 | 377 | [Combination Sum IV](https://leetcode.com/problems/combination-sum-iv/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/combination-sum-iv.cpp) | Medium |
 | 378 | [Kth Smallest Element in a Sorted Matrix](https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/kth-smallest-element-in-a-sorted-matrix.cpp) | Medium |
