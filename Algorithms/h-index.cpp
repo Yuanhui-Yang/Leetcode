@@ -13,10 +13,9 @@ public:
 		const int n = citations.size();
 		vector<int> buckets(n + 1, 0);
 		for (const auto &i : citations) buckets[i >= n ? n : i]++;
-		for (int i = n, cnt = 0; i >= 0; i--) {
-			cnt += buckets[i];
-			if (cnt >= i) return i;
-		}
+		for (int i = n, cnt = 0; i >= 0; i--)
+			if ((cnt += buckets[i]) >= i)
+				return i;
 		return 0;
 	}
 };
@@ -27,10 +26,9 @@ public:
 // 		const int n = *max_element(begin(citations), end(citations));
 // 		vector<int> buckets(n + 1, 0);
 // 		for (const auto &i : citations) buckets[i]++;
-// 		for (int i = n, cnt = 0; i >= 0; i--) {
-// 			cnt += buckets[i];
-// 			if (cnt >= i) return i;
-// 		}
+// 		for (int i = n, cnt = 0; i >= 0; i--)
+// 			if ((cnt += buckets[i]) >= i)
+// 				return i;
 // 		return 0;
 // 	}
 // };
