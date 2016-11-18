@@ -25,8 +25,7 @@ public:
 			this->intervals.insert(newInterval);
 			return;
 		}
-		set<Interval, comp>::iterator it = this->intervals.lower_bound(newInterval), jt = it;
-		jt--;
+		set<Interval, comp>::iterator it = this->intervals.lower_bound(newInterval), jt = prev(it);
 		if (it == begin(this->intervals)) {
 			if (val + 1 < it->start) {
 				this->intervals.insert(newInterval);
