@@ -12,10 +12,10 @@ public:
 	int hIndex(vector<int>& citations) {
 		if (citations.empty()) return 0;
 		sort(begin(citations), end(citations));
-		int result = 0;
 		const int n = citations.size();
-		while (result < n && citations[n - result - 1] > result) result++;
-		return result;
+		int result = n - 1;
+		while (result >= 0 && citations[result] >= (n - result)) result--;
+		return n - 1 - result;
 	}
 };
 // class Solution {
