@@ -8,7 +8,6 @@ public:
 	int hIndex(vector<int>& citations) {
 		if (citations.empty()) return 0;
 		if (citations.back() < 1) return 0;
-		if (citations.size() == 1) return 1;
 		const int n = citations.size();
 		int left = 0;
 		int right = n - 1;
