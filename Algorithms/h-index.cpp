@@ -6,7 +6,6 @@
 #include <iterator>
 using namespace std;
 // BEGIN: https://leetcode.com/articles/h-index/
-// BEGIN: https://discuss.leetcode.com/topic/40765/java-bucket-sort-o-n-solution-with-detail-explanation
 class Solution {
 public:
 	int hIndex(vector<int>& citations) {
@@ -18,6 +17,7 @@ public:
 		return n - 1 - result;
 	}
 };
+// BEGIN: https://discuss.leetcode.com/topic/40765/java-bucket-sort-o-n-solution-with-detail-explanation
 // class Solution {
 // public:
 // 	int hIndex(vector<int>& citations) {
