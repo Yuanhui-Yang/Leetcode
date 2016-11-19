@@ -7,17 +7,18 @@ class Solution {
 public:
 	int hIndex(vector<int>& citations) {
 		if (citations.empty()) return 0;
-		if (citations.back() < 1) return 0;
 		const int n = citations.size();
 		int left = 0;
 		int right = n - 1;
 		while (left + 1 < right) {
 			int mid = left + (right - left) / 2;
-			if (citations[mid] >= (n - mid)) right = mid;
+			if (citations[mid] == (n - mid)) return n - mid;
+			else if (citations[mid] > (n - mid)) right = mid;
 			else left = mid;
 		}
 		if (citations[left] >= (n - left)) return n - left;
-		return n - right;
+		if (citations[right] >= (n - right)) return n - right;
+		return 0;
 	}
 };
 int main(void) {
