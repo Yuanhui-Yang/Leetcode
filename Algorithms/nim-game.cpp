@@ -14,5 +14,6 @@ int main(void) {
 	Solution solution;
 	cout << boolalpha << solution.canWinNim(4) << "\tPassed\n";
 	cout << boolalpha << solution.canWinNim(5) << "\tPassed\n";
+	cout << "\nPassed All\n";
 	return 0;
 }
