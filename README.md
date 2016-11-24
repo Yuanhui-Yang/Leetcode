@@ -210,6 +210,7 @@
 | 369 | [Plus One Linked List](https://leetcode.com/problems/plus-one-linked-list/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/plus-one-linked-list.cpp) | Medium |
 | 370 | [Range Addition](https://leetcode.com/problems/range-addition/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/range-addition.cpp) | Medium |
 | 371 | [Sum of Two Integers](https://leetcode.com/problems/sum-of-two-integers/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/sum-of-two-integers.cpp) | Easy |
+| 372 | [Super Pow](https://leetcode.com/problems/super-pow/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/super-pow.cpp) | Medium |
 | 373 | [Find K Pairs with Smallest Sums](https://leetcode.com/problems/find-k-pairs-with-smallest-sums/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/find-k-pairs-with-smallest-sums.cpp) | Medium |
 | 374 | [Guess Number Higher or Lower](https://leetcode.com/problems/guess-number-higher-or-lower/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/guess-number-higher-or-lower.cpp) | Easy |
 | 375 | [Guess Number Higher or Lower II](https://leetcode.com/problems/guess-number-higher-or-lower-ii/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/guess-number-higher-or-lower-ii.cpp) | Medium |
