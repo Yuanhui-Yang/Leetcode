@@ -37,7 +37,7 @@ public:
 	}
 };
 // END: https://discuss.leetcode.com/topic/49456/c-solution-with-explanations
-// BEGIN: Time Limit Exceeded
+
 // class Solution {
 // public:
 // 	vector<int> largestDivisibleSubset(vector<int>& nums) {
@@ -82,10 +82,10 @@ public:
 // 				result.second = i;
 // 			}
 // 		}
+// 		deepth[idx] = result; // Don't forget this line
 // 		return result;
 // 	}
 // };
-// END: Time Limit Exceeded
 int main(void) {
 	Solution solution;
 	vector<int> nums;
