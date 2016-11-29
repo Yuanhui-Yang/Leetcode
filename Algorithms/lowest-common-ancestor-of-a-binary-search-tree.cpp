@@ -1,6 +1,7 @@
 // 235. Lowest Common Ancestor of a Binary Search Tree
 // https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
 #include <iostream>
+#include <cassert>
 using namespace std;
 struct TreeNode {
 	int val;
@@ -33,8 +34,8 @@ int main(void) {
 	root->left->right->right = new TreeNode(5);
 	root->right->left = new TreeNode(7);
 	root->right->right = new TreeNode(9);
-	cout << solution.lowestCommonAncestor(root, root->left, root->right) << "\tPassed\n";
-	cout << solution.lowestCommonAncestor(root, root->left, root->left->right) << "\tPassed\n";
+	assert(solution.lowestCommonAncestor(root, root->left, root->right) == root);
+	assert(solution.lowestCommonAncestor(root, root->left, root->left->right) == root->left);
 	cout << "\nPassed All\n";
 	return 0;
 }
