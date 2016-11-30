@@ -10,6 +10,7 @@ struct TreeNode {
 	TreeNode *right;
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
+// BEGIN: https://discuss.leetcode.com/topic/20063/accepted-24ms-dfs-c-solution-only-3-lines
 class Solution {
 public:
 	TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
@@ -22,6 +23,7 @@ public:
 		return left && right ? root : left ? left : right;
 	}
 };
+// END: https://discuss.leetcode.com/topic/20063/accepted-24ms-dfs-c-solution-only-3-lines
 int main(void) {
 	Solution solution;
 	TreeNode *root = new TreeNode(3);
