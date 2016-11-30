@@ -147,6 +147,7 @@
 | 265 | [Paint House II](https://leetcode.com/problems/paint-house-ii/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/paint-house-ii.cpp) | Hard |
 | 268 | [Missing Number](https://leetcode.com/problems/missing-number/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/missing-number.cpp) | Medium |
 | 269 | [Alien Dictionary](https://leetcode.com/problems/alien-dictionary/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/alien-dictionary.cpp) | Hard |
+| 270 | [Closest Binary Search Tree Value](https://leetcode.com/problems/closest-binary-search-tree-value/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/closest-binary-search-tree-value.cpp) | Easy |
 | 272 | [Closest Binary Search Tree Value II](https://leetcode.com/problems/closest-binary-search-tree-value-ii/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/closest-binary-search-tree-value-ii.cpp) | Hard |
 | 274 | [H-Index](https://leetcode.com/problems/h-index/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/h-index.cpp) | Medium |
 | 275 | [H-Index II](https://leetcode.com/problems/h-index-ii/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/h-index-ii.cpp) | Medium |
