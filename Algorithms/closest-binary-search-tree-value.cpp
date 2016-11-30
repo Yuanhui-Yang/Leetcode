@@ -12,6 +12,7 @@ struct TreeNode {
 	TreeNode *right;
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
+// BEGIN: https://discuss.leetcode.com/topic/22590/4-7-lines-recursive-iterative-ruby-c-java-python
 class Solution {
 public:
 	int closestValue(TreeNode* root, double target) {
@@ -31,6 +32,7 @@ public:
 		return result;
 	}
 };
+// END: https://discuss.leetcode.com/topic/22590/4-7-lines-recursive-iterative-ruby-c-java-python
 int main(void) {
 	Solution solution;
 	TreeNode *root = new TreeNode(0);
