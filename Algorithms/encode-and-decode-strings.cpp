@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 using namespace std;
+// BEGIN: https://discuss.leetcode.com/topic/22798/accepted-simple-c-solution
 class Codec {
 public:
 
@@ -29,6 +30,7 @@ public:
 		return result;
 	}
 };
+// END: https://discuss.leetcode.com/topic/22798/accepted-simple-c-solution
 
 // Your Codec object will be instantiated and called as such:
 // Codec codec;
