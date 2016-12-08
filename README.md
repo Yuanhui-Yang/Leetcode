@@ -244,6 +244,7 @@
 | 399 | [Evaluate Division](https://leetcode.com/problems/evaluate-division/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/evaluate-division.cpp) | Medium |
 | 400 | [Nth Digit](https://leetcode.com/problems/nth-digit/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/nth-digit.cpp) | Easy |
 | 401 | [Binary Watch](https://leetcode.com/problems/binary-watch/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/binary-watch.cpp) | Easy |
+| 402 | [Remove K Digits](https://leetcode.com/problems/remove-k-digits/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/remove-k-digits.cpp) | Medium |
 | 404 | [Sum of Left Leaves](https://leetcode.com/problems/sum-of-left-leaves/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/sum-of-left-leaves.cpp) | Easy |
 | 405 | [Convert a Number to Hexadecimal](https://leetcode.com/problems/convert-a-number-to-hexadecimal/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/convert-a-number-to-hexadecimal.cpp) | Easy |
 | 406 | [Queue Reconstruction by Height](https://leetcode.com/problems/queue-reconstruction-by-height/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/queue-reconstruction-by-height.cpp) | Medium |
