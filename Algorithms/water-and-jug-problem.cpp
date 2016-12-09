@@ -13,8 +13,16 @@ public:
 		return x + y >= z && z % w == 0;
 	}
 private:
+	// int gcd(int a, int b) {
+	// 	return b == 0 ? a : gcd(b, a % b);
+	// }
 	int gcd(int a, int b) {
-		return b == 0 ? a : gcd(b, a % b);
+		while (b) {
+			int tmp = a % b;
+			a = b;
+			b = tmp;
+		}
+		return a;
 	}
 };
 // END: https://en.wikipedia.org/wiki/Euclidean_algorithm
