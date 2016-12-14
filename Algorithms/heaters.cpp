@@ -12,7 +12,6 @@ public:
 	int findRadius(vector<int>& houses, vector<int>& heaters) {
 		if (houses.empty() || heaters.empty()) return 0;
 		int result = 0;
-		sort(begin(houses), end(houses));
 		sort(begin(heaters), end(heaters));
 		for (const auto &i : houses) {
 			vector<int>::iterator it = lower_bound(begin(heaters), end(heaters), i);
