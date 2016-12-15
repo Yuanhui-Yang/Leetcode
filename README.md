@@ -233,6 +233,7 @@
 | 385 | [Mini Parser](https://leetcode.com/problems/mini-parser/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/mini-parser.cpp) | Medium |
 | 386 | [Lexicographical Numbers](https://leetcode.com/problems/lexicographical-numbers/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/lexicographical-numbers.cpp) | Medium |
 | 387 | [First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/first-unique-character-in-a-string.cpp) | Easy |
+| 388 | [Longest Absolute File Path](https://leetcode.com/problems/longest-absolute-file-path/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/longest-absolute-file-path.cpp) | Medium |
 | 389 | [Find the Difference](https://leetcode.com/problems/find-the-difference/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/find-the-difference.cpp) | Easy |
 | 390 | [Elimination Game](https://leetcode.com/problems/elimination-game/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/elimination-game.cpp) | Medium |
 | 392 | [Is Subsequence](https://leetcode.com/problems/is-subsequence/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/is-subsequence.cpp) | Medium |
