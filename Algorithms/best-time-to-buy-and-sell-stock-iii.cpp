@@ -37,13 +37,13 @@ int main(void) {
 	Solution solution;
 	vector<int> prices;
 	prices = {1, 2, 4};
-	assert(solution.maxProfit(prices) == 3);
+	assert(3 == solution.maxProfit(prices));
 	prices = {7, 6, 4, 3, 1};
-	assert(solution.maxProfit(prices) == 0);
+	assert(0 == solution.maxProfit(prices));
 	prices = {6, 1, 3, 2, 4, 7};
-	assert(solution.maxProfit(prices) == 7);
+	assert(7 == solution.maxProfit(prices));
 	prices = {3, 3, 5, 0, 0, 3, 1, 4};
-	assert(solution.maxProfit(prices) == 6);
+	assert(6 == solution.maxProfit(prices));
 	cout << "\nPassed All\n";
 	return 0;
 }
