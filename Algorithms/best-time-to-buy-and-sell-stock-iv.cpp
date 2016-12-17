@@ -1,31 +1,33 @@
 // 188. Best Time to Buy and Sell Stock IV
 // https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/
-// https://discuss.leetcode.com/topic/52580/java-solution-in-o-n-time-and-o-k-space/2
 #include <iostream>
 #include <vector>
 #include <algorithm>
 #include <climits>
 using namespace std;
+// BEGIN: https://discuss.leetcode.com/topic/52580/java-solution-in-o-n-time-and-o-k-space
 class Solution {
 public:
-	int maxProfit(const size_t& k, const vector<int>& prices) {
-		if (prices.empty()) return 0;
-		if (k >= prices.size() / 2) {
-			int result = 0;
-			for (size_t i = 1; i < prices.size(); ++i) result += max(0, prices[i] - prices[i - 1]);
-			return result;
-		}
-		vector<int> buy(k + 1, INT_MIN);
-		vector<int> sell(k + 1, 0);
-		for (const auto& price : prices) {
-			for (size_t i = 1; i < k + 1; ++i) {
-				buy[i] = max(buy[i], sell[i - 1] - price);
-				sell[i] = max(sell[i], buy[i] + price);
-			}
-		}
-		return sell[k];
-	}
+    int maxProfit(int k, vector<int>& prices) {
+        const int n = prices.size();
+        if (n < 2) return 0;
+        if (k >= n / 2) {
+            int result = 0;
+            for (int i = 1; i < n; i++) result += max(0, prices[i] - prices[i - 1]);
+            return result;
+        }
+        vector<int> buys(k + 1, INT_MIN);
+        vector<int> sells(k + 1, 0);
+        for (int i = 0; i < n; i++) {
+            for (int j = 1; j < k + 1; j++) {
+                buys[j] = max(sells[j - 1] - prices[i], buys[j]);
+                sells[j] = max(buys[j] + prices[i], sells[j]);
+            }
+        }
+        return sells[k];
+    }
 };
+// END: https://discuss.leetcode.com/topic/52580/java-solution-in-o-n-time-and-o-k-space
 int main(void) {
 	Solution solution;
 	int k = 1000000000;
