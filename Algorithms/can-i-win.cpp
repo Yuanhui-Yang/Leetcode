@@ -4,41 +4,115 @@
 #include <cassert>
 #include <vector>
 #include <bitset>
+#include <unordered_map>
 using namespace std;
-// BEGIN: Time Limit Exceeded
+
 class Solution {
 public:
 	bool canIWin(int maxChoosableInteger, int desiredTotal) {
 		if (maxChoosableInteger >= desiredTotal) return true;
-		vector<vector<bool>> OPT(1 << maxChoosableInteger, vector<bool>(1 + desiredTotal, false));
-		vector<vector<bool>> PATH(1 << maxChoosableInteger, vector<bool>(1 + desiredTotal, false));
-		return canIWin(0, 0, maxChoosableInteger, desiredTotal, OPT, PATH);
+		if (maxChoosableInteger * (1 + maxChoosableInteger) / 2 < desiredTotal) return false;
+		vector<unordered_map<bitset<20>, bool>> OPT(1 + desiredTotal);
+		bitset<20> visited;
+		return canIWin(visited, 0, maxChoosableInteger, desiredTotal, OPT);
 	}
 private:
-	bool canIWin(int visited, int sum, const int maxChoosableInteger, const int desiredTotal, vector<vector<bool>>& OPT, vector<vector<bool>>& PATH) {
+	bool canIWin(bitset<20> visited, int sum, const int maxChoosableInteger, const int desiredTotal, vector<unordered_map<bitset<20>, bool>>& OPT) {
 		if (sum >= desiredTotal) return false;
-		if (OPT[visited][sum]) return true;
-		if (PATH[visited][sum]) return OPT[visited][sum];
+		if (OPT[sum].count(visited)) return OPT[sum][visited];
 		for (int i = 0; i < maxChoosableInteger; i++) {
-			int j = 1 << i;
-			if (!(j & visited)) {
-				j |= visited;
+			bitset<20> j = visited;
+			if (!(j[i])) {
+				j[i] = 1;
 				if (sum + i + 1 >= desiredTotal) {
-					OPT[visited][sum] = true;
-					PATH[visited][sum] = true;
+					OPT[sum][visited] = true;
 					return true;
 				}
-				if (!canIWin(j, sum + i + 1, maxChoosableInteger, desiredTotal, OPT, PATH)) {
-					OPT[visited][sum] = true;
-					PATH[visited][sum] = true;
+				if (OPT[sum + i + 1].count(j) && !OPT[sum + i + 1][j]) {
+					OPT[sum][visited] = true;
 					return true;
+				}
+				if (!OPT[sum + i + 1].count(j) && !canIWin(j, sum + i + 1, maxChoosableInteger, desiredTotal, OPT)) {
+					OPT[sum][visited] = true;
+					return true;					
 				}
 			}
 		}
-		PATH[visited][sum] = true;
+		OPT[sum][visited] = false;
 		return false;
 	}
 };
+
+// class Solution {
+// public:
+// 	bool canIWin(int maxChoosableInteger, int desiredTotal) {
+// 		if (maxChoosableInteger >= desiredTotal) return true;
+// 		if (maxChoosableInteger * (1 + maxChoosableInteger) / 2 < desiredTotal) return false;
+// 		vector<unordered_map<int, bool>> OPT(1 + desiredTotal);
+// 		return canIWin(0, 0, maxChoosableInteger, desiredTotal, OPT);
+// 	}
+// private:
+// 	bool canIWin(int visited, int sum, const int maxChoosableInteger, const int desiredTotal, vector<unordered_map<int, bool>>& OPT) {
+// 		if (sum >= desiredTotal) return false;
+// 		if (OPT[sum].count(visited)) return OPT[sum][visited];
+// 		for (int i = 0; i < maxChoosableInteger; i++) {
+// 			int j = 1 << i;
+// 			if (!(visited & j)) {
+// 				j |= visited;
+// 				if (sum + i + 1 >= desiredTotal) {
+// 					OPT[sum][visited] = true;
+// 					return true;
+// 				}
+// 				if (OPT[sum + i + 1].count(j) && !OPT[sum + i + 1][j]) {
+// 					OPT[sum][visited] = true;
+// 					return true;
+// 				}
+// 				if (!OPT[sum + i + 1].count(j) && !canIWin(j, sum + i + 1, maxChoosableInteger, desiredTotal, OPT)) {
+// 					OPT[sum][visited] = true;
+// 					return true;					
+// 				}
+// 			}
+// 		}
+// 		OPT[sum][visited] = false;
+// 		return false;
+// 	}
+// };
+
+// BEGIN: Time Limit Exceeded
+// class Solution {
+// public:
+// 	bool canIWin(int maxChoosableInteger, int desiredTotal) {
+// 		if (maxChoosableInteger >= desiredTotal) return true;
+// 		if (maxChoosableInteger * (1 + maxChoosableInteger) / 2 < desiredTotal) return false;
+// 		vector<vector<bool>> OPT(1 << maxChoosableInteger, vector<bool>(1 + desiredTotal, false));
+// 		vector<vector<bool>> PATH(1 << maxChoosableInteger, vector<bool>(1 + desiredTotal, false));
+// 		return canIWin(0, 0, maxChoosableInteger, desiredTotal, OPT, PATH);
+// 	}
+// private:
+// 	bool canIWin(int visited, int sum, const int maxChoosableInteger, const int desiredTotal, vector<vector<bool>>& OPT, vector<vector<bool>>& PATH) {
+// 		if (sum >= desiredTotal) return false;
+// 		if (OPT[visited][sum]) return true;
+// 		if (PATH[visited][sum]) return OPT[visited][sum];
+// 		for (int i = 0; i < maxChoosableInteger; i++) {
+// 			int j = 1 << i;
+// 			if (!(j & visited)) {
+// 				j |= visited;
+// 				if (sum + i + 1 >= desiredTotal) {
+// 					OPT[visited][sum] = true;
+// 					PATH[visited][sum] = true;
+// 					return true;
+// 				}
+// 				if (!canIWin(j, sum + i + 1, maxChoosableInteger, desiredTotal, OPT, PATH)) {
+// 					OPT[visited][sum] = true;
+// 					PATH[visited][sum] = true;
+// 					return true;
+// 				}
+// 			}
+// 		}
+// 		PATH[visited][sum] = true;
+// 		return false;
+// 	}
+// };
 // END: Time Limit Exceeded
 
 // BEGIN: Memory Limit Exceeded
@@ -46,6 +120,7 @@ private:
 // public:
 // 	bool canIWin(int maxChoosableInteger, int desiredTotal) {
 // 		if (maxChoosableInteger >= desiredTotal) return true;
+// 		if (maxChoosableInteger * (1 + maxChoosableInteger) / 2 < desiredTotal) return false;
 // 		vector<vector<vector<bool>>> F(2, vector<vector<bool>>(1 << maxChoosableInteger, vector<bool>(1 + desiredTotal, false)));
 // 		vector<vector<vector<bool>>> G(2, vector<vector<bool>>(1 << maxChoosableInteger, vector<bool>(1 + desiredTotal, false)));
 // 		for (int i = 0; i < maxChoosableInteger; i++) {
@@ -121,6 +196,7 @@ int main(void) {
 	assert(false == solution.canIWin(10, 40));
 	assert(true == solution.canIWin(18, 79));
 	assert(true == solution.canIWin(20, 54));
+	assert(false == solution.canIWin(5, 50));
 	cout << "\nPassed All\n";
 	return 0;
 }
