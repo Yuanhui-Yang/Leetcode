@@ -290,3 +290,4 @@
 | 469 | [Convex Polygon](https://leetcode.com/problems/convex-polygon/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/convex-polygon.cpp) | Medium |
 | 474 | [Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/ones-and-zeroes.cpp) | Medium |
 | 475 | [Heaters](https://leetcode.com/problems/heaters/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/heaters.cpp) | Easy |
+| 477 | [Total Hamming Distance](https://leetcode.com/problems/total-hamming-distance/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/total-hamming-distance.cpp) | Medium |
