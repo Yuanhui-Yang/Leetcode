@@ -205,6 +205,7 @@
 | 350 | [Intersection of Two Arrays II](https://leetcode.com/problems/intersection-of-two-arrays-ii/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/intersection-of-two-arrays-ii.cpp) | Easy |
 | 351 | [Android Unlock Patterns](https://leetcode.com/problems/android-unlock-patterns/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/android-unlock-patterns.cpp) | Medium |
 | 352 | [Data Stream as Disjoint Intervals](https://leetcode.com/problems/data-stream-as-disjoint-intervals/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/data-stream-as-disjoint-intervals.cpp) | Hard |
+| 353 | [Design Snake Game](https://leetcode.com/problems/design-snake-game/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/design-snake-game.cpp) | Medium |
 | 354 | [Russian Doll Envelopes](https://leetcode.com/problems/russian-doll-envelopes/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/russian-doll-envelopes.cpp) | Hard |
 | 355 | [Design Twitter](https://leetcode.com/problems/design-twitter/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/design-twitter.cpp) | Medium |
 | 356 | [Line Reflection](https://leetcode.com/problems/line-reflection/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/line-reflection.cpp) | Medium |
