@@ -26,7 +26,7 @@ int main(void) {
 	Solution solution;
 	vector<int> nums;
 	nums = {2, 7, 11, 15};
-	assert(vector<int>(0, 1) == solution.twoSum(nums, 9));
+	assert(vector<int>({0, 1}) == solution.twoSum(nums, 9));
 	cout << "\nPassed All\n";
 	return 0;
 }
