@@ -1,37 +1,32 @@
-//1. Two Sum
-//https://leetcode.com/problems/two-sum/
-// https://discuss.leetcode.com/topic/3294/accepted-c-o-n-solution/
+// 1. Two Sum
+// https://leetcode.com/problems/two-sum/
 #include <iostream>
+#include <cassert>
 #include <vector>
 #include <unordered_map>
 using namespace std;
-// BEGIN: https://discuss.leetcode.com/topic/3294/accepted-c-o-n-solution/
+// BEGIN: https://leetcode.com/articles/two-sum/
 class Solution {
 public:
-	vector<int> twoSum(const vector<int>& nums, const int& target) {
-		unordered_map<int, int> hashmap;
-		vector<int> result(2, 0);
-		for (size_t i = 0; i < nums.size(); ++i) {
-			int rest = target - nums[i];
-			if (hashmap.count(rest)) {
-				result[0] = hashmap[rest];
-				result[1] = i;
-				return result;
+	vector<int> twoSum(vector<int>& nums, int target) {
+		const int nums_size = nums.size();
+		if (nums_size < 2) return {-1, -1};
+		unordered_map<int, int> hash_map;
+		for (int i = 0; i < nums_size; i++) {
+			if (hash_map.count(target - nums[i])) {
+				return {hash_map[target - nums[i]], i};
 			}
-			hashmap[nums[i]] = i;
+			hash_map[nums[i]] = i;
 		}
-		return result;
+		return {-1, -1};
 	}
 };
-// END: https://discuss.leetcode.com/topic/3294/accepted-c-o-n-solution/
+// END: https://leetcode.com/articles/two-sum/
 int main(void) {
 	Solution solution;
-	vector<int> nums = {2, 7, 11, 15};
-	int target = 9;
-	for (const auto& i : solution.twoSum(nums,  target)) {
-		cout << i << '\t';
-	}
-	cout << "\nPassed\n";
-	cout << "\nPassed All\n";	
+	vector<int> nums;
+	nums = {2, 7, 11, 15};
+	assert(vector<int>(0, 1) == solution.twoSum(nums, 9));
+	cout << "\nPassed All\n";
 	return 0;
 }
