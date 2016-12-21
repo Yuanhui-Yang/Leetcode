@@ -2,6 +2,7 @@
 // https://leetcode.com/problems/kth-largest-element-in-an-array/
 // https://discuss.leetcode.com/topic/15256/4-c-solutions-using-partition-max-heap-priority_queue-and-multiset-respectively
 #include <iostream>
+#include <cassert>
 #include <vector>
 #include <algorithm>
 #include <iterator>
@@ -110,12 +111,11 @@ public:
 // };
 int main(void) {
 	Solution solution;
-	vector<int> nums = {3, 2, 1, 5, 6, 4}; 
-	int k = 2;
-	cout << solution.findKthLargest(nums, k) << "\tPassed\n";
+	vector<int> nums;
+	nums = {3, 2, 1, 5, 6, 4}; 
+	assert(5 == solution.findKthLargest(nums, 2));
 	nums = {3, 3, 3, 3, 4, 3, 3, 3, 3};
-	k = 1;
-	cout << solution.findKthLargest(nums, k) << "\tPassed\n";
+	assert(4 == solution.findKthLargest(nums, 1));
 	cout << "\nPassed All\n";
 	return 0;
 }
