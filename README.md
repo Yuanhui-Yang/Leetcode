@@ -101,6 +101,7 @@
 | 163 | [Missing Ranges](https://leetcode.com/problems/missing-ranges/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/missing-ranges.cpp) | Medium |
 | 164 | [Maximum Gap](https://leetcode.com/problems/maximum-gap/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/maximum-gap.cpp) | Hard |
 | 166 | [Fraction to Recurring Decimal](https://leetcode.com/problems/fraction-to-recurring-decimal/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/fraction-to-recurring-decimal.cpp) | Medium |
+| 167 | [Two Sum II - Input array is sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/two-sum-ii-input-array-is-sorted.cpp) | Medium |
 | 173 | [Binary Search Tree Iterator](https://leetcode.com/problems/binary-search-tree-iterator/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/binary-search-tree-iterator.cpp) | Medium |
 | 174 | [Dungeon Game](https://leetcode.com/problems/dungeon-game/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/dungeon-game.cpp) | Hard |
 | 187 | [Repeated DNA Sequences](https://leetcode.com/problems/repeated-dna-sequences/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/repeated-dna-sequences.cpp) | Medium |
