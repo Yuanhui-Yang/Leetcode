@@ -4,6 +4,7 @@
 #include <cassert>
 #include <vector>
 using namespace std;
+// BEGIN: http://www.jiuzhang.com/solutions/number-of-islands/
 class Solution {
 public:
 	int numIslands(vector<vector<char>>& grid) {
@@ -46,6 +47,7 @@ private:
 		return father[x] = find(father[x], father);
 	}
 };
+// END: http://www.jiuzhang.com/solutions/number-of-islands/
 // BEGIN: https://discuss.leetcode.com/topic/13248/very-concise-java-ac-solution
 // class Solution {
 // public:
