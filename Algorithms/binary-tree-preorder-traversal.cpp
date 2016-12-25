@@ -2,6 +2,7 @@
 // https://leetcode.com/problems/binary-tree-preorder-traversal/
 // http://www.cnblogs.com/AnnieKim/archive/2013/06/15/morristraversal.html
 #include <iostream>
+#include <cassert>
 #include <vector>
 #include <stack>
 #include <iterator>
@@ -12,6 +13,7 @@ struct TreeNode {
 	TreeNode *right;
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
+
 class Solution {
 public:
 	vector<int> preorderTraversal(TreeNode* root) {
@@ -36,6 +38,27 @@ public:
 		return result;
 	}
 };
+
+// BEGIN: http://www.geeksforgeeks.org/iterative-postorder-traversal-using-stack/
+// class Solution {
+// public:
+// 	vector<int> preorderTraversal(TreeNode* root) {
+// 		if (!root) return {};
+// 		vector<int> result;
+// 		vector<TreeNode*> stack;
+// 		stack.push_back(root);
+// 		while (!stack.empty()) {
+// 			TreeNode *stack_top = stack.back();
+// 			stack.pop_back();
+// 			result.push_back(stack_top->val);
+// 			if (stack_top->right) stack.push_back(stack_top->right);
+// 			if (stack_top->left) stack.push_back(stack_top->left);
+// 		}
+// 		return result;
+// 	}
+// };
+// END: http://www.geeksforgeeks.org/iterative-postorder-traversal-using-stack/
+
 // class Solution {
 // public:
 // 	vector<int> preorderTraversal(TreeNode* root) {
@@ -51,6 +74,7 @@ public:
 // 		this->preorderTraversal(root->right, result);
 // 	}
 // };
+
 // class Solution {
 // public:
 // 	vector<int> preorderTraversal(TreeNode* root) {
@@ -63,13 +87,16 @@ public:
 // 		return result;
 // 	}
 // };
+
 int main(void) {
 	Solution solution;
-	TreeNode *root = new TreeNode(1);
+	TreeNode *root = NULL;
+	root = new TreeNode(1);
 	root->right = new TreeNode(2);
 	root->right->left = new TreeNode(3);
-	for (const auto &i : solution.preorderTraversal(root)) cout << i << '\t';
-	cout << "\tPassed\n";
+	vector<int> result;
+	result = solution.preorderTraversal(root);
+	assert(vector<int>({1, 2, 3}) == result);
 	cout << "\nPassed All\n";
 	return 0;
 }
