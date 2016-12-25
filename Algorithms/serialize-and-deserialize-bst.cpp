@@ -10,13 +10,14 @@ struct TreeNode {
 	TreeNode *right;
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
+
 class Codec {
 public:
 
 	// Encodes a tree to a single string.
 	string serialize(TreeNode* root) {
-		if (!root) return "#";
-		return to_string(root->val) + ',' + serialize(root->left) + ',' + serialize(root->right);
+		return root ? to_string(root->val) + ',' + serialize(root->left) + ',' + serialize(root->right) : "#";
+
 	}
 
 	// Decodes your encoded data to tree.
@@ -32,7 +33,7 @@ private:
 			i += 2;
 			return NULL;
 		}
-		int j = i;
+		const int j = i;
 		while (i < data_size && data[i] != ',') i++;
 		TreeNode *root = new TreeNode(stoi(data.substr(j, i++ - j)));
 		root->left = deserialize(i, data);
@@ -45,7 +46,22 @@ private:
 // Codec codec;
 // codec.deserialize(codec.serialize(root));
 
+bool helper(TreeNode* root, TreeNode* result) {
+	if (!root && !result) return true;
+	if (!root && result) return false;
+	if (root && !result) return false;
+	if (root->val != result->val) return false;
+	return helper(root->left, result->left) && helper(root->right, result->right);
+}
+ 
 int main(void) {
+	Codec codec;
+	TreeNode *root = NULL;
+	root = new TreeNode(2);
+	root->left = new TreeNode(1);
+	root->right = new TreeNode(3);
+	TreeNode *result = codec.deserialize(codec.serialize(root));
+	assert(helper(root, result));
 	cout << "\nPassed All\n";
 	return 0;
 }
