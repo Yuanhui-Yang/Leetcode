@@ -1,6 +1,5 @@
 // 144. Binary Tree Preorder Traversal
 // https://leetcode.com/problems/binary-tree-preorder-traversal/
-// http://www.cnblogs.com/AnnieKim/archive/2013/06/15/morristraversal.html
 #include <iostream>
 #include <cassert>
 #include <vector>
@@ -14,6 +13,7 @@ struct TreeNode {
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+// BEGIN: http://www.cnblogs.com/AnnieKim/archive/2013/06/15/morristraversal.html
 class Solution {
 public:
 	vector<int> preorderTraversal(TreeNode* root) {
@@ -38,6 +38,7 @@ public:
 		return result;
 	}
 };
+// END: http://www.cnblogs.com/AnnieKim/archive/2013/06/15/morristraversal.html
 
 // BEGIN: http://www.geeksforgeeks.org/iterative-postorder-traversal-using-stack/
 // class Solution {
