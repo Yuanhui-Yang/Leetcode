@@ -108,6 +108,7 @@ private:
 // 		return val;
 // 	}
 // };
+
 // class Solution {
 // public:
 // 	int findKthNumber(int n, int k) {
@@ -135,6 +136,7 @@ private:
 // 		return stoi(new_val_str);
 // 	}
 // };
+
 // class Solution {
 // public:
 // 	int findKthNumber(int n, int k) {
@@ -165,7 +167,6 @@ int main(void) {
 	assert(416126219 == result);
 	result = solution.findKthNumber(719885387, 209989719);
 	assert(288990744 == result);
-
 	cout << "\nPassed All\n";
 	return 0;
 }
