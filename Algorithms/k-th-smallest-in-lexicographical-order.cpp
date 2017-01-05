@@ -119,21 +119,18 @@ private:
 // 		return result;
 // 	}
 // private:
-// 	int next(int val, const int n) {
+// 	size_t next(size_t val, const size_t n) {
 // 		if (!val) return 1;
-// 		if (10 * val <= n) return 10 * val;
-// 		string val_str = to_string(val);
-// 		string valp1_str = to_string(val + 1);
-// 		if (val + 1 <= n && valp1_str.back() != '0') return val + 1;
-// 		if (valp1_str.back() == '0') {
-// 			while (valp1_str.back() == '0') valp1_str.pop_back();
-// 			return stoi(valp1_str);			
+// 		if (size_t(10 * val) <= size_t(n)) return 10 * val;
+// 		size_t valp1 = val + 1;
+// 		if (valp1 <= size_t(n) && valp1 % 10 != 0) return valp1;
+// 		if (valp1 % 10 == 0) {
+// 			while (valp1 % 10 == 0) valp1 /= 10;
+// 			return valp1;
 // 		}
-// 		int new_val = val / 10 + 1;
-// 		string new_val_str = to_string(new_val);
-// 		if (new_val_str.back() != '0') return new_val;
-// 		while (new_val_str.back() == '0') new_val_str.pop_back();
-// 		return stoi(new_val_str);
+// 		val = val / 10 + 1;
+// 		while (val % 10 == 0) val /= 10;
+// 		return val;
 // 	}
 // };
 
