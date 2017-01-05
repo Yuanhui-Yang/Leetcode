@@ -9,40 +9,105 @@
 #include <iterator>
 using namespace std;
 // BEGIN: https://discuss.leetcode.com/topic/64624/concise-easy-to-understand-java-5ms-solution-with-explaination
-// class Solution {
-// public:
-// 	int findKthNumber(int n, int k) {
-
-// 	}
-// };
-// END: https://discuss.leetcode.com/topic/64624/concise-easy-to-understand-java-5ms-solution-with-explaination
-
-// BEGIN: Time Limit Exceeded
+// BEGIN: http://bookshadow.com/weblog/2016/10/24/leetcode-k-th-smallest-in-lexicographical-order/
 class Solution {
 public:
 	int findKthNumber(int n, int k) {
-		int result = 0;
-		for (int i = 0; i < k; i++) {
-			result = next(result, n);
+		int result = 1;
+		k--;
+		while (k > 0) {
+			const int delta = helper(result, result + 1, n);
+			if (k >= delta) {
+				result++;
+				k -= delta;
+			}
+			else {
+				result *= 10;
+				k--;
+			}
 		}
 		return result;
 	}
 private:
-	int next(int val, const int n) {
-		if (!val) return 1;
-		if (size_t(10 * val) <= size_t(n)) return 10 * val;
-		int valp1 = val + 1;
-		if (valp1 <= n && valp1 % 10 != 0) return valp1;
-		if (valp1 % 10 == 0) {
-			while (valp1 % 10 == 0) valp1 /= 10;
-			return valp1;
+	size_t helper(size_t lb, size_t ub, const size_t n) {
+		size_t result = 0;
+		while (lb <= n) {
+			result += min(n + 1, ub) - lb;
+			lb *= 10;
+			ub *= 10;
 		}
-		val = val / 10 + 1;
-		while (val % 10 == 0) val /= 10;
-		return val;
+		return result;
 	}
 };
+// END: http://bookshadow.com/weblog/2016/10/24/leetcode-k-th-smallest-in-lexicographical-order/
+// END: https://discuss.leetcode.com/topic/64624/concise-easy-to-understand-java-5ms-solution-with-explaination
 
+// BEGIN: Time Limit Exceeded
+// class Solution {
+// public:
+// 	int findKthNumber(int n, int k) {
+// 		size_t result = 0;
+// 		size_t i = 1;
+// 		bool nonFound = true;
+// 		for (i = 1; nonFound && i < 10; i++) {
+// 			size_t cnt = 0;
+// 			for (size_t lb = i, ub = i + 1; nonFound && lb <= size_t(n); lb *= 10, ub *= 10) {
+// 				cnt += min(size_t(n + 1), ub) - lb;
+// 				nonFound = size_t(k) > cnt;
+// 			}
+// 			k = nonFound ? k - cnt : k;
+// 		}
+// 		// ofstream output;
+// 		// output.open("../result.txt");
+// 		result = i - 1;
+// 		// output << result << '\n';
+// 		for (size_t j = 1; j < size_t(k); j++) {
+// 			result = next(result, n);
+// 			// output << result << '\n';
+// 		}
+// 		// output.close();
+// 		return result;
+// 	}
+// private:
+// 	size_t next(size_t val, const size_t n) {
+// 		if (!val) return 1;
+// 		if (size_t(10 * val) <= size_t(n)) return 10 * val;
+// 		size_t valp1 = val + 1;
+// 		if (valp1 <= size_t(n) && valp1 % 10 != 0) return valp1;
+// 		if (valp1 % 10 == 0) {
+// 			while (valp1 % 10 == 0) valp1 /= 10;
+// 			return valp1;
+// 		}
+// 		val = val / 10 + 1;
+// 		while (val % 10 == 0) val /= 10;
+// 		return val;
+// 	}
+// };
+
+// class Solution {
+// public:
+// 	int findKthNumber(int n, int k) {
+// 		int result = 0;
+// 		for (int i = 0; i < k; i++) {
+// 			result = next(result, n);
+// 		}
+// 		return result;
+// 	}
+// private:
+// 	size_t next(size_t val, const size_t n) {
+// 		if (!val) return 1;
+// 		if (size_t(10 * val) <= size_t(n)) return 10 * val;
+// 		size_t valp1 = val + 1;
+// 		if (valp1 <= size_t(n) && valp1 % 10 != 0) return valp1;
+// 		if (valp1 % 10 == 0) {
+// 			while (valp1 % 10 == 0) valp1 /= 10;
+// 			return valp1;
+// 		}
+// 		val = val / 10 + 1;
+// 		while (val % 10 == 0) val /= 10;
+// 		return val;
+// 	}
+// };
 // class Solution {
 // public:
 // 	int findKthNumber(int n, int k) {
@@ -55,7 +120,7 @@ private:
 // private:
 // 	int next(int val, const int n) {
 // 		if (!val) return 1;
-// 		if (size_t(10 * val) <= size_t(n)) return 10 * val;
+// 		if (10 * val <= n) return 10 * val;
 // 		string val_str = to_string(val);
 // 		string valp1_str = to_string(val + 1);
 // 		if (val + 1 <= n && valp1_str.back() != '0') return val + 1;
@@ -70,7 +135,6 @@ private:
 // 		return stoi(new_val_str);
 // 	}
 // };
-
 // class Solution {
 // public:
 // 	int findKthNumber(int n, int k) {
@@ -99,6 +163,9 @@ int main(void) {
 	assert(6271710 == result);
 	result = solution.findKthNumber(681692778, 351251360);
 	assert(416126219 == result);
+	result = solution.findKthNumber(719885387, 209989719);
+	assert(288990744 == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
