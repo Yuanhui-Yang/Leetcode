@@ -296,6 +296,7 @@
 | 454 | [4Sum II](https://leetcode.com/problems/4sum-ii/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/4sum-ii.cpp) | Medium |
 | 455 | [Assign Cookies](https://leetcode.com/problems/assign-cookies/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/assign-cookies.cpp) | Easy |
 | 456 | [132 Pattern](https://leetcode.com/problems/132-pattern/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/132-pattern.cpp) | Medium |
+| 458 | [Poor Pigs](https://leetcode.com/problems/poor-pigs/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/poor-pigs.cpp) | Easy |
 | 459 | [Repeated Substring Pattern](https://leetcode.com/problems/repeated-substring-pattern/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/repeated-substring-pattern.cpp) | Easy |
 | 461 | [Hamming Distance](https://leetcode.com/problems/hamming-distance/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/hamming-distance.cpp) | Easy |
 | 462 | [Minimum Moves to Equal Array Elements II](https://leetcode.com/problems/minimum-moves-to-equal-array-elements-ii/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/minimum-moves-to-equal-array-elements-ii.cpp) | Medium |
