@@ -308,4 +308,5 @@
 | 473 | [Matchsticks to Square](https://leetcode.com/problems/matchsticks-to-square/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/matchsticks-to-square.cpp) | Medium |
 | 474 | [Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/ones-and-zeroes.cpp) | Medium |
 | 475 | [Heaters](https://leetcode.com/problems/heaters/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/heaters.cpp) | Easy |
+| 476 | [Number Complement](https://leetcode.com/problems/number-complement/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/number-complement.cpp) | Easy |
 | 477 | [Total Hamming Distance](https://leetcode.com/problems/total-hamming-distance/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/total-hamming-distance.cpp) | Medium |
