@@ -305,6 +305,7 @@
 | 467 | [Unique Substrings in Wraparound String](https://leetcode.com/problems/unique-substrings-in-wraparound-string/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/unique-substrings-in-wraparound-string.cpp) | Medium |
 | 468 | [Validate IP Address](https://leetcode.com/problems/validate-ip-address/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/validate-ip-address.cpp) | Medium |
 | 469 | [Convex Polygon](https://leetcode.com/problems/convex-polygon/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/convex-polygon.cpp) | Medium |
+| 471 | [Encode String with Shortest Length](https://leetcode.com/problems/encode-string-with-shortest-length/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/encode-string-with-shortest-length.cpp) | Hard |
 | 473 | [Matchsticks to Square](https://leetcode.com/problems/matchsticks-to-square/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/matchsticks-to-square.cpp) | Medium |
 | 474 | [Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/ones-and-zeroes.cpp) | Medium |
 | 475 | [Heaters](https://leetcode.com/problems/heaters/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/heaters.cpp) | Easy |
