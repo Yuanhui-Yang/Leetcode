@@ -312,3 +312,4 @@
 | 475 | [Heaters](https://leetcode.com/problems/heaters/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/heaters.cpp) | Easy |
 | 476 | [Number Complement](https://leetcode.com/problems/number-complement/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/number-complement.cpp) | Easy |
 | 477 | [Total Hamming Distance](https://leetcode.com/problems/total-hamming-distance/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/total-hamming-distance.cpp) | Medium |
+| 481 | [Magical String](https://leetcode.com/problems/magical-string/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/magical-string.cpp) | Medium |
