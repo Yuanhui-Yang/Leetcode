@@ -1,6 +1,7 @@
 // 422. Valid Word Square
 // https://leetcode.com/problems/valid-word-square/
 #include <iostream>
+#include <cassert>
 #include <string>
 #include <vector>
 using namespace std;
@@ -17,13 +18,16 @@ public:
 int main(void) {
 	Solution solution;
 	vector<string> words;
-	cout << boolalpha << solution.validWordSquare(words) << "\tPassed\n";
+	bool result;
 	words = {"abcd", "bnrt", "crmy", "dtye"};
-	cout << boolalpha << solution.validWordSquare(words) << "\tPassed\n";
+	result = solution.validWordSquare(words);
+	assert(true == result);
 	words = {"abcd", "bnrt", "crm", "dt"};
-	cout << boolalpha << solution.validWordSquare(words) << "\tPassed\n";
+	result = solution.validWordSquare(words);
+	assert(true == result);
 	words = {"ball", "area", "read", "lady"};
-	cout << boolalpha << solution.validWordSquare(words) << "\tPassed\n";
+	result = solution.validWordSquare(words);
+	assert(false == result);
 	cout << "\nPassed All\n";
 	return 0;
 }
