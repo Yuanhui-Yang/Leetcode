@@ -12,8 +12,10 @@ using namespace std;
 struct TrieNode {
 	TrieNode() {
 		memset(links, 0, 26 * sizeof(TrieNode *));
+		isEnd = false;
 	}
 	TrieNode *links[26];
+	bool isEnd;
 };
 class Trie {
 public:
@@ -24,21 +26,54 @@ public:
 		TrieNode *it = root;
 		for (const auto &c : str) {
 			int idx = c - 'a';
-			it->links[idx] = it->links[idx] ? it->links[idx] : new TrieNode();
+			if (!it->links[idx]) {
+				it->links[idx] = new TrieNode();
+			}
 			it = it->links[idx];
 		}
+		it->isEnd = true;
 	}
 	bool prefix(const string& str) {
 		TrieNode *it = root;
 		for (const auto &c : str) {
 			int idx = c - 'a';
-			if (!it->links[idx]) return false;
+			if (!it->links[idx]) {
+				return false;
+			}
 			it = it->links[idx];
 		}
-		return true;
+		return false;
+	}
+	vector<string> getCandidates(string str) {
+		vector<string> result;
+		TrieNode *it = root;
+		for (const auto &c : str) {
+			int idx = c - 'a';
+			if (!it->links[idx]) {
+				return result;
+			}
+			it = it->links[idx];
+		}
+		preorder(it, str, result);
+		return result;
 	}
 private:
 	TrieNode *root;
+	void preorder(TrieNode *it, string& str, vector<string>& result) {
+		if (!it) return;
+		if (it->isEnd) {
+			result.push_back(str);
+			return;
+		}
+		for (int i = 0; i < 26; i++) {
+			string x(str);
+			if (it->links[i]) {
+				const char c = 'a' + i;
+				x.push_back(c);
+				preorder(it->links[i], x, result);
+			}
+		}
+	}
 };
 
 // BEGIN: https://discuss.leetcode.com/topic/63516/explained-my-java-solution-using-trie-126ms-16-16
@@ -51,59 +86,33 @@ public:
 		}
 		vector<string> solution;
 		vector<vector<string>> result;
-		unordered_set<string> candidates(begin(words), end(words));
-		helper(solution, result, trie, candidates);
+		helper(solution, result, trie, words);
 		return result;
 	}
 private:
-	void helper(vector<string>& solution, vector<vector<string>>& result, Trie& trie, unordered_set<string>& candidates) {
-		if (!solution.empty() && solution.size() == solution.front().size()) {
-			const size_t rank = solution.size();
-			for (size_t i = 0; i < rank; i++) {
-				for (size_t j = i + 1; j < rank; j++) {
-					if (solution[i][j] != solution[j][i]) {
-						return;
-					}
-				}
+	void helper(vector<string>& solution, vector<vector<string>>& result, Trie& trie, vector<string>& words) {
+		if (solution.empty()) {
+			for (const auto &word : words) {
+				solution.push_back(word);
+				helper(solution, result, trie, words);
+				solution.pop_back();
 			}
+			return;
+		}		
+		if (solution.size() == solution.front().size()) {
 			result.push_back(solution);
 			return;
 		}
+		string prefix;
+		for (size_t i = 0; i < solution.size(); i++) {
+			prefix.push_back(solution[i][solution.size()]);
+		}
+		vector<string> candidates = trie.getCandidates(prefix);
 		for (const auto &candidate : candidates) {
 			solution.push_back(candidate);
-			if (!validatePrefix(candidate, solution, trie, candidates)) {
-				solution.pop_back();
-				continue;
-			}
-			unordered_set<string> trash;
-			for (const auto &i : candidates) {
-				if (!validatePrefix(i, solution, trie, candidates)) {
-					trash.insert(i);
-				}
-			}
-			for (const auto &i : trash) {
-				candidates.erase(i);
-			}
-			helper(solution, result, trie, candidates);
-			for (const auto &i : trash) {
-				candidates.insert(i);
-			}
+			helper(solution, result, trie, words);
 			solution.pop_back();
 		}
-		return;
-	}
-private:
-	bool validatePrefix(const string& candidate, const vector<string>& solution, Trie& trie, const unordered_set<string>& candidates) {
-		for (size_t j = candidate.size() - 1; j >= 1; j--) {
-			string str;
-			for (size_t i = 0; i < min(j, solution.size()); i++) {
-				str.push_back(solution[i][j]);
-			}
-			if (!trie.prefix(str)) {
-				return false;
-			}
-		}
-		return true;
 	}
 };
 // END: https://discuss.leetcode.com/topic/63516/explained-my-java-solution-using-trie-126ms-16-16
