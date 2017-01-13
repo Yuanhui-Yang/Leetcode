@@ -166,6 +166,7 @@
 | 286 | [Walls and Gates](https://leetcode.com/problems/walls-and-gates/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/walls-and-gates.cpp) | Medium |
 | 287 | [Find the Duplicate Number](https://leetcode.com/problems/find-the-duplicate-number/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/find-the-duplicate-number.cpp) | Hard |
 | 289 | [Game of Life](https://leetcode.com/problems/game-of-life/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/game-of-life.cpp) | Medium |
+| 290 | [Word Pattern](https://leetcode.com/problems/word-pattern/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/word-pattern.cpp) | Easy |
 | 292 | [Nim Game](https://leetcode.com/problems/nim-game/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/nim-game.cpp) | Easy |
 | 293 | [Flip Game](https://leetcode.com/problems/flip-game/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/flip-game.cpp) | Easy |
 | 294 | [Flip Game II](https://leetcode.com/problems/flip-game-ii/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/flip-game-ii.cpp) | Medium |
