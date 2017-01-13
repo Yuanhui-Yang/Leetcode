@@ -4,6 +4,8 @@
 #include <cassert>
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <iterator> 
 using namespace std;
 class Solution {
 public:
@@ -38,7 +40,7 @@ private:
 		}
 		for (size_t l = j + 1; l <= str.size(); l++) {
 			OPT[i] = str.substr(j, l - j);
-			if (!isUnique(i, OPT[i], OPT)) {
+			if (find(begin(OPT), next(begin(OPT), i), OPT[i]) != next(begin(OPT), i)) {
 				OPT[i].clear();
 				continue;
 			}
@@ -49,15 +51,6 @@ private:
 			OPT[i].clear();
 		}
 		return false;
-	}
-private:
-	bool isUnique(size_t j, string str, vector<string>& OPT) {
-		for (size_t i = 0; i < j; i++) {
-			if (OPT[i] == str) {
-				return false;
-			}
-		}
-		return true;
 	}
 };
 int main(void) {
