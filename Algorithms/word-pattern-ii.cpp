@@ -13,11 +13,11 @@ public:
 	}
 private:
 	bool helper(size_t i, string pattern, size_t j, string str, vector<string>& OPT) {
-		cout << i << '\t' << j << '\t';
-		for (const auto &x : OPT) {
-			cout << x << '\t';
-		}
-		cout << '\n';
+		// cout << i << '\t' << j << '\t';
+		// for (const auto &x : OPT) {
+		// 	cout << x << '\t';
+		// }
+		// cout << '\n';
 		if (i == pattern.size() && j == str.size()) {
 			return true;
 		}
@@ -43,13 +43,11 @@ private:
 		}
 		for (size_t l = j + 1; l <= str.size(); l++) {
 			OPT[i] = str.substr(j, l - j);
-			for (size_t m = 0; m < i; m++) {
-				if (OPT[m] == OPT[i]) {
-					OPT[i].clear();
-					continue;
-				}
+			if (!isUnique(i, OPT[i], OPT)) {
+				OPT[i].clear();
+				continue;
 			}
-			if (helper(i + 1, pattern, j + OPT[i].size(), str, OPT)) {
+			if (helper(i + 1, pattern, l, str, OPT)) {
 				OPT[i].clear();
 				return true;
 			}
@@ -57,20 +55,29 @@ private:
 		}
 		return false;
 	}
+private:
+	bool isUnique(size_t j, string str, vector<string>& OPT) {
+		for (size_t i = 0; i < j; i++) {
+			if (OPT[i] == str) {
+				return false;
+			}
+		}
+		return true;
+	}
 };
 int main(void) {
 	Solution solution;
 	bool result;
-	// result = solution.wordPatternMatch("ab", "aa");
-	// assert(false == result);
-	// result = solution.wordPatternMatch("abab", "redblueredblue");
-	// assert(true == result);
-	// result = solution.wordPatternMatch("aaaa", "asdasdasdasd");
-	// assert(true == result);
-	// result = solution.wordPatternMatch("aabb", "xyzabcxzyabc");
-	// assert(false == result);
-	result = solution.wordPatternMatch("itwasthebestoftimes", "ittwaastthhebesttoofttimes");
+	result = solution.wordPatternMatch("ab", "aa");
 	assert(false == result);
+	result = solution.wordPatternMatch("abab", "redblueredblue");
+	assert(true == result);
+	result = solution.wordPatternMatch("aaaa", "asdasdasdasd");
+	assert(true == result);
+	result = solution.wordPatternMatch("aabb", "xyzabcxzyabc");
+	assert(false == result);
+	result = solution.wordPatternMatch("itwasthebestoftimes", "ittwaastthhebesttoofttimes");
+	assert(true == result);
 	cout << "\nPassed All\n";
 	return 0;
 }
