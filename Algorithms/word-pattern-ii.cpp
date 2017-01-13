@@ -13,11 +13,6 @@ public:
 	}
 private:
 	bool helper(size_t i, string pattern, size_t j, string str, vector<string>& OPT) {
-		// cout << i << '\t' << j << '\t';
-		// for (const auto &x : OPT) {
-		// 	cout << x << '\t';
-		// }
-		// cout << '\n';
 		if (i == pattern.size() && j == str.size()) {
 			return true;
 		}
@@ -78,6 +73,8 @@ int main(void) {
 	assert(false == result);
 	result = solution.wordPatternMatch("itwasthebestoftimes", "ittwaastthhebesttoofttimes");
 	assert(true == result);
+	result = solution.wordPatternMatch("itwasthebestoftimes", "ittwaastthhebesttoofttimesss");
+	assert(false == result);
 	cout << "\nPassed All\n";
 	return 0;
 }
