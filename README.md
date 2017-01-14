@@ -318,5 +318,6 @@
 | 475 | [Heaters](https://leetcode.com/problems/heaters/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/heaters.cpp) | Easy |
 | 476 | [Number Complement](https://leetcode.com/problems/number-complement/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/number-complement.cpp) | Easy |
 | 477 | [Total Hamming Distance](https://leetcode.com/problems/total-hamming-distance/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/total-hamming-distance.cpp) | Medium |
+| 480 | [Sliding Window Median](https://leetcode.com/problems/sliding-window-median/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/sliding-window-median.cpp) | Hard |
 | 481 | [Magical String](https://leetcode.com/problems/magical-string/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/magical-string.cpp) | Medium |
 | 482 | [License Key Formatting](https://leetcode.com/problems/license-key-formatting/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/license-key-formatting.cpp) | Medium |
