@@ -7,7 +7,7 @@
 #include <cfloat>
 #include <algorithm>
 #include <iterator>
-using namespace std; 
+using namespace std;
 class MedianFinder {
 public:
 
@@ -77,6 +77,30 @@ private:
 	multiset<int> minSet;
 	multiset<int> maxSet;
 };
+
+// BEGIN: Time Limit Exceeded
+// class MedianFinder {
+// public:
+
+// 	// Adds a number into the data structure.
+// 	void addNum(int num) {
+// 		rbtree.insert(num);
+// 	}
+
+// 	// Returns the median of current data stream
+// 	double findMedian() {
+// 		if (rbtree.size() & 1) {
+// 			return *next(begin(rbtree), rbtree.size() >> 1);
+// 		}
+// 		double left = double(*next(begin(rbtree), (rbtree.size() >> 1) - 1));
+// 		double right = double(*next(begin(rbtree), rbtree.size() >> 1));
+// 		return left / 2.0 + right / 2.0;
+// 	}
+
+// private:
+// 	multiset<int> rbtree;
+// };
+// END: Time Limit Exceeded
 
 // Your MedianFinder object will be instantiated and called as such:
 // MedianFinder mf;
