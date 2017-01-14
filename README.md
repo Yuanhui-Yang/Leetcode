@@ -172,6 +172,7 @@
 | 292 | [Nim Game](https://leetcode.com/problems/nim-game/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/nim-game.cpp) | Easy |
 | 293 | [Flip Game](https://leetcode.com/problems/flip-game/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/flip-game.cpp) | Easy |
 | 294 | [Flip Game II](https://leetcode.com/problems/flip-game-ii/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/flip-game-ii.cpp) | Medium |
+| 295 | [Find Median from Data Stream](https://leetcode.com/problems/find-median-from-data-stream/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/find-median-from-data-stream.cpp) | Hard |
 | 296 | [Best Meeting Point](https://leetcode.com/problems/best-meeting-point/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/best-meeting-point.cpp) | Hard |
 | 297 | [Serialize and Deserialize Binary Tree](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/serialize-and-deserialize-binary-tree.cpp) | Hard |
 | 298 | [Binary Tree Longest Consecutive Sequence](https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/binary-tree-longest-consecutive-sequence.cpp) | Medium |
