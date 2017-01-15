@@ -322,3 +322,4 @@
 | 481 | [Magical String](https://leetcode.com/problems/magical-string/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/magical-string.cpp) | Medium |
 | 482 | [License Key Formatting](https://leetcode.com/problems/license-key-formatting/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/license-key-formatting.cpp) | Medium |
 | 485 | [Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/max-consecutive-ones.cpp) | Easy |
+| 487 | [Max Consecutive Ones II](https://leetcode.com/problems/max-consecutive-ones-ii/) | [CPlusPlus](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/max-consecutive-ones-ii.cpp) | Medium |
