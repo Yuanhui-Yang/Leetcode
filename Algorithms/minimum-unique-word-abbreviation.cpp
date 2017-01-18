@@ -14,8 +14,10 @@ public:
 int main(void) {
 	Solution solution;
 	string result;
+
 	result = solution.minAbbreviation();
 	assert( == result);
+	
 	cout << "\nPassed All\n";
 	return 0;
 }
