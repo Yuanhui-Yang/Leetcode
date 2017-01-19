@@ -54,9 +54,9 @@ int main(void) {
 	int result = 0;
 	vector<vector<int>> matrix;
 	
-	// matrix = {{1, 0, 1}, {0, -2, 3}};
-	// result = solution.maxSumSubmatrix(matrix, 2);
-	// assert(2 == result);
+	matrix = {{1, 0, 1}, {0, -2, 3}};
+	result = solution.maxSumSubmatrix(matrix, 2);
+	assert(2 == result);
 	
 	matrix = {{2, 2, -1}};
 	result = solution.maxSumSubmatrix(matrix, 0);
