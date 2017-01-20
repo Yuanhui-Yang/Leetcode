@@ -219,6 +219,7 @@
 | 355 | [Design Twitter](https://leetcode.com/problems/design-twitter/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/design-twitter.cpp) | Medium |
 | 356 | [Line Reflection](https://leetcode.com/problems/line-reflection/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/line-reflection.cpp) | Medium |
 | 357 | [Count Numbers with Unique Digits](https://leetcode.com/problems/count-numbers-with-unique-digits/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/count-numbers-with-unique-digits.cpp) | Medium |
+| 358 | [Rearrange String k Distance Apart](https://leetcode.com/problems/rearrange-string-k-distance-apart/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/rearrange-string-k-distance-apart.cpp) | Hard |
 | 359 | [Logger Rate Limiter](https://leetcode.com/problems/logger-rate-limiter/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/logger-rate-limiter.cpp) | Easy |
 | 360 | [Sort Transformed Array](https://leetcode.com/problems/sort-transformed-array/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/sort-transformed-array.cpp) | Medium |
 | 361 | [Bomb Enemy](https://leetcode.com/problems/bomb-enemy/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/bomb-enemy.cpp) | Medium |
