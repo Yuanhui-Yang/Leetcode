@@ -324,6 +324,7 @@
 | 480 | [Sliding Window Median](https://leetcode.com/problems/sliding-window-median/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/sliding-window-median.cpp) | Hard |
 | 481 | [Magical String](https://leetcode.com/problems/magical-string/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/magical-string.cpp) | Medium |
 | 482 | [License Key Formatting](https://leetcode.com/problems/license-key-formatting/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/license-key-formatting.cpp) | Medium |
+| 484 | [Find Permutation](https://leetcode.com/problems/find-permutation/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/find-permutation.cpp) | Medium |
 | 485 | [Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/max-consecutive-ones.cpp) | Easy |
 | 487 | [Max Consecutive Ones II](https://leetcode.com/problems/max-consecutive-ones-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/max-consecutive-ones-ii.cpp) | Medium |
 | 488 | [Zuma Game](https://leetcode.com/problems/zuma-game/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/zuma-game.cpp) | Hard |
