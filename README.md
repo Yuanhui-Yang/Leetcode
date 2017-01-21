@@ -328,3 +328,4 @@
 | 485 | [Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/max-consecutive-ones.cpp) | Easy |
 | 487 | [Max Consecutive Ones II](https://leetcode.com/problems/max-consecutive-ones-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/max-consecutive-ones-ii.cpp) | Medium |
 | 488 | [Zuma Game](https://leetcode.com/problems/zuma-game/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/zuma-game.cpp) | Hard |
+| 494 | [Target sum](https://leetcode.com/problems/target-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/target-sum.cpp) | Medium |
