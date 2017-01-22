@@ -326,6 +326,7 @@
 | 482 | [License Key Formatting](https://leetcode.com/problems/license-key-formatting/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/license-key-formatting.cpp) | Medium |
 | 484 | [Find Permutation](https://leetcode.com/problems/find-permutation/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/find-permutation.cpp) | Medium |
 | 485 | [Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/max-consecutive-ones.cpp) | Easy |
+| 486 | [Predict the Winner](https://leetcode.com/problems/predict-the-winner/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/predict-the-winner.cpp) | Medium |
 | 487 | [Max Consecutive Ones II](https://leetcode.com/problems/max-consecutive-ones-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/max-consecutive-ones-ii.cpp) | Medium |
 | 488 | [Zuma Game](https://leetcode.com/problems/zuma-game/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/zuma-game.cpp) | Hard |
 | 491 | [Increasing Subsequences](https://leetcode.com/problems/increasing-subsequences/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/increasing-subsequences.cpp) | Medium |
