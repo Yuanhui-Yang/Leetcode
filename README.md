@@ -270,6 +270,7 @@
 | 408 | [Valid Word Abbreviation](https://leetcode.com/problems/valid-word-abbreviation/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/valid-word-abbreviation.cpp) | Easy |
 | 409 | [Longest Palindrome](https://leetcode.com/problems/longest-palindrome/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/longest-palindrome.cpp) | Easy |
 | 410 | [Split Array Largest Sum](https://leetcode.com/problems/split-array-largest-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/split-array-largest-sum.cpp) | Hard |
+| 411 | [Minimum Unique Word Abbreviation](https://leetcode.com/problems/minimum-unique-word-abbreviation/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/minimum-unique-word-abbreviation.cpp) | Hard |
 | 412 | [Fizz Buzz](https://leetcode.com/problems/fizz-buzz/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/fizz-buzz.cpp) | Easy |
 | 413 | [Arithmetic Slices](https://leetcode.com/problems/arithmetic-slices/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/arithmetic-slices.cpp) | Medium |
 | 414 | [Third Maximum Number](https://leetcode.com/problems/third-maximum-number/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/third-maximum-number.cpp) | Easy |
