@@ -263,6 +263,7 @@
 | 400 | [Nth Digit](https://leetcode.com/problems/nth-digit/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/nth-digit.cpp) | Easy |
 | 401 | [Binary Watch](https://leetcode.com/problems/binary-watch/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/binary-watch.cpp) | Easy |
 | 402 | [Remove K Digits](https://leetcode.com/problems/remove-k-digits/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/remove-k-digits.cpp) | Medium |
+| 403 | [Frog Jump](https://leetcode.com/problems/frog-jump/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/frog-jump.cpp) | Hard |
 | 404 | [Sum of Left Leaves](https://leetcode.com/problems/sum-of-left-leaves/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/sum-of-left-leaves.cpp) | Easy |
 | 405 | [Convert a Number to Hexadecimal](https://leetcode.com/problems/convert-a-number-to-hexadecimal/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/convert-a-number-to-hexadecimal.cpp) | Easy |
 | 406 | [Queue Reconstruction by Height](https://leetcode.com/problems/queue-reconstruction-by-height/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/queue-reconstruction-by-height.cpp) | Medium |
