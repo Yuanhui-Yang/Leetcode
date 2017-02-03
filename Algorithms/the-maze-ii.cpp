@@ -84,12 +84,6 @@ int main(void) {
 	result = solution.shortestDistance(maze, start, destination);
 	assert(192 == result);
 
-	maze = {{0, 0, 1, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 1, 0}, {1, 1, 0, 1, 1}, {0, 0, 0, 0, 0}};
-	start = {0, 4};
-	destination = {4, 4};
-	result = solution.shortestDistance(maze, start, destination);
-	assert(12 == result);
-
 	cout << "\nPassed All\n";
 	return 0;
 }
