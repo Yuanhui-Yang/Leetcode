@@ -337,6 +337,10 @@
 | 492 | [Construct the rectangle](https://leetcode.com/problems/construct-the-rectangle/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/construct-the-rectangle.cpp) | Easy |
 | 494 | [Target sum](https://leetcode.com/problems/target-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/target-sum.cpp) | Medium |
 | 495 | [Teemo Attacking](https://leetcode.com/problems/teemo-attacking/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/teemo-attacking.cpp) | Medium |
+| 496 | [Next Greater Element I](https://leetcode.com/problems/next-greater-element-i/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/next-greater-element-i.cpp) | Easy |
+| 498 | [Diagonal traverse](https://leetcode.com/problems/diagonal-traverse/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/diagonal-traverse.cpp) | Hard |
 | 499 | [The Maze III](https://leetcode.com/problems/the-maze-iii/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/the-maze-iii.cpp) | Hard |
 | 501 | [Find Mode in Binary Search Tree](https://leetcode.com/problems/find-mode-in-binary-search-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/find-mode-in-binary-search-tree.cpp) | Easy |
+| 503 | [Next Greater Element II](https://leetcode.com/problems/next-greater-element-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/next-greater-element-ii.cpp) | Medium |
 | 505 | [The Maze II](https://leetcode.com/problems/the-maze-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/the-maze-ii.cpp) | Medium |
+| 506 | [Relative Ranks](https://leetcode.com/problems/relative-ranks/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/relative-ranks.cpp) | Easy |
