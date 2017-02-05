@@ -36,7 +36,7 @@ public:
 					currentX = 1;
 					currentY = currentY;
 					continue;
-				}				
+				}
 				if (nextX >= 0 && nextY >= n) {
 					direction = (direction + 1) % 2;
 					currentX++;
