@@ -31,20 +31,20 @@ public:
 				for (const auto &j : i.second) {
 					result[j] = "Silver Medal";
 				}
-				continue;				
+				continue;
 			}
 			if (rank == 3) {
 				for (const auto &j : i.second) {
 					result[j] = "Bronze Medal";
 				}
-				continue;				
+				continue;
 			}
 			if (rank >= 4) {
 				for (const auto &j : i.second) {
 					result[j] = to_string(rank);
 				}
-				continue;				
-			}			
+				continue;
+			}
 		}
 		return result;
 	}
@@ -64,11 +64,11 @@ public:
 // 			}
 // 			if (rank == 2) {
 // 				result.push_back("Silver Medal");
-// 				continue;				
+// 				continue;
 // 			}
 // 			if (rank == 3) {
 // 				result.push_back("Bronze Medal");
-// 				continue;				
+// 				continue;
 // 			}
 // 			if (rank >= 4) {
 // 				result.push_back(to_string(rank));
