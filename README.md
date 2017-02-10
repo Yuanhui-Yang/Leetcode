@@ -319,6 +319,7 @@
 | 468 | [Validate IP Address](https://leetcode.com/problems/validate-ip-address/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/validate-ip-address.cpp) | Medium |
 | 469 | [Convex Polygon](https://leetcode.com/problems/convex-polygon/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/convex-polygon.cpp) | Medium |
 | 471 | [Encode String with Shortest Length](https://leetcode.com/problems/encode-string-with-shortest-length/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/encode-string-with-shortest-length.cpp) | Hard |
+| 472 | [Concatenated Words](https://leetcode.com/problems/concatenated-words/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/concatenated-words.cpp) | Hard |
 | 473 | [Matchsticks to Square](https://leetcode.com/problems/matchsticks-to-square/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/matchsticks-to-square.cpp) | Medium |
 | 474 | [Ones and Zeroes](https://leetcode.com/problems/ones-and-zeroes/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/ones-and-zeroes.cpp) | Medium |
 | 475 | [Heaters](https://leetcode.com/problems/heaters/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/heaters.cpp) | Easy |
