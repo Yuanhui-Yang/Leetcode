@@ -336,7 +336,7 @@
 | 490 | [The Maze](https://leetcode.com/problems/the-maze/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/the-maze.cpp) | Medium |
 | 491 | [Increasing Subsequences](https://leetcode.com/problems/increasing-subsequences/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/increasing-subsequences.cpp) | Medium |
 | 492 | [Construct the rectangle](https://leetcode.com/problems/construct-the-rectangle/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/construct-the-rectangle.cpp) | Easy |
-| 494 | [Target sum](https://leetcode.com/problems/target-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/target-sum.cpp) | Medium |
+| 494 | [Target Sum](https://leetcode.com/problems/target-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/target-sum.cpp) | Medium |
 | 495 | [Teemo Attacking](https://leetcode.com/problems/teemo-attacking/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/teemo-attacking.cpp) | Medium |
 | 496 | [Next Greater Element I](https://leetcode.com/problems/next-greater-element-i/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/next-greater-element-i.cpp) | Easy |
 | 498 | [Diagonal Traverse](https://leetcode.com/problems/diagonal-traverse/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/diagonal-traverse.cpp) | Hard |

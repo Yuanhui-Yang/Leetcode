@@ -1,4 +1,4 @@
-// 494. Target sum
+// 494. Target Sum
 // https://leetcode.com/problems/target-sum/
 #include <iostream>
 #include <cassert>
