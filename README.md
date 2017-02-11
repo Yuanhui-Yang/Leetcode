@@ -339,7 +339,7 @@
 | 494 | [Target sum](https://leetcode.com/problems/target-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/target-sum.cpp) | Medium |
 | 495 | [Teemo Attacking](https://leetcode.com/problems/teemo-attacking/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/teemo-attacking.cpp) | Medium |
 | 496 | [Next Greater Element I](https://leetcode.com/problems/next-greater-element-i/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/next-greater-element-i.cpp) | Easy |
-| 498 | [Diagonal traverse](https://leetcode.com/problems/diagonal-traverse/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/diagonal-traverse.cpp) | Hard |
+| 498 | [Diagonal Traverse](https://leetcode.com/problems/diagonal-traverse/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/diagonal-traverse.cpp) | Hard |
 | 499 | [The Maze III](https://leetcode.com/problems/the-maze-iii/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/the-maze-iii.cpp) | Hard |
 | 500 | [Keyboard Row](https://leetcode.com/problems/keyboard-row/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/keyboard-row.cpp) | Easy |
 | 501 | [Find Mode in Binary Search Tree](https://leetcode.com/problems/find-mode-in-binary-search-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/find-mode-in-binary-search-tree.cpp) | Easy |

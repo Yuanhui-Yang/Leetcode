@@ -1,4 +1,4 @@
-// 498. Diagonal traverse
+// 498. Diagonal Traverse
 // https://leetcode.com/problems/diagonal-traverse/
 #include <iostream>
 #include <cassert>
