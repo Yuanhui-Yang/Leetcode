@@ -30,7 +30,7 @@ private:
 		if (!k || tree_map.empty()) {
 			return W;
 		}
-		int result = 0;
+		int result = W;
 		map<int, multiset<int, greater<int>>>::iterator tree_map_upper_bound = tree_map.upper_bound(W);
 		for (map<int, multiset<int, greater<int>>>::iterator tree_map_iter = begin(tree_map); tree_map_iter != tree_map_upper_bound; tree_map_iter++) {
 			int capital_val = tree_map_iter->first;
