@@ -15,24 +15,6 @@
 using namespace std;
 
 // BEGIN: https://discuss.leetcode.com/topic/77768/very-simple-greedy-java-solution-using-two-priorityqueues
-struct ProfitCapitalPair {
-	ProfitCapitalPair(int profit, int capital) {
-		this->profit = profit;
-		this->capital = capital;
-	};
-	int profit;
-	int capital;
-};
-struct ProfitCapitalPairComp1 {
-	bool operator() (const ProfitCapitalPair& i, const ProfitCapitalPair& j) {
-		return i.capital < j.capital;
-	}
-};
-struct ProfitCapitalPairComp2 {
-	bool operator() (const ProfitCapitalPair& i, const ProfitCapitalPair& j) {
-		return i.profit > j.profit;
-	}
-};
 class Solution {
 public:
 	int findMaximizedCapital(int k, int W, vector<int>& Profits, vector<int>& Capital) {
@@ -62,7 +44,77 @@ public:
 		}
 		return W;
 	}
+private:
+	struct ProfitCapitalPair {
+		ProfitCapitalPair(int profit, int capital) {
+			this->profit = profit;
+			this->capital = capital;
+		};
+		int profit;
+		int capital;
+	};
+	struct ProfitCapitalPairComp1 {
+		bool operator() (const ProfitCapitalPair& i, const ProfitCapitalPair& j) {
+			return i.capital < j.capital;
+		}
+	};
+	struct ProfitCapitalPairComp2 {
+		bool operator() (const ProfitCapitalPair& i, const ProfitCapitalPair& j) {
+			return i.profit > j.profit;
+		}
+	};
 };
+
+// class Solution {
+// public:
+// 	int findMaximizedCapital(int k, int W, vector<int>& Profits, vector<int>& Capital) {
+// 		if (!k || Profits.empty() || Capital.empty()) {
+// 			return W;
+// 		}
+// 		vector<ProfitCapitalPair> sortedProfitCapitalPairs;
+// 		multiset<ProfitCapitalPair, ProfitCapitalPairComp2> max_heap;
+// 		for (size_t i = 0; i < Profits.size() && i < Capital.size(); i++) {
+// 			sortedProfitCapitalPairs.push_back(ProfitCapitalPair(Profits[i], Capital[i]));
+// 		}
+// 		sort(begin(sortedProfitCapitalPairs), end(sortedProfitCapitalPairs), ProfitCapitalPairComp1Obj);
+// 		vector<ProfitCapitalPair>::iterator iter = begin(sortedProfitCapitalPairs);
+// 		while (k > 0) {
+// 			if (iter != end(sortedProfitCapitalPairs)) {
+// 				vector<ProfitCapitalPair>::iterator sortedProfitCapitalPairsUpperBound = upper_bound(iter, end(sortedProfitCapitalPairs), ProfitCapitalPair(W, W), ProfitCapitalPairComp1Obj);
+// 				if (sortedProfitCapitalPairsUpperBound != iter) {
+// 					max_heap.insert(iter, sortedProfitCapitalPairsUpperBound);
+// 					iter = sortedProfitCapitalPairsUpperBound;
+// 				}
+// 			}
+// 			if (max_heap.empty()) {
+// 				return W;
+// 			}
+// 			W += begin(max_heap)->profit;
+// 			max_heap.erase(begin(max_heap));
+// 			k--;
+// 		}
+// 		return W;
+// 	}
+// private:
+// 	struct ProfitCapitalPair {
+// 		ProfitCapitalPair(int profit, int capital) {
+// 			this->profit = profit;
+// 			this->capital = capital;
+// 		};
+// 		int profit;
+// 		int capital;
+// 	};
+// 	struct ProfitCapitalPairComp1 {
+// 		bool operator() (const ProfitCapitalPair& i, const ProfitCapitalPair& j) {
+// 			return i.capital < j.capital;
+// 		}
+// 	} ProfitCapitalPairComp1Obj;
+// 	struct ProfitCapitalPairComp2 {
+// 		bool operator() (const ProfitCapitalPair& i, const ProfitCapitalPair& j) {
+// 			return i.profit > j.profit;
+// 		}
+// 	} ProfitCapitalPairComp2Obj;
+// };
 // END: https://discuss.leetcode.com/topic/77768/very-simple-greedy-java-solution-using-two-priorityqueues
 
 // BEGIN: Time Limit Exceeded
