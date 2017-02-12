@@ -37,10 +37,9 @@ public:
 			if (max_heap.empty()) {
 				return W;
 			}
-			ProfitCapitalPair max_profit = *begin(max_heap);
+			W += begin(max_heap)->profit;
 			max_heap.erase(begin(max_heap));
 			k--;
-			W += max_profit.profit;
 		}
 		return W;
 	}
