@@ -14,45 +14,98 @@
 #include <functional>
 using namespace std;
 
-// BEGIN: http://www.jianshu.com/p/2affb8141f67
+// BEGIN: https://discuss.leetcode.com/topic/77768/very-simple-greedy-java-solution-using-two-priorityqueues
+struct ProfitCapitalPair {
+	ProfitCapitalPair(int profit, int capital) {
+		this->profit = profit;
+		this->capital = capital;
+	};
+	int profit;
+	int capital;
+};
+struct ProfitCapitalPairComp1 {
+	bool operator() (const ProfitCapitalPair& i, const ProfitCapitalPair& j) {
+		return i.capital < j.capital;
+	}
+};
+struct ProfitCapitalPairComp2 {
+	bool operator() (const ProfitCapitalPair& i, const ProfitCapitalPair& j) {
+		return i.profit > j.profit;
+	}
+};
 class Solution {
 public:
 	int findMaximizedCapital(int k, int W, vector<int>& Profits, vector<int>& Capital) {
 		if (!k || Profits.empty() || Capital.empty()) {
 			return W;
 		}
-		map<int, multiset<int, greater<int>>> tree_map;
+		multiset<ProfitCapitalPair, ProfitCapitalPairComp1> tree_set;
+		multiset<ProfitCapitalPair, ProfitCapitalPairComp2> max_heap;
 		for (size_t i = 0; i < Profits.size() && i < Capital.size(); i++) {
-			tree_map[Capital[i]].insert(Profits[i]);
+			tree_set.insert(ProfitCapitalPair(Profits[i], Capital[i]));
 		}
-		return findMaximizedCapital(k, W, tree_map);
-	}
-private:
-	int findMaximizedCapital(int k, int W, map<int, multiset<int, greater<int>>>& tree_map) {
-		if (!k || tree_map.empty()) {
-			return W;
-		}
-		map<int, multiset<int, greater<int>>>::iterator max_profile_iter = begin(tree_map);
-		map<int, multiset<int, greater<int>>>::iterator tree_map_upper_bound = tree_map.upper_bound(W);
-		if (tree_map_upper_bound != max_profile_iter) {
-			for (map<int, multiset<int, greater<int>>>::iterator tree_map_iter = begin(tree_map);
-				tree_map_iter != tree_map_upper_bound;
-				tree_map_iter++) {
-				if (*begin(tree_map_iter->second) > *begin(max_profile_iter->second)) {
-					max_profile_iter = tree_map_iter;
+		while (k > 0) {
+			if (!tree_set.empty()) {
+				multiset<ProfitCapitalPair, ProfitCapitalPairComp1>::iterator tree_set_upper_bound = tree_set.upper_bound(ProfitCapitalPair(W, W));
+				if (tree_set_upper_bound != begin(tree_set)) {
+					max_heap.insert(begin(tree_set), tree_set_upper_bound);
+					tree_set.erase(begin(tree_set), tree_set_upper_bound);
 				}
 			}
-			int max_profile_val = *begin(max_profile_iter->second);
-			max_profile_iter->second.erase(begin(max_profile_iter->second));
-			if (max_profile_iter->second.empty()) {
-				tree_map.erase(max_profile_iter);
+			if (max_heap.empty()) {
+				return W;
 			}
-			return findMaximizedCapital(k - 1, W + max_profile_val, tree_map);
+			ProfitCapitalPair max_profit = *begin(max_heap);
+			max_heap.erase(begin(max_heap));
+			k--;
+			W += max_profit.profit;
 		}
 		return W;
 	}
 };
+// END: https://discuss.leetcode.com/topic/77768/very-simple-greedy-java-solution-using-two-priorityqueues
+
+// BEGIN: Time Limit Exceeded
+// BEGIN: http://www.jianshu.com/p/2affb8141f67
+// class Solution {
+// public:
+// 	int findMaximizedCapital(int k, int W, vector<int>& Profits, vector<int>& Capital) {
+// 		if (!k || Profits.empty() || Capital.empty()) {
+// 			return W;
+// 		}
+// 		map<int, multiset<int, greater<int>>> tree_map;
+// 		for (size_t i = 0; i < Profits.size() && i < Capital.size(); i++) {
+// 			tree_map[Capital[i]].insert(Profits[i]);
+// 		}
+// 		return findMaximizedCapital(k, W, tree_map);
+// 	}
+// private:
+// 	int findMaximizedCapital(int k, int W, map<int, multiset<int, greater<int>>>& tree_map) {
+// 		if (!k || tree_map.empty()) {
+// 			return W;
+// 		}
+// 		map<int, multiset<int, greater<int>>>::iterator max_profile_iter = begin(tree_map);
+// 		map<int, multiset<int, greater<int>>>::iterator tree_map_upper_bound = tree_map.upper_bound(W);
+// 		if (tree_map_upper_bound != max_profile_iter) {
+// 			for (map<int, multiset<int, greater<int>>>::iterator tree_map_iter = begin(tree_map);
+// 				tree_map_iter != tree_map_upper_bound;
+// 				tree_map_iter++) {
+// 				if (*begin(tree_map_iter->second) > *begin(max_profile_iter->second)) {
+// 					max_profile_iter = tree_map_iter;
+// 				}
+// 			}
+// 			int max_profile_val = *begin(max_profile_iter->second);
+// 			max_profile_iter->second.erase(begin(max_profile_iter->second));
+// 			if (max_profile_iter->second.empty()) {
+// 				tree_map.erase(max_profile_iter);
+// 			}
+// 			return findMaximizedCapital(k - 1, W + max_profile_val, tree_map);
+// 		}
+// 		return W;
+// 	}
+// };
 // END: http://www.jianshu.com/p/2affb8141f67
+// END: Time Limit Exceeded
 
 // BEGIN: Time Limit Exceeded
 // class Solution {
