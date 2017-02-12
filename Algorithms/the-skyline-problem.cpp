@@ -14,20 +14,20 @@
 #include <functional>
 using namespace std;
 struct Skyline {
-	Skyline(int axis, int height, bool down) {
+	Skyline(int axis, int height, bool up) {
 		this->axis = axis;
 		this->height = height;
-		this->down = down;
+		this->up = up;
 	}
 	int axis;
 	int height;
-	bool down;
+	bool up;
 };
 struct SkylineComp {
 	bool operator() (const Skyline& i, const Skyline& j) {
 		if (i.axis == j.axis) {
 			if (i.height == j.height) {
-				return i.down < j.down;
+				return i.up > j.up;
 			}
 			return i.height > j.height;
 		}
@@ -40,45 +40,47 @@ public:
 		if (buildings.empty()) {
 			return {};
 		}
-		vector<pair<int, int>> result;
 		multiset<Skyline, SkylineComp> sorted_buildings;
 		for (const auto &building : buildings) {
-			sorted_buildings.insert(Skyline(building[0], building[2], false));
-			sorted_buildings.insert(Skyline(building[1], building[2], true));
+			sorted_buildings.insert(Skyline(building[0], building[2], true));
+			sorted_buildings.insert(Skyline(building[1], building[2], false));
 		}
 		multiset<int, greater<int>> max_heap;
-		for (multiset<Skyline, SkylineComp>::iterator sorted_building = begin(sorted_buildings); sorted_building != end(sorted_buildings); sorted_building++) {
-			if (max_heap.empty()) {
-				if (!sorted_building->down) {
-					max_heap.insert(sorted_building->height);
-				}
-				result.push_back(make_pair(sorted_building->axis, sorted_building->height));
-				continue;
-			}
-			if (!sorted_building->down) {
-				max_heap.insert(sorted_building->height);
-				if (sorted_building->axis > result.back().first && sorted_building->height > result.back().second) {
+		vector<pair<int, int>> result;
+		for (multiset<Skyline, SkylineComp>::iterator sorted_building = begin(sorted_buildings);
+			sorted_building != end(sorted_buildings);
+			sorted_building++) {
+			if (sorted_building->up) {
+				if (max_heap.empty() || sorted_building->height > result.back().second) {
 					result.push_back(make_pair(sorted_building->axis, sorted_building->height));
 				}
+				max_heap.insert(sorted_building->height);
+				while (next(sorted_building) != end(sorted_buildings)
+					&& next(sorted_building)->axis == sorted_building->axis
+					&& next(sorted_building)->height <= sorted_building->height
+					&& next(sorted_building)->up) {
+					sorted_building++;
+					max_heap.insert(sorted_building->height);
+				}
 				continue;
 			}
-			const int sorted_building_axis = sorted_building->axis;
-			const int sorted_building_height = sorted_building->height;
-			multiset<int, greater<int>>::iterator max_heap_it = max_heap.lower_bound(sorted_building->height);
-			max_heap.erase(max_heap_it);
-			const int max_heap_height = *begin(max_heap);
+			multiset<int, greater<int>>::iterator max_heap_iter = max_heap.lower_bound(sorted_building->height);
+			max_heap.erase(max_heap_iter);
 			while (next(sorted_building) != end(sorted_buildings)
-					&& next(sorted_building)->axis == sorted_building->axis
-					&& next(sorted_building)->
-				) {
-
+				&& next(sorted_building)->axis == sorted_building->axis
+				&& next(sorted_building)->height <= sorted_building->height
+				&& !next(sorted_building)->up) {
+				sorted_building++;
+				max_heap_iter = max_heap.lower_bound(sorted_building->height);
+				max_heap.erase(max_heap_iter);
 			}
 			if (max_heap.empty()) {
-				result.push_back(make_pair(sorted_building_axis, 0));
+				result.push_back(make_pair(sorted_building->axis, 0));
 				continue;
 			}
-			if (sorted_building->height > max_heap_height) {
-				result.push_back(make_pair(sorted_building_axis, max_heap_height));
+			multiset<int, greater<int>>::iterator max_element = begin(max_heap);
+			if (*max_element < result.back().second) {
+				result.push_back(make_pair(sorted_building->axis, *max_element));
 				continue;
 			}
 		}

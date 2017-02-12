@@ -124,6 +124,7 @@
 | 215 | [Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/kth-largest-element-in-an-array.cpp) | Medium |
 | 216 | [Combination Sum III](https://leetcode.com/problems/combination-sum-iii/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/combination-sum-iii.cpp) | Medium |
 | 217 | [Contains Duplicate](https://leetcode.com/problems/contains-duplicate/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/contains-duplicate.cpp) | Easy |
+| 218 | [The Skyline Problem](https://leetcode.com/problems/the-skyline-problem/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/the-skyline-problem.cpp) | Hard |
 | 219 | [Contains Duplicate II](https://leetcode.com/problems/contains-duplicate-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/contains-duplicate-ii.cpp) | Easy |
 | 220 | [Contains Duplicate III](https://leetcode.com/problems/contains-duplicate-iii/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/contains-duplicate-iii.cpp) | Medium |
 | 221 | [Maximal Square](https://leetcode.com/problems/maximal-square/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/maximal-square.cpp) | Medium |
