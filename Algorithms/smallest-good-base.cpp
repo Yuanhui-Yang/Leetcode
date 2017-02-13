@@ -1,19 +1,40 @@
 // 483. Smallest Good Base
 // https://leetcode.com/problems/smallest-good-base/
 #include <iostream>
+#include <cmath>
+#include <cfloat>
 #include <cctype>
 #include <cassert>
+#include <limits>
 #include <string>
 #include <algorithm>
 #include <iterator>
 using namespace std;
 
+// BEGIN: https://discuss.leetcode.com/topic/76368/python-solution-with-detailed-mathematical-explanation-and-derivation
 class Solution {
 public:
 	string smallestGoodBase(string n) {
-
+		if (n == "0") {
+			return "0";
+		}
+		if (n == "1") {
+			return "1";
+		}
+		size_t y = stoull(n);
+		for (size_t i = 1 + ceil((long double)(log(y)) / (long double)(log(2))); i > 1; i--) {
+			size_t j = floor(pow((long double)(y), 1.0 / (i - 1)));
+			if (j > 1) {
+				size_t x = round((pow((long double)j, (long double)i) - 1) / (long double)(j - 1));
+				if (x == y) {
+					return to_string(j);
+				}
+			}
+		}
+		return to_string(y - 1);
 	}
 };
+// END: https://discuss.leetcode.com/topic/76368/python-solution-with-detailed-mathematical-explanation-and-derivation
 
 // BEGIN: Time Limit Exceeded
 // class Solution {
@@ -46,8 +67,38 @@ int main(void) {
 	string result;
 	string answer;
 
-	n = "13";
+	n = "470988884881403701";
 	answer = "686286299";
+	result = solution.smallestGoodBase(n);
+	assert(answer == result);
+
+	n = "16035713712910627";
+	answer = "502";
+	result = solution.smallestGoodBase(n);
+	assert(answer == result);
+
+	n = "14919921443713777";
+	answer = "496";
+	result = solution.smallestGoodBase(n);
+	assert(answer == result);
+
+	n = "2251799813685247";
+	answer = "2";
+	result = solution.smallestGoodBase(n);
+	assert(answer == result);
+
+	n = "3";
+	answer = "2";
+	result = solution.smallestGoodBase(n);
+	assert(answer == result);
+
+	n = "15";
+	answer = "2";
+	result = solution.smallestGoodBase(n);
+	assert(answer == result);
+
+	n = "13";
+	answer = "3";
 	result = solution.smallestGoodBase(n);
 	assert(answer == result);
 
