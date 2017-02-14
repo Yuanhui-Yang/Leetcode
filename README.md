@@ -347,6 +347,7 @@
 | 501 | [Find Mode in Binary Search Tree](https://leetcode.com/problems/find-mode-in-binary-search-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/find-mode-in-binary-search-tree.cpp) | Easy |
 | 502 | [IPO](https://leetcode.com/problems/ipo/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/ipo.cpp) | Hard |
 | 503 | [Next Greater Element II](https://leetcode.com/problems/next-greater-element-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/next-greater-element-ii.cpp) | Medium |
+| 504 | [Base 7](https://leetcode.com/problems/base-7/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/base-7.cpp) | Easy |
 | 505 | [The Maze II](https://leetcode.com/problems/the-maze-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/the-maze-ii.cpp) | Medium |
 | 506 | [Relative Ranks](https://leetcode.com/problems/relative-ranks/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/relative-ranks.cpp) | Easy |
 | 508 | [Most Frequent Subtree Sum](https://leetcode.com/problems/most-frequent-subtree-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/most-frequent-subtree-sum.cpp) | Medium |
