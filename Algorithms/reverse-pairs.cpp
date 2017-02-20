@@ -12,129 +12,155 @@
 #include <iterator>
 using namespace std;
 
+// BEGIN: https://discuss.leetcode.com/topic/78933/very-short-and-clear-mergesort-bst-java-solutions
+// BEGIN: https://discuss.leetcode.com/topic/78993/c-with-iterators
 class Solution {
 public:
 	int reversePairs(vector<int>& nums) {
-		if (nums.empty()) {
-			return 0;
-		}
-		pair<vector<int>::iterator, vector<int>::iterator> min_max_iters = minmax_element(begin(nums), end(nums));
-		long long range = (long long)(*(min_max_iters.second)) - (long long)(*(min_max_iters.first));
-		if (range > INT_MAX / 2) {
-			int result = 0;
-			multiset<long long> tree_set;
-			for (const auto &num : nums) {
-				result += distance(tree_set.upper_bound(2 * (long long)num), end(tree_set));
-				tree_set.insert(num);
-			}
-			return result;
-		}
-		int result = 0;
-		IntervalTree interval_tree(*(min_max_iters.first), *(min_max_iters.second));
-		for (const auto &num : nums) {
-			result += interval_tree.count(2 * (long long)(num));
-			interval_tree.insert((long long)(num));
-		}
-		return result;
+		return reversePairs(begin(nums), end(nums));
 	}
 private:
-	struct IntervalTreeNode {
-		long long lower;
-		long long upper;
-		int counter;
-		IntervalTreeNode *left;
-		IntervalTreeNode *right;
-		IntervalTreeNode(long long lower, long long upper) {
-			this->lower = lower;
-			this->upper = upper;
-			this->counter = 0;
-			this->left = NULL;
-			this->right = NULL;
+	int reversePairs(vector<int>::iterator begin, vector<int>::iterator end) {
+		if (distance(begin, end) <= 1) {
+			return 0;
 		}
-	};
-	class IntervalTree {
-	public:
-		IntervalTree(long long lower, long long upper) {
-			IntervalTreeConstructor(this->root, lower, upper);
+		vector<int>::iterator mid = next(begin, distance(begin, end) / 2);
+		int result = reversePairs(begin, mid) + reversePairs(mid, end);
+		for (vector<int>::iterator it = begin; it != mid; it++) {
+			result += distance(mid, lower_bound(mid, end, double (*it) / 2.0));
 		}
-	public:
-		int insert(long long val) {
-			if (!this->root
-				|| this->root->lower > this->root->upper
-				|| val < this->root->lower
-				|| val > this->root->upper) {
-				return 0;
-			}
-			int result = 0;
-			IntervalTreeNode *node = this->root;
-			long long i = node->lower;
-			long long j = node->upper;
-			while (i < j) {
-				node->counter += (i < j) && (i <= val) && (val <= j);
-				result += (i < j) && (i <= val) && (val <= j);
-				int k = i + (j - i) / 2;
-				node = val <= k ? node->left : node->right;
-				i = node->lower;
-				j = node->upper;
-			}
-			node->counter += (i == j) && (i <= val) && (val <= j);
-			result += (i == j) && (i <= val) && (val <= j);
-			return result;
-		}
-	public:
-		int count(long long val) {
-			if (!this->root
-				|| this->root->lower > this->root->upper
-				|| val >= this->root->upper) {
-				return 0;
-			}
-			if (val < this->root->lower) {
-				return this->root->counter;
-			}
-			int result = 0;
-			IntervalTreeNode *node = this->root;
-			long long i = node->lower;
-			long long j = node->upper;
-			while (i < j) {
-				long long k = i + (j - i) / 2;
-				if (val == k) {
-					result += node->right->counter;
-					return result;
-				}
-				if (val < k) {
-					result += node->right->counter;
-					node = node->left;
-					i = node->lower;
-					j = node->upper;
-					continue;
-				}
-				if  (val > k) {
-					node = node->right;
-					i = node->lower;
-					j = node->upper;
-					continue;					
-				}
-			}			
-			return result;
-		}
-	private:
-		void IntervalTreeConstructor(IntervalTreeNode*& root, long long lower, long long upper) {
-			if (lower == upper) {
-				root = new IntervalTreeNode(lower, upper);
-				return;
-			}
-			if (lower < upper) {
-				root = new IntervalTreeNode(lower, upper);
-				int mid = lower + (upper - lower) / 2;
-				IntervalTreeConstructor(root->left, lower, mid);
-				IntervalTreeConstructor(root->right, mid + 1, upper);
-				return;
-			}
-		}
-	private:
-		IntervalTreeNode *root;
-	};
+		inplace_merge(begin, mid, end);
+		return result;
+	}
 };
+// END: https://discuss.leetcode.com/topic/78993/c-with-iterators
+// END: https://discuss.leetcode.com/topic/78933/very-short-and-clear-mergesort-bst-java-solutions
+
+// BEGIN: Time Limit Exceeded
+// class Solution {
+// public:
+// 	int reversePairs(vector<int>& nums) {
+// 		if (nums.empty()) {
+// 			return 0;
+// 		}
+// 		pair<vector<int>::iterator, vector<int>::iterator> min_max_iters = minmax_element(begin(nums), end(nums));
+// 		long long range = (long long)(*(min_max_iters.second)) - (long long)(*(min_max_iters.first));
+// 		if (range > INT_MAX / 2) {
+// 			int result = 0;
+// 			multiset<long long> tree_set;
+// 			for (const auto &num : nums) {
+// 				result += distance(tree_set.upper_bound(2 * (long long)num), end(tree_set));
+// 				tree_set.insert(num);
+// 			}
+// 			return result;
+// 		}
+// 		int result = 0;
+// 		IntervalTree interval_tree(*(min_max_iters.first), *(min_max_iters.second));
+// 		for (const auto &num : nums) {
+// 			result += interval_tree.count(2 * (long long)(num));
+// 			interval_tree.insert((long long)(num));
+// 		}
+// 		return result;
+// 	}
+// private:
+// 	struct IntervalTreeNode {
+// 		long long lower;
+// 		long long upper;
+// 		int counter;
+// 		IntervalTreeNode *left;
+// 		IntervalTreeNode *right;
+// 		IntervalTreeNode(long long lower, long long upper) {
+// 			this->lower = lower;
+// 			this->upper = upper;
+// 			this->counter = 0;
+// 			this->left = NULL;
+// 			this->right = NULL;
+// 		}
+// 	};
+// 	class IntervalTree {
+// 	public:
+// 		IntervalTree(long long lower, long long upper) {
+// 			IntervalTreeConstructor(this->root, lower, upper);
+// 		}
+// 	public:
+// 		int insert(long long val) {
+// 			if (!this->root
+// 				|| this->root->lower > this->root->upper
+// 				|| val < this->root->lower
+// 				|| val > this->root->upper) {
+// 				return 0;
+// 			}
+// 			int result = 0;
+// 			IntervalTreeNode *node = this->root;
+// 			long long i = node->lower;
+// 			long long j = node->upper;
+// 			while (i < j) {
+// 				node->counter += (i < j) && (i <= val) && (val <= j);
+// 				result += (i < j) && (i <= val) && (val <= j);
+// 				int k = i + (j - i) / 2;
+// 				node = val <= k ? node->left : node->right;
+// 				i = node->lower;
+// 				j = node->upper;
+// 			}
+// 			node->counter += (i == j) && (i <= val) && (val <= j);
+// 			result += (i == j) && (i <= val) && (val <= j);
+// 			return result;
+// 		}
+// 	public:
+// 		int count(long long val) {
+// 			if (!this->root
+// 				|| this->root->lower > this->root->upper
+// 				|| val >= this->root->upper) {
+// 				return 0;
+// 			}
+// 			if (val < this->root->lower) {
+// 				return this->root->counter;
+// 			}
+// 			int result = 0;
+// 			IntervalTreeNode *node = this->root;
+// 			long long i = node->lower;
+// 			long long j = node->upper;
+// 			while (i < j) {
+// 				long long k = i + (j - i) / 2;
+// 				if (val == k) {
+// 					result += node->right->counter;
+// 					return result;
+// 				}
+// 				if (val < k) {
+// 					result += node->right->counter;
+// 					node = node->left;
+// 					i = node->lower;
+// 					j = node->upper;
+// 					continue;
+// 				}
+// 				if  (val > k) {
+// 					node = node->right;
+// 					i = node->lower;
+// 					j = node->upper;
+// 					continue;					
+// 				}
+// 			}			
+// 			return result;
+// 		}
+// 	private:
+// 		void IntervalTreeConstructor(IntervalTreeNode*& root, long long lower, long long upper) {
+// 			if (lower == upper) {
+// 				root = new IntervalTreeNode(lower, upper);
+// 				return;
+// 			}
+// 			if (lower < upper) {
+// 				root = new IntervalTreeNode(lower, upper);
+// 				int mid = lower + (upper - lower) / 2;
+// 				IntervalTreeConstructor(root->left, lower, mid);
+// 				IntervalTreeConstructor(root->right, mid + 1, upper);
+// 				return;
+// 			}
+// 		}
+// 	private:
+// 		IntervalTreeNode *root;
+// 	};
+// };
+// END: Time Limit Exceeded
 
 // BEGIN: Time Limit Exceeded
 // class Solution {
