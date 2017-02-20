@@ -22,9 +22,12 @@ public:
 		return result;
 	}
 private:
-	void addOperators(const string current, const long long target, const string num, vector<string>& result) {
+	void addOperators(const string current, const char , const long long target, const string num, vector<string>& result) {
 		if (num.empty()) {
-			
+			return;
+		}
+		if (num.front() == '0') {
+
 		}
 	}
 };
