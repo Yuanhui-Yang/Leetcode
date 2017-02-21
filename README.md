@@ -163,6 +163,7 @@
 | 279 | [Perfect Squares](https://leetcode.com/problems/perfect-squares/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/perfect-squares.cpp) | Medium |
 | 280 | [Wiggle Sort](https://leetcode.com/problems/wiggle-sort/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/wiggle-sort.cpp) | Medium |
 | 281 | [Zigzag Iterator](https://leetcode.com/problems/zigzag-iterator/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/zigzag-iterator.cpp) | Medium |
+| 282 | [Expression Add Operators](https://leetcode.com/problems/expression-add-operators/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/expression-add-operators.cpp) | Hard |
 | 284 | [Peeking Iterator](https://leetcode.com/problems/peeking-iterator/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/peeking-iterator.cpp) | Medium |
 | 285 | [Inorder Successor in BST](https://leetcode.com/problems/inorder-successor-in-bst/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/inorder-successor-in-bst.cpp) | Medium |
 | 286 | [Walls and Gates](https://leetcode.com/problems/walls-and-gates/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/walls-and-gates.cpp) | Medium |
