@@ -358,3 +358,4 @@
 | 515 | [Find Largest Value in Each Tree Row](https://leetcode.com/problems/find-largest-value-in-each-tree-row/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/find-largest-value-in-each-tree-row.cpp) | Medium |
 | 516 | [Longest Palindromic Subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/longest-palindromic-subsequence.cpp) | Medium |
 | 520 | [Detect Capital](https://leetcode.com/problems/detect-capital/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/detect-capital.cpp) | Easy |
+| 526 | [Beautiful Arrangement](https://leetcode.com/problems/beautiful-arrangement/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/beautiful-arrangement.cpp) | Medium |
