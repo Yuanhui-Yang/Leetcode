@@ -44,6 +44,14 @@ private:
 };
 // END: http://www.liuchuo.net/archives/3295
 
+// class Solution {
+// public:
+// 	int countArrangement(int N) {
+// 		int OPT[15] = {1, 2, 3, 8, 10, 36, 41, 132, 250, 700, 750, 4010, 4237, 10680, 24679};
+// 		return OPT[N - 1];
+// 	}
+// };
+
 // BEGIN: Time Limit Exceeded
 // class Solution {
 // public:
