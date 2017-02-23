@@ -23,7 +23,10 @@ public:
 		return result;
 	}
 private:
-	void countArrangement(int& result, bitset<15>& visited, vector<int>& candidates, const int N) {
+	void countArrangement(int& result,
+		bitset<15>& visited,
+		vector<int>& candidates,
+		const int N) {
 		if (candidates.empty()) {
 			result++;
 			return;
