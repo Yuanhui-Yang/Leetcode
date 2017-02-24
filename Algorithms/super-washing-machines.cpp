@@ -9,7 +9,32 @@ using namespace std;
 class Solution {
 public:
 	int findMinMoves(vector<int>& machines) {
-
+		const size_t machines_size = machines.size();
+		if (machines_size <= 1) {
+			return 0;
+		}
+		long long sum = 0;
+		long long result = 0;
+		for (auto &machine : machines) {
+			sum += (long long)(machine);
+			if (machine == 0) {
+				machine = 1;
+				result++;
+			}
+		}
+		if (sum == 0) {
+			return 0;
+		}
+		if (sum % machines_size) {
+			return -1;
+		}
+		const long long target = sum / machines_size;
+		for (const auto &machine : machines) {
+			if (machine < target) {
+				result += target - machine;
+			}
+		}
+		return result;
 	}
 };
 int main(void) {
@@ -17,6 +42,11 @@ int main(void) {
 	vector<int> machines;
 	int result = 0;
 	int answer = 0;
+
+	machines = {4, 0, 0, 4};
+	answer = 2;
+	result = solution.findMinMoves(machines);
+	assert(answer == result);
 
 	machines = {1, 0, 5};
 	answer = 3;
