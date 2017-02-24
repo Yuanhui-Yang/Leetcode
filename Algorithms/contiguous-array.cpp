@@ -3,16 +3,43 @@
 #include <iostream>
 #include <cassert>
 #include <vector>
+#include <unordered_map>
 #include <algorithm>
 #include <iterator>
 using namespace std;
 
+// BEGIN: https://discuss.leetcode.com/topic/79906/easy-java-o-n-solution-presum-hashmap
 class Solution {
 public:
 	int findMaxLength(vector<int>& nums) {
-		
+		if (nums.size() <= 1) {
+			return 0;
+		}
+		for (auto &num : nums) {
+			if (num == 0) {
+				num = -1;
+			}
+		}
+		int cumsum = 0, i = 0, result = 0;
+		unordered_map<int, int> hash_map;
+		hash_map[0] = -1;
+		for (const auto &num : nums) {
+			cumsum += num;
+			if (!hash_map.count(cumsum)) {
+				hash_map[cumsum] = i;
+				i++;
+				continue;
+			}
+			if (hash_map.count(cumsum)) {
+				result = max(result, i - hash_map.at(cumsum));
+				i++;
+				continue;
+			}
+		}
+		return result;
 	}
 };
+// END: https://discuss.leetcode.com/topic/79906/easy-java-o-n-solution-presum-hashmap
 
 // class Solution {
 // public:
