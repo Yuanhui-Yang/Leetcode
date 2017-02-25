@@ -14,13 +14,8 @@ public:
 			return 0;
 		}
 		long long sum = 0;
-		long long result = 0;
 		for (auto &machine : machines) {
 			sum += (long long)(machine);
-			if (machine == 0) {
-				machine = 1;
-				result++;
-			}
 		}
 		if (sum == 0) {
 			return 0;
@@ -28,12 +23,7 @@ public:
 		if (sum % machines_size) {
 			return -1;
 		}
-		const long long target = sum / machines_size;
-		for (const auto &machine : machines) {
-			if (machine < target) {
-				result += target - machine;
-			}
-		}
+		long long result = 0;
 		return result;
 	}
 };
