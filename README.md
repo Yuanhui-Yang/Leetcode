@@ -359,6 +359,7 @@
 | 513 | [Find Bottom Left Tree Value](https://leetcode.com/problems/find-bottom-left-tree-value/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/find-bottom-left-tree-value.cpp) | Medium |
 | 515 | [Find Largest Value in Each Tree Row](https://leetcode.com/problems/find-largest-value-in-each-tree-row/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/find-largest-value-in-each-tree-row.cpp) | Medium |
 | 516 | [Longest Palindromic Subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/longest-palindromic-subsequence.cpp) | Medium |
+| 517 | [Super Washing Machines](https://leetcode.com/problems/super-washing-machines/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/super-washing-machines.cpp) | Hard |
 | 520 | [Detect Capital](https://leetcode.com/problems/detect-capital/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/detect-capital.cpp) | Easy |
 | 525 | [Contiguous Array](https://leetcode.com/problems/contiguous-array/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/contiguous-array.cpp) | Medium |
 | 526 | [Beautiful Arrangement](https://leetcode.com/problems/beautiful-arrangement/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/beautiful-arrangement.cpp) | Medium |
