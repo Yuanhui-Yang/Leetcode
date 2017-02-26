@@ -362,5 +362,9 @@
 | 516 | [Longest Palindromic Subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/longest-palindromic-subsequence.cpp) | Medium |
 | 517 | [Super Washing Machines](https://leetcode.com/problems/super-washing-machines/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/super-washing-machines.cpp) | Hard |
 | 520 | [Detect Capital](https://leetcode.com/problems/detect-capital/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/detect-capital.cpp) | Easy |
+| 523 | [Continuous Subarray Sum](https://leetcode.com/problems/continuous-subarray-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/continuous-subarray-sum.cpp) | Medium |
+| 524 | [Longest Word in Dictionary through Deleting](https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/longest-word-in-dictionary-through-deleting.cpp) | Medium |
 | 525 | [Contiguous Array](https://leetcode.com/problems/contiguous-array/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/contiguous-array.cpp) | Medium |
 | 526 | [Beautiful Arrangement](https://leetcode.com/problems/beautiful-arrangement/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/beautiful-arrangement.cpp) | Medium |
+| 529 | [Minesweeper](https://leetcode.com/problems/minesweeper/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/minesweeper.cpp) | Medium |
+| 530 | [Minimum Absolute Difference in BST](https://leetcode.com/problems/minimum-absolute-difference-in-bst/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/minimum-absolute-difference-in-bst.cpp) | Easy |
