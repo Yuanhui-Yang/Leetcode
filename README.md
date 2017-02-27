@@ -290,7 +290,8 @@
 | 422 | [Valid Word Square](https://leetcode.com/problems/valid-word-square/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/valid-word-square.cpp) | Easy |
 | 423 | [Reconstruct Original Digits from English](https://leetcode.com/problems/reconstruct-original-digits-from-english/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/reconstruct-original-digits-from-english.cpp) | Medium |
 | 424 | [Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/longest-repeating-character-replacement.cpp) | Medium |
-| 425 | [Word Squares](https://leetcode.com/problems/word-squares/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/word-squares.cpp) |Hard |
+| 425 | [Word Squares](https://leetcode.com/problems/word-squares/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/word-squares.cpp) | Hard |
+| 432 | [All O\`one Data Structure](https://leetcode.com/problems/all-oone-data-structure/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/all-oone-data-structure.cpp) | Hard |
 | 433 | [Minimum Genetic Mutation](https://leetcode.com/problems/minimum-genetic-mutation/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/minimum-genetic-mutation.cpp) | Medium |
 | 434 | [Number of Segments in a String](https://leetcode.com/problems/number-of-segments-in-a-string/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/number-of-segments-in-a-string.cpp) | Easy |
 | 435 | [Non-overlapping Intervals](https://leetcode.com/problems/non-overlapping-intervals/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/non-overlapping-intervals.cpp) | Medium |
