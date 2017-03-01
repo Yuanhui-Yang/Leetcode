@@ -12,7 +12,6 @@
 #include <iterator>
 using namespace std;
 
-// BEGIN: Time Limit Exceeded
 class Solution {
 public:
 	int getMaxRepetitions(string s1, int n1, string s2, int n2) {
@@ -32,41 +31,65 @@ public:
 		}
 		const size_t S1_size = s1.size() * size_t(n1);
 		const size_t S2_size = s2.size() * size_t(n2);
-		size_t i = 0;
-		size_t j = 0;
-		for (i = 0, j = 0; i < S1_size; j++) {
-			const size_t jdx = j % s2.size();
-			const char jch = s2.at(jdx);
-			set<size_t>& dic_s1_set = dic_s1.at(jch);
-			if (j == 0) {
-				i = *begin(dic_s1_set);
-				dic_s1_set.erase(begin(dic_s1_set));
-				dic_s1_set.insert(i + s1.size());
-				continue;
-			}
-			if (j > 0) {
-				set<size_t>::iterator it = dic_s1_set.upper_bound(i);
-				while (it == end(dic_s1_set)) {
-					vector<size_t> tmp;
-					for (const auto &k : dic_s1_set) {
-						tmp.push_back(k + s1.size());
-					}
-					dic_s1_set.clear();
-					dic_s1_set.insert(begin(tmp), end(tmp));
-					it = dic_s1_set.upper_bound(i);
-				}
-				i = *it;
-				vector<size_t> tmp(begin(dic_s1_set), next(it));
-				dic_s1_set.erase(begin(dic_s1_set), next(it));
-				for (const auto&k : tmp) {
-					dic_s1_set.insert(k + s1.size());
-				}
-				continue;
-			}
-		}
-		return (j - 1) / S2_size;
+
 	}
 };
+
+// BEGIN: Time Limit Exceeded
+// class Solution {
+// public:
+// 	int getMaxRepetitions(string s1, int n1, string s2, int n2) {
+// 		if (s1.empty() || n1 <= 0 || s2.empty() || n2 <= 0) {
+// 			return 0;
+// 		}
+// 		unordered_map<char, set<size_t>> dic_s1;
+// 		for (size_t i = 0; i < s1.size(); i++) {
+// 			const char ch = s1.at(i);
+// 			dic_s1[ch].insert(i);
+// 		}
+// 		for (size_t i = 0; i < s2.size(); i++) {
+// 			const char ch = s2.at(i);
+// 			if (!dic_s1.count(ch)) {
+// 				return 0;
+// 			}
+// 		}
+// 		const size_t S1_size = s1.size() * size_t(n1);
+// 		const size_t S2_size = s2.size() * size_t(n2);
+// 		size_t i = 0;
+// 		size_t j = 0;
+// 		for (i = 0, j = 0; i < S1_size; j++) {
+// 			const size_t jdx = j % s2.size();
+// 			const char jch = s2.at(jdx);
+// 			set<size_t>& dic_s1_set = dic_s1.at(jch);
+// 			if (j == 0) {
+// 				i = *begin(dic_s1_set);
+// 				dic_s1_set.erase(begin(dic_s1_set));
+// 				dic_s1_set.insert(i + s1.size());
+// 				continue;
+// 			}
+// 			if (j > 0) {
+// 				set<size_t>::iterator it = dic_s1_set.upper_bound(i);
+// 				while (it == end(dic_s1_set)) {
+// 					vector<size_t> tmp;
+// 					for (const auto &k : dic_s1_set) {
+// 						tmp.push_back(k + s1.size());
+// 					}
+// 					dic_s1_set.clear();
+// 					dic_s1_set.insert(begin(tmp), end(tmp));
+// 					it = dic_s1_set.upper_bound(i);
+// 				}
+// 				i = *it;
+// 				vector<size_t> tmp(begin(dic_s1_set), next(it));
+// 				dic_s1_set.erase(begin(dic_s1_set), next(it));
+// 				for (const auto&k : tmp) {
+// 					dic_s1_set.insert(k + s1.size());
+// 				}
+// 				continue;
+// 			}
+// 		}
+// 		return (j - 1) / S2_size;
+// 	}
+// };
 // END: Time Limit Exceeded
 
 int main(void) {
