@@ -81,6 +81,14 @@ int main(void) {
 	int result = 0;
 	int answer = 0;
 
+	s1 = "abc";
+	n1 = 1;
+	s2 = "abc";
+	n2 = 1;
+	answer = 1;
+	result = solution.getMaxRepetitions(s1, n1, s2, n2);
+	assert(answer == result);
+
 	s1 = "phqghumeaylnlfdxfircvscxggbwkfnqduxwfnfozvsrtkjpre";
 	n1 = 1000000;
 	s2 = "pggxr";
