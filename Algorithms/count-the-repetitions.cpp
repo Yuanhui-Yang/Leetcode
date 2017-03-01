@@ -24,14 +24,11 @@ public:
 			const char ch = s1.at(i);
 			dic_s1[ch].insert(i);
 		}
-		// vector<set<size_t>> vec_s2;
-		// unordered_map<char, set<size_t>> dic_s2;
 		for (size_t i = 0; i < s2.size(); i++) {
 			const char ch = s2.at(i);
 			if (!dic_s1.count(ch)) {
 				return 0;
 			}
-			// dic_s2[ch].insert(i);
 		}
 		const size_t S1_size = s1.size() * size_t(n1);
 		const size_t S2_size = s2.size() * size_t(n2);
