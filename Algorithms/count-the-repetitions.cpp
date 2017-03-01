@@ -11,6 +11,8 @@
 #include <algorithm>
 #include <iterator>
 using namespace std;
+
+// BEGIN: Time Limit Exceeded
 class Solution {
 public:
 	int getMaxRepetitions(string s1, int n1, string s2, int n2) {
@@ -68,6 +70,8 @@ public:
 		return (j - 1) / S2_size;
 	}
 };
+// END: Time Limit Exceeded
+
 int main(void) {
 	Solution solution;
 	string s1;
