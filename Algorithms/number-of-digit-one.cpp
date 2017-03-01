@@ -30,34 +30,52 @@ public:
 		}
 		size_t result = 1;
 		for (size_t len = 2; len < to_string_n_size; len++) {
-			for (size_t k = 1; k <= len; k++) {
-				result += k * C[len - 1][k - 1] * pow(9, len - k);
+			for (size_t k = 0; k <= len - 1; k++) {
+				result += (k + 1) * C[len - 1][k] * pow(9, len - k - 1);
 			}
 			for (size_t k = 1; k <= len - 1; k++) {
-				result += 8 * k * C[len - 1][k] * pow(9, len - k);
+				result += 8 * k * C[len - 1][k] * pow(9, len - k - 1);
 			}
 		}
-		return result += countDigitOne(0, to_string_n_size, to_string_n);
+		return result += countDigitOne(0, to_string_n_size, to_string_n, C);
 	}
 private:
-	size_t countDigitOne(size_t base, const size_t to_string_n_size, string N) {
+	size_t countDigitOne(size_t base, const size_t to_string_n_size, string N, const vector<vector<size_t>>& C) {
 		if (N.empty()) {
-			return 1;
+			return base;
 		}
 		if (N.front() == '0') {
-			return countDigitOne(base, to_string_n_size, N.substr(1));
+			return countDigitOne(base, to_string_n_size, N.substr(1), C);
 		}
 		if (N.front() == '1') {
-			if (!base) {
-				return countDigitOne(base + 1, to_string_n_size, N.substr(1));
+			if (to_string_n_size == N.size()) {
+				return countDigitOne(base + 1, to_string_n_size, N.substr(1), C);
 			}
-			return countDigitOne(base, to_string_n_size, N.substr(1)) + countDigitOne(base + 1, to_string_n_size, N.substr(1));
+			size_t result = 0;
+			for (size_t k = 0; k <= N.size() - 1; k++) {
+				result += (k + base) * C[N.size() - 1][k] * pow(9, N.size() - k - 1);
+			}
+			return result += countDigitOne(base + 1, to_string_n_size, N.substr(1), C);
 		}
 		size_t result = 0;
 		if (to_string_n_size == N.size()) {
-
+			result = 0;
+			for (size_t k = 1; k <= N.size(); k++) {
+				result += k * C[N.size() - 1][k - 1] * pow(9, N.size() - k);
+			}
+			for (size_t k = 1; k <= N.size() - 1; k++) {
+				result += k * (N.front() - '2') * C[N.size() - 1][k] * pow(9, N.size() - k - 1);
+			}
+			return result += countDigitOne(base, to_string_n_size, N.substr(1), C);
 		}
-
+		result = 0;
+		for (size_t k = 0; k <= N.size() -  1; k++) {
+			result += (k + base + 1) * C[N.size() - 1][k] * pow(9, N.size() - k - 1);
+		}
+		for (size_t k = 0; k <= N.size() - 1; k++) {
+			result += (k + base) * (N.front() - '1') * C[N.size() - 1][k] * pow(9, N.size() - k - 1);
+		}
+		return result += countDigitOne(base, to_string_n_size, N.substr(1), C);
 	}
 };
 
@@ -83,14 +101,34 @@ int main(void) {
 	int result = 0;
 	int answer = 0;
 
+	n = 110;
+	answer = 33;
+	result = solution.countDigitOne(n);
+	// cout << "result = " << result << '\n';
+	assert(answer == result);
+
+	n = 100;
+	answer = 21;
+	result = solution.countDigitOne(n);
+	// cout << "result = " << result << '\n';
+	assert(answer == result);
+
+	n = 11;
+	answer = 4;
+	result = solution.countDigitOne(n);
+	// cout << "result = " << result << '\n';
+	assert(answer == result);
+
 	n = 824883294;
 	answer = 767944060;
 	result = solution.countDigitOne(n);
+	// cout << "result = " << result << '\n';
 	assert(answer == result);
 
 	n = 13;
 	answer = 6;
 	result = solution.countDigitOne(n);
+	// cout << "result = " << result << '\n';
 	assert(answer == result);
 
 	cout << "\nPassed All\n";
