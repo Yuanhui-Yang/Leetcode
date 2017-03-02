@@ -27,10 +27,7 @@ public:
 		const size_t S1_size = s1.size() * size_t(n1);
 		const size_t S2_size = s2.size() * size_t(n2);
 		size_t i = 0, j = 0;
-		// cout << "S1_size = " << S1_size << '\n';
 		for (i = 0, j = 0; i < S1_size; j++) {
-			// cout << "i0 = " << i << '\t';
-			// cout << "j0 = " << j << '\t';
 			const size_t jdx = j % s2.size();
 			const char jch = s2.at(jdx);
 			if (!dic_s1.count(jch)) {
@@ -39,21 +36,24 @@ public:
 			vector<size_t>& dic_s1_vec = dic_s1.at(jch);
 			if (j == 0) {
 				i = dic_s1_vec.front();
-				// cout << "i1 = " << i << '\n';
 				continue;
 			}
 			if (j > 0) {
 				if (dic_s1_vec.back() <= i) {
-					const size_t k = (i - dic_s1_vec.back()) / s1.size() + 1;
-					cout << "i - k * s1.size() = " << i - k * s1.size() << '\n';
-					const vector<size_t>::iterator it = upper_bound(begin(dic_s1_vec), end(dic_s1_vec), i - k * s1.size());
-					i = *it + k * s1.size();
+					const size_t dic_s1_vec_back = dic_s1_vec.back();
+					const size_t k = (i + 1 - dic_s1_vec_back) % s1.size() ? (i + 1 - dic_s1_vec_back) / s1.size() + 1 : (i + 1 - dic_s1_vec_back) / s1.size();
+					if (i < dic_s1_vec.front() + k * s1.size()) {
+						i = dic_s1_vec.front() + k * s1.size();
+					}
+					else {
+						const vector<size_t>::iterator it = upper_bound(begin(dic_s1_vec), end(dic_s1_vec), i - k * s1.size());
+						i = *it + k * s1.size();
+					}
 				}
 				else {
 					const vector<size_t>::iterator it = upper_bound(begin(dic_s1_vec), end(dic_s1_vec), i);
 					i = *it;
 				}
-				// cout << "i1 = " << i << '\n';
 				continue;
 			}
 		}
@@ -232,6 +232,14 @@ int main(void) {
 	int result = 0;
 	int answer = 0;
 
+	s1 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+	n1 = 1000000;
+	s2 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+	n2 = 103;
+	answer = 5620;
+	result = solution.getMaxRepetitions(s1, n1, s2, n2);
+	assert(answer == result);
+
 	s1 = "lovelive";
 	n1 = 10;
 	s2 = "lovelive";
@@ -240,37 +248,37 @@ int main(void) {
 	result = solution.getMaxRepetitions(s1, n1, s2, n2);
 	assert(answer == result);
 
-	// s1 = "phqghumeaylnlfdxfircvscxggbwkfnqduxwfnfozvsrtkjprepggxrpnrvystmwcysyycqpevikeffmznimkkasvwsrenzkycxf";
-	// n1 = 100;
-	// s2 = "xtlsgypsfa";
-	// n2 = 1;
-	// answer = 49;
-	// result = solution.getMaxRepetitions(s1, n1, s2, n2);
-	// assert(answer == result);
+	s1 = "phqghumeaylnlfdxfircvscxggbwkfnqduxwfnfozvsrtkjprepggxrpnrvystmwcysyycqpevikeffmznimkkasvwsrenzkycxf";
+	n1 = 100;
+	s2 = "xtlsgypsfa";
+	n2 = 1;
+	answer = 49;
+	result = solution.getMaxRepetitions(s1, n1, s2, n2);
+	assert(answer == result);
 
-	// s1 = "abc";
-	// n1 = 1;
-	// s2 = "abc";
-	// n2 = 1;
-	// answer = 1;
-	// result = solution.getMaxRepetitions(s1, n1, s2, n2);
-	// assert(answer == result);
+	s1 = "abc";
+	n1 = 1;
+	s2 = "abc";
+	n2 = 1;
+	answer = 1;
+	result = solution.getMaxRepetitions(s1, n1, s2, n2);
+	assert(answer == result);
 
-	// s1 = "phqghumeaylnlfdxfircvscxggbwkfnqduxwfnfozvsrtkjpre";
-	// n1 = 1000000;
-	// s2 = "pggxr";
-	// n2 = 100;
-	// answer = 10000;
-	// result = solution.getMaxRepetitions(s1, n1, s2, n2);
-	// assert(answer == result);
+	s1 = "phqghumeaylnlfdxfircvscxggbwkfnqduxwfnfozvsrtkjpre";
+	n1 = 1000000;
+	s2 = "pggxr";
+	n2 = 100;
+	answer = 10000;
+	result = solution.getMaxRepetitions(s1, n1, s2, n2);
+	assert(answer == result);
 
-	// s1 = "acb";
-	// n1 = 4;
-	// s2 = "ab";
-	// n2 = 2;
-	// answer = 2;
-	// result = solution.getMaxRepetitions(s1, n1, s2, n2);
-	// assert(answer == result);
+	s1 = "acb";
+	n1 = 4;
+	s2 = "ab";
+	n2 = 2;
+	answer = 2;
+	result = solution.getMaxRepetitions(s1, n1, s2, n2);
+	assert(answer == result);
 
 	cout << "\nPassed All\n";
 	return 0;
