@@ -13,10 +13,16 @@
 #include <iterator>
 using namespace std;
 
+// BEGIN: Time Limit Exceeded
 class Solution {
 public:
 	int getMaxRepetitions(string s1, int n1, string s2, int n2) {
 		if (s1.empty() || n1 <= 0 || s2.empty() || n2 <= 0) {
+			return 0;
+		}
+		const size_t S1_size = s1.size() * size_t(n1);
+		const size_t S2_size = s2.size() * size_t(n2);
+		if (S1_size < S2_size) {
 			return 0;
 		}
 		unordered_map<char, vector<size_t>> dic_s1;
@@ -24,8 +30,6 @@ public:
 			const char ch = s1.at(i);
 			dic_s1[ch].push_back(i);
 		}
-		const size_t S1_size = s1.size() * size_t(n1);
-		const size_t S2_size = s2.size() * size_t(n2);
 		size_t i = 0, j = 0;
 		for (i = 0, j = 0; i < S1_size; j++) {
 			const size_t jdx = j % s2.size();
@@ -60,6 +64,7 @@ public:
 		return (j - 1) / S2_size;
 	}
 };
+// END: Time Limit Exceeded
 
 // BEGIN: Time Limit Exceeded
 // class Solution {
