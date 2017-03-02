@@ -2,6 +2,7 @@
 // https://leetcode.com/problems/count-the-repetitions/
 #include <iostream>
 #include <cassert>
+#include <cstring>
 #include <string>
 #include <vector>
 #include <list>
@@ -38,7 +39,12 @@ public:
 		if (dic_s1.size() == 1) {
 			return S1_size / S2_size;
 		}
-		
+		size_t OPT[100] = { };
+		memset(OPT, 0, sizeof(OPT));
+		for (size_t i = 0; i < s1.size(); i++) {
+			
+		}
+		return 0;
 	}
 };
 
