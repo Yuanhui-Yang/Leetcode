@@ -30,35 +30,48 @@ public:
 			const char ch = s1.at(i);
 			dic_s1[ch].push_back(i);
 		}
-		size_t i = 0, j = 0;
-		for (i = 0, j = 0; i < S1_size; j++) {
-			const size_t jdx = j % s2.size();
-			const char jch = s2.at(jdx);
-			if (!dic_s1.count(jch)) {
+		for (size_t i = 0; i < s2.size(); i++) {
+			const char ch = s2.at(i);
+			if (!dic_s1.count(ch)) {
 				return 0;
 			}
-			vector<size_t>& dic_s1_vec = dic_s1.at(jch);
-			if (j == 0) {
-				i = dic_s1_vec.front();
-				continue;
+		}
+		if (dic_s1.size() == 1) {
+			return S1_size / S2_size;
+		}
+		size_t i = 0, j = 0;
+		for (i = 0, j = 0; i < S1_size; j++) {
+			if (i > 0 and i % s1.size() == 0 and j > 0 and j % s2.size() == 0) {
+				const size_t k = S1_size / i;
+				i += (k - 1) * i;
+				j += (k - 1) * j;
 			}
-			if (j > 0) {
-				if (dic_s1_vec.back() <= i) {
-					const size_t dic_s1_vec_back = dic_s1_vec.back();
-					const size_t k = (i + 1 - dic_s1_vec_back) % s1.size() ? (i + 1 - dic_s1_vec_back) / s1.size() + 1 : (i + 1 - dic_s1_vec_back) / s1.size();
-					if (i < dic_s1_vec.front() + k * s1.size()) {
-						i = dic_s1_vec.front() + k * s1.size();
+			if (i < S1_size) {
+				const size_t jdx = j % s2.size();
+				const char jch = s2.at(jdx);
+				vector<size_t>& dic_s1_vec = dic_s1.at(jch);
+				if (j == 0) {
+					i = dic_s1_vec.front();
+					continue;
+				}
+				if (j > 0) {
+					if (dic_s1_vec.back() <= i) {
+						const size_t dic_s1_vec_back = dic_s1_vec.back();
+						const size_t k = (i + 1 - dic_s1_vec_back) % s1.size() ? (i + 1 - dic_s1_vec_back) / s1.size() + 1 : (i + 1 - dic_s1_vec_back) / s1.size();
+						if (i < dic_s1_vec.front() + k * s1.size()) {
+							i = dic_s1_vec.front() + k * s1.size();
+						}
+						else {
+							const vector<size_t>::iterator it = upper_bound(begin(dic_s1_vec), end(dic_s1_vec), i - k * s1.size());
+							i = *it + k * s1.size();
+						}
 					}
 					else {
-						const vector<size_t>::iterator it = upper_bound(begin(dic_s1_vec), end(dic_s1_vec), i - k * s1.size());
-						i = *it + k * s1.size();
+						const vector<size_t>::iterator it = upper_bound(begin(dic_s1_vec), end(dic_s1_vec), i);
+						i = *it;
 					}
+					continue;
 				}
-				else {
-					const vector<size_t>::iterator it = upper_bound(begin(dic_s1_vec), end(dic_s1_vec), i);
-					i = *it;
-				}
-				continue;
 			}
 		}
 		return (j - 1) / S2_size;
@@ -236,6 +249,14 @@ int main(void) {
 	int n2 = 0;
 	int result = 0;
 	int answer = 0;
+
+	s1 = "aahumeaylnlfdxfircvscxggbwkfnqduxwfnfozvsrtkjprepggxrpnrvystmwcysyycqpevikeffmznimkkasvwsrenazkycxf";
+	n1 = 1000000;
+	s2 = "aac";
+	n2 = 10;
+	answer = 200000;
+	result = solution.getMaxRepetitions(s1, n1, s2, n2);
+	assert(answer == result);
 
 	s1 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 	n1 = 1000000;
