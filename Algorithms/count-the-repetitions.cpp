@@ -39,10 +39,25 @@ public:
 		if (dic_s1.size() == 1) {
 			return S1_size / S2_size;
 		}
-		size_t OPT[100] = { };
+		size_t OPT[100];
 		memset(OPT, 0, sizeof(OPT));
 		for (size_t i = 0; i < s1.size(); i++) {
-			
+			size_t j = i;
+			for (size_t k = 0; k < s2.size(); k++) {
+				const char ch = s2.at(k);
+				const vector<size_t> &dic_s1_vec = dic_s1.at(ch);
+				if (k == 0) {
+					j = *lower_bound(begin(dic_s1_vec), end(dic_s1_vec), i);
+				}
+				else if (j < dic_s1_vec.back()) {
+					j = *upper_bound(begin(dic_s1_vec), end(dic_s1_vec), j);
+				}
+				else {
+					const size_t k = (j + 1 - dic_s1_vec.back()) % s1.size() ? (j + 1 - dic_s1_vec.back()) / s1.size() + 1 : (j + 1 - dic_s1_vec.back()) / s1.size();
+					
+				}
+			}
+			OPT[i] = j + 1 - i;
 		}
 		return 0;
 	}
