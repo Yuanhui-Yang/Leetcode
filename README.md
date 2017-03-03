@@ -323,6 +323,7 @@
 | 463 | [Island Perimeter](https://leetcode.com/problems/island-perimeter/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/island-perimeter.cpp) | Easy |
 | 464 | [Can I Win](https://leetcode.com/problems/can-i-win/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/can-i-win.cpp) | Medium |
 | 465 | [Optimal Account Balancing](https://leetcode.com/problems/optimal-account-balancing/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/optimal-account-balancing.cpp) | Hard |
+| 466 | [Count The Repetitions](https://leetcode.com/problems/count-the-repetitions/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/count-the-repetitions.cpp) | Hard |
 | 467 | [Unique Substrings in Wraparound String](https://leetcode.com/problems/unique-substrings-in-wraparound-string/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/unique-substrings-in-wraparound-string.cpp) | Medium |
 | 468 | [Validate IP Address](https://leetcode.com/problems/validate-ip-address/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/validate-ip-address.cpp) | Medium |
 | 469 | [Convex Polygon](https://leetcode.com/problems/convex-polygon/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/convex-polygon.cpp) | Medium |
