@@ -53,12 +53,22 @@ public:
 					j = *upper_bound(begin(dic_s1_vec), end(dic_s1_vec), j);
 				}
 				else {
-					const size_t k = (j + 1 - dic_s1_vec.back()) % s1.size() ? (j + 1 - dic_s1_vec.back()) / s1.size() + 1 : (j + 1 - dic_s1_vec.back()) / s1.size();
-					
+					const size_t a = dic_s1_vec.front();
+					const size_t b = dic_s1_vec.back();
+					const size_t d = s1.size();
+					const size_t k = (j + 1 - b) % d ? (j + 1 - b) / d + 1 : (j + 1 - b) / d;
+					if (j < a + k * d) {
+						j = a + k * d;
+					}
+					else {
+						j = *upper_bound(begin(dic_s1_vec), end(dic_s1_vec), j - k * d) + k * d;
+					}
+
 				}
 			}
 			OPT[i] = j + 1 - i;
 		}
+		
 		return 0;
 	}
 };
