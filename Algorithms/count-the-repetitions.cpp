@@ -66,9 +66,17 @@ public:
 
 				}
 			}
+			cout << "j + 1 = " << j + 1 << '\t';
+			cout << "i = " << i << '\n';
 			OPT[i] = j + 1 - i;
 		}
-		
+		for (size_t i = 0; i < s1.size(); i++) {
+			cout << "s1.at(i) = " << s1.at(i) << " OPT[i] = " << OPT[i] << '\n';
+		}
+		// for (size_t i = 0; i < S1_size; i++) {
+		// 	const size_t idx = i % s1.size();
+
+		// }
 		return 0;
 	}
 };
@@ -310,53 +318,53 @@ int main(void) {
 	int result = 0;
 	int answer = 0;
 
-	s1 = "aahumeaylnlfdxfircvscxggbwkfnqduxwfnfozvsrtkjprepggxrpnrvystmwcysyycqpevikeffmznimkkasvwsrenazkycxf";
-	n1 = 1000000;
-	s2 = "aac";
-	n2 = 10;
-	answer = 200000;
-	result = solution.getMaxRepetitions(s1, n1, s2, n2);
-	assert(answer == result);
+	// s1 = "aahumeaylnlfdxfircvscxggbwkfnqduxwfnfozvsrtkjprepggxrpnrvystmwcysyycqpevikeffmznimkkasvwsrenazkycxf";
+	// n1 = 1000000;
+	// s2 = "aac";
+	// n2 = 10;
+	// answer = 200000;
+	// result = solution.getMaxRepetitions(s1, n1, s2, n2);
+	// assert(answer == result);
 
-	s1 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-	n1 = 1000000;
-	s2 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-	n2 = 103;
-	answer = 5620;
-	result = solution.getMaxRepetitions(s1, n1, s2, n2);
-	assert(answer == result);
+	// s1 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+	// n1 = 1000000;
+	// s2 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+	// n2 = 103;
+	// answer = 5620;
+	// result = solution.getMaxRepetitions(s1, n1, s2, n2);
+	// assert(answer == result);
 
-	s1 = "lovelive";
-	n1 = 10;
-	s2 = "lovelive";
-	n2 = 10;
-	answer = 1;
-	result = solution.getMaxRepetitions(s1, n1, s2, n2);
-	assert(answer == result);
+	// s1 = "lovelive";
+	// n1 = 10;
+	// s2 = "lovelive";
+	// n2 = 10;
+	// answer = 1;
+	// result = solution.getMaxRepetitions(s1, n1, s2, n2);
+	// assert(answer == result);
 
-	s1 = "phqghumeaylnlfdxfircvscxggbwkfnqduxwfnfozvsrtkjprepggxrpnrvystmwcysyycqpevikeffmznimkkasvwsrenzkycxf";
-	n1 = 100;
-	s2 = "xtlsgypsfa";
-	n2 = 1;
-	answer = 49;
-	result = solution.getMaxRepetitions(s1, n1, s2, n2);
-	assert(answer == result);
+	// s1 = "phqghumeaylnlfdxfircvscxggbwkfnqduxwfnfozvsrtkjprepggxrpnrvystmwcysyycqpevikeffmznimkkasvwsrenzkycxf";
+	// n1 = 100;
+	// s2 = "xtlsgypsfa";
+	// n2 = 1;
+	// answer = 49;
+	// result = solution.getMaxRepetitions(s1, n1, s2, n2);
+	// assert(answer == result);
 
-	s1 = "abc";
-	n1 = 1;
-	s2 = "abc";
-	n2 = 1;
-	answer = 1;
-	result = solution.getMaxRepetitions(s1, n1, s2, n2);
-	assert(answer == result);
+	// s1 = "abc";
+	// n1 = 1;
+	// s2 = "abc";
+	// n2 = 1;
+	// answer = 1;
+	// result = solution.getMaxRepetitions(s1, n1, s2, n2);
+	// assert(answer == result);
 
-	s1 = "phqghumeaylnlfdxfircvscxggbwkfnqduxwfnfozvsrtkjpre";
-	n1 = 1000000;
-	s2 = "pggxr";
-	n2 = 100;
-	answer = 10000;
-	result = solution.getMaxRepetitions(s1, n1, s2, n2);
-	assert(answer == result);
+	// s1 = "phqghumeaylnlfdxfircvscxggbwkfnqduxwfnfozvsrtkjpre";
+	// n1 = 1000000;
+	// s2 = "pggxr";
+	// n2 = 100;
+	// answer = 10000;
+	// result = solution.getMaxRepetitions(s1, n1, s2, n2);
+	// assert(answer == result);
 
 	s1 = "acb";
 	n1 = 4;
