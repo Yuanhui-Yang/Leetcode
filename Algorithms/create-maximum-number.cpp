@@ -13,100 +13,47 @@
 #include <algorithm>
 #include <iterator>
 using namespace std;
+
+
+// BEGIN: Time Limit Exceeded
 class Solution {
 public:
 	vector<int> maxNumber(vector<int>& nums1, vector<int>& nums2, int k) {
 		vector<int> result;
-		maxNumber(k, result, 0, nums1, 0, nums2);
+		maxNumber(k, result, begin(nums1), end(nums1), begin(nums2), end(nums2));
 		return result;
 	}
 private:
-	void maxNumber(size_t k, vector<int>& result, size_t idx1, vector<int>& nums1, size_t idx2, vector<int>& nums2) {
-		if (k <= 0) {
+	void maxNumber(size_t k, vector<int>& result, vector<int>::iterator begin1, vector<int>::iterator end1, vector<int>::iterator begin2, vector<int>::iterator end2) {
+		if (begin1 == end1 || begin2 == end2 || k == 0) {
 			return;
 		}
-		if (k == 1) {
-			if (idx1 >= nums1.size() && idx2 >= nums2.size()) {
-				return;
-			}
-			if (idx1 == nums1.size()) {
-				result.push_back(*max_element(next(begin(nums2), idx2), end(nums2)));
-				return;
-			}
-			if (idx2 == nums2.size()) {
-				result.push_back(*max_element(next(begin(nums1), idx1), end(nums1)));
-				return;
-			}
-			result.push_back(max(*max_element(next(begin(nums1), idx1), end(nums1)), *max_element(next(begin(nums2), idx2), end(nums2))));
+		if (begin1 == end1) {
+			vector<int>::iterator it = max_element(begin2, prev(end2, k - 1));
+			result.push_back(*it);
+			maxNumber(k - 1, result, begin1, end1, next(it), end2);
 			return;
 		}
-		if (idx1 + idx2 + k == nums1.size() + nums2.size()) {
-			if (idx1 >= nums1.size()) {
-				result.insert(end(result), next(begin(nums2), idx2), end(nums2));
-				return;
-			}
-			if (idx2 >= nums2.size()) {
-				result.insert(end(result), next(begin(nums1), idx1), end(nums1));
-				return;
-			}
-			if (nums1.at(idx1) < nums2.at(idx2)) {
-				result.push_back(nums2.at(idx2));
-				maxNumber(k - 1, result, idx1, nums1, idx2 + 1, nums2);
-				return;
-			}
-			if (nums1.at(idx1) > nums2.at(idx2)) {
-				result.push_back(nums1.at(idx1));
-				maxNumber(k - 1, result, idx1 + 1, nums1, idx2, nums2);
-				return;
-			}
-			if (nums1.at(idx1) == nums2.at(idx2)) {
-				result.push_back(nums1.at(idx1));
-				vector<int> result1(result);
-				vector<int> result2(result);
-				maxNumber(k - 1, result1, idx1 + 1, nums1, idx2, nums2);
-				maxNumber(k - 1, result2, idx1, nums1, idx2 + 1, nums2);
-				result = result1.size() == result2.size() ? max(result1, result2) : result1.size() < result2.size() ? result2 : result1;
-				return;
-			}
+		if (begin2 == end2) {
+			vector<int>::iterator it = max_element(begin1, prev(end1, k - 1));
+			result.push_back(*it);
+			maxNumber(k - 1, result, next(it), end1, begin2, end2);
 			return;
 		}
-		if (idx1 + idx2 + k < nums1.size() + nums2.size()) {
-			if (idx1 >= nums1.size()) {
-				vector<int>::iterator jt = max_element(next(begin(nums2), idx2), prev(end(nums2), k + idx1 - nums1.size() - 1));
-				result.push_back(*jt);
-				maxNumber(k - 1, result, idx1, nums1, distance(begin(nums2), jt) + 1, nums2);
-				return;
-			}
-			if (idx2 >= nums2.size()) {
-				vector<int>::iterator it = max_element(next(begin(nums1), idx1), prev(end(nums1), k + idx2 - nums2.size() - 1));
-				result.push_back(*it);
-				maxNumber(k - 1, result, distance(begin(nums1), it) + 1, nums1, idx2, nums2);
-				return;
-			}
-			vector<int>::iterator it = nums2.size() >= idx2 + k ? max_element(next(begin(nums1), idx1), end(nums1)) : max_element(next(begin(nums1), idx1), prev(end(nums1), k + idx2 - nums2.size() - 1));
-			vector<int>::iterator jt = nums1.size() >= idx1 + k ? max_element(next(begin(nums2), idx2), end(nums2)) : max_element(next(begin(nums2), idx2), prev(end(nums2), k + idx1 - nums1.size() - 1));
-			if (*it < *jt) {
-				result.push_back(*jt);
-				maxNumber(k - 1, result, idx1, nums1, distance(begin(nums2), jt) + 1, nums2);
-				return;
-			}
-			if (*it > *jt) {
-				result.push_back(*it);
-				maxNumber(k - 1, result, distance(begin(nums1), it) + 1, nums1, idx2, nums2);
-				return;
-			}
-			if (*it == *jt) {
-				result.push_back(*it);
-				vector<int> result1(result);
-				vector<int> result2(result);
-				maxNumber(k - 1, result1, distance(begin(nums1), it) + 1, nums1, idx2, nums2);
-				maxNumber(k - 1, result2, idx1, nums1, distance(begin(nums2), jt) + 1, nums2);
-				result = result1.size() == result2.size() ? max(result1, result2) : result1.size() < result2.size() ? result2 : result1;
-				return;
-			}
+		vector<int>::iterator it = distance(begin1, end1) >= k ? max_element(begin2, end2) : max_element(begin2, prev(end2, k - distance(begin1, end1) - 1));
+		vector<int>::iterator jt = distance(begin2, end2) >= k ? max_element(begin1, end1) : max_element(begin1, prev(end1, k - distance(begin2, end2) - 1));
+		if (*it < *jt) {
+			result.push_back(*jt);
+			maxNumber(k - 1, result, it, end1, next(jt), end2);
+			return;
+		}
+		if (*it > *jt) {
+			
 		}
 	}
 };
+// END: Time Limit Exceeded
+
 int main(void) {
 	Solution solution;
 	vector<int> nums1;
