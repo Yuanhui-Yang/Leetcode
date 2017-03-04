@@ -14,7 +14,6 @@
 #include <iterator>
 using namespace std;
 
-
 // BEGIN: Time Limit Exceeded
 class Solution {
 public:
@@ -24,8 +23,8 @@ public:
 		return result;
 	}
 private:
-	void maxNumber(size_t k, vector<int>& result, vector<int>::iterator begin1, vector<int>::iterator end1, vector<int>::iterator begin2, vector<int>::iterator end2) {
-		if (begin1 == end1 || begin2 == end2 || k == 0) {
+	void maxNumber(long long k, vector<int>& result, vector<int>::iterator begin1, vector<int>::iterator end1, vector<int>::iterator begin2, vector<int>::iterator end2) {
+		if (k <= 0 or (begin1 == end1 and begin2 == end2) or (distance(begin1, end1) + distance(begin2, end2) < k)) {
 			return;
 		}
 		if (begin1 == end1) {
@@ -40,15 +39,26 @@ private:
 			maxNumber(k - 1, result, next(it), end1, begin2, end2);
 			return;
 		}
-		vector<int>::iterator it = distance(begin1, end1) >= k ? max_element(begin2, end2) : max_element(begin2, prev(end2, k - distance(begin1, end1) - 1));
-		vector<int>::iterator jt = distance(begin2, end2) >= k ? max_element(begin1, end1) : max_element(begin1, prev(end1, k - distance(begin2, end2) - 1));
+		vector<int>::iterator it = distance(begin2, end2) >= k ? max_element(begin1, end1) : max_element(begin1, prev(end1, k - distance(begin2, end2) - 1));
+		vector<int>::iterator jt = distance(begin1, end1) >= k ? max_element(begin2, end2) : max_element(begin2, prev(end2, k - distance(begin1, end1) - 1));
 		if (*it < *jt) {
 			result.push_back(*jt);
-			maxNumber(k - 1, result, it, end1, next(jt), end2);
+			maxNumber(k - 1, result, begin1, end1, next(jt), end2);
 			return;
 		}
 		if (*it > *jt) {
-			
+			result.push_back(*it);
+			maxNumber(k - 1, result, next(it), end1, begin2, end2);
+			return;
+		}
+		if (*it == *jt) {
+			result.push_back(*it);
+			vector<int> result1(result);
+			vector<int> result2(result);
+			maxNumber(k - 1, result1, next(it), end1, begin2, end2);
+			maxNumber(k - 1, result2, begin1, end1, next(jt), end2);
+			result = result1.size() == result2.size() ? max(result1, result2) : result1.size() < result2.size() ? result2 : result1;
+			return;
 		}
 	}
 };
