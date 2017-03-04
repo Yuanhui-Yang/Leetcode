@@ -65,17 +65,7 @@ private:
 				vector<int> result2(result);
 				maxNumber(k - 1, result1, idx1 + 1, nums1, idx2, nums2);
 				maxNumber(k - 1, result2, idx1, nums1, idx2 + 1, nums2);
-				// cout << "\nresult1 =\t";
-				// for (const auto &k : result1) {
-				// 	cout << k << '\t';
-				// }
-				// cout << "\nresult2 =\t";
-				// for (const auto &k : result2) {
-				// 	cout << k << '\t';
-				// }
-				// cout << '\n';
 				result = result1.size() == result2.size() ? max(result1, result2) : result1.size() < result2.size() ? result2 : result1;
-				// cout << '\n';
 				return;
 			}
 			return;
