@@ -371,3 +371,4 @@
 | 526 | [Beautiful Arrangement](https://leetcode.com/problems/beautiful-arrangement/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/beautiful-arrangement.cpp) | Medium |
 | 529 | [Minesweeper](https://leetcode.com/problems/minesweeper/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/minesweeper.cpp) | Medium |
 | 530 | [Minimum Absolute Difference in BST](https://leetcode.com/problems/minimum-absolute-difference-in-bst/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/minimum-absolute-difference-in-bst.cpp) | Easy |
+| 532 | [K-diff Pairs in an Array](https://leetcode.com/problems/k-diff-pairs-in-an-array/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/k-diff-pairs-in-an-array.cpp) | Easy |
