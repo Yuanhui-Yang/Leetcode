@@ -21,6 +21,18 @@
 #include <unordered_map>
 #include <iterator>
 using namespace std;
+class Solution {
+public:
+	void helloworld() {
+		cout << "\nHello World\n";
+	}
+};
+int main(void) {
+	Solution solution;
+	solution.helloworld();
+	cout << "\nPassed All\n";
+	return 0;
+}
 ```
 
 | # | Title | Solution | Difficulty |
