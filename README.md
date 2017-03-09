@@ -3,14 +3,14 @@
 ## Algorithms
 
 ```cpp
-#include <iostream>
-#include <cassert>
-#include <cctype>
-#include <cmath>
+#include <iostream> // std::cout; std::cin
+#include <cassert> // assert
+#include <cctype> // isalnum; isalpha; isdigit; islower; isupper; isspace; tolower; toupper
+#include <cmath> // 
 #include <climits>
 #include <cfloat>
-#include <cstring>
-#include <algorithm>
+#include <cstring> // memset
+#include <algorithm> // max; min
 #include <limits>
 #include <numeric>
 #include <list>
