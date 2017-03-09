@@ -1,19 +1,53 @@
 // 321. Create Maximum Number
 // https://leetcode.com/problems/create-maximum-number/
-#include <iostream>
-#include <cassert>
-#include <cmath>
-#include <cctype>
+// Given two arrays of length m and n with digits 0-9 representing two numbers. Create the maximum number of length k <= m + n from digits of the two. The relative order of the digits from the same array must be preserved. Return an array of the k digits. You should try to optimize your time and space complexity.
+
+// Example 1:
+// nums1 = [3, 4, 6, 5]
+// nums2 = [9, 1, 2, 5, 8, 3]
+// k = 5
+// return [9, 8, 6, 5, 3]
+
+// Example 2:
+// nums1 = [6, 7]
+// nums2 = [6, 0, 4]
+// k = 5
+// return [6, 7, 6, 0, 4]
+
+// Example 3:
+// nums1 = [3, 9]
+// nums2 = [8, 9]
+// k = 3
+// return [9, 8, 9]
+
+#include <iostream> // std::cout; std::cin
+#include <cstdlib> // rand
+#include <cassert> // assert
+#include <cctype> // isalnum; isalpha; isdigit; islower; isupper; isspace; tolower; toupper
+#include <cmath> // pow; sqrt; round; fabs; abs; log
+#include <climits> // INT_MIN; INT_MAX; LLONG_MIN; LLONG_MAX; ULLONG_MAX
+#include <cfloat> // DBL_EPSILON; LDBL_EPSILON
+#include <cstring> // memset
+#include <algorithm> // max; min; min_element; max_element; minmax_element; next_permutation; prev_permutation; nth_element; sort; swap; lower_bound; upper_bound; reverse
+#include <limits> // std::numeric_limits<int>::min; std::numeric_limits<int>::max; std::numeric_limits<double>::epsilon; std::numeric_limits<long double>::epsilon;
+#include <numeric> // std::accumulate; std::iota
+#include <string> // std::string::npos
+#include <list>
+#include <bitset>
 #include <vector>
+#include <deque>
+#include <stack> // std::stack::top; std::stack::pop; std::stack::push
+#include <queue>
 #include <set>
 #include <map>
 #include <unordered_set>
 #include <unordered_map>
-#include <utility>
-#include <algorithm>
 #include <iterator>
+#include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
+// BEGIN: https://discuss.leetcode.com/topic/32272/share-my-greedy-solution
+// BEGIN: https://discuss.leetcode.com/topic/36805/c-16ms-fastest-beats-97
 class Solution {
 public:
 	vector<int> maxNumber(vector<int>& nums1, vector<int>& nums2, int k) {
@@ -24,59 +58,11 @@ public:
 			return maxNumber(nums2, nums1, k);
 		}
 		vector<int> result;
-		const int m = nums1.size(), n = nums2.size();
-		if (nums1.empty()) {
-			for (int i = 0, j = n - k; j < n; j++) {
-				for (int l = i + 1; l <= j; l++) {
-					if (nums2.at(i) < nums2.at(l)) {
-						i = l;
-					}
-				}
-				result.push_back(nums2.at(i));
-			}
-			return result;
-		}
-		vector<vector<vector<vector<int>>>> OPT(k + 1, vector<vector<vector<int>>>(m + 1, vector<vector<int>>(n + 1)));
-		for (int x = 1; x <= k; x++) {
-			for (int y = m; y>= 0; y--) {
-				for (int z = n; z >= 0; z--) {
-					if (x + y + z <= m + n) {
-						if (x == 1) {
-							if (y == m) {
-								OPT.at(1).at(m).at(z) = z + 1 == n ? {m + n - 1} : nums2.at(z) > nums2.at(OPT.at(1).at(m).at(z + 1).front()) ? {m + z} : OPT.at(1).at(m).at(z + 1);
-								continue;
-							}
-							if (z == n) {
-								OPT.at(1).at(y).at(n) = y + 1 == m ? {m - 1} : nums1.at(y) > nums1.at(OPT.at(1).at(y + 1).at(n).front()) ? {y} : OPT.at(1).at(y + 1).at(n);
-								continue;
-							}
-							int v = OPT.at(1).at(y + 1).at(z + 1) < m ? nums1.at(OPT.at(1).at(y + 1).at(z + 1).front()) : nums2.at(OPT.at(1).at(y + 1).at(z + 1).front() - m);
-							OPT.at(1).at(y).at(z) = nums1.at(y) < nums2.at(z) ? nums2.at(z) < v ? OPT.at(1).at(y + 1).at(z + 1) : {m + z} : {y};
-							continue;
-						}
-						if (y == m) {
-							if (OPT.at(x).at(y).at(z).back() + 1 == k + OPT.at(x).at(y).at(z).front()) {
-								
-								continue;
-							}
-
-							continue;
-						}
-					}
-				}
-			}
-		}
-		for (const auto &i : OPT.at(k).at(0).at(0)) {
-			if (i < m) {
-				result.push_back(nums1.at(i));
-			}
-			else {
-				result.push_back(nums2.at(i - m));
-			}
-		}
 		return result;
 	}
 };
+// END: https://discuss.leetcode.com/topic/36805/c-16ms-fastest-beats-97
+// END: https://discuss.leetcode.com/topic/32272/share-my-greedy-solution
 
 // BEGIN: Time Limit Exceeded
 // class Solution {
