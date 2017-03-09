@@ -43,33 +43,25 @@ public:
 					if (x + y + z <= m + n) {
 						if (x == 1) {
 							if (y == m) {
-								if (z + 1 == n) {
-									OPT.at(1).at(m).at(n - 1) = {m + n - 1};
-									continue;
-								}
-								if (nums2.at(z) > nums2.at(OPT.at(1).at(m).at(z + 1).front())) {
-									OPT.at(1).at(m).at(z) = {m + z};
-									continue;
-								}
-								OPT.at(1).at(m).at(z) = OPT.at(1).at(m).at(z + 1);
+								OPT.at(1).at(m).at(z) = z + 1 == n ? {m + n - 1} : nums2.at(z) > nums2.at(OPT.at(1).at(m).at(z + 1).front()) ? {m + z} : OPT.at(1).at(m).at(z + 1);
 								continue;
 							}
 							if (z == n) {
-								if (y + 1 == m) {
-									OPT.at(1).at(m - 1).at(n) = {m - 1};
-									continue;
-								}
-								if (nums1.at(y) > nums1.at(OPT.at(1).at(y + 1).at(n).front())) {
-									OPT.at(1).at(y).at(n) = {y};
-									continue;
-								}
-								OPT.at(1).at(y).at(n) = OPT.at(1).at(y + 1).at(n);
+								OPT.at(1).at(y).at(n) = y + 1 == m ? {m - 1} : nums1.at(y) > nums1.at(OPT.at(1).at(y + 1).at(n).front()) ? {y} : OPT.at(1).at(y + 1).at(n);
 								continue;
 							}
-							
+							int v = OPT.at(1).at(y + 1).at(z + 1) < m ? nums1.at(OPT.at(1).at(y + 1).at(z + 1).front()) : nums2.at(OPT.at(1).at(y + 1).at(z + 1).front() - m);
+							OPT.at(1).at(y).at(z) = nums1.at(y) < nums2.at(z) ? nums2.at(z) < v ? OPT.at(1).at(y + 1).at(z + 1) : {m + z} : {y};
 							continue;
 						}
+						if (y == m) {
+							if (OPT.at(x).at(y).at(z).back() + 1 == k + OPT.at(x).at(y).at(z).front()) {
+								
+								continue;
+							}
 
+							continue;
+						}
 					}
 				}
 			}
