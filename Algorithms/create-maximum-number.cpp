@@ -1,5 +1,6 @@
 // 321. Create Maximum Number
 // https://leetcode.com/problems/create-maximum-number/
+
 // Given two arrays of length m and n with digits 0-9 representing two numbers. Create the maximum number of length k <= m + n from digits of the two. The relative order of the digits from the same array must be preserved. Return an array of the k digits. You should try to optimize your time and space complexity.
 
 // Example 1:
@@ -58,6 +59,46 @@ public:
 			return maxNumber(nums2, nums1, k);
 		}
 		vector<int> result;
+
+		return result;
+	}
+private:
+	vector<int> merge() {
+		
+	}
+private:
+	vector<int> maxArray(vector<int>& nums, size_t k) {
+		if (k == 0 or nums.empty() or nums.size() < k) {
+			return {};
+		}
+		if (nums.size() == k) {
+			return nums;
+		}
+		if (k == 1) {
+			return {*max_element(begin(nums), end(nums))};
+		}
+		vector<int> result;
+		for (size_t i = 0; i < nums.size(); i++) {
+			if (result.empty()) {
+				result.push_back(nums.at(i));
+				continue;
+			}
+			if (result.size() < k and nums.at(i) < result.back()) {
+				result.push_back(nums.at(i));
+				continue;
+			}
+			if (result.size() < k and result.size() ＋ i == k) {
+				result.push_back(nums.at(i));
+				continue;
+			}
+			for (size_t j = 0; j < result.size(); j++) {
+				if (result.at(j) < nums.at(i) and k + i <= nums.size() + j) {
+					result.erase(next(begin(result, j), end(result)));
+					result.push_back(nums.at(i));
+					break;
+				}
+			}
+		}
 		return result;
 	}
 };
