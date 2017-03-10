@@ -68,24 +68,20 @@ public:
 		int result = 0;
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
-				// cout << picture.at(i).at(j) << '\t';
 				if (picture.at(i).at(j) == 'B') {
 					rows.at(i)++;
 					cols.at(j)++;
 				}
 			}
-			// cout << '\n';
 		}
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
 				if (picture.at(i).at(j) == 'B' and rows.at(i) == N and cols.at(j) == N) {
 					bool validate = true;
 					for (int k = 0; k < m; k++) {
-						if (picture.at(k).at(j) == 'B') {
-							if (rows.at(k) != N) {
-								validate = false;
-								break;
-							}
+						if (picture.at(k).at(j) == 'B' and picture.at(k) != picture.at(i)) {
+							validate = false;
+							break;
 						}
 					}
 					if (validate) {
@@ -94,7 +90,6 @@ public:
 				}
 			}
 		}
-		// cout << "result = " << result << '\n';
 		return result;
 	}
 };
@@ -103,6 +98,12 @@ int main(void) {
 	Solution solution;
 	vector<vector<char>> picture;
 	int result = 0, answer = 0, N = 0;
+
+	picture = {{'W', 'B', 'B', 'W', 'W', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'B', 'W', 'W'}, {'W', 'B', 'B', 'W', 'W', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'B', 'W', 'W'}, {'W', 'W', 'W', 'W', 'W', 'B', 'B', 'B', 'W', 'B', 'W', 'W', 'W', 'W', 'B'}, {'W', 'W', 'B', 'W', 'B', 'W', 'W', 'W', 'W', 'B', 'B', 'W', 'B', 'W', 'W'}, {'W', 'B', 'B', 'W', 'W', 'B', 'W', 'W', 'W', 'W', 'W', 'B', 'B', 'W', 'W'}, {'W', 'W', 'B', 'W', 'B', 'W', 'W', 'W', 'W', 'B', 'B', 'W', 'B', 'W', 'W'}, {'W', 'W', 'B', 'W', 'B', 'W', 'W', 'W', 'W', 'B', 'B', 'W', 'B', 'W', 'W'}, {'W', 'W', 'B', 'W', 'B', 'W', 'W', 'W', 'W', 'B', 'B', 'W', 'B', 'W', 'W'}};
+	N = 5;
+	answer = 0;
+	result = solution.findBlackPixel(picture, N);
+	assert(answer == result);
 
 	picture = {{'W', 'B', 'W', 'B', 'B', 'W'},{'B', 'W', 'B', 'W', 'W', 'B'},{'W', 'B', 'W', 'B', 'B', 'W'},{'B', 'W', 'B', 'W', 'W', 'B'},{'W', 'W', 'W', 'B', 'B', 'W'},{'B', 'W', 'B', 'W', 'W', 'B'}};
 	N = 3;

@@ -414,3 +414,4 @@ int main(void) {
 | 530 | [Minimum Absolute Difference in BST](https://leetcode.com/problems/minimum-absolute-difference-in-bst/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/minimum-absolute-difference-in-bst.cpp) | Easy |
 | 531 | [Lonely Pixel I](https://leetcode.com/problems/lonely-pixel-i/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/lonely-pixel-i.cpp) | Medium |
 | 532 | [K-diff Pairs in an Array](https://leetcode.com/problems/k-diff-pairs-in-an-array/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/k-diff-pairs-in-an-array.cpp) | Easy |
+| 533 | [Lonely Pixel II](https://leetcode.com/problems/lonely-pixel-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/lonely-pixel-ii.cpp) | Medium |
