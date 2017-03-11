@@ -58,13 +58,16 @@ public:
 		if (nums1.size() > nums2.size()) {
 			return maxNumber(nums2, nums1, k);
 		}
+		if (nums1.empty()) {
+			return maxArray(nums1, nums2, k);
+		}
 		vector<int> result;
-
+		for (size_t i = 0; i <= k)
 		return result;
 	}
 private:
-	vector<int> merge() {
-		
+	vector<int> merge(vector<int>& nums1, vector<int>& nums2) {
+
 	}
 private:
 	vector<int> maxArray(vector<int>& nums, size_t k) {
@@ -78,26 +81,13 @@ private:
 			return {*max_element(begin(nums), end(nums))};
 		}
 		vector<int> result;
-		for (size_t i = 0; i < nums.size(); i++) {
-			if (result.empty()) {
-				result.push_back(nums.at(i));
-				continue;
-			}
-			if (result.size() < k and nums.at(i) < result.back()) {
-				result.push_back(nums.at(i));
-				continue;
-			}
-			if (result.size() < k and result.size() ＋ i == k) {
-				result.push_back(nums.at(i));
-				continue;
-			}
-			for (size_t j = 0; j < result.size(); j++) {
-				if (result.at(j) < nums.at(i) and k + i <= nums.size() + j) {
-					result.erase(next(begin(result, j), end(result)));
-					result.push_back(nums.at(i));
-					break;
+		for (size_t i = 0, j = nums.size() - k; j < nums.size(); i++, j++) {
+			for (size_t l = i + 1; l <= j; l++) {
+				if (nums.at(i) < nums.at(l)) {
+					i = l;
 				}
 			}
+			result.push_back(nums.at(i));
 		}
 		return result;
 	}
