@@ -240,6 +240,7 @@ int main(void) {
 | 318 | [Maximum Product of Word Lengths](https://leetcode.com/problems/maximum-product-of-word-lengths/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/maximum-product-of-word-lengths.cpp) | Medium |
 | 319 | [Bulb Switcher](https://leetcode.com/problems/bulb-switcher/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/bulb-switcher.cpp) | Medium |
 | 320 | [Generalized Abbreviation](https://leetcode.com/problems/generalized-abbreviation/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/generalized-abbreviation.cpp) | Medium |
+| 321 | [Create Maximum Number](https://leetcode.com/problems/create-maximum-number/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/create-maximum-number.cpp) | Hard |
 | 322 | [Coin Change](https://leetcode.com/problems/coin-change/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/coin-change.cpp) | Medium |
 | 323 | [Number of Connected Components in an Undirected Graph](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/number-of-connected-components-in-an-undirected-graph.cpp) | Medium |
 | 324 | [Wiggle Sort II](https://leetcode.com/problems/wiggle-sort-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/wiggle-sort-ii.cpp) | Medium |
