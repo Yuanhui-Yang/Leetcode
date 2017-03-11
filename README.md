@@ -27,6 +27,7 @@
 #include <unordered_map>
 #include <iterator>
 #include <functional> // std::less<int>; std::greater<int>
+using namespace std;
 
 class Solution {
 public:
