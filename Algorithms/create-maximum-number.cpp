@@ -59,15 +59,54 @@ public:
 			return maxNumber(nums2, nums1, k);
 		}
 		if (nums1.empty()) {
-			return maxArray(nums1, nums2, k);
+			return maxArray(nums2, k);
 		}
 		vector<int> result;
-		for (size_t i = 0; i <= k)
+		for (size_t i = 0, j = 0; i <= size_t(k); i++) {
+			j = size_t(k) - i;
+			if (i <= nums1.size() and j <= nums2.size()) {
+				vector<int> v1 = maxArray(nums1, i);
+				vector<int> v2 = maxArray(nums2, j);
+				vector<int> candidate = merge(v1, v2);
+				result = result.empty() ? candidate : less(result, 0, candidate, 0) ? candidate : result;
+			}
+		}
 		return result;
 	}
 private:
+	bool less(vector<int>& nums1, size_t i, vector<int>& nums2, size_t j) {
+		while (i < nums1.size() and j < nums2.size() and nums1.at(i) == nums2.at(j)) {
+			i++;
+			j++;
+		}
+		if (i < nums1.size() and j < nums2.size()) {
+			return nums1.at(i) < nums2.at(j);
+		}
+		if (i == nums1.size() and j == nums2.size()) {
+			return true;
+		}
+		if (i == nums1.size() and j < nums2.size()) {
+			return true;
+		}
+		if (i < nums1.size() and j == nums2.size()) {
+			return false;
+		}
+		return true;
+	}
+private:
 	vector<int> merge(vector<int>& nums1, vector<int>& nums2) {
-
+		vector<int> result;
+		for (size_t i = 0, j = 0; i < nums1.size() or j < nums2.size(); ) {
+			if (less(nums1, i, nums2, j)) {
+				result.push_back(nums2.at(j));
+				j++;
+			}
+			else {
+				result.push_back(nums1.at(i));
+				i++;
+			}
+		}
+		return result;
 	}
 private:
 	vector<int> maxArray(vector<int>& nums, size_t k) {
