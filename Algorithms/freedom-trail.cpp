@@ -24,3 +24,114 @@
 // There are only lowercase letters in both strings and might be some duplcate characters in both strings.
 // It's guaranteed that string key could always be spelled by rotating the string ring.
 
+#include <iostream> // std::cout; std::cin
+#include <cstdlib> // rand
+#include <cassert> // assert
+#include <cctype> // isalnum; isalpha; isdigit; islower; isupper; isspace; tolower; toupper
+#include <cmath> // pow; sqrt; round; fabs; abs; log
+#include <climits> // INT_MIN; INT_MAX; LLONG_MIN; LLONG_MAX; ULLONG_MAX
+#include <cfloat> // DBL_EPSILON; LDBL_EPSILON
+#include <cstring> // memset
+#include <algorithm> // max; min; min_element; max_element; minmax_element; next_permutation; prev_permutation; nth_element; sort; swap; lower_bound; upper_bound; reverse
+#include <limits> // std::numeric_limits<int>::min; std::numeric_limits<int>::max; std::numeric_limits<double>::epsilon; std::numeric_limits<long double>::epsilon;
+#include <numeric> // std::accumulate; std::iota
+#include <string> // std::string::npos
+#include <list>
+#include <bitset>
+#include <vector>
+#include <deque>
+#include <stack> // std::stack::top; std::stack::pop; std::stack::push
+#include <queue>
+#include <set>
+#include <map>
+#include <unordered_set>
+#include <unordered_map>
+#include <iterator>
+#include <functional> // std::less<int>; std::greater<int>
+using namespace std;
+
+class Solution {
+public:
+	int findRotateSteps(string ring, string key) {
+		if (ring.empty() or key.empty()) {
+			return 0;
+		}
+		unordered_map<char, vector<int>> h;
+		const int m = ring.size();
+		for (int i = 0; i < m; i++) {
+			h[ring.at(i)].push_back(i);
+		}
+		unordered_map<int, unordered_map<int, int>> cache;
+		return findRotateSteps(0, ring, 0, key, h, cache);
+	}
+private:
+	int findRotateSteps(int i, string& ring, int j, string& key, unordered_map<char, vector<int>>& h, unordered_map<int, unordered_map<int, int>>& cache) {
+		if (!cache.empty() and cache.count(i) and cache.at(i).count(j)) {
+			return cache.at(i).at(j);
+		}
+		const int m = ring.size(), n = key.size();
+		if (j == n) {
+			return 0;
+		}
+		if (j + 1 == n) {
+			if (ring.at(i) == key.at(j)) {
+				return cache[i][j] = 1;
+			}
+			const vector<int> &v = h.at(key.at(j));
+			int x = v.front();
+			int y = min(abs(x - i), m - abs(x - i));
+			for (const auto &k : v) {
+				int z = min(abs(k - i), m - abs(k - i));
+				if (z < y) {
+					x = k;
+					y = z;
+				}
+			}
+			return cache[i][j] = y + 1;
+		}
+		const vector<int> &v = h.at(key.at(j));
+		int x = v.front();
+		int y = min(abs(x - i), m - abs(x - i)) + findRotateSteps(x, ring, j + 1, key, h, cache);
+		for (const auto &k : v) {
+			int z = min(abs(k - i), m - abs(k - i)) + findRotateSteps(k, ring, j + 1, key, h, cache);
+			if (z < y) {
+				x = k;
+				y = z;
+			}
+		}
+		return cache[i][j] = y + 1;
+	}
+};
+
+int main(void) {
+	Solution solution;
+	string ring, key;
+	int result = 0, answer = 0;
+
+	ring = "abc";
+	key = "aaccbb";
+	answer = 8;
+	result = solution.findRotateSteps(ring, key);
+	assert(answer == result);
+
+	ring = "ababcab";
+	key = "acbaacba";
+	answer = 17;
+	result = solution.findRotateSteps(ring, key);
+	assert(answer == result);
+
+	ring = "godding";
+	key = "godding";
+	answer = 13;
+	result = solution.findRotateSteps(ring, key);
+	assert(answer == result);
+
+	ring = "godding";
+	key = "gd";
+	answer = 4;
+	result = solution.findRotateSteps(ring, key);
+	assert(answer == result);
+
+	cout << "\nPassed All\n";
+	return 0;
+}
