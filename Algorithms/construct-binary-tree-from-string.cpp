@@ -108,15 +108,38 @@ public:
 		// cout << root->val << '\n';
 		return root;
 	}
+public:
+	bool isSameTree(TreeNode *p, TreeNode *q) {
+		if (!p and !q) {
+			return true;
+		}
+		if (!p and q) {
+			return false;
+		}
+		if (p and !q) {
+			return false;
+		}
+		if (p->val != q->val) {
+			return false;
+		}
+		return isSameTree(p->left, q->left) and isSameTree(p->right, q->right);
+	}
 };
 
 int main(void) {
 	Solution solution;
 	string s;
-	TreeNode *result = NULL;
+	TreeNode *result = NULL, *answer = NULL;
 
 	s = "4(2(3)(1))(6(5))";
+	answer = new TreeNode(4);
+	answer->left = new TreeNode(2);
+	answer->right = new TreeNode(6);
+	answer->left->left = new TreeNode(3);
+	answer->left->right = new TreeNode(1);
+	answer->right->left = new TreeNode(5);
 	result = solution.str2tree(s);
+	assert(solution.isSameTree(result, answer));
 
 	cout << "\nPassed All\n";
 	return 0;
