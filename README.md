@@ -18,13 +18,14 @@
 #include <list>
 #include <bitset>
 #include <vector>
-#include <deque> 
-#include <stack> // std::stack::top
-#include <queue> // std::queue::front; std::priority_queue::top
+#include <deque>
+#include <stack> // std::stack::top; std::stack::pop; std::stack::push
+#include <queue>
 #include <set>
 #include <map>
 #include <unordered_set>
 #include <unordered_map>
+#include <utility> // pair; make_pair; swap
 #include <iterator>
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
