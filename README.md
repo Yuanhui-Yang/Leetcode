@@ -419,3 +419,4 @@ int main(void) {
 | 532 | [K-diff Pairs in an Array](https://leetcode.com/problems/k-diff-pairs-in-an-array/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/k-diff-pairs-in-an-array.cpp) | Easy |
 | 533 | [Lonely Pixel II](https://leetcode.com/problems/lonely-pixel-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/lonely-pixel-ii.cpp) | Medium |
 | 535 | [Encode and Decode TinyURL](https://leetcode.com/problems/encode-and-decode-tinyurl/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/encode-and-decode-tinyurl.cpp) | Medium |
+| 536 | [Construct Binary Tree from String](https://leetcode.com/problems/construct-binary-tree-from-string/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/construct-binary-tree-from-string.cpp) | Medium |
