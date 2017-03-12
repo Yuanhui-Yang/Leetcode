@@ -45,15 +45,12 @@ public:
 		if (num < 0) {
 			return "";
 		}
-		string s = to_string(num);
-		size_t n = s.size();
-		string result;
 		vector<string> OPT1 = {"Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
 		vector<string> OPT2 = {"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
-		if (n == 1) {
+		if (num < 10) {
 			return OPT1.at(num);
 		}
-		if (n == 2) {
+		if (num < 100) {
 			if (num < 20) {
 				return OPT1.at(num);
 			}
@@ -62,33 +59,81 @@ public:
 			}
 			return OPT2.at(num / 10) + ' ' + OPT1.at(num % 10);
 		}
-		if (n == 3) {
+		if (num < 1000) {
 			if (num % 100 == 0) {
 				return numberToWords(num / 100) + ' ' + "Hundred";
 			}
 			return numberToWords(num / 100) + ' ' + "Hundred" + ' ' + numberToWords(num % 100);
 		}
-		if (n <= 6) {
+		if (num < 1000000) {
 			if (num % 1000 == 0) {
 				return numberToWords(num / 1000) + ' ' + "Thousand";
 			}
 			return numberToWords(num / 1000) + ' ' + "Thousand" + ' ' + numberToWords(num % 1000);
 		}
-		if (n <= 9) {
+		if (num < 1000000000) {
 			if (num % 1000000 == 0) {
 				return numberToWords(num / 1000000) + ' ' + "Million";
 			}
 			return numberToWords(num / 1000000) + ' ' + "Million" + ' ' + numberToWords(num % 1000000);
 		}
-		if (n == 10) {
-			if (num % 1000000000 == 0) {
-				return numberToWords(num / 1000000000) + ' ' + "Billion";
-			}
-			return numberToWords(num / 1000000000) + ' ' + "Billion" + ' ' + numberToWords(num % 1000000000);
+		if (num % 1000000000 == 0) {
+			return numberToWords(num / 1000000000) + ' ' + "Billion";
 		}
-		return result;
+		return numberToWords(num / 1000000000) + ' ' + "Billion" + ' ' + numberToWords(num % 1000000000);
 	}
 };
+
+// class Solution {
+// public:
+// 	string numberToWords(int num) {
+// 		if (num < 0) {
+// 			return "";
+// 		}
+// 		string s = to_string(num);
+// 		size_t n = s.size();
+// 		string result;
+// 		vector<string> OPT1 = {"Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+// 		vector<string> OPT2 = {"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
+// 		if (n == 1) {
+// 			return OPT1.at(num);
+// 		}
+// 		if (n == 2) {
+// 			if (num < 20) {
+// 				return OPT1.at(num);
+// 			}
+// 			if (num % 10 == 0) {
+// 				return OPT2.at(num / 10);
+// 			}
+// 			return OPT2.at(num / 10) + ' ' + OPT1.at(num % 10);
+// 		}
+// 		if (n == 3) {
+// 			if (num % 100 == 0) {
+// 				return numberToWords(num / 100) + ' ' + "Hundred";
+// 			}
+// 			return numberToWords(num / 100) + ' ' + "Hundred" + ' ' + numberToWords(num % 100);
+// 		}
+// 		if (n <= 6) {
+// 			if (num % 1000 == 0) {
+// 				return numberToWords(num / 1000) + ' ' + "Thousand";
+// 			}
+// 			return numberToWords(num / 1000) + ' ' + "Thousand" + ' ' + numberToWords(num % 1000);
+// 		}
+// 		if (n <= 9) {
+// 			if (num % 1000000 == 0) {
+// 				return numberToWords(num / 1000000) + ' ' + "Million";
+// 			}
+// 			return numberToWords(num / 1000000) + ' ' + "Million" + ' ' + numberToWords(num % 1000000);
+// 		}
+// 		if (n == 10) {
+// 			if (num % 1000000000 == 0) {
+// 				return numberToWords(num / 1000000000) + ' ' + "Billion";
+// 			}
+// 			return numberToWords(num / 1000000000) + ' ' + "Billion" + ' ' + numberToWords(num % 1000000000);
+// 		}
+// 		return result;
+// 	}
+// };
 
 int main(void) {
 	Solution solution;
