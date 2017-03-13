@@ -68,34 +68,34 @@ public:
 				continue;
 			}
 			const size_t n = begin(v)->first.size();
-			const size_t j = abbrPrefix(v);
-			for (auto &l : v) {
-				const string s1 = l.first;
-				const string s2 = l.first.substr(0, j + 1) + to_string(n - j - 2) + l.first.back();
-				result.at(l.second) = s2.size() < s1.size() ? s2 : s1;
+			size_t p = 0;
+			for (set<pair<string, size_t>>::iterator it = begin(v), jt = next(it); it != end(v); it = jt, jt++) {
+				if (it == begin(v)) {
+					size_t k = 0;
+					string s1 = it->first, s2 = jt->first;
+					while (k < n and s1.at(k) == s2.at(k)) {
+						k++;
+					}
+					string s3 = s1.substr(0, k + 1) + to_string(n - k - 2) + s1.back();
+					result.at(it->second) = s3.size() < s1.size() ? s3 : s1;
+					p = k;
+					continue;
+				}
+				if (jt == end(v)) {
+					string s1 = it->first, s3 = s1.substr(0, p + 1) + to_string(n - p - 2) + s1.back();
+					result.at(it->second) = s3.size() < s1.size() ? s3 : s1;
+					break;
+				}
+				size_t k = 0;
+				string s1 = it->first, s2 = jt->first;
+				while (k < n and s1.at(k) == s2.at(k)) {
+					k++;
+				}
+				size_t l = max(p, k);
+				string s3 = s1.substr(0, l + 1) + to_string(n - l - 2) + s1.back();
+				result.at(it->second) = s3.size() < s1.size() ? s3 : s1;
+				p = k;
 			}
-		}
-		return result;
-	}
-private:
-	size_t abbrPrefix(const set<pair<string, size_t>> &v) {
-		size_t result = 0;
-		const size_t n = begin(v)->first.size();
-		string p;
-		for (const auto &i : v) {
-			if (p.empty()) {
-				p = i.first;
-				continue;
-			}
-			size_t j = 0;
-			while (j < n and p.at(j) == i.first.at(j)) {
-				j++;
-			}
-			result = max(result, j);
-			if (result + 2 >= n) {
-				return n;
-			}
-			p = i.first;
 		}
 		return result;
 	}
@@ -108,10 +108,6 @@ int main(void) {
 	dict = {"abcdefg", "abccefg", "abcckkg"};
 	answer = {"abcd2g", "abccefg", "abcckkg"};
 	result = solution.wordsAbbreviation(dict);
-	for (const auto &x : result) {
-		cout << x << '\t';
-	}
-	cout << '\n';
 	assert(answer == result);
 
 	dict = {"like", "god", "internal", "me", "internet", "interval", "intension", "face", "intrusion"};
