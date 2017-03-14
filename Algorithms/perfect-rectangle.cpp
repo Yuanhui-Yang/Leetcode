@@ -84,6 +84,10 @@ public:
 		if (rectangles.empty()) {
 			return false;
 		}
+		set<vector<int>> s(begin(rectangles), end(rectangles));
+		if (s.size() < rectangles.size()) {
+			return false;
+		}
 		int left = INT_MAX, right = INT_MIN, bottom = INT_MAX, top = INT_MIN;
 		for (const auto &i : rectangles) {
 			if (i.at(0) < i.at(2) and i.at(1) < i.at(3)) {
@@ -118,8 +122,8 @@ public:
 			v.push_back(Line(i.at(2), i.at(1), false));
 		}
 		sort(begin(v), end(v), Comp1());
-		set<Line, Comp2> rbtree;
-		for (int i = 0, n = v.size(); i < n; i++) {
+		multiset<Line, Comp2> rbtree;
+		for (size_t i = 0, n = v.size(); i < n; i++) {
 			const Line &line = v.at(i);
 			if (i == 0 or !line.d) {
 				rbtree.insert(line);
@@ -128,20 +132,22 @@ public:
 			if (rbtree.empty()) {
 				return false;
 			}
-			const Line target(line.x, line.y, false);
-			const set<Line, Comp2>::iterator it = rbtree.lower_bound(target);
+			const set<Line, Comp2>::iterator it = rbtree.lower_bound(line);
 			if (it == end(rbtree) or it->y != line.y) {
 				return false;
 			}
 			rbtree.erase(it);
-			if (rbtree.empty() and i + 1 < n) {
-				return false;
+			if (rbtree.empty()) {
+				if (i + 1 < n) {
+					return false;
+				}
+				return true;
 			}
 			if (prev(end(rbtree))->y < top) {
 				return false;
 			}
 		}
-		return rbtree.empty();
+		return true;
 	}
 private:
 	struct Line {
@@ -171,7 +177,7 @@ private:
 		bool operator() (const Line& a, const Line& b) {
 			if (a.y == b.y) {
 				if (a.x == b.x) {
-					return a.d < b.d;
+					return a.d > b.d;
 				}
 				return a.x > b.x;
 			}
@@ -184,6 +190,21 @@ int main(void) {
 	Solution solution;
 	vector<vector<int>> rectangles;
 	bool result, answer;
+
+	rectangles = {{0, 0, 5, 1}, {7, 0, 8, 2}, {5, 1, 6, 3}, {6, 0, 7, 2}, {4, 0, 5, 1}, {4, 2, 5, 3}, {2, 1, 4, 3}, {0, 2, 2, 3}, {0, 1, 2, 2}, {6, 2, 8, 3}, {5, 0, 6, 1}, {4, 1, 5, 2}};
+	answer = false;
+	result = solution.isRectangleCover(rectangles);
+	assert(answer == result);
+
+	rectangles = {{0, 0, 4, 1}, {0, 0, 4, 1}};
+	answer = false;
+	result = solution.isRectangleCover(rectangles);
+	assert(answer == result);
+
+	rectangles = {{0, 0, 4, 1}, {7, 0, 8, 2}, {6, 2, 8, 3}, {5, 1, 6, 3}, {4, 0, 5, 1}, {6, 0, 7, 2}, {4, 2, 5, 3}, {2, 1, 4, 3}, {0, 1, 2, 2}, {0, 2, 2, 3}, {4, 1, 5, 2}, {5, 0, 6, 1}};
+	answer = true;
+	result = solution.isRectangleCover(rectangles);
+	assert(answer == result);
 
 	rectangles = {{1, 1, 3, 3}, {3, 1, 4, 2}, {3, 2, 4, 4}, {1, 3, 2, 4}, {2, 3, 3, 4}};
 	answer = true;
