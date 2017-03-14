@@ -81,8 +81,103 @@ using namespace std;
 class Solution {
 public:
 	bool isRectangleCover(vector<vector<int>>& rectangles) {
-		
+		if (rectangles.empty()) {
+			return false;
+		}
+		int left = INT_MAX, right = INT_MIN, bottom = INT_MAX, top = INT_MIN;
+		for (const auto &i : rectangles) {
+			if (i.at(0) < i.at(2) and i.at(1) < i.at(3)) {
+				left = min(left, i.at(0));
+				right = max(right, i.at(2));
+				bottom = min(bottom, i.at(1));
+				top = max(top, i.at(3));
+				continue;
+			}
+			return false;
+		}
+		for (auto &i : rectangles) {
+			i.at(0) -= left;
+			i.at(2) -= left;
+			i.at(1) -= bottom;
+			i.at(3) -= bottom;
+		}
+		right -= left;
+		left = 0;
+		top -= bottom;
+		bottom = 0;
+		vector<Line> v;
+		for (const auto &i : rectangles) {
+			if (i.at(1) == 0) {
+				v.push_back(Line(i.at(0), i.at(3), false));
+				v.push_back(Line(i.at(2), i.at(3), true));
+				continue;
+			}
+			v.push_back(Line(i.at(0), i.at(1), true));
+			v.push_back(Line(i.at(0), i.at(3), false));
+			v.push_back(Line(i.at(2), i.at(3), true));
+			v.push_back(Line(i.at(2), i.at(1), false));
+		}
+		sort(begin(v), end(v), Comp1());
+		set<Line, Comp2> rbtree;
+		for (int i = 0, n = v.size(); i < n; i++) {
+			const Line &line = v.at(i);
+			if (i == 0 or !line.d) {
+				rbtree.insert(line);
+				continue;
+			}
+			if (rbtree.empty()) {
+				return false;
+			}
+			const Line target(line.x, line.y, false);
+			const set<Line, Comp2>::iterator it = rbtree.lower_bound(target);
+			if (it == end(rbtree) or it->y != line.y) {
+				return false;
+			}
+			rbtree.erase(it);
+			if (rbtree.empty() and i + 1 < n) {
+				return false;
+			}
+			if (prev(end(rbtree))->y < top) {
+				return false;
+			}
+		}
+		return rbtree.empty();
 	}
+private:
+	struct Line {
+		Line(int x, int y, bool d) {
+			this->x = x;
+			this->y = y;
+			this->d = d;
+		}
+		int x;
+		int y;
+		bool d;
+	};
+private:
+	struct Comp1 {
+		bool operator() (const Line& a, const Line& b) {
+			if (a.x == b.x) {
+				if (a.d == b.d) {
+					return a.y < b.y;
+				}
+				return a.d < b.d;
+			}
+			return a.x < b.x;
+		}
+	};
+private:
+	struct Comp2 {
+		bool operator() (const Line& a, const Line& b) {
+			if (a.y == b.y) {
+				if (a.x == b.x) {
+					return a.d < b.d;
+				}
+				return a.x > b.x;
+			}
+			return a.y < b.y;
+		}
+	};
 };
 
 int main(void) {
