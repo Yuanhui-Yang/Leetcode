@@ -132,18 +132,54 @@ public:
 			if (rbtree.empty()) {
 				return false;
 			}
-			const set<Line, Comp2>::iterator it = rbtree.lower_bound(line);
+			const multiset<Line, Comp2>::iterator it = rbtree.lower_bound(line);
 			if (it == end(rbtree) or it->y != line.y) {
 				return false;
 			}
 			rbtree.erase(it);
-			if (rbtree.empty()) {
-				if (i + 1 < n) {
-					return false;
-				}
-				return true;
+			if (rbtree.empty() and i + 1 < n) {
+				return false;
 			}
-			if (prev(end(rbtree))->y < top) {
+			if (!rbtree.empty() and prev(end(rbtree))->y < top) {
+				return false;
+			}
+		}
+		for (auto &i : rectangles) {
+			swap(i.at(0), i.at(1));
+			swap(i.at(2), i.at(3));
+		}
+		v.clear();
+		for (const auto &i : rectangles) {
+			if (i.at(1) == 0) {
+				v.push_back(Line(i.at(0), i.at(3), false));
+				v.push_back(Line(i.at(2), i.at(3), true));
+				continue;
+			}
+			v.push_back(Line(i.at(0), i.at(1), true));
+			v.push_back(Line(i.at(0), i.at(3), false));
+			v.push_back(Line(i.at(2), i.at(3), true));
+			v.push_back(Line(i.at(2), i.at(1), false));
+		}
+		sort(begin(v), end(v), Comp1());
+		rbtree.clear();
+		for (size_t i = 0, n = v.size(); i < n; i++) {
+			const Line &line = v.at(i);
+			if (i == 0 or !line.d) {
+				rbtree.insert(line);
+				continue;
+			}
+			if (rbtree.empty()) {
+				return false;
+			}
+			const multiset<Line, Comp2>::iterator it = rbtree.lower_bound(line);
+			if (it == end(rbtree) or it->y != line.y) {
+				return false;
+			}
+			rbtree.erase(it);
+			if (rbtree.empty() and i + 1 < n) {
+				return false;
+			}
+			if (!rbtree.empty() and prev(end(rbtree))->y < right) {
 				return false;
 			}
 		}
@@ -190,6 +226,11 @@ int main(void) {
 	Solution solution;
 	vector<vector<int>> rectangles;
 	bool result, answer;
+
+	rectangles = {{0, 0, 1, 1}, {0, 1, 1, 2}, {0, 2, 1, 3}, {0, 3, 1, 4}};
+	answer = true;
+	result = solution.isRectangleCover(rectangles);
+	assert(answer == result);
 
 	rectangles = {{0, 0, 5, 1}, {7, 0, 8, 2}, {5, 1, 6, 3}, {6, 0, 7, 2}, {4, 0, 5, 1}, {4, 2, 5, 3}, {2, 1, 4, 3}, {0, 2, 2, 3}, {0, 1, 2, 2}, {6, 2, 8, 3}, {5, 0, 6, 1}, {4, 1, 5, 2}};
 	answer = false;
