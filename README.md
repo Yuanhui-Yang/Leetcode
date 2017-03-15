@@ -305,7 +305,6 @@ int main(void) {
 | 388 | [Longest Absolute File Path](https://leetcode.com/problems/longest-absolute-file-path/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/longest-absolute-file-path.cpp) | Medium |
 | 389 | [Find the Difference](https://leetcode.com/problems/find-the-difference/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/find-the-difference.cpp) | Easy |
 | 390 | [Elimination Game](https://leetcode.com/problems/elimination-game/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/elimination-game.cpp) | Medium |
-<!-- | 391 | [Perfect Rectangle](https://leetcode.com/problems/perfect-rectangle/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/perfect-rectangle.cpp) | Hard | -->
 | 392 | [Is Subsequence](https://leetcode.com/problems/is-subsequence/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/is-subsequence.cpp) | Medium |
 | 393 | [UTF-8 Validation](https://leetcode.com/problems/utf-8-validation/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/utf-8-validation.cpp) | Medium |
 | 394 | [Decode String](https://leetcode.com/problems/decode-string/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/decode-string.cpp) | Medium |
