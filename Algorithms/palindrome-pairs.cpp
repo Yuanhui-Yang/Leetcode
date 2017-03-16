@@ -68,7 +68,7 @@ public:
 				if (it->idx != i and it->isEnd) {
 					result.insert(vector<int>({it->idx, i}));
 				}
-				vector<int> v = trie.dfs(it);
+				vector<int> &v = it->nexts;
 				if (!v.empty()) {
 					for (const auto &j : v) {
 						if (i != j and isPalindrome(words.at(j).substr(s.size()))) {
@@ -81,7 +81,7 @@ public:
 				if (rit->idx != i and rit->isEnd) {
 					result.insert(vector<int>({i, rit->idx}));
 				}
-				vector<int> v = rtrie.dfs(rit);
+				vector<int> &v = rit->nexts;
 				if (!v.empty()) {
 					for (const auto &j : v) {
 						if (i != j and isPalindrome(rwords.at(j).substr(s.size()))) {
@@ -103,6 +103,7 @@ private:
 		bool isEnd;
 		int idx;
 		TrieNode* links[26];
+		vector<int> nexts;
 	};
 private:
 	class Trie {
@@ -113,6 +114,7 @@ private:
 		TrieNode *insert(const int idx, const string& s) {
 			TrieNode *it(root);
 			for (const auto &i : s) {
+				it->nexts.push_back(idx);
 				int d = i - 'a';
 				if (!it->links[d]) {
 					it->links[d] = new TrieNode();
@@ -134,26 +136,6 @@ private:
 			}
 			return it;
 		}
-		vector<int> dfs(TrieNode* node) {
-			if (!node) {
-				return {};
-			}
-			if (!h.empty() and h.count(node)) {
-				return h.at(node);
-			}
-			vector<int> result;
-			for (int i = 0; i < 26; i++) {
-				if (node->links[i]) {
-					if (node->links[i]->isEnd) {
-						result.push_back(node->links[i]->idx);
-					}
-					vector<int> v = dfs(node->links[i]);
-					result.insert(end(result), begin(v), end(v));
-				}
-			}
-			return h[node] = result;
-		}
-		unordered_map<TrieNode*, vector<int>> h;
 	private:
 		TrieNode *root;
 	};
@@ -171,6 +153,132 @@ private:
 		return true;
 	}
 };
+// END: Memory Limit Exceeded
+
+// BEGIN: Memory Limit Exceeded
+// class Solution {
+// public:
+// 	vector<vector<int>> palindromePairs(vector<string>& words) {
+// 		if (words.size() <= 1) {
+// 			return {};
+// 		}
+// 		Trie trie, rtrie;
+// 		const int n = words.size();
+// 		vector<string> rwords;
+// 		for (const auto &i : words) {
+// 			string j(i);
+// 			reverse(begin(j), end(j));
+// 			rwords.push_back(j);
+// 		}
+// 		for (int i = 0; i < n; i++) {
+// 			trie.insert(i, words.at(i));
+// 			rtrie.insert(i, rwords.at(i));
+// 		}
+// 		set<vector<int>> result;
+// 		for (int i = 0; i < n; i++) {
+// 			const string& s = words.at(i);
+// 			const string& rs = rwords.at(i);
+// 			TrieNode *it = trie.prefix(rs);
+// 			TrieNode *rit = rtrie.prefix(s);
+// 			if (it) {
+// 				if (it->idx != i and it->isEnd) {
+// 					result.insert(vector<int>({it->idx, i}));
+// 				}
+// 				vector<int> v = trie.dfs(it);
+// 				if (!v.empty()) {
+// 					for (const auto &j : v) {
+// 						if (i != j and isPalindrome(words.at(j).substr(s.size()))) {
+// 							result.insert(vector<int>({j, i}));
+// 						}
+// 					}
+// 				}
+// 			}
+// 			if (rit) {
+// 				if (rit->idx != i and rit->isEnd) {
+// 					result.insert(vector<int>({i, rit->idx}));
+// 				}
+// 				vector<int> v = rtrie.dfs(rit);
+// 				if (!v.empty()) {
+// 					for (const auto &j : v) {
+// 						if (i != j and isPalindrome(rwords.at(j).substr(s.size()))) {
+// 							result.insert(vector<int>({i, j}));
+// 						}
+// 					}
+// 				}
+// 			}
+// 		}
+// 		return vector<vector<int>>(begin(result), end(result));
+// 	}
+// private:
+// 	struct TrieNode {
+// 		TrieNode() {
+// 			isEnd = false;
+// 			idx = -1;
+// 			memset(links, 0, sizeof(links));
+// 		}
+// 		bool isEnd;
+// 		int idx;
+// 		TrieNode* links[26];
+// 	};
+// private:
+// 	class Trie {
+// 	public:
+// 		Trie() {
+// 			root = new TrieNode();
+// 		}
+// 		TrieNode *insert(const int idx, const string& s) {
+// 			TrieNode *it(root);
+// 			for (const auto &i : s) {
+// 				int d = i - 'a';
+// 				if (!it->links[d]) {
+// 					it->links[d] = new TrieNode();
+// 				}
+// 				it = it->links[d];
+// 			}
+// 			it->isEnd = true;
+// 			it->idx = idx;
+// 			return it;
+// 		}
+// 		TrieNode *prefix(const string& s) {
+// 			TrieNode *it(root);
+// 			for (const auto &i : s) {
+// 				int d = i - 'a';
+// 				if (!it->links[d]) {
+// 					return NULL;
+// 				}
+// 				it = it->links[d];
+// 			}
+// 			return it;
+// 		}
+// 		vector<int> dfs(TrieNode* node) {
+// 			if (!node) {
+// 				return {};
+// 			}
+// 			vector<int> result;
+// 			for (int i = 0; i < 26; i++) {
+// 				if (node->links[i]) {
+// 					if (node->links[i]->isEnd) {
+// 						result.push_back(node->links[i]->idx);
+// 					}
+// 					vector<int> v = dfs(node->links[i]);
+// 					result.insert(end(result), begin(v), end(v));
+// 				}
+// 			}
+// 			return result;
+// 		}
+// 	private:
+// 		TrieNode *root;
+// 	};
+// private:
+// 	bool isPalindrome(const string& s) {
+// 		for (int i = 0, j = s.size() - 1; !s.empty() and i < j; i++, j--) {
+// 			if (s.at(i) != s.at(j)) {
+// 				return false;
+// 			}
+// 		}
+// 		return true;
+// 	}
+// };
 // END: Memory Limit Exceeded
 
 // BEGIN: Time Limit Exceeded
