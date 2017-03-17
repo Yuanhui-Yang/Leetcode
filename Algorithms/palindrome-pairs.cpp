@@ -39,6 +39,7 @@
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
+// BEGIN: https://discuss.leetcode.com/topic/39585/o-n-k-2-java-solution-with-trie-structure-n-total-number-of-words-k-average-length-of-each-word
 class Solution {
 public:
 	vector<vector<int>> palindromePairs(vector<string>& words) {
@@ -141,6 +142,7 @@ private:
 		return true;
 	}
 };
+// END: https://discuss.leetcode.com/topic/39585/o-n-k-2-java-solution-with-trie-structure-n-total-number-of-words-k-average-length-of-each-word
 
 // BEGIN: Memory Limit Exceeded
 // class Solution {
