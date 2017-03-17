@@ -39,59 +39,50 @@
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
-// BEGIN: Memory Limit Exceeded
 class Solution {
 public:
 	vector<vector<int>> palindromePairs(vector<string>& words) {
 		if (words.size() <= 1) {
 			return {};
 		}
-		Trie trie, rtrie;
-		const int n = words.size();
-		vector<string> rwords;
-		for (const auto &i : words) {
-			string j(i);
-			reverse(begin(j), end(j));
-			rwords.push_back(j);
-		}
-		for (int i = 0; i < n; i++) {
+		Trie trie;
+		const int m = words.size();
+		for (int i = 0; i < m; i++) {
 			trie.insert(i, words.at(i));
-			rtrie.insert(i, rwords.at(i));
 		}
-		set<vector<int>> result;
-		for (int i = 0; i < n; i++) {
-			const string& s = words.at(i);
-			const string& rs = rwords.at(i);
-			TrieNode *it = trie.prefix(rs);
-			TrieNode *rit = rtrie.prefix(s);
+		vector<vector<int>> result;
+		for (int i = 0; i < m; i++) {
+			string s = words.at(i);
+			string t = s;
+			reverse(begin(t), end(t));
+			TrieNode *it = trie.prefix(t);
 			if (it) {
-				if (it->idx != i and it->isEnd) {
-					result.insert(vector<int>({it->idx, i}));
+				if (it->isEnd and it->idx != i) {
+					result.push_back(vector<int>({it->idx, i}));
 				}
 				vector<int> &v = it->nexts;
 				if (!v.empty()) {
 					for (const auto &j : v) {
-						if (i != j and isPalindrome(words.at(j).substr(s.size()))) {
-							result.insert(vector<int>({j, i}));
+						if (j != i and isPalindrome(words.at(j).substr(t.size()))) {
+							result.push_back(vector<int>({j, i}));
 						}
 					}
 				}
 			}
-			if (rit) {
-				if (rit->idx != i and rit->isEnd) {
-					result.insert(vector<int>({i, rit->idx}));
-				}
-				vector<int> &v = rit->nexts;
-				if (!v.empty()) {
-					for (const auto &j : v) {
-						if (i != j and isPalindrome(rwords.at(j).substr(s.size()))) {
-							result.insert(vector<int>({i, j}));
-						}
+			for (int j = 1, n = s.size(); j <= n; j++) {
+				string u = s.substr(0, j);
+				if (isPalindrome(u)) {
+					string v = s.substr(j);
+					string w = v;
+					reverse(begin(w), end(w));
+					TrieNode *jt = trie.prefix(w);
+					if (jt and jt->isEnd and jt->idx != i) {
+						result.push_back(vector<int>({jt->idx, i}));
 					}
 				}
 			}
 		}
-		return vector<vector<int>>(begin(result), end(result));
+		return result;
 	}
 private:
 	struct TrieNode {
@@ -99,6 +90,7 @@ private:
 			isEnd = false;
 			idx = -1;
 			memset(links, 0, sizeof(links));
+			nexts.clear();
 		}
 		bool isEnd;
 		int idx;
@@ -141,10 +133,6 @@ private:
 	};
 private:
 	bool isPalindrome(const string& s) {
-		if (s.empty()) {
-			return true;
-		}
-		
 		for (int i = 0, j = s.size() - 1; !s.empty() and i < j; i++, j--) {
 			if (s.at(i) != s.at(j)) {
 				return false;
@@ -153,6 +141,118 @@ private:
 		return true;
 	}
 };
+
+// BEGIN: Memory Limit Exceeded
+// class Solution {
+// public:
+// 	vector<vector<int>> palindromePairs(vector<string>& words) {
+// 		if (words.size() <= 1) {
+// 			return {};
+// 		}
+// 		Trie trie, rtrie;
+// 		const int n = words.size();
+// 		vector<string> rwords;
+// 		for (const auto &i : words) {
+// 			string j(i);
+// 			reverse(begin(j), end(j));
+// 			rwords.push_back(j);
+// 		}
+// 		for (int i = 0; i < n; i++) {
+// 			trie.insert(i, words.at(i));
+// 			rtrie.insert(i, rwords.at(i));
+// 		}
+// 		set<vector<int>> result;
+// 		for (int i = 0; i < n; i++) {
+// 			const string& s = words.at(i);
+// 			const string& rs = rwords.at(i);
+// 			TrieNode *it = trie.prefix(rs);
+// 			TrieNode *rit = rtrie.prefix(s);
+// 			if (it) {
+// 				if (it->idx != i and it->isEnd) {
+// 					result.insert(vector<int>({it->idx, i}));
+// 				}
+// 				vector<int> &v = it->nexts;
+// 				if (!v.empty()) {
+// 					for (const auto &j : v) {
+// 						if (i != j and isPalindrome(words.at(j).substr(s.size()))) {
+// 							result.insert(vector<int>({j, i}));
+// 						}
+// 					}
+// 				}
+// 			}
+// 			if (rit) {
+// 				if (rit->idx != i and rit->isEnd) {
+// 					result.insert(vector<int>({i, rit->idx}));
+// 				}
+// 				vector<int> &v = rit->nexts;
+// 				if (!v.empty()) {
+// 					for (const auto &j : v) {
+// 						if (i != j and isPalindrome(rwords.at(j).substr(s.size()))) {
+// 							result.insert(vector<int>({i, j}));
+// 						}
+// 					}
+// 				}
+// 			}
+// 		}
+// 		return vector<vector<int>>(begin(result), end(result));
+// 	}
+// private:
+// 	struct TrieNode {
+// 		TrieNode() {
+// 			isEnd = false;
+// 			idx = -1;
+// 			memset(links, 0, sizeof(links));
+//			nexts.clear();
+// 		}
+// 		bool isEnd;
+// 		int idx;
+// 		TrieNode* links[26];
+// 		vector<int> nexts;
+// 	};
+// private:
+// 	class Trie {
+// 	public:
+// 		Trie() {
+// 			root = new TrieNode();
+// 		}
+// 		TrieNode *insert(const int idx, const string& s) {
+// 			TrieNode *it(root);
+// 			for (const auto &i : s) {
+// 				it->nexts.push_back(idx);
+// 				int d = i - 'a';
+// 				if (!it->links[d]) {
+// 					it->links[d] = new TrieNode();
+// 				}
+// 				it = it->links[d];
+// 			}
+// 			it->isEnd = true;
+// 			it->idx = idx;
+// 			return it;
+// 		}
+// 		TrieNode *prefix(const string& s) {
+// 			TrieNode *it(root);
+// 			for (const auto &i : s) {
+// 				int d = i - 'a';
+// 				if (!it->links[d]) {
+// 					return NULL;
+// 				}
+// 				it = it->links[d];
+// 			}
+// 			return it;
+// 		}
+// 	private:
+// 		TrieNode *root;
+// 	};
+// private:
+// 	bool isPalindrome(const string& s) {
+// 		for (int i = 0, j = s.size() - 1; !s.empty() and i < j; i++, j--) {
+// 			if (s.at(i) != s.at(j)) {
+// 				return false;
+// 			}
+// 		}
+// 		return true;
+// 	}
+// };
 // END: Memory Limit Exceeded
 
 // BEGIN: Memory Limit Exceeded
@@ -314,6 +414,20 @@ int main(void) {
 	Solution solution;
 	vector<string> words;
 	vector<vector<int>> result, answer;
+
+	words = {"a", ""};
+	answer = {{0, 1}, {1, 0}};
+	result = solution.palindromePairs(words);
+	sort(begin(answer), end(answer));
+	sort(begin(result), end(result));
+	assert(answer == result);
+
+	words = {"bbaabaaaabbbbaaaabaaaabaabbabbbaaabbabbbabbaaababbaabbaaaabbbaabbaabaaaabaaabbaabab", "babbbbbaabbbaaaaaabbbbbbbaabbabbabbbbbaababaabbabbbabbbbbbabba", "bbbbaabbbababbabbbbabaababaabbaabbabaaaaabababbabbabbbbbabbbbaaaabbabbabbbabababbbaaa", "ababbbbbbbaaaabbaaababbbabababbaabbaababbbabbbabaabbaabaababbbabababaaabbbbabbaa", "abbbaababaaaaabababaabaaaaaabbbbbbbababaaaabaabbbaaabbaaaabbbabbbbabbaaaaaaaaaaabbaaaababbabbbabbabaaaaabbaababbabbabababaaaaabbabbababbaaaabbbababaaabbaaabbabbaaba", "aabbaaaaaaabaaabbbababbbbabababaaabbbabaabbababbaabbbbbaabbbbaabaa", "abbabaabbaaaaaababbbabbabababbababbbbaaaaabbbaaabbaababbababbbabbaaaabbabbbabbabaaaaaaabbabbbaababaaaabbaabaabababbaaaababbabbbabaabbabbbbaaaabbabbaabbaaaababbbbbbaaaaaababba", "abbabaabbabbabbbabaabbbbbabaabbbbaabaaabaabaaabbaaaaaaababbababb", "bbabbbbaaabbbbaaababbabaabbbbababaaaabbaaabbbaabbbaaabaababababaaaaabbbbaaaabbbababbabbbbaabbbbaaaaaaaaaabbabaaabaabaaa", "aabaabbabbabbaaabbbbbaabbaababbabbaabbabaaaaaababaabaabbaaaabbabbbaababaaabaabbbbbaabbbbabbbbaaaaabbbbabbbbabaabaabbaabbbabaabababaabbaaaaabbabaaabbaabbbabaaaababbabbbababaaabbaa", "bbbaaaaaaaabaababbabbabbbb", "aabbaababbbbbbbabbbababaaaababbabaaabbaaaaabbbaaababbaaabbaaaaaaabbaabbaababbbbaabbaababbabbbbbbaaabaaaabbaabaababaabaab", "aabbaabaabbabaabbbababbbaababbaaaababaaaaabaaaababbabbabababaaaabbabbbabbbbbbaababaaabbbababaabaaaabbbabaaa", "aabbbbbbaabbabababbbbabbbbbaabbabaabbaaabbbb", "ababbabaaabaaa", "babbaaaaabbaaabaaaabaabaabaaabaaaaaaabaaabba", "bababaabbaaaaababbabaaabbbabababbbbbabbbbababb", "aaababbbbaabaabaaaabaabbabbababaaaaab", "baabbbbbaabbaaaaababbabaabbabaaaabbabbbaabbabababababbaabaaabbbaabaabbbabbaaabbbbabababaabaabaabaabbbaaabaaabbbaaabaaaabbaaabbaaaababbbbabbaabbababbaabbbbbbababaaaabbbababa", "baabbabaabaababbbaababbbbbabbbabbaaaaaaaabbbaabbaabaabbbabaabaabaabbaaabaaaabaaabaababaa", "bbabbbabaababaabaaabbbbaaaaaabbbaaaaaaabababababbbbababbaaaaabbaabbabababbaaaabababbababbabbababbabbaa", "aabbaabaabbaaabaaaaaabaaabbabababaaaabbabaabaaabbbabababbaabaaabbabbbbabbaabbababbbabbaaaabaaababbabbbbbbaaabbaababbabaabaaabaaabbbabaababaa", "babaaababaabbabbabbbbbabaaabbaaabbabaabbabbabbbaabbbaaaaaabaabbaababbbbaaababbababbabbbabaababaabbabababbbabaabbbbaabaababbaa", "bbabbababaaababababaabaaaaaaaabaababaababbabbabb", "bbabbbbabbaaaabaabbbbbbabbbaaaaaaabbbbabbaaabbabaabbabaabbbbbbaabbbabaaabbabaaabbaba", "baabbbbbbaaaaabbaabbbbabaaabbaaaabbbaaabbabaaababaababbbbbbabbaabaaabaaabbabbabaaaba", "bbbaabaabbabababbaaabbaaaababaabbbbaabaaaaaaaaabbbbaabbbbabbbabababbabbbbababbaabbba", "aabbbaabaababaaaabbbbabaabaabaaabababbaabbaabbaaabaababaaabbbabaaababaabbaababbbbaababaabaabbaababbababbbbbababababaabbabbaabaaaaaabaabbaabaabaaabaabba", "abbabaababbbbbbaaaaaababbaabaabbaabbaaaababaababaabbbbbaaaabbbabbbbbaabbbbbbaaababbbaabaabababb", "bbbaabaabaaaaabaabaabbbbaaaabaabbbbbaabbaaabbbbbababbbbabbaaaaabbaababababababbbbbbbaaabaabbbaaaaababbbaabbabaabababbbbaaabaabbababbbaabbaabbbbaaaabababbabaabbaaaaaababaaaaabaababaabbabaabbabababab", "babaabaabaabbbabaaaabaabbbaaaaaaabaababbabbbaabbbabaababbabbaabbaaabaaaabaababbabbaababbabababbbabaabbbababbbbbbbaaababbaaaabaabaabbababbaaabbaabbbaaabaabaaaabaa", "abbbababaaabbaabbbbabababbaabbaaaabaabaabbbbbbbbaabbbbaaaaabbbbabaaaaabbbaaaaabbbbaaaaaababbbbbaabbabaaaaabbaabaaabaababbabaabaaabbab", "babaabaababababbbbabababbbaabbaaabbbaabbaaaabaaabbbbbaaaab", "aaaabbaabababbbaa", "bbbbabbaabaabbbbaaaaaaaabbaababaaabaaabaaabbbbaababbbaabaabbbbaaabbabaabbbbbabbbbaaabababaabbaaababbabababbbabbabaabaaaabbab", "aababaabaaaaaabbabababaaaaababbbbaabaa", "bbababaaaaaaaaabaabbaaaabaaaaaaaaabbbabaabbbbbabaabaaabbbabbbabbbaaaaaabaaabbbbbbaa", "abbaabaaaaabbaaaaaabbbbabaabbabbaabbbabbababaabaabaaabbababbaaabaababbbbbabbbabbabbaaaabbaababbaababbbabbbbbbaaabbbbbbb", "baabababbbbbaabbbabaababaababaababbbabbbbbababbaababbaaaabaaabbbbaaaababbabbbabaabaabbababaaa", "abbaabbbaabbabbabbbbbbbabbbabbaaabbaaababbaabbaababab", "bbabbabbbbbbabababbbabaabbbaaaabababbaabbbabbbbaababbaabaaabbbbabaaaabbbabbaaabaabbaabbbaaababbaaaabaabbabbbabbbaaabaaabbbbabbaabbaabaa", "aaaabbbabbaabbababbabbabaababbababaabbaaabaaaababbbabbaaaabbbbabaaabbbaaabababbbabbaabaaabbaabbbaabbbbaaabbbaabbbbababaaaaababbbabaabbbbbbabbabbbbbabaaabaaaaaabbaa", "babaaabaabbaababaaabbaaababbbbbbbaabbbbbbbbabbaabbbbbbaaaaabbaabababaabbbabaaaaaaabbaabababaaabbabbabbaababbaaabbbaaaababbbbbabbbaabbbaaaabbabbaabbbaababbaaaabbaaaababbbbbb", "abaababbaaabbbaaaaababaabbab", "aabbaaaababbbabbbaaabaabababbabbbaabaaaabaabaaaabbabaabbaaabbbaaabbaabbabbbbaaabbbababbaabbaaaabbbabaabbbabbbbbbbaab", "aabbbabbabaaaaabbabbababbbabbbbbbbbaabbbbabbbaabaabbaaababbbaaaaabbaaabbab", "baaaabababaaababbaabbbabaaabbbbabbbbaaaabbabbbbbbbbababbaaaaabaabaaabbaabbbbbabababaabbbbaabbbbbabbaabaaabaababbbabbbabaababbaaaabbaaaaaabaababbbabaabbbaaabbbabbbaabbbbbbaabbabbbbabaabbbbaba", "bbbaababaabaabbabbaabbabbaabbbbabaabbabbbbbbbabbaaaaababaaabbbaba", "baaaaababaabaabaabbbbabbbbbaabbaabbaaababaabaababaabbaaabbabbbabbbaababababbaaaab", "baabaaababbabbbaaaabbaabbaababbaababbbaabaabaaaaaabbbbababaaabaaabaababbaabbabbaababbbbbabbabbaabbaabbbabbbaabb", "bbaaaaabbbaaabbbaaaaaaaaaabaaaaa", "bbbbbbabaaaaabbbbaaabbabaababaabababbabbabaabababababbaabbabbbabbbababa", "bbaabbbaabbabababaaaaaabbaabbababbbbabaabbbaabbabaabbbabbbabbaaabbabbababaaabbbababbabbbbbbbbaaaaabbaa", "abaabbbaabbbbaabbabaabaaabaabaaaabbabbbabbaaabbbbababaabaaabaaaaaaaabaaaababbababaabbbbbaababaabbbbabbaaabbbabbabbbbabbbbaabaaa", "bababbabbaaabbabaababbbbaabaabbbbbbababaabbbbaababababbaabbaabaaaababbabbabab", "baaabbabbaaababbbbbbbaabaaabbabbaaabbabababbaaaabaabbbbaaaabbabbbbbbabaaaaabaabaaaaabababbbaabbaabbabbbbbabaababababbbbbbaabbbabbbaaabaabababaabaabbbbbbbbabaaaaabbaababab", "ababababababbbabbabbbbbabbabbbbabbaaabbbbbbbbbbabbaabaabbbababbabbbaaaababbaabbbaab", "baaaabbababbabaabbabbaabbbbabbbabbabbbbbabaaaabaabbbabbaababbabababaaaaabaaaababbbabbbaaaaabbbabbbaaaabbbbbaaaba", "baababbbaaaabbbaaababbabaababbbbbaaabaabaaabababbbbaabbaaabaaabaaaaaabbbbbaabaaaababbbaabb", "aaabaabbabaaaaaaaaaabbb", "abbbaabaabbbbbabbaababbaaaaababbaaaaabbabbbb", "ababaabababbbabbbbaaabbabbbaaaaaaabbabbbaba", "baababbaabbbaabbbbbbaaabbbbaaaabbbbabaabbaaabaaababbbaaabbaabaabaabaaabbbbbaabaaaaab", "babbabababaabbbaabababaaaaaaaaaabbbbabbababbbaaaabbaabababbbbbbbababaaaababbaaaabaabaaabaabaaaaababbbbababbaabbaaabbabaaababbbbbabbbaaabaababbaabbabbbbaaaabababaaa", "abbbbbaaaaabbaabbbabaabbabaabbbaaabbaaabaabbb", "abbababb", "aababaaabbbabbbbaaaabaababbababbbaaaaabbababbbbaaaaaababababaabaaaabbbabbaababbbabbabaabbababbbbabbabbbabaaabababaababbbbbaaabaabaaaabbabbaaababbabaaaaa", "abbbaaaaabaabbbabbbabbaaabbaababababbbaabbababaababaabbaaababbabbb", "aaabaaabaabaababbabbbbaaaaaaaaabbbabbaabbababbaabababbbbbabbabababbabaaaabbbbabbbbbbbabbabaabababbaaabbaaaaaabbababbbbbbbaabbabbaaaababbabaaabbaabaaababaabaaaabaaba", "baabbabbaabbbabbbbabbbaabbabaababaaaabaaaabbaaabaaababbabbbbbabaabbbaababaaababaababbaabaabaabababaaabbbbaabbbabbbbbba", "abaababaaabaabbaabaaababbaabbbababbbaaaaaabbbabaaababbaabbbbaaabaabbaaabaaaababbabbbbbababbbaabbaaababaaaaaaababbbbbba", "aaaabbaaaaaabbbaaaaabbaabbaabaabbababbbbbabababbababbabbaaaaabbaaabbabbaaabbbbbbaaabbbbbabbbbbabbabbaaaaaabbbbbaaaaaabbabbbbbbabbbaabbbaababbbbbabbaaabaa", "ababbaaaababababbabaaabaaaaaabbbbababaababbababaabaabababaaaabbaaabaaaaaaabbbbababbabbbbabbbbbbabbbabaabbbabbbbbabbbbbababbbbaabbbaabbbababaaaabbbbaaabbab", "bbabaababbabbbbbbaabbaaaabbaaabbabbaaabbabbaabaaabbbabbbababaabbbaaba", "bbaaabbbaabaababbbababaaabbbbababbbbbaabaaabbbaabbbaaaaabbaabbaabaaabbabaababaaabbaababaabbbbbbaaabbabaabababaabbbaaaaabbbaaaabaabbababaaababaabbaabaaaaabaaaababbabaabababababaabaaaabaaabbaaabbbbababa", "abbaaabbbaabbabb", "abbbabbaaaabaabaaababaaaaabababbbaabbbbaabbbaaa", "babaaabbbbbb", "baaabaaabbbabaabbbaabaabbaaaabbbabbabbbbbaabbabbbabaabababaabbbbabaabaabbaaabbbabaaaaaaaaaabbbbaaabbaaaaaabaababbaabbabaabbbabaaabbbbaabbaababba", "babababbbbabbaaaaaabbbbbaba", "babba", "abbbabaabbabbbbbbbbababaaaaaab", "bbabbabbbabaaabbbaaababbbbaaaaaaabab", "bbabbaabbbabaaaaaababaabbbabaaabaaababaabaaaaaaaaaaabbaababaababbababbabbababbbaaabbaaaabbaabbbbaaabbabbbabaabbbbbabababbaabaabbbabaabaaabaaababbbabbabbaababaabbbbaabaabbabbbbabbabbaababbbbba", "bbaaabaaababaaaabbaabbabbbaabbaaabaababbaaababbbaaabaabaabbabababaaaabbbbbaaaabbbbbbababbbbabbbababbaababaababbbabaaabbabaaaabababaaabababaaabbbbbaaaaababaabbbbaabaaabba", "ababaaaaaabbabbabba", "aaabababaabaaabaaaaabaaabaababbbbbababbbabbbbbbaabbaaaaaba", "baabbbab", "abbaaaaababbbaaaabbbaaabbaaababbababababaabbabaabaaabaabaaabbaaabbababbaabaaaabaabababbbbbbabaabaaabaaaababbaababbaabbbbbaabbbbbbabaa", "ababaaabbababbabbbaabbbaabaaaaaaaabbabaabaaaaaabaa"};
+	answer = {};
+	result = solution.palindromePairs(words);
+	sort(begin(answer), end(answer));
+	sort(begin(result), end(result));
+	assert(answer == result);
 
 	words = {"abaabbbaaabbbaababbbbabaabbbabb", "aaa", "aab", "aabbabaababbaaaaabaabaaaabaaaabababbbbbbbabbaaabbbbabaaa", "abbaaaaaabaaabbbbbbababbabbaababbbbbaaabababaabbbaabbbbbaabbaaabbaaaabaabbaaaaabbababaabbbbaabaabbbbbbbabbbaaabbbaaabababaaaaa", "abbababbabaabab", "baaabbbaaaaabbabaabbaabbaaababbbaabbbabbbababbaababaabbbbaaaaabbbbabbbbbbbbaabbbbbbaaaababbbaabbaaaababbababbbabababbaaabbbbbabaaabbaaabaaabbaaaaaabababbababaabbbaaabbba", "bbabaabbbaaabaabaaabbaaabbababbabbaaaabbaabababbbabaabbbbbaababaaabbabbaaabaabbbabbbbaabbbabbaabaaabbbbaabbbaabbbbbbababbabbaabbbabbaabbbbabaababaaab", "bbaaabaabbaaabbaabbbabaababbaaabbbabaabbbaabbbbbabbbaaaaaaabaaaaaaabaabaaaaaaabbbbbbbbbaabaaabbbabaabba", "baaaabaababbabbbabbaaabababaa", "babbabbabbbabbbaaabbaabbbabaaabaabbbbbabaabbbbbababbabbabaababaaaaaababbaaababbbabbababbbbababaabbaabaaabaaaa", "baaaabbbababbbabbbbabbaabaaaabbaaababaabbbbbbabbbbbaaabbbaaabababbaabaabaaaabbbaaaaabbbbaaabaaaaabbaabbababbbbabbbbbababbabaababababbbaa", "baabbbbbbbbbaabbbabbbaabbbaabbbaabbabbbbbbababaabbaababbbabbbababbb", "abaabbaaaabaabbababababababbbbbbbbbbabbbbaabaabbbbababababbbabbbbbabbababbbaabaaaabbbbabbbbbbababbbbbbbaabbbbabaaabababaaaaaabbbababaaabbabbababbbabbababbaaaabaab", "abaabaaaabbabbaaabaabababbbbabbababbbabbabbbabbaaabaabbaabaa", "baabbbbaaaaabbaaababaabbaabbabbaaaabbbaaababbbbaababbbaaababbbbaaabbbbbbababbabaaababbabababaababbaabbabbbabababaabbaaababaaa", "aabaabbababbaaaabbbbbbbaaaababbbbaababbbbaabbbabbaaaabbaabbabaabaabbbbabb", "aaaababaabbbababbaabbbaababbbbaaabbababbaaaaaaaabbbbaaabbbbbaababbbaaabbbabbabbbabbabbbaaaaaabbbabaabaaaabbbbbabbbbaaaabaabbababbabbbbbbb", "bbbbabbbbaabbabbbaaaaabbabbaabbaababbbabbbbaaaaabababbbbaabbaabaabaabbbbabaabbabaaaabbaaaaaaababaabbbabaaabababbbaabbbaaabbaabbaaababaabbbbbabb", "bbbbaabbbaaababaabaabaaabbbbbbabbbaabbbbaabaaaaababaababaaaaabbaababbbabbbbaabbbbbbbabbaababbbbaabbabbbbaaababbbabbbabbabbabbaababababbbabababbbabaabbabaaababababbbaaabababababaaabaaabbb", "abbbababbaabaaaaabbbbaabaaababbbabbbab", "aaababbaabbbbbaaababbbbaabaaaabbaabbbbabbaaaabababbbaabbbaaabbbabbbaaaaaabbaabbaabaabbaabaaaabbbbabaaaabababaabaababbabbaababbabbbabbbbaabbaaba", "abbbabaabbaaabbabaababaababbbbababaabbaabbbabababbbababbbabaabbbababaaaababbaabaabababaaaabaababababbbbabaaabaaabbbbaabaaababababbbbbaababbbaababababbaa", "abbabababbbbabbbbabbabbabbabaababbaab", "bbbabaabababababbbbbaabb", "aaabbaabbabababaababbabbaaaaabbbaaaabbaaaaaaaaaaabbbbaaaabababbabaaabaabaabbbbaabababbaabaaaaaaaaabaaabbbabaaababbbabbababaaababbbaabbaaabbbbaab", "babbabbbbbabaabbbaabbaaabaabaabaaaababbbbbbbbbbbbaaabbaabbbbaababbaaaababaabaabbababbaaabaaaababbabbbbaaabaababbaababaaabaabaaababbabbbaaabbabb", "bababbbabaabaaaaaaabbababbbabaaaaabbaabbaaabbaabababaaaabaaaabaaaabbb", "baabbbbabaababababbaaabbaaababbababaabaabaabbabbbbabbbbbab", "bbbbaaabbabbabbaabbabbaaaabbabbbbaabbaababbbabaabbbbbaaaaaabbaabbbbbaabaabaaababaabbbaababbbbbaababaaba", "bbaabbaabbaabbbaabbabbaabbbbbabaaaababbbaaaaaababbabbbababaaaabaabbbbaabaabaaabbbabbbabbaababaaababaabbabba", "abbaababaaaabbaaaabaaaaba", "bbbaaaabaaaabbbaababbabbaaaaaaa", "bbabaaaaaababaabbabaabaabbabbaabbbbbabbbabbbbaabababaabbbbaaababaa", "aabbababaaaaaaaaaabaabbababbaaabaaaaabbaaabaababbbbabaabaabbaabaaaabbbbbbbaabaaabbabbabaaaababbbbababababaabaababaaaabbabab", "baabbbbaabbaaabbaaaababbaabbbbaaabbaabbabababbababbaaaabbbbbbbabaaabbaaabbbaaaabbabaaabaababbabbbbabbbaaabaaaabbababbbabaabbaaabb", "aabbbabbabaaaabbbabbbbaaba", "aabbbaabababbabbbbbbababbbbbaaaababbabaaaabbabbbaaaaabbababbbbaaaabbaababaaababbabaaabbbbababbabbbabaaaabbabbabbabbabababaabaabbabbabbbbbbbabbbabaaaaaaba", "babaabbaaaabbaabbbbabbbabbbbabbbbbaaababbbbaaababbaabbaaabaabaaaabbaabbbaabababbba", "aaaaabbbbbabbababbbaaabaaabbababaaaabbabaababbabbbbbabbbbbaabaabbaababb", "bbbbaaaaabbbbaaaabaabbbabaabaabbabbbbabbbbaabbabbbababbbabaabbaabbbbabbabaabbbaabbaaaabaaabababbabbabaaabaaaabaaabaaabbbbbaaaabbaabbbbbababbbbbbabababbaaababaaabbbabaabaaab", "aaaaabaaabbababbaaabbaababbabbabbabbbbaaabaabaababbabbbbabaaaaabbabaaabbbbbbaaaaaaaabbbaabaabaabaaabbabbaabaabbaabbbabbaaaabbbbabaaababaaabbbbabaaabbababbbbaabaaaabbaaaaba", "abaaaabbbbababba", "babbaabbbaabbbbbbbbbbbaabbbbaaabbbabbbbbbbbaabbbabbababaabbbbabaaabbbabbbaabbaabbbaaaaabbbabaaabbaabaabaabababbaababaaaaababbbbabbabaaaabbabaaaababaabaaaaabbabbabababbbaabbbaababbabbbabbbabab", "babbbbbaaaabbabbaaaababbbabaabbaaabbabbbbbaabbbbbbaabbbbbabaabaababbbaabbaa", "babbaaaaabbbbbbabaaaabbbbabbbbbabaaabbaaaaaabbbbaababbaababbaaabbabbbbaaaaaaababbbbbabababbaaaaaabbbbbaaababbaabaabbaaaababbbbaaaababaababbaaabbababbabbbababbbababbabababaababababbababa", "bbaaaabaaaaabbbbbbabaaaabaaaaabbabbbbbbaab", "aabaaabbabaabbaababbabbbabbaabaabbbaababb", "bbbababababbbababbabbbbaaaaabbbabababbaaaaababaabbbaabaaaaababaaabaaaaabbbabababbbaaaaababaaabbabaabbababbabbbbaaababaaaaabbabba", "baabbbaaaababababaabbabbaaabaabbbabbbaaabbbbbbbaaabbbaabaaabbbaababababbabbabaaababababbbaababaaaaaaabaaabbbabbabbabbaabbaaabaabababababbaaabbbabaaaaabbab"};
 	answer = {};
