@@ -322,6 +322,7 @@
 | 456 | [132 Pattern](https://leetcode.com/problems/132-pattern/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/132-pattern.cpp) | Medium |
 | 458 | [Poor Pigs](https://leetcode.com/problems/poor-pigs/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/poor-pigs.cpp) | Easy |
 | 459 | [Repeated Substring Pattern](https://leetcode.com/problems/repeated-substring-pattern/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/repeated-substring-pattern.cpp) | Easy |
+| 460 | [LFU Cache](https://leetcode.com/problems/lfu-cache/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/lfu-cache.cpp) | Hard |
 | 461 | [Hamming Distance](https://leetcode.com/problems/hamming-distance/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/hamming-distance.cpp) | Easy |
 | 462 | [Minimum Moves to Equal Array Elements II](https://leetcode.com/problems/minimum-moves-to-equal-array-elements-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/minimum-moves-to-equal-array-elements-ii.cpp) | Medium |
 | 463 | [Island Perimeter](https://leetcode.com/problems/island-perimeter/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/island-perimeter.cpp) | Easy |
