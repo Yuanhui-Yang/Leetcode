@@ -85,6 +85,7 @@
 | 143 | [Reorder List](https://leetcode.com/problems/reorder-list/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/reorder-list.cpp) | Medium |
 | 144 | [Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/binary-tree-preorder-traversal.cpp) | Medium |
 | 145 | [Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/binary-tree-postorder-traversal.cpp) | Hard |
+| 146 | [LRU Cache](https://leetcode.com/problems/lru-cache/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/lru-cache.cpp) | Hard |
 | 147 | [Insertion Sort List](https://leetcode.com/problems/insertion-sort-list/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/insertion-sort-list.cpp) | Medium |
 | 148 | [Sort List](https://leetcode.com/problems/sort-list/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/sort-list.cpp) | Medium |
 | 149 | [Max Points on a Line](https://leetcode.com/problems/max-points-on-a-line/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/max-points-on-a-line.cpp) | Hard |

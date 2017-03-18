@@ -53,18 +53,37 @@ using namespace std;
 class LRUCache {
 public:
 	LRUCache(int capacity) {
-
+		h.clear();
+		l.clear();
+		this->capacity = capacity;
 	}
 
 	int get(int key) {
-
+		if (h.empty() or !h.count(key)) {
+			return -1;
+		}
+		list<pair<int, int>>::iterator it = h.at(key);
+		l.splice(end(l), l, it);
+		return l.back().second;
 	}
 
 	void put(int key, int value) {
-
+		if (h.empty() or !h.count(key)) {
+			if (h.size() == capacity) {
+				h.erase(l.front().first);
+				l.pop_front();
+			}
+			l.push_back(make_pair(key, value));
+			h[key] = prev(end(l));
+			return;
+		}
+		list<pair<int, int>>::iterator it = h.at(key);
+		l.splice(end(l), l, it);
+		it->second = value;
 	}
 private:
-	
+	list<pair<int, int>> l;
+	unordered_map<int, list<pair<int, int>>::iterator> h;
 	size_t capacity;
 };
 
@@ -86,6 +105,15 @@ int main(void) {
 	assert(-1 == cache.get(1));	// returns -1 (not found)
 	assert(3 == cache.get(3));	// returns 3
 	assert(4 == cache.get(4));	// returns 4
+
+	cache = LRUCache(2);
+	cache.put(2, 1);
+	cache.put(1, 1);
+	cache.put(2, 3);
+	cache.put(4, 1);
+	assert(-1 == cache.get(1));	// returns -1
+	assert(3 == cache.get(2));	// returns 3
+
 	cout << "\nPassed All\n";
 	return 0;
 }
