@@ -66,7 +66,36 @@ using namespace std;
 class Solution {
 public:
 	bool isSelfCrossing(vector<int>& x) {
-		
+		if (x.size() < 4) {
+			return false;
+		}
+		for (int i = 0, n = x.size(), left = 0, right = 0, top = 0, bottom = 0; i < n; i++) {
+			if (i == 0) {
+				top = x.at(0);
+				continue;
+			}
+			if (i == 1) {
+				left = -x.at(1);
+				continue;
+			}
+			if (i == 2) {
+				bottom = top - x.at(2);
+				continue;
+			}
+			if (i == 3) {
+				if (left + x.at(3) < right) {
+					right = left + x.at(3);
+					continue;
+				}
+				if (bottom >= 0) {
+					return true;
+				}
+				right = left + x.at(3);
+				left = 0;
+				continue;
+			}
+		}
+		return false;
 	}
 };
 
