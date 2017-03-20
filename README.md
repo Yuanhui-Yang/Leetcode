@@ -383,5 +383,8 @@
 | 533 | [Lonely Pixel II](https://leetcode.com/problems/lonely-pixel-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/lonely-pixel-ii.cpp) | Medium |
 | 535 | [Encode and Decode TinyURL](https://leetcode.com/problems/encode-and-decode-tinyurl/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/encode-and-decode-tinyurl.cpp) | Medium |
 | 536 | [Construct Binary Tree from String](https://leetcode.com/problems/construct-binary-tree-from-string/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/construct-binary-tree-from-string.cpp) | Medium |
+| 538 | [Convert BST to Greater Tree](https://leetcode.com/problems/convert-bst-to-greater-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/convert-bst-to-greater-tree.cpp) | Medium |
 | 539 | [Minimum Time Difference](https://leetcode.com/problems/minimum-time-difference/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/minimum-time-difference.cpp) | Medium |
 | 541 | [Reverse String II](https://leetcode.com/problems/reverse-string-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/reverse-string-ii.cpp) | Easy |
+| 542 | [01 Matrix](https://leetcode.com/problems/01-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/01-matrix.cpp) | Medium |
+| 543 | [Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/diameter-of-binary-tree.cpp) | Easy |
