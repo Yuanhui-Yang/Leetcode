@@ -1,6 +1,34 @@
 // 542. 01 Matrix
 // https://leetcode.com/problems/01-matrix/
 
+// Given a matrix consists of 0 and 1, find the distance of the nearest 0 for each cell.
+
+// The distance between two adjacent cells is 1.
+// Example 1: 
+// Input:
+
+// 0 0 0
+// 0 1 0
+// 0 0 0
+// Output:
+// 0 0 0
+// 0 1 0
+// 0 0 0
+// Example 2: 
+// Input:
+
+// 0 0 0
+// 0 1 0
+// 1 1 1
+// Output:
+// 0 0 0
+// 0 1 0
+// 1 2 1
+// Note:
+// The number of elements of the given matrix will not exceed 10,000.
+// There are at least one 0 in the given matrix.
+// The cells are adjacent in only four directions: up, down, left and right.
+
 #include <iostream> // std::cout; std::cin
 #include <cstdlib> // rand
 #include <cassert> // assert
@@ -35,6 +63,7 @@ public:
 			return matrix;
 		}
 		const int m = matrix.size(), n = matrix.front().size();
+		const vector<int> dx = {-1, 0, 1, 0}, dy = {0, -1, 0, 1};
 		for (auto &i : matrix) {
 			for (auto &j : i) {
 				if (j) {
@@ -42,36 +71,148 @@ public:
 				}
 			}
 		}
-		const vector<int> dx = {-1, 0, 1, 0};
-		const vector<int> dy = {0, -1, 0, 1};
+		vector<pair<int, int>> current;
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
 				if (matrix.at(i).at(j) == 0) {
-					vector<pair<int, int>> current = {{i, j}};
-					set<pair<int, int>> visited;
-					visited.insert(make_pair(i, j));
-					while (!current.empty()) {
-						int x0 = current.back().first;
-						int y0 = current.back().second;
-						current.pop_back();
-						for (int l = 0; l < 4; l++) {
-							int x1 = x0 + dx.at(l);
-							int y1 = y0 + dy.at(l);
-							pair<int, int> p1 = make_pair(x1, y1);
-							if (x1 >= 0 and x1 < m and y1 >= 0 and y1 < n and matrix.at(x1).at(y1) and !visited.count(p1)) {
-								matrix.at(x1).at(y1) = min(matrix.at(x1).at(y1), matrix.at(x0).at(y0) + 1);
-								current.push_back(p1);
-								visited.insert(p1);
-							} 
+					pair<int, int> p = make_pair(i, j);
+					for (int k = 0; k < 4; k++) {
+						int x = i + dx.at(k), y = j + dy.at(k);
+						if (x >= 0 and x < m and y >= 0 and y < n and matrix.at(x).at(y)) {
+							current.push_back(p);
+							break;
 						}
 					}
 				}
 			}
 		}
+		while (!current.empty()) {
+			vector<pair<int, int>> next;
+			for (const auto &p : current) {
+				int x = p.first, y = p.second;
+				for (int k = 0; k < 4; k++) {
+					int x1 = x + dx.at(k), y1 = y + dy.at(k);
+					pair<int, int> p1 = make_pair(x1, y1);
+					if (x1 >= 0 and x1 < m and y1 >= 0 and y1 < n and matrix.at(x1).at(y1) == INT_MAX) {
+						matrix.at(x1).at(y1) = 1 + matrix.at(x).at(y);
+						next.push_back(p1);
+					}
+				}
+			}
+			current = next;
+		}
 		return matrix;
 	}
 };
 
+// BEGIN: Time Limit Exceeded
+// class Solution {
+// public:
+// 	vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
+// 		if (matrix.empty() or matrix.front().empty()) {
+// 			return matrix;
+// 		}
+// 		const int m = matrix.size(), n = matrix.front().size();
+// 		for (auto &i : matrix) {
+// 			for (auto &j : i) {
+// 				if (j) {
+// 					j = INT_MAX;
+// 				}
+// 			}
+// 		}
+// 		for (int i = 0; i < m; i++) {
+// 			for (int j = 0; j < n; j++) {
+// 				if (matrix.at(i).at(j) == INT_MAX) {
+// 					bfs(i, j, matrix);
+// 				}
+// 			}
+// 		}
+// 		return matrix;
+// 	}
+// private:
+// 	void bfs(int i, int j, vector<vector<int>>& matrix) {
+// 		const int m = matrix.size(), n = matrix.front().size();
+// 		const vector<int> dx = {-1, 0, 1, 0}, dy = {0, -1, 0, 1};
+// 		vector<pair<int, int>> current;
+// 		current.push_back(make_pair(i, j));
+// 		unordered_map<int, unordered_set<int>> visited;
+// 		visited[i].insert(j);
+// 		int cnt = 1;
+// 		while (!current.empty()) {
+// 			vector<pair<int, int>> next;
+// 			for (const auto &p0 : current) {
+// 				int x0 = p0.first, y0 = p0.second;
+// 				for (int k = 0; k < 4; k++) {
+// 					int x1 = x0 + dx.at(k), y1 = y0 + dy.at(k);
+// 					pair<int, int> p1 = make_pair(x1, y1);
+// 					if (x1 >= 0 and x1 < m and y1 >=0 and y1 < n) {
+// 						if (visited.empty() or !visited.count(x1) or !visited.at(x1).count(y1)) {
+// 							if (matrix.at(x1).at(y1) == 0) {
+// 								matrix.at(i).at(j) = cnt;
+// 								return;
+// 							}
+// 							next.push_back(p1);
+// 							visited[x1].insert(y1);
+// 						}
+// 					}
+// 				}
+// 			}
+// 			current = next;
+// 			cnt++;
+// 		}
+// 	}
+// };
+// END: Time Limit Exceeded
+
+// BEGIN: Time Limit Exceeded
+// class Solution {
+// public:
+// 	vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
+// 		if (matrix.empty() or matrix.front().empty()) {
+// 			return matrix;
+// 		}
+// 		const int m = matrix.size(), n = matrix.front().size();
+// 		for (auto &i : matrix) {
+// 			for (auto &j : i) {
+// 				if (j) {
+// 					j = INT_MAX;
+// 				}
+// 			}
+// 		}
+// 		const vector<int> dx = {-1, 0, 1, 0};
+// 		const vector<int> dy = {0, -1, 0, 1};
+// 		for (int i = 0; i < m; i++) {
+// 			for (int j = 0; j < n; j++) {
+// 				if (matrix.at(i).at(j) == 0) {
+// 					list<pair<int, int>> stack;
+// 					stack.push_back(make_pair(i, j));
+// 					while (!stack.empty()) {
+// 						pair<int, int> p0 = stack.back();
+// 						stack.pop_back();
+// 						int x0 = p0.first;
+// 						int y0 = p0.second;
+// 						unordered_map<int, unordered_set<int>> visited;
+// 						visited[x0].insert(y0);
+// 						for (int k = 0; k < 4; k++) {
+// 							int x1 = x0 + dx.at(k);
+// 							int y1 = y0 + dy.at(k);
+// 							pair<int, int> p1 = make_pair(x1, y1);
+// 							if (x1 >= 0 and x1 < m and y1 >= 0 and y1 < n and matrix.at(x1).at(y1) and 1 + matrix.at(x0).at(y0) < matrix.at(x1).at(y1) and (!visited.count(x1) or !visited.at(x1).count(y1))) {
+// 								matrix.at(x1).at(y1) = 1 + matrix.at(x0).at(y0);
+// 								stack.push_back(p1);
+// 								visited.insert(p1);
+// 							}
+// 						}
+// 					}
+// 				}
+// 			}
+// 		}
+// 		return matrix;
+// 	}
+// };
+// END: Time Limit Exceeded
+
+// BEGIN: Time Limit Exceeded
 // class Solution {
 // public:
 // 	vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
@@ -92,8 +233,8 @@ public:
 // 			for (int j = 0; j < n; j++) {
 // 				if (matrix.at(i).at(j) == 0) {
 // 					vector<pair<int, int>> current = {{i, j}};
-// 					vector<vector<int>> visited(m, vector<int>(n, 0));
-// 					visited.at(i).at(j) = 1;
+// 					unordered_map<int, unordered_set<int>> visited;
+// 					visited[i].insert(j);
 // 					while (!current.empty()) {
 // 						vector<pair<int, int>> next;
 // 						for (const auto &k : current) {
@@ -103,10 +244,10 @@ public:
 // 								int x1 = x0 + dx.at(l);
 // 								int y1 = y0 + dy.at(l);
 // 								pair<int, int> p1 = make_pair(x1, y1);
-// 								if (x1 >= 0 and x1 < m and y1 >= 0 and y1 < n and matrix.at(x1).at(y1) and visited.at(x1).at(y1) == 0) {
-// 									matrix.at(x1).at(y1) = min(matrix.at(x1).at(y1), matrix.at(x0).at(y0) + 1);
+// 								if (x1 >= 0 and x1 < m and y1 >= 0 and y1 < n and matrix.at(x1).at(y1) and matrix.at(x0).at(y0) + 1 < matrix.at(x1).at(y1) and (visited.empty() or !visited.count(x1) or !visited.at(x1).count(y1))) {
+// 									matrix.at(x1).at(y1) = matrix.at(x0).at(y0) + 1;
 // 									next.push_back(p1);
-// 									visited.at(x1).at(y1) = 1;
+// 									visited[x1].insert(y1);
 // 								}
 // 							}	
 // 						}
@@ -118,6 +259,7 @@ public:
 // 		return matrix;
 // 	}
 // };
+// END: Time Limit Exceeded
 
 // BEGIN: Time Limit Exceeded
 // class Solution {
@@ -171,6 +313,16 @@ public:
 int main(void) {
 	Solution solution;
 	vector<vector<int>> matrix, answer, result;
+
+	matrix = {{1, 0, 1, 1, 0, 0, 1, 0, 0, 1}, {0, 1, 1, 0, 1, 0, 1, 0, 1, 1}, {0, 0, 1, 0, 1, 0, 0, 1, 0, 0}, {1, 0, 1, 0, 1, 1, 1, 1, 1, 1}, {0, 1, 0, 1, 1, 0, 0, 0, 0, 1}, {0, 0, 1, 0, 1, 1, 1, 0, 1, 0}, {0, 1, 0, 1, 0, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 1, 1, 1, 1, 0, 1}, {1, 1, 1, 1, 1, 1, 1, 0, 1, 0}, {1, 1, 1, 1, 0, 1, 0, 0, 1, 1}};
+	answer = {{1, 0, 1, 1, 0, 0, 1, 0, 0, 1}, {0, 1, 1, 0, 1, 0, 1, 0, 1, 1}, {0, 0, 1, 0, 1, 0, 0, 1, 0, 0}, {1, 0, 1, 0, 1, 1, 1, 1, 1, 1}, {0, 1, 0, 1, 1, 0, 0, 0, 0, 1}, {0, 0, 1, 0, 1, 1, 1, 0, 1, 0}, {0, 1, 0, 1, 0, 1, 0, 0, 1, 1}, {1, 0, 0, 0, 1, 2, 1, 1, 0, 1}, {2, 1, 1, 1, 1, 2, 1, 0, 1, 0}, {3, 2, 2, 1, 0, 1, 0, 0, 1, 1}};
+	result = solution.updateMatrix(matrix);
+	assert(answer == result);
+
+	matrix = {{1, 1, 0, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 0, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 1, 0, 0, 0, 1, 1, 0}, {1, 1, 1, 1, 1, 1, 0, 0, 1, 0}, {1, 0, 0, 1, 1, 1, 0, 1, 0, 1}, {0, 0, 1, 0, 0, 1, 1, 0, 0, 1}, {0, 1, 0, 1, 1, 1, 1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 0, 0, 0}, {0, 0, 1, 1, 1, 1, 0, 1, 1, 1}, {1, 1, 0, 0, 1, 0, 1, 0, 1, 1}};
+	answer = {{2, 1, 0, 1, 2, 2, 2, 3, 3, 2}, {2, 1, 0, 1, 1, 1, 1, 2, 2, 1}, {3, 2, 1, 1, 0, 0, 0, 1, 1, 0}, {2, 1, 1, 2, 1, 1, 0, 0, 1, 0}, {1, 0, 0, 1, 1, 1, 0, 1, 0, 1}, {0, 0, 1, 0, 0, 1, 1, 0, 0, 1}, {0, 1, 0, 1, 1, 1, 1, 1, 1, 1}, {1, 0, 0, 1, 1, 0, 0, 0, 0, 0}, {0, 0, 1, 1, 2, 1, 0, 1, 1, 1}, {1, 1, 0, 0, 1, 0, 1, 0, 1, 2}};
+	result = solution.updateMatrix(matrix);
+	assert(answer == result);
 
 	matrix = {{1, 0, 1, 0, 0, 0, 1, 1, 1, 1}, {1, 1, 1, 0, 1, 1, 1, 1, 0, 1}, {1, 0, 1, 1, 1, 1, 0, 1, 0, 0}, {1, 0, 1, 1, 1, 0, 1, 1, 1, 1}, {1, 1, 0, 1, 1, 1, 1, 0, 0, 0}, {1, 1, 0, 0, 1, 0, 1, 1, 0, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 0, 0, 0, 1, 1, 1, 0, 0}, {0, 1, 1, 1, 0, 0, 1, 0, 1, 1}, {1, 1, 0, 0, 0, 1, 0, 1, 1, 0}};
 	answer = {{1, 0, 1, 0, 0, 0, 1, 2, 1, 2}, {2, 1, 1, 0, 1, 1, 1, 1, 0, 1}, {1, 0, 1, 1, 2, 1, 0, 1, 0, 0}, {1, 0, 1, 2, 1, 0, 1, 1, 1, 1}, {2, 1, 0, 1, 2, 1, 1, 0, 0, 0}, {2, 1, 0, 0, 1, 0, 1, 1, 0, 1}, {2, 2, 1, 1, 1, 1, 2, 2, 1, 1}, {1, 1, 0, 0, 0, 1, 2, 1, 0, 0}, {0, 1, 1, 1, 0, 0, 1, 0, 1, 1}, {1, 1, 0, 0, 0, 1, 0, 1, 1, 0}};
