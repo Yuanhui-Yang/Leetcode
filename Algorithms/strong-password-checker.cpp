@@ -42,7 +42,32 @@ using namespace std;
 class Solution {
 public:
 	int strongPasswordChecker(string s) {
+		if (isStrong(s)) {
+			return 0;
+		}
+		const size_t n = s.size();
+		
 		return 0;
+	}
+private:
+	bool isStrong(const string& s) {
+		const size_t n = s.size();
+		if (n < 6 or n > 20) {
+			return false;
+		}
+		size_t numOfLowercase = 0, numOfUppercase = 0, numOfDigit = 0;
+		for (size_t i = 0; i < n; i++) {
+			if (i + 2 < n and s.at(i) == s.at(i + 1) and s.at(i) == s.at(i + 2)) {
+				return false;
+			}
+			numOfLowercase += islower(s.at(i));
+			numOfUppercase += isupper(s.at(i));
+			numOfDigit += isdigit(s.at(i));
+		}
+		if (numOfUppercase == 0 or numOfUppercase == 0 or numOfDigit == 0) {
+			return false;
+		}
+		return true;
 	}
 };
 
