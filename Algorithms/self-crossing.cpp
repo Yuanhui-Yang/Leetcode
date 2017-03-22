@@ -43,66 +43,59 @@
 #include <cmath> // pow; sqrt; round; fabs; abs; log
 #include <climits> // INT_MIN; INT_MAX; LLONG_MIN; LLONG_MAX; ULLONG_MAX
 #include <cfloat> // DBL_EPSILON; LDBL_EPSILON
-#include <cstring> // memset
-#include <algorithm> // max; min; min_element; max_element; minmax_element; next_permutation; prev_permutation; nth_element; sort; swap; lower_bound; upper_bound; reverse
+#include <cstring> // std::memset
+#include <algorithm> // std::swap; std::max; std::min; std::min_element; std::max_element; std::minmax_element; std::next_permutation; std::prev_permutation; std::nth_element; std::sort; std::lower_bound; std::upper_bound; std::reverse
 #include <limits> // std::numeric_limits<int>::min; std::numeric_limits<int>::max; std::numeric_limits<double>::epsilon; std::numeric_limits<long double>::epsilon;
 #include <numeric> // std::accumulate; std::iota
-#include <string> // std::string::npos
-#include <list>
+#include <string> // std::to_string; std::string::npos; std::stoul; std::stoull; std::stoi; std::stol; std::stoll; std::stof; std::stod; std::stold; 
+#include <list> // std::list::merge; std::list::splice; std::list::merge; std::list::unique; std::list::sort
 #include <bitset>
 #include <vector>
 #include <deque>
 #include <stack> // std::stack::top; std::stack::pop; std::stack::push
-#include <queue>
-#include <set>
-#include <map>
+#include <queue> // std::queue::front; std::queue::back; std::queue::pop; std::queue::push
+#include <set> // std::set::count; std::set::find; std::set::equal_range; std::set::lower_bound; std::set::upper_bound
+#include <map> // std::map::count; std::map::find; std::map::equal_range; std::map::lower_bound; std::map::upper_bound
 #include <unordered_set>
 #include <unordered_map>
-#include <utility> // pair; make_pair; swap
+#include <utility> // std::pair; std::make_pair
 #include <iterator>
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
+// BEGIN: http://www.cnblogs.com/grandyang/p/5216856.html
 class Solution {
 public:
 	bool isSelfCrossing(vector<int>& x) {
-		if (x.size() < 4) {
+		const size_t n = x.size();
+		if (n < 4) {
 			return false;
 		}
-		for (int i = 0, n = x.size(), left = 0, right = 0, top = 0, bottom = 0; i < n; i++) {
-			if (i == 0) {
-				top = x.at(0);
-				continue;
+		for (size_t i = 0; i < n; i++) {
+			if (3 <= i and x.at(i - 2) <= x.at(i) and x.at(i - 1) <= x.at(i - 3)) {
+				return true;
 			}
-			if (i == 1) {
-				left = -x.at(1);
-				continue;
+			if (4 <= i and x.at(i - 2) <= x.at(i - 4) + x.at(i) and x.at(i - 1) == x.at(i - 3)) {
+				return true;
 			}
-			if (i == 2) {
-				bottom = top - x.at(2);
-				continue;
-			}
-			if (i == 3) {
-				if (left + x.at(3) < right) {
-					right = left + x.at(3);
-					continue;
-				}
-				if (bottom >= 0) {
-					return true;
-				}
-				right = left + x.at(3);
-				left = 0;
-				continue;
+			if (5 <= i and x.at(i - 2) <= x.at(i - 4) + x.at(i) and x.at(i - 4) < x.at(i - 2) and x.at(i - 3) <= x.at(i - 1) + x.at(i - 5) and x.at(i - 1) <= x.at(i - 3)) {
+				return true;
 			}
 		}
 		return false;
 	}
 };
+// END: http://www.cnblogs.com/grandyang/p/5216856.html
 
 int main(void) {
 	Solution solution;
 	vector<int> x;
 	bool result, answer;
+
+	x = {3, 3, 3, 2, 1, 1};
+	answer = false;
+	result = solution.isSelfCrossing(x);
+	assert(answer == result);
 
 	x = {2, 1, 1, 2};
 	answer = true;
@@ -110,11 +103,11 @@ int main(void) {
 	assert(answer == result);
 
 	x = {1, 2, 3, 4};
-	answer = true;
+	answer = false;
 	result = solution.isSelfCrossing(x);
 	assert(answer == result);
 
-	x = {1, 2, 3, 4};
+	x = {1, 1, 1, 1};
 	answer = true;
 	result = solution.isSelfCrossing(x);
 	assert(answer == result);
