@@ -44,53 +44,85 @@ using namespace std;
 class Solution {
 public:
 	int strongPasswordChecker(string s) {
-		const size_t n = s.size();
-		size_t n0 = 0; // isalnum
+		size_t n = s.size();
 		size_t n1 = 0; // isupper
 		size_t n2 = 0; // islower
 		size_t n3 = 0; // isdigit
 		size_t n4 = 0;
 		vector<size_t> v;
 		for (size_t i = 0; i < n; i++) {
-			if (isalnum(s.at(i))) {
-				size_t j = i;
-				while (i + 1 < n and isalnum(s.at(i + 1)) and s.at(i) == s.at(i + 1)) {
-					i++;
-				}
-				size_t l = i + 1 - j;
-				n0 += l;
-				n1 += isupper(s.at(j)) ? l : 0;
-				n2 += islower(s.at(j)) ? l : 0;
-				n3 += isdigit(s.at(j)) ? l : 0;
-				if (l > 2) {
-					v.push_back(l);
-					n4 += l / 3;
-				}
+			size_t j = i;
+			while (i + 1 < n and s.at(i) == s.at(i + 1)) {
+				i++;
+			}
+			size_t l = i + 1 - j;
+			n1 += isupper(s.at(j)) ? l : 0;
+			n2 += islower(s.at(j)) ? l : 0;
+			n3 += isdigit(s.at(j)) ? l : 0;
+			if (l > 2) {
+				v.push_back(l);
+				n4 += l / 3;
 			}
 		}
 		size_t n5 = (n1 == 0) + (n2 == 0) + (n3 == 0);
-		if (n0 <= 4) {
-			return 6 - n0;
+		if (n <= 4) {
+			return 6 - n;
 		}
-		if (n0 == 5) {
-			return v.empty() ? n5 : 2;
+		if (n == 5) {
+			return v.empty() ? max(int(n5), 1) : 2;
 		}
-		if (n0 <= 20) {
+		if (n <= 20) {
 			return max(n4, n5);
 		}
 		sort(begin(v), end(v), Comp());
-		size_t n6 = n0 - 20;
-		for (size_t i = 0; i < v.size() and n6 > 0; i++) {
-			
+		size_t n6 = n - 20;
+		int result = 0;
+		for (size_t i = 0; i < v.size(); i++) {
+			if (v.at(i) % 3 == 0 and n6 > 0) {
+				n--;
+				n6--;
+				v.at(i)--;
+				result++;
+				continue;
+			}
+			if (v.at(i) % 3 == 1 and n6 >= 2) {
+				n -= 2;
+				n6 -= 2;
+				v.at(i) -= 2;
+				result += 2;
+				continue;
+			}
 		}
-		return 0;
+		for (size_t i = 0; i < v.size() and n6 > 0; i++) {
+			if (v.at(i) >= 3 and n6 >= v.at(i) / 3 * 3) {
+				n -= v.at(i) / 3 * 3;
+				n6 -= v.at(i) / 3 * 3;
+				result += v.at(i) / 3 * 3;
+				v.at(i) -= v.at(i) / 3 * 3;
+				continue;
+			}
+		}
+		n -= n6;
+		result += n6;
+		for (size_t i = 0; i < v.size(); i++) {
+			if (n5 <= v.at(i) / 3) {
+				result += v.at(i) / 3;
+				n5 = 0;
+			}
+			else {
+				result += v.at(i) / 3;
+				n5 -= v.at(i) / 3;
+			}
+		}
+		result += n5;
+		return result;
 	}
 private:
 	struct Comp {
 		bool operator() (const size_t& x, const size_t& y) {
 			return x % 3 < y % 3;
 		}
-	}
+	};
 };
 // END: https://discuss.leetcode.com/topic/65158/c-0ms-o-n-35-lines-solution-with-detailed-explanation
 // END: http://www.cnblogs.com/grandyang/p/5988792.html
@@ -99,6 +131,31 @@ int main(void) {
 	Solution solution;
 	string s;
 	int result = 0, answer = 0;
+
+	s = "..................!!!";
+	answer = 7;
+	result = solution.strongPasswordChecker(s);
+	assert(answer == result);
+
+	s = "aaa111";
+	answer = 2;
+	result = solution.strongPasswordChecker(s);
+	assert(answer == result);
+
+	s = "...";
+	answer = 3;
+	result = solution.strongPasswordChecker(s);
+	assert(answer == result);
+
+	s = "ABABABABABABABABABAB1";
+	answer = 2;
+	result = solution.strongPasswordChecker(s);
+	assert(answer == result);
+
+	s = "aA123";
+	answer = 1;
+	result = solution.strongPasswordChecker(s);
+	assert(answer == result);
 
 	s = "...aaa...";
 	answer = 3;
