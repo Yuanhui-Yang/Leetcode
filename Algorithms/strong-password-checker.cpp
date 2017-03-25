@@ -39,37 +39,61 @@ Insertion, deletion or replace of any one character are all considered as one ch
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
+// BEGIN: http://www.cnblogs.com/grandyang/p/5988792.html
+// BEGIN: https://discuss.leetcode.com/topic/65158/c-0ms-o-n-35-lines-solution-with-detailed-explanation
 class Solution {
 public:
 	int strongPasswordChecker(string s) {
-		if (isStrong(s)) {
-			return 0;
-		}
 		const size_t n = s.size();
-		
+		size_t n0 = 0; // isalnum
+		size_t n1 = 0; // isupper
+		size_t n2 = 0; // islower
+		size_t n3 = 0; // isdigit
+		size_t n4 = 0;
+		vector<size_t> v;
+		for (size_t i = 0; i < n; i++) {
+			if (isalnum(s.at(i))) {
+				size_t j = i;
+				while (i + 1 < n and isalnum(s.at(i + 1)) and s.at(i) == s.at(i + 1)) {
+					i++;
+				}
+				size_t l = i + 1 - j;
+				n0 += l;
+				n1 += isupper(s.at(j)) ? l : 0;
+				n2 += islower(s.at(j)) ? l : 0;
+				n3 += isdigit(s.at(j)) ? l : 0;
+				if (l > 2) {
+					v.push_back(l);
+					n4 += l / 3;
+				}
+			}
+		}
+		size_t n5 = (n1 == 0) + (n2 == 0) + (n3 == 0);
+		if (n0 <= 4) {
+			return 6 - n0;
+		}
+		if (n0 == 5) {
+			return v.empty() ? n5 : 2;
+		}
+		if (n0 <= 20) {
+			return max(n4, n5);
+		}
+		sort(begin(v), end(v), Comp());
+		size_t n6 = n0 - 20;
+		for (size_t i = 0; i < v.size() and n6 > 0; i++) {
+			
+		}
 		return 0;
 	}
 private:
-	bool isStrong(const string& s) {
-		const size_t n = s.size();
-		if (n < 6 or n > 20) {
-			return false;
+	struct Comp {
+		bool operator() (const size_t& x, const size_t& y) {
+			return x % 3 < y % 3;
 		}
-		size_t numOfLowercase = 0, numOfUppercase = 0, numOfDigit = 0;
-		for (size_t i = 0; i < n; i++) {
-			if (i + 2 < n and s.at(i) == s.at(i + 1) and s.at(i) == s.at(i + 2)) {
-				return false;
-			}
-			numOfLowercase += islower(s.at(i));
-			numOfUppercase += isupper(s.at(i));
-			numOfDigit += isdigit(s.at(i));
-		}
-		if (numOfUppercase == 0 or numOfUppercase == 0 or numOfDigit == 0) {
-			return false;
-		}
-		return true;
 	}
 };
+// END: https://discuss.leetcode.com/topic/65158/c-0ms-o-n-35-lines-solution-with-detailed-explanation
+// END: http://www.cnblogs.com/grandyang/p/5988792.html
 
 int main(void) {
 	Solution solution;
@@ -82,7 +106,7 @@ int main(void) {
 	assert(answer == result);
 
 	s = "";
-	answer = 3;
+	answer = 6;
 	result = solution.strongPasswordChecker(s);
 	assert(answer == result);
 	cout << "\nPassed All\n";
