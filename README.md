@@ -366,6 +366,7 @@
 | 504 | [Base 7](https://leetcode.com/problems/base-7/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/base-7.cpp) | Easy |
 | 505 | [The Maze II](https://leetcode.com/problems/the-maze-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/the-maze-ii.cpp) | Medium |
 | 506 | [Relative Ranks](https://leetcode.com/problems/relative-ranks/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/relative-ranks.cpp) | Easy |
+| 507 | [Perfect Number](https://leetcode.com/problems/perfect-number/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/perfect-number.cpp) | Easy |
 | 508 | [Most Frequent Subtree Sum](https://leetcode.com/problems/most-frequent-subtree-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/most-frequent-subtree-sum.cpp) | Medium |
 | 513 | [Find Bottom Left Tree Value](https://leetcode.com/problems/find-bottom-left-tree-value/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/find-bottom-left-tree-value.cpp) | Medium |
 | 514 | [Freedom Trail](https://leetcode.com/problems/freedom-trail/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/freedom-trail.cpp) | Hard |
