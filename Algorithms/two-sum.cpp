@@ -40,6 +40,7 @@ return [0, 1].
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
+// BEGIN: Time Complexity: O(n), Space Complexity: O(n)
 class Solution {
 public:
 	vector<int> twoSum(vector<int>& nums, int target) {
@@ -53,6 +54,7 @@ public:
 		return {};
 	}
 };
+// END: Time Complexity: O(n), Space Complexity: O(n)
 
 int main(void) {
 	Solution solution;
