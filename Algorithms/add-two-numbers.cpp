@@ -44,6 +44,7 @@ struct ListNode {
 };
 
 // BEGIN: https://discuss.leetcode.com/topic/5905/c-sharing-my-11-line-c-solution-can-someone-make-it-even-more-concise/
+// BEGIN: Time Complexity: Linear on length of l1 + length of l2, Space Complexity: Linear on length of l1 + length of l2
 class Solution {
 public:
 	ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
@@ -60,6 +61,7 @@ public:
 		return result.next;
 	}
 };
+// END: Time Complexity: Linear on length of l1 + length of l2, Space Complexity: Linear on length of l1 + length of l2
 // END: https://discuss.leetcode.com/topic/5905/c-sharing-my-11-line-c-solution-can-someone-make-it-even-more-concise/
 
 void gc(ListNode *l) {
