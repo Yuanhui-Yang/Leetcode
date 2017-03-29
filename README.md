@@ -394,3 +394,4 @@
 | 542 | [01 Matrix](https://leetcode.com/problems/01-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/01-matrix.cpp) | Medium |
 | 543 | [Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/diameter-of-binary-tree.cpp) | Easy |
 | 544 | [Output Contest Matches](https://leetcode.com/problems/output-contest-matches/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/output-contest-matches.cpp) | Medium |
+| 545 | [Boundary of Binary Tree](https://leetcode.com/problems/boundary-of-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode-Online-Judge/blob/master/Algorithms/boundary-of-binary-tree.cpp) | Medium |

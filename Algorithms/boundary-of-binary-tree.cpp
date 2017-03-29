@@ -88,12 +88,59 @@ void garbageCollection(TreeNode* root) {
 	}
 }
 
+// BEGIN: http://www.geeksforgeeks.org/boundary-traversal-of-binary-tree/
+// BEGIN: Time Complexity: Linear on size of tree, Space Complexity: Linear on size of tree
 class Solution {
 public:
 	vector<int> boundaryOfBinaryTree(TreeNode* root) {
-		return {};
+		if (!root) {
+			return {};
+		}
+		vector<int> result;
+		result.push_back(root->val);
+		leftBoundary(root->left, result);
+		leaves(root->left, result);
+		leaves(root->right, result);
+		rightBoundary(root->right, result);
+		return result;
+	}
+private:
+	void leftBoundary(TreeNode* root, vector<int>& result) {
+		if (root) {
+			if (root->left) {
+				result.push_back(root->val);
+				leftBoundary(root->left, result);
+			}
+			else if (root->right) {
+				result.push_back(root->val);
+				leftBoundary(root->right, result);
+			}
+		}
+	}
+	void leaves(TreeNode* root, vector<int>& result) {
+		if (root) {
+			leaves(root->left, result);
+			if (!root->left and !root->right) {
+				result.push_back(root->val);
+			}
+			leaves(root->right, result);
+		}
+	}
+	void rightBoundary(TreeNode* root, vector<int>& result) {
+		if (root) {
+			if (root->right) {
+				rightBoundary(root->right, result);
+				result.push_back(root->val);
+			}
+			else if (root->left) {
+				rightBoundary(root->left, result);
+				result.push_back(root->val);
+			}
+		}
 	}
 };
+// END: Time Complexity: Linear on size of tree, Space Complexity: Linear on size of tree
+// END: http://www.geeksforgeeks.org/boundary-traversal-of-binary-tree/
 
 int main(void) {
 	Solution solution;
