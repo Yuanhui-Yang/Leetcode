@@ -48,39 +48,115 @@ Note: The number of boxes n would not exceed 100.
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
-// BEGIN: Time Limit Exceeded
-// BEGIN: Time Complexity: Linear on power(2, boxex.size()) Space Complexity: Constant
+// BEGIN: https://discuss.leetcode.com/topic/84282/memoization-dfs-c
+// BEGIN: https://leetcode.com/articles/remove-boxes/#approach-2-using-dp-with-memorizationaccepted
+// BEGIN: Time Complexity: O(power(boxes.size(), 3)) and Space Complexity: O(power(boxes.size(), 3))
 class Solution {
 public:
 	int removeBoxes(vector<int>& boxes) {
-		if (boxes.empty()) {
-			return 0;
+		const int n = boxes.size();
+		if (n < 2) {
+			return n;
 		}
-		int result = 0;
-		for (size_t i = 0, n = boxes.size(); i < n; i++) {
-			if (i == 0 or boxes.at(i - 1) != boxes.at(i)) {
-				result = max(result, removeBoxes(boxes, i));
-			}
-		}
-		return result;
+		int OPT[100][100][100] = {};
+		return removeBoxes(0, n - 1, 0, OPT, boxes);
 	}
 private:
-	int removeBoxes(vector<int>& boxes, size_t i) {
-		if (boxes.empty()) {
+	int removeBoxes(int i, int j, int k, int OPT[100][100][100], vector<int>& boxes) {
+		if (i > j) {
 			return 0;
 		}
-		size_t j = i;
-		int result = 0, target = boxes.at(i);
-		while (j < boxes.size() and boxes.at(j) == target) {
-			j++;
+		if (OPT[i][j][k]) {
+			return OPT[i][j][k];
 		}
-		boxes.erase(next(begin(boxes), i), next(begin(boxes), j));
-		result = (j - i) * (j - i) + removeBoxes(boxes);
-		boxes.insert(next(begin(boxes), i), j - i, target);
-		return result;
+		while (i < j and boxes.at(j - 1) == boxes.at(j)) {
+			j--;
+			k++;
+		}
+		OPT[i][j][k] = removeBoxes(i, j - 1, 0, OPT, boxes) + (1 + k) * (1 + k);
+		for (int l = i; l < j; l++) {
+			if (boxes.at(l) == boxes.at(j)) {
+				OPT[i][j][k] = max(OPT[i][j][k], removeBoxes(i, l, k + 1, OPT, boxes) + removeBoxes(l + 1, j - 1, 0, OPT, boxes));
+			}
+		}
+		return OPT[i][j][k];
 	}
 };
-// END: Time Complexity: Linear on power(2, boxex.size()) Space Complexity: Constant
+// BEGIN: Time Complexity: O(power(boxes.size(), 3)) and Space Complexity: O(power(boxes.size(), 3))
+// END: https://discuss.leetcode.com/topic/84282/memoization-dfs-c
+// END: https://leetcode.com/articles/remove-boxes/#approach-2-using-dp-with-memorizationaccepted
+
+// BEGIN: Time Limit Exceeded
+// class Solution {
+// public:
+// 	int removeBoxes(vector<int>& boxes) {
+// 		if (boxes.empty()) {
+// 			return 0;
+// 		}
+// 		if (!rbtree.empty() and rbtree.count(boxes)) {
+// 			return rbtree.at(boxes);
+// 		}
+// 		int result = 0;
+// 		for (size_t i = 0, n = boxes.size(); i < n; i++) {
+// 			if (i == 0 or boxes.at(i - 1) != boxes.at(i)) {
+// 				result = max(result, removeBoxes(boxes, i));
+// 			}
+// 		}
+// 		return rbtree[boxes] = result;
+// 	}
+// private:
+// 	int removeBoxes(vector<int>& boxes, size_t i) {
+// 		if (boxes.empty()) {
+// 			return 0;
+// 		}
+// 		size_t j = i;
+// 		int result = 0, target = boxes.at(i);
+// 		while (j < boxes.size() and boxes.at(j) == target) {
+// 			j++;
+// 		}
+// 		boxes.erase(next(begin(boxes), i), next(begin(boxes), j));
+// 		result = (j - i) * (j - i) + removeBoxes(boxes);
+// 		boxes.insert(next(begin(boxes), i), j - i, target);
+// 		return result;
+// 	}
+// private:
+// 	map<vector<int>, int> rbtree;
+// };
+// END: Time Limit Exceeded
+
+// BEGIN: Time Limit Exceeded
+// BEGIN: Time Complexity: O(power(2, boxes.size())) and Space Complexity: O(1)
+// class Solution {
+// public:
+// 	int removeBoxes(vector<int>& boxes) {
+// 		if (boxes.empty()) {
+// 			return 0;
+// 		}
+// 		int result = 0;
+// 		for (size_t i = 0, n = boxes.size(); i < n; i++) {
+// 			if (i == 0 or boxes.at(i - 1) != boxes.at(i)) {
+// 				result = max(result, removeBoxes(boxes, i));
+// 			}
+// 		}
+// 		return result;
+// 	}
+// private:
+// 	int removeBoxes(vector<int>& boxes, size_t i) {
+// 		if (boxes.empty()) {
+// 			return 0;
+// 		}
+// 		size_t j = i;
+// 		int result = 0, target = boxes.at(i);
+// 		while (j < boxes.size() and boxes.at(j) == target) {
+// 			j++;
+// 		}
+// 		boxes.erase(next(begin(boxes), i), next(begin(boxes), j));
+// 		result = (j - i) * (j - i) + removeBoxes(boxes);
+// 		boxes.insert(next(begin(boxes), i), j - i, target);
+// 		return result;
+// 	}
+// };
+// END: Time Complexity: O(power(2, boxes.size())) and Space Complexity: O(1)
 // END: Time Limit Exceeded
 
 int main(void) {
@@ -88,10 +164,10 @@ int main(void) {
 	vector<int> boxes;
 	int result = 0, answer = 0;
 
-	boxes = {3, 8, 8, 5, 5, 3, 9, 2, 4, 4, 6, 5, 8, 4, 8, 6, 9, 6, 2, 8, 6, 4, 1, 9, 5, 3, 10, 5, 3, 3, 9, 8, 8, 6, 5, 3, 7, 4, 9, 6, 3, 9, 4, 3, 5, 10, 7, 6, 10, 7};
-	answer = 136;
-	result = solution.removeBoxes(boxes);
-	assert(answer == result);
+	// boxes = {3, 8, 8, 5, 5, 3, 9, 2, 4, 4, 6, 5, 8, 4, 8, 6, 9, 6, 2, 8, 6, 4, 1, 9, 5, 3, 10, 5, 3, 3, 9, 8, 8, 6, 5, 3, 7, 4, 9, 6, 3, 9, 4, 3, 5, 10, 7, 6, 10, 7};
+	// answer = 136;
+	// result = solution.removeBoxes(boxes);
+	// assert(answer == result);
 
 	boxes = {1, 3, 2, 2, 2, 3, 4, 3, 1};
 	answer = 23;
