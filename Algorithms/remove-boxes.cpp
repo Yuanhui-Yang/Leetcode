@@ -48,6 +48,8 @@ Note: The number of boxes n would not exceed 100.
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
+// BEGIN: Time Limit Exceeded
+// BEGIN: Time Complexity: Linear on power(2, boxex.size()) Space Complexity: Constant
 class Solution {
 public:
 	int removeBoxes(vector<int>& boxes) {
@@ -78,6 +80,8 @@ private:
 		return result;
 	}
 };
+// END: Time Complexity: Linear on power(2, boxex.size()) Space Complexity: Constant
+// END: Time Limit Exceeded
 
 int main(void) {
 	Solution solution;
