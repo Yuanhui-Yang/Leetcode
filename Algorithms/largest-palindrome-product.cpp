@@ -46,34 +46,49 @@ The range of n is [1,8].
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
+// BEGIN: https://discuss.leetcode.com/topic/74143/java-solution-with-explanation
 class Solution {
 public:
 	int largestPalindrome(int n) {
-		size_t result = string::npos;
-		for (size_t i = pow(10, n - 1); i < pow(10, n); i++) {
-			for (size_t j = pow(10, n - 1); j < pow(10, n); j++) {
-				size_t num = i * j;
-				if (isPalindrome(num)) {
-					if (result == string::npos)
-						result = num;
-					else
-						result = max(result, num);
-				}
-			}
-		}
-		return result % 1337;
-	}
-private:
-	bool isPalindrome(size_t num) {
-		string s = to_string(num);
-		for (size_t i = 0, j = s.size() - 1; i < j; i++, j--) {
-			if (s.at(i) != s.at(j)) {
-				return false;
-			}
-		}
-		return true;
+		size_t left = pow(10, n) - 1;
+		size_t right = pow(10, n) - 1;
+		
 	}
 };
+// END: https://discuss.leetcode.com/topic/74143/java-solution-with-explanation
+
+// BEGIN: Time Limit Exceeded
+// class Solution {
+// public:
+// 	int largestPalindrome(int n) {
+// 		size_t result = string::npos;
+// 		for (size_t i = pow(10, n - 1); i < pow(10, n); i++) {
+// 			for (size_t j = pow(10, n - 1); j < pow(10, n); j++) {
+// 				size_t num = i * j;
+// 				if (isPalindrome(num)) {
+// 					if (result == string::npos) {
+// 						result = num;
+// 					}
+// 					else {
+// 						result = max(result, num);
+// 					}
+// 				}
+// 			}
+// 		}
+// 		return result % 1337;
+// 	}
+// private:
+// 	bool isPalindrome(size_t num) {
+// 		string s = to_string(num);
+// 		for (size_t i = 0, j = s.size() - 1; i < j; i++, j--) {
+// 			if (s.at(i) != s.at(j)) {
+// 				return false;
+// 			}
+// 		}
+// 		return true;
+// 	}
+// };
+// END: Time Limit Exceeded
 
 int main(void) {
 	Solution solution;
