@@ -38,21 +38,15 @@ struct TreeNode {
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+// BEGIN: https://discuss.leetcode.com/topic/5972/here-s-a-c-recursion-solution-in-minimal-lines-of-code
 class Solution {
 public:
 	bool isSameTree(TreeNode* p, TreeNode* q) {
-		if (!p and q) {
-			return false;
-		}
-		if (p and !q) {
-			return false;
-		}
-		if (!p and !q) {
-			return true;
-		}
+		if (!p or !q) return p == q;
 		return p->val == q->val and isSameTree(p->left, q->left) and isSameTree(p->right, q->right);
 	}
 };
+// END: https://discuss.leetcode.com/topic/5972/here-s-a-c-recursion-solution-in-minimal-lines-of-code
 
 int main(void) {
 	Solution solution;
