@@ -155,6 +155,7 @@
 | 263 | [Ugly Number](https://leetcode.com/problems/ugly-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/ugly-number.cpp) | Easy |
 | 264 | [Ugly Number II](https://leetcode.com/problems/ugly-number-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/ugly-number-ii.cpp) | Medium |
 | 265 | [Paint House II](https://leetcode.com/problems/paint-house-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/paint-house-ii.cpp) | Hard |
+| 266 | [Palindrome Permutation](https://leetcode.com/problems/palindrome-permutation/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/palindrome-permutation.cpp) | Easy |
 | 268 | [Missing Number](https://leetcode.com/problems/missing-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/missing-number.cpp) | Medium |
 | 269 | [Alien Dictionary](https://leetcode.com/problems/alien-dictionary/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/alien-dictionary.cpp) | Hard |
 | 270 | [Closest Binary Search Tree Value](https://leetcode.com/problems/closest-binary-search-tree-value/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/closest-binary-search-tree-value.cpp) | Easy |
