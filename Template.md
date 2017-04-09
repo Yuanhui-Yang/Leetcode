@@ -1,6 +1,7 @@
 # C++11/14/17 Template
 ```cpp
 #include <iostream> // std::cout; std::cin
+#include <fstream> // std::fstream::open; std::fstream::close; 
 #include <cstdlib> // rand
 #include <cassert> // assert
 #include <cctype> // isalnum; isalpha; isdigit; islower; isupper; isspace; tolower; toupper
