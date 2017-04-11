@@ -50,28 +50,19 @@ The input is assumed to be a 32-bit signed integer. Your function should return 
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
+// BEGIN: https://discuss.leetcode.com/topic/6005/shortest-code-possible-in-c
 class Solution {
 public:
 	int reverse(int x) {
-		if (x == 0) {
-			return 0;
+		long long result = 0;
+		while (x) {
+			result = 10 * result + x % 10;
+			x /= 10;
 		}
-		if (x < 0) {
-			string s = to_string(-(long long)x), t = to_string(-(long long)INT_MIN);
-			std::reverse(begin(s), end(s));
-			if (s.size() == t.size() and s > t) {
-				return 0;
-			}
-			return -stoll(s);
-		}
-		string s = to_string(x), t = to_string(INT_MAX);
-		std::reverse(begin(s), end(s));
-		if (s.size() == t.size() and s > t) {
-			return 0;
-		}
-		return stoll(s);
+		return (result <= INT_MIN or result >= INT_MAX) ? 0 : result;
 	}
 };
+// END: https://discuss.leetcode.com/topic/6005/shortest-code-possible-in-c
 
 int main(void) {
 	Solution solution;
