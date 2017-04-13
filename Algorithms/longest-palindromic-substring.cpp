@@ -52,31 +52,32 @@ public:
 		if (s.empty()) {
 			return "";
 		}
-		this->s = s;
-		this->OPT = vector<vector<string>>(s.size(), vector<string>(s.size()));
-		return this->longestPalindrome(0, s.size() - 1);
+		string result;
+		vector<vector<bool>> OPT(s.size(), vector<bool>(s.size(), false));
+		for (int len = 1, n = s.size(); len <= n; len++) {
+			for (int i = 0; i + len <= n; i++) {
+				int j = i + len - 1;
+				if (len == 1) {
+					OPT.at(i).at(j) = true;
+					result = s.substr(i, 1);
+					continue;
+				}
+				if (len == 2) {
+					if (s.at(i) == s.at(j)) {
+						OPT.at(i).at(j) = true;
+						result = s.substr(i, 2);
+					}
+					continue;
+				}
+				if (s.at(i) == s.at(j) and OPT.at(i + 1).at(j - 1)) {
+					OPT.at(i).at(j) = true;
+					result = s.substr(i, len);
+					continue;
+				}
+			}
+		}
+		return result;
 	}
-private:
-	string longestPalindrome(int i, int j) {
-		if (i > j) {
-			return "";
-		}
-		if (!OPT.at(i).at(j).empty()) {
-			return OPT.at(i).at(j);
-		}
-		if (i == j) {
-			return OPT[i][j] = s.substr(i, 1);
-		}
-		string x = longestPalindrome(i + 1, j - 1);
-		if (s.at(i) == s.at(j) and size_t(j - i) == 1 + x.size()) {
-			return OPT[i][j] = s.substr(i, j + 1 - i);
-		}
-		string y = longestPalindrome(i, j - 1);
-		string z = longestPalindrome(i + 1, j);
-		return OPT[i][j] = y.size() > z.size() ? y : z;
-	}
-	string s;
-	vector<vector<string>> OPT;
 };
 
 int main(void) {
