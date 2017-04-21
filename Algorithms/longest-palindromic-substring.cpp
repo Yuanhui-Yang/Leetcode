@@ -65,7 +65,7 @@ public:
 		int x = 0, y = 0;
 		for (int i = 1, j = 0, n = t.size(), a = 0, b = 0; i + 1 < n; i++) {
 			j = 2 * a - i;
-			if (i >= b or i + OPT[j] >= a + b) {
+			if (i >= b or i + OPT.at(j) >= a + b) {
 				int l = i, r = i;
 				while (l >= 0 and r < n and t.at(l) == t.at(r)) {
 					l--;
@@ -73,14 +73,14 @@ public:
 				}
 				a = i;
 				b = r - i - 1;
-				OPT[i] = b;
+				OPT.at(i) = b;
 				if (y < b) {
 					x = a;
 					y = b;
 				}
 				continue;
 			}
-			OPT[i] = OPT[j];
+			OPT.at(i) = OPT.at(j);
 		}
 		string result;
 		for (int i = x - y; i <= x + y; i++) {
