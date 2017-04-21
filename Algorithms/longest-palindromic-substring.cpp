@@ -46,7 +46,9 @@ Output: "bb"
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
+// BEGIN: Time Complexity O(n) Space Complexity O(n)
 // BEGIN: https://segmentfault.com/a/1190000003914228
+// BEGIN: https://www.zhihu.com/question/30226229
 class Solution {
 public:
 	string longestPalindrome(string s) {
@@ -59,24 +61,39 @@ public:
 			t.push_back(i);
 		}
 		t.push_back('#');
-		vector<int> OPT(t.size(), 1);
+		vector<int> OPT(t.size(), 0);
 		int x = 0, y = 0;
-		for (int i = 1, n = t.size(), a = 0, b = 0; i + 1 < n; i++) {
-			if (i >= b) {
+		for (int i = 1, j = 0, n = t.size(), a = 0, b = 0; i + 1 < n; i++) {
+			j = 2 * a - i;
+			if (i >= b or i + OPT[j] >= a + b) {
 				int l = i, r = i;
 				while (l >= 0 and r < n and t.at(l) == t.at(r)) {
 					l--;
 					r++;
 				}
-				x = i;
-				y = r - 1;
-				
+				a = i;
+				b = r - i - 1;
+				OPT[i] = b;
+				if (y < b) {
+					x = a;
+					y = b;
+				}
 				continue;
 			}
+			OPT[i] = OPT[j];
 		}
+		string result;
+		for (int i = x - y; i <= x + y; i++) {
+			if (t.at(i) != '#') {
+				result.push_back(t.at(i));
+			}
+		}
+		return result;
 	}
 };
+// END: https://www.zhihu.com/question/30226229
 // END: https://segmentfault.com/a/1190000003914228
+// END: Time Complexity O(n) Space Complexity O(n)
 
 // BEGIN: Time Complexity O(n ^ 2) Space Complexity O(n ^ 2)
 // class Solution {
