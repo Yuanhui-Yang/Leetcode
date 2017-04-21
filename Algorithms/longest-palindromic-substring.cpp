@@ -49,6 +49,7 @@ using namespace std;
 // BEGIN: Time Complexity O(n) Space Complexity O(n)
 // BEGIN: https://segmentfault.com/a/1190000003914228
 // BEGIN: https://www.zhihu.com/question/30226229
+
 class Solution {
 public:
 	string longestPalindrome(string s) {
@@ -61,11 +62,15 @@ public:
 			t.push_back(i);
 		}
 		t.push_back('#');
-		vector<int> OPT(t.size(), 0);
+		int OPT[2000] = {0};
+		// memset(OPT, 0, sizeof(OPT));
 		int x = 0, y = 0;
 		for (int i = 1, j = 0, n = t.size(), a = 0, b = 0; i + 1 < n; i++) {
+			if (i + y + 1 >= n) {
+				break;
+			}
 			j = 2 * a - i;
-			if (i >= b or i + OPT.at(j) >= a + b) {
+			if (i >= b or i + OPT[j] >= a + b) {
 				int l = i, r = i;
 				while (l >= 0 and r < n and t.at(l) == t.at(r)) {
 					l--;
@@ -73,14 +78,14 @@ public:
 				}
 				a = i;
 				b = r - i - 1;
-				OPT.at(i) = b;
+				OPT[i] = b;
 				if (y < b) {
 					x = a;
 					y = b;
 				}
 				continue;
 			}
-			OPT.at(i) = OPT.at(j);
+			OPT[i] = OPT[j];
 		}
 		string result;
 		for (int i = x - y; i <= x + y; i++) {
@@ -91,6 +96,95 @@ public:
 		return result;
 	}
 };
+
+// class Solution {
+// public:
+// 	string longestPalindrome(string s) {
+// 		if (s.size() <= 1) {
+// 			return s;
+// 		}
+// 		string t;
+// 		for (const auto &i : s) {
+// 			t.push_back('#');
+// 			t.push_back(i);
+// 		}
+// 		t.push_back('#');
+// 		vector<int> OPT(t.size(), 0);
+// 		int x = 0, y = 0;
+// 		for (int i = 1, j = 0, n = t.size(), a = 0, b = 0; i + 1 < n; i++) {
+// 			if (i + y + 1 >= n) {
+// 				break;
+// 			}
+// 			j = 2 * a - i;
+// 			if (i >= b or i + OPT.at(j) >= a + b) {
+// 				int l = i, r = i;
+// 				while (l >= 0 and r < n and t.at(l) == t.at(r)) {
+// 					l--;
+// 					r++;
+// 				}
+// 				a = i;
+// 				b = r - i - 1;
+// 				OPT.at(i) = b;
+// 				if (y < b) {
+// 					x = a;
+// 					y = b;
+// 				}
+// 				continue;
+// 			}
+// 			OPT.at(i) = OPT.at(j);
+// 		}
+// 		string result;
+// 		for (int i = x - y; i <= x + y; i++) {
+// 			if (t.at(i) != '#') {
+// 				result.push_back(t.at(i));
+// 			}
+// 		}
+// 		return result;
+// 	}
+// };
+
+// class Solution {
+// public:
+// 	string longestPalindrome(string s) {
+// 		if (s.size() <= 1) {
+// 			return s;
+// 		}
+// 		string t;
+// 		for (const auto &i : s) {
+// 			t.push_back('#');
+// 			t.push_back(i);
+// 		}
+// 		t.push_back('#');
+// 		vector<int> OPT(t.size(), 0);
+// 		int x = 0, y = 0;
+// 		for (int i = 1, j = 0, n = t.size(), a = 0, b = 0; i + 1 < n; i++) {
+// 			j = 2 * a - i;
+// 			if (i >= b or i + OPT.at(j) >= a + b) {
+// 				int l = i, r = i;
+// 				while (l >= 0 and r < n and t.at(l) == t.at(r)) {
+// 					l--;
+// 					r++;
+// 				}
+// 				a = i;
+// 				b = r - i - 1;
+// 				OPT.at(i) = b;
+// 				if (y < b) {
+// 					x = a;
+// 					y = b;
+// 				}
+// 				continue;
+// 			}
+// 			OPT.at(i) = OPT.at(j);
+// 		}
+// 		string result;
+// 		for (int i = x - y; i <= x + y; i++) {
+// 			if (t.at(i) != '#') {
+// 				result.push_back(t.at(i));
+// 			}
+// 		}
+// 		return result;
+// 	}
+// };
 // END: https://www.zhihu.com/question/30226229
 // END: https://segmentfault.com/a/1190000003914228
 // END: Time Complexity O(n) Space Complexity O(n)
