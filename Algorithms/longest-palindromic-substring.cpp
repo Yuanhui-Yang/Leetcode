@@ -46,39 +46,73 @@ Output: "bb"
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
+// BEGIN: https://segmentfault.com/a/1190000003914228
 class Solution {
 public:
 	string longestPalindrome(string s) {
-		if (s.empty()) {
-			return "";
+		if (s.size() <= 1) {
+			return s;
 		}
-		string result;
-		vector<vector<bool>> OPT(s.size(), vector<bool>(s.size(), false));
-		for (int len = 1, n = s.size(); len <= n; len++) {
-			for (int i = 0; i + len <= n; i++) {
-				int j = i + len - 1;
-				if (len == 1) {
-					OPT.at(i).at(j) = true;
-					result = s.substr(i, 1);
-					continue;
+		string t;
+		for (const auto &i : s) {
+			t.push_back('#');
+			t.push_back(i);
+		}
+		t.push_back('#');
+		vector<int> OPT(t.size(), 1);
+		int x = 0, y = 0;
+		for (int i = 1, n = t.size(), a = 0, b = 0; i + 1 < n; i++) {
+			if (i >= b) {
+				int l = i, r = i;
+				while (l >= 0 and r < n and t.at(l) == t.at(r)) {
+					l--;
+					r++;
 				}
-				if (len == 2) {
-					if (s.at(i) == s.at(j)) {
-						OPT.at(i).at(j) = true;
-						result = s.substr(i, 2);
-					}
-					continue;
-				}
-				if (s.at(i) == s.at(j) and OPT.at(i + 1).at(j - 1)) {
-					OPT.at(i).at(j) = true;
-					result = s.substr(i, len);
-					continue;
-				}
+				x = i;
+				y = r - 1;
+				
+				continue;
 			}
 		}
-		return result;
 	}
 };
+// END: https://segmentfault.com/a/1190000003914228
+
+// BEGIN: Time Complexity O(n ^ 2) Space Complexity O(n ^ 2)
+// class Solution {
+// public:
+// 	string longestPalindrome(string s) {
+// 		if (s.empty()) {
+// 			return "";
+// 		}
+// 		string result;
+// 		vector<vector<bool>> OPT(s.size(), vector<bool>(s.size(), false));
+// 		for (int len = 1, n = s.size(); len <= n; len++) {
+// 			for (int i = 0; i + len <= n; i++) {
+// 				int j = i + len - 1;
+// 				if (len == 1) {
+// 					OPT.at(i).at(j) = true;
+// 					result = s.substr(i, 1);
+// 					continue;
+// 				}
+// 				if (len == 2) {
+// 					if (s.at(i) == s.at(j)) {
+// 						OPT.at(i).at(j) = true;
+// 						result = s.substr(i, 2);
+// 					}
+// 					continue;
+// 				}
+// 				if (s.at(i) == s.at(j) and OPT.at(i + 1).at(j - 1)) {
+// 					OPT.at(i).at(j) = true;
+// 					result = s.substr(i, len);
+// 					continue;
+// 				}
+// 			}
+// 		}
+// 		return result;
+// 	}
+// };
+// END: Time Complexity O(n ^ 2) Space Complexity O(n ^ 2)
 
 int main(void) {
 	Solution solution;
