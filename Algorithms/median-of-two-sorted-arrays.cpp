@@ -1,38 +1,75 @@
 // 4. Median of Two Sorted Arrays
 // https://leetcode.com/problems/median-of-two-sorted-arrays/
-// https://github.com/haoel/leetcode
+
+/*
+There are two sorted arrays nums1 and nums2 of size m and n respectively.
+
+Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
+
+Example 1:
+nums1 = [1, 3]
+nums2 = [2]
+
+The median is 2.0
+Example 2:
+nums1 = [1, 2]
+nums2 = [3, 4]
+
+The median is (2 + 3)/2 = 2.5
+*/
+
+#include <iostream> // std::cout; std::cin
+#include <fstream> // std::fstream::open; std::fstream::close; 
+#include <cstdlib> // rand
+#include <cassert> // assert
+#include <cctype> // isalnum; isalpha; isdigit; islower; isupper; isspace; tolower; toupper
+#include <cmath> // pow; sqrt; round; fabs; abs; log
+#include <climits> // INT_MIN; INT_MAX; LLONG_MIN; LLONG_MAX; ULLONG_MAX
+#include <cfloat> // DBL_EPSILON; LDBL_EPSILON
+#include <cstring> // std::memset
+#include <algorithm> // std::swap; std::max; std::min; std::min_element; std::max_element; std::minmax_element; std::next_permutation; std::prev_permutation; std::nth_element; std::sort; std::lower_bound; std::upper_bound; std::reverse
+#include <limits> // std::numeric_limits<int>::min; std::numeric_limits<int>::max; std::numeric_limits<double>::epsilon; std::numeric_limits<long double>::epsilon;
+#include <numeric> // std::accumulate; std::iota
+#include <string> // std::to_string; std::string::npos; std::stoul; std::stoull; std::stoi; std::stol; std::stoll; std::stof; std::stod; std::stold; 
+#include <list> // std::list::merge; std::list::splice; std::list::merge; std::list::unique; std::list::sort
+#include <bitset>
+#include <vector>
+#include <deque>
+#include <stack> // std::stack::top; std::stack::pop; std::stack::push
+#include <queue> // std::queue::front; std::queue::back; std::queue::pop; std::queue::push
+#include <set> // std::set::count; std::set::find; std::set::equal_range; std::set::lower_bound; std::set::upper_bound
+#include <map> // std::map::count; std::map::find; std::map::equal_range; std::map::lower_bound; std::map::upper_bound
+#include <unordered_set>
+#include <unordered_map>
+#include <utility> // std::pair; std::make_pair
+#include <iterator>
+#include <functional> // std::less<int>; std::greater<int>
+using namespace std;
+
 class Solution {
 public:
-    double findMedianSortedArrays(const vector<int>& nums1, const vector<int>& nums2) {
-        int m = nums1.size();
-        int n = nums2.size();
-        int l = m + n;
-        if (l & 0x01) {
-            return this->findKth(nums1, nums2, l / 2 + 1);
-        } else {
-            return (this->findKth(nums1, nums2, l / 2) + this->findKth(nums1, nums2, l / 2 + 1)) / 2.0;
-        }
-    }
-private:
-    int findKth(const vector<int>& nums1, const vector<int>& nums2, const int& k) {
-        int m = nums1.size();
-        int n = nums2.size();
-        int l = m + n;
-        if (m > n) return this->findKth(nums2, nums1, k);
-        if (m == 0) return nums2[k - 1];
-        if (k == 1) return min(nums1.front(), nums2.front());
-        int idxA = min(k / 2, m);
-        int idxB = k - idxA;
-        if (nums1[idxA - 1] < nums2[idxB - 1]) {
-            vector<int> newNums1(nums1.begin() + idxA, nums1.end());
-            return this->findKth(newNums1, nums2, k - idxA);
-        }
-        else if (nums1[idxA - 1] > nums2[idxB - 1]) {
-            vector<int> newNums2(nums2.begin() + idxB, nums2.end());
-            return this->findKth(nums1, newNums2, k - idxB);
-        }
-        else {
-            return nums1[idxA - 1];
-        }
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        
     }
 };
+
+int main(void) {
+    Solution solution;
+    vector<int> nums1, nums2;
+    double result = 0, answer = 0;
+
+    nums1 = {1, 3};
+    nums2 = {2};
+    answer = 2;
+    result = solution.findMedianSortedArrays(nums1, nums2);
+    assert(fabs(answer - result) < DBL_EPSILON);
+
+    nums1 = {1, 2};
+    nums2 = {3, 4};
+    answer = 2.5;
+    result = solution.findMedianSortedArrays(nums1, nums2);
+    assert(fabs(answer - result) < DBL_EPSILON);
+
+    cout << "\nPassed All\n";
+    return 0;
+}
