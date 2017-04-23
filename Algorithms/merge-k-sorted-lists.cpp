@@ -39,6 +39,73 @@ struct ListNode {
 	ListNode(int x) : val(x), next(NULL) {}
 };
 
+class Solution {
+public:
+	ListNode* mergeKLists(vector<ListNode*>& lists) {
+		while (!lists.empty() and !lists.back()) {
+			lists.pop_back();
+		}
+		if (lists.empty()) {
+			return NULL;
+		}
+		if (lists.size() == 1) {
+			return lists.front();
+		}
+		multiset<pair<ListNode*, size_t>, Comp> rbtree;
+		while (lists.size() > 1) {
+			if (rbtree.empty()) {
+				
+			}
+		}
+		return lists.front();
+	}
+private:
+	struct Comp {
+		bool operator() (const pair<ListNode*, size_t>& a, const pair<ListNode*, size_t>& b) {
+			return a.first->val < b.first->val;
+		}
+	};
+};
+
+// class Solution {
+// public:
+// 	ListNode* mergeKLists(vector<ListNode*>& lists) {
+// 		while (!lists.empty() and !lists.back()) {
+// 			lists.pop_back();
+// 		}
+// 		if (lists.empty()) {
+// 			return NULL;
+// 		}
+// 		while (lists.size() > 1) {
+// 			ListNode *l = mergeTwoLists(*prev(prev(end(lists))), *prev(end(lists)));
+// 			lists.pop_back();
+// 			lists.pop_back();
+// 			lists.push_back(l);
+// 		}
+// 		return lists.front();
+// 	}
+// private:
+// 	ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+// 		if (!l1 or !l2) {
+// 			return l1 ? l1 : l2;
+// 		}
+// 		ListNode dummy(INT_MAX), *l = &dummy;
+// 		while (l1 and l2) {
+// 			if (l1->val < l2->val) {
+// 				l->next = l1;
+// 				l1 = l1->next;
+// 			}
+// 			else {
+// 				l->next = l2;
+// 				l2 = l2->next;
+// 			}
+// 			l = l->next;
+// 		}
+// 		l->next = l1 ? l1 : l2;
+// 		return dummy.next;
+// 	}
+// };
+
 // class Solution {
 // public:
 // 	ListNode* mergeKLists(vector<ListNode*>& lists) {
@@ -69,40 +136,40 @@ struct ListNode {
 // 	}
 // };
 
-class Solution {
-public:
-	ListNode* mergeKLists(vector<ListNode*>& lists) {
-		while (!lists.empty() and !lists.back()) {
-			lists.pop_back();
-		}
-		if (lists.empty()) {
-			return NULL;
-		}
-		ListNode dummy(INT_MAX), *l = &dummy;
-		while (lists.size() > 1) {
-			ListNode *nl = NULL;
-			size_t j = string::npos;
-			for (size_t i = 0; i < lists.size(); i++) {
-				if (!lists.at(i)) {
-					swap(lists.at(i), lists.back());
-					lists.pop_back();
-					i--;
-					continue;
-				}
-				if (!nl or lists.at(i)->val < nl->val) {
-					j = i;
-					nl = lists.at(i);
-					continue;
-				}
-			}
-			l->next = nl;
-			l = nl;
-			lists.at(j) = lists.at(j)->next;
-		}
-		l->next = lists.front();
-		return dummy.next;
-	}
-};
+// class Solution {
+// public:
+// 	ListNode* mergeKLists(vector<ListNode*>& lists) {
+// 		while (!lists.empty() and !lists.back()) {
+// 			lists.pop_back();
+// 		}
+// 		if (lists.empty()) {
+// 			return NULL;
+// 		}
+// 		ListNode dummy(INT_MAX), *l = &dummy;
+// 		while (lists.size() > 1) {
+// 			ListNode *nl = NULL;
+// 			size_t j = string::npos;
+// 			for (size_t i = 0; i < lists.size(); i++) {
+// 				if (!lists.at(i)) {
+// 					swap(lists.at(i), lists.back());
+// 					lists.pop_back();
+// 					i--;
+// 					continue;
+// 				}
+// 				if (!nl or lists.at(i)->val < nl->val) {
+// 					j = i;
+// 					nl = lists.at(i);
+// 					continue;
+// 				}
+// 			}
+// 			l->next = nl;
+// 			l = nl;
+// 			lists.at(j) = lists.at(j)->next;
+// 		}
+// 		l->next = lists.front();
+// 		return dummy.next;
+// 	}
+// };
 
 void gc(ListNode*& l) {
 	if (l) {
