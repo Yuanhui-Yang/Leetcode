@@ -55,6 +55,7 @@ int main(void) {
 | 9 | [Palindrome Number](https://leetcode.com/problems/palindrome-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/palindrome-number.cpp) | Easy |
 | 20 | [Valid Parentheses](https://leetcode.com/problems/valid-parentheses/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/valid-parentheses.cpp) | Easy |
 | 21 | [Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/merge-two-sorted-lists.cpp) | Easy |
+| 23 | [Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/merge-k-sorted-lists.cpp) | Hard |
 | 25 | [Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reverse-nodes-in-k-group.cpp) | Hard |
 | 29 | [Divide Two Integers](https://leetcode.com/problems/divide-two-integers/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/divide-two-integers.cpp) | Medium |
 | 30 | [Substring with Concatenation of All Words](https://leetcode.com/problems/substring-with-concatenation-of-all-words/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/substring-with-concatenation-of-all-words.cpp) | Hard |
