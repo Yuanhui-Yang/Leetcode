@@ -39,6 +39,36 @@ struct ListNode {
 	ListNode(int x) : val(x), next(NULL) {}
 };
 
+// class Solution {
+// public:
+// 	ListNode* mergeKLists(vector<ListNode*>& lists) {
+// 		while (!lists.empty() and !lists.back()) {
+// 			lists.pop_back();
+// 		}
+// 		if (lists.empty()) {
+// 			return NULL;
+// 		}
+// 		ListNode *result = NULL;
+// 		size_t j = string::npos;
+// 		for (size_t i = 0; i < lists.size(); i++) {
+// 			if (!lists.at(i)) {
+// 				swap(lists.at(i), lists.back());
+// 				lists.pop_back();
+// 				i--;
+// 				continue;
+// 			}
+// 			if (!result or lists.at(i)->val < result->val) {
+// 				j = i;
+// 				result = lists.at(i);
+// 				continue;
+// 			}
+// 		}
+// 		lists.at(j) = lists.at(j)->next;
+// 		result->next = mergeKLists(lists);
+// 		return result;
+// 	}
+// };
+
 class Solution {
 public:
 	ListNode* mergeKLists(vector<ListNode*>& lists) {
@@ -48,24 +78,29 @@ public:
 		if (lists.empty()) {
 			return NULL;
 		}
-		ListNode *result = NULL;
-		size_t j = string::npos;
-		for (size_t i = 0; i < lists.size(); i++) {
-			if (!lists.at(i)) {
-				swap(lists.at(i), lists.back());
-				lists.pop_back();
-				i--;
-				continue;
+		ListNode dummy(INT_MAX), *l = &dummy;
+		while (lists.size() > 1) {
+			ListNode *nl = NULL;
+			size_t j = string::npos;
+			for (size_t i = 0; i < lists.size(); i++) {
+				if (!lists.at(i)) {
+					swap(lists.at(i), lists.back());
+					lists.pop_back();
+					i--;
+					continue;
+				}
+				if (!nl or lists.at(i)->val < nl->val) {
+					j = i;
+					nl = lists.at(i);
+					continue;
+				}
 			}
-			if (!result or lists.at(i)->val < result->val) {
-				j = i;
-				result = lists.at(i);
-				continue;
-			}
+			l->next = nl;
+			l = nl;
+			lists.at(j) = lists.at(j)->next;
 		}
-		lists.at(j) = lists.at(j)->next;
-		result->next = mergeKLists(lists);
-		return result;
+		l->next = lists.front();
+		return dummy.next;
 	}
 };
 
