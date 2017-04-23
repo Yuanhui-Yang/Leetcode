@@ -49,7 +49,17 @@ using namespace std;
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-        
+        if (nums1.empty() and nums2.empty()) {
+            return 0.0;
+        }
+        vector<int> result;
+        result.insert(end(result), begin(nums1), end(nums1));
+        result.insert(end(result), begin(nums2), end(nums2));
+        inplace_merge(begin(result), next(begin(result), nums1.size()), end(result));
+        if (result.size() % 2) {
+            return result.at(result.size() / 2);
+        }
+        return 0.5 * result.at(result.size() / 2 - 1) + 0.5 * result.at(result.size() / 2);
     }
 };
 
