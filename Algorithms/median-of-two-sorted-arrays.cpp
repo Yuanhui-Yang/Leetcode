@@ -46,6 +46,13 @@ The median is (2 + 3)/2 = 2.5
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        
+    }
+};
+
 // BEGIN: Time Complexity O(n) Space Complexity O(n)
 // class Solution {
 // public:
