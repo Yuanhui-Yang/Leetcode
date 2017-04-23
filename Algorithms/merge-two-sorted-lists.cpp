@@ -40,45 +40,45 @@ struct ListNode {
 };
 
 // BEGIN: https://discuss.leetcode.com/topic/2513/a-recursive-solution
-// class Solution {
-// public:
-// 	ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-// 		if (!l1 or !l2) {
-// 			return l1 ? l1 : l2;
-// 		}
-// 		if (l1->val < l2->val) {
-// 			l1->next = mergeTwoLists(l1->next, l2);
-// 			return l1;
-// 		}
-// 		l2->next = mergeTwoLists(l1, l2->next);
-// 		return l2;
-// 	}
-// };
-// END: https://discuss.leetcode.com/topic/2513/a-recursive-solution
-
-// BEGIN: https://discuss.leetcode.com/topic/6187/14-line-clean-c-solution
 class Solution {
 public:
 	ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
 		if (!l1 or !l2) {
 			return l1 ? l1 : l2;
 		}
-		ListNode dummy(INT_MIN), *l = &dummy;
-		while (l1 and l2) {
-			if (l1->val < l2->val) {
-				l->next = l1;
-				l1 = l1->next;
-			}
-			else {
-				l->next = l2;
-				l2 = l2->next;
-			}
-			l = l->next;
+		if (l1->val < l2->val) {
+			l1->next = mergeTwoLists(l1->next, l2);
+			return l1;
 		}
-		l->next = l1 ? l1 : l2;
-		return dummy.next;
+		l2->next = mergeTwoLists(l1, l2->next);
+		return l2;
 	}
 };
+// END: https://discuss.leetcode.com/topic/2513/a-recursive-solution
+
+// BEGIN: https://discuss.leetcode.com/topic/6187/14-line-clean-c-solution
+// class Solution {
+// public:
+// 	ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+// 		if (!l1 or !l2) {
+// 			return l1 ? l1 : l2;
+// 		}
+// 		ListNode dummy(INT_MIN), *l = &dummy;
+// 		while (l1 and l2) {
+// 			if (l1->val < l2->val) {
+// 				l->next = l1;
+// 				l1 = l1->next;
+// 			}
+// 			else {
+// 				l->next = l2;
+// 				l2 = l2->next;
+// 			}
+// 			l = l->next;
+// 		}
+// 		l->next = l1 ? l1 : l2;
+// 		return dummy.next;
+// 	}
+// };
 // END: https://discuss.leetcode.com/topic/6187/14-line-clean-c-solution
 
 void gc(ListNode*& l) {
