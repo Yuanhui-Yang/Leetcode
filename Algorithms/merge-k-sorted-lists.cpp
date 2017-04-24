@@ -133,7 +133,7 @@ private:
 // };
 // END: Time Complexity O(n * log K) Space Complexity O(K)
 
-// BEGIN: Time Complexity O(n * K) Space Complexity O(1)
+// BEGIN: Time Complexity O(n * K) Space Complexity O(n)
 // class Solution {
 // public:
 // 	ListNode* mergeKLists(vector<ListNode*>& lists) {
@@ -172,9 +172,9 @@ private:
 // 		return dummy.next;
 // 	}
 // };
-// END: Time Complexity O(n * K) Space Complexity O(1)
+// END: Time Complexity O(n * K) Space Complexity O(n)
 
-// BEGIN: Time Complexity O(n * K) Space Complexity O(1)
+// BEGIN: Time Complexity O(n * K) Space Complexity O(n)
 // class Solution {
 // public:
 // 	ListNode* mergeKLists(vector<ListNode*>& lists) {
@@ -204,7 +204,7 @@ private:
 // 		return result;
 // 	}
 // };
-// END: Time Complexity O(n * K) Space Complexity O(1)
+// END: Time Complexity O(n * K) Space Complexity O(n)
 
 // BEGIN: Time Complexity O(n * K) Space Complexity O(1)
 // class Solution {
