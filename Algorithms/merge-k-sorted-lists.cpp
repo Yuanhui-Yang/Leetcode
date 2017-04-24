@@ -39,6 +39,7 @@ struct ListNode {
 	ListNode(int x) : val(x), next(NULL) {}
 };
 
+// BEGIN: Time Complexity O(n * log K) Space Complexity O(K)
 class Solution {
 public:
 	ListNode* mergeKLists(vector<ListNode*>& lists) {
@@ -48,25 +49,91 @@ public:
 		if (lists.empty()) {
 			return NULL;
 		}
+		for (size_t i = 0; i < lists.size(); i++) {
+			if (!lists.at(i)) {
+				swap(lists.at(i), lists.back());
+				lists.pop_back();
+				i--;
+			}
+		}
 		if (lists.size() == 1) {
 			return lists.front();
 		}
-		multiset<pair<ListNode*, size_t>, Comp> rbtree;
-		while (lists.size() > 1) {
-			if (rbtree.empty()) {
-				
+		multimap<ListNode*, size_t, Comp> rbtree;
+		for (size_t i = 0; i < lists.size(); i++) {
+			rbtree.insert(make_pair(lists.at(i), i));
+			lists.at(i) = lists.at(i)->next;
+		}
+		ListNode dummy(INT_MAX), *l = &dummy;
+		while (!rbtree.empty()) {
+			pair<ListNode*, size_t> p = *begin(rbtree);
+			rbtree.erase(begin(rbtree));
+			l->next = p.first;
+			l = l->next;
+			if (lists.at(p.second)) {
+				rbtree.insert(make_pair(lists.at(p.second), p.second));
+				lists.at(p.second) = lists.at(p.second)->next;
 			}
 		}
-		return lists.front();
+		return dummy.next;
 	}
 private:
 	struct Comp {
-		bool operator() (const pair<ListNode*, size_t>& a, const pair<ListNode*, size_t>& b) {
-			return a.first->val < b.first->val;
+		bool operator() (const ListNode* a, const ListNode* b) const {
+			return a->val < b->val;
 		}
 	};
 };
+// END: Time Complexity O(n * log K) Space Complexity O(K)
 
+// BEGIN: Time Complexity O(n * log K) Space Complexity O(K)
+// class Solution {
+// public:
+// 	ListNode* mergeKLists(vector<ListNode*>& lists) {
+// 		while (!lists.empty() and !lists.back()) {
+// 			lists.pop_back();
+// 		}
+// 		if (lists.empty()) {
+// 			return NULL;
+// 		}
+// 		for (size_t i = 0; i < lists.size(); i++) {
+// 			if (!lists.at(i)) {
+// 				swap(lists.at(i), lists.back());
+// 				lists.pop_back();
+// 				i--;
+// 			}
+// 		}
+// 		if (lists.size() == 1) {
+// 			return lists.front();
+// 		}
+// 		multiset<pair<ListNode*, size_t>, Comp> rbtree;
+// 		for (size_t i = 0; i < lists.size(); i++) {
+// 			rbtree.insert(make_pair(lists.at(i), i));
+// 			lists.at(i) = lists.at(i)->next;
+// 		}
+// 		ListNode dummy(INT_MAX), *l = &dummy;
+// 		while (!rbtree.empty()) {
+// 			pair<ListNode*, size_t> p = *begin(rbtree);
+// 			rbtree.erase(begin(rbtree));
+// 			l->next = p.first;
+// 			l = l->next;
+// 			if (lists.at(p.second)) {
+// 				rbtree.insert(make_pair(lists.at(p.second), p.second));
+// 				lists.at(p.second) = lists.at(p.second)->next;
+// 			}
+// 		}
+// 		return dummy.next;
+// 	}
+// private:
+// 	struct Comp {
+// 		bool operator() (const pair<ListNode*, size_t>& a, const pair<ListNode*, size_t>& b) const {
+// 			return a.first->val < b.first->val;
+// 		}
+// 	};
+// };
+// END: Time Complexity O(n * log K) Space Complexity O(K)
+
+// BEGIN: Time Complexity O(n * K) Space Complexity O(1)
 // class Solution {
 // public:
 // 	ListNode* mergeKLists(vector<ListNode*>& lists) {
@@ -105,7 +172,9 @@ private:
 // 		return dummy.next;
 // 	}
 // };
+// END: Time Complexity O(n * K) Space Complexity O(1)
 
+// BEGIN: Time Complexity O(n * K) Space Complexity O(1)
 // class Solution {
 // public:
 // 	ListNode* mergeKLists(vector<ListNode*>& lists) {
@@ -135,7 +204,9 @@ private:
 // 		return result;
 // 	}
 // };
+// END: Time Complexity O(n * K) Space Complexity O(1)
 
+// BEGIN: Time Complexity O(n * K) Space Complexity O(1)
 // class Solution {
 // public:
 // 	ListNode* mergeKLists(vector<ListNode*>& lists) {
@@ -170,6 +241,7 @@ private:
 // 		return dummy.next;
 // 	}
 // };
+// END: Time Complexity O(n * K) Space Complexity O(1)
 
 void gc(ListNode*& l) {
 	if (l) {
@@ -185,18 +257,43 @@ int main(void) {
 	vector<ListNode*> lists;
 	vector<int> result, answer;
 
-	lists.resize(3);
+	lists.resize(2);
 	lists.at(0) = new ListNode(1);
-	lists.at(0)->next = new ListNode(2);
-	lists.at(0)->next->next = new ListNode(3);
-	lists.at(1) = new ListNode(-3);
-	lists.at(1)->next = new ListNode(-2);
-	lists.at(1)->next->next = new ListNode(-1);
-	lists.at(2) = new ListNode(11);
-	lists.at(2)->next = new ListNode(12);
-	lists.at(2)->next->next = new ListNode(13);
-	answer = {-3, -2, -1, 1, 2, 3, 11, 12, 13};
+	lists.at(1) = new ListNode(0);
+	answer = {0, 1};
 	l = solution.mergeKLists(lists);
+	result.clear();
+	for (ListNode *i = l; i; i = i->next) {
+		result.push_back(i->val);
+	}
+	assert(answer == result);
+	gc(l);
+
+	lists.resize(2);
+	lists.at(0) = NULL;
+	lists.at(1) = new ListNode(1);
+	answer = {1};
+	l = solution.mergeKLists(lists);
+	result.clear();
+	for (ListNode *i = l; i; i = i->next) {
+		result.push_back(i->val);
+	}
+	assert(answer == result);
+	gc(l);
+
+	lists.resize(3);
+	lists.at(0) = new ListNode(-1);
+	lists.at(0)->next = new ListNode(1);
+	lists.at(1) = new ListNode(-3);
+	lists.at(1)->next = new ListNode(1);
+	lists.at(1)->next->next = new ListNode(4);
+	lists.at(2) = new ListNode(-2);
+	lists.at(2)->next = new ListNode(-1);
+	lists.at(2)->next->next = new ListNode(0);
+	lists.at(2)->next->next->next = new ListNode(2);
+	answer = {-3, -2, -1, -1, 0, 1, 1, 2, 4};
+	l = solution.mergeKLists(lists);
+	result.clear();
 	for (ListNode *i = l; i; i = i->next) {
 		result.push_back(i->val);
 	}
