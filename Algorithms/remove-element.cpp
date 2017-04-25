@@ -45,18 +45,20 @@ using namespace std;
 class Solution {
 public:
 	int removeElement(vector<int>& nums, int val) {
+		for (size_t i = 0, n = nums.size(); i < n; i++) {
 
+		}
 	}
 };
 
 int main(void) {
 	Solution solution;
-	vector<int> nums;
+	vector<int> nums, ;
 	int val = 0, result = 0;
 
 	nums = {3, 2, 2, 3};
 	val = 3;
-	
+
 
 	cout << "\nPassed All\n";
 	return 0;
