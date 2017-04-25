@@ -48,47 +48,47 @@ using namespace std;
 
 class Solution {
 public:
-    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-        
-    }
+	double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+
+	}
 };
 
 // BEGIN: Time Complexity O(n) Space Complexity O(n)
 // class Solution {
 // public:
-//     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-//         if (nums1.empty() and nums2.empty()) {
-//             return 0.0;
-//         }
-//         vector<int> result;
-//         result.insert(end(result), begin(nums1), end(nums1));
-//         result.insert(end(result), begin(nums2), end(nums2));
-//         inplace_merge(begin(result), next(begin(result), nums1.size()), end(result));
-//         if (result.size() % 2) {
-//             return result.at(result.size() / 2);
-//         }
-//         return 0.5 * result.at(result.size() / 2 - 1) + 0.5 * result.at(result.size() / 2);
-//     }
+// 	double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+// 		if (nums1.empty() and nums2.empty()) {
+// 			return 0.0;
+// 		}
+// 		vector<int> result;
+// 		result.insert(end(result), begin(nums1), end(nums1));
+// 		result.insert(end(result), begin(nums2), end(nums2));
+// 		inplace_merge(begin(result), next(begin(result), nums1.size()), end(result));
+// 		if (result.size() % 2) {
+// 			return result.at(result.size() / 2);
+// 		}
+// 		return 0.5 * result.at(result.size() / 2 - 1) + 0.5 * result.at(result.size() / 2);
+// 	}
 // };
 // END: Time Complexity O(n) Space Complexity O(n)
 
 int main(void) {
-    Solution solution;
-    vector<int> nums1, nums2;
-    double result = 0, answer = 0;
+	Solution solution;
+	vector<int> nums1, nums2;
+	double result = 0, answer = 0;
 
-    nums1 = {1, 3};
-    nums2 = {2};
-    answer = 2;
-    result = solution.findMedianSortedArrays(nums1, nums2);
-    assert(fabs(answer - result) < DBL_EPSILON);
+	nums1 = {1, 3};
+	nums2 = {2};
+	answer = 2;
+	result = solution.findMedianSortedArrays(nums1, nums2);
+	assert(fabs(answer - result) < DBL_EPSILON);
 
-    nums1 = {1, 2};
-    nums2 = {3, 4};
-    answer = 2.5;
-    result = solution.findMedianSortedArrays(nums1, nums2);
-    assert(fabs(answer - result) < DBL_EPSILON);
+	nums1 = {1, 2};
+	nums2 = {3, 4};
+	answer = 2.5;
+	result = solution.findMedianSortedArrays(nums1, nums2);
+	assert(fabs(answer - result) < DBL_EPSILON);
 
-    cout << "\nPassed All\n";
-    return 0;
+	cout << "\nPassed All\n";
+	return 0;
 }
