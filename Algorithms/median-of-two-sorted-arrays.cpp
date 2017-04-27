@@ -74,10 +74,7 @@ private:
 			return min(max(nums1.at(b1), nums2.at(b2)), min(nums1.at(b1 + 1), nums2.at(b2 + 1)));
 		}
 		size_t i = min(b1 + k / 2, nums1.size() - 1), j = min(b2 + k / 2, nums2.size() - 1);
-		if (nums1.at(i) < nums2.at(j)) {
-			return kthElement(i, nums1, b2, nums2, k + b1 - i);
-		}
-		return kthElement(b1, nums1, j, nums2, k + b2 - j);
+		return nums1.at(i) < nums2.at(j) ? kthElement(i, nums1, b2, nums2, k + b1 - i) : kthElement(b1, nums1, j, nums2, k + b2 - j);
 	}
 };
 
