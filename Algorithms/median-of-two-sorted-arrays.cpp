@@ -53,16 +53,17 @@ public:
 			return 0;
 		}
 		size_t l = nums1.size() + nums2.size();
-		if (l % 2) {
-			return kthElement(0, nums1, 0, nums2, l / 2);			
-		}
-		return 0.5 * kthElement(0, nums1, 0, nums2, l / 2 - 1) + 0.5 * kthElement(0, nums1, 0, nums2, l / 2);
+		return l % 2 ? kthElement(0, nums1, 0, nums2, l / 2) : 0.5 * kthElement(0, nums1, 0, nums2, l / 2 - 1) + 0.5 * kthElement(0, nums1, 0, nums2, l / 2);
 	}
 private:
 	int kthElement(size_t b1, vector<int>& nums1, size_t b2, vector<int>& nums2, size_t k) {
 		if (nums2.size() <= b2) {
 			return nums1.at(b1 + k);
-		}	
+		}
+		if (nums2.size() == b2 + 1) {
+			size_t d = distance(next(begin(nums1), b1), lower_bound(next(begin(nums1), b1), end(nums1), nums2.back()));
+			return d == k ? nums2.back() : nums1.at(b1 + k - (d < k));
+		}
 		if (nums1.size() + b2 < nums2.size() + b1) {
 			return kthElement(b2, nums2, b1, nums1, k);
 		}
@@ -70,11 +71,7 @@ private:
 			return min(nums1.at(b1), nums2.at(b2));
 		}
 		if (k == 1) {
-			return max(nums1.at(b1), nums2.at(b2));
-		}
-		if (nums2.size() == b2 + 1) {
-			size_t d = distance(begin(nums1), lower_bound(begin(nums1), end(nums1), nums2.back()));
-			return d == k ? nums2.back() : nums1.at(k - (d < k));
+			return min(max(nums1.at(b1), nums2.at(b2)), min(nums1.at(b1 + 1), nums2.at(b2 + 1)));
 		}
 		size_t i = min(b1 + k / 2, nums1.size() - 1), j = min(b2 + k / 2, nums2.size() - 1);
 		if (nums1.at(i) < nums2.at(j)) {
@@ -108,6 +105,30 @@ int main(void) {
 	vector<int> nums1, nums2;
 	double result = 0, answer = 0;
 
+	nums1 = {1, 5};
+	nums2 = {2, 3, 4, 6, 7, 8, 9, 10};
+	answer = 5.5;
+	result = solution.findMedianSortedArrays(nums1, nums2); 
+	assert(fabs(answer - result) < DBL_EPSILON);
+
+	nums1 = {1, 2};
+	nums2 = {3, 4, 5, 6, 7, 8};
+	answer = 4.5;
+	result = solution.findMedianSortedArrays(nums1, nums2); 
+	assert(fabs(answer - result) < DBL_EPSILON);
+
+	nums1 = {1, 2, 6};
+	nums2 = {3, 4, 5};
+	answer = 3.5;
+	result = solution.findMedianSortedArrays(nums1, nums2); 
+	assert(fabs(answer - result) < DBL_EPSILON);
+
+	nums1 = {1, 4};
+	nums2 = {2, 3, 5, 6};
+	answer = 3.5;
+	result = solution.findMedianSortedArrays(nums1, nums2);
+	assert(fabs(answer - result) < DBL_EPSILON);
+
 	nums1 = {1};
 	nums2 = {2, 3, 4};
 	answer = 2.5;
@@ -124,7 +145,6 @@ int main(void) {
 	nums2 = {3, 4};
 	answer = 2.5;
 	result = solution.findMedianSortedArrays(nums1, nums2);
-	cout << result << '\n';
 	assert(fabs(answer - result) < DBL_EPSILON);
 
 	cout << "\nPassed All\n";
