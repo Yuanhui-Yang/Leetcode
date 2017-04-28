@@ -55,7 +55,7 @@ using namespace std;
 class LFUCache {
 public:
 	LFUCache(int capacity) {
-		this->capacity = capacity;
+		this->capacity = capacity > 0 ? capacity : 0;
 		this->l.clear();
 		this->h.clear();
 	}
@@ -67,67 +67,65 @@ public:
 		pair<list<pair<int, list<pair<int, int>>>>::iterator, list<pair<int, int>>::iterator> p = h.at(key);
 		list<pair<int, list<pair<int, int>>>>::iterator x = p.first;
 		list<pair<int, int>>::iterator y = p.second;
-		int value = y->second;
 		if (next(x) == end(l) or x->first + 1 < next(x)->first) {
-			l.insert(next(x), make_pair(x->first + 1, list<pair<int, int>>({*y})));
+			list<pair<int, int>> nx;
+			nx.splice(end(nx), x->second, y);
+			l.insert(next(x), make_pair(x->first + 1, nx));
 			h.at(key) = make_pair(next(x), prev(end(next(x)->second)));
-			x->second.erase(y);
 			if (x->second.empty()) {
 				l.erase(x);
 			}
-			return value;
+			return nx.back().second;
 		}
-		next(x)->second.push_back(*y);
+		next(x)->second.splice(end(next(x)->second), x->second, y);
 		h.at(key) = make_pair(next(x), prev(end(next(x)->second)));
-		x->second.erase(y);
 		if (x->second.empty()) {
 			l.erase(x);
 		}
-		return value;
+		return y->second;
 	}
 
 	void put(int key, int value) {
 		if (capacity == 0) {
-			return;
+			return ;
 		}
 		if (!h.empty() and h.count(key)) {
 			pair<list<pair<int, list<pair<int, int>>>>::iterator, list<pair<int, int>>::iterator> p = h.at(key);
 			list<pair<int, list<pair<int, int>>>>::iterator x = p.first;
 			list<pair<int, int>>::iterator y = p.second;
+			y->second = value;
 			if (next(x) == end(l) or x->first + 1 < next(x)->first) {
-				l.insert(next(x), make_pair(x->first + 1, list<pair<int, int>>({make_pair(key, value)})));
+				list<pair<int, int>> nx;
+				nx.splice(end(nx), x->second, y);
+				l.insert(next(x), make_pair(x->first + 1, nx));
 				h.at(key) = make_pair(next(x), prev(end(next(x)->second)));
-				x->second.erase(y);
 				if (x->second.empty()) {
 					l.erase(x);
 				}
-				return;
+				return ;
 			}
-			next(x)->second.push_back(make_pair(key, value));
-			h.at(key) = make_pair(next(x), prev(end(next(x)->second)));
-			x->second.erase(y);
+			next(x)->second.splice(end(next(x)->second), x->second, y);
+			h.at(key).first = next(x);
 			if (x->second.empty()) {
 				l.erase(x);
 			}
 			return;
 		}
-		if (h.size() < capacity) {
-			if (l.empty() or l.front().first > 1) {
-				l.push_front(make_pair(1, list<pair<int, int>>({make_pair(key, value)})));
-				h[key] = make_pair(begin(l), begin(l.front().second));
-				return;
+		if (h.size() == capacity) {
+			h.erase(l.front().second.front().first);
+			l.front().second.pop_front();
+			if (l.front().second.empty()) {
+				l.pop_front();
 			}
-			l.front().second.push_back(make_pair(key, value));
-			h[key] = make_pair(begin(l), prev(end(l.front().second)));
+		}
+		if (l.empty() or 1 < begin(l)->first) {
+			list<pair<int, int>> nx({make_pair(key, value)});
+			l.push_front(make_pair(1, nx));
+			h[key] = make_pair(begin(l), prev(end(begin(l)->second)));
 			return;
 		}
-		h.erase(l.front().second.front().first);
-		l.front().second.pop_front();
-		if (l.front().second.empty()) {
-			l.pop_front();
-		}
-		put(key, value);
-		return;
+		l.front().second.push_back(make_pair(key, value));
+		h[key] = make_pair(begin(l), prev(end(begin(l)->second)));
 	}
 private:
 	size_t capacity;
@@ -142,7 +140,7 @@ private:
  * obj.put(key,value);
  */
 
-int main(void) {
+ int main(void) {
 	LFUCache cache(2);
 
 	assert(-1 == cache.get(2));
