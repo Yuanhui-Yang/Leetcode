@@ -41,50 +41,36 @@ public:
 	// Encodes a URL to a shortened URL.
 	string encode(string longUrl) {
 		if (!h1.empty() and h1.count(longUrl)) {
-			const list<pair<string, size_t>>::iterator p = h1.at(longUrl);
-			string shortUrl(shortUrlSize, table.front());
-			for (size_t shortUrlKey = p->second, i = shortUrlSize - 1; shortUrlKey and i != string::npos; shortUrlKey /= table.size(), i--) {
-				const size_t j = shortUrlKey % table.size();
-				shortUrl.at(i) = table.at(j);
-			}
-			return shortUrl;
+			return h1.at(longUrl)->second;
 		}
 		string shortUrl(shortUrlSize, table.front());
-		size_t shortUrlKey = 0;
 		do {
-			shortUrlKey = 0;
-			for (size_t i = shortUrlSize - 1; i != string::npos; i--) {
-				const size_t j = rand() % table.size();
-				shortUrlKey = shortUrlKey * table.size() + j;
-				const char ch = table.at(j);
-				shortUrl.at(i) = ch;
+			for (string::reverse_iterator rit = shortUrl.rbegin(); rit != shortUrl.rend(); rit++) {
+			// for (string::reverse_iterator rit = rbegin(shortUrl); rit != rend(shortUrl); rit++) {
+				const size_t id = rand() % table.size();
+				const char ch = table.at(id);
+				*rit = ch;
 			}
-		} while (!h2.empty() and h2.count(shortUrlKey));
-		l.push_back(make_pair(longUrl, shortUrlKey));
+		} while (!h2.empty() and h2.count(shortUrl));
+		l.push_back(make_pair(longUrl, shortUrl));
 		h1[longUrl] = prev(end(l));
-		h2[shortUrlKey] = prev(end(l));
+		h2[shortUrl] = prev(end(l));
 		return shortUrl;
 	}
 
 	// Decodes a shortened URL to its original URL.
 	string decode(string shortUrl) {
-		size_t shortUrlKey = 0;
-		for (size_t i = shortUrlSize - 1; i != string::npos; i--) {
-			const char ch = shortUrl.at(i);
-			const size_t id = '0' <= ch and ch <= '9' ? ch - '0' : 'a' <= ch and ch <= 'z' ? 10 + ch - 'a' : 36 + ch - 'A';
-			shortUrlKey = shortUrlKey * table.size() + id;
-		}
-		if (h2.empty() or !h2.count(shortUrlKey)) {
+		if (h2.empty() or !h2.count(shortUrl)) {
 			return "";
 		}
-		return h2.at(shortUrlKey)->first;
+		return h2.at(shortUrl)->first;
 	}
 private:
 	size_t shortUrlSize = 6;
 	string table = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	list<pair<string, size_t>> l;
-	unordered_map<string, list<pair<string, size_t>>::iterator> h1;
-	unordered_map<size_t, list<pair<string, size_t>>::iterator> h2;
+	list<pair<string, string>> l;
+	unordered_map<string, list<pair<string, string>>::iterator> h1;
+	unordered_map<string, list<pair<string, string>>::iterator> h2;
 };
 
 // Your Solution object will be instantiated and called as such:
