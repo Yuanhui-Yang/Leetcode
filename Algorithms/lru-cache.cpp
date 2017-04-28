@@ -54,16 +54,13 @@ using namespace std;
 class LRUCache {
 public:
 	LRUCache(int capacity) {
-		this->capacity = capacity;
+		this->capacity = capacity > 0 ? capacity : 0;	
 		this->l.clear();
 		this->h.clear();
 	}
 
 	int get(int key) {
-		if (capacity == 0) {
-			return -1;
-		}
-		if (h.empty() or !h.count(key)) {
+		if (capacity == 0 or h.empty() or !h.count(key)) {
 			return -1;
 		}
 		l.splice(end(l), l, h.at(key));
@@ -72,7 +69,7 @@ public:
 
 	void put(int key, int value) {
 		if (capacity == 0) {
-			return;
+			return ;
 		}
 		if (!h.empty() and h.count(key)) {
 			l.splice(end(l), l, h.at(key));
@@ -90,9 +87,9 @@ public:
 		h[key] = prev(end(l));
 	}
 private:
-    size_t capacity;
-    list<pair<int, int>> l;
-    unordered_map<int, list<pair<int, int>>::iterator> h;
+	size_t capacity;
+	list<pair<int, int>> l;
+	unordered_map<int, list<pair<int, int>>::iterator> h;
 };
 
 /**
