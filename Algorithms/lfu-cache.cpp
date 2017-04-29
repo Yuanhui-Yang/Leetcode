@@ -64,8 +64,8 @@ public:
 		if (capacity == 0 or h.empty() or !h.count(key)) {
 			return -1;
 		}
-		pair<list<pair<int, list<pair<int, int>>>>::iterator, list<pair<int, int>>::iterator> p = h.at(key);
-		list<pair<int, list<pair<int, int>>>>::iterator x = p.first;
+		pair<list<pair<size_t, list<pair<int, int>>>>::iterator, list<pair<int, int>>::iterator> p = h.at(key);
+		list<pair<size_t, list<pair<int, int>>>>::iterator x = p.first;
 		list<pair<int, int>>::iterator y = p.second;
 		if (next(x) == end(l) or x->first + 1 < next(x)->first) {
 			list<pair<int, int>> nx;
@@ -90,8 +90,8 @@ public:
 			return ;
 		}
 		if (!h.empty() and h.count(key)) {
-			pair<list<pair<int, list<pair<int, int>>>>::iterator, list<pair<int, int>>::iterator> p = h.at(key);
-			list<pair<int, list<pair<int, int>>>>::iterator x = p.first;
+			pair<list<pair<size_t, list<pair<int, int>>>>::iterator, list<pair<int, int>>::iterator> p = h.at(key);
+			list<pair<size_t, list<pair<int, int>>>>::iterator x = p.first;
 			list<pair<int, int>>::iterator y = p.second;
 			y->second = value;
 			if (next(x) == end(l) or x->first + 1 < next(x)->first) {
@@ -129,8 +129,8 @@ public:
 	}
 private:
 	size_t capacity;
-	list<pair<int, list<pair<int, int>>>> l;
-	unordered_map<int, pair<list<pair<int, list<pair<int, int>>>>::iterator, list<pair<int, int>>::iterator>> h;
+	list<pair<size_t, list<pair<int, int>>>> l;
+	unordered_map<int, pair<list<pair<size_t, list<pair<int, int>>>>::iterator, list<pair<int, int>>::iterator>> h;
 };
 
 /**
