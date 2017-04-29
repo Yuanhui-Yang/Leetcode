@@ -71,12 +71,7 @@ public:
 				l.pop_front();
 			}
 		}
-		string shortUrl;
-		for (size_t i = 0; i < shortUrlSize; i++) {
-			size_t id = rand() % table.size();
-			char ch = table.at(id);
-			shortUrl.push_back(ch);
-		}
+		string shortUrl = genShortUrl();
 		if (l.empty() or 1 < l.front().first) {
 			list<pair<string, string>> nx({make_pair(longUrl, shortUrl)});
 			l.push_front(make_pair(1, nx));
@@ -116,6 +111,17 @@ public:
 		}
 		return longUrl;
 	}
+	void debug(void) {
+		cout << "\n===\n";
+		for (const auto &i : l) {
+			cout << i.first << ": ";
+			for (const auto &j : i.second) {
+				cout << '(' << j.first << ',' << j.second << ") ";
+			}
+			cout << '\n';
+		}
+		cout << "===\n";
+	}
 private:
 	size_t shortUrlSize;
 	size_t cacheCapacity;
@@ -123,6 +129,18 @@ private:
 	list<pair<size_t, list<pair<string, string>>>> l;
 	unordered_map<string, pair<list<pair<size_t, list<pair<string, string>>>>::iterator, list<pair<string, string>>::iterator>> h1;
 	unordered_map<string, pair<list<pair<size_t, list<pair<string, string>>>>::iterator, list<pair<string, string>>::iterator>> h2;
+	
+	string genShortUrl(void) {
+		string shortUrl(shortUrlSize, table.front());
+		do {
+			for (auto &i : shortUrl) {
+				size_t id = rand() % table.size();
+				char ch = table.at(id);
+				i = ch;
+			}
+		} while (!h2.empty() and h2.count(shortUrl));
+		return shortUrl;
+	}
 };
 
 int main(void) {
@@ -133,37 +151,36 @@ int main(void) {
 	a = tinyurllfucache.decode("https://www.google.com");
 	assert(a.empty());
 	b = tinyurllfucache.encode("https://www.google.com");
+	tinyurllfucache.debug();
 	c = b;
 	c.front()++;
 	d = tinyurllfucache.decode(c);
 	assert(d.empty());
 	e = tinyurllfucache.encode("https://www.facebook.com");
 	f = tinyurllfucache.encode("https://www.linkedin.com");
+	tinyurllfucache.debug();
 	g = tinyurllfucache.decode(b);
 	assert(g.empty());
 	h = tinyurllfucache.decode(e);
+	tinyurllfucache.debug();
 	assert("https://www.facebook.com" == h);
 	i = tinyurllfucache.decode(f);
+	tinyurllfucache.debug();
 	assert("https://www.linkedin.com" == i);
 	j = tinyurllfucache.encode("https://www.facebook.com");
+	tinyurllfucache.debug();
 	assert(e == j);
 	k = tinyurllfucache.encode("https://www.facebook.com");
+	tinyurllfucache.debug();
 	assert(e == k);
 	l = tinyurllfucache.encode("https://www.facebook.com");
+	tinyurllfucache.debug();
 	assert(e == k);
 	m = tinyurllfucache.encode("https://www.google.com");
+	tinyurllfucache.debug();
 	n = tinyurllfucache.decode(m);
+	tinyurllfucache.debug();
 	assert("https://www.google.com" == n);
-
-	// BEGIN: Debug
-	// for (const auto &i : tinyurllfucache.l) {
-	// 	cout << i.first << ": ";
-	// 	for (const auto &j : i.second) {
-	// 		cout << '(' << j.first << ',' << j.second << ") ";
-	// 	}
-	// 	cout << '\n';
-	// }
-	// END: Debug
 
 	cout << "\nPassed All\n";
 	return 0;
