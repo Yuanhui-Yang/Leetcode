@@ -78,7 +78,7 @@ public:
 			return nx.back().second;
 		}
 		next(x)->second.splice(end(next(x)->second), x->second, y);
-		h.at(key) = make_pair(next(x), prev(end(next(x)->second)));
+		h.at(key).first = next(x);
 		if (x->second.empty()) {
 			l.erase(x);
 		}
