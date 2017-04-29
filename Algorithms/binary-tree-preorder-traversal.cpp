@@ -61,19 +61,34 @@ void gc(TreeNode*& root) {
 }
 
 // BEGIN: Time Complexity O(n) Space Complexity O(1)
-// class Solution {
-// public:
-// 	vector<int> preorderTraversal(TreeNode* root) {
-// 		vector<int> result;
-// 		while (root) {
-// 			result.push_back(root->val);
-// 			if (root->left) {
-				
-// 			}
-// 		}
-// 		return result;
-// 	}
-// };
+class Solution {
+public:
+	vector<int> preorderTraversal(TreeNode* root) {
+		vector<int> result;
+		while (root) {
+			if (!root->left) {
+				result.push_back(root->val);
+				root = root->right;
+			}
+			else {
+				TreeNode *predecessor = root->left;
+				while (predecessor->right and predecessor->right != root) {
+					predecessor = predecessor->right;
+				}
+				if (!predecessor->right) {
+					result.push_back(root->val);
+					predecessor->right = root;
+					root = root->left;
+				}
+				else {
+					predecessor->right = NULL;
+					root = root->right;
+				}
+			}
+		}
+		return result;
+	}
+};
 // END: Time Complexity O(n) Space Complexity O(1)
 
 // BEGIN: https://discuss.leetcode.com/topic/30632/preorder-inorder-and-postorder-iteratively-summarization
