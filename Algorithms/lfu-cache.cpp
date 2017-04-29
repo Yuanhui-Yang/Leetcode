@@ -121,11 +121,11 @@ public:
 		if (l.empty() or 1 < begin(l)->first) {
 			list<pair<int, int>> nx({make_pair(key, value)});
 			l.push_front(make_pair(1, nx));
-			h[key] = make_pair(begin(l), prev(end(begin(l)->second)));
+			h[key] = make_pair(begin(l), prev(end(l.front().second)));
 			return;
 		}
 		l.front().second.push_back(make_pair(key, value));
-		h[key] = make_pair(begin(l), prev(end(begin(l)->second)));
+		h[key] = make_pair(begin(l), prev(end(l.front().second)));
 	}
 private:
 	size_t capacity;
