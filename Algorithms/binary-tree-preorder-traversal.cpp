@@ -60,6 +60,7 @@ void gc(TreeNode*& root) {
 	}
 }
 
+// BEGIN: http://www.cnblogs.com/AnnieKim/archive/2013/06/15/morristraversal.html
 // BEGIN: Time Complexity O(n) Space Complexity O(1)
 class Solution {
 public:
@@ -88,6 +89,7 @@ public:
 	}
 };
 // END: Time Complexity O(n) Space Complexity O(1)
+// END: http://www.cnblogs.com/AnnieKim/archive/2013/06/15/morristraversal.html
 
 // BEGIN: https://discuss.leetcode.com/topic/30632/preorder-inorder-and-postorder-iteratively-summarization
 // BEGIN: Time Complexity O(n) Space Complexity O(n)
