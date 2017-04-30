@@ -449,3 +449,4 @@ int main(void) {
 | 546 | [Remove Boxes](https://leetcode.com/problems/remove-boxes/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-boxes.cpp) | Hard |
 | 554 | [Brick Wall](https://leetcode.com/problems/brick-wall/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/brick-wall.cpp) | Medium |
 | 557 | [Reverse Words in a String III](https://leetcode.com/problems/reverse-words-in-a-string-iii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reverse-words-in-a-string-iii.cpp) | Easy |
+| 560 | [Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/subarray-sum-equals-k.cpp) | Medium |
