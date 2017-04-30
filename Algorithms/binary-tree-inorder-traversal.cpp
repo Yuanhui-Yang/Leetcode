@@ -60,20 +60,73 @@ void gc(TreeNode*& root) {
 	}
 }
 
-// BEGIN: Time Complexity O(n) Space Complexity O(n)
+// BEGIN: http://www.cnblogs.com/AnnieKim/archive/2013/06/15/morristraversal.html
+// BEGIN: Time Complexity O(n) Space Complexity O(1)
 class Solution {
 public:
 	vector<int> inorderTraversal(TreeNode* root) {
 		vector<int> result;
-		if (root) {
-			vector<int> left = inorderTraversal(root->left), right = inorderTraversal(root->right);
-			result.insert(end(result), begin(left), end(left));
+		while (root) {
+			if (!root->left) {
+				result.push_back(root->val);
+				root = root->right;
+				continue;
+			}
+			TreeNode *predecessor = root->left;
+			while(predecessor->right and predecessor->right != root) {
+				predecessor = predecessor->right;
+			}
+			if (!predecessor->right) {
+				predecessor->right = root;
+				root = root->left;
+				continue;
+			}
 			result.push_back(root->val);
-			result.insert(end(result), begin(right), end(right));
+			predecessor->right = NULL;
+			root = root->right;
 		}
 		return result;
 	}
 };
+// END: Time Complexity O(n) Space Complexity O(1)
+// END: http://www.cnblogs.com/AnnieKim/archive/2013/06/15/morristraversal.html
+
+// BEGIN: Time Complexity O(n) Space Complexity O(n)
+// class Solution {
+// public:
+// 	vector<int> inorderTraversal(TreeNode* root) {
+// 		vector<int> result;
+// 		list<TreeNode*> list;
+// 		while (!list.empty() or root) {
+// 			if (root) {
+// 				list.push_back(root);
+// 				root = root->left;
+// 			}
+// 			else {
+// 				result.push_back(list.back()->val);
+// 				root = list.back()->right;
+// 				list.pop_back();
+// 			}
+// 		}
+// 		return result;
+// 	}
+// };
+// END: Time Complexity O(n) Space Complexity O(n)
+
+// BEGIN: Time Complexity O(n) Space Complexity O(n)
+// class Solution {
+// public:
+// 	vector<int> inorderTraversal(TreeNode* root) {
+// 		vector<int> result;
+// 		if (root) {
+// 			vector<int> left = inorderTraversal(root->left), right = inorderTraversal(root->right);
+// 			result.insert(end(result), begin(left), end(left));
+// 			result.push_back(root->val);
+// 			result.insert(end(result), begin(right), end(right));
+// 		}
+// 		return result;
+// 	}
+// };
 // END: Time Complexity O(n) Space Complexity O(n)
 
 int main(void) {
