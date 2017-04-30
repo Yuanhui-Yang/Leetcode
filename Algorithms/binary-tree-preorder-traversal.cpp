@@ -69,22 +69,20 @@ public:
 			if (!root->left) {
 				result.push_back(root->val);
 				root = root->right;
+				continue;
 			}
-			else {
-				TreeNode *predecessor = root->left;
-				while (predecessor->right and predecessor->right != root) {
-					predecessor = predecessor->right;
-				}
-				if (!predecessor->right) {
-					result.push_back(root->val);
-					predecessor->right = root;
-					root = root->left;
-				}
-				else {
-					predecessor->right = NULL;
-					root = root->right;
-				}
+			TreeNode *predecessor = root->left;
+			while (predecessor->right and predecessor->right != root) {
+				predecessor = predecessor->right;
 			}
+			if (!predecessor->right) {
+				result.push_back(root->val);
+				predecessor->right = root;
+				root = root->left;
+				continue;
+			}
+			predecessor->right = NULL;
+			root = root->right;
 		}
 		return result;
 	}
