@@ -452,3 +452,4 @@ int main(void) {
 | 560 | [Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/subarray-sum-equals-k.cpp) | Medium |
 | 566 | [Reshape the Matrix](https://leetcode.com/problems/reshape-the-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reshape-the-matrix.cpp) | Easy |
 | 567 | [Permutation in String](https://leetcode.com/problems/permutation-in-string/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/permutation-in-string.cpp) | Medium |
+| 568 | [Maximum Vacation Days](https://leetcode.com/problems/maximum-vacation-days/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-vacation-days.cpp) | Hard |
