@@ -51,9 +51,63 @@ struct TreeNode {
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+void gc(TreeNode*& root) {
+	if (root) {
+		gc(root->left);
+		gc(root->right);
+		delete root;
+		root = NULL;
+	}
+}
+
 class Solution {
 public:
 	vector<int> postorderTraversal(TreeNode* root) {
-
+		vector<int> result;
+		list<TreeNode*> list;
+		while (!list.empty() or root) {
+			if (root) {
+				result.push_back(root->val);
+				list.push_back(root);
+				root = root->right;
+			}
+			else {
+				root = list.back()->left;
+				list.pop_back();
+			}
+		}
+		reverse(begin(result), end(result));
+		return result;
 	}
 };
+
+// class Solution {
+// public:
+// 	vector<int> postorderTraversal(TreeNode* root) {
+// 		vector<int> result;
+// 		if (root) {
+// 			vector<int> left = postorderTraversal(root->left), right = postorderTraversal(root->right);
+// 			result.insert(end(result), begin(left), end(left));
+// 			result.insert(end(result), begin(right), end(right));
+// 			result.push_back(root->val);
+// 		}
+// 		return result;
+// 	}
+// };
+
+int main(void) {
+	Solution solution;
+	TreeNode *root = NULL;
+	vector<int> result, answer;
+
+	root = new TreeNode(1);
+	root->right = new TreeNode(2);
+	root->right->left = new TreeNode(3);
+	result = solution.postorderTraversal(root);
+	gc(root);
+	answer = {3, 2, 1};
+	assert(answer == result);
+
+	cout << "\nPassed All\n";
+	return 0;
+}
