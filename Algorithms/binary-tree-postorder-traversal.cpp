@@ -64,22 +64,50 @@ class Solution {
 public:
 	vector<int> postorderTraversal(TreeNode* root) {
 		vector<int> result;
-		list<TreeNode*> list;
-		while (!list.empty() or root) {
-			if (root) {
+		while (root) {
+			if (!root->right) {
 				result.push_back(root->val);
-				list.push_back(root);
+				root = root->left;
+				continue;
+			}
+			TreeNode *predecessor = root->right;
+			while (predecessor->left and predecessor->left != root) {
+				predecessor = predecessor->left;
+			}
+			if (!predecessor->left) {
+				result.push_back(root->val);
+				predecessor->left = root;
 				root = root->right;
+				continue;
 			}
-			else {
-				root = list.back()->left;
-				list.pop_back();
-			}
+			predecessor->left = NULL;
+			root = root->left;
 		}
 		reverse(begin(result), end(result));
 		return result;
 	}
 };
+
+// class Solution {
+// public:
+// 	vector<int> postorderTraversal(TreeNode* root) {
+// 		vector<int> result;
+// 		list<TreeNode*> list;
+// 		while (!list.empty() or root) {
+// 			if (root) {
+// 				result.push_back(root->val);
+// 				list.push_back(root);
+// 				root = root->right;
+// 			}
+// 			else {
+// 				root = list.back()->left;
+// 				list.pop_back();
+// 			}
+// 		}
+// 		reverse(begin(result), end(result));
+// 		return result;
+// 	}
+// };
 
 // class Solution {
 // public:
