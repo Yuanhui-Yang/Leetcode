@@ -67,15 +67,16 @@ using namespace std;
 class Solution {
 public:
 	vector<vector<int>> matrixReshape(vector<vector<int>>& nums, int r, int c) {
-		int p = nums.size(), q = nums.front().size();
+		const int p = nums.size(), q = nums.front().size();
 		if (p * q != r * c) {
 			return nums;
 		}
 		vector<vector<int>> result(r, vector<int>(c, 0));
-		for (int i = 0, k = 0; i < p; i++) {
-			for (int j = 0; j < q; j++) {
-				int x = k / c, y = k % c;
-				result.at(x).at(y) = nums.at(i).at(j);
+		size_t k = 0;
+		for (const auto &i : nums) {
+			for (const auto &j : i) {
+				size_t x = k / c, y = k % c;
+				result.at(x).at(y) = j;
 				k++;
 			}
 		}
