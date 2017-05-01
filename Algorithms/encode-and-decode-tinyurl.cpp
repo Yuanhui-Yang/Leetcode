@@ -45,11 +45,10 @@ public:
 		}
 		string shortUrl(shortUrlSize, table.front());
 		do {
-			for (string::reverse_iterator rit = shortUrl.rbegin(); rit != shortUrl.rend(); rit++) {
-			// for (string::reverse_iterator rit = rbegin(shortUrl); rit != rend(shortUrl); rit++) {
-				const size_t id = rand() % table.size();
-				const char ch = table.at(id);
-				*rit = ch;
+			for (auto &i : shortUrl) {
+				int id = rand() % table.size();
+				char ch = table.at(id);
+				i = ch;
 			}
 		} while (!h2.empty() and h2.count(shortUrl));
 		l.push_back(make_pair(longUrl, shortUrl));
@@ -58,7 +57,7 @@ public:
 		return shortUrl;
 	}
 
-	// Decodes a shortened URL to its original URL.
+		// Decodes a shortened URL to its original URL.
 	string decode(string shortUrl) {
 		if (h2.empty() or !h2.count(shortUrl)) {
 			return "";
@@ -69,8 +68,7 @@ private:
 	size_t shortUrlSize = 6;
 	string table = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	list<pair<string, string>> l;
-	unordered_map<string, list<pair<string, string>>::iterator> h1;
-	unordered_map<string, list<pair<string, string>>::iterator> h2;
+	unordered_map<string, list<pair<string, string>>::iterator> h1, h2;
 };
 
 // Your Solution object will be instantiated and called as such:
