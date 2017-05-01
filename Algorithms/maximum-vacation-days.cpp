@@ -81,32 +81,29 @@ using namespace std;
 class Solution {
 public:
 	int maxVacationDays(vector<vector<int>>& flights, vector<vector<int>>& days) {
-		this->flights = flights;
-		this->days = days;
-		return helper(0, 0, true);
+		unordered_map<size_t, unordered_map<size_t, unordered_map<bool, int>>> OPT;
+		return helper(0, 0, true, flights, days, OPT);
 	}
 private:
-	int helper(size_t city, size_t week, bool available) {
+	int helper(size_t city, size_t week, bool available, vector<vector<int>>& flights, vector<vector<int>>& days, unordered_map<size_t, unordered_map<size_t, unordered_map<bool, int>>>& OPT) {
 		if (week >= days.front().size()) {
 			return 0;
 		}
 		if (!OPT.empty() and OPT.count(city) and OPT.at(city).count(week) and OPT.at(city).at(week).count(available)) {
 			return OPT.at(city).at(week).at(available);
 		}
-		int a = days.at(city).at(week) + helper(city, week + 1, true);;
+		int a = days.at(city).at(week) + helper(city, week + 1, true, flights, days, OPT);;
 		if (!available) {
 			return OPT[city][week][available] = a;
 		}
 		int b = 0;
 		for (size_t i = 0, n = flights.size(); i < n; i++) {
 			if (i != city and flights.at(city).at(i)) {
-				b = max(b, helper(i, week, false));
+				b = max(b, helper(i, week, false, flights, days, OPT));
 			}
 		}
 		return OPT[city][week][available] = max(a, b);
 	}
-	vector<vector<int>> flights, days;
-	unordered_map<size_t, unordered_map<size_t, unordered_map<bool, int>>> OPT;
 };
 
 int main(void) {
