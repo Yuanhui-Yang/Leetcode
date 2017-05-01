@@ -55,22 +55,66 @@ public:
 			sort(begin(s2), end(s2));
 			return s1 == s2;
 		}
-		unordered_multiset<char> h1(begin(s1), end(s1)), h2;
-		for (size_t i = 0; i < s2.size(); i++) {
-			if (h2.size() < h1.size()) {
-				h2.insert(s2.at(i));
+		int h1[26], h2[26];
+		memset(h1, 0, sizeof(h1));
+		memset(h2, 0, sizeof(h2));
+		for (const auto &i : s1) {
+			int id = i - 'a';
+			h1[id]++;
+		}
+		for (size_t i = 0, n = s2.size(); i < n; i++) {
+			int id = s2.at(i) - 'a';
+			if (i + 1 < s1.size()) {
+				h2[id]++;
+				continue;
 			}
-			else {
-				h2.erase(h2.find(s2.at(i - s1.size())));
-				h2.insert(s2.at(i));
+			if (i + 1 == s1.size()) {
+				h2[id]++;
 			}
-			if (h1 == h2) {
+			if (i >= s1.size()) {
+				int jd = s2.at(i - s1.size()) - 'a';
+				h2[jd]--;
+				h2[id]++;
+			}
+			bool equal = true;
+			for (int j = 0; j < 26 and equal; j++) {
+				equal = (h1[j] == h2[j]);
+			}
+			if (equal) {
 				return true;
 			}
 		}
 		return false;
 	}
 };
+
+// class Solution {
+// public:
+// 	bool checkInclusion(string s1, string s2) {
+// 		if (s1.empty() or s1.size() > s2.size()) {
+// 			return false;
+// 		}
+// 		if (s1.size() == s2.size()) {
+// 			sort(begin(s1), end(s1));
+// 			sort(begin(s2), end(s2));
+// 			return s1 == s2;
+// 		}
+// 		unordered_multiset<char> h1(begin(s1), end(s1)), h2;
+// 		for (size_t i = 0; i < s2.size(); i++) {
+// 			if (h2.size() < h1.size()) {
+// 				h2.insert(s2.at(i));
+// 			}
+// 			else {
+// 				h2.erase(h2.find(s2.at(i - s1.size())));
+// 				h2.insert(s2.at(i));
+// 			}
+// 			if (h1 == h2) {
+// 				return true;
+// 			}
+// 		}
+// 		return false;
+// 	}
+// };
 
 int main(void) {
 	Solution solution;
