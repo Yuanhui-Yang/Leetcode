@@ -53,30 +53,51 @@ public:
 			return 0;
 		}
 		size_t l = nums1.size() + nums2.size();
-		return l % 2 ? kthElement(0, nums1, 0, nums2, l / 2) : 0.5 * kthElement(0, nums1, 0, nums2, l / 2 - 1) + 0.5 * kthElement(0, nums1, 0, nums2, l / 2);
+		return l % 2 ? kthElement(nums1, nums2, l / 2) : 0.5 * kthElement(nums1, nums2, l / 2 - 1) + 0.5 * kthElement(nums1, nums2, l / 2);
 	}
 private:
-	int kthElement(size_t b1, vector<int>& nums1, size_t b2, vector<int>& nums2, size_t k) {
-		if (nums2.size() <= b2) {
-			return nums1.at(b1 + k);
+	int kthElement(vector<int>& nums1, vector<int>& nums2, size_t k) {
+		if (nums1.size() < nums2.size()) {
+			return kthElement(nums2, nums1, k);
 		}
-		if (nums2.size() == b2 + 1) {
-			size_t d = distance(next(begin(nums1), b1), lower_bound(next(begin(nums1), b1), end(nums1), nums2.back()));
-			return d == k ? nums2.back() : nums1.at(b1 + k - (d < k));
+		if (nums2.empty()) {
+			return nums1.at(k);
 		}
-		if (nums1.size() + b2 < nums2.size() + b1) {
-			return kthElement(b2, nums2, b1, nums1, k);
-		}
-		if (k == 0) {
-			return min(nums1.at(b1), nums2.at(b2));
-		}
-		if (k == 1) {
-			return min(max(nums1.at(b1), nums2.at(b2)), min(nums1.at(b1 + 1), nums2.at(b2 + 1)));
-		}
-		size_t i = min(b1 + k / 2, nums1.size() - 1), j = min(b2 + k / 2, nums2.size() - 1);
-		return nums1.at(i) < nums2.at(j) ? kthElement(i, nums1, b2, nums2, k + b1 - i) : kthElement(b1, nums1, j, nums2, k + b2 - j);
+		
 	}
 };
+
+// class Solution {
+// public:
+// 	double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+// 		if (nums1.empty() and nums2.empty()) {
+// 			return 0;
+// 		}
+// 		size_t l = nums1.size() + nums2.size();
+// 		return l % 2 ? kthElement(0, nums1, 0, nums2, l / 2) : 0.5 * kthElement(0, nums1, 0, nums2, l / 2 - 1) + 0.5 * kthElement(0, nums1, 0, nums2, l / 2);
+// 	}
+// private:
+// 	int kthElement(size_t b1, vector<int>& nums1, size_t b2, vector<int>& nums2, size_t k) {
+// 		if (nums2.size() <= b2) {
+// 			return nums1.at(b1 + k);
+// 		}
+// 		if (nums2.size() == b2 + 1) {
+// 			size_t d = distance(next(begin(nums1), b1), lower_bound(next(begin(nums1), b1), end(nums1), nums2.back()));
+// 			return d == k ? nums2.back() : nums1.at(b1 + k - (d < k));
+// 		}
+// 		if (nums1.size() + b2 < nums2.size() + b1) {
+// 			return kthElement(b2, nums2, b1, nums1, k);
+// 		}
+// 		if (k == 0) {
+// 			return min(nums1.at(b1), nums2.at(b2));
+// 		}
+// 		if (k == 1) {
+// 			return min(max(nums1.at(b1), nums2.at(b2)), min(nums1.at(b1 + 1), nums2.at(b2 + 1)));
+// 		}
+// 		size_t i = min(b1 + k / 2, nums1.size() - 1), j = min(b2 + k / 2, nums2.size() - 1);
+// 		return nums1.at(i) < nums2.at(j) ? kthElement(i, nums1, b2, nums2, k + b1 - i) : kthElement(b1, nums1, j, nums2, k + b2 - j);
+// 	}
+// };
 
 // BEGIN: Time Complexity O(n) Space Complexity O(n)
 // class Solution {
