@@ -130,7 +130,7 @@ int main(void) {
 
 	matrix = {{-5}};
 	k = 1;
-	answer = -1;
+	answer = -5;
 	result = solution.kthSmallest(matrix, k);
 	assert(answer == result);
 
