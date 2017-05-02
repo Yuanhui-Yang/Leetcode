@@ -40,6 +40,7 @@ Your algorithm's time complexity must be better than O(n log n), where n is the 
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
+// BEGIN: Time Complexity O(n + n * log(k) + k) Space Complexity O(n + k + k)
 class Solution {
 public:
 	vector<int> topKFrequent(vector<int>& nums, int k) {
@@ -69,6 +70,7 @@ public:
 		return result;
 	}
 };
+// END: Time Complexity O(n + n * log(k) + k) Space Complexity O(n + k + k)
 
 int main(void) {
 	Solution solution;
