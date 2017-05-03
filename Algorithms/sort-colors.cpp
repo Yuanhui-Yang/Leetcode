@@ -42,8 +42,8 @@ using namespace std;
 class Solution {
 public:
 	void sortColors(vector<int>& nums) {
-		int x = 0, i = 0, j = nums.size() - 1;
-		while (i <= j) {
+		size_t x = 0, i = 0, j = nums.size() - 1;
+		while (j != string::npos and i <= j) {
 			if (nums.at(i) == 0) {
 				swap(nums.at(i++), nums.at(x++));
 			}
