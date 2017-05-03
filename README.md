@@ -86,6 +86,7 @@ int main(void) {
 | 69 | [Sqrt(x)](https://leetcode.com/problems/sqrtx/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sqrtx.cpp) | Medium |
 | 71 | [Simplify Path](https://leetcode.com/problems/simplify-path/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/simplify-path.cpp) | Medium |
 | 72 | [Edit Distance](https://leetcode.com/problems/edit-distance/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/edit-distance.cpp) | Hard |
+| 75 | [Sort Colors](https://leetcode.com/problems/sort-colors/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sort-colors.cpp) | Medium |
 | 76 | [Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-window-substring.cpp) | Hard |
 | 79 | [Word Search](https://leetcode.com/problems/word-search/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/word-search.cpp) | Medium |
 | 82 | [Remove Duplicates from Sorted List II](https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-duplicates-from-sorted-list-ii.cpp) | Medium |
