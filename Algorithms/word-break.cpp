@@ -61,7 +61,7 @@ private:
 			return m.at(s);
 		}
 		for (size_t i = 1; i <= s.size(); i++) {
-			if (h.count(s.substr(0, i)) and helper(s.substr(i), h, m)) {
+			if (!h.empty() and h.count(s.substr(0, i)) and helper(s.substr(i), h, m)) {
 				return m[s] = true;
 			}
 		}
