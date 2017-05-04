@@ -1,64 +1,87 @@
 // 424. Longest Repeating Character Replacement
 // https://leetcode.com/problems/longest-repeating-character-replacement/
-#include <iostream>
-#include <string>
+
+/*
+Given a string that consists of only uppercase English letters, you can replace any letter in the string with another letter at most k times. Find the length of a longest substring containing all repeating letters you can get after performing the above operations.
+
+Note:
+Both the string's length and k will not exceed 104.
+
+Example 1:
+
+Input:
+s = "ABAB", k = 2
+
+Output:
+4
+
+Explanation:
+Replace the two 'A's with two 'B's or vice versa.
+Example 2:
+
+Input:
+s = "AABABBA", k = 1
+
+Output:
+4
+
+Explanation:
+Replace the one 'A' in the middle with 'B' and form "AABBBBA".
+The substring "BBBB" has the longest repeating letters, which is 4.
+*/
+
+#include <iostream> // std::cout; std::cin
+#include <fstream> // std::fstream::open; std::fstream::close; 
+#include <cstdlib> // rand
+#include <cassert> // assert
+#include <cctype> // isalnum; isalpha; isdigit; islower; isupper; isspace; tolower; toupper
+#include <cmath> // pow; sqrt; round; fabs; abs; log
+#include <climits> // INT_MIN; INT_MAX; LLONG_MIN; LLONG_MAX; ULLONG_MAX
+#include <cfloat> // DBL_EPSILON; LDBL_EPSILON
+#include <cstring> // std::memset
+#include <algorithm> // std::swap; std::max; std::min; std::min_element; std::max_element; std::minmax_element; std::next_permutation; std::prev_permutation; std::nth_element; std::sort; std::lower_bound; std::upper_bound; std::reverse
+#include <limits> // std::numeric_limits<int>::min; std::numeric_limits<int>::max; std::numeric_limits<double>::epsilon; std::numeric_limits<long double>::epsilon;
+#include <numeric> // std::accumulate; std::iota
+#include <string> // std::to_string; std::string::npos; std::stoul; std::stoull; std::stoi; std::stol; std::stoll; std::stof; std::stod; std::stold; 
+#include <list> // std::list::merge; std::list::splice; std::list::merge; std::list::unique; std::list::sort
+#include <bitset>
 #include <vector>
-#include <algorithm>
+#include <deque>
+#include <stack> // std::stack::top; std::stack::pop; std::stack::push
+#include <queue> // std::queue::front; std::queue::back; std::queue::pop; std::queue::push
+#include <set> // std::set::count; std::set::find; std::set::equal_range; std::set::lower_bound; std::set::upper_bound
+#include <map> // std::map::count; std::map::find; std::map::equal_range; std::map::lower_bound; std::map::upper_bound
+#include <unordered_set>
+#include <unordered_map>
+#include <utility> // std::pair; std::make_pair
+#include <iterator>
+#include <functional> // std::less<int>; std::greater<int>
 using namespace std;
-// BEGIN: https://discuss.leetcode.com/topic/63416/sliding-window-similar-to-finding-longest-substring-with-k-distinct-characters
+
 class Solution {
 public:
 	int characterReplacement(string s, int k) {
-		int result = 0;
-		vector<int> hashmap(26, 0);
-		const int n = s.size();
-		for (int i = 0, maxCount = 0, begin = 0; i < n; i++) {
-			hashmap[s[i] - 'A']++;
-			maxCount = max(maxCount, hashmap[s[i] - 'A']);
-			while (i - begin + 1 - maxCount > k) {
-				maxCount = hashmap[s[begin++] - 'A']--;			
-				for (int j = begin; j <= i; j++) maxCount = max(maxCount, hashmap[s[j] - 'A']);  
-			}
-			result = max(result, i - begin + 1);
-		}
-		return result;
+
 	}
 };
-// END: https://discuss.leetcode.com/topic/63416/sliding-window-similar-to-finding-longest-substring-with-k-distinct-characters
-// BEGIN: Time Limit Exceeded
-// class Solution {
-// public:
-// 	int characterReplacement(string s, int k) {
-// 		int result = 0, i = 0, j = 0;
-// 		const int n = s.size();
-// 		for (i = 0, j = 0; i < n; i++) {
-// 			if (s[i] == s[j]) continue;
-// 			result = max(result, i - j);
-// 			j = i;
-// 		}
-// 		result = max(result, i - j);
-// 		if (result == n || k == 0) return result;
-// 		vector<int> directions = {-1, 1}; 
-// 		for (int i = 0; i < n; i++) {
-// 			for (const auto &j : directions) {
-// 				int x = i + j;
-// 				if (x < 0 || x >= n || s[x] == s[i]) continue;
-// 				char c = s[i];
-// 				s[i] = s[x];
-// 				result = max(result, this->characterReplacement(s, k - 1));
-// 				s[i] = c;
-// 			}
-// 		}
-// 		return result;
-// 	}
-// };
-// END: Time Limit Exceeded
+
 int main(void) {
 	Solution solution;
-	cout << solution.characterReplacement("AAAB", 0) << "\tPassed\n";
-	cout << solution.characterReplacement("ABAB", 2) << "\tPassed\n";
-	cout << solution.characterReplacement("AABABBA", 1) << "\tPassed\n";
-	cout << solution.characterReplacement("KRSCDCSONAJNHLBMDQGIFCPEKPOHQIHLTDIQGEKLRLCQNBOHNDQGHJPNDQPERNFSSSRDEQLFPCCCARFMDLHADJADAGNNSBNCJQOF", 4) << "\tPassed\n";
+	string s;
+	int k = 0, result = 0, answer = 0;
+
+	s = "ABAB";
+	k = 2;
+	answer = 4;
+	result = solution.characterReplacement(s, k);
+	assert(answer == result);
+
+	s = "AABABBA";
+	k = 1;
+	answer = 4;
+	result = solution.characterReplacement(s, k);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
