@@ -85,8 +85,9 @@ public:
 		if (h.empty() or !h.count(val)) {
 			return false;
 		}
-		h.at(v.back()) = h.at(val);
-		v.at(h.at(val)) = v.back();
+		size_t i = h.at(val);
+		h.at(v.back()) = i;
+		v.at(i) = v.back();
 		h.erase(val);
 		v.pop_back();
 		return true;
