@@ -456,7 +456,8 @@ int main(void) {
 | 566 | [Reshape the Matrix](https://leetcode.com/problems/reshape-the-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reshape-the-matrix.cpp) | Easy |
 | 567 | [Permutation in String](https://leetcode.com/problems/permutation-in-string/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/permutation-in-string.cpp) | Medium |
 | 568 | [Maximum Vacation Days](https://leetcode.com/problems/maximum-vacation-days/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-vacation-days.cpp) | Hard |
-##Database
+
+## Database
 | # | Title | Solution | Difficulty |
 | --- | --- | --- | --- |
 | 182 | [Duplicate Emails](https://leetcode.com/problems/duplicate-emails/) | [MySQL](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-vacation-days.sql) | Easy |
