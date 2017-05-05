@@ -40,37 +40,67 @@ Your algorithm's time complexity must be better than O(n log n), where n is the 
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
-// BEGIN: Time Complexity O(n + n * log(k) + k) Space Complexity O(n + k + k)
+// BEGIN: Time Complexity O(n) Space Complexity O(n)
 class Solution {
 public:
 	vector<int> topKFrequent(vector<int>& nums, int k) {
-		if (k <= 0 or nums.size() < size_t(k)) {
+		if (k <= 0 or nums.empty()) {
 			return {};
 		}
 		unordered_map<int, size_t> h;
 		for (const auto &i : nums) {
-			h[i]++;
+			h[i]++;	
 		}
-		multimap<size_t, int> t;
+		vector<vector<int>> bucket(nums.size() + 1);
 		for (const auto &i : h) {
-			if (t.size() < size_t(k)) {
-				t.insert(make_pair(i.second, i.first));
-				continue;
-			}
-			if (begin(t)->first < i.second) {
-				t.erase(begin(t));
-				t.insert(make_pair(i.second, i.first));
-				continue;
-			}
+			bucket.at(i.second).push_back(i.first);		
 		}
+		reverse(begin(bucket), end(bucket));
 		vector<int> result;
-		for (const auto &i : t) {
-			result.push_back(i.second);
+		for (const auto &i : bucket) {
+			for (const auto &j : i) {
+				result.push_back(j);
+				if (result.size() == size_t(k)) {
+					return result;				
+				}
+			}		
 		}
 		return result;
 	}
 };
-// END: Time Complexity O(n + n * log(k) + k) Space Complexity O(n + k + k)
+// END: Time Complexity O(n) Space Complexity O(n)
+
+// BEGIN: Time Complexity O(n * log(k)) Space Complexity O(n)
+// class Solution {
+// public:
+// 	vector<int> topKFrequent(vector<int>& nums, int k) {
+// 		if (k <= 0 or nums.empty()) {
+// 			return {};
+// 		}
+// 		unordered_map<int, size_t> h;
+// 		for (const auto &i : nums) {
+// 			h[i]++;
+// 		}
+// 		multimap<size_t, int> t;
+// 		for (const auto &i : h) {
+// 			if (t.size() < size_t(k)) {
+// 				t.insert(make_pair(i.second, i.first));
+// 				continue;
+// 			}
+// 			if (begin(t)->first < i.second) {
+// 				t.erase(begin(t));
+// 				t.insert(make_pair(i.second, i.first));
+// 				continue;
+// 			}
+// 		}
+// 		vector<int> result;
+// 		for (const auto &i : t) {
+// 			result.push_back(i.second);
+// 		}
+// 		return result;
+// 	}
+// };
+// END: Time Complexity O(n * log(k)) Space Complexity O(n)
 
 int main(void) {
 	Solution solution;
