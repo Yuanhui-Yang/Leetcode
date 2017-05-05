@@ -19,7 +19,7 @@
 #include <vector>
 #include <deque>
 #include <stack> // std::stack::top; std::stack::pop; std::stack::push
-#include <queue> // std::queue::front; std::queue::back; std::queue::pop; std::queue::push
+#include <queue> // std::queue::front; std::queue::back; std::queue::pop; std::queue::push; std::priority_queue; std::priority_queue::top; std::priority_queue::push; std::priority_queue::pop
 #include <set> // std::set::count; std::set::find; std::set::equal_range; std::set::lower_bound; std::set::upper_bound
 #include <map> // std::map::count; std::map::find; std::map::equal_range; std::map::lower_bound; std::map::upper_bound
 #include <unordered_set>
@@ -456,3 +456,8 @@ int main(void) {
 | 566 | [Reshape the Matrix](https://leetcode.com/problems/reshape-the-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reshape-the-matrix.cpp) | Easy |
 | 567 | [Permutation in String](https://leetcode.com/problems/permutation-in-string/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/permutation-in-string.cpp) | Medium |
 | 568 | [Maximum Vacation Days](https://leetcode.com/problems/maximum-vacation-days/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-vacation-days.cpp) | Hard |
+
+##Database
+| # | Title | Solution | Difficulty |
+| --- | --- | --- | --- |
+| 182 | [Duplicate Emails](https://leetcode.com/problems/duplicate-emails/) | [MySQL](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-vacation-days.sql) | Easy |
