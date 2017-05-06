@@ -60,12 +60,12 @@ using namespace std;
 class Solution {
 public:
 	string optimalDivision(vector<int>& nums) {
-		if (nums.empty()) {
-			return "";
-		}
 		string result;
-		result += to_string(nums.front());
-		for (size_t i = 1, n = nums.size(); i < n; i++) {
+		for (size_t i = 0, n = nums.size(); i < n; i++) {
+			if (i == 0) {
+				result += to_string(nums.at(i));
+				continue;
+			}
 			if (i == 1 and 2 < n) {
 				result += "/(" + to_string(nums.at(i));
 				continue;
