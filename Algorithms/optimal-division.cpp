@@ -63,12 +63,6 @@ public:
 		if (nums.empty()) {
 			return "";
 		}
-		if (nums.size() == 1) {
-			return to_string(nums.front());
-		}
-		if (nums.size() == 2) {
-			return to_string(nums.front()) + '/' + to_string(nums.back());
-		}
 		string result;
 		result += to_string(nums.front());
 		for (size_t i = 1, n = nums.size(); i < n; i++) {
