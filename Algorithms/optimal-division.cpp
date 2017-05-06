@@ -54,7 +54,7 @@ There is only one optimal division for each test case.
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
-// BEGIN: https://leetcode.com/articles/optimal-division/#approach-1-brute-force-accepted
+// BEGIN: https://leetcode.com/articles/optimal-division/
 // BEGIN: https://discuss.leetcode.com/topic/86473/o-n-very-easy-java-solution
 // BEGIN: Time Complexity O(n) and Space Complexity O(n)
 class Solution {
@@ -81,7 +81,7 @@ public:
 };
 // END: Time Complexity O(n) and Space Complexity O(n)
 // END: https://discuss.leetcode.com/topic/86473/o-n-very-easy-java-solution
-// END: https://leetcode.com/articles/optimal-division/#approach-1-brute-force-accepted
+// END: https://leetcode.com/articles/optimal-division/
 
 int main(void) {
 	Solution solution;
