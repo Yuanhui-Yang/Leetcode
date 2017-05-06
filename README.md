@@ -428,6 +428,7 @@ int main(void) {
 | 516 | [Longest Palindromic Subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-palindromic-subsequence.cpp) | Medium |
 | 517 | [Super Washing Machines](https://leetcode.com/problems/super-washing-machines/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/super-washing-machines.cpp) | Hard |
 | 520 | [Detect Capital](https://leetcode.com/problems/detect-capital/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/detect-capital.cpp) | Easy |
+| 521 | [Longest Uncommon Subsequence I](https://leetcode.com/problems/longest-uncommon-subsequence-i/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-uncommon-subsequence-i.cpp) | Easy |
 | 523 | [Continuous Subarray Sum](https://leetcode.com/problems/continuous-subarray-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/continuous-subarray-sum.cpp) | Medium |
 | 524 | [Longest Word in Dictionary through Deleting](https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-word-in-dictionary-through-deleting.cpp) | Medium |
 | 525 | [Contiguous Array](https://leetcode.com/problems/contiguous-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/contiguous-array.cpp) | Medium |
