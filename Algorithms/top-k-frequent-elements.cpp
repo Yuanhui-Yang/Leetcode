@@ -30,7 +30,7 @@ Your algorithm's time complexity must be better than O(n log n), where n is the 
 #include <vector>
 #include <deque>
 #include <stack> // std::stack::top; std::stack::pop; std::stack::push
-#include <queue> // std::queue::front; std::queue::back; std::queue::pop; std::queue::push
+#include <queue> // std::queue::front; std::queue::back; std::queue::pop; std::queue::push; std::priority_queue; std::priority_queue::top; std::priority_queue::push; std::priority_queue::pop
 #include <set> // std::set::count; std::set::find; std::set::equal_range; std::set::lower_bound; std::set::upper_bound
 #include <map> // std::map::count; std::map::find; std::map::equal_range; std::map::lower_bound; std::map::upper_bound
 #include <unordered_set>
@@ -69,6 +69,71 @@ public:
 	}
 };
 // END: Time Complexity O(n) Space Complexity O(n)
+
+// BEGIN: Time Complexity O(n * log(k)) Space Complexity O(n)
+// class Solution {
+// public:
+// 	vector<int> topKFrequent(vector<int>& nums, int k) {
+// 		if (k <= 0 or nums.empty()) {
+// 			return {};
+// 		}
+// 		unordered_map<int, size_t> h;
+// 		for (const auto &i : nums) {
+// 			h[i]++;
+// 		}
+// 		priority_queue<pair<size_t, int>, vector<pair<size_t, int>>, greater<pair<size_t, int>>> min_heap;
+// 		for (const auto &i : h) {
+// 			if (min_heap.size() < size_t(k)) {
+// 				min_heap.push(make_pair(i.second, i.first));
+// 				continue;
+// 			}
+// 			if (min_heap.top().first < i.second) {
+// 				min_heap.pop();
+// 				min_heap.push(make_pair(i.second, i.first));
+// 				continue;
+// 			}
+// 		}
+// 		vector<int> result;
+// 		while (!min_heap.empty()) {
+// 			result.push_back(min_heap.top().second);
+// 			min_heap.pop();
+// 		}
+// 		return result;
+// 	}
+// };
+// END: Time Complexity O(n * log(k)) Space Complexity O(n)
+
+// BEGIN: Time Complexity O(n * log(k)) Space Complexity O(n)
+// class Solution {
+// public:
+// 	vector<int> topKFrequent(vector<int>& nums, int k) {
+// 		if (k <= 0 or nums.empty()) {
+// 			return {};
+// 		}
+// 		unordered_map<int, size_t> h;
+// 		for (const auto &i : nums) {
+// 			h[i]++;
+// 		}
+// 		multimap<size_t, int, greater<size_t>> t;
+// 		for (const auto &i : h) {
+// 			if (t.size() < size_t(k)) {
+// 				t.insert(make_pair(i.second, i.first));
+// 				continue;
+// 			}
+// 			if (prev(end(t))->first < i.second) {
+// 				t.erase(prev(end(t)));
+// 				t.insert(make_pair(i.second, i.first));
+// 				continue;
+// 			}
+// 		}
+// 		vector<int> result;
+// 		for (const auto &i : t) {
+// 			result.push_back(i.second);
+// 		}
+// 		return result;
+// 	}
+// };
+// END: Time Complexity O(n * log(k)) Space Complexity O(n)
 
 // BEGIN: Time Complexity O(n * log(k)) Space Complexity O(n)
 // class Solution {
