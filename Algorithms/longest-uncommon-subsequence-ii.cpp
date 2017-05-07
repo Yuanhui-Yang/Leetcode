@@ -48,20 +48,8 @@ using namespace std;
 class Solution {
 public:
 	int findLUSlength(vector<string>& strs) {
-		sort(begin(strs), end(strs), Comp());
-		int result = 0;
-		for (vector<string>::iterator it = begin(strs); it != end(strs); it++) {
-			vector<string>::iterator jt = upper_bound(next(it), end(strs), *it, Comp());
-			if (jt != end(strs) and )
-		}
-		return result ? result : -1;
+		
 	}
-private:
-	struct Comp {
-		bool operator() (const string& a, const string& b) {
-			return a.size() > b.size();
-		}
-	};
 };
 
 int main(void) {
