@@ -55,7 +55,7 @@ public:
 				continue;
 			}
 			if (isdigit(ch)) {
-				while (i < n and s.at(i)) {
+				while (i < n and isdigit(s.at(i))) {
 					i++;
 				}
 				l1.push_back(stoi(s.substr(j, i-- - j)));
