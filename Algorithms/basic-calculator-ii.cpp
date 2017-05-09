@@ -1,154 +1,136 @@
 // 227. Basic Calculator II
 // https://leetcode.com/problems/basic-calculator-ii/
-#include <iostream>
-#include <string>
-#include <sstream>
+
+/*
+Implement a basic calculator to evaluate a simple expression string.
+
+The expression string contains only non-negative integers, +, -, *, / operators and empty spaces . The integer division should truncate toward zero.
+
+You may assume that the given expression is always valid.
+
+Some examples:
+"3+2*2" = 7
+" 3/2 " = 1
+" 3+5 / 2 " = 5
+Note: Do not use the eval built-in library function.
+*/
+
+#include <iostream> // std::cout; std::cin
+#include <fstream> // std::fstream::open; std::fstream::close; 
+#include <cstdlib> // rand
+#include <cassert> // assert
+#include <cctype> // isalnum; isalpha; isdigit; islower; isupper; isspace; tolower; toupper
+#include <cmath> // pow; sqrt; round; fabs; abs; log
+#include <climits> // INT_MIN; INT_MAX; LLONG_MIN; LLONG_MAX; ULLONG_MAX
+#include <cfloat> // DBL_EPSILON; LDBL_EPSILON
+#include <cstring> // std::memset
+#include <algorithm> // std::swap; std::max; std::min; std::min_element; std::max_element; std::minmax_element; std::next_permutation; std::prev_permutation; std::nth_element; std::sort; std::lower_bound; std::upper_bound; std::reverse
+#include <limits> // std::numeric_limits<int>::min; std::numeric_limits<int>::max; std::numeric_limits<double>::epsilon; std::numeric_limits<long double>::epsilon;
+#include <numeric> // std::accumulate; std::iota
+#include <string> // std::to_string; std::string::npos; std::stoul; std::stoull; std::stoi; std::stol; std::stoll; std::stof; std::stod; std::stold; 
+#include <list> // std::list::merge; std::list::splice; std::list::merge; std::list::unique; std::list::sort
+#include <bitset>
 #include <vector>
-#include <algorithm>
+#include <deque>
+#include <stack> // std::stack::top; std::stack::pop; std::stack::push
+#include <queue> // std::queue::front; std::queue::back; std::queue::pop; std::queue::push; std::priority_queue; std::priority_queue::top; std::priority_queue::push; std::priority_queue::pop
+#include <set> // std::set::count; std::set::find; std::set::equal_range; std::set::lower_bound; std::set::upper_bound
+#include <map> // std::map::count; std::map::find; std::map::equal_range; std::map::lower_bound; std::map::upper_bound
+#include <unordered_set>
+#include <unordered_map>
+#include <utility> // std::pair; std::make_pair
 #include <iterator>
+#include <functional> // std::less<int>; std::greater<int>
 using namespace std;
-// BEGIN: https://discuss.leetcode.com/topic/16935/share-my-java-solution
+
 class Solution {
 public:
 	int calculate(string s) {
-		if (s.empty()) return 0;
-		int result = 0;
-		const int n = s.size();
-		char sign = '+';
-		for (int i = 0, term = 0, previous = 0; i < n; i++) {
-			if (s[i] >= '0' && s[i] <= '9')
-				term = 10 * term + s[i] - '0';
-			if (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/' || i + 1 == n) {
-				if (sign == '+') {
-					result += previous;
-					previous = term;
+		list<int> l1;
+		list<char> l2;
+		for (size_t i = 0, j = 0, n = s.size(); i < n; i++) {
+			j = i;
+			char ch = s.at(i);
+			if (ch == ' ') {
+				continue;
+			}
+			if (isdigit(ch)) {
+				while (i < n and s.at(i)) {
+					i++;
 				}
-				if (sign == '-') {
-					result += previous;
-					previous = -term;
+				l1.push_back(stoi(s.substr(j, i-- - j)));
+				continue;
+			}
+			if (ch == '+' or ch == '-') {
+				if (l2.empty()) {
+					l2.push_back(ch);
+					continue;
 				}
-				if (sign == '*') previous *= term;
-				if (sign == '/') previous /= term;
-				term = 0;
-				sign = s[i];
-				if (i + 1 == n) result += previous;
+				if (l2.back() == '*' or l2.back() == '/' or l2.back() == '+' or l2.back() == '-') {
+					int b = l1.back();
+					l1.pop_back();
+					int a = l1.back();
+					l1.pop_back();
+					int c = l2.back() == '*' ? a * b : l2.back() == '/' ? a / b : l2.back() == '+' ? a + b : a - b;
+					l1.push_back(c);
+					l2.pop_back();
+					l2.push_back(ch);
+					continue;
+				}
+				continue;
+			}
+			if (ch == '*' or ch == '/') {
+				if (l2.empty() or l2.back() == '+' or l2.back() == '-') {
+					l2.push_back(ch);
+					continue;
+				}
+				if (l2.back() == '*' or l2.back() == '/') {
+					int b = l1.back();
+					l1.pop_back();
+					int a = l1.back();
+					l1.pop_back();
+					int c = l2.back() == '*' ? a * b : a / b;
+					l1.push_back(c);
+					l2.pop_back();
+					l2.push_back(ch);
+					continue;
+				}
+				continue;
 			}
 		}
-		return result;
+		while (!l2.empty()) {
+			int b = l1.back();
+			l1.pop_back();
+			int a = l1.back();
+			l1.pop_back();
+			int c = l2.back() == '*' ? a * b : l2.back() == '/' ? a / b : l2.back() == '+' ? a + b : a - b;
+			l1.push_back(c);
+			l2.pop_back();
+		}
+		return l1.front();
 	}
 };
 
-// class Solution {
-// public:
-// 	int calculate(string s) {
-// 		if (s.empty()) return 0;
-// 		vector<int> stack;
-// 		const int n = s.size();
-// 		char sign = '+';
-// 		for (int i = 0, term = 0; i < n; i++) {
-// 			if (s[i] >= '0' && s[i] <= '9')
-// 				term = 10 * term + (s[i] - '0');
-// 			if (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/' || i + 1 == n) {
-// 				if (sign == '+') stack.push_back(term);
-// 				if (sign == '-') stack.push_back(-term);
-// 				if (sign == '*') stack.back() *= term;
-// 				if (sign == '/') stack.back() /= term;
-// 				term = 0;
-// 				sign = s[i];
-// 			}
-// 		}
-// 		return accumulate(begin(stack), end(stack), 0);
-// 	}
-// };
-// END: https://discuss.leetcode.com/topic/16935/share-my-java-solution
-
-// BEGIN: https://discuss.leetcode.com/topic/16807/17-lines-c-easy-20-ms
-// class Solution {
-// public:
-// 	int calculate(string s) {
-// 		if (s.empty()) return 0;
-// 		int result = 0, term = 0, n;
-// 		istringstream in('+' + s + '+');
-// 		char opt;
-// 		while (in >> opt) {
-// 			if (opt == '+' || opt == '-') {
-// 				result += term;
-// 				in >> term;
-// 				term *= 44 - opt;
-// 			}
-// 			else {
-// 				in >> n;
-// 				if (opt == '*') term *= n;
-// 				else term /= n;
-// 			}
-// 		}
-// 		return result;
-// 	}
-// };
-// END: https://discuss.leetcode.com/topic/16807/17-lines-c-easy-20-ms
-
-// class Solution {
-// public:
-// 	int calculate(string s) {
-// 		if (s.empty()) return 0;
-// 		const int n = s.size();
-// 		vector<string> stack; 
-// 		for (int i = 0, j = 0; i < n; ) {
-// 			while (i < n && s[i] == ' ') i++;
-// 			if (i == n) break;
-// 			if (s[i] == '*' || s[i] == '/') {
-// 				int opt = i;
-// 				if (stack.empty()) break;
-// 				i++;
-// 				while (i < n && s[i] == ' ') i++;
-// 				if (i == n) break;
-// 				if (!(s[i] >= '0' && s[i] <= '9')) break;
-// 				j = i++;
-// 				while (i < n && s[i] >= '0' && s[i] <= '9') i++;
-// 				if (s[opt] == '*') stack.back() = to_string(stoi(stack.back()) * stoi(s.substr(j, i - j)));
-// 				if (s[opt] == '/') stack.back() = to_string(stoi(stack.back()) / stoi(s.substr(j, i - j)));
-// 				continue;
-// 			}
-// 			if (s[i] == '+' || s[i] == '-') {
-// 				stack.push_back(string(1, s[i++]));
-// 				continue;
-// 			}
-// 			j = i++;
-// 			while (i < n && s[i] >= '0' && s[i] <= '9') i++;
-// 			stack.push_back(s.substr(j, i - j));
-// 		}
-// 		if (stack.empty()) return 0;
-// 		int result = 0;
-// 		const int stack_size = stack.size();
-// 		for (int i = 0; i < stack_size; ) {
-// 			if (i == 0) {
-// 				if (stack[i] == "+" || stack[i] == "-") return result;
-// 				result = stoi(stack[i++]);
-// 				continue;
-// 			}
-// 			if (stack[i] == "+") {
-// 				if (i + 1 == stack_size) return result;
-// 				result += stoi(stack[++i]);
-// 				i++;
-// 				continue;
-// 			}
-// 			if (stack[i] == "-") {
-// 				if (i + 1 == stack_size) return result;
-// 				result -= stoi(stack[++i]);
-// 				i++;
-// 				continue;				
-// 			}
-// 			return result;
-// 		}
-// 		return result;
-// 	}
-// };
 int main(void) {
 	Solution solution;
-	cout << solution.calculate("3+2*2") << "\tPassed\n";
-	cout << solution.calculate(" 3/2 ") << "\tPassed\n";
-	cout << solution.calculate(" 3+5 / 2 ") << "\tPassed\n";
-	cout << solution.calculate("42") << "\tPassed\n";
+	string s;
+	int result = 0, answer = 0;
+
+	s = "3+2*2";
+	answer = 7;
+	result = solution.calculate(s);
+	assert(answer == result);
+
+	s = " 3/2 ";
+	answer = 1;
+	result = solution.calculate(s);
+	assert(answer == result);
+
+	s = " 3+5 / 2 ";
+	answer = 5;
+	result = solution.calculate(s);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
