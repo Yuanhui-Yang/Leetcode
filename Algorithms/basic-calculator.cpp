@@ -62,7 +62,66 @@ Note: Do not use the eval built-in library function.
 class Solution {
 public:
 	int calculate(string s) {
-		
+		list<int> l1;
+		list<char> l2;
+		for (size_t i = 0, j = 0, n = s.size(); i < n; i++) {
+			if (s.at(i) == ' ') {
+				continue;
+			}
+			if (isdigit(s.at(i))) {
+				j = i;
+				while (i < n and isdigit(s.at(i))) {
+					i++;
+				}
+				l1.push_back(stoi(s.substr(j, i-- - j)));
+				continue;
+			}
+			if (s.at(i) == '+' or s.at(i) == '-') {
+				if (l2.empty() or l2.back() == '(') {
+					l2.push_back(s.at(i));
+					continue;
+				}
+				if (l2.back() == '+' or l2.back() == '-') {
+					int b = l1.back();
+					l1.pop_back();
+					int a = l1.back();
+					l1.pop_back();
+					int c = l2.back() == '+' ? a + b : a - b;
+					l2.pop_back();
+					l2.push_back(s.at(i));
+					l1.push_back(c);
+					continue;
+				}
+				continue;
+			}
+			if (s.at(i) == '(') {
+				l2.push_back(s.at(i));
+				continue;
+			}
+			if (s.at(i) == ')') {
+				while (!l2.empty() and l2.back() != '(') {
+					int b = l1.back();
+					l1.pop_back();
+					int a = l1.back();
+					l1.pop_back();
+					int c = l2.back() == '+' ? a + b : a - b;
+					l2.pop_back();
+					l1.push_back(c);
+				}
+				l2.pop_back();
+				continue;
+			}
+		}
+		while (!l2.empty()) {
+			int b = l1.back();
+			l1.pop_back();
+			int a = l1.back();
+			l1.pop_back();
+			int c = l2.back() == '+' ? a + b : a - b;
+			l1.push_back(c);
+			l2.pop_back();
+		}
+		return l1.front();
 	}
 };
 // END: http://www.geeksforgeeks.org/expression-evaluation/
