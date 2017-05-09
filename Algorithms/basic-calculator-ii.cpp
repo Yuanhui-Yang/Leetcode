@@ -43,6 +43,9 @@ Note: Do not use the eval built-in library function.
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
+// BEGIN: https://en.wikipedia.org/wiki/Shunting-yard_algorithm
+// BEGIN: http://www.geeksforgeeks.org/expression-evaluation/
+// BEGIN: Time Complexity O(n) and Space Complexity O(n)
 class Solution {
 public:
 	int calculate(string s) {
@@ -62,11 +65,7 @@ public:
 				continue;
 			}
 			if (ch == '+' or ch == '-') {
-				if (l2.empty()) {
-					l2.push_back(ch);
-					continue;
-				}
-				if (l2.back() == '*' or l2.back() == '/' or l2.back() == '+' or l2.back() == '-') {
+				while (!l2.empty() and (l2.back() == '*' or l2.back() == '/' or l2.back() == '+' or l2.back() == '-')) {
 					int b = l1.back();
 					l1.pop_back();
 					int a = l1.back();
@@ -74,17 +73,12 @@ public:
 					int c = l2.back() == '*' ? a * b : l2.back() == '/' ? a / b : l2.back() == '+' ? a + b : a - b;
 					l1.push_back(c);
 					l2.pop_back();
-					l2.push_back(ch);
-					continue;
 				}
+				l2.push_back(ch);
 				continue;
 			}
 			if (ch == '*' or ch == '/') {
-				if (l2.empty() or l2.back() == '+' or l2.back() == '-') {
-					l2.push_back(ch);
-					continue;
-				}
-				if (l2.back() == '*' or l2.back() == '/') {
+				while (!l2.empty() and (l2.back() == '*' or l2.back() == '/')) {
 					int b = l1.back();
 					l1.pop_back();
 					int a = l1.back();
@@ -92,9 +86,8 @@ public:
 					int c = l2.back() == '*' ? a * b : a / b;
 					l1.push_back(c);
 					l2.pop_back();
-					l2.push_back(ch);
-					continue;
 				}
+				l2.push_back(ch);
 				continue;
 			}
 		}
@@ -110,11 +103,19 @@ public:
 		return l1.front();
 	}
 };
+// END: Time Complexity O(n) and Space Complexity O(n)
+// END: http://www.geeksforgeeks.org/expression-evaluation/
+// END: https://en.wikipedia.org/wiki/Shunting-yard_algorithm
 
 int main(void) {
 	Solution solution;
 	string s;
 	int result = 0, answer = 0;
+
+	s = "1*2-3/4+5*6-7*8+9/10";
+	answer = -24;
+	result = solution.calculate(s);
+	assert(answer == result);
 
 	s = "3+2*2";
 	answer = 7;
