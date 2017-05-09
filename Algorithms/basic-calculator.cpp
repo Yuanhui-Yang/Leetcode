@@ -65,47 +65,45 @@ public:
 	int calculate(string s) {
 		list<int> l1;
 		list<char> l2;
+		unordered_map<char, int> h;
+		h['+'] = 2; h['-'] = 2;
+		h['*'] = 3; h['/'] = 3;
+		h['^'] = 4;
 		for (size_t i = 0, j = 0, n = s.size(); i < n; i++) {
-			if (s.at(i) == ' ') {
+			char ch = s.at(i);
+			j = i;
+			if (ch == ' ') {
 				continue;
 			}
-			if (isdigit(s.at(i))) {
-				j = i;
+			if (isdigit(ch)) {
 				while (i < n and isdigit(s.at(i))) {
 					i++;
 				}
 				l1.push_back(stoi(s.substr(j, i-- - j)));
 				continue;
 			}
-			if (s.at(i) == '+' or s.at(i) == '-') {
-				if (l2.empty() or l2.back() == '(') {
-					l2.push_back(s.at(i));
-					continue;
-				}
-				if (l2.back() == '+' or l2.back() == '-') {
-					int b = l1.back();
-					l1.pop_back();
-					int a = l1.back();
-					l1.pop_back();
-					int c = l2.back() == '+' ? a + b : a - b;
+			if (h.count(ch)) {
+				while (!l2.empty() and h.count(l2.back()) and h.at(ch) <= h.at(l2.back())) {
+					int b = l1.back(); l1.pop_back();
+					int a = l1.back(); l1.pop_back();
+					char op = l2.back();
+					int c = op == '+' ? a + b : op == '-' ? a - b : op == '*' ? a * b : op == '/' ? a / b : pow(a, b);
 					l2.pop_back();
-					l2.push_back(s.at(i));
 					l1.push_back(c);
-					continue;
 				}
+				l2.push_back(ch);
 				continue;
 			}
-			if (s.at(i) == '(') {
-				l2.push_back(s.at(i));
+			if (ch == '(') {
+				l2.push_back(ch);
 				continue;
 			}
-			if (s.at(i) == ')') {
+			if (ch == ')') {
 				while (!l2.empty() and l2.back() != '(') {
-					int b = l1.back();
-					l1.pop_back();
-					int a = l1.back();
-					l1.pop_back();
-					int c = l2.back() == '+' ? a + b : a - b;
+					int b = l1.back(); l1.pop_back();
+					int a = l1.back(); l1.pop_back();
+					char op = l2.back();
+					int c = op == '+' ? a + b : op == '-' ? a - b : op == '*' ? a * b : op == '/' ? a / b : pow(a, b);
 					l2.pop_back();
 					l1.push_back(c);
 				}
@@ -118,9 +116,10 @@ public:
 			l1.pop_back();
 			int a = l1.back();
 			l1.pop_back();
-			int c = l2.back() == '+' ? a + b : a - b;
-			l1.push_back(c);
+			char op = l2.back();
+			int c = op == '+' ? a + b : op == '-' ? a - b : op == '*' ? a * b : op == '/' ? a / b : pow(a, b);
 			l2.pop_back();
+			l1.push_back(c);
 		}
 		return l1.front();
 	}
