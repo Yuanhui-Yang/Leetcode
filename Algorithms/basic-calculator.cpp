@@ -133,6 +133,31 @@ int main(void) {
 	string s;
 	int result = 0, answer = 0;
 
+	s = "3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3";
+	answer = 3;
+	result = solution.calculate(s);
+	assert(answer == result);
+
+	s = "100 * ( 2 + 12 ) / 14";
+	answer = 100;
+	result = solution.calculate(s);
+	assert(answer == result);
+
+	s = "100 * ( 2 + 12 )";
+	answer = 1400;
+	result = solution.calculate(s);
+	assert(answer == result);
+
+	s = "100 * 2 + 12";
+	answer = 212;
+	result = solution.calculate(s);
+	assert(answer == result);
+
+	s = "10 + 2 * 6";
+	answer = 22;
+	result = solution.calculate(s);
+	assert(answer == result);
+
 	s = "1 + 1";
 	answer = 2;
 	result = solution.calculate(s);
