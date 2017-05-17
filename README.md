@@ -396,6 +396,7 @@ int main(void) {
 | 475 | [Heaters](https://leetcode.com/problems/heaters/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/heaters.cpp) | Easy |
 | 476 | [Number Complement](https://leetcode.com/problems/number-complement/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-complement.cpp) | Easy |
 | 477 | [Total Hamming Distance](https://leetcode.com/problems/total-hamming-distance/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/total-hamming-distance.cpp) | Medium |
+| 479 | [Largest Palindrome Product](https://leetcode.com/problems/largest-palindrome-product/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-palindrome-product.cpp) | Easy |
 | 480 | [Sliding Window Median](https://leetcode.com/problems/sliding-window-median/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sliding-window-median.cpp) | Hard |
 | 481 | [Magical String](https://leetcode.com/problems/magical-string/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/magical-string.cpp) | Medium |
 | 482 | [License Key Formatting](https://leetcode.com/problems/license-key-formatting/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/license-key-formatting.cpp) | Medium |

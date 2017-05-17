@@ -1,25 +1,9 @@
 // 479. Largest Palindrome Product
 // https://leetcode.com/problems/largest-palindrome-product/
 
-/*
-Find the largest palindrome made from the product of two n-digit numbers.
-
-Since the result could be very large, you should return the largest palindrome mod 1337.
-
-Example:
-
-Input: 2
-
-Output: 987
-
-Explanation: 99 x 91 = 9009, 9009 % 1337 = 987
-
-Note:
-
-The range of n is [1,8].
-*/
-
 #include <iostream> // std::cout; std::cin
+#include <fstream> // std::fstream::open; std::fstream::close;
+#include <ctime>
 #include <cstdlib> // rand
 #include <cassert> // assert
 #include <cctype> // isalnum; isalpha; isdigit; islower; isupper; isspace; tolower; toupper
@@ -36,7 +20,7 @@ The range of n is [1,8].
 #include <vector>
 #include <deque>
 #include <stack> // std::stack::top; std::stack::pop; std::stack::push
-#include <queue> // std::queue::front; std::queue::back; std::queue::pop; std::queue::push
+#include <queue> // std::queue::front; std::queue::back; std::queue::pop; std::queue::push; std::priority_queue; std::priority_queue::top; std::priority_queue::push; std::priority_queue::pop
 #include <set> // std::set::count; std::set::find; std::set::equal_range; std::set::lower_bound; std::set::upper_bound
 #include <map> // std::map::count; std::map::find; std::map::equal_range; std::map::lower_bound; std::map::upper_bound
 #include <unordered_set>
@@ -46,49 +30,33 @@ The range of n is [1,8].
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
-// BEGIN: https://discuss.leetcode.com/topic/74143/java-solution-with-explanation
+// BEGIN: https://discuss.leetcode.com/topic/74659/concise-c-solution
+// BEGIN: Time Complexity O(100 ^ n) and Space Complexity O(1)
 class Solution {
 public:
 	int largestPalindrome(int n) {
-		size_t left = pow(10, n) - 1;
-		size_t right = pow(10, n) - 1;
-		
+		if (n <= 0) {
+			return 0;
+		}
+		if (n == 1) {
+			return 9;
+		}
+		size_t upper = pow(10, n) - 1, lower = pow(10, n - 1);
+		for (size_t left = upper; left >= lower; left--) {
+			string left_str = to_string(left), right_str(left_str);
+			reverse(begin(right_str), end(right_str));
+			size_t palindrome = stoull(left_str + right_str);
+			for (size_t i = upper; i * i >= palindrome; i--) {
+				if (palindrome % i == 0 and palindrome / i >= lower) {
+					return palindrome % 1337;
+				}
+			}
+		}
+		return 0;
 	}
 };
-// END: https://discuss.leetcode.com/topic/74143/java-solution-with-explanation
-
-// BEGIN: Time Limit Exceeded
-// class Solution {
-// public:
-// 	int largestPalindrome(int n) {
-// 		size_t result = string::npos;
-// 		for (size_t i = pow(10, n - 1); i < pow(10, n); i++) {
-// 			for (size_t j = pow(10, n - 1); j < pow(10, n); j++) {
-// 				size_t num = i * j;
-// 				if (isPalindrome(num)) {
-// 					if (result == string::npos) {
-// 						result = num;
-// 					}
-// 					else {
-// 						result = max(result, num);
-// 					}
-// 				}
-// 			}
-// 		}
-// 		return result % 1337;
-// 	}
-// private:
-// 	bool isPalindrome(size_t num) {
-// 		string s = to_string(num);
-// 		for (size_t i = 0, j = s.size() - 1; i < j; i++, j--) {
-// 			if (s.at(i) != s.at(j)) {
-// 				return false;
-// 			}
-// 		}
-// 		return true;
-// 	}
-// };
-// END: Time Limit Exceeded
+// END: Time Complexity O(100 ^ n) and Space Complexity O(1)
+// END: https://discuss.leetcode.com/topic/74659/concise-c-solution
 
 int main(void) {
 	Solution solution;
