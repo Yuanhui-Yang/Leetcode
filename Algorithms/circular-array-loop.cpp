@@ -42,33 +42,62 @@ Can you do it in O(n) time complexity and O(1) space complexity?
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
+// BEGIN: https://discuss.leetcode.com/topic/66894/java-slow-fast-pointer-solution
+// BEGIN: https://discuss.leetcode.com/topic/67000/one-pass-o-n-time-o-1-space-c
+// BEGIN: Time Complexity O(n) and Space Complexity O(1)
 class Solution {
 public:
 	bool circularArrayLoop(vector<int>& nums) {
-		const int n = nums.size();
-		int i = 0;
-		while (i < n) {
-			int ni = i + nums.at(i);
-			nums.at(i) = 0;
-			while (ni < 0) {
-				ni += n;
-			}
-			ni %= n;
-			if (ni == i) {
-				i++;
+		for (int i = 0, n = nums.size(); i < n; i++) {
+			if (nums.at(i) == 0) {
 				continue;
 			}
-			if (nums.at(ni) == 0) {
-				if (abs(ni - i) > 1) {
-					return true;
-				}
-				return false;
+			int slow = i, fast = next(i, nums);
+			if (slow == fast) {
+				nums.at(i) = 0;
+				continue;
 			}
-			i = ni;
+			bool direction = nums.at(i) > 0;
+			while (slow != fast
+				and nums.at(slow)
+				and nums.at(fast)
+				and nums.at(next(fast, nums))
+				and (nums.at(slow) > 0) == direction
+				and (nums.at(fast) > 0) == direction
+				and (nums.at(next(fast, nums)) > 0) == direction) {
+				int nslow = next(slow, nums);
+				int nfast = next(fast, nums);
+				int nnfast = next(nfast, nums);
+				if (slow == nslow or fast == nfast or nfast == nnfast) {
+					break;
+				}
+				slow = nslow;
+				fast = nnfast;
+			}
+			if (slow == fast) {
+				return true;
+			}
+			nums.at(i) = 0;
 		}
 		return false;
 	}
+private:
+	int next(int i, vector<int>& nums) {
+		int n = nums.size();
+		while (i < 0) {
+			i += n;
+		}
+		i %= n;
+		i += nums.at(i);
+		while (i < 0) {
+			i += n;
+		}
+		return i % n;
+	}
 };
+// END: Time Complexity O(n) and Space Complexity O(1)
+// END: https://discuss.leetcode.com/topic/67000/one-pass-o-n-time-o-1-space-c
+// END: https://discuss.leetcode.com/topic/66894/java-slow-fast-pointer-solution
 
 int main(void) {
 	Solution solution;
