@@ -431,6 +431,7 @@ int main(void) {
 | 518 | [Coin Change 2](https://leetcode.com/problems/coin-change-2/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/coin-change-2.cpp) | Medium |
 | 520 | [Detect Capital](https://leetcode.com/problems/detect-capital/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/detect-capital.cpp) | Easy |
 | 521 | [Longest Uncommon Subsequence I](https://leetcode.com/problems/longest-uncommon-subsequence-i/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-uncommon-subsequence-i.cpp) | Easy |
+| 522 | [Longest Uncommon Subsequence II](https://leetcode.com/problems/longest-uncommon-subsequence-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-uncommon-subsequence-ii.cpp) | Medium |
 | 523 | [Continuous Subarray Sum](https://leetcode.com/problems/continuous-subarray-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/continuous-subarray-sum.cpp) | Medium |
 | 524 | [Longest Word in Dictionary through Deleting](https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-word-in-dictionary-through-deleting.cpp) | Medium |
 | 525 | [Contiguous Array](https://leetcode.com/problems/contiguous-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/contiguous-array.cpp) | Medium |

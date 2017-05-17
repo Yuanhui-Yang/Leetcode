@@ -18,7 +18,8 @@ The length of the given list will be in the range of [2, 50].
 */
 
 #include <iostream> // std::cout; std::cin
-#include <fstream> // std::fstream::open; std::fstream::close; 
+#include <fstream> // std::fstream::open; std::fstream::close;
+#include <ctime>
 #include <cstdlib> // rand
 #include <cassert> // assert
 #include <cctype> // isalnum; isalpha; isdigit; islower; isupper; isspace; tolower; toupper
@@ -45,22 +46,49 @@ The length of the given list will be in the range of [2, 50].
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
+// BEGIN: https://discuss.leetcode.com/topic/85044/python-simple-explanation
+// BEGIN: https://leetcode.com/articles/longest-uncommon-subsequence-ii/#approach-3-sorting-and-checking-subsequence-accepted
+// BEGIN: Time Complexity O(l * n ^ 2) and Space Complexity O(1)
 class Solution {
 public:
 	int findLUSlength(vector<string>& strs) {
-		
+		sort(begin(strs), end(strs), Comp());
+		for (size_t i = 0, j = 0; i < strs.size(); i++) {
+			for (j = 0; j < strs.size(); j++) {
+				if (j != i and isSubsequence(strs.at(i), strs.at(j))) {
+					break;
+				}
+			}
+			if (j == strs.size()) {
+				return strs.at(i).size();
+			}
+		}
+		return -1;
+	}
+private:
+	struct Comp {
+		bool operator() (const string& a, const string& b) {
+			return a.size() > b.size();
+		}
+	};
+	bool isSubsequence(const string& a, const string& b) {
+		size_t i = 0;
+		for (size_t j = 0; i < a.size() and j < b.size(); j++) {
+			if (a.at(i) == b.at(j)) {
+				i++;
+			}
+		}
+		return i == a.size();
 	}
 };
+// END: Time Complexity O(l * n ^ 2) and Space Complexity O(1)
+// END: https://leetcode.com/articles/longest-uncommon-subsequence-ii/#approach-3-sorting-and-checking-subsequence-accepted
+// END: https://discuss.leetcode.com/topic/85044/python-simple-explanation
 
 int main(void) {
 	Solution solution;
 	vector<string> strs;
 	int result = 0, answer = 0;
-
-	strs = {"aaa", "aaa", "aa"};
-	answer = -1;
-	result = solution.findLUSlength(strs);
-	assert(answer == result);
 
 	strs = {"aba", "cdc", "eae"};
 	answer = 3;
