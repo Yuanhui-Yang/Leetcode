@@ -456,6 +456,7 @@ int main(void) {
 | 544 | [Output Contest Matches](https://leetcode.com/problems/output-contest-matches/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/output-contest-matches.cpp) | Medium |
 | 545 | [Boundary of Binary Tree](https://leetcode.com/problems/boundary-of-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/boundary-of-binary-tree.cpp) | Medium |
 | 546 | [Remove Boxes](https://leetcode.com/problems/remove-boxes/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-boxes.cpp) | Hard |
+| 547 | [Friend Circles](https://leetcode.com/problems/friend-circles/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/friend-circles.cpp) | Medium |
 | 553 | [Optimal Division](https://leetcode.com/problems/optimal-division/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/optimal-division.cpp) | Medium |
 | 554 | [Brick Wall](https://leetcode.com/problems/brick-wall/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/brick-wall.cpp) | Medium |
 | 557 | [Reverse Words in a String III](https://leetcode.com/problems/reverse-words-in-a-string-iii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reverse-words-in-a-string-iii.cpp) | Easy |
