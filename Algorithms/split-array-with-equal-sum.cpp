@@ -50,7 +50,7 @@ Elements in the given array will be in range [-1,000,000, 1,000,000].
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
-// BEGIN: https://discuss.leetcode.com/topic/85034/c-clean-code-skip-0s-9-ms
+// BEGIN: https://leetcode.com/articles/split-array-with-equal-sum/
 // BEGIN: Time Complexity O(n ^ 3) and Space Complexity O(n)
 class Solution {
 public:
@@ -64,22 +64,59 @@ public:
 			s += nums.at(i);
 			sums.push_back(s);
 		}
-		for (size_t i = 1, n = sums.size(); i + 6 <= n; i++) {
-			long long a = sums.at(i - 1);
-			for (size_t j = i + 2; j + 4 <= n; j++) {
+		for (size_t j = 3, n = sums.size(); j + 4 <= n; j++) {
+			unordered_set<long long> s;
+			for (size_t i = 1; i + 2 <= j; i++) {
+				long long a = sums.at(i - 1);
 				long long b = sums.at(j - 1) - sums.at(i);
-				for (size_t k = j + 2; a == b and k + 2 <= n; k++) {
-					long long c = sums.at(k - 1) - sums.at(j);
-					long long d = sums.back() - sums.at(k);
-					if (b == c and c == d) {
-						return true;
-					}
+				if (a == b) {
+					s.insert(a);
+				}
+			}
+			for (size_t k = j + 2; !s.empty() and k + 2 <= n; k++) {
+				long long c = sums.at(k - 1) - sums.at(j);
+				long long d = sums.back() - sums.at(k);
+				if (c == d and s.count(c)) {
+					return true;
 				}
 			}
 		}
 		return false;
 	}
 };
+// END: Time Complexity O(n ^ 3) and Space Complexity O(n)
+// END: https://leetcode.com/articles/split-array-with-equal-sum/
+
+// BEGIN: https://discuss.leetcode.com/topic/85034/c-clean-code-skip-0s-9-ms
+// BEGIN: Time Complexity O(n ^ 3) and Space Complexity O(n)
+// class Solution {
+// public:
+// 	bool splitArray(vector<int>& nums) {
+// 		vector<long long> sums;
+// 		long long s = 0;
+// 		for (size_t i = 0; i < nums.size(); i++) {
+// 			if (i > 1 and nums.at(i - 1) == 0 and nums.at(i) == 0) {
+// 				continue;
+// 			}
+// 			s += nums.at(i);
+// 			sums.push_back(s);
+// 		}
+// 		for (size_t i = 1, n = sums.size(); i + 6 <= n; i++) {
+// 			long long a = sums.at(i - 1);
+// 			for (size_t j = i + 2; j + 4 <= n; j++) {
+// 				long long b = sums.at(j - 1) - sums.at(i);
+// 				for (size_t k = j + 2; a == b and k + 2 <= n; k++) {
+// 					long long c = sums.at(k - 1) - sums.at(j);
+// 					long long d = sums.back() - sums.at(k);
+// 					if (b == c and c == d) {
+// 						return true;
+// 					}
+// 				}
+// 			}
+// 		}
+// 		return false;
+// 	}
+// };
 // END: Time Complexity O(n ^ 3) and Space Complexity O(n)
 // END: https://discuss.leetcode.com/topic/85034/c-clean-code-skip-0s-9-ms
 
