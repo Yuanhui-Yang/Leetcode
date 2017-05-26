@@ -23,11 +23,7 @@ public:
 		vector<vector<int>> OPT(m + 1, vector<int>(n + 1, 0));
 		for (int i = 1; i < m + 1; i++) {
 			for (int j = 1; j < n + 1; j++) {
-				if (word1.at(i - 1) == word2.at(j - 1)) {
-					OPT.at(i).at(j) = OPT.at(i - 1).at(j - 1) + 1;
-					continue;
-				}
-				OPT.at(i).at(j) = max(OPT.at(i - 1).at(j), OPT.at(i).at(j - 1));
+				OPT.at(i).at(j) = word1.at(i - 1) == word2.at(j - 1) ? OPT.at(i - 1).at(j - 1) + 1 : max(OPT.at(i - 1).at(j), OPT.at(i).at(j - 1));
 			}
 		}
 		return m + n - 2 * OPT.at(m).at(n);
