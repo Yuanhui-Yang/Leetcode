@@ -24,33 +24,7 @@ All coordinates are distinct.
 Input points have NO order. No order required for output.
 */
 
-#include <iostream> // std::cout; std::cin
-#include <fstream> // std::fstream::open; std::fstream::close;
-#include <ctime>
-#include <cstdlib> // rand
-#include <cassert> // assert
-#include <cctype> // isalnum; isalpha; isdigit; islower; isupper; isspace; tolower; toupper
-#include <cmath> // pow; sqrt; round; fabs; abs; log
-#include <climits> // INT_MIN; INT_MAX; LLONG_MIN; LLONG_MAX; ULLONG_MAX
-#include <cfloat> // DBL_EPSILON; LDBL_EPSILON
-#include <cstring> // std::memset
-#include <algorithm> // std::swap; std::max; std::min; std::min_element; std::max_element; std::minmax_element; std::next_permutation; std::prev_permutation; std::nth_element; std::sort; std::lower_bound; std::upper_bound; std::reverse
-#include <limits> // std::numeric_limits<int>::min; std::numeric_limits<int>::max; std::numeric_limits<double>::epsilon; std::numeric_limits<long double>::epsilon;
-#include <numeric> // std::accumulate; std::iota
-#include <string> // std::to_string; std::string::npos; std::stoul; std::stoull; std::stoi; std::stol; std::stoll; std::stof; std::stod; std::stold; 
-#include <list> // std::list::merge; std::list::splice; std::list::merge; std::list::unique; std::list::sort
-#include <bitset>
-#include <vector>
-#include <deque>
-#include <stack> // std::stack::top; std::stack::pop; std::stack::push
-#include <queue> // std::queue::front; std::queue::back; std::queue::pop; std::queue::push; std::priority_queue; std::priority_queue::top; std::priority_queue::push; std::priority_queue::pop
-#include <set> // std::set::count; std::set::find; std::set::equal_range; std::set::lower_bound; std::set::upper_bound
-#include <map> // std::map::count; std::map::find; std::map::equal_range; std::map::lower_bound; std::map::upper_bound
-#include <unordered_set>
-#include <unordered_map>
-#include <utility> // std::pair; std::make_pair
-#include <iterator>
-#include <functional> // std::less<int>; std::greater<int>
+#include <bits/stdc++.h>
 using namespace std;
 
 struct Point {
@@ -58,11 +32,91 @@ struct Point {
 	int y;
 	Point() : x(0), y(0) {}
 	Point(int a, int b) : x(a), y(b) {}
+	bool operator< (const Point& other) const {
+		return this->x == other.x ? this->y < other.y : this->x < other.x;
+	}
+	bool operator== (const Point& other) const {
+		return this->x == other.x and this->y == other.y;
+	}
 };
 
 class Solution {
 public:
 	vector<Point> outerTrees(vector<Point>& points) {
-
+		if (points.empty()) {
+			return {};
+		}
+		set<Point, Comp> rbtree(begin(points), end(points));
+		vector<Point> result;
+		Point end = *begin(rbtree), current = end, a(0, -1);
+		while (1) {
+			result.push_back(current);
+			rbtree.erase(current);
+			if (rbtree.empty()) {
+				break;
+			}
+			rbtree.insert(end);
+			Point next = *begin(rbtree);
+			double c = -1;
+			double d = INT_MAX;
+			for (const auto &i : rbtree) {
+				if (i.x == current.x and i.y == current.y) {
+					continue;
+				}
+				Point b(i.x - current.x, i.y - current.y);
+				double nc = cos(a, b);
+				double nd = sqrt(b.x * b.x + b.y * b.y);
+				if ((fabs(nc - c) < 1E-9 and nd < d) or (fabs(nc - c) > 1E-9 and nc > c)) {
+					next = i;
+					c = nc;
+					d = nd;
+				}
+			}
+			if (next.x == end.x and next.y == end.y) {
+				break;
+			}
+			a.x = next.x - current.x;
+			a.y = next.y - current.y;
+			current = next;
+		}
+		return result;
+	}
+private:
+	struct Comp {
+		bool operator() (const Point& a, const Point& b) {
+			return a.x == b.x ? a.y < b.y : a.x < b.x;
+		}
+	};
+	double cos(const Point& a, const Point& b) {
+		return double(a.x * b.x + a.y * b.y) / double (sqrt(a.x * a.x + a.y * a.y) * sqrt(b.x * b.x + b.y * b.y));
 	}
 };
+
+int main(void) {
+	Solution solution;
+	vector<Point> points, result, answer;
+
+	points = {{3, 0}, {4, 0}, {5, 0}, {6, 1}, {7, 2}, {7, 3}, {7, 4}, {6, 5}, {5, 5}, {4, 5}, {3, 5}, {2, 5}, {1, 4}, {1, 3}, {1, 2}, {2, 1}, {4, 2}, {0, 3}};
+	answer = {{0, 3}, {1, 2}, {2, 1}, {3, 0}, {4, 0}, {5, 0}, {6, 1}, {7, 2}, {7, 3}, {7, 4}, {6, 5}, {5, 5}, {4, 5}, {3, 5}, {2, 5}, {1, 4}};
+	sort(begin(answer), end(answer));
+	result = solution.outerTrees(points);
+	sort(begin(result), end(result));
+	assert(answer == result);
+
+	points = {{1, 1}, {2, 2}, {2, 0}, {2, 4}, {3, 3}, {4, 2}};
+	answer = {{1, 1}, {2, 0}, {4, 2}, {3, 3}, {2, 4}};
+	sort(begin(answer), end(answer));
+	result = solution.outerTrees(points);
+	sort(begin(result), end(result));
+	assert(answer == result);
+
+	points = {{1, 2}, {2, 2}, {4, 2}};
+	answer = {{1, 2}, {2, 2}, {4, 2}};
+	sort(begin(answer), end(answer));
+	result = solution.outerTrees(points);
+	sort(begin(result), end(result));
+	assert(answer == result);
+
+	cout << "\nPassed All\n";
+	return 0;
+}
