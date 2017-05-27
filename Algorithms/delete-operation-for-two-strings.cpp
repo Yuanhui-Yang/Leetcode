@@ -20,13 +20,22 @@ class Solution {
 public:
 	int minDistance(string word1, string word2) {
 		int m = word1.size(), n = word2.size();
-		vector<vector<int>> OPT(m + 1, vector<int>(n + 1, 0));
-		for (int i = 1; i < m + 1; i++) {
-			for (int j = 1; j < n + 1; j++) {
-				OPT.at(i).at(j) = word1.at(i - 1) == word2.at(j - 1) ? OPT.at(i - 1).at(j - 1) + 1 : max(OPT.at(i - 1).at(j), OPT.at(i).at(j - 1));
+		vector<vector<int>> OPT(2, vector<int>(n + 1, 0));
+		for (int i = 0; i < m + 1; i++) {
+			for (int j = 0; j < n + 1; j++) {
+				int k = i % 2;
+				if (i == 0 or j == 0) {
+					OPT[k][j] = 0;
+				}
+				else if (word1[i - 1] == word2[j - 1]) {
+					OPT[k][j] = OPT[1 - k][j - 1] + 1;
+				}
+				else {
+					OPT[k][j] = max(OPT[1 - k][j], OPT[k][j - 1]);
+				}
 			}
 		}
-		return m + n - 2 * OPT.at(m).at(n);
+		return m + n - 2 * OPT[m % 2][n];
 	}
 };
 
