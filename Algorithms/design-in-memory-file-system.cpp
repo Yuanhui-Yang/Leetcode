@@ -26,58 +26,111 @@ You can assume that all operations will be passed valid parameters and users wil
 You can assume that all directory names and file names only contain lower-case letters, and same names won't exist in the same directory.
 */
 
-#include <iostream> // std::cout; std::cin
-#include <fstream> // std::fstream::open; std::fstream::close;
-#include <ctime>
-#include <cstdlib> // rand
-#include <cassert> // assert
-#include <cctype> // isalnum; isalpha; isdigit; islower; isupper; isspace; tolower; toupper
-#include <cmath> // pow; sqrt; round; fabs; abs; log
-#include <climits> // INT_MIN; INT_MAX; LLONG_MIN; LLONG_MAX; ULLONG_MAX
-#include <cfloat> // DBL_EPSILON; LDBL_EPSILON
-#include <cstring> // std::memset
-#include <algorithm> // std::swap; std::max; std::min; std::min_element; std::max_element; std::minmax_element; std::next_permutation; std::prev_permutation; std::nth_element; std::sort; std::lower_bound; std::upper_bound; std::reverse
-#include <limits> // std::numeric_limits<int>::min; std::numeric_limits<int>::max; std::numeric_limits<double>::epsilon; std::numeric_limits<long double>::epsilon;
-#include <numeric> // std::accumulate; std::iota
-#include <string> // std::to_string; std::string::npos; std::stoul; std::stoull; std::stoi; std::stol; std::stoll; std::stof; std::stod; std::stold; 
-#include <list> // std::list::merge; std::list::splice; std::list::merge; std::list::unique; std::list::sort
-#include <bitset>
-#include <vector>
-#include <deque>
-#include <stack> // std::stack::top; std::stack::pop; std::stack::push
-#include <queue> // std::queue::front; std::queue::back; std::queue::pop; std::queue::push; std::priority_queue; std::priority_queue::top; std::priority_queue::push; std::priority_queue::pop
-#include <set> // std::set::count; std::set::find; std::set::equal_range; std::set::lower_bound; std::set::upper_bound
-#include <map> // std::map::count; std::map::find; std::map::equal_range; std::map::lower_bound; std::map::upper_bound
-#include <unordered_set>
-#include <unordered_map>
-#include <utility> // std::pair; std::make_pair
-#include <iterator>
-#include <functional> // std::less<int>; std::greater<int>
+#include <bits/stdc++.h>
 using namespace std;
 
 class FileSystem {
 public:
 	FileSystem() {
-
+		root = new FsNode("/");
 	}
 
 	vector<string> ls(string path) {
-
+		vector<string> dirs = parse(path);
+		FsNode *it = root;
+		for (const auto &i : dirs) {
+			if (it->children.empty() or !it->children.count(i)) {
+				return {};
+			}
+			it = it->children[i];
+		}
+		if (!it->isDir) {
+			return {it->name};
+		}
+		vector<string> result;
+		for (const auto &i : it->children) {
+			result.push_back(i.first);
+		}
+		sort(begin(result), end(result));
+		return result;
 	}
 
 	void mkdir(string path) {
-
+		vector<string> dirs = parse(path);
+		FsNode *it = root;
+		for (const auto &i : dirs) {
+			if (it->children.empty() or !it->children.count(i)) {
+				it->children[i] = new FsNode(i);
+			}
+			it = it->children[i];
+		}
 	}
 
 	void addContentToFile(string filePath, string content) {
-
+		vector<string> dirs = parse(filePath);
+		FsNode *it = root;
+		for (size_t i = 0, n = dirs.size(); i < n; i++) {
+			string dir = dirs[i];
+			if (it->children.empty() or !it->children.count(dir)) {
+				if (i + 1 < n) {
+					return;
+				}
+				it->children[dir] = new FsNode(dir);
+				it = it->children[dir];
+				continue;
+			}
+			if (i + 1 < n and !it->children[dir]->isDir) {
+				return ;
+			}
+			it = it->children[dir];
+		}
+		it->content.append(content);
+		it->isDir = false;
 	}
 
 	string readContentFromFile(string filePath) {
-
+		vector<string> dirs = parse(filePath);
+		FsNode *it = root;
+		for (size_t i = 0, n = dirs.size(); i < n; i++) {
+			string dir = dirs[i];
+			if (it->children.empty() or !it->children.count(dir)) {
+				return "";
+			}
+			if (i + 1 < n and !it->children[dir]->isDir) {
+				return "";
+			}
+			it = it->children[dir];
+		}
+		if (it->isDir) {
+			return "";
+		}
+		return it->content;
 	}
 private:
-	
+	struct FsNode {
+		string name;
+		bool isDir;
+		string content;
+		unordered_map<string, FsNode*> children;
+		FsNode(string str): name(str), isDir(true) {}
+	};
+
+	FsNode *root;
+
+	vector<string> parse(string path) {
+		vector<string> result;
+		for (size_t i = 0, n = path.size(); i < n; i++) {
+			if (!isalnum(path[i])) {
+				continue;
+			}
+			size_t j = i;
+			while (i < n and path[i] != '/') {
+				i++;
+			}
+			result.push_back(path.substr(j, i - j));
+		}
+		return result;
+	}
 };
 
 /**
@@ -90,6 +143,44 @@ private:
  */
 
  int main(void) {
+	vector<string> v, w;
+	string s, t;
+
+	FileSystem fs;
+	fs.mkdir("/goowmfn");
+	v = fs.ls("/goowmfn");
+	assert(v.empty());
+	v = fs.ls("/");
+	w = {"goowmfn"};
+	assert(w == v);
+	fs.mkdir("/z");
+	v = fs.ls("/");
+	w = {"goowmfn", "z"};
+	assert(w == v);
+	v = fs.ls("/");
+	w = {"goowmfn", "z"};
+	assert(w == v);
+	fs.addContentToFile("/goowmfn/c", "shetopcy");
+	v = fs.ls("/z");
+	assert(v.empty());
+	v = fs.ls("/goowmfn/c");
+	w = {"c"};
+	assert(w == v);
+	v = fs.ls("/goowmfn");
+	w = {"c"};
+	assert(w == v);
+
+	fs = FileSystem();
+	v = fs.ls("/");
+	assert(v.empty());
+	fs.mkdir("/a/b/c");
+	fs.addContentToFile("/a/b/c/d", "hello");
+	v = fs.ls("/");
+	w = {"a"};
+	assert(w == v);
+	s = fs.readContentFromFile("/a/b/c/d");
+	t = "hello";
+	assert(t == s);
 
  	cout << "\nPassed All\n";
  	return 0;

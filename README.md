@@ -446,6 +446,7 @@ int main(void) {
 | 568 | [Maximum Vacation Days](https://leetcode.com/problems/maximum-vacation-days/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-vacation-days.cpp) | Hard |
 | 583 | [Delete Operation for Two Strings](https://leetcode.com/problems/delete-operation-for-two-strings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/delete-operation-for-two-strings.cpp) | Medium |
 | 587 | [Erect the Fence](https://leetcode.com/problems/erect-the-fence/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/erect-the-fence.cpp) | Hard |
+| 588 | [Design In-Memory File System](https://leetcode.com/problems/design-in-memory-file-system/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/design-in-memory-file-system.cpp) | Hard |
 
 ## Database
 | # | Title | Solution | Difficulty |
