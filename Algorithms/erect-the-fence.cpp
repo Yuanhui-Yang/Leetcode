@@ -66,7 +66,7 @@ public:
 				Point b(i.x - current.x, i.y - current.y);
 				double nc = cos(a, b);
 				double nd = sqrt(b.x * b.x + b.y * b.y);
-				if ((fabs(nc - c) < EPS and nd < d) or (fabs(nc - c) >= EPS and nc > c)) {
+				if ((fabs(nc - c) < DBL_EPS and nd < d) or (fabs(nc - c) >= DBL_EPS and nc > c)) {
 					next = i;
 					c = nc;
 					d = nd;
@@ -90,7 +90,7 @@ private:
 	double cos(const Point& a, const Point& b) {
 		return double(a.x * b.x + a.y * b.y) / double (sqrt(a.x * a.x + a.y * a.y) * sqrt(b.x * b.x + b.y * b.y));
 	}
-	double EPS = 1E-9;
+	double DBL_EPS = 1E-9;
 };
 
 int main(void) {
