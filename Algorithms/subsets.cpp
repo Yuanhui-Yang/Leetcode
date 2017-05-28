@@ -1,41 +1,60 @@
 // 78. Subsets
 // https://leetcode.com/problems/subsets/
-// https://discuss.leetcode.com/topic/19110/c-recursive-iterative-bit-manipulation-solutions-with-explanations
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <iterator>
+
+/*
+Given a set of distinct integers, nums, return all possible subsets.
+
+Note: The solution set must not contain duplicate subsets.
+
+For example,
+If nums = [1,2,3], a solution is:
+
+[
+  [3],
+  [1],
+  [2],
+  [1,2,3],
+  [1,3],
+  [2,3],
+  [1,2],
+  []
+]
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
 	vector<vector<int>> subsets(vector<int>& nums) {
 		vector<vector<int>> result;
-		vector<int> path;
-		sort(begin(nums), end(nums));
-		this->subsets(0, path, result, nums);
+		vector<int> v;
+		dfs(result, v, nums, 0);
 		return result;
 	}
 private:
-	void subsets(const int& start, vector<int>& path, vector<vector<int>>& result, const vector<int>& nums) {
-		result.push_back(path);
-		for (int i = start; i < nums.size(); ++i) {
-			path.push_back(nums[i]);
-			this->subsets(i + 1, path, result, nums);
-			path.pop_back();
+	void dfs(vector<vector<int>>& result, vector<int>& v, vector<int>& nums, int i) {
+		result.push_back(v);
+		for (int j = i, n = nums.size(); j < n; j++) {
+			v.push_back(nums[j]);
+			dfs(result, v, nums, j + 1);
+			v.pop_back();
 		}
-		return;
-	}
+	} 
 };
+
 int main(void) {
 	Solution solution;
-	vector<int> nums = {1,2,3};
-	for (const auto& i : solution.subsets(nums)) {
-		for (const auto& j : i) {
-			cout << j << '\t';
-		}
-		cout << '\n';
-	}
-	cout << "\nPassed\n";
+	vector<int> nums;
+	vector<vector<int>> result, answer;
+
+	nums = {1, 2, 3};
+	answer = {{3}, {1}, {2}, {1, 2, 3}, {1, 3}, {2, 3}, {1, 2}, {}};
+	sort(begin(answer), end(answer));
+	result = solution.subsets(nums);
+	sort(begin(result), end(result));
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
