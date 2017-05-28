@@ -1,43 +1,62 @@
 // 90. Subsets II
 // https://leetcode.com/problems/subsets-ii/
-// https://discuss.leetcode.com/topic/13543/accepted-10ms-c-solution-use-backtracking-only-10-lines-easy-understand/2
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <iterator>
+
+/*
+Given a collection of integers that might contain duplicates, nums, return all possible subsets.
+
+Note: The solution set must not contain duplicate subsets.
+
+For example,
+If nums = [1,2,2], a solution is:
+
+[
+  [2],
+  [1],
+  [1,2,2],
+  [2,2],
+  [1,2],
+  []
+]
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
 	vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-		vector<vector<int>> result;
-		vector<int> path;
 		sort(begin(nums), end(nums));
-		this->subsetsWithDup(0, path, result, nums);
+		vector<vector<int>> result;
+		vector<int> v;
+		dfs(result, v, nums, 0);
 		return result;
 	}
 private:
-	void subsetsWithDup(const int& start, vector<int>& path, vector<vector<int>>& result, const vector<int>& nums) {
-		result.push_back(path);
-		for (int i = start; i < nums.size(); ++i) {
-			if (i == start || nums[i] != nums[i - 1]) {
-				path.push_back(nums[i]);
-				this->subsetsWithDup(i + 1, path, result, nums);
-				path.pop_back();
+	void dfs(vector<vector<int>>& result, vector<int>& v, vector<int>& nums, int i) {
+		result.push_back(v);
+		for (int j = i, n = nums.size(); j < n; j++) {
+			if (j > i and nums[j] == nums[j - 1]) {
+				continue;
 			}
+			v.push_back(nums[j]);
+			dfs(result, v, nums, j + 1);
+			v.pop_back();
 		}
-		return;
 	}
 };
+
 int main(void) {
 	Solution solution;
-	vector<int> nums = {1,2,2};
-	for (const auto& i : solution.subsetsWithDup(nums)) {
-		for (const auto& j : i) {
-			cout << j << '\t';
-		}
-		cout << '\n';
-	}
-	cout << "\nPassed\n";
+	vector<int> nums;
+	vector<vector<int>> result, answer;
+
+	nums = {1, 2, 2};
+	answer = {{2}, {1}, {1, 2, 2}, {2, 2}, {1, 2}, {}};
+	sort(begin(answer), end(answer));
+	result = solution.subsetsWithDup(nums);
+	sort(begin(result), end(result));
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
