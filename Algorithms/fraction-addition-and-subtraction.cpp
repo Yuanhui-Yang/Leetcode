@@ -24,38 +24,109 @@ The number of given fractions will be in the range [1,10].
 The numerator and denominator of the final result are guaranteed to be valid and in the range of 32-bit int.
 */
 
-#include <iostream> // std::cout; std::cin
-#include <fstream> // std::fstream::open; std::fstream::close;
-#include <ctime>
-#include <cstdlib> // rand
-#include <cassert> // assert
-#include <cctype> // isalnum; isalpha; isdigit; islower; isupper; isspace; tolower; toupper
-#include <cmath> // pow; sqrt; round; fabs; abs; log
-#include <climits> // INT_MIN; INT_MAX; LLONG_MIN; LLONG_MAX; ULLONG_MAX
-#include <cfloat> // DBL_EPSILON; LDBL_EPSILON
-#include <cstring> // std::memset
-#include <algorithm> // std::swap; std::max; std::min; std::min_element; std::max_element; std::minmax_element; std::next_permutation; std::prev_permutation; std::nth_element; std::sort; std::lower_bound; std::upper_bound; std::reverse
-#include <limits> // std::numeric_limits<int>::min; std::numeric_limits<int>::max; std::numeric_limits<double>::epsilon; std::numeric_limits<long double>::epsilon;
-#include <numeric> // std::accumulate; std::iota
-#include <string> // std::to_string; std::string::npos; std::stoul; std::stoull; std::stoi; std::stol; std::stoll; std::stof; std::stod; std::stold; 
-#include <list> // std::list::merge; std::list::splice; std::list::merge; std::list::unique; std::list::sort
-#include <bitset>
-#include <vector>
-#include <deque>
-#include <stack> // std::stack::top; std::stack::pop; std::stack::push
-#include <queue> // std::queue::front; std::queue::back; std::queue::pop; std::queue::push; std::priority_queue; std::priority_queue::top; std::priority_queue::push; std::priority_queue::pop
-#include <set> // std::set::count; std::set::find; std::set::equal_range; std::set::lower_bound; std::set::upper_bound
-#include <map> // std::map::count; std::map::find; std::map::equal_range; std::map::lower_bound; std::map::upper_bound
-#include <unordered_set>
-#include <unordered_map>
-#include <utility> // std::pair; std::make_pair
-#include <iterator>
-#include <functional> // std::less<int>; std::greater<int>
+#include <bits/stdc++.h>
 using namespace std;
 
 class Solution {
 public:
 	string fractionAddition(string expression) {
-
+		if (expression.empty()) {
+			return "0";
+		}
+		list<pair<int, int>> l1;
+		list<char> l2;
+		unordered_map<char, int> h;
+		h['+'] = 2;
+		h['-'] = 2;
+		h['*'] = 3;
+		h['/'] = 3;
+		int i = 0, n = expression.size();
+		if (expression.front() == '-') {
+			l1.push_back(make_pair(0, 1));
+			l2.push_back('-');
+			i++;
+		}
+		for ( ; i < n; i++) {
+			int j = i;
+			char ch = expression[i];
+			if (ch == ' ') {
+				continue;
+			}
+			if (isdigit(ch)) {
+				while (i < n and isdigit(expression[i])) {
+					i++;
+				}
+				l1.push_back(make_pair(stoi(expression.substr(j, i-- - j)), 1));
+				continue;
+			}
+			if (h.count(ch)) {
+				while (!l2.empty() and h[l2.back()] >= h[ch]) {
+					char op = l2.back();
+					l2.pop_back();
+					pair<int, int> b = l1.back();
+					l1.pop_back();
+					pair<int, int> a = l1.back();
+					l1.pop_back();
+					pair<int, int> c = op == '+' ? make_pair(a.first * b.second + a.second * b.first, a.second * b.second) : op == '-' ? make_pair(a.first * b.second - a.second * b.first, a.second * b.second) : op == '*' ? make_pair(a.first * b.first, a.second * b.second) : make_pair(a.first * b.second, a.second * b.first);
+					int d = gcd(c.first, c.second);
+					c.first /= d;
+					c.second /= d;
+					l1.push_back(c);
+				}
+				l2.push_back(ch);
+				continue;
+			}
+		}
+		while (!l2.empty()) {
+			char op = l2.back();
+			l2.pop_back();
+			pair<int, int> b = l1.back();
+			l1.pop_back();
+			pair<int, int> a = l1.back();
+			l1.pop_back();
+			pair<int, int> c = op == '+' ? make_pair(a.first * b.second + a.second * b.first, a.second * b.second) : op == '-' ? make_pair(a.first * b.second - a.second * b.first, a.second * b.second) : op == '*' ? make_pair(a.first * b.first, a.second * b.second) : make_pair(a.first * b.second, a.second * b.first);
+			int d = gcd(c.first, c.second);
+			c.first /= d;
+			c.second /= d;
+			l1.push_back(c);
+		}
+		pair<int, int>& result = l1.front();
+		if (result.second < 0) {
+			result.first = -result.first;
+			result.second = -result.second;
+		}
+		return to_string(result.first) + "/" + to_string(result.second);
+	}
+private:
+	int gcd(int a, int b) {
+		return b == 0 ? a : gcd(b, a % b);
 	}
 };
+
+int main(void) {
+	Solution solution;
+	string expression, result, answer;
+
+	expression = "-1/2+1/2";
+	answer = "0/1";
+	result = solution.fractionAddition(expression);
+	assert(answer == result);
+
+	expression = "-1/2+1/2+1/3";
+	answer = "1/3";
+	result = solution.fractionAddition(expression);
+	assert(answer == result);
+
+	expression = "1/3-1/2";
+	answer = "-1/6";
+	result = solution.fractionAddition(expression);
+	assert(answer == result);
+
+	expression = "5/3+1/3";
+	answer = "2/1";
+	result = solution.fractionAddition(expression);
+	assert(answer == result);
+
+	cout << "\nPassed All\n";
+	return 0;
+}
