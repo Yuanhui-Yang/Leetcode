@@ -30,6 +30,12 @@ public:
 			if (i > 0 and nums[i] == nums[i - 1]) {
 				continue;
 			}
+			if (nums[i] + nums[i + 1] + nums[i + 2] > 0) {
+				break;
+			}
+			if (nums[i] + nums[n - 2] + nums[n - 1] < 0) {
+				continue;
+			}
 			int left = i + 1, right = n - 1;
 			while (left < right) {
 				vector<int> v = {nums[i], nums[left], nums[right]};
