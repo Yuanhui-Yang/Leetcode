@@ -28,6 +28,7 @@ int main(void) {
 | 5 | [Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-palindromic-substring.cpp)| Medium |
 | 7 | [Reverse Integer](https://leetcode.com/problems/reverse-integer/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reverse-integer.cpp) | Easy |
 | 9 | [Palindrome Number](https://leetcode.com/problems/palindrome-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/palindrome-number.cpp) | Easy |
+| 15 | [3Sum](https://leetcode.com/problems/3sum/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/3sum.cpp)| Medium |
 | 20 | [Valid Parentheses](https://leetcode.com/problems/valid-parentheses/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/valid-parentheses.cpp) | Easy |
 | 21 | [Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/merge-two-sorted-lists.cpp) | Easy |
 | 23 | [Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/merge-k-sorted-lists.cpp) | Hard |
