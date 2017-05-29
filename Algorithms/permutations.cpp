@@ -59,7 +59,7 @@ int main(void) {
 	sort(begin(answer), end(answer));
 	result = solution.permute(nums);
 	sort(begin(result), end(result));
-	assert(answer == result);	
+	assert(answer == result);
 
 	nums = {1, 2, 3};
 	answer = {{1, 2, 3}, {1, 3, 2}, {2, 1, 3}, {2, 3, 1}, {3, 1, 2}, {3, 2, 1}};
