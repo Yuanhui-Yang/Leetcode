@@ -35,6 +35,7 @@ int main(void) {
 | 28 | [Implement strStr()](https://leetcode.com/problems/implement-strstr/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/implement-strstr.cpp) | Easy |
 | 29 | [Divide Two Integers](https://leetcode.com/problems/divide-two-integers/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/divide-two-integers.cpp) | Medium |
 | 30 | [Substring with Concatenation of All Words](https://leetcode.com/problems/substring-with-concatenation-of-all-words/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/substring-with-concatenation-of-all-words.cpp) | Hard |
+| 31 | [Next Permutation](https://leetcode.com/problems/next-permutation/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/next-permutation.cpp) | Medium |
 | 32 | [Longest Valid Parentheses](https://leetcode.com/problems/longest-valid-parentheses/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-valid-parentheses.cpp) | Hard |
 | 34 | [Search for a Range](https://leetcode.com/problems/search-for-a-range/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/search-for-a-range.cpp) | Medium |
 | 35 | [Search Insert Position](https://leetcode.com/problems/search-insert-position/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/search-insert-position.cpp) | Medium |
