@@ -21,25 +21,26 @@ using namespace std;
 class Solution {
 public:
 	vector<vector<int>> threeSum(vector<int>& nums) {
+		if (nums.size() < 3) {
+			return {};
+		}
 		vector<vector<int>> result;
 		sort(begin(nums), end(nums));
-		for (int i = 0, n = nums.size(); i < n; i++) {
-			int target = -nums[i];
-			int left = i + 1;
-			int right = n - 1;
+		for (int i = 0, n = nums.size(); i + 3 <= n; i++) {
+			if (i > 0 and nums[i] == nums[i - 1]) {
+				continue;
+			}
+			int left = i + 1, right = n - 1;
 			while (left < right) {
-				int sum = nums[left] + nums[right];
-				if (sum < target) {
+				vector<int> v = {nums[i], nums[left], nums[right]};
+				int sum = accumulate(begin(v), end(v), 0);
+				if (sum < 0) {
 					left++;
 				}
-				else if (sum > target) {
+				else if (sum > 0) {
 					right--;
 				}
 				else {
-					vector<int> v;
-					v.push_back(nums[i]);
-					v.push_back(nums[left]);
-					v.push_back(nums[right]);
 					result.push_back(v);
 					while (left < right and nums[left] == v[1]) {
 						left++;
@@ -48,9 +49,6 @@ public:
 						right--;
 					}
 				}
-			}
-			while (i + 1 < n and nums[i + 1] == nums[i]) {
-				i++;
 			}
 		}
 		return result;
