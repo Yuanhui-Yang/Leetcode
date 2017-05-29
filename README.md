@@ -46,6 +46,7 @@ int main(void) {
 | 43 | [Multiply Strings](https://leetcode.com/problems/multiply-strings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/multiply-strings.cpp) | Medium |
 | 44 | [Wildcard Matching](https://leetcode.com/problems/wildcard-matching/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/wildcard-matching.cpp) | Hard |
 | 45 | [Jump Game II](https://leetcode.com/problems/jump-game-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/jump-game-ii.cpp) | Hard |
+| 46 | [Permutations](https://leetcode.com/problems/permutations/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/permutations.cpp) | Medium |
 | 51 | [N-Queens](https://leetcode.com/problems/n-queens/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/n-queens.cpp) | Hard |
 | 52 | [N-Queens II](https://leetcode.com/problems/n-queens-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/n-queens-ii.cpp) | Hard |
 | 53 | [Maximum Subarray](https://leetcode.com/problems/maximum-subarray/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-subarray.cpp) | Easy |
