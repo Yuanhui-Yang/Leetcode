@@ -23,7 +23,7 @@ public:
 		if (digits.empty()) {
 			return {};
 		}
-		vector<string> table = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"},  result;
+		vector<string> table = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"}, result;
 		string s;
 		dfs(result, table, digits, s, 0, digits.size());
 		return result;
