@@ -20,6 +20,13 @@ int main(void) {
 	vector<int> nums1, nums2;
 	int m, n;
 
+	nums1 = {2, 0};
+	m = 1;
+	nums2 = {1};
+	n = 1;
+	solution.merge(nums1, m, nums2, n);
+	assert(is_sorted(begin(nums1), next(begin(nums1), m + n)));
+
 	nums1 = {-1, 0, 0, 3, 3, 3, 0, 0, 0};
 	m = 6;
 	nums2 = {1, 2, 2};
