@@ -69,6 +69,7 @@ int main(void) {
 | 72 | [Edit Distance](https://leetcode.com/problems/edit-distance/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/edit-distance.cpp) | Hard |
 | 75 | [Sort Colors](https://leetcode.com/problems/sort-colors/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sort-colors.cpp) | Medium |
 | 76 | [Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-window-substring.cpp) | Hard |
+| 77 | [Combinations](https://leetcode.com/problems/combinations/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/combinations.cpp) | Medium |
 | 78 | [Subsets](https://leetcode.com/problems/subsets/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/subsets.cpp) | Easy |
 | 79 | [Word Search](https://leetcode.com/problems/word-search/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/word-search.cpp) | Medium |
 | 82 | [Remove Duplicates from Sorted List II](https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-duplicates-from-sorted-list-ii.cpp) | Medium |
