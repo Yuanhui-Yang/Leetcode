@@ -25,21 +25,21 @@ int main(void) {
 	nums2 = {1, 2, 2};
 	n = 3;
 	solution.merge(nums1, m, nums2, n);
-	assert(is_sorted(begin(nums1), end(nums1)));
+	assert(is_sorted(begin(nums1), next(begin(nums1), m + n)));
 
 	nums1 = {1};
 	m = 1;
 	nums2 = {};
 	n = 0;
 	solution.merge(nums1, m, nums2, n);
-	assert(is_sorted(begin(nums1), end(nums1)));
+	assert(is_sorted(begin(nums1), next(begin(nums1), m + n)));
 
 	nums1 = {1, 2, 3, 0, 0, 0};
 	m = 3;
 	nums2 = {-3, -2, -1};
 	n = 3;
 	solution.merge(nums1, m, nums2, n);
-	assert(is_sorted(begin(nums1), end(nums1)));
+	assert(is_sorted(begin(nums1), next(begin(nums1), m + n)));
 
 	cout << "\nPassed All\n";
 	return 0;
