@@ -1,54 +1,74 @@
 // 40. Combination Sum II
 // https://leetcode.com/problems/combination-sum-ii/
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <iterator>
+
+/*
+Given a collection of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
+
+Each number in C may only be used once in the combination.
+
+Note:
+All numbers (including target) will be positive integers.
+The solution set must not contain duplicate combinations.
+For example, given candidate set [10, 1, 2, 7, 6, 1, 5] and target 8, 
+A solution set is: 
+[
+  [1, 7],
+  [1, 2, 5],
+  [2, 6],
+  [1, 1, 6]
+]
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
 	vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
-		vector<vector<int>> result;
+		if (candidates.empty()) {
+			return {};
+		}
 		sort(begin(candidates), end(candidates));
-		vector<int> path;
-		this->combinationSum2(result, 0, path, target, candidates);
+		vector<vector<int>> result;
+		vector<int> v;
+		dfs(result, candidates, v, target, 0, candidates.size());
 		return result;
 	}
 private:
-	void combinationSum2(vector<vector<int>>& result, const int& start, vector<int>& path, const int& target, const vector<int>& candidates) {
-		if (target < 0) 
-			return;
-		else if (target == 0) {
-			if (path.empty())
-				return;
-			else {
-				result.push_back(path);
-				return;
-			}
-		}
-		else {
-			for (int i = start; i < candidates.size(); i++) {
-				if (i > start && candidates[i] == candidates[i - 1])
-					continue;
-				path.push_back(candidates[i]);
-				this->combinationSum2(result, i + 1, path, target - candidates[i], candidates);
-				path.pop_back();
-			}
+	void dfs(vector<vector<int>>& result, const vector<int>& candidates, vector<int>& v, int target, size_t i, const size_t n) {
+		if (target == 0) {
+			result.push_back(v);
 			return;
 		}
-
+		if (target < 0) {
+			return;
+		}
+		for (size_t j = i; j < n; j++) {
+			if (j > i and candidates[j] == candidates[j - 1]) {
+				continue;
+			}
+			int val = candidates[j];
+			v.push_back(val);
+			dfs(result, candidates, v, target - val, j + 1, n);
+			v.pop_back();
+		}
 	}
 };
+
 int main(void) {
 	Solution solution;
-	vector<int> candidates = {14,22,8,31,30,26,9,34,20,13,10,22,6,12,18,22,28,19,14,17,24,24,22,14,27,30,6,23,25,14,33,5,23,7,23,18,28,20,9,5,20,14,22,21,21,6,9,6,12,10,19,31,21,28,32,14,23,33,32,14};
-	int target = 29;
-	for (const auto& i : solution.combinationSum2(candidates, target)) {
-		for (const auto& j : i) {
-			cout << j << '\t';
-		}
-		cout << '\n';
-	}
-	cout << "\nPassed\n";
+	int target;
+	vector<int> candidates;
+	vector<vector<int>> result, answer;
+
+	target = 8;
+	candidates = {10, 1, 2, 7, 6, 1, 5};
+	answer = {{1, 7}, {1, 2, 5}, {2, 6}, {1, 1, 6}};
+	sort(begin(answer), end(answer));
+	result = solution.combinationSum2(candidates, target);
+	sort(begin(result), end(result));
+	assert(answer == result);
+
+	cout << "\nPassed All\n";
 	return 0;
 }
