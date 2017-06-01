@@ -27,6 +27,7 @@ int main(void) {
 | 4 | [Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/median-of-two-sorted-arrays.cpp) | Hard |
 | 5 | [Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-palindromic-substring.cpp)| Medium |
 | 7 | [Reverse Integer](https://leetcode.com/problems/reverse-integer/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reverse-integer.cpp) | Easy |
+| 8 | [String to Integer (atoi)](https://leetcode.com/problems/string-to-integer-atoi/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/string-to-integer-atoi.cpp)| Medium |
 | 9 | [Palindrome Number](https://leetcode.com/problems/palindrome-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/palindrome-number.cpp) | Easy |
 | 10 | [Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/regular-expression-matching.cpp) | Hard |
 | 15 | [3Sum](https://leetcode.com/problems/3sum/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/3sum.cpp)| Medium |
