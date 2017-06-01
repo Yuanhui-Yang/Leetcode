@@ -1,64 +1,73 @@
 // 216. Combination Sum III
 // https://leetcode.com/problems/combination-sum-iii/
-#include <iostream>
-#include <vector>
-#include <algorithm>
+
+/*
+Find all possible combinations of k numbers that add up to a number n, given that only numbers from 1 to 9 can be used and each combination should be a unique set of numbers.
+
+
+Example 1:
+
+Input: k = 3, n = 7
+
+Output:
+
+[[1,2,4]]
+
+Example 2:
+
+Input: k = 3, n = 9
+
+Output:
+
+[[1,2,6], [1,3,5], [2,3,4]]
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
 	vector<vector<int>> combinationSum3(int k, int n) {
 		vector<vector<int>> result;
-		vector<int> path;
-		for (int i = 1; i <= min(n, 9); ++i)
-			this->combinationSum3(i, k, n, path, result);
+		vector<int> v;
+		dfs(result, v, 1, k, n);
 		return result;
 	}
 private:
-	void combinationSum3(int start, int k, int n, vector<int>& path, vector<vector<int>>& result) {
-		if (start > n) return;
-		if (k <= 0) return;
-		if (k == 1 && start != n) return;
-		if (k == 1 && start == n) {
-			path.push_back(start);
-			result.push_back(path);
-			path.pop_back();
+	void dfs(vector<vector<int>>& result, vector<int>& v, int i, int k, int n) {
+		if (n == 0 and k == 0) {
+			result.push_back(v);
 			return;
 		}
-		path.push_back(start);
-		for (int i = start + 1; i <= min(n - start, 9); ++i)
-			this->combinationSum3(i, k - 1, n - start, path, result);
-		path.pop_back();
+		for (int j = i; n > 0 and j <= 9; j++) {
+			v.push_back(j);
+			dfs(result, v, j + 1, k - 1, n - j);
+			v.pop_back();
+		}
 	}
 };
+
 int main(void) {
 	Solution solution;
-	int k = 3;
-	int n = 7;
-	for (const auto &i : solution.combinationSum3(k, n)) {
-		for (const auto &j : i) {
-			cout << j << '\t';
-		}
-		cout << '\n';
-	}
-	cout << "\nPassed\n";
+	int k, n;
+	vector<vector<int>> answer, result;
+
+	k = 3;
+	n = 7;
+	answer = {{1, 2, 4}};
+	sort(begin(answer), end(answer));
+	result = solution.combinationSum3(k, n);
+	sort(begin(result), end(result));
+	assert(answer == result);
+
 	k = 3;
 	n = 9;
-	for (const auto &i : solution.combinationSum3(k, n)) {
-		for (const auto &j : i) {
-			cout << j << '\t';
-		}
-		cout << '\n';
-	}
-	cout << "\nPassed\n";
-	k = 2;
-	n = 18;
-	for (const auto &i : solution.combinationSum3(k, n)) {
-		for (const auto &j : i) {
-			cout << j << '\t';
-		}
-		cout << '\n';
-	}
-	cout << "\nPassed\n";
+	answer = {{1, 2, 6}, {1, 3, 5}, {2, 3, 4}};
+	sort(begin(answer), end(answer));
+	result = solution.combinationSum3(k, n);
+	sort(begin(result), end(result));
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
