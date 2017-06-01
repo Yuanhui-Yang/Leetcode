@@ -28,6 +28,7 @@ int main(void) {
 | 5 | [Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-palindromic-substring.cpp)| Medium |
 | 7 | [Reverse Integer](https://leetcode.com/problems/reverse-integer/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reverse-integer.cpp) | Easy |
 | 9 | [Palindrome Number](https://leetcode.com/problems/palindrome-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/palindrome-number.cpp) | Easy |
+| 10 | [Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/regular-expression-matching.cpp) | Hard |
 | 15 | [3Sum](https://leetcode.com/problems/3sum/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/3sum.cpp)| Medium |
 | 17 | [Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/letter-combinations-of-a-phone-number.cpp)| Medium |
 | 18 | [4Sum](https://leetcode.com/problems/4sum/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/4sum.cpp)| Medium |
