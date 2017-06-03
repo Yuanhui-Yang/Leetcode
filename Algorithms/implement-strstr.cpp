@@ -13,16 +13,16 @@ using namespace std;
 class Solution {
 public:
 	int strStr(string haystack, string needle) {
-		if (haystack.size() == needle.size()) {
-			return haystack == needle ? 0 : -1;
-		}
-		if (haystack.size() < needle.size()) {
+		int m = haystack.size(), n = needle.size(), i = 0, j = -1;
+		if (m < n) {
 			return -1;
 		}
-		if (needle.empty()) {
+		if (m == n) {
+			return haystack == needle ? 0 : -1;
+		}
+		if (n == 0) {
 			return 0;
 		}
-		int m = haystack.size(), n = needle.size(), i = 0, j = -1;
 		vector<int> pi(n + 1);
 		pi.front() = -1;
 		while (i < n) {
@@ -37,14 +37,14 @@ public:
 		j = 0;
 		while (i < m) {
 			if (j == -1 or haystack[i] == needle[j]) {
-				i++;
-				j++;
+				++i;
+				++j;
 			}
 			else {
 				j = pi[j];
 			}
 			if (j == n) {
-				return i - j;
+				return i - n;
 			}
 		}
 		return -1;
@@ -56,15 +56,33 @@ int main(void) {
 	string haystack, needle;
 	int answer, result;
 
-	haystack = "aaa";
-	needle = "a";
-	answer = 0;
+	haystack = "mississippi";
+	needle = "issipi";
+	answer = -1;
 	result = solution.strStr(haystack, needle);
 	assert(answer == result);
 
-	haystack = "THIS IS A TEST TEXT";
-	needle = "TEST";
-	answer = 10;
+	haystack = "mississippi";
+	needle = "issip";
+	answer = 4;
+	result = solution.strStr(haystack, needle);
+	assert(answer == result);
+
+	haystack = "mississippi";
+	needle = "issip";
+	answer = 4;
+	result = solution.strStr(haystack, needle);
+	assert(answer == result);
+
+	haystack = "aaaa";
+	needle = "baaa";
+	answer = -1;
+	result = solution.strStr(haystack, needle);
+	assert(answer == result);
+
+	haystack = "a";
+	needle = "";
+	answer = 0;
 	result = solution.strStr(haystack, needle);
 	assert(answer == result);
 
