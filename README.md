@@ -34,6 +34,7 @@ int main(void) {
 | 11 | [Container With Most Water](https://leetcode.com/problems/container-with-most-water/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/container-with-most-water.cpp)| Medium |
 | 12 | [Integer to Roman](https://leetcode.com/problems/integer-to-roman/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/integer-to-roman.cpp)| Medium |
 | 13 | [Roman to Integer](https://leetcode.com/problems/roman-to-integer/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/roman-to-integer.cpp) | Easy |
+| 14 | [Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-common-prefix.cpp) | Easy |
 | 15 | [3Sum](https://leetcode.com/problems/3sum/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/3sum.cpp)| Medium |
 | 16 | [3Sum Closest](https://leetcode.com/problems/3sum-closest/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/3sum-closest.cpp)| Medium |
 | 17 | [Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/letter-combinations-of-a-phone-number.cpp)| Medium |
