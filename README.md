@@ -42,6 +42,7 @@ int main(void) {
 | 19 | [Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-nth-node-from-end-of-list.cpp)| Medium |
 | 20 | [Valid Parentheses](https://leetcode.com/problems/valid-parentheses/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/valid-parentheses.cpp) | Easy |
 | 21 | [Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/merge-two-sorted-lists.cpp) | Easy |
+| 22 | [Generate Parentheses](https://leetcode.com/problems/generate-parentheses/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/generate-parentheses.cpp)| Medium |
 | 23 | [Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/merge-k-sorted-lists.cpp) | Hard |
 | 25 | [Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reverse-nodes-in-k-group.cpp) | Hard |
 | 28 | [Implement strStr()](https://leetcode.com/problems/implement-strstr/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/implement-strstr.cpp) | Easy |
