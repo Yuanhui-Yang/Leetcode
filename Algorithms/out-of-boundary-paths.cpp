@@ -30,7 +30,7 @@ public:
 		return dfs(OPT, m, n, N, i, j) % D;
 	}
 private:
-	const size_t D = int(1E9) + 7;
+	const size_t D = 1E9 + 7;
 	size_t dfs(vector<vector<vector<size_t>>>& OPT, int m, int n, int N, int i, int j) {
 		if (N < 0) {
 			return 0;
