@@ -467,6 +467,7 @@ int main(void) {
 | 566 | [Reshape the Matrix](https://leetcode.com/problems/reshape-the-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reshape-the-matrix.cpp) | Easy |
 | 567 | [Permutation in String](https://leetcode.com/problems/permutation-in-string/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/permutation-in-string.cpp) | Medium |
 | 568 | [Maximum Vacation Days](https://leetcode.com/problems/maximum-vacation-days/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-vacation-days.cpp) | Hard |
+| 572 | [Subtree of Another Tree](https://leetcode.com/problems/subtree-of-another-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/subtree-of-another-tree.cpp) | Easy |
 | 573 | [Squirrel Simulation](https://leetcode.com/problems/squirrel-simulation/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/squirrel-simulation.cpp) | Medium |
 | 575 | [Distribute Candies](https://leetcode.com/problems/distribute-candies/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/distribute-candies.cpp) | Easy |
 | 583 | [Delete Operation for Two Strings](https://leetcode.com/problems/delete-operation-for-two-strings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/delete-operation-for-two-strings.cpp) | Medium |
