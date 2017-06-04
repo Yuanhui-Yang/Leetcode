@@ -462,6 +462,7 @@ int main(void) {
 | 557 | [Reverse Words in a String III](https://leetcode.com/problems/reverse-words-in-a-string-iii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reverse-words-in-a-string-iii.cpp) | Easy |
 | 560 | [Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/subarray-sum-equals-k.cpp) | Medium |
 | 561 | [Array Partition I](https://leetcode.com/problems/array-partition-i/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/array-partition-i.cpp) | Easy |
+| 562 | [Longest Line of Consecutive One in Matrix](https://leetcode.com/problems/longest-line-of-consecutive-one-in-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-line-of-consecutive-one-in-matrix.cpp) | Medium |
 | 563 | [Binary Tree Tilt](https://leetcode.com/problems/binary-tree-tilt/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/binary-tree-tilt.cpp) | Easy |
 | 565 | [Array Nesting](https://leetcode.com/problems/array-nesting/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/array-nesting.cpp) | Medium |
 | 566 | [Reshape the Matrix](https://leetcode.com/problems/reshape-the-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reshape-the-matrix.cpp) | Easy |
