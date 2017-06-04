@@ -473,6 +473,7 @@ int main(void) {
 | 598 | [Range Addition II](https://leetcode.com/problems/range-addition-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/range-addition-ii.cpp) | Easy |
 | 599 | [Minimum Index Sum of Two Lists](https://leetcode.com/problems/minimum-index-sum-of-two-lists/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-index-sum-of-two-lists.cpp) | Easy |
 | 605 | [Can Place Flowers](https://leetcode.com/problems/can-place-flowers/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/can-place-flowers.cpp) | Easy |
+| 606 | [Construct String from Binary Tree](https://leetcode.com/problems/construct-string-from-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/construct-string-from-binary-tree.cpp) | Easy |
 
 ## Database
 | # | Title | Solution | Difficulty |
