@@ -474,6 +474,7 @@ int main(void) {
 | 599 | [Minimum Index Sum of Two Lists](https://leetcode.com/problems/minimum-index-sum-of-two-lists/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-index-sum-of-two-lists.cpp) | Easy |
 | 605 | [Can Place Flowers](https://leetcode.com/problems/can-place-flowers/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/can-place-flowers.cpp) | Easy |
 | 606 | [Construct String from Binary Tree](https://leetcode.com/problems/construct-string-from-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/construct-string-from-binary-tree.cpp) | Easy |
+| 609 | [Find Duplicate File in System](https://leetcode.com/problems/find-duplicate-file-in-system/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-duplicate-file-in-system.cpp) | Medium |
 
 ## Database
 | # | Title | Solution | Difficulty |
