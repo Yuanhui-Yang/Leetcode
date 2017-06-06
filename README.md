@@ -460,6 +460,7 @@ int main(void) {
 | 553 | [Optimal Division](https://leetcode.com/problems/optimal-division/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/optimal-division.cpp) | Medium |
 | 554 | [Brick Wall](https://leetcode.com/problems/brick-wall/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/brick-wall.cpp) | Medium |
 | 555 | [Split Concatenated Strings](https://leetcode.com/problems/split-concatenated-strings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/split-concatenated-strings.cpp) | Medium |
+| 556 | [Next Greater Element III](https://leetcode.com/problems/next-greater-element-iii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/next-greater-element-iii.cpp) | Medium |
 | 557 | [Reverse Words in a String III](https://leetcode.com/problems/reverse-words-in-a-string-iii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reverse-words-in-a-string-iii.cpp) | Easy |
 | 560 | [Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/subarray-sum-equals-k.cpp) | Medium |
 | 561 | [Array Partition I](https://leetcode.com/problems/array-partition-i/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/array-partition-i.cpp) | Easy |
