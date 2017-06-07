@@ -477,6 +477,7 @@ int main(void) {
 | 583 | [Delete Operation for Two Strings](https://leetcode.com/problems/delete-operation-for-two-strings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/delete-operation-for-two-strings.cpp) | Medium |
 | 587 | [Erect the Fence](https://leetcode.com/problems/erect-the-fence/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/erect-the-fence.cpp) | Hard |
 | 588 | [Design In-Memory File System](https://leetcode.com/problems/design-in-memory-file-system/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/design-in-memory-file-system.cpp) | Hard |
+| 591 | [Tag Validator](https://leetcode.com/problems/tag-validator/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/tag-validator.cpp) | Medium |
 | 592 | [Fraction Addition and Subtraction](https://leetcode.com/problems/fraction-addition-and-subtraction/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/fraction-addition-and-subtraction.cpp) | Medium |
 | 598 | [Range Addition II](https://leetcode.com/problems/range-addition-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/range-addition-ii.cpp) | Easy |
 | 599 | [Minimum Index Sum of Two Lists](https://leetcode.com/problems/minimum-index-sum-of-two-lists/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-index-sum-of-two-lists.cpp) | Easy |
