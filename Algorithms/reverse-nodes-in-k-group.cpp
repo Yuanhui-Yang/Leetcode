@@ -1,60 +1,74 @@
 // 25. Reverse Nodes in k-Group
 // https://leetcode.com/problems/reverse-nodes-in-k-group/
-#include <iostream>
+
+/*
+Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
+
+k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes in the end should remain as it is.
+
+You may not alter the values in the nodes, only nodes itself may be changed.
+
+Only constant memory is allowed.
+
+For example,
+Given this linked list: 1->2->3->4->5
+
+For k = 2, you should return: 2->1->4->3->5
+
+For k = 3, you should return: 3->2->1->4->5
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 struct ListNode {
 	int val;
 	ListNode *next;
-	ListNode(const int& x) : val(x), next(NULL) {}
+	ListNode(int x) : val(x), next(NULL) {}
 };
+
+void gc(ListNode* head) {
+	if (head) {
+		gc(head->next);
+		delete head;
+	}
+}
+
 class Solution {
 public:
-	ListNode* reverseKGroup(ListNode* head, const int& k) {
-		if (k <= 1 || head == NULL || head->next == NULL) return head;
-		int length = this->length(head);
-		if (length < k) return head;
-		ListNode dummy(-1);
-		dummy.next = head;
-		ListNode* tail = this->next(&dummy, k);
-		while(tail) {
-			tail = this->next(tail, k);
-		}
-		return dummy.next;
-	}
-private:
-	int length(ListNode* head) {
-		int result(0);
-		ListNode* it(head);
-		while(it) {
-			++result;
-			it = it->next;
-		}
-		return result;
-	}
-private:
-	ListNode* next(ListNode* previous_start, const int& k) {
-		if (this->length(previous_start->next) < k) return NULL;
-		ListNode* previous = previous_start;
-		ListNode* current = previous->next;
-		ListNode* tail = previous_start->next;
-		for (int i = 0; i < k; ++i) {
-			ListNode* next = current->next;
-			current->next = previous;
-			previous = current;
-			current = next;
-		}
-		previous_start->next->next = current;
-		previous_start->next = previous;
-		return tail;
+	ListNode* reverseKGroup(ListNode* head, int k) {
+
 	}
 };
-int main(int argc, char** argv) {
-	ListNode* head = new ListNode(1);
+
+int main(void) {
+	Solution solution;
+	ListNode *head;
+	int k;
+	vector<int> answer, result;
+
+	head = new ListNode(1);
 	head->next = new ListNode(2);
 	head->next->next = new ListNode(3);
 	head->next->next->next = new ListNode(4);
 	head->next->next->next->next = new ListNode(5);
-	Solution solution;
-	
+	k = 2;
+	answer = {2, 1, 4, 3, 5};
+	result = solution.reverseKGroup(head, k);
+	gc(head);
+	assert(answer == result);
+
+	head = new ListNode(1);
+	head->next = new ListNode(2);
+	head->next->next = new ListNode(3);
+	head->next->next->next = new ListNode(4);
+	head->next->next->next->next = new ListNode(5);
+	k = 3;
+	answer = {3, 2, 1, 4, 5};
+	result = solution.reverseKGroup(head, k);
+	gc(head);
+	assert(answer == result);
+
+	cout << "\nPassed All\n";
 	return 0;
 }
