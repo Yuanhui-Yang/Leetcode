@@ -56,7 +56,7 @@ private:
 	}
 	string h2(const string& a, const string& b, const string& n) {
 		if (a == n) {
-			return a;
+			return b;
 		}
 		if (b == n) {
 			return a;
