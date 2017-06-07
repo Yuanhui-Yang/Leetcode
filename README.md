@@ -466,6 +466,7 @@ int main(void) {
 | 561 | [Array Partition I](https://leetcode.com/problems/array-partition-i/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/array-partition-i.cpp) | Easy |
 | 562 | [Longest Line of Consecutive One in Matrix](https://leetcode.com/problems/longest-line-of-consecutive-one-in-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-line-of-consecutive-one-in-matrix.cpp) | Medium |
 | 563 | [Binary Tree Tilt](https://leetcode.com/problems/binary-tree-tilt/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/binary-tree-tilt.cpp) | Easy |
+| 564 | [Find the Closest Palindrome](https://leetcode.com/problems/find-the-closest-palindrome/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-the-closest-palindrome.cpp) | Hard |
 | 565 | [Array Nesting](https://leetcode.com/problems/array-nesting/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/array-nesting.cpp) | Medium |
 | 566 | [Reshape the Matrix](https://leetcode.com/problems/reshape-the-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reshape-the-matrix.cpp) | Easy |
 | 567 | [Permutation in String](https://leetcode.com/problems/permutation-in-string/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/permutation-in-string.cpp) | Medium |
