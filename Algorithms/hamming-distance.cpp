@@ -1,30 +1,26 @@
 // 461. Hamming Distance
 // https://leetcode.com/problems/hamming-distance/
-#include <iostream>
-#include <cassert>
-#include <bitset>
+
+#include <bits/stdc++.h>
 using namespace std;
 
 class Solution {
 public:
 	int hammingDistance(int x, int y) {
-		bitset<32> result(x ^ y);
-		return result.count();
+		return bitset<32>(x ^ y).count();
 	}
 };
 
-// class Solution {
-// public:
-// 	int hammingDistance(int x, int y) {
-// 		bitset<32> a(x), b(y);
-// 		int result = 0;
-// 		for (int i = 0; i < 32; i++) result += a[i] != b[i];
-// 		return result;
-// 	}
-// };
 int main(void) {
 	Solution solution;
-	assert(2 == solution.hammingDistance(1, 4));
+	int x, y, answer, result;
+
+	x = 1;
+	y = 4;
+	answer = 2;
+	result = solution.hammingDistance(x, y);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
