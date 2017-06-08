@@ -20,13 +20,13 @@ using namespace std;
 class Solution {
 public:
 	int removeElement(vector<int>& nums, int val) {
-		int i = 0;
-		for (const auto &j : nums) {
-			if (j != val) {
-				nums[i++] = j;
+		int result = 0;
+		for (int i = 0, n = nums.size(); i < n; ++i) {
+			if (nums[i] != val) {
+				nums[result++] = nums[i];
 			}
 		}
-		return i;
+		return result;
 	}
 };
 
