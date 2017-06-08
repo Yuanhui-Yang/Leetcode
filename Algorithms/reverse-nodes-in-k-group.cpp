@@ -35,6 +35,15 @@ void gc(ListNode*& head) {
 	}
 }
 
+vector<int> print(ListNode *head) {
+	vector<int> result;
+	while (head) {
+		result.push_back(head->val);
+		head = head->next;
+	}
+	return result;
+}
+
 class Solution {
 public:
 	ListNode* reverseKGroup(ListNode* head, int k) {
@@ -77,7 +86,8 @@ int main(void) {
 	head->next->next->next->next = new ListNode(5);
 	k = 2;
 	answer = {2, 1, 4, 3, 5};
-	result = solution.reverseKGroup(head, k);
+	head = solution.reverseKGroup(head, k);
+	result = print(head);
 	gc(head);
 	assert(answer == result);
 
@@ -88,7 +98,8 @@ int main(void) {
 	head->next->next->next->next = new ListNode(5);
 	k = 3;
 	answer = {3, 2, 1, 4, 5};
-	result = solution.reverseKGroup(head, k);
+	head = solution.reverseKGroup(head, k);
+	result = print(head);
 	gc(head);
 	assert(answer == result);
 
