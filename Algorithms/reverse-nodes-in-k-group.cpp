@@ -27,17 +27,40 @@ struct ListNode {
 	ListNode(int x) : val(x), next(NULL) {}
 };
 
-void gc(ListNode* head) {
+void gc(ListNode*& head) {
 	if (head) {
 		gc(head->next);
 		delete head;
+		head = NULL;
 	}
 }
 
 class Solution {
 public:
 	ListNode* reverseKGroup(ListNode* head, int k) {
-
+		ListNode dummy(0), *it = &dummy;
+		dummy.next = head;
+		while (h(head, k)) {
+			ListNode *prev = NULL;
+			for (int i = 0; i < k; ++i) {
+				ListNode *next = head->next;
+				head->next = prev;
+				prev = head;
+				head = next;
+			}
+			ListNode *tail = it->next;
+			tail->next = head;
+			it->next = prev;
+			it = tail;
+		}
+		return dummy.next;
+	}
+private:
+	bool h(ListNode* head, int k) {
+		while (head and k-- > 0) {
+			head = head->next;
+		}
+		return k <= 0;
 	}
 };
 
