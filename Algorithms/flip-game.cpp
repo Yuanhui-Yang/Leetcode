@@ -1,30 +1,51 @@
 // 293. Flip Game
 // https://leetcode.com/problems/flip-game/
-#include <iostream>
-#include <vector>
-#include <string>
+
+/*
+You are playing the following Flip Game with your friend: Given a string that contains only these two characters: + and -, you and your friend take turns to flip two consecutive "++" into "--". The game ends when a person can no longer make a move and therefore the other person will be the winner.
+
+Write a function to compute all possible states of the string after one valid move.
+
+For example, given s = "++++", after one move, it may become one of the following states:
+
+[
+  "--++",
+  "+--+",
+  "++--"
+]
+If there is no valid move, return an empty list [].
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
 	vector<string> generatePossibleNextMoves(string s) {
 		vector<string> result;
-		for (size_t i = 0; i + 1 < s.size(); ++i) {
-			if (s[i] != '+' || s[i + 1] != '+') continue;
-			s[i + 1] = s[i] = '-';
-			result.push_back(s);
-			s[i + 1] = s[i] = '+';
+		for (int i = 1, n = s.size(); i < n; ++i) {
+			if (s[i - 1] == '+' and s[i] == '+') {
+				s[i - 1] = s[i] = '-';
+				result.push_back(s);
+				s[i - 1] = s[i] = '+';
+			}
 		}
 		return result;
 	}
 };
+
 int main(void) {
 	Solution solution;
-	string s = "++++";
-	for (const auto &i : solution.generatePossibleNextMoves(s)) cout << i << '\n';
-	cout << "\nPassed\n";
-	s = "--";
-	for (const auto &i : solution.generatePossibleNextMoves(s)) cout << i << '\n';
-	cout << "\nPassed\n";
+	string s;
+	vector<string> answer, result;
+
+	s = "++++";
+	answer = {"--++", "+--+", "++--"};
+	sort(begin(answer), end(answer));
+	result = solution.generatePossibleNextMoves(s);
+	sort(begin(result), end(result));
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
