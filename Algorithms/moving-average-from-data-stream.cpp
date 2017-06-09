@@ -1,27 +1,39 @@
 // 346. Moving Average from Data Stream
 // https://leetcode.com/problems/moving-average-from-data-stream/
-#include <iostream>
-#include <deque>
-#include <numeric>
+
+/*
+Given a stream of integers and a window size, calculate the moving average of all integers in the sliding window.
+
+For example,
+MovingAverage m = new MovingAverage(3);
+m.next(1) = 1
+m.next(10) = (1 + 10) / 2
+m.next(3) = (1 + 10 + 3) / 3
+m.next(5) = (10 + 3 + 5) / 3
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class MovingAverage {
 public:
-    /** Initialize your data structure here. */
-    MovingAverage(const int& size) {
-        this->dq.clear();
-        this->size = size;
-    }
-    
-    double next(const int& val) {
-        this->dq.push_front(val);
-        if (this->dq.size() < this->size) 
-            return double(accumulate(dq.begin(), dq.end(), 0.0)) / double(this->dq.size());
-        else
-            return double(accumulate(dq.begin(), dq.begin() + this->size, 0.0)) / double(this->size);
-    }
+	/** Initialize your data structure here. */
+	MovingAverage(int size) {
+		this->sz = size;
+		this->l.clear();
+	}
+
+	double next(int val) {
+		while (l.size() >= sz) {
+			l.pop_front();
+		}
+		l.push_back(val);
+		int sum = accumulate(begin(l), end(l), 0);
+		return double(sum) / double(l.size()); 
+	}
 private:
-    deque<int> dq;
-    int size;
+	size_t sz;
+	list<int> l;
 };
 
 /**
@@ -30,7 +42,33 @@ private:
  * double param_1 = obj.next(val);
  */
 
-int main(int argc, char** argv) {
-	MovingAverage m(3);
+int main(void) {
+	int size, val;
+	double answer, result;
+
+	size = 3;
+	MovingAverage m(size);
+
+	val = 1;
+	answer = 1;
+	result = m.next(val);
+	assert(fabs(answer - result) < DBL_EPSILON);
+
+	val = 10;
+	answer = 5.5;
+	result = m.next(val);
+	assert(fabs(answer - result) < DBL_EPSILON);
+
+	val = 3;
+	answer = 14.0 / 3.0;
+	result = m.next(val);
+	assert(fabs(answer - result) < DBL_EPSILON);
+
+	val = 5;
+	answer = 6;
+	result = m.next(val);
+	assert(fabs(answer - result) < DBL_EPSILON);
+
+	cout << "\nPassed All\n";
 	return 0;
 }
