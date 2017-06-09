@@ -28,15 +28,15 @@ using namespace std;
 class Solution {
 public:
 	int distributeCandies(vector<int>& candies) {
-		int n = candies.size(), k = 0;
 		sort(begin(candies), end(candies));
+		int m = 0, n = candies.size();
 		for (int i = 0; i < n; ++i) {
 			if (i > 0 and candies[i] == candies[i - 1]) {
 				continue;
 			}
-			++k;
+			++m;
 		}
-		return min(n / 2, k);
+		return min(m, n / 2);
 	}
 };
 
