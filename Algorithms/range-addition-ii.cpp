@@ -52,7 +52,7 @@ public:
 
 int main(void) {
 	Solution solution;
-	int m, n, result, answer;
+	int m, n, answer, result;
 	vector<vector<int>> ops;
 
 	m = 3;
