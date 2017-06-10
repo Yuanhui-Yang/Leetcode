@@ -6,14 +6,14 @@ using namespace std;
 
 class Solution {
 public:
-	void helloworld() {
+	void helloWorld() {
 		cout << "\nHello World\n";
 	}
 };
 
 int main(void) {
 	Solution solution;
-	solution.helloworld();
+	solution.helloWorld();
 	cout << "\nPassed All\n";
 	return 0;
 }
