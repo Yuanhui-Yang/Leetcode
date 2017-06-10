@@ -1,44 +1,53 @@
 // 167. Two Sum II - Input array is sorted
 // https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
-#include <iostream>
-#include <cassert>
-#include <vector>
-#include <algorithm>
-#include <iterator>
+
+/*
+Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.
+
+The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.
+
+You may assume that each input would have exactly one solution and you may not use the same element twice.
+
+Input: numbers={2, 7, 11, 15}, target=9
+Output: index1=1, index2=2
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
 	vector<int> twoSum(vector<int>& numbers, int target) {
-		const int numbers_size = numbers.size();
-		if (numbers_size < 2) return {0, 0};
-		int left = 0;
-		int right = numbers_size - 1;
-		while (left < right && numbers[left] + numbers[right] != target) {
-			int val = numbers[left] + numbers[right];
-			if (val < target) left++;
-			if (val > target) right--;
+		int n = numbers.size(), i = 0, j = n - 1;
+		while (i < j) {
+			int sum = numbers[i] + numbers[j];
+			if (sum == target) {
+				return {1 + i, 1 + j};
+			}
+			if (sum < target) {
+				++i;
+				continue;
+			}
+			if (sum > target) {
+				--j;
+				continue;
+			}
 		}
-		if (numbers[left] + numbers[right] == target) return {1 + left, 1 + right};
-		return {0, 0};
+		return {};
 	}
 };
-// class Solution {
-// public:
-// 	vector<int> twoSum(vector<int>& numbers, int target) {
-// 		const int numbers_size = numbers.size();
-// 		if (numbers_size < 2) return {0, 0};
-// 		for (int i = 0; i < numbers_size; i++) {
-// 			vector<int>::iterator jt = lower_bound(next(begin(numbers), i + 1), end(numbers), target - numbers[i]);
-// 			if (jt != end(numbers) && *jt + numbers[i] == target) return {1 + i, 1 + (int)distance(begin(numbers), jt)};
-// 		}
-// 		return {0, 0};
-// 	}
-// };
+
 int main(void) {
 	Solution solution;
-	vector<int> numbers;
+	vector<int> numbers, answer, result;
+	int target;
+
 	numbers = {2, 7, 11, 15};
-	assert(vector<int>({1, 2}) == solution.twoSum(numbers, 9));
+	target = 9;
+	answer = {1, 2};
+	result = solution.twoSum(numbers, target);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
