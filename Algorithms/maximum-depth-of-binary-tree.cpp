@@ -32,6 +32,33 @@ public:
 	}
 };
 
+// class Solution {
+// public:
+// 	int maxDepth(TreeNode* root) {
+// 		if (!root) {
+// 			return 0;
+// 		}
+// 		int result = 0;
+// 		queue<TreeNode*> q;
+// 		q.push(root);
+// 		while (!q.empty()) {
+// 			++result;
+// 			int size = q.size();
+// 			while (size-- > 0) {
+// 				TreeNode *f = q.front();
+// 				q.pop();
+// 				if (f->left) {
+// 					q.push(f->left);
+// 				}
+// 				if (f->right) {
+// 					q.push(f->right);
+// 				}
+// 			}
+// 		}
+// 		return result;		
+// 	}
+// };
+
 int main(void) {
 	Solution solution;
 	TreeNode *root;
