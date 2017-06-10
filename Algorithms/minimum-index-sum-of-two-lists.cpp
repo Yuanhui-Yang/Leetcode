@@ -31,20 +31,23 @@ using namespace std;
 class Solution {
 public:
 	vector<string> findRestaurant(vector<string>& list1, vector<string>& list2) {
+		unordered_map<string, int> h;
+		for (int n = list2.size(), i = 0; i < n; ++i) {
+			h[list2[i]] = i;
+		}
 		vector<string> result;
-		for (int i = 0, m = list1.size(), sum = list1.size() + list2.size(); i < m; i++) {
-			for (int j = 0, n = list2.size(); j < n; j++) {
-				if (list1[i] == list2[j]) {
-					if (i + j < sum) {
-						sum = i + j;
-						result.clear();
-						result.push_back(list1[i]);
-						continue;
-					}
-					if (i + j == sum and find(begin(result), end(result), list1[i]) == end(result)) {
-						result.push_back(list1[i]);
-						continue;
-					}
+		for (int n = list1.size(), sum = list1.size() + list2.size(), i = 0; i < n; ++i) {
+			const string& s = list1[i];
+			if (h.count(s)) {
+				if (h[s] + i < sum) {
+					result.clear();
+					result.push_back(s);
+					sum = h[s] + i;
+					continue;
+				}
+				if (h[s] + i == sum) {
+					result.push_back(s);
+					continue;
 				}
 			}
 		}
@@ -54,7 +57,7 @@ public:
 
 int main(void) {
 	Solution solution;
-	vector<string> list1, list2, result, answer;
+	vector<string> list1, list2, answer, result;
 
 	list1 = {"Shogun", "Tapioca Express", "Burger King", "KFC"};
 	list2 = {"Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"};
