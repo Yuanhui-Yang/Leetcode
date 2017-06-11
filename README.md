@@ -487,6 +487,7 @@ int main(void) {
 | 598 | [Range Addition II](https://leetcode.com/problems/range-addition-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/range-addition-ii.cpp) | Easy |
 | 599 | [Minimum Index Sum of Two Lists](https://leetcode.com/problems/minimum-index-sum-of-two-lists/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-index-sum-of-two-lists.cpp) | Easy |
 | 600 | [Non-negative Integers without Consecutive Ones](https://leetcode.com/problems/non-negative-integers-without-consecutive-ones/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/non-negative-integers-without-consecutive-ones.cpp) | Hard |
+| 604 | [Design Compressed String Iterator](https://leetcode.com/problems/design-compressed-string-iterator/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/design-compressed-string-iterator.cpp) | Easy |
 | 605 | [Can Place Flowers](https://leetcode.com/problems/can-place-flowers/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/can-place-flowers.cpp) | Easy |
 | 606 | [Construct String from Binary Tree](https://leetcode.com/problems/construct-string-from-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/construct-string-from-binary-tree.cpp) | Easy |
 | 609 | [Find Duplicate File in System](https://leetcode.com/problems/find-duplicate-file-in-system/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-duplicate-file-in-system.cpp) | Medium |
