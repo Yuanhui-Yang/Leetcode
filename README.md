@@ -492,6 +492,7 @@ int main(void) {
 | 606 | [Construct String from Binary Tree](https://leetcode.com/problems/construct-string-from-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/construct-string-from-binary-tree.cpp) | Easy |
 | 609 | [Find Duplicate File in System](https://leetcode.com/problems/find-duplicate-file-in-system/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-duplicate-file-in-system.cpp) | Medium |
 | 611 | [Valid Triangle Number](https://leetcode.com/problems/valid-triangle-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/valid-triangle-number.cpp) | Medium |
+| 616 | [Add Bold Tag in String](https://leetcode.com/problems/add-bold-tag-in-string/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/add-bold-tag-in-string.cpp) | Medium |
 | 617 | [Merge Two Binary Trees](https://leetcode.com/problems/merge-two-binary-trees/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/merge-two-binary-trees.cpp) | Easy |
 
 ## Database
