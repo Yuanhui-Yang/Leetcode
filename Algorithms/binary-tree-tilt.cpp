@@ -1,6 +1,30 @@
 // 563. Binary Tree Tilt
 // https://leetcode.com/problems/binary-tree-tilt/
 
+/*
+Given a binary tree, return the tilt of the whole tree.
+
+The tilt of a tree node is defined as the absolute difference between the sum of all left subtree node values and the sum of all right subtree node values. Null node has tilt 0.
+
+The tilt of the whole tree is defined as the sum of all nodes' tilt.
+
+Example:
+Input: 
+         1
+       /   \
+      2     3
+Output: 1
+Explanation: 
+Tilt of node 2 : 0
+Tilt of node 3 : 0
+Tilt of node 1 : |2-3| = 1
+Tilt of binary tree : 0 + 0 + 1 = 1
+Note:
+
+The sum of node values in any subtree won't exceed the range of 32-bit integer.
+All the tilt values won't exceed the range of 32-bit integer.
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -22,21 +46,21 @@ void gc(TreeNode* root) {
 class Solution {
 public:
 	int findTilt(TreeNode* root) {
-		return dfs(root).second;
+		return f(root).first;
 	}
 private:
-	pair<int, int> dfs(TreeNode* root) {
+	pair<int, int> f(TreeNode* root) {
 		if (!root) {
 			return {0, 0};
 		}
-		pair<int, int> l = dfs(root->left), r = dfs(root->right);
-		return {root->val + l.first + r.first, abs(l.first - r.first) + l.second + r.second};
+		pair<int, int> l = f(root->left), r = f(root->right);
+		return {abs(l.second - r.second) + l.first + r.first, root->val + l.second + r.second};
 	}
 };
 
 int main(void) {
 	Solution solution;
-	TreeNode* root;
+	TreeNode *root;
 	int answer, result;
 
 	root = new TreeNode(1);
