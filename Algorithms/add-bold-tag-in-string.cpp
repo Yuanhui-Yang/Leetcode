@@ -48,7 +48,9 @@ public:
 		result += s.substr(0, v.front().first);
 		for (int n = v.size(), i = 0; i < n; ++i) {
 			result += "<b>" + s.substr(v[i].first, v[i].second - v[i].first) + "</b>";
-			result += i + 1 == n ? "" : s.substr(v[i].second, v[i + 1].first - v[i].second);
+			if (i + 1 < n) {
+				result += s.substr(v[i].second, v[i + 1].first - v[i].second);
+			}
 		}
 		result += s.substr(v.back().second);
 		return result;
