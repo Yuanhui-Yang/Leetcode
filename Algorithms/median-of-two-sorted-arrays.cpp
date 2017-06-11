@@ -33,7 +33,7 @@ private:
 		if (m < n) {
 			return kth(k, nums2, b2, e2, nums1, b1, e1);
 		}
-		if (b2 == e2) {
+		if (n == 0) {
 			return nums1[k - 1];
 		}
 		if (k == 1) {
