@@ -1,29 +1,43 @@
 // 66. Plus One
 // https://leetcode.com/problems/plus-one/
-// https://discuss.leetcode.com/topic/24288/my-simple-java-solution
-#include <iostream>
-#include <vector>
+
+/*
+Given a non-negative integer represented as a non-empty array of digits, plus one to the integer.
+
+You may assume the integer do not contain any leading zero, except the number 0 itself.
+
+The digits are stored such that the most significant digit is at the head of the list.
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
 	vector<int> plusOne(vector<int>& digits) {
-		for (int i = digits.size() - 1; i >= 0; --i) {
-			if (digits[i] < 9) {
-				++digits[i];
-				return digits;
-			}
-			digits[i] = 0;
+		size_t carry = 1, n = digits.size(), i = n - 1, base = 10;
+		while (i != string::npos) {
+			int x = digits[i] + carry;;
+			digits[i] = x % base;
+			carry = x / base;
+			--i;
 		}
-		digits.front() = 1;
-		digits.push_back(0);
+		if (carry) {
+			digits.insert(begin(digits), 1);
+		}
 		return digits;
 	}
 };
+
 int main(void) {
 	Solution solution;
-	vector<int> digits = {1, 0, 9, 9, 9};
-	for (const auto &i : solution.plusOne(digits)) cout << i << '\t';\
-	cout << "\tPassed\n";
+	vector<int> digits, answer, result;
+
+	digits = {9, 9, 9, 9};
+	answer = {1, 0, 0, 0, 0};
+	result = solution.plusOne(digits);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
