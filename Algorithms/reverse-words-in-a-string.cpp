@@ -60,6 +60,21 @@ int main(void) {
 	Solution solution;
 	string s, answer;
 
+	s = "   a   ";
+	answer = "a";
+	solution.reverseWords(s);
+	assert(s == answer);
+
+	s = "   a   b ";
+	answer = "b a";
+	solution.reverseWords(s);
+	assert(s == answer);
+
+	s = "   a   b  c d   e  ";
+	answer = "e d c b a";
+	solution.reverseWords(s);
+	assert(s == answer);
+
 	s = "the sky is blue";
 	answer = "blue is sky the";
 	solution.reverseWords(s);
