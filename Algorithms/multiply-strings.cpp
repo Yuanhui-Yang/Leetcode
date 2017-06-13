@@ -1,45 +1,59 @@
 // 43. Multiply Strings
 // https://leetcode.com/problems/multiply-strings/
-// https://leetcode.com/discuss/26602/brief-c-solution-using-only-strings-and-without-reversal
-// https://leetcode.com/discuss/71593/easiest-java-solution-with-graph-explanation
-#include <iostream>
-#include <string>
+
+/*
+Given two non-negative integers num1 and num2 represented as strings, return the product of num1 and num2.
+
+Note:
+
+The length of both num1 and num2 is < 110.
+Both num1 and num2 contains only digits 0-9.
+Both num1 and num2 does not contain any leading zero.
+You must not use any built-in BigInteger library or convert the inputs to integer directly.
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
-	string multiply(const string& num1, const string& num2) {
-		size_t len1(num1.size());
-		size_t len2(num2.size());
-		//    num1 [len1] x num2 [len2]
-		// <= 99...9 [len1] x 99...9 [len2]
-		// =  (10 ^ len1 - 1) * (10 ^ len2 - 1)
-		// =  10 ^ (len1 + len2) - 10 ^ len1 - 10 ^ len2 + 1
-		// <= 10 ^ (len1 + len2) - 1
-		// =  99...9 [len1 + len2]
-		string result(len1 + len2, '0');
-		for (size_t i = len1; i >= 1; --i) {
-			int carry(0);
-			for (size_t j = len2; j >= 1; --j) {
-				int value = (num1[i - 1] - '0') * (num2[j - 1] - '0');
-				value += result[i + j - 1] - '0';
-				value += carry;
-				result[i + j - 1] = value % 10 + '0';
-				carry = value / 10;
+	string multiply(string num1, string num2) {
+		if (num1 == "0" or num2 == "0") {
+			return "0";
+		}
+		size_t m = num1.size(), n = num2.size(), base = 10, k = m + n - 1;
+		string result(m + n, '0');
+		for (size_t i = m - 1; i != string::npos; --i) {
+			size_t carry = 0, j = n - 1, x = num1[i] - '0';
+			k = i + j + 1;
+			while (carry or j != string::npos) {
+				size_t y = j != string::npos ? (num2[j--] - '0') : 0;
+				size_t z = x * y + carry + (result[k] - '0');
+				result[k] = '0' + z % base;
+				--k;
+				carry = z / base;
 			}
-			result[i - 1] = carry + '0';
 		}
-		for (size_t i = 0; i < len1 + len2; ++i) {
-			if (result[i] != '0')
-				return result.substr(i, len1 + len2 - i);
-		}
-		return string(1, '0');
+		return result.substr(k + 1);
 	}
 };
+
 int main(void) {
 	Solution solution;
-	string num1("1234");
-	string num2("345");
-	cout << solution.multiply(num1, num2);
-	cout << "\nPassed\n";
+	string num1, num2, answer, result;
+
+	num1 = "9133";
+	num2 = "0";
+	answer = "0";
+	result = solution.multiply(num1, num2);
+	assert(answer == result);
+
+	num1 = "1234";
+	num2 = "345";
+	answer = "425730";
+	result = solution.multiply(num1, num2);
+	assert(answer == result);
+
+	cout << "\nPassed All\n";
 	return 0;
 }
