@@ -19,10 +19,10 @@ using namespace std;
 class Solution {
 public:
 	int maxSubArray(vector<int>& nums) {
-		long long result = INT_MIN, c = INT_MIN;
+		int result = INT_MIN, sum = 0;
 		for (const auto &i : nums) {
-			c = max(c + i, (long long)i);
-			result = max(result, c);
+			sum = max(sum + i, i);
+			result = max(result, sum);
 		}
 		return result;
 	}
@@ -31,7 +31,7 @@ public:
 int main(void) {
 	Solution solution;
 	vector<int> nums;
-	int result, answer;
+	int answer, result;
 
 	nums = {-1};
 	answer = -1;
