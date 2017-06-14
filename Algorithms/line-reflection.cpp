@@ -1,83 +1,104 @@
 // 356. Line Reflection
 // https://leetcode.com/problems/line-reflection/
-#include <iostream>
-#include <vector>
-#include <unordered_set>
-#include <unordered_map>
-#include <climits>
-#include <algorithm>
+
+/*
+Given n points on a 2D plane, find if there is such a line parallel to y-axis that reflect the given points.
+
+Example 1:
+Given points = [[1,1],[-1,1]], return true.
+
+Example 2:
+Given points = [[1,1],[-1,-1]], return false.
+
+Follow up:
+Could you do better than O(n2)?
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
 	bool isReflected(vector<pair<int, int>>& points) {
-		unordered_map<int, unordered_set<int>> hashmap;
-		int counter = 0;
-		int xmin = INT_MAX;
-		int xmax = INT_MIN;
-		for (const auto &point : points) {
-			xmin = min(xmin, point.first);
-			xmax = max(xmax, point.first);
+		if (points.size() < 2) {
+			return true;
 		}
-		int checksum = xmin + xmax;
-		for (const auto &point : points) {
-			if (2 * point.first == checksum) continue;
-			if (hashmap.count(point.second) && hashmap[point.second].count(point.first)) continue;
-			if (hashmap.count(point.second) && hashmap[point.second].count(checksum - point.first)) {
-				hashmap[point.second].insert(point.first);
-				--counter;
+		sort(begin(points), end(points));
+		int n = points.size(), i = 0, j = n - 1, k = points.front().first + points.back().first, l = 0;
+		while (l < n and 2 * points[l].first < k) {
+			++l;
+		}
+		sort(begin(points), next(begin(points), l), Comp());
+		while (i <= j) {
+			if (i > 0 and points[i] == points[i - 1]) {
+				++i;
 				continue;
 			}
-			hashmap[point.second].insert(point.first);
-			++counter;
-			continue;			
+			if (j < n - 1 and points[j] == points[j + 1]) {
+				--j;
+				continue;
+			}
+			if (2 * points[i].first == k) {
+				++i;
+				continue;
+			}
+			if (2 * points[j].first == k) {
+				--j;
+				continue;
+			}
+			if (points[i].first + points[j].first == k and points[i].second == points[j].second) {
+				++i;
+				--j;
+			}
+			else {
+				return false;
+			}
 		}
-		return counter == 0;
+		return true;
 	}
+private:
+	struct Comp {
+		bool operator() (const pair<int, int>& a, const pair<int, int>& b) {
+			return a.first == b.first ? a.second > b.second : a.first < b.first;
+		}
+	};
 };
+
 int main(void) {
 	Solution solution;
-	vector<pair<int, int>> points = {{1, 1}, {-1, 1}};
-	if (solution.isReflected(points)) {
-		cout << "\nPassed\n";
-	} else {
-		cout << "\nError\n";
-		return 0;
-	}
-	points = {{1, 1}, {-1, -1}};
-	if (!solution.isReflected(points)) {
-		cout << "\nPassed\n";
-	} else {
-		cout << "\nError\n";
-		return 0;
-	}
-	points = {{-16, 1}, {16, 1}, {16, 1}};
-	if (solution.isReflected(points)) {
-		cout << "\nPassed\n";
-	} else {
-		cout << "\nError\n";
-		return 0;
-	}
+	vector<pair<int, int>> points;
+	bool answer, result;
+
+	points = {};
+	answer = true;
+	result = solution.isReflected(points);
+	assert(answer == result);
+
 	points = {{0, 0}};
-	if (solution.isReflected(points)) {
-		cout << "\nPassed\n";
-	} else {
-		cout << "\nError\n";
-		return 0;
-	}
-	points = {{0, 0}, {1, 0}};
-	if (solution.isReflected(points)) {
-		cout << "\nPassed\n";
-	} else {
-		cout << "\nError\n";
-		return 0;
-	}
+	answer = true;
+	result = solution.isReflected(points);
+	assert(answer == result);
+
 	points = {{0, 0}, {1, 0}, {3, 0}};
-	if (!solution.isReflected(points)) {
-		cout << "\nPassed\n";
-	} else {
-		cout << "\nError\n";
-		return 0;
-	}
+	answer = false;
+	result = solution.isReflected(points);
+	assert(answer == result);
+
+	points = {{1, 2}, {2, 2}, {1, 4}, {2, 4}};
+	answer = true;
+	result = solution.isReflected(points);
+	assert(answer == result);
+
+	points = {{1, 1}, {-1, 1}};
+	answer = true;
+	result = solution.isReflected(points);
+	assert(answer == result);
+
+	points = {{1, 1}, {-1, -1}};
+	answer = false;
+	result = solution.isReflected(points);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
