@@ -23,30 +23,28 @@ using namespace std;
 class Solution {
 public:
 	vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-		if (candidates.empty()) {
-			return {};
-		}
+		sort(begin(candidates), end(candidates));
 		vector<vector<int>> result;
 		vector<int> v;
-		dfs(result, candidates, v, target, 0, candidates.size());
+		dfs(result, candidates, v, 0, target);
 		return result;
 	}
 private:
-	void dfs(vector<vector<int>>& result, const vector<int>& candidates, vector<int>& v, int target, size_t i, const size_t n) {
+	void dfs(vector<vector<int>>& result, vector<int>& candidates, vector<int>& v, int i, int target) {
 		if (target == 0) {
 			result.push_back(v);
 			return;
 		}
-		if (target < 0) {
+		int n = candidates.size();
+		if (i >= n or target < 0) {
 			return;
 		}
-		for (size_t j = i; j < n; j++) {
-			int val = candidates[j];
-			v.push_back(val);
-			dfs(result, candidates, v, target - val, j, n);
+		for (int j = i; j < n; ++j) {
+			v.push_back(candidates[j]);
+			dfs(result, candidates, v, j, target - candidates[j]);
 			v.pop_back();
 		}
-	} 
+	}
 };
 
 int main(void) {
@@ -61,12 +59,6 @@ int main(void) {
 	sort(begin(answer), end(answer));
 	result = solution.combinationSum(candidates, target);
 	sort(begin(result), end(result));
-	for (const auto &i : result) {
-		for (const auto &j : i) {
-			cout << j << '\t';
-		}
-		cout << '\n';
-	}
 	assert(answer == result);
 
 	cout << "\nPassed All\n";
