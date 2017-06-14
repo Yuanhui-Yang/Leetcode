@@ -1,27 +1,52 @@
 // 343. Integer Break
 // https://leetcode.com/problems/integer-break/
-// https://discuss.leetcode.com/topic/42979/java-o-n-dp-solution-store-and-reuse-products
-#include <iostream>
-#include <cstring>
-#include <algorithm>
+
+/*
+Given a positive integer n, break it into the sum of at least two positive integers and maximize the product of those integers. Return the maximum product you can get.
+
+For example, given n = 2, return 1 (2 = 1 + 1); given n = 10, return 36 (10 = 3 + 3 + 4).
+
+Note: You may assume that n is not less than 2 and not larger than 58.
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
 	int integerBreak(int n) {
-		int *OPT = new int[n + 1];
-		memset(OPT, 0, (n + 1) * sizeof(int));
+		vector<int> OPT(max(n + 1, 3), 0);
+		OPT[0] = 0;
+		OPT[1] = 1;
 		OPT[2] = 1;
-		OPT[3] = 2;
-		OPT[4] = 4;
-		for (int i = 5; i < n + 1; ++i) OPT[i] = 3 * max(OPT[i - 3], i - 3);
-		int result = OPT[n];
-		delete[] OPT;
-		return result;
+		for (int i = 3; i <= n; ++i) {
+			for (int j = 1; j < i; ++j) {
+				OPT[i] = max(OPT[i], max(OPT[i - j], i - j) * j);
+			}
+		}
+		return OPT[n];
 	}
 };
+
 int main(void) {
 	Solution solution;
-	for (int i = 2; i < 59; ++i) cout << solution.integerBreak(i) << "\tPassed\n";
+	int n, answer, result;
+
+	n = 2;
+	answer = 1;
+	result = solution.integerBreak(n);
+	assert(answer == result);
+
+	n = 10;
+	answer = 36;
+	result = solution.integerBreak(n);
+	assert(answer == result);
+
+	n = 3;
+	answer = 2;
+	result = solution.integerBreak(n);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
