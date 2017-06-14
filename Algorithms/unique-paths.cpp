@@ -1,29 +1,45 @@
 // 62. Unique Paths
 // https://leetcode.com/problems/unique-paths/
-#include <iostream>
-#include <vector>
+
+/*
+A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
+
+The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).
+
+How many possible unique paths are there?
+
+
+Above is a 3 x 7 grid. How many possible unique paths are there?
+
+Note: m and n will be at most 100.
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
-	size_t uniquePaths(const size_t& m, const size_t& n) {
-		vector<vector<size_t>> opt(m + 1, vector<size_t>(n + 1, 0));
-		opt[m - 1][n - 1] = 1;
-		for (size_t i(m); i >= 1; --i) {
-			for (size_t j(n); j >= 1; --j) {
-				if (i == m && j == n)
-					continue;
-				else
-					opt[i - 1][j - 1] = opt[i][j - 1] + opt[i - 1][j];
+	int uniquePaths(int m, int n) {
+		vector<int> OPT(m, 1);
+		for (int i = n - 2; i >= 0; --i) {
+			for (int j = m - 2; j >= 0; --j) {
+				OPT[j] += OPT[j + 1];
 			}
 		}
-		return opt[0][0];
+		return OPT[0];
 	}
 };
+
 int main(void) {
 	Solution solution;
-	size_t m(1000), n(1000);
-	cout << solution.uniquePaths(m, n);
+	int m, n, answer, result;
+
+	m = 10;
+	n = 10;
+	answer = 48620;
+	result = solution.uniquePaths(m, n);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
-	getchar();
 	return 0;
 }
