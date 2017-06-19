@@ -29,15 +29,15 @@ class Solution {
 public:
 	bool isMatch(string s, string p) {
 		int m = s.size(), n = p.size();
-		vector<vector<bool>> OPT(m + 1, vector<bool>(n + 1, false));
+		vector<vector<bool>> OPT(1 + m, vector<bool>(1 + n, false));
 		OPT[0][0] = true;
-		for (int i = 0; i <= m; i++) {
-			for (int j = 1; j <= n; j++) {
+		for (int i = 0; i <= m; ++i) {
+			for (int j = 1; j <= n; ++j) {
 				if (p[j - 1] == '*') {
-					OPT[i][j] = (j > 1 and OPT[i][j - 2]) or (i > 0 and OPT[i - 1][j] and (p[j - 2] == s[i - 1] or p[j - 2] == '.'));
+					OPT[i][j] = j > 1 and (OPT[i][j - 2] or (i > 0 and OPT[i - 1][j] and (p[j - 2] == '.' or p[j - 2] == s[i - 1])));
 				}
 				else {
-					OPT[i][j] = i > 0 and OPT[i - 1][j - 1] and (p[j - 1] == s[i - 1] or p[j - 1] == '.');
+					OPT[i][j] = i > 0 and OPT[i - 1][j - 1] and (p[j - 1] == '.' or p[j - 1] == s[i - 1]);
 				}
 			}
 		}
