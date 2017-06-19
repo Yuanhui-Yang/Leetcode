@@ -89,6 +89,7 @@ int main(void) {
 | 77 | [Combinations](https://leetcode.com/problems/combinations/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/combinations.cpp) | Medium |
 | 78 | [Subsets](https://leetcode.com/problems/subsets/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/subsets.cpp) | Easy |
 | 79 | [Word Search](https://leetcode.com/problems/word-search/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/word-search.cpp) | Medium |
+| 81 | [Search in Rotated Sorted Array II](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/search-in-rotated-sorted-array-ii.cpp) | Medium |
 | 82 | [Remove Duplicates from Sorted List II](https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-duplicates-from-sorted-list-ii.cpp) | Medium |
 | 83 | [Remove Duplicates from Sorted List](https://leetcode.com/problems/remove-duplicates-from-sorted-list/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-duplicates-from-sorted-list.cpp) | Easy |
 | 84 | [Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-rectangle-in-histogram.cpp) | Hard |
