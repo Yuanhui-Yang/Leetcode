@@ -81,6 +81,7 @@ int main(void) {
 | 64 | [Minimum Path Sum](https://leetcode.com/problems/minimum-path-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-path-sum.cpp) | Medium |
 | 65 | [Valid Number](https://leetcode.com/problems/valid-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/valid-number.cpp) | Hard |
 | 66 | [Plus One](https://leetcode.com/problems/plus-one/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/plus-one.cpp) | Easy |
+| 67 | [Add Binary](https://leetcode.com/problems/add-binary/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/add-binary.cpp) | Easy |
 | 68 | [Text Justification](https://leetcode.com/problems/text-justification/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/text-justification.cpp) | Hard |
 | 69 | [Sqrt(x)](https://leetcode.com/problems/sqrtx/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sqrtx.cpp) | Medium |
 | 71 | [Simplify Path](https://leetcode.com/problems/simplify-path/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/simplify-path.cpp) | Medium |
