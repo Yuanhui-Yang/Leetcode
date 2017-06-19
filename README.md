@@ -53,6 +53,7 @@ int main(void) {
 | 30 | [Substring with Concatenation of All Words](https://leetcode.com/problems/substring-with-concatenation-of-all-words/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/substring-with-concatenation-of-all-words.cpp) | Hard |
 | 31 | [Next Permutation](https://leetcode.com/problems/next-permutation/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/next-permutation.cpp) | Medium |
 | 32 | [Longest Valid Parentheses](https://leetcode.com/problems/longest-valid-parentheses/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-valid-parentheses.cpp) | Hard |
+| 33 | [Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/search-in-rotated-sorted-array.cpp) | Medium |
 | 34 | [Search for a Range](https://leetcode.com/problems/search-for-a-range/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/search-for-a-range.cpp) | Medium |
 | 35 | [Search Insert Position](https://leetcode.com/problems/search-insert-position/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/search-insert-position.cpp) | Medium |
 | 37 | [Sudoku Solver](https://leetcode.com/problems/sudoku-solver/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sudoku-solver.cpp) | Easy |
