@@ -58,7 +58,7 @@ int main(void) {
 | 35 | [Search Insert Position](https://leetcode.com/problems/search-insert-position/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/search-insert-position.cpp) | Medium |
 | 36 | [Valid Sudoku](https://leetcode.com/problems/valid-sudoku/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/valid-sudoku.cpp) | Medium |
 | 37 | [Sudoku Solver](https://leetcode.com/problems/sudoku-solver/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sudoku-solver.cpp) | Easy |
-| 38 | [Count and Say](https://leetcode.com/problems/count-and-say/)
+| 38 | [Count and Say](https://leetcode.com/problems/count-and-say/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/count-and-say.cpp) | Easy |
 | 39 | [Combination Sum](https://leetcode.com/problems/combination-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/combination-sum.cpp) | Medium |
 | 40 | [Combination Sum II](https://leetcode.com/problems/combination-sum-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/combination-sum-ii.cpp) | Medium |
 | 41 | [First Missing Positive](https://leetcode.com/problems/first-missing-positive/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/first-missing-positive.cpp) | Hard |
