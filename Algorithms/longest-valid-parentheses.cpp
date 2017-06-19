@@ -1,59 +1,69 @@
 // 32. Longest Valid Parentheses
 // https://leetcode.com/problems/longest-valid-parentheses/
-// https://github.com/soulmachine/leetcode
-#include <iostream>
-#include <string>
-#include <stack>
-#include <algorithm>
-using namespace std; 
+
+/*
+Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.
+
+For "(()", the longest valid parentheses substring is "()", which has length = 2.
+
+Another example is ")()())", where the longest valid parentheses substring is "()()", which has length = 4.
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
 class Solution {
 public:
-	int longestValidParentheses(const string& s) {
+	int longestValidParentheses(string s) {
+		stack<int> stk;
+		stk.push(-1);
 		int result = 0;
-		stack<int> lefts;
-		int last = -1;
-		// ") ( ) ( ) )"
-		//  0 1 2 3 4 5
-		//  _____________________
-		// | i | lefts | last    |
-		// | 0 | NULL  | 0       |
-		// | 1 | 1     | 0       |
-		// | 2 | NULL  | 0       |
-		// | 3 | 3     | 0       |
-		// | 4 | NULL  | 0       |
-		// | 5 | NULL  | 5       |
-		//  _____________________
-		// "( ( )"
-		//  0 1 2
-		//  __________________
-		// | i | lefts | last |
-		// | 0 | 0     | -1   |
-		// | 1 | 0 1   | -1   |
-		// | 2 | 0     | -1   |
-		//  __________________
-		for (int i = 0; i < s.size(); ++i) {
-			if (s[i] == '(')
-				lefts.push(i);
-			else {
-				if (lefts.empty())
-					last = i;
-				else {
-					lefts.pop();
-					if (lefts.empty()) 
-						result = max(result, i - last);
-					else 
-						result = max(result, i - lefts.top());
-				}
+		for (int n = s.size(), i = 0; i < n; ++i) {
+			if (stk.top() == -1 or s[i] == '(') {
+				stk.push(i);
+				continue;
 			}
+			if (s[stk.top()] == '(') {
+				stk.pop();
+				result = max(result, i - stk.top());
+				continue;
+			}
+			stk.push(i);
 		}
 		return result;
 	}
 };
+
 int main(void) {
 	Solution solution;
-	// string s = ")()())";
-	string s = "(()";
-	cout << solution.longestValidParentheses(s) << "\nPassed\n";
-	getchar();
+	string s;
+	int answer, result;
+
+	s = "())()()(())((()(()()(((()))((((())((()(())()())(()((((()))()(()))(())()(())(()(((((())((((((()())())(()(()((())()))(()))))))()(()))((((())()()()))()()()(((()(()())(()()(()(()()(((()))))))()()))())())((()()))))))((()))(((()((())()(()()))((())))()()())))))))()))))(()))))()))()))()((())))((()))(()))))))(((()))))))))()(()()()(())((())()))()()(())))()()))(()())()))(((()())()))((())((((()))(()(()(()()()(((())()(((((()))((()(((((())(()()))((((((((()(()(()(()(())))(())(()())())(()((((()(())((()(())))(())))()(((((()(()()(())))))))())(())(())(()()(((())))((()))(((((()))))())))()((()))()))))())))))((())(((((()()))((((())))(((()(()(())())(((()(()(()()()())))())()))((()((())())()()()(((())(((((()((((((()((()())))((((())((()(((((((()(()((()()()(()(()())(()(()()((((())))()(((()())))(()()))()(()()()()(((((())(()))))((()))())))()((((((()))())))()(()))(())))((((()())(((((()()())(((((())(()())(()))))()(()()))()))))))())))(((())(()(()()))(()))()(((())))())((((()(((()))))))()(()(()))()()(()()))))))))((()))))))(())((()((()))()))((((((()())))))(()((())((((()))))(()(()()()()(()))()()(()(()))(()()(((((((()())(())(()())((())())()(()())((())()())())(()())))())))(())())())(())((()())(((()()))()))()()))()(()(())((((((((())))()((())((()((((((((((()))))(()(((((())(()(()())())))((())())))))()))(()((()()))((()((())()()()((()(())())((())())(()()(((())))))())()()(()))()())(()(()((())))((((()()(())))())(())(()(()(())())())(()()())()(())())))(()()(((())))((()()(((())()()(()())((((()()(()())(()((((()(()()(()(()(((()((()())(()()))(()((((()(((((()))))()()))(((()((((((()(()()()()())()))(()(())))))((()(((()())())))(((()()))(()(()(((((((()()))(()(())))())()(())())(())(()))(())(()))()()(()()())))))()))()((())(((()((((((((())()()))())))((()())(";
+	answer = 310;
+	result = solution.longestValidParentheses(s);
+	assert(answer == result);
+
+	s = "()()";
+	answer = 4;
+	result = solution.longestValidParentheses(s);
+	assert(answer == result);
+
+	s = ")()())()()(";
+	answer = 4;
+	result = solution.longestValidParentheses(s);
+	assert(answer == result);
+
+	s = "(()";
+	answer = 2;
+	result = solution.longestValidParentheses(s);
+	assert(answer == result);
+
+	s = ")()())";
+	answer = 4;
+	result = solution.longestValidParentheses(s);
+	assert(answer == result);
+
+	cout << "\nPassed All\n";
 	return 0;
 }
