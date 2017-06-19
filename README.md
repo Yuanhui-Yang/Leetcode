@@ -55,6 +55,7 @@ int main(void) {
 | 32 | [Longest Valid Parentheses](https://leetcode.com/problems/longest-valid-parentheses/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-valid-parentheses.cpp) | Hard |
 | 34 | [Search for a Range](https://leetcode.com/problems/search-for-a-range/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/search-for-a-range.cpp) | Medium |
 | 35 | [Search Insert Position](https://leetcode.com/problems/search-insert-position/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/search-insert-position.cpp) | Medium |
+| 37 | [Sudoku Solver](https://leetcode.com/problems/sudoku-solver/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sudoku-solver.cpp) | Hard |
 | 39 | [Combination Sum](https://leetcode.com/problems/combination-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/combination-sum.cpp) | Medium |
 | 40 | [Combination Sum II](https://leetcode.com/problems/combination-sum-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/combination-sum-ii.cpp) | Medium |
 | 41 | [First Missing Positive](https://leetcode.com/problems/first-missing-positive/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/first-missing-positive.cpp) | Hard |
