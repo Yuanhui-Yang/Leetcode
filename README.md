@@ -241,6 +241,7 @@ int main(void) {
 | 296 | [Best Meeting Point](https://leetcode.com/problems/best-meeting-point/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/best-meeting-point.cpp) | Hard |
 | 297 | [Serialize and Deserialize Binary Tree](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/serialize-and-deserialize-binary-tree.cpp) | Hard |
 | 298 | [Binary Tree Longest Consecutive Sequence](https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/binary-tree-longest-consecutive-sequence.cpp) | Medium |
+| 299 | [Bulls and Cows](https://leetcode.com/problems/bulls-and-cows/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/bulls-and-cows.cpp) | Medium |
 | 300 | [Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-increasing-subsequence.cpp) | Medium |
 | 301 | [Remove Invalid Parentheses](https://leetcode.com/problems/remove-invalid-parentheses/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-invalid-parentheses.cpp) | Hard |
 | 302 | [Smallest Rectangle Enclosing Black Pixels](https://leetcode.com/problems/smallest-rectangle-enclosing-black-pixels/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/smallest-rectangle-enclosing-black-pixels.cpp) | Hard |
