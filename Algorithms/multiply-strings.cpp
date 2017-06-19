@@ -18,23 +18,24 @@ using namespace std;
 class Solution {
 public:
 	string multiply(string num1, string num2) {
-		if (num1 == "0" or num2 == "0") {
-			return "0";
-		}
-		size_t m = num1.size(), n = num2.size(), base = 10, k = m + n - 1;
+		int m = num1.size(), n = num2.size(), base = 10;
 		string result(m + n, '0');
-		for (size_t i = m - 1; i != string::npos; --i) {
-			size_t carry = 0, j = n - 1, x = num1[i] - '0';
-			k = i + j + 1;
-			while (carry or j != string::npos) {
-				size_t y = j != string::npos ? (num2[j--] - '0') : 0;
-				size_t z = x * y + carry + (result[k] - '0');
-				result[k] = '0' + z % base;
-				--k;
-				carry = z / base;
+		for (int i = m - 1; i >= 0; --i) {
+			int a = num1[i] - '0', carry = 0;
+			for (int j = n - 1; j >= 0; --j) {
+				int b = num2[j] - '0';
+				int c = a * b + carry + result[i + j + 1] - '0';
+				carry = c / base;
+				c %= base;
+				result[i + j + 1] = c + '0';
 			}
+			result[i] += carry;
 		}
-		return result.substr(k + 1);
+		int k = 0;
+		while (k < m + n and result[k] == '0') {
+			++k;
+		}
+		return k < m + n ? result.substr(k) : "0";
 	}
 };
 
