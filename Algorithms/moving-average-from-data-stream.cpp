@@ -19,28 +19,31 @@ class MovingAverage {
 public:
 	/** Initialize your data structure here. */
 	MovingAverage(int size) {
-		this->sz = size;
-		this->l.clear();
+		sz = size;
+		l.clear();
+		s = 0;
 	}
 
 	double next(int val) {
-		while (l.size() >= sz) {
+		if (l.size() == sz) {
+			s -= l.front();
 			l.pop_front();
 		}
+		s += val;
 		l.push_back(val);
-		int sum = accumulate(begin(l), end(l), 0);
-		return double(sum) / double(l.size()); 
+		return double(s) / double(l.size());
 	}
 private:
 	size_t sz;
 	list<int> l;
+	int s;
 };
 
 /**
- * Your MovingAverage object will be instantiated and called as such:
- * MovingAverage obj = new MovingAverage(size);
- * double param_1 = obj.next(val);
- */
+* Your MovingAverage object will be instantiated and called as such:
+* MovingAverage obj = new MovingAverage(size);
+* double param_1 = obj.next(val);
+*/
 
 int main(void) {
 	int size, val;
