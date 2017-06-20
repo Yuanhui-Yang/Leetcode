@@ -17,19 +17,21 @@ using namespace std;
 class Solution {
 public:
 	int firstMissingPositive(vector<int>& nums) {
-		for (int i = 0, n = nums.size(); i < n; i++) {
-			while (nums[i] >= 1 and nums[i] <= n and nums[i] != nums[nums[i] - 1]) {
-				swap(nums[i], nums[nums[i] - 1]);	
+		int n = nums.size();
+		for (int i = 0; i < n; ++i) {
+			while (nums[i] != i + 1 and nums[i] - 1 >= 0 and nums[i] - 1 < n and nums[nums[i] - 1] != nums[i]) {
+				swap(nums[i], nums[nums[i] - 1]);
 			}
 		}
-		for (int i = 0, n = nums.size(); i < n; i++) {
+		for (int i = 0; i < n; ++i) {
 			if (i + 1 != nums[i]) {
 				return i + 1;
 			}
 		}
-		return nums.size() + 1;
+		return n + 1;
 	}
 };
+
 
 int main(void) {
 	Solution solution;
