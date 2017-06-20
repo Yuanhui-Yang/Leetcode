@@ -27,11 +27,11 @@ using namespace std;
 class Solution {
 public:
 	vector<vector<int>> subsets(vector<int>& nums) {
-	vector<vector<int>> result;
-	vector<int> v;
-	dfs(result, v, nums, 0, nums.size());
-	return result;
-}
+		vector<vector<int>> result;
+		vector<int> v;
+		dfs(result, v, nums, 0, nums.size());
+		return result;
+	}
 private:
 	void dfs(vector<vector<int>>& result, vector<int>& v, vector<int>& nums, int i, int n) {
 		result.push_back(v);
