@@ -20,22 +20,17 @@ using namespace std;
 class Solution {
 public:
 	int shortestDistance(vector<string>& words, string word1, string word2) {
-		int result = words.size();
-		for (int n = words.size(), i = 0, j = -1, k = -1; i < n; ++i) {
+		int n = words.size(), result = n;
+		for (int i = 0, x = -1, y = -1; i < n; ++i) {
 			const string& word = words[i];
 			if (word == word1) {
-				if (k >= 0) {
-					result = min(result, i - k);
-				}
-				j = i;
-				continue;
+				x = i;
 			}
 			if (word == word2) {
-				if (j >= 0) {
-					result = min(result, i - j);
-				}
-				k = i;
-				continue;
+				y = i;
+			}
+			if (x >= 0 and y >= 0) {
+				result = min(result, abs(x - y));
 			}
 		}
 		return result;
