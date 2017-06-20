@@ -27,20 +27,23 @@ using namespace std;
 class Solution {
 public:
 	vector<vector<int>> subsets(vector<int>& nums) {
-		vector<vector<int>> result;
-		vector<int> v;
-		dfs(result, v, nums, 0);
-		return result;
-	}
+	vector<vector<int>> result;
+	vector<int> v;
+	dfs(result, v, nums, 0, nums.size());
+	return result;
+}
 private:
-	void dfs(vector<vector<int>>& result, vector<int>& v, vector<int>& nums, int i) {
+	void dfs(vector<vector<int>>& result, vector<int>& v, vector<int>& nums, int i, int n) {
 		result.push_back(v);
-		for (int j = i, n = nums.size(); j < n; j++) {
-			v.push_back(nums[j]);
-			dfs(result, v, nums, j + 1);
+		if (i >= n) {
+			return;
+		}
+		for (; i < n; ++i) {
+			v.push_back(nums[i]);
+			dfs(result, v, nums, i + 1, n);
 			v.pop_back();
 		}
-	} 
+	}
 };
 
 int main(void) {
