@@ -268,6 +268,7 @@ int main(void) {
 | 322 | [Coin Change](https://leetcode.com/problems/coin-change/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/coin-change.cpp) | Medium |
 | 323 | [Number of Connected Components in an Undirected Graph](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-connected-components-in-an-undirected-graph.cpp) | Medium |
 | 324 | [Wiggle Sort II](https://leetcode.com/problems/wiggle-sort-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/wiggle-sort-ii.cpp) | Medium |
+| 325 | [Maximum Size Subarray Sum Equals k](https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-size-subarray-sum-equals-k.cpp) | Medium |
 | 327 | [Count of Range Sum](https://leetcode.com/problems/count-of-range-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/count-of-range-sum.cpp) | Hard |
 | 329 | [Longest Increasing Path in a Matrix](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-increasing-path-in-a-matrix.cpp) | Hard |
 | 330 | [Patching Array](https://leetcode.com/problems/patching-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/patching-array.cpp) | Hard |
