@@ -19,12 +19,6 @@ struct Interval {
 	Interval(int s, int e) : start(s), end(e) {}
 };
 
-struct Comp {
-	bool operator() (const struct Interval& a, const struct Interval& b) {
-		return a.start == b.start ? a.end < b.end : a.start < b.start;
-	}
-};
-
 class Solution {
 public:
 	vector<Interval> merge(vector<Interval>& intervals) {
@@ -33,13 +27,18 @@ public:
 		for (int n = intervals.size(), i = 0; i < n; ++i) {
 			int x = intervals[i].start, y = intervals[i].end;
 			while (i + 1 < n and intervals[i + 1].start <= y) {
-				y = max(y, intervals[i + 1].end);
-				++i;
+				y = max(y, intervals[++i].end);
 			}
 			result.push_back(Interval(x, y));
 		}
 		return result;
 	}
+private:
+	struct Comp {
+		bool operator() (const Interval& a, const Interval& b) {
+			return a.start == b.start ? a.end < b.end : a.start < b.start;
+		}
+	};
 };
 
 int main(void) {
