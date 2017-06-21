@@ -1,61 +1,57 @@
 // 354. Russian Doll Envelopes
 // https://leetcode.com/problems/russian-doll-envelopes/
-// https://discuss.leetcode.com/topic/47469/java-nlogn-solution-with-explanation
-// http://www.cnblogs.com/grandyang/p/5568818.html
-#include <iostream>
-#include <vector>
-#include <utility>
-#include <algorithm>
-#include <iterator>
+
+/*
+You have a number of envelopes with widths and heights given as a pair of integers (w, h). One envelope can fit into another if and only if both the width and height of one envelope is greater than the width and height of the other envelope.
+
+What is the maximum number of envelopes can you Russian doll? (put one inside other)
+
+Example:
+Given envelopes = [[5,4],[6,4],[6,7],[2,3]], the maximum number of envelopes you can Russian doll is 3 ([2,3] => [5,4] => [6,7]).
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
 	int maxEnvelopes(vector<pair<int, int>>& envelopes) {
-		sort(begin(envelopes), end(envelopes), [](const pair<int, int>& i, const pair<int, int>& j) {if (i.first == j.first) return i.second > j.second; return i.first < j.first;});
-		vector<int> result;
+		sort(begin(envelopes), end(envelopes), Comp());
+		vector<int> v;
 		for (const auto &i : envelopes) {
-			vector<int>::iterator it = lower_bound(begin(result), end(result), i.second);
-			if (it == end(result)) result.push_back(i.second);
-			else *it = i.second;
+			vector<int>::iterator it = lower_bound(begin(v), end(v), i.second);
+			if (it == end(v)) {
+				v.push_back(i.second);
+			}
+			else {
+				*it = i.second;
+			}
 		}
-		return result.size();
+		return v.size();
 	}
+private:
+	struct Comp {
+		bool operator() (const pair<int, int>& a, const pair<int, int>& b) {
+			return a.first == b.first ? a.second > b.second : a.first < b.first;
+		}
+	};
 };
-// class Solution {
-// public:
-// 	int maxEnvelopes(vector<pair<int, int>>& envelopes) {
-// 		sort(begin(envelopes), end(envelopes));
-// 		const int n = envelopes.size();
-// 		vector<int> OPT(n + 1, 0);
-// 		int result = 0;
-// 		for (int i = n - 1; i >= 0; --i) {
-// 			int tmp = 0;
-// 			for (int j = 1; i + j < n; ++j)
-// 				if (envelopes[i + j].first > envelopes[i].first && envelopes[i + j].second > envelopes[i].second)
-// 					tmp = max(tmp, OPT[i + j]);
-// 			result = max(result, (OPT[i] = tmp + 1));
-// 		}
-// 		return result;
-// 	}
-// };
+
 int main(void) {
 	Solution solution;
-	vector<pair<int, int>> envelopes = {{5, 4}, {6, 4}, {6, 7}, {2, 3}};
-	cout << solution.maxEnvelopes(envelopes) << "\tPassed\n";
-	envelopes = {{1, 1}, {1, 1}, {1, 1}};
-	cout << solution.maxEnvelopes(envelopes) << "\tPassed\n";
-	envelopes = {{4, 5}, {6, 7}, {2, 3}};
-	cout << solution.maxEnvelopes(envelopes) << "\tPassed\n";
-	envelopes = {{46, 89}, {50, 53}, {52, 68}, {72, 45}, {77, 81}};
-	cout << solution.maxEnvelopes(envelopes) << "\tPassed\n";
-	envelopes = {{1, 3}, {3, 5}, {6, 7}, {6, 8}, {8, 4}, {9, 5}};
-	cout << solution.maxEnvelopes(envelopes) << "\tPassed\n";
+	vector<pair<int, int>> envelopes;
+	int answer, result;
+
 	envelopes = {{4, 5}, {4, 6}, {6, 7}, {2, 3}, {1, 1}};
-	cout << solution.maxEnvelopes(envelopes) << "\tPassed\n";
+	answer = 4;
+	result = solution.maxEnvelopes(envelopes);
+	assert(answer == result);
+
 	envelopes = {{5, 4}, {6, 4}, {6, 7}, {2, 3}};
-	cout << solution.maxEnvelopes(envelopes) << "\tPassed\n";
-	envelopes = {{30, 50}, {12, 2}, {3, 4}, {12, 15}};
-	cout << solution.maxEnvelopes(envelopes) << "\tPassed\n";
+	answer = 3;
+	result = solution.maxEnvelopes(envelopes);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
