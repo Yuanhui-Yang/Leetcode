@@ -164,6 +164,7 @@ int main(void) {
 | 167 | [Two Sum II - Input array is sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/two-sum-ii-input-array-is-sorted.cpp) | Medium |
 | 173 | [Binary Search Tree Iterator](https://leetcode.com/problems/binary-search-tree-iterator/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/binary-search-tree-iterator.cpp) | Medium |
 | 174 | [Dungeon Game](https://leetcode.com/problems/dungeon-game/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/dungeon-game.cpp) | Hard |
+| 179 | [Largest Number](https://leetcode.com/problems/largest-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-number.cpp) | Medium |
 | 187 | [Repeated DNA Sequences](https://leetcode.com/problems/repeated-dna-sequences/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/repeated-dna-sequences.cpp) | Medium |
 | 188 | [Best Time to Buy and Sell Stock IV](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/best-time-to-buy-and-sell-stock-iv.cpp) | Hard |
 | 191 | [Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-1-bits.cpp) | Easy |
