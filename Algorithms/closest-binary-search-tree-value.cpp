@@ -1,46 +1,90 @@
 // 270. Closest Binary Search Tree Value
 // https://leetcode.com/problems/closest-binary-search-tree-value/
-#include <iostream>
-#include <cmath>
-#include <algorithm>
-#include <limits>
-#include <cassert>
+
+/*
+Given a non-empty binary search tree and a target value, find the value in the BST that is closest to the target.
+
+Note:
+Given target value is a floating point.
+You are guaranteed to have only one unique value in the BST that is closest to the target.
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 struct TreeNode {
 	int val;
 	TreeNode *left;
 	TreeNode *right;
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
-// BEGIN: https://discuss.leetcode.com/topic/22590/4-7-lines-recursive-iterative-ruby-c-java-python
+
+void gc(TreeNode* root) {
+	if (root) {
+		gc(root->left);
+		gc(root->right);
+		delete root;
+	}
+}
+
 class Solution {
 public:
 	int closestValue(TreeNode* root, double target) {
-		if (!root) return 0;
-		double minDiff = numeric_limits<double>::max();
-		int	result = 0;
+		if (!root) {
+			return INT_MIN;
+		}
+		int result = root->val;
 		while (root) {
-			double diff = fabs((double)root->val - target);
-			if (diff <= 0.5) return root->val;
-			if (diff < minDiff) {
-				minDiff = diff;
+			if (abs(root->val - target) < abs(result - target)) {
 				result = root->val;
 			}
-			if ((double)root->val > target) root = root->left;
-			else root = root->right;
+			if (root->val == target) {
+				return result;
+			}
+			if (root->val < target) {
+				root = root->right;
+			}
+			else {
+			root = root->left;
+			}
 		}
 		return result;
 	}
 };
-// END: https://discuss.leetcode.com/topic/22590/4-7-lines-recursive-iterative-ruby-c-java-python
+
 int main(void) {
 	Solution solution;
-	TreeNode *root = new TreeNode(0);
+	TreeNode *root;
+	int answer, result;
+	double target;
+
+	root = new TreeNode(0);
 	root->left = new TreeNode(1);
 	root->right = new TreeNode(2);
 	root->left->left = new TreeNode(3);
 	root->left->right = new TreeNode(4);
-	assert(2 == solution.closestValue(root, 2.1));
+	target = 2.1;
+	answer = 2;
+	result = solution.closestValue(root, target);
+	gc(root);
+	assert(answer == result);
+
+	root = new TreeNode(1);
+	root->right = new TreeNode(2);
+	target = 3.428571;
+	answer = 2;
+	result = solution.closestValue(root, target);
+	gc(root);
+	assert(answer == result);
+
+	root = new TreeNode(8);
+	root->left = new TreeNode(1);
+	target = 6.0;
+	answer = 8;
+	result = solution.closestValue(root, target);
+	gc(root);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
