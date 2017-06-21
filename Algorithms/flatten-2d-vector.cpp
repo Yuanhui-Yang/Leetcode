@@ -1,35 +1,62 @@
 // 251. Flatten 2D Vector
 // https://leetcode.com/problems/flatten-2d-vector/
-#include <iostream>
-#include <vector>
+
+/*
+Implement an iterator to flatten a 2d vector.
+
+For example,
+Given 2d vector =
+
+[
+  [1,2],
+  [3],
+  [4,5,6]
+]
+By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,2,3,4,5,6].
+
+Follow up:
+As an added challenge, try to code it using only iterators in C++ or iterators in Java.
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Vector2D {
 public:
-	Vector2D(vector<vector<int>>& vec2d): x(0), y(0), n(vec2d.size()), vec2d(vec2d) {}
+	Vector2D(vector<vector<int>>& vec2d) {
+		if (vec2d.empty()) {
+			return;
+		}
+		x = begin(vec2d);
+		z = end(vec2d);
+		while (x != z and x->empty()) {
+			++x;
+		}
+		if (x != z) {
+			y = begin(*x);   
+		}
+	}
 
 	int next() {
-		int result = this->vec2d[this->x][this->y];
-		if (this->y + 1 == this->vec2d[this->x].size()) {
-			this->y = 0;
-			this->x++;
-			while(this->x < this->n && this->vec2d[this->x].empty()) this->x++;
-			return result;
+		int result = *y;
+		if (++y == end(*x)) {
+			++x;
+			while (x != z and x->empty()) {
+				++x;
+			}
+			if (x != z) {
+				y = begin(*x);
+			}
 		}
-		this->y++;
 		return result;
 	}
 
 	bool hasNext() {
-		if (this->n == 0) return false;
-		while(this->x < this->n && this->vec2d[this->x].empty()) this->x++;
-		if (this->x == this->n) return false;
-		return true; 
+		return x != z;
 	}
 private:
-	size_t x;
-	size_t y;
-	size_t n;
-	const vector<vector<int>>& vec2d;
+vector<vector<int>>::iterator x, z;
+vector<int>::iterator y;
 };
 
 /**
@@ -39,13 +66,46 @@ private:
  */
 
 int main(void) {
-	vector<vector<int>> vec2d = {{1, 2}, {3}, {4, 5, 6}};
+	vector<vector<int>> vec2d;
 	Vector2D i(vec2d);
-	while (i.hasNext()) cout << i.next() << '\t';
-	cout << "\tPassed\n";
-	vec2d.clear();
-	while (i.hasNext()) cout << i.next() << '\t';
-	cout << "\tPassed\n";	
+	vector<int> answer, result;
+
+	vec2d = {};
+	i = Vector2D(vec2d);
+	answer = {};
+	result.clear();
+	while (i.hasNext()) {
+		result.push_back(i.next());
+	}
+	assert(answer == result);
+
+	vec2d = {{}};
+	i = Vector2D(vec2d);
+	answer = {};
+	result.clear();
+	while (i.hasNext()) {
+		result.push_back(i.next());
+	}
+	assert(answer == result);
+
+	vec2d = {{1}, {}};
+	i = Vector2D(vec2d);
+	answer = {1};
+	result.clear();
+	while (i.hasNext()) {
+		result.push_back(i.next());
+	}
+	assert(answer == result);
+
+	vec2d = {{1, 2}, {3}, {4, 5, 6}};
+	i = Vector2D(vec2d);
+	answer = {1, 2, 3, 4, 5, 6};
+	result.clear();
+	while (i.hasNext()) {
+		result.push_back(i.next());
+	}
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
