@@ -1,73 +1,147 @@
 // 314. Binary Tree Vertical Order Traversal
 // https://leetcode.com/problems/binary-tree-vertical-order-traversal/
-#include <iostream>
-#include <vector>
-#include <map>
-#include <unordered_map>
-#include <queue>
+
+/*
+Given a binary tree, return the vertical order traversal of its nodes' values. (ie, from top to bottom, column by column).
+
+If two nodes are in the same row and column, the order should be from left to right.
+
+Examples:
+
+Given binary tree [3,9,20,null,null,15,7],
+   3
+  /\
+ /  \
+ 9  20
+    /\
+   /  \
+  15   7
+return its vertical order traversal as:
+[
+  [9],
+  [3,15],
+  [20],
+  [7]
+]
+Given binary tree [3,9,8,4,0,1,7],
+     3
+    /\
+   /  \
+   9   8
+  /\  /\
+ /  \/  \
+ 4  01   7
+return its vertical order traversal as:
+[
+  [4],
+  [9],
+  [3,0,1],
+  [8],
+  [7]
+]
+Given binary tree [3,9,8,4,0,1,7,null,null,null,2,5] (0's right child is 2 and 1's left child is 5),
+     3
+    /\
+   /  \
+   9   8
+  /\  /\
+ /  \/  \
+ 4  01   7
+    /\
+   /  \
+   5   2
+return its vertical order traversal as:
+[
+  [4],
+  [9,5],
+  [3,0,1],
+  [8,2],
+  [7]
+]
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 struct TreeNode {
 	int val;
 	TreeNode *left;
 	TreeNode *right;
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
+
+void gc(TreeNode*& root) {
+	if (root) {
+		gc(root->left);
+		gc(root->right);
+		delete root;
+		root = NULL;
+	}
+}
+
 class Solution {
 public:
 	vector<vector<int>> verticalOrder(TreeNode* root) {
-		vector<vector<int>> result;
-		if (!root) return result;
-		unordered_map<TreeNode*, TreeNode*> Child2Parent;
-		unordered_map<TreeNode*, int> Node2Offset;
-		map<int, vector<int>> Offset2Nodes;
-		queue<TreeNode*> q;
-		q.push(root);
-		Node2Offset[root] = 0;
-		Offset2Nodes[0].push_back(root->val);
-		while (!q.empty()) {
-			TreeNode *front = q.front();
-			if (front->left) {
-				Child2Parent[front->left] = front;
-				Node2Offset[front->left] = Node2Offset[front] - 1;
-				Offset2Nodes[Node2Offset[front->left]].push_back(front->left->val);
-				q.push(front->left);
-			}
-			if (front->right) {
-				Child2Parent[front->right] = front;
-				Node2Offset[front->right] = Node2Offset[front] + 1;
-				Offset2Nodes[Node2Offset[front->right]].push_back(front->right->val);
-				q.push(front->right);
-			}
-			q.pop();
+		if (!root) {
+			return {};
 		}
-		for (const auto &i : Offset2Nodes) result.push_back(i.second);
+		int x = f(root), y = g(root);
+		int z = x + y - 1;
+		vector<vector<int>> result(z);
+		queue<pair<int, TreeNode*>> q;
+		q.push({x - 1, root});
+		while (!q.empty()) {
+			pair<int, TreeNode*> front = q.front();
+			q.pop();
+			int id = front.first;
+			TreeNode *node = front.second;
+			result[id].push_back(node->val);
+			if (id - 1 >= 0 and node->left) {
+				q.push({id - 1, node->left});
+			}
+			if (id + 1 < z and node->right) {
+				q.push({id + 1, node->right});
+			}
+		}
 		return result;
 	}
+private:
+	int f(TreeNode* root) {
+		if (!root) {
+			return 0;
+		}
+		int x = f(root->left) + 1, y = f(root->right) - 1;
+		return max(x, y);
+	}
+	int g(TreeNode* root) {
+		if (!root) {
+			return 0;
+		}
+		int x = g(root->right) + 1, y = g(root->left) - 1;
+		return max(x, y);
+	}
 };
+
 int main(void) {
 	Solution solution;
+	TreeNode *root;
+	vector<vector<int>> answer, result;
 
-	TreeNode *root = NULL;
-	for (const auto &i : solution.verticalOrder(root)) {
-		for (const auto &j : i) {
-			cout << j << '\t';
-		}
-		cout << '\n';
-	}
-	cout << "\nPassed\n";
+	root = NULL;
+	answer = {};
+	result = solution.verticalOrder(root);
+	gc(root);
+	assert(answer == result);
 
 	root = new TreeNode(3);
 	root->left = new TreeNode(9);
 	root->right = new TreeNode(20);
 	root->right->left = new TreeNode(15);
-	root->right->left = new TreeNode(7);
-	for (const auto &i : solution.verticalOrder(root)) {
-		for (const auto &j : i) {
-			cout << j << '\t';
-		}
-		cout << '\n';
-	}
-	cout << "\nPassed\n";
+	root->right->right = new TreeNode(7);
+	answer = {{9}, {3, 15}, {20}, {7}};
+	result = solution.verticalOrder(root);
+	gc(root);
+	assert(answer == result);
 
 	root = new TreeNode(3);
 	root->left = new TreeNode(9);
@@ -76,13 +150,10 @@ int main(void) {
 	root->left->right = new TreeNode(0);
 	root->right->left = new TreeNode(1);
 	root->right->right = new TreeNode(7);
-	for (const auto &i : solution.verticalOrder(root)) {
-		for (const auto &j : i) {
-			cout << j << '\t';
-		}
-		cout << '\n';
-	}
-	cout << "\nPassed\n";
+	answer = {{4}, {9}, {3, 0, 1}, {8}, {7}};
+	result = solution.verticalOrder(root);
+	gc(root);
+	assert(answer == result);
 
 	root = new TreeNode(3);
 	root->left = new TreeNode(9);
@@ -93,13 +164,11 @@ int main(void) {
 	root->right->right = new TreeNode(7);
 	root->left->right->right = new TreeNode(2);
 	root->right->left->left = new TreeNode(5);
-	for (const auto &i : solution.verticalOrder(root)) {
-		for (const auto &j : i) {
-			cout << j << '\t';
-		}
-		cout << '\n';
-	}
-	cout << "\nPassed\n";	
+	answer = {{4}, {9, 5}, {3, 0, 1}, {8, 2}, {7}};
+	result = solution.verticalOrder(root);
+	gc(root);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
