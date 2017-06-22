@@ -1,39 +1,66 @@
 // 125. Valid Palindrome
 // https://leetcode.com/problems/valid-palindrome/
-// https://discuss.leetcode.com/topic/5581/here-s-a-clean-c-solution/2
-// http://www.cplusplus.com/reference/cctype/isalnum/
-// http://www.cplusplus.com/reference/cctype/toupper/
-#include <iostream>
-#include <string>
-#include <cctype>
+
+/*
+Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+
+For example,
+"A man, a plan, a canal: Panama" is a palindrome.
+"race a car" is not a palindrome.
+
+Note:
+Have you consider that the string might be empty? This is a good question to ask during an interview.
+
+For the purpose of this problem, we define empty string as valid palindrome.
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
-	bool isPalindrome(const string& s) {
-		for (int i = 0, j = s.size() - 1; i < j; ++i, --j) {
-			while(!isalnum(s[i]) && i < j) ++i;
-			while(!isalnum(s[j]) && i < j) --j;
-			if (toupper(s[i]) != toupper(s[j])) return false;
+	bool isPalindrome(string s) {
+		int n = s.size(), i = 0, j = n - 1;
+		while (i < j) {
+			if(!isalnum(s[i])) {
+				++i;
+				continue;
+			}
+			if(!isalnum(s[j])) {
+				--j;
+				continue;
+			}
+			if (isdigit(s[i]) and isdigit(s[j]) and s[i] == s[j]) {
+				++i;
+				--j;
+			}
+			else if (isalpha(s[i]) and isalpha(s[j]) and tolower(s[i]) == tolower(s[j])) {
+				++i;
+				--j;
+			}
+			else {
+				return false;
+			}
 		}
 		return true;
 	}
 };
+
 int main(void) {
 	Solution solution;
-	string s = "A man, a plan, a canal: Panama";
-	if (solution.isPalindrome(s)) {
-		cout << "\nPassed\n";
-	} else {
-		cout << "\nError\n";
-		return 0;
-	}
+	string s;
+	bool answer, result;
+
+	s = "A man, a plan, a canal: Panama";
+	answer = true;
+	result = solution.isPalindrome(s);
+	assert(answer == result);
+
 	s = "race a car";
-	if (!solution.isPalindrome(s)) {
-		cout << "\nPassed\n";
-	} else {
-		cout << "\nError\n";
-		return 0;
-	}
+	answer = false;
+	result = solution.isPalindrome(s);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
