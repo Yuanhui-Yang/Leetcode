@@ -1,45 +1,78 @@
 // 106. Construct Binary Tree from Inorder and Postorder Traversal
 // https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/
-// http://articles.leetcode.com/construct-binary-tree-from-inorder-and-preorder-postorder-traversal
-#include <iostream>
-#include <vector>
+
+/*
+Given inorder and postorder traversal of a tree, construct the binary tree.
+
+Note:
+You may assume that duplicates do not exist in the tree.
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 struct TreeNode {
 	int val;
 	TreeNode *left;
 	TreeNode *right;
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
+
+void gc(TreeNode*& root) {
+	if (root) {
+		gc(root->left);
+		gc(root->right);
+		delete root;
+		root = NULL;
+	}
+}
+
+bool isSameTree(TreeNode* p, TreeNode* q) {
+	if (!p and !q) {
+		return p == q;
+	}
+	return p->val == q->val and isSameTree(p->left, q->left) and isSameTree(p->right, q->right);
+}
+
 class Solution {
 public:
-	TreeNode *buildTree(const vector<int>& inorder, const vector<int>& postorder) {
-		return this->buildTree(0, 0, inorder.size(), inorder, postorder);
+	TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+		return dfs(inorder, postorder, 0, inorder.size(), 0, postorder.size());
 	}
 private:
-	TreeNode *buildTree(const size_t& i, const size_t& j, const size_t& n, const vector<int>& inorder, const vector<int>& postorder) {
-		if (n == 0) return NULL;
-		TreeNode *root = new TreeNode(postorder[j + n - 1]);
-		size_t k = 0;
-		for (k = i; k < i + n && inorder[k] != root->val; ++k);
-		root->left = this->buildTree(i, j, k - i, inorder, postorder);
-		root->right = this->buildTree(i + 1 + k - i, j + k - i, n - 1 - k + i, inorder, postorder);
+	TreeNode* dfs(vector<int>& inorder, vector<int>& postorder, int x1, int y1, int x2, int y2) {
+		if (x1 >= y1 or x2 >= y2) {
+			return NULL;
+		}
+		if (x1 + 1 == y1 and x2 + 1 == y2) {
+			return new TreeNode(inorder[x1]);
+		}
+		int val = postorder[y2 - 1], i = x1;
+			while (i < y1 and inorder[i] != val) {
+			++i;
+		}
+		int l = i - x1, r = y1 - i - 1;
+		TreeNode *root = new TreeNode(val);
+		root->left = dfs(inorder, postorder, x1, x1 + l, x2, x2 + l);
+		root->right = dfs(inorder, postorder, y1 - r, y1, y2 - 1 - r, y2 - 1);
 		return root;
-	}	
+	}
 };
-void inorderTraversal(TreeNode *root) {
-	if (!root) return;
-	inorderTraversal(root->left);
-	cout << root->val << '\t';
-	inorderTraversal(root->right);
-	return;
-}
+
 int main(void) {
 	Solution solution;
-	vector<int> inorder = {2, 1};
-	vector<int> postorder = {2, 1};
-	TreeNode *root = solution.buildTree(inorder, postorder);
-	inorderTraversal(root);
-	cout << "\nPassed\n";
+	vector<int> inorder, postorder;
+	TreeNode *answer, *result;
+
+	inorder = {2, 1};
+	postorder = {2, 1};
+	answer = new TreeNode(1);
+	answer->left = new TreeNode(2);
+	result = solution.buildTree(inorder, postorder);
+	assert(isSameTree(answer, result));
+	gc(answer);
+	gc(result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
