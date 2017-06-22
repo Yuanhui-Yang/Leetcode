@@ -337,7 +337,7 @@ int main(void) {
 | 393 | [UTF-8 Validation](https://leetcode.com/problems/utf-8-validation/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/utf-8-validation.cpp) | Medium |
 | 394 | [Decode String](https://leetcode.com/problems/decode-string/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/decode-string.cpp) | Medium |
 | 395 | [Longest Substring with At Least K Repeating Characters](https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-substring-with-at-least-k-repeating-characters.cpp) | Medium |
-| 396 | [Rotate Function](https://leetcode.com/problems/rotate-function/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/rotate-function.cpp) | Easy |
+| 396 | [Rotate Function](https://leetcode.com/problems/rotate-function/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/rotate-function.cpp) | Medium |
 | 397 | [Integer Replacement](https://leetcode.com/problems/integer-replacement/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/integer-replacement.cpp) | Easy |
 | 398 | [Random Pick Index](https://leetcode.com/problems/random-pick-index/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/random-pick-index.cpp) | Medium |
 | 399 | [Evaluate Division](https://leetcode.com/problems/evaluate-division/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/evaluate-division.cpp) | Medium |
