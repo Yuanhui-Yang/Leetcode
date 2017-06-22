@@ -44,7 +44,7 @@ private:
 		if (x1 >= y1 or x2 >= y2) {
 			return NULL;
 		}
-		if (x1 + 1 == y1 and x2 + 1 == y2) {
+		if (x1 + 1 == y1 or x2 + 1 == y2) {
 			return new TreeNode(inorder[x1]);
 		}
 		int val = postorder[y2 - 1], i = x1;
