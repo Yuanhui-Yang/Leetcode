@@ -191,6 +191,7 @@ int main(void) {
 | 221 | [Maximal Square](https://leetcode.com/problems/maximal-square/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximal-square.cpp) | Medium |
 | 222 | [Count Complete Tree Nodes](https://leetcode.com/problems/count-complete-tree-nodes/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/count-complete-tree-nodes.cpp) | Medium |
 | 224 | [Basic Calculator](https://leetcode.com/problems/basic-calculator/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/basic-calculator.cpp) | Hard |
+| 226 | [Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/invert-binary-tree.cpp) | Easy |
 | 227 | [Basic Calculator II](https://leetcode.com/problems/basic-calculator-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/basic-calculator-ii.cpp) | Medium |
 | 230 | [Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/kth-smallest-element-in-a-bst.cpp) | Medium |
 | 231 | [Power of Two](https://leetcode.com/problems/power-of-two/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/power-of-two.cpp) | Easy |
