@@ -1,81 +1,84 @@
 // 54. Spiral Matrix
 // https://leetcode.com/problems/spiral-matrix/
-#include <iostream>
-#include <vector>
+
+/*
+Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
+
+For example,
+Given the following matrix:
+
+[
+ [ 1, 2, 3 ],
+ [ 4, 5, 6 ],
+ [ 7, 8, 9 ]
+]
+You should return [1,2,3,6,9,8,7,4,5].
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
-	vector<int> spiralOrder(const vector<vector<int>>& matrix) {
+	vector<int> spiralOrder(vector<vector<int>>& matrix) {
+		if (matrix.empty() or matrix.front().empty()) {
+			return {};
+		}
+		int m = matrix.size(), n = matrix.front().size(), top = 0, bottom = m - 1, left = 0, right = n - 1, i = 0, j = 0, k = m * n, mode = 0;
 		vector<int> result;
-		if (matrix.empty())
-			return result;
-		else {
-			int left(0);
-			int right(matrix.front().size());
-			int top(0);
-			int bottom(matrix.size());
-			this->spiralOrder(result, left, --right, top, --bottom, matrix);
-			return result;
+		while (k-- > 0) {
+			result.push_back(matrix[i][j]);
+			if (mode == 0) {
+				if (++j > right) {
+					++i;
+					--j;
+					++top;
+					mode = 1;
+				}
+				continue;
+			}
+			if (mode == 1) {
+				if (++i > bottom) {
+					--i;
+					--j;
+					--right;
+					mode = 2;
+				}
+				continue;
+			}
+			if (mode == 2) {
+				if (--j < left) {
+					--i;
+					++j;
+					--bottom;
+					mode = 3;
+				}
+				continue;
+			}
+			if (mode == 3) {
+				if (--i < top) {
+					++i;
+					++j;
+					++left;
+					mode = 0;
+				}
+				continue;
+			}
 		}
-	}
-private:
-	void spiralOrder(vector<int>& result,
-		const int& left, 
-		const int& right, 
-		const int& top, 
-		const int& bottom, 
-		const vector<vector<int>>& matrix) {
-		if (left > right || top > bottom)
-			return;
-		else {
-			for (int i(left); i <= right; ++i)
-				result.push_back(matrix[top][i]);
-			for (int i(top + 1); i <= bottom; ++i)
-				result.push_back(matrix[i][right]);
-			for (int i(right - 1); top != bottom && i >= left; --i)
-				result.push_back(matrix[bottom][i]);
-			for (int i(bottom - 1); left != right && i >= top + 1; --i)
-				result.push_back(matrix[i][left]);
-			this->spiralOrder(result, left + 1, right - 1, top + 1, bottom - 1, matrix);
-			return;
-		}
+		return result;
 	}
 };
+
 int main(void) {
 	Solution solution;
-	vector<vector<int>> A;
-	vector<int> b({1,2,3,6,9,8,7,4,5});
-	A.push_back(vector<int>({1, 2, 3}));
-	A.push_back(vector<int>({4, 5, 6}));
-	A.push_back(vector<int>({7, 8, 9}));
-	if (solution.spiralOrder(A) != b) {
-		cout << "\nError\n";
-		getchar();
-		return 0;
-	}
-	else
-		cout << "\nPassed\n";
-	A.clear();
-	b.clear();
-	if (solution.spiralOrder(A) != b) {
-		cout << "\nError\n";
-		getchar();
-		return 0;
-	}
-	else
-		cout << "\nPassed\n";
-	A.clear();
-	b.clear();
-	A.push_back(vector<int>{2, 3});
-	b = {2, 3};
-	if (solution.spiralOrder(A) != b) {
-		cout << "\nError\n";
-		getchar();
-		return 0;
-	}
-	else
-		cout << "\nPassed\n";
+	vector<vector<int>> matrix;
+	vector<int> answer, result;
+
+	matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+	answer = {1, 2, 3, 6, 9, 8, 7, 4, 5};
+	result = solution.spiralOrder(matrix);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
-	getchar();
-	return 0;	
+	return 0;
 }
