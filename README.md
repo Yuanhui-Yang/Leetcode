@@ -68,6 +68,7 @@ int main(void) {
 | 45 | [Jump Game II](https://leetcode.com/problems/jump-game-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/jump-game-ii.cpp) | Hard |
 | 46 | [Permutations](https://leetcode.com/problems/permutations/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/permutations.cpp) | Medium |
 | 47 | [Permutations II](https://leetcode.com/problems/permutations-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/permutations-ii.cpp) | Medium |
+| 48 | [Rotate Image](https://leetcode.com/problems/rotate-image/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/rotate-image.cpp) | Medium |
 | 49 | [Group Anagrams](https://leetcode.com/problems/group-anagrams/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/group-anagrams.cpp) | Medium |
 | 50 | [Pow(x, n)](https://leetcode.com/problems/powx-n/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/powx-n.cpp) | Medium |
 | 51 | [N-Queens](https://leetcode.com/problems/n-queens/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/n-queens.cpp) | Hard |
