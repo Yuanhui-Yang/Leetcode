@@ -52,7 +52,7 @@ private:
 int main(void) {
 	Solution solution;
 	vector<int> nums1, nums2;
-	double result = 0, answer = 0;
+	double result, answer;
 
 	nums1 = {3, 4, 5, 7, 8, 9, 10};
 	nums2 = {1, 2, 6};
