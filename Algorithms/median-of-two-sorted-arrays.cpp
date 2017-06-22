@@ -24,27 +24,28 @@ using namespace std;
 class Solution {
 public:
 	double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-		int m = nums1.size(), n = nums2.size(), l =  m + n;
-		return l % 2 ? kth(l / 2 + 1, nums1, 0, m, nums2, 0, n) : (kth(l / 2, nums1, 0, m, nums2, 0, n) + kth(l / 2 + 1, nums1, 0, m, nums2, 0, n)) / 2.0;
+		size_t m = nums1.size(), n = nums2.size(), k = (m + n) / 2;
+		return ((m + n) & 1) ? f(nums1, nums2, 0, 0, k + 1) : (f(nums1, nums2, 0, 0, k) + f(nums1, nums2, 0, 0, k + 1)) / 2.0;
 	}
 private:
-	int kth(int k, vector<int>& nums1, int b1, int e1, vector<int>& nums2, int b2, int e2) {
-		int m = e1 - b1, n = e2 - b2;
-		if (m < n) {
-			return kth(k, nums2, b2, e2, nums1, b1, e1);
+	double f(vector<int>& nums1, vector<int>& nums2, int i, int j, int k) {
+		int m = nums1.size(), n = nums2.size();
+		if (m - i < n - j) {
+			return f(nums2, nums1, j, i, k);
 		}
-		if (n == 0) {
-			return nums1[k - 1];
+		if (j == n) {
+			return nums1[i + k - 1];
 		}
 		if (k == 1) {
-			return min(nums1[b1], nums2[b2]);
+			return min(nums1[i], nums2[j]);
 		}
-		int j = min(n, k / 2);
-		int i = k - j;
-		if (nums1[b1 + i - 1] > nums2[b2 + j - 1]) {
-			return kth(k - j, nums1, b1, b1 + i, nums2, b2 + j, e2);
+		int dy = min(n - j, k / 2);
+		int dx = k - dy;
+		int x = i + dx, y = j + dy;
+		if (nums1[x - 1] < nums2[y - 1]) {
+			return f(nums1, nums2, x, j, dy);
 		}
-		return kth(k - i, nums1, b1 + i, e1, nums2, b2, b2 + j);
+		return f(nums1, nums2, i, y, dx);
 	}
 };
 
