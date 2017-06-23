@@ -1,34 +1,54 @@
 // 64. Minimum Path Sum
 // https://leetcode.com/problems/minimum-path-sum/
-#include <iostream>
-#include <vector>
-#include <algorithm>
+
+/*
+Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
+
+Note: You can only move either down or right at any point in time.
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
-	int minPathSum(const vector<vector<int>>& grid) {
-		if (grid.empty())
+	int minPathSum(vector<vector<int>>& grid) {
+		if (grid.empty() or grid.front().empty()) {
 			return 0;
-		if (grid.size() == 1 && grid.front().size() == 1)
-			return grid[0][0];
-		int m(grid.size());
-		int n(grid.front().size());
-		vector<vector<int>> OPT(m, vector<int>(n, 0));
-		OPT[0][0] = grid[0][0];
-		for (int i(1); i < m; ++i)
-			OPT[i][0] = OPT[i - 1][0] + grid[i][0];
-		for (int i(1); i < n; ++i)
-			OPT[0][i] = OPT[0][i - 1] + grid[0][i];
-		for (int i(1); i < m; ++i) {
-			for (int j(1); j < n; ++j)
-				OPT[i][j] = min(OPT[i - 1][j], OPT[i][j - 1]) + grid[i][j];
 		}
-		return OPT[m - 1][n - 1];
+		int m = grid.size(), n = grid.front().size();
+		vector<int> M(n, INT_MAX);
+		M.back() = 0;
+		for (int i = m - 1; i >= 0; --i) {
+			M.back() += grid[i].back();
+			for (int j = n - 2; j >= 0; --j) {
+				M[j] = min(M[j], M[j + 1]) + grid[i][j];
+			}
+		}
+		return M.front();
 	}
 };
+
 int main(void) {
 	Solution solution;
+	vector<vector<int>> grid;
+	int answer, result;
+
+	grid = {{0}};
+	answer = 0;
+	result = solution.minPathSum(grid);
+	assert(answer == result);
+
+	grid = {{1, 2}, {1, 1}};
+	answer = 3;
+	result = solution.minPathSum(grid);
+	assert(answer == result);
+
+	grid = {{1, 3, 1}, {1, 5, 1}, {4, 2, 1}};
+	answer = 7;
+	result = solution.minPathSum(grid);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
-	getchar();
 	return 0;
 }
