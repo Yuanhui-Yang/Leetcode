@@ -1,56 +1,81 @@
 // 59. Spiral Matrix II
 // https://leetcode.com/problems/spiral-matrix-ii/
-#include <iostream>
-#include <vector>
+
+/*
+Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.
+
+For example,
+Given n = 3,
+
+You should return the following matrix:
+[
+ [ 1, 2, 3 ],
+ [ 8, 9, 4 ],
+ [ 7, 6, 5 ]
+]
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
-	vector<vector<int>> generateMatrix(const int& n) {
-		vector<vector<int>> result(n, vector<int>(n, 1));
-		if (n <= 1)
-			return result;
-		else {
-			int value(1);
-			int left(0);
-			int right(n - 1);
-			int top(0);
-			int bottom(n - 1);
-			this->generateMatrix(result, value, left, right, top, bottom);
-			return result;
+	vector<vector<int>> generateMatrix(int n) {
+		int i = 0, j = 0, l = n * n, top = 0, bottom = n - 1, left = 0, right = n - 1, mode = 0;
+		vector<vector<int>> result(n, vector<int>(n, 0));
+		for (int k = 1; k <= l; ++k) {
+			result[i][j] = k;
+			if (mode == 0) {
+				if (++j > right) {
+					++i;
+					--j;
+					++top;
+					mode = 1;
+				}
+				continue;
+			}
+			if (mode == 1) {
+				if (++i > bottom) {
+					--i;
+					--j;
+					--right;
+					mode = 2;
+				}
+				continue;
+			}
+			if (mode == 2) {
+				if (--j < left) {
+					--i;
+					++j;
+					--bottom;
+					mode = 3;
+				}
+				continue;
+			}
+			if (mode == 3) {
+				if (--i < top) {
+					++i;
+					++j;
+					++left;
+					mode = 0;
+				}
+				continue;
+			}
 		}
-	}
-private:
-	void generateMatrix(vector<vector<int>>& result, 
-		int& value,
-		int& left,
-		int& right,
-		int& top,
-		int& bottom) {
-		if (left > right || top > bottom)
-			return;
-		else {
-			for (int i(left); i <= right; ++i)
-				result[top][i] = value++;
-			for (int i(top + 1); i <= bottom; ++i)
-				result[i][right] = value++;
-			for (int i(right - 1); top != bottom && i >= left; --i)
-				result[bottom][i] = value++;
-			for (int i(bottom - 1); left != right && i >= top + 1; --i)
-				result[i][left] = value++;
-			this->generateMatrix(result, value, ++left, --right, ++top, --bottom);
-			return;
-		}
+		return result;
 	}
 };
+
 int main(void) {
 	Solution solution;
-	int n(3);
-	for (const auto& i : solution.generateMatrix(n)) {
-		for (const auto& j : i)
-			cout << j << '\t';
-		cout << '\n';
-	}
+	int n;
+	vector<vector<int>> answer, result;
+
+	n = 3;
+	answer = {{1, 2, 3}, {8, 9, 4}, {7, 6, 5}};
+	result = solution.generateMatrix(n);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
-	getchar();
 	return 0;
 }
