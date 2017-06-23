@@ -26,12 +26,16 @@ struct Interval {
 	bool operator== (const Interval& other) const {
 		return this->start == other.start and this->end == other.end;
 	}
+	// bool operator< (const Interval& other) const {
+	// 	return this->end < other.start;
+	// }
 };
 
 class Solution {
 public:
 	vector<Interval> insert(vector<Interval>& intervals, Interval newInterval) {
 		pair<vector<Interval>::iterator, vector<Interval>::iterator> p = equal_range(begin(intervals), end(intervals), newInterval, Comp());
+		// pair<vector<Interval>::iterator, vector<Interval>::iterator> p = equal_range(begin(intervals), end(intervals), newInterval);
 		vector<Interval>::iterator a = p.first, b = p.second;
 		if (a == b) {
 			intervals.insert(a, newInterval);
