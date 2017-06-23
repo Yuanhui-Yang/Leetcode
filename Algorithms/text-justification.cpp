@@ -36,8 +36,7 @@ class Solution {
 public:
 	vector<string> fullJustify(vector<string>& words, int maxWidth) {
 		vector<string> result;
-		int n = words.size(), i = 0;
-		while (i < n) {
+		for (int n = words.size(), i = 0; i < n; ++i) {
 			int j = i, len = words[i].size(), sum = words[i].size();
 			while (i + 1 < n and len + int(words[i + 1].size()) + 1 <= maxWidth) {
 				len += words[i + 1].size() + 1;
@@ -75,7 +74,6 @@ public:
 				}
 				result.push_back(s);
 			}
-			++i;
 		}
 		return result;
 	}
