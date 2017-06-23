@@ -81,6 +81,7 @@ int main(void) {
 | 58 | [Length of Last Word](https://leetcode.com/problems/length-of-last-word/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/length-of-last-word.cpp) | Easy |
 | 59 | [Spiral Matrix II](https://leetcode.com/problems/spiral-matrix-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/spiral-matrix-ii.cpp) | Medium |
 | 60 | [Permutation Sequence](https://leetcode.com/problems/permutation-sequence/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/permutation-sequence.cpp) | Medium |
+| 61 | [Rotate List](https://leetcode.com/problems/rotate-list/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/rotate-list.cpp) | Medium |
 | 62 | [Unique Paths](https://leetcode.com/problems/unique-paths/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/unique-paths.cpp) | Medium |
 | 63 | [Unique Paths II](https://leetcode.com/problems/unique-paths-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/unique-paths-ii.cpp) | Medium |
 | 64 | [Minimum Path Sum](https://leetcode.com/problems/minimum-path-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-path-sum.cpp) | Medium |
