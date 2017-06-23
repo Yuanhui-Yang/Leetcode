@@ -78,6 +78,7 @@ int main(void) {
 | 55 | [Jump Game](https://leetcode.com/problems/jump-game/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/jump-game.cpp) | Medium |
 | 56 | [Merge Intervals](https://leetcode.com/problems/merge-intervals/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/merge-intervals.cpp) | Medium |
 | 57 | [Insert Interval](https://leetcode.com/problems/insert-interval/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/insert-interval.cpp) | Hard |
+| 58 | [Length of Last Word](https://leetcode.com/problems/length-of-last-word/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/length-of-last-word.cpp) | Easy |
 | 59 | [Spiral Matrix II](https://leetcode.com/problems/spiral-matrix-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/spiral-matrix-ii.cpp) | Medium |
 | 62 | [Unique Paths](https://leetcode.com/problems/unique-paths/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/unique-paths.cpp) | Medium |
 | 63 | [Unique Paths II](https://leetcode.com/problems/unique-paths-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/unique-paths-ii.cpp) | Medium |
