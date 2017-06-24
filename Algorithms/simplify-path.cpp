@@ -1,110 +1,86 @@
 // 71. Simplify Path
 // https://leetcode.com/problems/simplify-path/
-#include <iostream>
-#include <string>
-#include <vector>
-#include <iterator>
+
+/*
+Given an absolute path for a file (Unix-style), simplify it.
+
+For example,
+path = "/home/", => "/home"
+path = "/a/./b/../../c/", => "/c"
+click to show corner cases.
+
+Corner Cases:
+Did you consider the case where path = "/../"?
+In this case, you should return "/".
+Another corner case is the path might contain multiple slashes '/' together, such as "/home//foo/".
+In this case, you should ignore redundant slashes and return "/home/foo".
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
-	string simplifyPath(const string& path) {
-		string result("");
-		if (path.empty())
-			return "";
-		size_t i(0);
-		int slash(-1);
-		vector<string> filename;
-		while (i < path.size()) {
+	string simplifyPath(string path) {
+		vector<string> v;
+		for (int n = path.size(), i = 0; i < n; ++i) {
 			if (path[i] == '/') {
-				if (slash == -1) {
-					slash = i;
-					++i;
-					continue;
-				}
-				else {
-					filename.push_back(string(begin(path) + slash + 1, begin(path) + i));
-					if (filename.back() == "") {
-						filename.pop_back();
-						slash = i;
-						++i;
-						continue;
-					}
-					else if (filename.back() == ".") {
-						filename.pop_back();
-						slash = i;
-						++i;
-						continue;						
-					}
-					else if (filename.back() == "..") {
-						filename.pop_back();
-						if (!filename.empty()) {
-							filename.pop_back();
-						}
-						slash = i;
-						++i;
-						continue;						
-					}
-					else {
-						slash = i;
-						++i;
-						continue;						
-					}
-				}
+				continue;
 			}
-			else {
-				if (i == path.size() - 1) {
-					filename.push_back(string(begin(path) + slash + 1, end(path)));
-					if (filename.back() == "") {
-						filename.pop_back();
-						++i;
-						continue;
-					}
-					else if (filename.back() == ".") {
-						filename.pop_back();
-						++i;
-						continue;						
-					}
-					else if (filename.back() == "..") {
-						filename.pop_back();
-						if (!filename.empty()) {
-							filename.pop_back();
-						}
-						++i;
-						continue;						
-					}
-					else {
-						++i;
-						continue;						
-					}					
-				}
-				else {
-					++i;
-					continue;					
-				}
+			int j = i;
+			while (i < n and path[i] != '/') {
+				++i;
 			}
+			string s = path.substr(j, i - j);
+			if (s == "" or s == ".") {
+				continue;
+			}
+			if (s == "..") {
+				if (!v.empty()) {
+					v.pop_back();
+				}
+				continue;
+			}
+			v.push_back("/" + s);
 		}
-		if (filename.empty())
-			return "/";
-		for (const auto& i : filename) {
-			result += "/" + i;
-		}
-		return result;
+		return v.empty() ? string("/") : accumulate(begin(v), end(v), string(""));
 	}
 };
+
 int main(void) {
 	Solution solution;
-	vector<string> a({"/home/", "/a/./b/../../c/", "/...", "/.../", "/", "/abc/..."});
-	vector<string> b({"/home", "/c", "/...", "/...", "/", "/abc/..."});
-	for (size_t i(0); i < b.size(); ++i) {
-		cout << solution.simplifyPath(a[i]) << '\t' << b[i]; 
-		if (b[i] != solution.simplifyPath(a[i])) {
-			cout << "\tError\n";
-			return 0;
-		}
-		else {
-			cout << "\tPassed\n";
-		}
-	}
+	string path, answer, result;
+
+	path = "/";
+	answer = "/";
+	result = solution.simplifyPath(path);
+	assert(answer == result);
+
+	path = "/home/";
+	answer = "/home";
+	result = solution.simplifyPath(path);
+	assert(answer == result);
+
+	path = "/a/./b/../../c/";
+	answer = "/c";
+	result = solution.simplifyPath(path);
+	assert(answer == result);
+
+	path = "/..";
+	answer = "/";
+	result = solution.simplifyPath(path);
+	assert(answer == result);
+
+	path = "/../";
+	answer = "/";
+	result = solution.simplifyPath(path);
+	assert(answer == result);
+
+	path = "/home//foo/";
+	answer = "/home/foo";
+	result = solution.simplifyPath(path);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
