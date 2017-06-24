@@ -21,17 +21,18 @@ using namespace std;
 class Solution {
 public:
 	int largestRectangleArea(vector<int>& heights) {
-		stack<int> s;
-		heights.push_back(0);
 		int result = 0;
+		stack<int> stk;
+		heights.push_back(0);
 		for (int n = heights.size(), i = 0; i < n; ++i) {
-			while (!s.empty() and heights[s.top()] >= heights[i]) {
-				int j = s.top();
-				s.pop();
-				result = max(result, heights[j] * (i - (s.empty() ? 0 : s.top() + 1)));
+			while (!stk.empty() and heights[stk.top()] > heights[i]) {
+				int j = stk.top(), h = heights[j];
+				stk.pop();
+				result = max(result, h * (i - (stk.empty() ? 0 : 1 + stk.top())));
 			}
-			s.push(i);
+			stk.push(i);
 		}
+		heights.pop_back();
 		return result;
 	}
 };
