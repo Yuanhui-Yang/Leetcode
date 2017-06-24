@@ -1,53 +1,66 @@
 // 85. Maximal Rectangle
 // https://leetcode.com/problems/maximal-rectangle/
-// https://siddontang.gitbooks.io/leetcode-solution/content/array/maximal_rectangle.html
-#include <iostream>
-#include <vector>
-#include <algorithm>
+
+/*
+Given a 2D binary matrix filled with 0's and 1's, find the largest rectangle containing only 1's and return its area.
+
+For example, given the following matrix:
+
+1 0 1 0 0
+1 0 1 1 1
+1 1 1 1 1
+1 0 0 1 0
+Return 6.
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
 	int maximalRectangle(vector<vector<char>>& matrix) {
-		const int m = matrix.size();
-		if (m == 0) return 0;
-		const int n = matrix.front().size();
-		if (n == 0) return 0;
-		vector<vector<int>> Matrix(m, vector<int>(n, 0));
+		int m = matrix.size(), n = m ? matrix.front().size() : 0;
+		if (!m or !n) {
+			return 0;
+		}
+		vector<int> v(n, 0);
+		int result = 0;
 		for (int i = 0; i < m; ++i) {
 			for (int j = 0; j < n; ++j) {
-				if (matrix[i][j] == '0') continue;
-				if (i == 0) {
-					Matrix[i][j] = 1;
-					continue;
-				}
-				Matrix[i][j] = Matrix[i - 1][j] + 1;
+				v[j] = matrix[i][j] == '1' ? 1 + v[j] : 0;
 			}
+			result = max(result, f(v));
 		}
-		int result = 0;
-		for (auto &i : Matrix) result = max(result, this->largestRectangleArea(i));
 		return result;
 	}
 private:
-	int largestRectangleArea(vector<int>& heights) {
-		heights.push_back(0);
+	int f(vector<int>& v) {
+		v.push_back(0);
 		int result = 0;
-		vector<int> stack;
-		for (int i = 0; i < (int)heights.size(); ) {
-			if (stack.empty() || heights[i] > heights[stack.back()]) {
-				stack.push_back(i++);
-				continue;
+		stack<int> s;
+		for (int n = v.size(), i = 0; i < n; ++i) {
+			while(!s.empty() and v[s.top()] > v[i]) {
+				int j = s.top(), h = v[j];
+				s.pop();
+				result = max(result, h * (i - (s.empty() ? 0 : 1 + s.top())));
 			}
-			int top = stack.back();
-			stack.pop_back();
-			result = max(result, heights[top] * (stack.empty() ? i : (i - stack.back() - 1)));
+			s.push(i);
 		}
+		v.pop_back();
 		return result;
 	}
 };
+
 int main(void) {
 	Solution solution;
-	vector<vector<char>> matrix = {{'1', '0', '1', '0', '0'}, {'1', '0', '1', '1', '1'}, {'1', '1', '1', '1', '1'}, {'1', '0', '0', '1', '0'}};
-	cout << solution.maximalRectangle(matrix) << "\tPassed\n";
+	vector<vector<char>> matrix;
+	int answer, result;
+
+	matrix = {{'1', '0', '1', '0', '0'}, {'1', '0', '1', '1', '1'}, {'1', '1', '1', '1', '1'}, {'1', '0', '0', '1', '0'}};
+	answer = 6;
+	result = solution.maximalRectangle(matrix);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
