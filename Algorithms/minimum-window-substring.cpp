@@ -21,46 +21,26 @@ using namespace std;
 class Solution {
 public:
 	string minWindow(string s, string t) {
-		if (s.empty() or t.empty()) {
-			return 0;
+		int h[256], i = 0, j = 0, m = s.size(), n = t.size();
+		memset(h, 0, sizeof(h));
+		for (const auto &i : t) {
+			++h[i - 0];
 		}
-		int m = s.size(), x[256];
-		memset(x, 0, sizeof(x));
-		for (const auto &ch : t) {
-			int d = ch - 0;
-			++x[d];
-		}
-		vector<list<int>> y(256);
 		string result;
-		for (int i = -1, j = 0; j < m; ++j) {
-			char ch = s[j];
-			int d = ch - 0;
-			if (!x[d]) {
-				continue;
+		while (j < m) {
+			if (h[s[j++] - 0]-- > 0) {
+				--n;
 			}
-			y[d].push_back(j);
-			if (!f(x, y)) {
-				continue;
-			}
-			while (i + 1 < j and (!x[s[i + 1] - 0] or x[s[i + 1] - 0] < int(y[s[i + 1] - 0].size()))) {
-				if (!y[s[i + 1] - 0].empty()) {
-					y[s[i + 1] - 0].pop_front();   
+			while (n == 0) {
+				if (result.empty() or j - i < int(result.size())) {
+					result = s.substr(i, j - i);
 				}
-				++i;
-			}
-			if (result.empty() or (j - i) < int(result.size())) {
-				result = s.substr(i + 1, j - i);
+				if (h[s[i++] - 0]++ == 0) {
+					++n;
+				}
 			}
 		}
 		return result;
-	}
-private:
-	bool f(int *x, vector<list<int>>& y) {
-		int i = 0;
-		while (i < 256 and x[i] <= int(y[i].size())) {
-			++i;
-		}
-		return i == 256;
 	}
 };
 
