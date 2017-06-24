@@ -90,6 +90,7 @@ int main(void) {
 | 67 | [Add Binary](https://leetcode.com/problems/add-binary/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/add-binary.cpp) | Easy |
 | 68 | [Text Justification](https://leetcode.com/problems/text-justification/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/text-justification.cpp) | Hard |
 | 69 | [Sqrt(x)](https://leetcode.com/problems/sqrtx/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sqrtx.cpp) | Medium |
+| 70 | [Climbing Stairs](https://leetcode.com/problems/climbing-stairs/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/climbing-stairs.cpp) | Easy |
 | 71 | [Simplify Path](https://leetcode.com/problems/simplify-path/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/simplify-path.cpp) | Medium |
 | 72 | [Edit Distance](https://leetcode.com/problems/edit-distance/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/edit-distance.cpp) | Hard |
 | 73 | [Set Matrix Zeroes](https://leetcode.com/problems/set-matrix-zeroes/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/set-matrix-zeroes.cpp) | Medium |
