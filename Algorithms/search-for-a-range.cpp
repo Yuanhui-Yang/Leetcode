@@ -23,48 +23,31 @@ public:
 	}
 private:
 	int lowerBound(vector<int>& nums, int target) {
-		if (nums.empty()) {
-			return -1;
-		}
-		int n = nums.size(), i = 0, j = n - 1;
-		while (i + 1 < j) {
+		int n = nums.size(), i = 0, j = n;
+		while (i < j) {
 			int mid = i + (j - i) / 2;
 			if (nums[mid] < target) {
-				i = mid;
+				i = mid + 1;
 			}
 			else {
 				j = mid;
 			}
 		}
-		if (nums[i] == target) {
-			return i;
-		}
-		if (nums[j] == target) {
-			return j;
-		}
-		return -1;
+		return i >= 0 and i < n and nums[i] == target ? i : -1;
 	}
 	int upperBound(vector<int>& nums, int target) {
-		if (nums.empty()) {
-			return -1;
-		}
-		int n = nums.size(), i = 0, j = n - 1;
-		while (i + 1 < j) {
+		int n = nums.size(), i = 0, j = n;
+		while (i < j) {
 			int mid = i + (j - i) / 2;
-			if (nums[mid] > target) {
-				j = mid;
+			if (nums[mid] <= target) {
+				i = mid + 1;
 			}
 			else {
-				i = mid;
+				j = mid;
 			}
 		}
-		if (nums[j] == target) {
-			return j;
-		}
-		if (nums[i] == target) {
-			return i;
-		}
-		return -1;
+		--i;
+		return i >= 0 and i < n and nums[i] == target ? i : -1;
 	}
 };
 
