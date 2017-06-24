@@ -1,45 +1,77 @@
 // 83. Remove Duplicates from Sorted List
 // https://leetcode.com/problems/remove-duplicates-from-sorted-list/
-#include <iostream>
+
+/*
+Given a sorted linked list, delete all duplicates such that each element appear only once.
+
+For example,
+Given 1->1->2, return 1->2.
+Given 1->1->2->3->3, return 1->2->3.
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 struct ListNode {
 	int val;
 	ListNode *next;
-	ListNode(const int& x) : val(x), next(NULL) {}
+	ListNode(int x) : val(x), next(NULL) {}
 };
+
+ListNode *f(vector<int>& v) {
+	ListNode dummy(0), *it = &dummy;
+	for (const auto &i : v) {
+		it->next = new ListNode(i);
+		it = it->next;
+	}
+	return dummy.next;
+}
+
+vector<int> g(ListNode* head) {
+	vector<int> v;
+	while (head) {
+		v.push_back(head->val);
+		head = head->next;
+	}
+	return v;
+}
+
 class Solution {
 public:
-    ListNode* deleteDuplicates(ListNode* head) {
-        if (head == NULL) return head;
-        if (head->next == NULL) return head;
-        ListNode* it(head);
-        while (it) {
-            it->next = this->next(it);
-            it = it->next;
-        }
-        return head;
-    }
-private:
-    ListNode* next(ListNode* head) {
-        if (head == NULL || head->next == NULL) return NULL;
-        if (head->val != head->next->val) return head->next;
-        ListNode* it(head);
-        while(it && head->val == it->val) {
-            it = it->next;
-        }
-        return it;
-    }
-};
-int main(int argc, char** argv) {
-	Solution solution;
-	ListNode* head = new ListNode(1);
-	head->next = new ListNode(1);
-	head->next->next = new ListNode(2);
-	head->next->next->next = new ListNode(3);
-	head->next->next->next->next = new ListNode(3);
-	for (ListNode* it = solution.deleteDuplicates(head); it; it = it->next) {
-		cout << it->val << '\t';
+	ListNode* deleteDuplicates(ListNode* head) {
+		ListNode dummy(0), *a = &dummy;
+		dummy.next = head;
+		while (a->next) {
+			ListNode *b = a->next;
+			while (b->next and a->next->val == b->next->val) {
+				b = b->next;
+			}
+			a->next->next = b->next;
+			a = b;
+		}
+		return dummy.next;
 	}
-	cout << '\n';
+};
+
+int main(void) {
+	Solution solution;
+	vector<int> x, y;
+	ListNode* head;
+
+	x = {1, 1, 2};
+	y = {1, 2};
+	head = f(x);
+	head = solution.deleteDuplicates(head);
+	x = g(head);
+	assert(y == x);
+
+	x = {1, 1, 1, 2, 3};
+	y = {1, 2, 3};
+	head = f(x);
+	head = solution.deleteDuplicates(head);
+	x = g(head);
+	assert(y == x);
+
+	cout << "\nPassed All\n";
 	return 0;
 }
