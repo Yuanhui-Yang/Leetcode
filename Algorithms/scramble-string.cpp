@@ -1,66 +1,82 @@
 // 87. Scramble String
 // https://leetcode.com/problems/scramble-string/
-// https://discuss.leetcode.com/topic/14337/share-my-4ms-c-recursive-solution/3
-#include <iostream>
-#include <string>
+
+/*
+Given a string s1, we may represent it as a binary tree by partitioning it to two non-empty substrings recursively.
+
+Below is one possible representation of s1 = "great":
+
+    great
+   /    \
+  gr    eat
+ / \    /  \
+g   r  e   at
+           / \
+          a   t
+To scramble the string, we may choose any non-leaf node and swap its two children.
+
+For example, if we choose the node "gr" and swap its two children, it produces a scrambled string "rgeat".
+
+    rgeat
+   /    \
+  rg    eat
+ / \    /  \
+r   g  e   at
+           / \
+          a   t
+We say that "rgeat" is a scrambled string of "great".
+
+Similarly, if we continue to swap the children of nodes "eat" and "at", it produces a scrambled string "rgtae".
+
+    rgtae
+   /    \
+  rg    tae
+ / \    /  \
+r   g  ta  e
+       / \
+      t   a
+We say that "rgtae" is a scrambled string of "great".
+
+Given two strings s1 and s2 of the same length, determine if s2 is a scrambled string of s1.
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
-	bool isScramble(const string& s1, const string& s2) {
-		if (s1 == s2) {
-			return true;
-		}
+	bool isScramble(string s1, string s2) {
 		if (s1.size() != s2.size()) {
 			return false;
 		}
-		if (s1.size() == 1 && s2.size() == 1) {
-			return s1 == s2;
-		}
-		const int NumberOfASCII = 256;
-		int hashmap[NumberOfASCII] = {0};
-		const int n = s1.size();
-		for (int i = 0; i < n; ++i) {
-			++hashmap[s1[i]];
-			--hashmap[s2[i]];
-		}
-		for (int i = 0; i < NumberOfASCII; ++i) {
-			if (hashmap[i]) {
-				return false;
+		int n = s1.size();
+		vector<vector<vector<bool>>> M(n + 1, vector<vector<bool>>(n + 1, vector<bool>(n + 1, false)));
+		for (int l = 1; l <= n; ++l) {
+			for (int i = 0; i + l <= n; ++i) {
+				for (int j = 0; j + l <= n; ++j) {
+					M[l][i][j] = s1.substr(i, l) == s2.substr(j, l);
+					for (int k = 1; !M[l][i][j] and k < l; ++k) {
+						M[l][i][j] = M[l][i][j] or (M[k][i][j] and M[l - k][i + k][j + k]);
+						M[l][i][j] = M[l][i][j] or (M[k][i][j + l - k] and M[l - k][i + k][j]);
+					}
+				}
 			}
 		}
-		for (int i = 1; i < n; ++i) {
-			if (this->isScramble(s1.substr(0, i), s2.substr(0, i))
-				&& this->isScramble(s1.substr(i, n - i), s2.substr(i, n - i))) {
-				return true;
-			}
-			if (this->isScramble(s1.substr(0, i), s2.substr(n - i, i))
-				&& this->isScramble(s1.substr(i, n - i), s2.substr(0, n - i))) {
-				return true;
-			}
-		}
-		return false;
+		return M[n][0][0];
 	}
 };
+
 int main(void) {
 	Solution solution;
-	string s1 = "great";
-	string s2 = "rgeat";
-	if (solution.isScramble(s1, s2)) {
-		cout << "\nPassed\n";
-	}
-	else {
-		cout << "\nError\n";
-		return 0;
-	}
-	s1 = "abc";
-	s2 = "bca";
-	if (solution.isScramble(s1, s2)) {
-		cout << "\nPassed\n";		
-	}
-	else {
-		cout << "\nError\n";
-		return 0;		
-	}
+	string s1, s2;
+	bool answer, result;
+
+	s1 = "great";
+	s2 = "rgeat";
+	answer = true;
+	result = solution.isScramble(s1, s2);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
