@@ -106,6 +106,7 @@ int main(void) {
 | 83 | [Remove Duplicates from Sorted List](https://leetcode.com/problems/remove-duplicates-from-sorted-list/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-duplicates-from-sorted-list.cpp) | Easy |
 | 84 | [Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-rectangle-in-histogram.cpp) | Hard |
 | 85 | [Maximal Rectangle](https://leetcode.com/problems/maximal-rectangle/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximal-rectangle.cpp) | Hard |
+| 86 | [Partition List](https://leetcode.com/problems/partition-list/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/partition-list.cpp) | Medium |
 | 88 | [Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/merge-sorted-array.cpp) | Easy |
 | 90 | [Subsets II](https://leetcode.com/problems/subsets-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/subsets-ii.cpp) | Medium |
 | 91 | [Decode Ways](https://leetcode.com/problems/decode-ways/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/decode-ways.cpp) | Medium |

@@ -1,49 +1,84 @@
 // 86. Partition List
-// https://leetcode.com/problems/partition-list/
-// https://siddontang.gitbooks.io/leetcode-solution/content/linked_list/partition_list.html
-#include <iostream>
-#include <vector>
+// https://leetcode.com/problems/partition-list/#/description
+
+/*
+Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
+
+You should preserve the original relative order of the nodes in each of the two partitions.
+
+For example,
+Given 1->4->3->2->5->2 and x = 3,
+return 1->2->2->4->3->5.
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 struct ListNode {
 	int val;
 	ListNode *next;
-	ListNode(const int& x) : val(x), next(NULL) {}
+	ListNode(int x) : val(x), next(NULL) {}
 };
-class Solution {
-public:
-	ListNode* partition(ListNode* head, const int& x) {
-		ListNode dummy1(-1);
-		ListNode dummy2(-1);
-		ListNode *less = &dummy1;
-		ListNode *noless = &dummy2;
-		for (ListNode *it = head; it; it = it->next) {
-			if (it->val < x) {
-				less->next = it;
-				less = less->next;
-			}
-			else {
-				noless->next = it;
-				noless = noless->next;
-			}
-		}
-		less->next = dummy2.next;
-		noless->next = NULL;
-		return dummy1.next;
-	}
-};
-int main(void) {
-	Solution solution;
-	vector<int> input = {1, 4, 3, 2, 5, 2};
-	ListNode *head = new ListNode(input[0]);
-	ListNode *it = head;
-	for (size_t i = 1; i < input.size(); ++i) {
-		it->next = new ListNode(input[i]);
+
+ListNode *f(vector<int>& v) {
+	ListNode dummy(0), *it = &dummy;
+	for (const auto &i : v) {
+		it->next = new ListNode(i);
 		it = it->next;
 	}
-	for (ListNode *it = solution.partition(head, 3); it; it = it->next) {
-		cout << it->val << '\t';
+	return dummy.next;
+}
+
+vector<int> g(ListNode* head) {
+	vector<int> v;
+	while (head) {
+		v.push_back(head->val);
+		head = head->next;
 	}
-	cout << "\nPassed\n";
+	return v;
+}
+
+class Solution {
+public:
+	ListNode* partition(ListNode* head, int x) {
+		ListNode dummy(0);
+		dummy.next = head;
+		ListNode *a = &dummy, *b = a;
+		while (b->next) {
+			if (b->next->val >= x) {
+				b = b->next;
+				continue;
+			}
+			if (a == b) {
+				a = a->next;
+				b = b->next;
+			}
+			else {
+				ListNode *c = a->next, *d = b->next->next;
+				a->next = b->next;
+				b->next->next = c;
+				b->next = d;
+				a = a->next;
+			}
+		}
+		return dummy.next;
+	}
+};
+
+int main(void) {
+	Solution solution;
+	vector<int> u, v;
+	int x;
+	ListNode* head;
+
+	u = {1, 4, 3, 2, 5, 2};
+	v = {1, 2, 2, 4, 3, 5};
+	x = 3;
+	head = f(u);
+	head = solution.partition(head, x);
+	u = g(head);
+	assert(v == u);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
