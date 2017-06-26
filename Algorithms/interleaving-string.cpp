@@ -1,108 +1,91 @@
 // 97. Interleaving String
 // https://leetcode.com/problems/interleaving-string/
-#include <iostream>
-#include <string>
+
+/*
+Given s1, s2, s3, find whether s3 is formed by the interleaving of s1 and s2.
+
+For example,
+Given:
+s1 = "aabcc",
+s2 = "dbbca",
+
+When s3 = "aadbbcbcac", return true.
+When s3 = "aadbbbaccc", return false.
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
-	bool isInterleave(const string& s1, const string& s2, const string& s3) {
-		const int len1 = s1.size();
-		const int len2 = s2.size();
-		const int len3 = s3.size();
-		if (len1 + len2 != len3) {
+	bool isInterleave(string s1, string s2, string s3) {
+		if (s1.size() + s2.size() != s3.size()) {
 			return false;
 		}
-		if (len1 == 0 && len2 == 0) {
-			return len3 == 0;
-		}
-		if (len1 == 0 && len2 != 0) {
-			return s2 == s3;
-		}
-		if (len1 != 0 && len2 == 0) {
-			return s1 == s3;
-		}
-		const int ASCII_MAX = 256;
-		int hashmap[ASCII_MAX] = {0};
-		for (const auto& i : s1) {
-			++hashmap[i];
-		}
-		for (const auto& i : s2) {
-			++hashmap[i];
-		}
-		for (const auto& i : s3) {
-			--hashmap[i];
-		}
-		for (int i = 0; i < ASCII_MAX; ++i) {
-			if (hashmap[i]) {
-				return false;
+		int a = s1.size(), b = s2.size();
+		vector<vector<bool>> M(a + 1, vector<bool>(b + 1, false));
+		for (int i = 0; i <= a; ++i) {
+			for (int j = 0; j <= b; ++j) {
+				if (i == 0 and j == 0) {
+					M[i][j] = true;
+					continue;
+				}
+				if (i == 0) {
+					M[i][j] = s2.substr(0, j) == s3.substr(0, j);
+					continue;
+				}
+				if (j == 0) {
+					M[i][j] = s1.substr(0, i) == s3.substr(0, i);
+					continue;
+				}
+				M[i][j] = M[i][j] or (M[i - 1][j] and s1[i - 1] == s3[i + j - 1]);
+				M[i][j] = M[i][j] or (M[i][j - 1] and s2[j - 1] == s3[i + j - 1]);
 			}
 		}
-		bool OPT[len1 + 1][len2 + 1] = {false};
-		for (int i = 0; i < len2 + 1; ++i) {
-			OPT[len1][i] = s2.substr(i) == s3.substr(i + len1);
-		}
-		for (int i = 0; i < len1 + 1; ++i) {
-			OPT[i][len2] = s1.substr(i) == s3.substr(i + len2);
-		}
-		for (int i = len1 - 1; i >= 0; --i) {
-			for (int j = len2 - 1; j >= 0; --j) {
-				if (s1[i] == s3[i + j] && s2[j] != s3[i + j]) {
-					OPT[i][j] = OPT[i + 1][j];
-				}
-				else if (s1[i] != s3[i + j] && s2[j] == s3[i + j]) {
-					OPT[i][j] = OPT[i][j + 1];
-				}
-				else if (s1[i] == s3[i + j] && s2[j] == s3[i + j]) {
-					OPT[i][j] = OPT[i + 1][j] || OPT[i][j + 1];
-				}
-				else {
-					OPT[i][j] = false;
-				}
-			}
-		}
-		return OPT[0][0];
+		return M[a][b];
 	}
 };
+
 int main(void) {
 	Solution solution;
-	string s1 = "aabcc";
-	string s2 = "dbbca";
-	string s3 = "aadbbcbcac";
-	if (solution.isInterleave(s1, s2, s3)) {
-		cout << "\nPassed\n";
-	}
-	else {
-		cout << "\nError\n";
-		return 0;
-	}
+	string s1, s2, s3;
+	bool answer, result;
+
+	s1 = "aabcc";
+	s2 = "dbbca";
+	s3 = "aadbbcbcac";
+	answer = true;
+	result = solution.isInterleave(s1, s2, s3);
+	assert(answer == result);
+
+	s1 = "aabcc";
+	s2 = "dbbca";
 	s3 = "aadbbbaccc";
-	if (!solution.isInterleave(s1, s2, s3)) {
-		cout << "\nPassed\n";
-	}
-	else {
-		cout << "\nError\n";
-		return 0;
-	}
+	answer = false;
+	result = solution.isInterleave(s1, s2, s3);
+	assert(answer == result);
+
+	s1 = "ab";
+	s2 = "bc";
+	s3 = "bbac";
+	answer = false;
+	result = solution.isInterleave(s1, s2, s3);
+	assert(answer == result);
+
+	s1 = "aa";
+	s2 = "ab";
+	s3 = "aaba";
+	answer = true;
+	result = solution.isInterleave(s1, s2, s3);
+	assert(answer == result);
+
 	s1 = "bbbbbabbbbabaababaaaabbababbaaabbabbaaabaaaaababbbababbbbbabbbbababbabaabababbbaabababababbbaaababaa";
 	s2 = "babaaaabbababbbabbbbaabaabbaabbbbaabaaabaababaaaabaaabbaaabaaaabaabaabbbbbbbbbbbabaaabbababbabbabaab";
 	s3 = "babbbabbbaaabbababbbbababaabbabaabaaabbbbabbbaaabbbaaaaabbbbaabbaaabababbaaaaaabababbababaababbababbbababbbbaaaabaabbabbaaaaabbabbaaaabbbaabaaabaababaababbaaabbbbbabbbbaabbabaabbbbabaaabbababbabbabbab";
-	if (!solution.isInterleave(s1, s2, s3)) {
-		cout << "\nPassed\n";
-	}
-	else {
-		cout << "\nError\n";
-		return 0;
-	}
-	s1 = "";
-	s2 = "";
-	s3 = "";
-	if (solution.isInterleave(s1, s2, s3)) {
-		cout << "\nPassed\n";
-	}
-	else {
-		cout << "\nError\n";
-		return 0;
-	}
+	answer = false;
+	result = solution.isInterleave(s1, s2, s3);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
