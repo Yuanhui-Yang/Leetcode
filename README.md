@@ -109,6 +109,7 @@ int main(void) {
 | 86 | [Partition List](https://leetcode.com/problems/partition-list/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/partition-list.cpp) | Medium |
 | 87 | [Scramble String](https://leetcode.com/problems/scramble-string/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/scramble-string.cpp) | Hard |
 | 88 | [Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/merge-sorted-array.cpp) | Easy |
+| 89 | [Gray Code](https://leetcode.com/problems/gray-code/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/gray-code.cpp) | Medium |
 | 90 | [Subsets II](https://leetcode.com/problems/subsets-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/subsets-ii.cpp) | Medium |
 | 91 | [Decode Ways](https://leetcode.com/problems/decode-ways/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/decode-ways.cpp) | Medium |
 | 92 | [Reverse Linked List II](https://leetcode.com/problems/reverse-linked-list-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reverse-linked-list-ii.cpp) | Medium |
