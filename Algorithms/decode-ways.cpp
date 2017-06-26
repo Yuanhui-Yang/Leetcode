@@ -25,25 +25,46 @@ public:
 		if (s.empty()) {
 			return 0;
 		}
-		int n = s.size();
-		vector<int> M(n, -1);
-		return f(M, s, 0, n);
-	}
-private:
-	int f(vector<int>& M, const string& s, int i, int n) {
-		if (i >= n) {
-			return M[i] = 1;
+		int n = s.size(), x = s.back() >= '1', y = 1;
+		for (int i = n - 2; i >= 0; --i) {
+			if (s[i] == '0') {
+				y = x;
+				x = 0;
+				continue;
+			}
+			bool z = s[i] == '1' or (s[i] == '2' and s[i + 1] <= '6');
+			int t = x;
+			x += z ? y : 0;
+			y = t;
 		}
-		if (M[i] >= 0) {
-			return M[i];
-		}
-		if (i + 1 >= n) {
-			return M[i] = s[i] >= '1';
-		}
-		bool x = s[i] >= '1', y = s[i] == '1' or (s[i] == '2' and s[i + 1] <= '6');
-		return M[i] = x ? f(M, s, i + 1, n) + (y ? f(M, s, i + 2, n) : 0) : 0;
+		return x;
 	}
 };
+
+// class Solution {
+// public:
+// 	int numDecodings(string s) {
+// 		if (s.empty()) {
+// 			return 0;
+// 		}
+// 		int n = s.size();
+// 		vector<int> M(n + 1, 0);
+// 		M.back() = 1;
+// 		for (int i = n - 1; i >= 0; --i) {
+// 			if (s[i] == '0') {
+// 				M[i] = 0;
+// 				continue;
+// 			}
+// 			if (i + 1 == n) {
+// 				M[i] = s[i] >= '1';
+// 				continue;
+// 			}
+// 			bool x = s[i] == '1' or (s[i] == '2' and s[i + 1] <= '6');
+// 			M[i] = M[i + 1] + (x ? M[i + 2] : 0);
+// 		}
+// 		return M.front();
+// 	}
+// };
 
 int main(void) {
 	Solution solution;
