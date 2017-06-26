@@ -1,119 +1,99 @@
 // 91. Decode Ways
 // https://leetcode.com/problems/decode-ways/
-#include <iostream>
-#include <string>
-#include <vector>
+
+/*
+A message containing letters from A-Z is being encoded to numbers using the following mapping:
+
+'A' -> 1
+'B' -> 2
+...
+'Z' -> 26
+Given an encoded message containing digits, determine the total number of ways to decode it.
+
+For example,
+Given encoded message "12", it could be decoded as "AB" (1 2) or "L" (12).
+
+The number of ways decoding "12" is 2.
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
-	int numDecodings(const string& s) {
-		int result = 0;
-		int length = s.size();
-		int value = 0;
-		if (length == 0) {
-			return result = 0;
+	int numDecodings(string s) {
+		if (s.empty()) {
+			return 0;
 		}
-		if (s[0] == '0') {
-			return result = 0;
+		int n = s.size();
+		vector<int> M(n, -1);
+		return f(M, s, 0, n);
+	}
+private:
+	int f(vector<int>& M, const string& s, int i, int n) {
+		if (i >= n) {
+			return M[i] = 1;
 		}
-		if (length == 1) {
-			return result = 1;
+		if (M[i] >= 0) {
+			return M[i];
 		}
-		if (length == 2) {
-			value = stoi(s);
-			if (value == 10 || value == 20) {
-				return result = 1;
-			}
-			if (value >= 11 && value <= 19) {
-				return result = 2;
-			}
-			if (value >= 21 && value <= 26) {
-				return result = 2;
-			}
-			if (s[1] == '0') {
-				return result = 0;
-			}
-			return result = 1;
+		if (i + 1 >= n) {
+			return M[i] = s[i] >= '1';
 		}
-		vector<int> OPT(length, 0);
-		OPT[length - 1] = this->numDecodings(s.substr(length - 1, 1));
-		OPT[length - 2] = this->numDecodings(s.substr(length - 2, 2));
-		for (int i = length - 3; i >= 0; --i) {
-			value = stoi(s.substr(i, 1));
-			OPT[i] = (value ? 1 : 0) * OPT[i + 1];
-			value = stoi(s.substr(i, 2));
-			OPT[i] += ((value >= 10 && value <= 26) ? 1 : 0) * OPT[i + 2];
-		}
-		return result = OPT[0];
+		bool x = s[i] >= '1', y = s[i] == '1' or (s[i] == '2' and s[i + 1] <= '6');
+		return M[i] = x ? f(M, s, i + 1, n) + (y ? f(M, s, i + 2, n) : 0) : 0;
 	}
 };
+
 int main(void) {
 	Solution solution;
-	string s = "12";
-	if (solution.numDecodings(s) == 2) {
-		cout << "\nPassed\n";
-	}
-	else {
-		cout << "\nError\n";
-		return 0;
-	}
+	string s;
+	int answer, result;
+
+	s = "";
+	answer = 0;
+	result = solution.numDecodings(s);
+	assert(answer == result);
+
+	s = "12";
+	answer = 2;
+	result = solution.numDecodings(s);
+	assert(answer == result);
+
 	s = "27";
-	if (solution.numDecodings(s) == 1) {
-		cout << "\nPassed\n";
-	}
-	else {
-		cout << "\nError\n";
-		return 0;
-	}
+	answer = 1;
+	result = solution.numDecodings(s);
+
 	s = "00";
-	if (solution.numDecodings(s) == 0) {
-		cout << "\nPassed\n";
-	}
-	else {
-		cout << "\nError\n";
-		return 0;
-	}
+	answer = 0;
+	result = solution.numDecodings(s);
+	assert(answer == result);
+
 	s = "01";
-	if (solution.numDecodings(s) == 0) {
-		cout << "\nPassed\n";
-	}
-	else {
-		cout << solution.numDecodings(s) << '\n';
-		cout << "\nError\n";
-		return 0;
-	}
+	answer = 0;
+	result = solution.numDecodings(s);
+	assert(answer == result);
+
 	s = "012";
-	if (solution.numDecodings(s) == 0) {
-		cout << "\nPassed\n";
-	}
-	else {
-		cout << "\nError\n";
-		return 0;
-	}
+	answer = 0;
+	result = solution.numDecodings(s);
+	assert(answer == result);
+
 	s = "111";
-	if (solution.numDecodings(s) == 3) {
-		cout << "\nPassed\n";
-	}
-	else {
-		cout << "\nError\n";
-		return 0;
-	}
+	answer = 3;
+	result = solution.numDecodings(s);
+	assert(answer == result);
+
 	s = "230";
-	if (solution.numDecodings(s) == 0) {
-		cout << "\nPassed\n";
-	}
-	else {
-		cout << "\nError\n";
-		return 0;
-	}
+	answer = 0;
+	result = solution.numDecodings(s);
+	assert(answer == result);
+
 	s = "6065812287883668764831544958683283296479682877898293612168136334983851946827579555449329483852397155";
-	if (solution.numDecodings(s) == 0) {
-		cout << "\nPassed\n";
-	}
-	else {
-		cout << "\nError\n";
-		return 0;
-	}
+	answer = 0;
+	result = solution.numDecodings(s);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
