@@ -1,34 +1,47 @@
 // 96. Unique Binary Search Trees
 // https://leetcode.com/problems/unique-binary-search-trees/
-// https://github.com/soulmachine/leetcode
-#include <iostream>
-#include <vector>
+
+/*
+Given n, how many structurally unique BST's (binary search trees) that store values 1...n?
+
+For example,
+Given n = 3, there are a total of 5 unique BST's.
+
+   1         3     3      2      1
+    \       /     /      / \      \
+     3     2     1      1   3      2
+    /     /       \                 \
+   2     1         2                 3
+*/
+
+#include <bits/stdc++.h>
 using namespace std;
+
 class Solution {
 public:
-	int numTrees(const int& n) {
-		vector<int> OPT(n + 1, 0);
-		OPT[0] = 1;
-		OPT[1] = 1;
-		OPT[2] = 2;
-		for (int i = 3; i <= n; ++i) {
-			for (int j = 1; j <= i; ++j) {
-				OPT[i] += OPT[j - 1] * OPT[i - j];
+	int numTrees(int n) {
+		vector<vector<int>> M(n + 1, vector<int>(n + 1, 0));
+		for (int l = 1; l <= n; ++l) {
+			for (int i = 1; i + l <= n + 1; ++i) {
+				int j = i + l - 1;
+				for (int k = i; k <= j; ++k) {
+					M[i][j] += (i >= k - 1 ? 1 : M[i][k - 1]) * (k + 1 >= j ? 1 : M[k + 1][j]);
+				}
 			}
 		}
-		return OPT[n];
+		return M[1][n];
 	}
 };
+
 int main(void) {
 	Solution solution;
-	int n = 3;
-	if (solution.numTrees(n) == 5) {
-		cout << "\nPassed\n";
-	}
-	else {
-		cout << "\nError\n";
-		return 0;
-	}
+	int n, answer, result;
+
+	n = 3;
+	answer = 5;
+	result = solution.numTrees(n);
+	assert(answer == result);
+
 	cout << "\nPassed All\n";
 	return 0;
 }
