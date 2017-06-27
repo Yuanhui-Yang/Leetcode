@@ -130,6 +130,7 @@ int main(void) {
 | 107 | [Binary Tree Level Order Traversal II](https://leetcode.com/problems/binary-tree-level-order-traversal-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/binary-tree-level-order-traversal-ii.cpp) | Easy |
 | 108 | [Convert Sorted Array to Binary Search Tree](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/convert-sorted-array-to-binary-search-tree.cpp) | Medium |
 | 109 | [Convert Sorted List to Binary Search Tree](https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/convert-sorted-list-to-binary-search-tree.cpp) | Medium |
+| 110 | [Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/balanced-binary-tree.cpp) | Easy |
 | 112 | [Path Sum](https://leetcode.com/problems/path-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/path-sum.cpp) | Easy |
 | 113 | [Path Sum II](https://leetcode.com/problems/path-sum-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/path-sum-ii.cpp) | Medium |
 | 114 | [Flatten Binary Tree to Linked List](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/flatten-binary-tree-to-linked-list.cpp) | Medium |
