@@ -1,73 +1,70 @@
 // 116. Populating Next Right Pointers in Each Node
 // https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
-// https://discuss.leetcode.com/topic/1106/o-1-space-o-n-complexity-iterative-solution
-// https://siddontang.gitbooks.io/leetcode-solution/content/tree/populating_next_right_pointers_in_each_node.html
-#include <iostream>
-using namespace std;
-struct TreeLinkNode {
-	int val;
-	TreeLinkNode *left, *right, *next;
-	TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}
-};
+
+/*
+Given a binary tree
+
+    struct TreeLinkNode {
+      TreeLinkNode *left;
+      TreeLinkNode *right;
+      TreeLinkNode *next;
+    }
+Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.
+
+Initially, all next pointers are set to NULL.
+
+Note:
+
+You may only use constant extra space.
+You may assume that it is a perfect binary tree (ie, all leaves are at the same level, and every parent has two children).
+For example,
+Given the following perfect binary tree,
+         1
+       /  \
+      2    3
+     / \  / \
+    4  5  6  7
+After calling your function, the tree should look like:
+         1 -> NULL
+       /  \
+      2 -> 3 -> NULL
+     / \  / \
+    4->5->6->7 -> NULL
+*/
+
+/**
+ * Definition for binary tree with next pointer.
+ * struct TreeLinkNode {
+ *  int val;
+ *  TreeLinkNode *left, *right, *next;
+ *  TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}
+ * };
+ */
 class Solution {
 public:
 	void connect(TreeLinkNode *root) {
-		TreeLinkNode *current = root;
-		TreeLinkNode *previous = NULL;
-		TreeLinkNode *head = NULL;
-		while (current) {
-			while (current) {
-				if (current->left) {
-					if (previous) previous->next = current->left;
-					else head = current->left;
-					previous = current->left;
+		if (!root) {
+			return;
+		}
+		vector<TreeLinkNode*> c = {root};
+		while (!c.empty()) {
+			vector<TreeLinkNode*> n;
+			for (int sz = c.size(), i = 0; i + 1 < sz; ++i) {
+				c[i]->next = c[i + 1];
+				if (c[i]->left) {
+					n.push_back(c[i]->left);
 				}
-				if (current->right) {
-					if (previous) previous->next = current->right;
-					else head = current->right;
-					previous = current->right;
+				if (c[i]->right) {
+					n.push_back(c[i]->right);
 				}
-				current = current->next;
 			}
-			current = head;
-			previous = NULL;
-			head = NULL;
+			if (c.back()->left) {
+				n.push_back(c.back()->left);
+			}
+			if (c.back()->right) {
+				n.push_back(c.back()->right);
+			}
+			c = n;
 		}
 	}
 };
-void inorderTraversal(TreeLinkNode *root) {
-	TreeLinkNode *current = root;
-	while (current) {
-		if (!current->left) {
-			cout << current->val << '\t';
-			current = current->right;
-		} else {
-			TreeLinkNode *predecessor = current->left;
-			while (predecessor->right && predecessor->right != current) predecessor = predecessor->right;
-			if (!predecessor->right) {
-				predecessor->right = current;
-				current = current->left;
-			} else {
-				cout << current->val << '\t';
-				predecessor->right = NULL;
-				current = current->right;
-			}
-		}
-	}
-	current = NULL;
-	return;
-}
-int main(void) {
-	Solution solution;
-	TreeLinkNode *root = new TreeLinkNode(1);
-	root->left = new TreeLinkNode(2);
-	root->right = new TreeLinkNode(3);
-	root->left->left = new TreeLinkNode(4);
-	root->left->right = new TreeLinkNode(5);
-	root->right->right = new TreeLinkNode(7);
-	solution.connect(root);
-	inorderTraversal(root);
-	cout << "\nPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
