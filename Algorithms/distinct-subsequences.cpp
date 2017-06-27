@@ -1,49 +1,45 @@
 // 115. Distinct Subsequences
 // https://leetcode.com/problems/distinct-subsequences/
-// http://bangbingsyb.blogspot.ca/2014/11/leetcode-distinct-subsequences.html
-// https://github.com/soulmachine/leetcode
-#include <iostream>
-#include <string>
-#include <vector>
-using namespace std;
+
+/*
+Given a string S and a string T, count the number of distinct subsequences of S which equals T.
+
+A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (ie, "ACE" is a subsequence of "ABCDE" while "AEC" is not).
+
+Here is an example:
+S = "rabbbit", T = "rabbit"
+
+Return 3.
+*/
+
 class Solution {
 public:
-	int numDistinct(const string& s, const string& t) {
-		const size_t& m = s.size();
-		const size_t& n = t.size();
-		vector<vector<int>> OPT(m + 1, vector<int>(n + 1, 0));
-		for (size_t i = 0; i < m + 1; ++i) OPT[i][0] = 1;
-		for (size_t i = 1; i < m + 1; ++i) {
-			for (size_t j = 1; j < n + 1; ++j) {
-				if (s[i - 1] == t[j - 1]) OPT[i][j] = OPT[i - 1][j - 1] + OPT[i - 1][j];
-				else OPT[i][j] = OPT[i - 1][j];
+	int numDistinct(string s, string t) {
+		int m = s.size(), n = t.size();
+		vector<vector<int>> M(2, vector<int>(n + 1, 0));
+		for (int i = 0; i <= m; ++i) {
+			for (int j = 0; j <= n and j <= i; ++j) {
+				int x = i % 2, y = 1 - x;
+				if (j == 0) {
+					M[x][j] = 1;
+					continue;
+				}
+				if (i == 0) {
+					M[x][j] = 0;
+					continue;
+				}
+				if (i == j) {
+					M[x][j] = s.substr(0, i) == t.substr(0, j);
+					continue;
+				}
+				if (s[i - 1] == t[j - 1]) {
+					M[x][j] = M[y][j - 1] + M[y][j];
+				}
+				else {
+					M[x][j] = M[y][j];
+				}
 			}
 		}
-		return OPT[m][n];
+		return M[m % 2][n];
 	}
 };
-int main(void) {
-	Solution solution;
-	string s = "rabbbit";
-	string t = "rabbit";
-	if (solution.numDistinct(s, t) == 3) {
-		cout << "\nPassed\n";
-	}
-	else {
-		cout << "\nError\n";
-		getchar();
-		return 0;
-	}
-	s = "aacaacca";
-	t = "ca";
-	if (solution.numDistinct(s, t) == 5) {
-		cout << "\nPassed\n";
-	}
-	else {
-		cout << "\nError\n";
-		getchar();
-		return 0;
-	}
-	cout << "\nPassed All\n";
-	return 0;
-}
