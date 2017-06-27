@@ -93,27 +93,27 @@ public:
 				root = root->right;
 			}
 			else {
-			TreeNode *pred = root->left;
-			while (pred->right and pred->right != root) {
-				pred = pred->right;
-			}
-			if (!pred->right) {
-				pred->right = root;
-				root = root->left;
-			}
-			else {
-				if (prev and prev->val > root->val) {
-					if (!a) {
-						a = prev;
-						b = root;
-					}
-					else {
-						b = root;
-					}
+				TreeNode *pred = root->left;
+				while (pred->right and pred->right != root) {
+					pred = pred->right;
 				}
-				pred->right = NULL;
-				prev = root;
-				root = root->right;
+				if (!pred->right) {
+					pred->right = root;
+					root = root->left;
+				}
+				else {
+					if (prev and prev->val > root->val) {
+						if (!a) {
+							a = prev;
+							b = root;
+						}
+						else {
+							b = root;
+						}
+					}
+					pred->right = NULL;
+					prev = root;
+					root = root->right;
 				}
 			}
 		}
