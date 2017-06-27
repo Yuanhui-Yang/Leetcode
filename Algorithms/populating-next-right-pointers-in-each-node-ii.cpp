@@ -35,9 +35,6 @@ After calling your function, the tree should look like:
 class Solution {
 public:
 	void connect(TreeLinkNode *root) {
-		if (!root or (!root->left and !root->right)) {
-			return;
-		}
 		while(root) {
 			TreeLinkNode *next = NULL, *prev = NULL;
 			while (root) {
