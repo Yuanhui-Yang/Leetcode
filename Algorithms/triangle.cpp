@@ -1,42 +1,47 @@
 // 120. Triangle
 // https://leetcode.com/problems/triangle/
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <iterator>
-using namespace std;
+
+/*
+Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.
+
+For example, given the following triangle
+[
+     [2],
+    [3,4],
+   [6,5,7],
+  [4,1,8,3]
+]
+The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).
+
+Note:
+Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.
+*/
+
 class Solution {
 public:
 	int minimumTotal(vector<vector<int>>& triangle) {
-		for (size_t i = triangle.size() - 2; i + 1 > 0; --i) {
-			for (size_t j = 0; j < triangle[i].size(); ++j) {
-				triangle[i][j] = min(triangle[i + 1][j] + triangle[i][j], triangle[i + 1][j + 1] + triangle[i][j]);
+		if (triangle.empty()) {
+			return 0;
+		}
+		int result = INT_MAX;
+		for (int m = triangle.size(), i = 0; i < m; ++i) {
+			for (int j = 0; j <= i; ++j) {
+				if (i > 0) {
+					if (j == 0) {
+						triangle[i][j] += triangle[i - 1][j];
+					}
+					else if (j == i) {
+						triangle[i][j] += triangle[i - 1][j - 1];
+					}
+					else {
+						triangle[i][j] += min(triangle[i - 1][j - 1], triangle[i - 1][j]);
+					}
+				}
+				if (i + 1 == m) {
+					result = min(result, triangle[i][j]);
+				}
 			}
 		}
-		return triangle[0][0];
+		return result;
 	}
 };
-int main(void) {
-	Solution solution;
-	vector<vector<int>> triangle = {
-									{2},
-									{3,4},
-									{6,5,7},
-									{4,1,8,3}
-									};
-	if (solution.minimumTotal(triangle) == 11) {
-		cout << "\nPassed\n";
-	} else {
-		cout << "\nError\n";
-		return 0;
-	}
-	triangle = {{2}};
-	if (solution.minimumTotal(triangle) == 2) {
-		cout << "\nPassed\n";
-	} else {
-		cout << "\nError\n";
-		return 0;
-	}
-	cout << "\nPassed All\n";
-	return 0;
-}

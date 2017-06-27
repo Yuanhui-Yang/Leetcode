@@ -140,6 +140,7 @@ int main(void) {
 | 117 | [Populating Next Right Pointers in Each Node II](https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/populating-next-right-pointers-in-each-node-ii.cpp) | Medium |
 | 118 | [Pascal's Triangle](https://leetcode.com/problems/pascals-triangle/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/pascals-triangle.cpp) | Easy |
 | 119 | [Pascal's Triangle II](https://leetcode.com/problems/pascals-triangle-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/pascals-triangle-ii.cpp) | Easy |
+| 120 | [Triangle](https://leetcode.com/problems/triangle/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/triangle.cpp) | Medium |
 | 121 | [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/best-time-to-buy-and-sell-stock.cpp) | Easy |
 | 122 | [Best Time to Buy and Sell Stock II](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/best-time-to-buy-and-sell-stock-ii.cpp) | Medium |
 | 123 | [Best Time to Buy and Sell Stock III](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/best-time-to-buy-and-sell-stock-iii.cpp) | Hard |
