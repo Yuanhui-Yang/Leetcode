@@ -22,9 +22,9 @@ class Solution {
 public:
 	int maxProfit(vector<int>& prices) {
 		int buy = INT_MIN, sell = 0;
-		for (const auto &i : prices) {
-			sell = max(sell, buy + i);
-			buy = max(buy, -i);
+		for (const auto &price : prices) {
+			sell = max(sell, buy + price);
+			buy = max(buy, -price);
 		}
 		return sell;
 	}
