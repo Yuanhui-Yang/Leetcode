@@ -1,44 +1,42 @@
 // 124. Binary Tree Maximum Path Sum
 // https://leetcode.com/problems/binary-tree-maximum-path-sum/
-// https://discuss.leetcode.com/topic/4407/accepted-short-solution-in-java/2
-// http://algorithms.tutorialhorizon.com/given-a-binary-tree-find-the-maximum-path-sum-between-any-two-leaves/
-#include <iostream>
-#include <algorithm>
-#include <climits>
-using namespace std;
-struct TreeNode {
-	int val;
-	TreeNode *left;
-	TreeNode *right;
-	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
+
+/*
+Given a binary tree, find the maximum path sum.
+
+For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The path must contain at least one node and does not need to go through the root.
+
+For example:
+Given the below binary tree,
+
+       1
+      / \
+     2   3
+Return 6.
+*/
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
 class Solution {
 public:
 	int maxPathSum(TreeNode* root) {
-		this->maxPathDown(root);
-		return maxValue;
+		return f(root).second;
 	}
 private:
-	int maxValue = INT_MIN;
-	int maxPathDown(TreeNode* node) {
-		if (!node) return 0;
-		int left = max(0, this->maxPathDown(node->left));
-		int right = max(0, this->maxPathDown(node->right));
-		maxValue = max(maxValue, left + right + node->val);
-		return max(left, right) + node->val;
+	pair<int, int> f(TreeNode* root) {
+		if (!root) {
+			return {INT_MIN, INT_MIN};
+		}
+		pair<int, int> a = f(root->left), b = f(root->right);
+		int x = max(0, a.first), y = max(0, b.first);
+		int l = root->val + max(x, y), r = max(root->val + x + y, max(a.second, b.second));
+		return {l, r};
 	}
 };
-int main(void) {
-	Solution solution;
-	TreeNode* root = new TreeNode(1);
-	root->left = new TreeNode(2);
-	root->right = new TreeNode(3);
-	if (solution.maxPathSum(root) == 6) {
-		cout << "\nPassed\n";
-	} else {
-		cout << "\nError\n";
-		return 0;
-	}
-	cout << "\nPassed All\n";
-	return 0;
-}
