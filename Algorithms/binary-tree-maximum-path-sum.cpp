@@ -53,6 +53,36 @@ private:
 class Solution {
 public:
 	int maxPathSum(TreeNode* root) {
+		return f(root)[1];
+	}
+private:
+	array<int, 2> f(TreeNode* root) {
+		if (!root) {
+			return {INT_MIN, INT_MIN};
+		}
+		if (h.count(root)) {
+			return h[root];
+		}
+		array<int, 2> a = f(root->left), b = f(root->right);
+		int x = max(0, a[0]), y = max(0, b[0]);
+		int l = root->val + max(x, y), r = max(root->val + x + y, max(a[1], b[1]));
+		return h[root] = {l, r};
+	}
+	unordered_map<TreeNode*, array<int, 2>> h;
+};
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+	int maxPathSum(TreeNode* root) {
 		return f(root).second;
 	}
 private:
