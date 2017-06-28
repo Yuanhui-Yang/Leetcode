@@ -177,6 +177,7 @@ int main(void) {
 | 157 | [Read N Characters Given Read4](https://leetcode.com/problems/read-n-characters-given-read4/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/read-n-characters-given-read4.cpp) | Easy |
 | 158 | [Read N Characters Given Read4 II - Call multiple times](https://leetcode.com/problems/read-n-characters-given-read4-ii-call-multiple-times/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/read-n-characters-given-read4-ii-call-multiple-times.cpp) | Hard |
 | 159 | [Longest Substring with At Most Two Distinct Characters](https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-substring-with-at-most-two-distinct-characters.cpp) | Hard |
+| 161 | [One Edit Distance](https://leetcode.com/problems/one-edit-distance/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/one-edit-distance.cpp) | Medium |
 | 162 | [Find Peak Element](https://leetcode.com/problems/find-peak-element/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-peak-element.cpp) | Medium |
 | 163 | [Missing Ranges](https://leetcode.com/problems/missing-ranges/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/missing-ranges.cpp) | Medium |
 | 164 | [Maximum Gap](https://leetcode.com/problems/maximum-gap/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-gap.cpp) | Hard |
