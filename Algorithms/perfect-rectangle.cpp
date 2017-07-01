@@ -51,31 +51,7 @@
 
 // Return false. Because two of the rectangles overlap with each other.
 
-#include <iostream> // std::cout; std::cin
-#include <cstdlib> // rand
-#include <cassert> // assert
-#include <cctype> // isalnum; isalpha; isdigit; islower; isupper; isspace; tolower; toupper
-#include <cmath> // pow; sqrt; round; fabs; abs; log
-#include <climits> // INT_MIN; INT_MAX; LLONG_MIN; LLONG_MAX; ULLONG_MAX
-#include <cfloat> // DBL_EPSILON; LDBL_EPSILON
-#include <cstring> // memset
-#include <algorithm> // max; min; min_element; max_element; minmax_element; next_permutation; prev_permutation; nth_element; sort; swap; lower_bound; upper_bound; reverse
-#include <limits> // std::numeric_limits<int>::min; std::numeric_limits<int>::max; std::numeric_limits<double>::epsilon; std::numeric_limits<long double>::epsilon;
-#include <numeric> // std::accumulate; std::iota
-#include <string> // std::string::npos
-#include <list>
-#include <bitset>
-#include <vector>
-#include <deque>
-#include <stack> // std::stack::top; std::stack::pop; std::stack::push
-#include <queue>
-#include <set>
-#include <map>
-#include <unordered_set>
-#include <unordered_map>
-#include <utility> // pair; make_pair; swap
-#include <iterator>
-#include <functional> // std::less<int>; std::greater<int>
+#include <bits/stdc++.h>
 using namespace std;
 
 class Solution {
@@ -122,7 +98,7 @@ public:
 			v.push_back(Line(i.at(2), i.at(1), false));
 		}
 		sort(begin(v), end(v), Comp1());
-		multiset<Line, Comp2> rbtree;
+		multiset<Line, Comp> rbtree;
 		for (size_t i = 0, n = v.size(); i < n; i++) {
 			const Line &line = v.at(i);
 			if (i == 0 or !line.d) {
@@ -132,7 +108,7 @@ public:
 			if (rbtree.empty()) {
 				return false;
 			}
-			const multiset<Line, Comp2>::iterator it = rbtree.lower_bound(line);
+			const multiset<Line, Comp>::iterator it = rbtree.lower_bound(line);
 			if (it == end(rbtree) or it->y != line.y) {
 				return false;
 			}
@@ -160,7 +136,7 @@ public:
 			v.push_back(Line(i.at(2), i.at(3), true));
 			v.push_back(Line(i.at(2), i.at(1), false));
 		}
-		sort(begin(v), end(v), Comp1());
+		sort(begin(v), end(v));
 		rbtree.clear();
 		for (size_t i = 0, n = v.size(); i < n; i++) {
 			const Line &line = v.at(i);
@@ -171,7 +147,7 @@ public:
 			if (rbtree.empty()) {
 				return false;
 			}
-			const multiset<Line, Comp2>::iterator it = rbtree.lower_bound(line);
+			const multiset<Line, Comp>::iterator it = rbtree.lower_bound(line);
 			if (it == end(rbtree) or it->y != line.y) {
 				return false;
 			}
@@ -195,6 +171,15 @@ private:
 		int x;
 		int y;
 		bool d;
+		bool operator < (const Line & other) {
+			if (this->x == other.x) {
+				if (this->d == other.d) {
+					return this->y < other.y;
+				}
+				return this->d < other.d;
+			}
+			return this->x < other.x;
+		}
 	};
 private:
 	struct Comp1 {
@@ -209,7 +194,7 @@ private:
 		}
 	};
 private:
-	struct Comp2 {
+	struct Comp {
 		bool operator() (const Line& a, const Line& b) {
 			if (a.y == b.y) {
 				if (a.x == b.x) {
