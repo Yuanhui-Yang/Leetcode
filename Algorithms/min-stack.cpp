@@ -1,49 +1,53 @@
 // 155. Min Stack
 // https://leetcode.com/problems/min-stack/
-#include <iostream>
-#include <vector>
-using namespace std;
-// BEGIN: http://www.jiuzhang.com/solutions/min-stack/
+
+/*
+Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+
+push(x) -- Push element x onto stack.
+pop() -- Removes the element on top of the stack.
+top() -- Get the top element.
+getMin() -- Retrieve the minimum element in the stack.
+Example:
+MinStack minStack = new MinStack();
+minStack.push(-2);
+minStack.push(0);
+minStack.push(-3);
+minStack.getMin();   --> Returns -3.
+minStack.pop();
+minStack.top();      --> Returns 0.
+minStack.getMin();   --> Returns -2.
+*/
+
 class MinStack {
 public:
 	/** initialize your data structure here. */
-	MinStack() {
-		a.clear();
-		b.clear();
-	}
+	MinStack() {}
 
 	void push(int x) {
-		if (a.empty() || b.empty()) {
-			a.push_back(x);
-			b.push_back(x);
-			return;
+		s.push(x);
+		if (t.empty() or t.top() >= x) {
+			t.push(x);
 		}
-		if (b.back() <= x) {
-			a.push_back(x);
-			b.push_back(b.back());
-			return;
-		}
-		a.push_back(x);
-		b.push_back(x);
 	}
 
 	void pop() {
-		if (a.empty() || b.empty()) return;
-		a.pop_back();
-		b.pop_back();
+		if (s.top() == t.top()) {
+			t.pop();
+		}
+		s.pop();
 	}
 
 	int top() {
-		return a.back();
+		return s.top();
 	}
 
 	int getMin() {
-		return b.back();
+		return t.top();
 	}
 private:
-	vector<int> a, b;
+	stack<int> s, t;
 };
-// END: http://www.jiuzhang.com/solutions/min-stack/
 
 /**
  * Your MinStack object will be instantiated and called as such:
@@ -53,23 +57,3 @@ private:
  * int param_3 = obj.top();
  * int param_4 = obj.getMin();
  */
-
-int main(void) {
-	MinStack minStack;
-	// minStack.push(-2);
-	// minStack.push(0);
-	// minStack.push(-3);
-	// cout << minStack.getMin() << "\tPassed\n";
-	// minStack.pop();
-	// cout << minStack.top() << "\tPassed\n";
-	// cout << minStack.getMin() << "\tPassed\n";
-	minStack.push(-2);
-	minStack.push(0);
-	minStack.push(-1);
-	cout << minStack.getMin() << "\tPassed\n";
-	cout << minStack.top() << "\tPassed\n";
-	minStack.pop();
-	cout << minStack.getMin() << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
