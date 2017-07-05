@@ -25,7 +25,8 @@ public:
 	int read(char *buf, int n) {
 		int result = 0, l = 0;
 		do {
-			l = min(read4(buf + result), n);
+			l = min(read4(buf), n);
+			buf += l;
 			result += l;
 			n -= l;
 		} while (l == 4 and n > 0);
