@@ -35,7 +35,7 @@ public:
 			result.push_back({beginWord, endWord});
 			return result;
 		}
-		unordered_map<string, unordered_set<string>> rpath;
+		unordered_map<string, list<string>> rpath;
 		unordered_set<string> words(begin(wordList), end(wordList));
 		if (!words.count(endWord)) {
 			return result;
@@ -69,7 +69,7 @@ public:
 						}
 					}
 					if (dist[t] > dist[s]) {
-						rpath[t].insert(s);
+						rpath[t].push_back(s);
 					}
 				}
 			}
@@ -79,7 +79,7 @@ public:
 		return result;
 	}
 private:
-	void f(vector<vector<string>> & result, vector<string> & v, const unordered_map<string, unordered_set<string>> & rpath, const string & endWord, const string & beginWord) {
+	void f(vector<vector<string>> & result, vector<string> & v, const unordered_map<string, list<string>> & rpath, const string & endWord, const string & beginWord) {
 		v.insert(begin(v), endWord);
 		if (endWord == beginWord) {
 			result.push_back(v);
