@@ -36,62 +36,51 @@ public:
 			return result;
 		}
 		unordered_set<string> words(begin(wordList), end(wordList));
-		if (!words.count(endWord)) {
-			return result;
-		}
 		unordered_map<string, unordered_set<string>> rpath;
-		int minDist = numeric_limits<int>::max();
-		queue<string> q;
-		q.push(beginWord);
-		unordered_map<string, int> dist;
-		dist[beginWord] = 0;
-		while (!q.empty()) {
-			string t = q.front();
-			q.pop();
-			if (dist[t] + 1 > minDist) {
-				continue;
+		list<string> current({beginWord});
+		bool flag = true;
+		while (!current.empty() and flag) {
+			for (const auto & s : current) {
+				if (words.count(s)) {
+					words.erase(s);
+				}
 			}
-			for (int n = t.size(), i = 0; i < n; ++i) {
-				for (char ch = 'a'; ch <= 'z'; ++ch) {
-					if (ch == t[i]) {
-						continue;
-					}
-					string s(t);
-					s[i] = ch;
-					if (!words.count(s)) {
-						continue;
-					}
-					if (!dist.count(s)) {
-						dist[s] = 1 + dist[t];
-						q.push(s);
-						if (s == endWord) {
-							minDist = dist[s];
+			list<string> next;
+			for (const auto & s : current) {
+				for (int n = s.size(), i = 0; i < n; ++i) {
+					for (char ch = 'a'; ch <= 'z'; ++ch) {
+						if (s[i] == ch) {
+							continue;
 						}
-					}
-					if (dist[s] > dist[t]) {
-						rpath[s].insert(t);
+						string t(s);
+						t[i] = ch;
+						if (!words.count(t)) {
+							continue;
+						}
+						rpath[t].insert(s);
+						next.push_back(t);
+						if (t == endWord) {
+							flag = false;
+						}
 					}
 				}
 			}
+			current = next;
 		}
 		vector<string> v;
-		f(rpath, result, v, endWord, beginWord);
+		f(result, v, rpath, endWord, beginWord);
 		return result;
 	}
 private:
-	void f(const unordered_map<string, unordered_set<string>> & rpath,
-	vector<vector<string>> & result,
-	vector<string> & v,
-	const string & endWord,
-	const string & beginWord) {
+	void f(vector<vector<string>> & result, vector<string> & v, const unordered_map<string, unordered_set<string>> & rpath, const string & endWord, const string & beginWord) {
 		v.insert(begin(v), endWord);
 		if (endWord == beginWord) {
 			result.push_back(v);
 		}
 		else if (rpath.count(endWord)) {
-			const unordered_set<string> & s = rpath.at(endWord);
-			for (const auto & i : s) {
-				f(rpath, result, v, i, beginWord);
+			const unordered_set<string> & w = rpath.at(endWord);
+			for (const auto & i : w) {
+				f(result, v, rpath, i, beginWord);
 			}
 		}
 		v.erase(begin(v));
