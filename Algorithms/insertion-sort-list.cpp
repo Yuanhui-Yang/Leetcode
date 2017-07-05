@@ -18,7 +18,7 @@ public:
 	ListNode* insertionSortList(ListNode* head) {
 		for (ListNode * it = head; it; it = it->next) {
 			ListNode * node = it;
-			for (ListNode * jt = it; jt; jt = jt->next) {
+			for (ListNode * jt = it->next; jt; jt = jt->next) {
 				if (jt->val < node->val) {
 					node = jt;
 				}
