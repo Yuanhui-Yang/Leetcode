@@ -18,7 +18,7 @@ public:
 	}
 private:
 	int f(vector<int>& nums, int p, int q, int k) {
-		int pivot = nums[p], i = p + 1, j = q;
+		int i = p + 1, j = q;
 		while (i <= j) {
 			if (nums[i] <= nums[p]) {
 				++i;
