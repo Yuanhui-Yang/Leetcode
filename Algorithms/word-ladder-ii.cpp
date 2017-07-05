@@ -49,7 +49,7 @@ public:
 			string s = q.front();
 			q.pop();
 			if (dist[s] > shortest) {
-			break;
+				break;
 			}
 			for (int n = s.size(), i = 0; i < n; ++i) {
 				for (char ch = 'a'; ch <= 'z'; ++ch) {
