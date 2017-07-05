@@ -1,121 +1,42 @@
 // 215. Kth Largest Element in an Array
 // https://leetcode.com/problems/kth-largest-element-in-an-array/
-// https://discuss.leetcode.com/topic/15256/4-c-solutions-using-partition-max-heap-priority_queue-and-multiset-respectively
-#include <iostream>
-#include <cassert>
-#include <vector>
-#include <algorithm>
-#include <iterator>
-#include <utility>
-#include <queue>
-using namespace std;
+
+/*
+Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.
+
+For example,
+Given [3,2,1,5,6,4] and k = 2, return 5.
+
+Note: 
+You may assume k is always valid, 1 ≤ k ≤ array's length.
+*/
+
 class Solution {
 public:
 	int findKthLargest(vector<int>& nums, int k) {
-		nth_element(begin(nums), next(begin(nums), nums.size() - k), end(nums));
-		return nums[nums.size() - k];
+		return f(nums, 0, nums.size() - 1, nums.size() - k);
+	}
+private:
+	int f(vector<int>& nums, int p, int q, int k) {
+		int pivot = nums[p], i = p + 1, j = q;
+		while (i <= j) {
+			if (nums[i] <= nums[p]) {
+				++i;
+				continue;
+			}
+			if (nums[j] > nums[p]) {
+				--j;
+				continue;
+			}
+			swap(nums[i++], nums[j--]);
+		}
+		swap(nums[p], nums[j]);
+		if (k < j) {
+			return f(nums, p, j - 1, k);
+		}
+		if (k > j) {
+			return f(nums, j + 1, q, k);
+		}
+		return nums[k];
 	}
 };
-// class Solution {
-// public:
-// 	int findKthLargest(vector<int>& nums, int k) {
-// 		this->buildMaxHeap(nums);
-// 		int result = 0;
-// 		while (k--) {
-// 			result = nums[0];
-// 			swap(nums[0], nums[--this->heapSize]);
-// 			this->maxHeapify(nums, 0);
-// 		}
-// 		return result;
-// 	}
-// private:
-// 	int heapSize;
-// 	inline int left(int idx) {return (idx << 1) + 1;}
-// 	inline int right(int idx) {return (idx << 1) + 2;}
-// 	void maxHeapify(vector<int>& nums, int idx) {
-// 		int largest = idx;
-// 		int l = this->left(idx), r = this->right(idx);
-// 		if (l < this->heapSize && nums[l] > nums[largest]) largest = l;
-// 		if (r < this->heapSize && nums[r] > nums[largest]) largest = r;
-// 		if (largest == idx) return;
-// 		swap(nums[largest], nums[idx]);
-// 		this->maxHeapify(nums, largest);
-// 	}
-// 	void buildMaxHeap(vector<int>& nums) {
-// 		this->heapSize = nums.size();
-// 		for (int i = (this->heapSize >> 1) - 1; i >= 0; --i) this->maxHeapify(nums, i);
-// 	}
-// };
-// class Solution {
-// public:
-// 	int findKthLargest(vector<int>& nums, int k) {
-// 		priority_queue<int> pq(begin(nums), end(nums));
-// 		while (--k) pq.pop();
-// 		return pq.top();
-// 	}
-// };
-// class Solution {
-// public:
-// 	int findKthLargest(vector<int>& nums, int k) {
-// 		int left = 0, right = nums.size() - 1;
-// 		while (true) {
-// 			int i = this->partition(nums, left, right);
-// 			if (i == k - 1) return nums[i];
-// 			if (i < k - 1) left = i + 1;
-// 			else right = i - 1;
-// 		}
-// 		return -1;
-// 	}
-// private:
-// 	int partition(vector<int>& nums, int left, int right) {
-// 		int i = left + 1, j = right, pivot = nums[left];
-// 		while (i <= j) {
-// 			if (nums[i] < pivot && nums[j] > pivot) swap(nums[i++], nums[j--]);
-// 			if (nums[i] >= pivot) i++;
-// 			if (nums[j] <= pivot) j--;
-// 		}
-// 		swap(nums[left], nums[j]);
-// 		return j;
-// 	}
-// };
-// class Solution {
-// public:
-// 	int findKthLargest(vector<int>& nums, int k) {
-// 		int left = 0, right = nums.size() - 1, n = nums.size();
-// 		while (true) {
-// 			int i = this->partition(nums, left, right);
-// 			if (i == n - k) return nums[i];
-// 			if (i < n - k) left = i + 1;
-// 			else right = i - 1;
-// 		}
-// 		return -1;
-// 	}
-// private:
-// 	int partition(vector<int>& nums, int left, int right) {
-// 		int pivot = nums[left], i = left + 1, j = right;
-// 		while (i <= j) {
-// 			if (nums[i] > pivot && nums[j] < pivot) swap(nums[i++], nums[j--]);
-// 			if (nums[i] <= pivot) i++;
-// 			if (nums[j] >= pivot) j--;
-// 		}
-// 		swap(nums[left], nums[j]);
-// 		return j;
-// 	}
-// };
-// class Solution {
-// public:
-// 	int findKthLargest(vector<int>& nums, int k) {
-// 		sort(begin(nums), end(nums));
-// 		return nums[nums.size() - k];
-// 	}
-// };
-int main(void) {
-	Solution solution;
-	vector<int> nums;
-	nums = {3, 2, 1, 5, 6, 4}; 
-	assert(5 == solution.findKthLargest(nums, 2));
-	nums = {3, 3, 3, 3, 4, 3, 3, 3, 3};
-	assert(4 == solution.findKthLargest(nums, 1));
-	cout << "\nPassed All\n";
-	return 0;
-}
