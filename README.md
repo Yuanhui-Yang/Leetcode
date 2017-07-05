@@ -147,6 +147,7 @@ int main(void) {
 | 124 | [Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/binary-tree-maximum-path-sum.cpp) | Hard |
 | 125 | [Valid Palindrome](https://leetcode.com/problems/valid-palindrome/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/valid-palindrome.cpp) | Easy |
 | 126 | [Word Ladder II](https://leetcode.com/problems/word-ladder-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/word-ladder-ii.cpp) | Hard |
+| 127 | [Word Ladder](https://leetcode.com/problems/word-ladder/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/word-ladder.cpp) | Medium |
 | 128 | [Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-consecutive-sequence.cpp) | Hard |
 | 129 | [Sum Root to Leaf Numbers](https://leetcode.com/problems/sum-root-to-leaf-numbers/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sum-root-to-leaf-numbers.cpp) | Medium |
 | 130 | [Surrounded Regions](https://leetcode.com/problems/surrounded-regions/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/surrounded-regions.cpp) | Medium |
