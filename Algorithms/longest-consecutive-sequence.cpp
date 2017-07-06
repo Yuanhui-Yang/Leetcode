@@ -13,21 +13,21 @@ Your algorithm should run in O(n) complexity.
 
 class Solution {
 public:
-    int longestConsecutive(vector<int>& nums) {
-        int result = 0;
-        unordered_map<int, int> h;
-        for (const auto & i : nums) {
-            if (h.count(i)) {
-                continue;
-            }
-            int left = h.count(i - 1) ? h[i - 1] : 0;
-            int right = h.count(i + 1) ? h[i + 1] : 0;
-            int sum = 1 + left + right;
-            result = max(result, sum);
-            h[i] = sum;
-            h[i - left] = sum;
-            h[i + right] = sum;
-        }
-        return result;
-    }
+	int longestConsecutive(vector<int>& nums) {
+		int result = 0;
+		unordered_map<int, int> h;
+		for (const auto & i : nums) {
+			if (h.count(i)) {
+				continue;
+			}
+			int left = h.count(i - 1) ? h[i - 1] : 0;
+			int right = h.count(i + 1) ? h[i + 1] : 0;
+			int sum = 1 + left + right;
+			result = max(result, sum);
+			h[i] = sum;
+			h[i - left] = sum;
+			h[i + right] = sum;
+		}
+		return result;
+	}
 };
