@@ -27,10 +27,10 @@ public:
 			t.push_back(i);
 			t.push_back('#');
 		}
-		int n = t.size(), x = 0, y = 0, a = 0, b = 0;
+		int n = t.size(), x = 0, y = 0;
 		vector<int> vec(n, 0);
 		for (int i = 0; i < n; ++i) {
-			int c = a - b, d = a + b;
+			int c = x - y, d = x + y;
 			int j = 2 * x - i;
 			if (j > c and j - vec[j] > c) {
 				vec[i] = vec[j];
@@ -46,9 +46,8 @@ public:
 				x = i;
 				y = vec[i];
 			}
-			if (a + b < i + vec[i]) {
-				a = i;
-				b = vec[i];
+			if (i + vec[i] + 1 >= n) {
+				break;
 			}
 		}
 		string result;
