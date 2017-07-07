@@ -1,61 +1,63 @@
 // 149. Max Points on a Line
 // https://leetcode.com/problems/max-points-on-a-line/
-// https://github.com/soulmachine/leetcode
-#include <iostream>
-#include <vector>
-#include <unordered_map>
-#include <limits>
-using namespace std;
-struct Point {
-	int x;
-	int y;
-	Point() : x(0), y(0) {}
-	Point(int a, int b) : x(a), y(b) {}
-};
+
+/*
+Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.
+*/
+
+/**
+ * Definition for a point.
+ * struct Point {
+ *     int x;
+ *     int y;
+ *     Point() : x(0), y(0) {}
+ *     Point(int a, int b) : x(a), y(b) {}
+ * };
+ */
 class Solution {
 public:
 	int maxPoints(vector<Point>& points) {
-		const int n = points.size();
-		if (n <= 2) return n; 
-		int result = 0;
-		for (int i = 0; i < n; ++i) {
-			int x0 = points[i].x;
-			int y0 = points[i].y;
-			unordered_map<double, int> hashmap;
-			int sum = 0;
-			for (int j = 0; j < n; ++j) {
-				if (i == j) continue;
-				int x1 = points[j].x;
-				int y1 = points[j].y;
-				if (x0 == x1 && y0 == y1) {
-					++sum;
+		int n = points.size();
+		if (n <= 2) {
+			return n;
+		}
+		sort(begin(points), end(points), Comp());
+		int result = 2;
+		for (int i = 0; i + 1 < n; ++i) {
+			unordered_map<long double, unordered_map<long double, int>> h;
+			int cnt = 1;
+			for (int j = i + 1; j < n; ++j) {
+				int x1 = points[i].x, y1 = points[i].y;
+				int x2 = points[j].x, y2 = points[j].y;
+				if (x1 == x2 and y1 == y2) {
+					result = max(result, ++cnt);
 					continue;
 				}
-				if (x0 == x1) {
-					++hashmap[numeric_limits<double>::max()];
-					continue;
-				}
-				double slope = 1.0 * (y1 - y0) / (x1 - x0);
-				++hashmap[slope];
-				continue;
+				array<long double, 2> line = f(x1, y1, x2, y2);
+				result = max(result, ++h[line[0]][line[1]] + cnt);
 			}
-			int s = 0;
-			for (const auto &e : hashmap) s = max(s, e.second);
-			result = max(result, sum + s + 1);
 		}
 		return result;
 	}
+private:
+	array<long double, 2> f(long long x1, long long y1, long long x2, long long y2) {
+		array<long double, 2> result;
+		if (x1 == x2) {
+			result[0] = x1;
+			result[1] = numeric_limits<long double>::max();
+		}
+		else {
+			result[0] = (long double)(x1 * y2 - x2 * y1) / (long double)(x1 - x2);
+			result[1] = (long double)(y1 - y2) / (long double)(x1 - x2);
+		}
+		return result;
+	}
+	struct Comp {
+		bool operator() (const Point & a, const Point &b) {
+			if (a.x == b.x) {
+				return a.y < b.y;
+			}
+			return a.x < b.x;
+		}
+	};
 };
-int main(void) {
-	Solution solution;
-	vector<Point> points = {{0, 0}, {1, 1}, {1, -1}};
-	if (solution.maxPoints(points) == 2) {
-		cout << "\nPassed\n";
-	}
-	else {
-		cout << "\nError\n";
-		return 0;
-	}
-	cout << "\nPassed All\n";
-	return 0;
-}
