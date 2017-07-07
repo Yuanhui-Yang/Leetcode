@@ -1,52 +1,64 @@
 // 143. Reorder List
 // https://leetcode.com/problems/reorder-list/
-// https://discuss.leetcode.com/topic/7425/a-concise-o-n-time-o-1-in-place-solution
-// https://discuss.leetcode.com/topic/13869/java-solution-with-3-steps
-#include <iostream>
-using namespace std;
-struct ListNode {
-	int val;
-	ListNode *next;
-	ListNode(int x) : val(x), next(NULL) {}
-};
+
+/*
+Given a singly linked list L: L0→L1→…→Ln-1→Ln,
+reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
+
+You must do this in-place without altering the nodes' values.
+
+For example,
+Given {1,2,3,4}, reorder it to {1,4,2,3}.
+*/
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
 class Solution {
 public:
 	void reorderList(ListNode* head) {
-		if (!head || !head->next || !head->next->next) return;
-		ListNode *slow = head;
-		ListNode *fast = head->next;
-		while (fast && fast->next) {
+		if (!head or !head->next) {
+			return;
+		}
+		ListNode * slow = head, * fast = head, * prevSlow = NULL;
+		while (slow and fast and fast->next) {
+			prevSlow = slow;
 			slow = slow->next;
 			fast = fast->next->next;
 		}
-		ListNode *secondhead = NULL;
-		ListNode *nextsecondhead = slow->next;
-		slow->next = NULL;
-		while (nextsecondhead) {
-			ListNode *nextnextsecondhead = nextsecondhead->next;
-			nextsecondhead->next = secondhead;
-			secondhead = nextsecondhead;
-			nextsecondhead = nextnextsecondhead;
+		prevSlow->next = NULL;
+		prevSlow = NULL;
+		while (slow) {
+			ListNode * nextSlow = slow->next;
+			slow->next = prevSlow;
+			prevSlow = slow;
+			slow = nextSlow;
 		}
-		for (ListNode *p1 = head, *p2 = secondhead; p2;) {
-			ListNode *nextp1 = p1->next;
-			p1 = p1->next = p2;
-			p2 = nextp1;
+		ListNode dummy(0);
+		int i = 0;
+		for (ListNode * it = &dummy; head or prevSlow; it = it->next, ++i) {
+			if (!head) {
+				it->next = prevSlow;
+				break;
+			}
+			if (!prevSlow) {
+				it->next = head;
+				break;
+			}
+			if (i & 1) {
+				it->next = prevSlow;
+				prevSlow = prevSlow->next;
+			}
+			else {
+				it->next = head;
+				head = head->next;
+			}
 		}
-		return;
+		head = dummy.next;
 	}
 };
-int main(void) {
-	Solution solution;
-	ListNode *head = new ListNode(1);
-	head->next = new ListNode(2);
-	head->next->next = new ListNode(3);
-	head->next->next->next = new ListNode(4);
-	for (ListNode *it = head; it; it = it->next) cout << it->val << '\t';
-	cout << '\t';
-	solution.reorderList(head);
-	for (ListNode *it = head; it; it = it->next) cout << it->val << '\t';
-	cout << "\nPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
