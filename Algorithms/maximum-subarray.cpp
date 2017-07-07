@@ -13,36 +13,14 @@ More practice:
 If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
 */
 
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
 public:
 	int maxSubArray(vector<int>& nums) {
-		int result = INT_MIN, sum = 0;
-		for (const auto &i : nums) {
+		int result = numeric_limits<int>::min(), sum = 0;
+		for (const auto & i : nums) {
 			sum = max(sum + i, i);
 			result = max(result, sum);
 		}
 		return result;
 	}
 };
-
-int main(void) {
-	Solution solution;
-	vector<int> nums;
-	int answer, result;
-
-	nums = {-1};
-	answer = -1;
-	result = solution.maxSubArray(nums);
-	assert(answer == result);
-
-	nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
-	answer = 6;
-	result = solution.maxSubArray(nums);
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
-	return 0;
-}
