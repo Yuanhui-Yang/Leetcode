@@ -20,12 +20,12 @@ class Solution {
 public:
 	vector<string> wordBreak(string s, vector<string>& wordDict) {
 		int n = s.size();
-		unordered_set<string> h(begin(wordDict), end(wordDict));
+		unordered_set<string> words(begin(wordDict), end(wordDict));
 		vector<bool> vec(n + 1, false);
 		vec[0] = true;
 		for (int i = 1; i <= n; ++i) {
 			for (int j = 0; j < i and !vec[i]; ++j) {
-				vec[i] = vec[i] or (vec[j] and h.count(s.substr(j, i - j)));
+				vec[i] = vec[j] and words.count(s.substr(j, i - j));
 			}
 		}
 		if (!vec[n]) {
@@ -35,10 +35,10 @@ public:
 		mat[0] = {""};
 		for (int i = 1; i <= n; ++i) {
 			for (int j = 0; j < i; ++j) {
-				string b(s.substr(j, i - j));
-				if (h.count(b)) {
-					for (const auto & a : mat[j]) {
-						mat[i].push_back(a == "" ? b : a + " " + b);
+				string t = s.substr(j, i - j);
+				if (vec[j] and words.count(t)) {
+					for (const auto & k : mat[j]) {
+						mat[i].push_back(k == "" ? t : k + " " + t);
 					}
 				}
 			}
