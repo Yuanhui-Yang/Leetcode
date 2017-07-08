@@ -1,39 +1,26 @@
 // 152. Maximum Product Subarray
 // https://leetcode.com/problems/maximum-product-subarray/
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <limits>
-using namespace std;
+
+/*
+Find the contiguous subarray within an array (containing at least one number) which has the largest product.
+
+For example, given the array [2,3,-2,4],
+the contiguous subarray [2,3] has the largest product = 6.
+*/
+
 class Solution {
 public:
 	int maxProduct(vector<int>& nums) {
-		const int n = nums.size();
-		if (n == 1) return nums[0];
-		int result = numeric_limits<int>::min();
-		int m1 = 1;
-		int m2 = 1;
-		for (const auto &i : nums) {
-			int x1 = max(i, m1 * i);
-			x1 = max(x1, m2 * i);
-			int x2 = min(i, m1 * i);
-			x2 = min(x2, m2 * i);
-			m1 = x1;
-			m2 = x2;
-			result = max(result, m1);
-			result = max(result, m2);
+		if (nums.empty()) {
+			return 0;
+		}
+		int result = nums.front(), a = nums.front(), b = nums.front();
+		for (int n = nums.size(), i = 1; i < n; ++i) {
+			int x = a, y = b;
+			a = min(nums[i], min(nums[i] * x, nums[i] * y));
+			b = max(nums[i], max(nums[i] * x, nums[i] * y));
+			result = max(result, max(a, b));
 		}
 		return result;
 	}
 };
-int main(void) {
-	Solution solution;
-	vector<int> nums = {2, 3, -2, 4};
-	cout << solution.maxProduct(nums) << "\tPassed\n";
-	nums = {-2, 3, -4};
-	cout << solution.maxProduct(nums) << "\tPassed\n";
-	nums = {0, 2};
-	cout << solution.maxProduct(nums) << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
