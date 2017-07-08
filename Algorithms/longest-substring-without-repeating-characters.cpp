@@ -13,43 +13,22 @@ Given "bbbbb", the answer is "b", with the length of 1.
 Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 */
 
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
 public:
 	int lengthOfLongestSubstring(string s) {
-		int result = 0;
-		vector<int> p(256, -1);
-		for (int i = 0, n = s.size(), j = -1; i < n; ++i) {
-			j = max(j, p[s[i]]);
-			result = max(result, i - j);
-			p[s[i]] = i;
+		int n = s.size(), i = 0, j = 0, result = 0, h[256];
+		memset(h, 0, sizeof(h));
+		while (j < n) {
+			while (j < n and !h[s[j]]) {
+				++h[s[j]];
+				++j;
+			}
+			result = max(result, j - i);
+			if (i < j) {
+				--h[s[i]];
+				++i;
+			}
 		}
 		return result;
 	}
 };
-
-int main(void) {
-	Solution solution;
-	string s;
-	int answer, result;
-
-	s = "abcabcbb";
-	answer = 3;
-	result = solution.lengthOfLongestSubstring(s);
-	assert(answer == result);
-
-	s = "bbbbb";
-	answer = 1;
-	result = solution.lengthOfLongestSubstring(s);
-	assert(answer == result);
-
-	s = "pwwkew";
-	answer = 3;
-	result = solution.lengthOfLongestSubstring(s);
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
-	return 0;
-}
