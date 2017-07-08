@@ -1,92 +1,42 @@
 // 163. Missing Ranges
 // https://leetcode.com/problems/missing-ranges/
-#include <iostream>
-#include <string>
-#include <vector>
-#include <algorithm>
-using namespace std;
+
+/*
+Given a sorted integer array where the range of elements are in the inclusive range [lower, upper], return its missing ranges.
+
+For example, given [0, 1, 3, 50, 75], lower = 0 and upper = 99, return ["2", "4->49", "51->74", "76->99"].
+*/
+
 class Solution {
 public:
 	vector<string> findMissingRanges(vector<int>& nums, int lower, int upper) {
+		if (lower > upper) {
+			return {};
+		}
 		vector<string> result;
-		if (lower > upper) return result;
-		if (nums.empty() || lower > nums.back() || upper < nums.front()) {
-			if (lower ==  upper) return result = {to_string(lower)};
-			string str = to_string(lower) + "->" + to_string(upper);
-			return result = {str};
+		int n = nums.size(), i = 0;
+		while (i < n and nums[i] < lower) {
+			++i;
 		}
-		int prev = lower;
-		bool first = true;
-		for (size_t i = 0; i < nums.size(); ++i) {
-			if (nums[i] < lower || nums[i] > upper) continue;
-			if (first && nums[i] == lower) {
-				prev = nums[i];
-				first = false;
-				continue;					
-			}
-			if (first && nums[i] == lower + 1) {
-				result.push_back(to_string(lower));
-				prev = nums[i];
-				first = false;
-				continue;
-			}
-			if (first && nums[i] > lower + 1) {
-				string str =  to_string(lower) + "->" + to_string(nums[i] - 1);
-				result.push_back(str);
-				prev = nums[i];
-				first = false;
-				continue;
-			}
-			if (nums[i] == prev) {
-				prev = nums[i];
-				continue;
-			}
-			if (nums[i] == prev + 1) {
-				prev = nums[i];
-				continue;					
-			}
-			if (nums[i] == prev + 2) {
-				result.push_back(to_string(nums[i] - 1));
-				prev = nums[i];
-				continue;					
-			}
-			string str =  to_string(prev + 1) + "->" + to_string(nums[i] - 1);
-			result.push_back(str);
-			prev = nums[i];
-			continue;
-		}
-		if (upper == prev) return result;
-		if (upper == prev + 1) {
-			result.push_back(to_string(upper));
+		if (i >= n) {
+			result.push_back(lower == upper ? to_string(lower) : to_string(lower) + "->" + to_string(upper));
 			return result;
 		}
-		string str =  to_string(prev + 1) + "->" + to_string(upper);
-		result.push_back(str);
+		if (nums[i] > lower) {
+			result.push_back((long)lower + 1 == (long)nums[i] ? to_string(lower) : to_string(lower) + "->" + to_string((long)nums[i] - 1));
+			lower = nums[i];
+		}
+		++i;
+		while (i < n and nums[i] <= upper) {
+			if ((long)lower + 1 < (long)nums[i]) {
+				result.push_back((long)lower + 2 == (long)nums[i] ? to_string((long)lower + 1) : to_string((long)lower + 1) + "->" + to_string((long)nums[i] - 1));
+			}
+			lower = nums[i];
+			++i;
+		}
+		if (i >= n and lower < upper) {
+			result.push_back((long)lower + 1 == upper ? to_string(upper) : to_string((long)lower + 1) + "->" + to_string(upper));
+		}
 		return result;
 	}
 };
-int main(void) {
-	Solution solution;
-	vector<int> nums = {0, 1, 3, 50, 75};
-	int lower = 0;
-	int upper = 99;
-	for (const auto &i : solution.findMissingRanges(nums, lower, upper)) cout << i << '\t';
-	cout << "\tPassed\n";
-	nums = {};
-	lower = 1;
-	upper = 1;
-	for (const auto &i : solution.findMissingRanges(nums, lower, upper)) cout << i << '\t';
-	cout << "\tPassed\n";
-	nums = {-1};
-	lower = -2;
-	upper = -1;
-	for (const auto &i : solution.findMissingRanges(nums, lower, upper)) cout << i << '\t';
-	cout << "\tPassed\n";
-	nums = {-1};
-	lower = -1;
-	upper = 0;
-	for (const auto &i : solution.findMissingRanges(nums, lower, upper)) cout << i << '\t';
-	cout << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
