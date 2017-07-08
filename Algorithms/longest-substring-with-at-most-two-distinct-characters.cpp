@@ -1,34 +1,40 @@
 // 159. Longest Substring with At Most Two Distinct Characters
 // https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/
-#include <iostream>
-#include <string>
-#include <vector>
-#include <algorithm>
-using namespace std;
-// BEGIN: https://discuss.leetcode.com/topic/7399/share-my-c-solution
+
+/*
+Given a string, find the length of the longest substring T that contains at most 2 distinct characters.
+
+For example, Given s = “eceba”,
+
+T is "ece" which its length is 3.
+*/
+
 class Solution {
 public:
 	int lengthOfLongestSubstringTwoDistinct(string s) {
-		int result = 0;
-		const int n = s.size();
-		vector<int> hashmap(256, 0);
-		for (int i = 0, count = 0, begin = 0; i < n; i++) {
-			hashmap[s[i]]++;
-			if (hashmap[s[i]] == 1) count++;
-			while (count > 2) {
-				hashmap[s[begin]]--;
-				if (hashmap[s[begin]] == 0) count--;
-				begin++;
+		int h[256], n = s.size(), i = 0, j = 0, result = 0, cnt = 0;
+		memset(h, 0, sizeof(h));
+		while (j < n) {
+			while (j < n and cnt < 2) {
+				if (!h[s[j]]) {
+					++cnt;
+				}
+				++h[s[j]];
+				++j;
 			}
-			result = max(result, i - begin + 1);
+			while (j < n and h[s[j]] > 0) {
+				++h[s[j]];
+				++j;
+			}
+			result = max(result, j - i);
+			while (i < j and cnt >= 2) {
+				--h[s[i] - 0];
+				if (!h[s[i]]) {
+					--cnt;
+				}
+				++i;
+			}
 		}
 		return result;
 	}
 };
-// END: https://discuss.leetcode.com/topic/7399/share-my-c-solution
-int main(void) {
-	Solution solution;
-	cout << solution.lengthOfLongestSubstringTwoDistinct("eceba") << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
