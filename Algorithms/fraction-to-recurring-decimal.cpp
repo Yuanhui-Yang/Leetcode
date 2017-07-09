@@ -1,55 +1,58 @@
 // 166. Fraction to Recurring Decimal
 // https://leetcode.com/problems/fraction-to-recurring-decimal/
-// https://discuss.leetcode.com/topic/6079/accepted-cpp-solution-with-explainations/3
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include <unordered_map>
-using namespace std;
+
+/*
+Given two integers representing the numerator and denominator of a fraction, return the fraction in string format.
+
+If the fractional part is repeating, enclose the repeating part in parentheses.
+
+For example,
+
+Given numerator = 1, denominator = 2, return "0.5".
+Given numerator = 2, denominator = 1, return "2".
+Given numerator = 2, denominator = 3, return "0.(6)".
+*/
+
 class Solution {
 public:
-	string fractionToDecimal(long long int numerator, long long int denominator) {
-		if (numerator == 0) return to_string(0);
-		if (denominator == 1) return to_string(numerator);
-		if (denominator == - 1) return to_string(-numerator);
-		if (numerator % denominator == 0) return to_string(numerator / denominator);
-		bool negative = (numerator > 0) ^ (denominator > 0);
-		numerator = abs(numerator);
-		denominator = abs(denominator);
-		string result;
-		if (negative) result += "-";
-		result += to_string(numerator / denominator);
-		result += ".";
-		unordered_map<int, int> hashMap;
-		long long int i = 0;
-		int idx = 0;
-		string s;
-		for (i = 10 * (numerator % denominator); i && !hashMap.count(i); hashMap[i] = idx++, i = 10 * (i % denominator)) s += to_string(i / denominator);
-		if (i) {
-			s.insert(begin(s) + hashMap[i], '(');
-			s.insert(end(s), ')');
+	string fractionToDecimal(long long numerator, long long denominator) {
+		if (numerator == 0) {
+			return "0";
 		}
-		return result += s;
+		if (numerator < 0 and denominator > 0) {
+			return "-" + fractionToDecimal(-numerator, denominator);
+		}
+		if (numerator > 0 and denominator < 0) {
+			return "-" + fractionToDecimal(numerator, -denominator);
+		}
+		if (numerator < 0 and denominator < 0) {
+			return fractionToDecimal(-numerator, -denominator);
+		}
+		if (numerator < 0 and denominator == 0) {
+			return to_string(INT_MIN);
+		}
+		if (numerator > 0 and denominator == 0) {
+			return to_string(INT_MAX);
+		}
+		string result;
+		result.append(to_string(numerator / denominator));
+		numerator %= denominator;
+		if (!numerator) {
+			return result;
+		}
+		result.push_back('.');
+		long long id = result.size(), base = 10;
+		unordered_map<long long, long long> dict;
+		do {
+			dict[numerator] = id++;
+			numerator *= base;
+			result.push_back('0' + numerator / denominator);
+			numerator %= denominator;
+		} while (numerator and !dict.count(numerator));
+		if (dict.count(numerator)) {
+			result.insert(next(begin(result), dict[numerator]), '(');
+			result.push_back(')');
+		}
+		return result;
 	}
 };
-int main(void) {
-	Solution solution;
-	int numerator = 1;
-	int denominator = 2;
-	cout << solution.fractionToDecimal(numerator, denominator) << "\tPassed\n";
-	numerator = 2;
-	denominator = 1;
-	cout << solution.fractionToDecimal(numerator, denominator) << "\tPassed\n";
-	numerator = 2;
-	denominator = 3;
-	cout << solution.fractionToDecimal(numerator, denominator) << "\tPassed\n"; 
-	numerator = 1;
-	denominator = 6;
-	cout << solution.fractionToDecimal(numerator, denominator) << "\tPassed\n"; 
-	cout << "\nPassed All\n";
-	numerator = -1;
-	denominator = -2147483648;
-	cout << solution.fractionToDecimal(numerator, denominator) << "\tPassed\n"; 
-	cout << "\nPassed All\n";
-	return 0;
-}
