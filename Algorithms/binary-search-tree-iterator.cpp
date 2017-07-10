@@ -1,51 +1,64 @@
 // 173. Binary Search Tree Iterator
 // https://leetcode.com/problems/binary-search-tree-iterator/
-// https://discuss.leetcode.com/topic/8154/morris-traverse-solution
-// https://discuss.leetcode.com/topic/6575/my-solutions-in-3-languages-with-stack/2
-#include <iostream>
-#include <vector>
-using namespace std;
-struct TreeNode {
-	int val;
-	TreeNode *left;
-	TreeNode *right;
-	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
+
+/*
+Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST.
+
+Calling next() will return the next smallest number in the BST.
+
+Note: next() and hasNext() should run in average O(1) time and uses O(h) memory, where h is the height of the tree.
+*/
+
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
 class BSTIterator {
 public:
 	BSTIterator(TreeNode *root) {
-		this->current = root;
+		node = root;
 	}
 
 	/** @return whether we have a next smallest number */
 	bool hasNext() {
-		return this->current;
+		return node;
 	}
 
 	/** @return the next smallest number */
 	int next() {
-		while (this->current) {
-			if (!this->current->left) {
-				int result = this->current->val;
-				this->current = this->current->right;
-				return result;
+		int result;
+		while (node) {
+			if (!node->left) {
+				result = node->val;
+				node = node->right;
+				break;
 			}
-			TreeNode *pred = current->left;
-			while (pred->right && pred->right != this->current) pred = pred->right;
-			if (!pred->right) {
-				pred->right = this->current;
-				current = current->left;
-				continue;
+			else {
+				TreeNode * pred = node->left;
+				while (pred->right and pred->right != node) {
+					pred = pred->right;
+				}
+				if (!pred->right) {
+					pred->right = node;
+					node = node->left;
+				}
+				else {
+					result = node->val;
+					pred->right = NULL;
+					node = node->right;
+					break;
+				}
 			}
-			pred->right = NULL;
-			int result = this->current->val;
-			this->current = this->current->right;
-			return result;		
 		}
-		return 0;
+		return result;
 	}
 private:
-	TreeNode *current;
+	TreeNode * node;
 };
 
 /**
@@ -53,13 +66,3 @@ private:
  * BSTIterator i = BSTIterator(root);
  * while (i.hasNext()) cout << i.next();
  */
-int main(void) {
-	TreeNode *root = new TreeNode(3);
-	root->left = new TreeNode(1);
-	root->left->right = new TreeNode(2);
-	BSTIterator i = BSTIterator(root);
-	while (i.hasNext()) cout << i.next();
-	cout << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
