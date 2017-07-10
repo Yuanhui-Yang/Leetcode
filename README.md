@@ -192,6 +192,7 @@ int main(void) {
 | 169 | [Majority Element](https://leetcode.com/problems/majority-element/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/majority-element.cpp) | Easy |
 | 170 | [Two Sum III - Data structure design](https://leetcode.com/problems/two-sum-iii-data-structure-design/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/two-sum-iii-data-structure-design.cpp) | Easy |
 | 171 | [Excel Sheet Column Number](https://leetcode.com/problems/excel-sheet-column-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/excel-sheet-column-number.cpp) | Easy |
+| 172 | [Factorial Trailing Zeroes](https://leetcode.com/problems/factorial-trailing-zeroes/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/factorial-trailing-zeroes.cpp) | Easy |
 | 173 | [Binary Search Tree Iterator](https://leetcode.com/problems/binary-search-tree-iterator/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/binary-search-tree-iterator.cpp) | Medium |
 | 174 | [Dungeon Game](https://leetcode.com/problems/dungeon-game/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/dungeon-game.cpp) | Hard |
 | 179 | [Largest Number](https://leetcode.com/problems/largest-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-number.cpp) | Medium |
