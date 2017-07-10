@@ -31,3 +31,16 @@ public:
 		return result;
 	}
 };
+
+class Solution {
+public:
+	int rob(vector<int>& nums) {
+		int result = 0, prev = 0;
+		for (const auto & i : nums) {
+			int t = result;
+			result = max(result, prev + i);
+			prev = t;
+		}
+		return result;
+	}
+};
