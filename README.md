@@ -198,6 +198,7 @@ int main(void) {
 | 179 | [Largest Number](https://leetcode.com/problems/largest-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-number.cpp) | Medium |
 | 187 | [Repeated DNA Sequences](https://leetcode.com/problems/repeated-dna-sequences/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/repeated-dna-sequences.cpp) | Medium |
 | 188 | [Best Time to Buy and Sell Stock IV](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/best-time-to-buy-and-sell-stock-iv.cpp) | Hard |
+| 189 | [Rotate Array](https://leetcode.com/problems/rotate-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/rotate-array.cpp) | Easy |
 | 191 | [Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-1-bits.cpp) | Easy |
 | 198 | [House Robber](https://leetcode.com/problems/house-robber/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/house-robber.cpp) | Easy |
 | 199 | [Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/binary-tree-right-side-view.cpp) | Medium |
