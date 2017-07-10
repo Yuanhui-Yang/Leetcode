@@ -220,6 +220,7 @@ int main(void) {
 | 224 | [Basic Calculator](https://leetcode.com/problems/basic-calculator/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/basic-calculator.cpp) | Hard |
 | 226 | [Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/invert-binary-tree.cpp) | Easy |
 | 227 | [Basic Calculator II](https://leetcode.com/problems/basic-calculator-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/basic-calculator-ii.cpp) | Medium |
+| 229 | [Majority Element II](https://leetcode.com/problems/majority-element-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/majority-element-ii.cpp) | Medium |
 | 230 | [Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/kth-smallest-element-in-a-bst.cpp) | Medium |
 | 231 | [Power of Two](https://leetcode.com/problems/power-of-two/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/power-of-two.cpp) | Easy |
 | 233 | [Number of Digit One](https://leetcode.com/problems/number-of-digit-one/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-digit-one.cpp) | Hard |
