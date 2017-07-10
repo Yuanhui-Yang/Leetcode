@@ -41,3 +41,43 @@ public:
 		return result;
 	}
 };
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+	int kthSmallest(TreeNode* root, int k) {
+		int result = 0;
+		while (root and k > 0) {
+			if (!root->left) {
+				result = root->val;
+				root = root->right;
+				--k;
+			}
+			else {
+				TreeNode * pred = root->left;
+				while (pred->right and pred->right != root) {
+					pred = pred->right;
+				}
+				if (!pred->right) {
+					pred->right = root;
+					root = root->left;
+				}
+				else {
+					result = root->val;
+					pred->right = NULL;
+					root = root->right;
+					--k;
+				}
+			}
+		}
+		return result;
+	}
+};
