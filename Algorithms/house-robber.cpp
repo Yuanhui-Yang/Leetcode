@@ -20,17 +20,12 @@ public:
 		if (n == 2) {
 			return max(nums[0], nums[1]);
 		}
-		int result = nums[0];
+		int result = nums[0], prev = nums[0];
 		nums[1] = max(nums[0], nums[1]);
 		result = max(result, nums[1]);
 		for (int i = 2; i < n; ++i) {
-			int val = nums[0];
-			for (int j = 1; j <= i - 2; ++j) {
-				if (val < nums[j]) {
-					val = nums[j];
-				}
-			}
-			nums[i] += val;
+			nums[i] = max(nums[i - 1], max(prev, 0) + nums[i]);
+			prev = max(prev, nums[i - 1]);
 			result = max(result, nums[i]);
 		}
 		return result;
