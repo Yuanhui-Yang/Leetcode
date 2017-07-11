@@ -64,3 +64,34 @@ public:
 		return true;
 	}
 };
+
+class Solution {
+public:
+	bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites) {
+		vector<vector<int>> graph(numCourses);
+		for (const auto & i : prerequisites) {
+			graph[i.second].push_back(i.first);
+		}
+		for (int i = 0; i < numCourses; ++i) {
+			vector<bool> A(numCourses, true);
+			A[i] = false;
+			list<int> current = {i};
+			while (!current.empty()) {
+				list<int> next;
+				for (const auto & j : current) {
+					for (const auto & k : graph[j]) {
+						if (k == i) {
+							return false;
+						}
+						if (A[k]) {
+							A[k] = false;
+							next.push_back(k);
+						}
+					} 
+				}
+				current = next;
+			}
+		}
+		return true;
+	}
+};
