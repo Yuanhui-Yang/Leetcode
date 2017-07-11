@@ -23,7 +23,7 @@ public:
 private:
 	int f(vector<int>::iterator begin, vector<int>::iterator end) {
 		int result = 0, prev = 0;
-		for (; begin < end; ++begin) {
+		for (; begin != end; ++begin) {
 			int t = result;
 			result = max(result, prev + *begin);
 			prev = t;
