@@ -23,8 +23,7 @@ public:
 				if (result == 0 or (j - i + 1 < result)) {
 					result = j - i + 1;
 				}
-				sum -= nums[i];
-				++i;
+				sum -= nums[i++];
 			}
 		}
 		return result;
