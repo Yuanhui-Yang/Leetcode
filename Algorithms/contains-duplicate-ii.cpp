@@ -1,26 +1,20 @@
 // 219. Contains Duplicate II
 // https://leetcode.com/problems/contains-duplicate-ii/
-// https://discuss.leetcode.com/topic/15045/c-solution-with-set
-#include <iostream>
-#include <vector>
-#include <unordered_set>
-using namespace std;
+
+/*
+Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the absolute difference between i and j is at most k.
+*/
+
 class Solution {
 public:
 	bool containsNearbyDuplicate(vector<int>& nums, int k) {
-		unordered_set<int> checkSet;
-		for (size_t i = 0; i < nums.size(); ++i) {
-			if (i > k) checkSet.erase(nums[i - k - 1]);
-			if (checkSet.count(nums[i])) return true;
-			checkSet.insert(nums[i]);
+		unordered_map<int, int> dict;
+		for (int n = nums.size(), i = 0; i < n; ++i) {
+			if (dict.count(nums[i]) and i - dict[nums[i]] <= k) {
+				return true;
+			}
+			dict[nums[i]] = i;
 		}
 		return false;
 	}
 };
-int main(void) {
-	Solution solution;
-	vector<int> nums = {1, 22, 33, 2, 2, 19};	
-	cout << boolalpha << solution.containsNearbyDuplicate(nums, 2) << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
