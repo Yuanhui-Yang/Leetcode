@@ -205,6 +205,7 @@ int main(void) {
 | 200 | [Number of Islands](https://leetcode.com/problems/number-of-islands/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-islands.cpp) | Medium |
 | 201 | [Bitwise AND of Numbers Range](https://leetcode.com/problems/bitwise-and-of-numbers-range/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/bitwise-and-of-numbers-range.cpp) | Medium |
 | 202 | [Happy Number](https://leetcode.com/problems/happy-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/happy-number.cpp) | Easy |
+| 203 | [Remove Linked List Elements](https://leetcode.com/problems/remove-linked-list-elements/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-linked-list-elements.cpp) | Easy |
 | 206 | [Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reverse-linked-list.cpp) | Easy |
 | 207 | [Course Schedule](https://leetcode.com/problems/course-schedule/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/course-schedule.cpp) | Medium |
 | 208 | [Implement Trie (Prefix Tree)](https://leetcode.com/problems/implement-trie-prefix-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/implement-trie-prefix-tree.cpp) | Medium |
