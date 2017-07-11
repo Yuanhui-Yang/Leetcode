@@ -29,7 +29,7 @@ public:
 		}
 		int n = t.size(), x = 0, y = 0;
 		vector<int> vec(n, 0);
-		for (int i = 0; i < n; ++i) {
+		for (int i = 0; i < n and x - y >= 0 and x + y < n; ++i) {
 			int c = x - y, d = x + y;
 			int j = 2 * x - i;
 			if (j > c and j - vec[j] > c) {
@@ -45,9 +45,6 @@ public:
 			if (y < vec[i]) {
 				x = i;
 				y = vec[i];
-			}
-			if (i + vec[i] + 1 >= n) {
-				break;
 			}
 		}
 		string result;
