@@ -1,31 +1,32 @@
 // 209. Minimum Size Subarray Sum
 // https://leetcode.com/problems/minimum-size-subarray-sum/
-// https://discuss.leetcode.com/topic/18583/accepted-clean-java-o-n-solution-two-pointers
-// https://discuss.leetcode.com/topic/30941/here-is-a-10-line-template-that-can-solve-most-substring-problems
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <limits>
-using namespace std;
+
+/*
+Given an array of n positive integers and a positive integer s, find the minimal length of a contiguous subarray of which the sum ? s. If there isn't one, return 0 instead.
+
+For example, given the array [2,3,1,2,4,3] and s = 7,
+the subarray [4,3] has the minimal length under the problem constraint.
+
+click to show more practice.
+
+More practice:
+If you have figured out the O(n) solution, try coding another solution of which the time complexity is O(n log n).
+*/
+
 class Solution {
 public:
 	int minSubArrayLen(int s, vector<int>& nums) {
-		int i = 0, j = 0, sum = 0, result = numeric_limits<int>::max();
-		while (j < nums.size()) {
-			sum += nums[j++];
+		int result = 0;
+		for (int sum = 0, n = nums.size(), i = 0, j = 0; j < n; ++j) {
+			sum += nums[j];
 			while (sum >= s) {
-				result = min(result, j - i);
-				sum -= nums[i++];
+				if (result == 0 or (j - i + 1 < result)) {
+					result = j - i + 1;
+				}
+				sum -= nums[i];
+				++i;
 			}
 		}
-		return result == numeric_limits<int>::max() ? 0 : result;
+		return result;
 	}
 };
-int main(void) {
-	Solution solution;
-	vector<int> nums = {2, 3, 1, 2, 4, 3};
-	int s = 7;
-	cout << solution.minSubArrayLen(s, nums) << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
