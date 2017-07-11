@@ -207,6 +207,7 @@ int main(void) {
 | 202 | [Happy Number](https://leetcode.com/problems/happy-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/happy-number.cpp) | Easy |
 | 203 | [Remove Linked List Elements](https://leetcode.com/problems/remove-linked-list-elements/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-linked-list-elements.cpp) | Easy |
 | 204 | [Count Primes](https://leetcode.com/problems/count-primes/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/count-primes.cpp) | Easy |
+| 205 | [Isomorphic Strings](https://leetcode.com/problems/isomorphic-strings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/isomorphic-strings.cpp) | Easy |
 | 206 | [Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reverse-linked-list.cpp) | Easy |
 | 207 | [Course Schedule](https://leetcode.com/problems/course-schedule/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/course-schedule.cpp) | Medium |
 | 208 | [Implement Trie (Prefix Tree)](https://leetcode.com/problems/implement-trie-prefix-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/implement-trie-prefix-tree.cpp) | Medium |
