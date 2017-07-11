@@ -1,21 +1,19 @@
 // 217. Contains Duplicate
 // https://leetcode.com/problems/contains-duplicate/
-// https://discuss.leetcode.com/topic/14944/single-line-c-solution-60ms
-#include <iostream>
-#include <vector>
-#include <unordered_set>
-#include <iterator>
-using namespace std;
+
+/*
+Given an array of integers, find if the array contains any duplicates. Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct.
+*/
+
 class Solution {
 public:
 	bool containsDuplicate(vector<int>& nums) {
-		return nums.size() > unordered_set<int>(begin(nums), end(nums)).size();
+		sort(begin(nums), end(nums));
+		for (int n = nums.size(), i = 1; i < n; ++i) {
+			if (nums[i - 1] == nums[i]) {
+				return true;
+			}
+		}
+		return false;
 	}
 };
-int main(void) {
-	Solution solution;
-	vector<int> nums = {1, 22, 33, 2, 2, 19};
-	cout << boolalpha << solution.containsDuplicate(nums) << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
