@@ -1,48 +1,66 @@
 // 207. Course Schedule
 // https://leetcode.com/problems/course-schedule/
-// https://discuss.leetcode.com/topic/17273/18-22-lines-c-bfs-dfs-solutions/2
-// https://discuss.leetcode.com/topic/13854/easy-bfs-topological-sort-java
-#include <iostream>
-#include <vector>
-#include <unordered_set>
-#include <limits>
-using namespace std;
+
+/*
+There are a total of n courses you have to take, labeled from 0 to n - 1.
+
+Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]
+
+Given the total number of courses and a list of prerequisite pairs, is it possible for you to finish all courses?
+
+For example:
+
+2, [[1,0]]
+There are a total of 2 courses to take. To take course 1 you should have finished course 0. So it is possible.
+
+2, [[1,0],[0,1]]
+There are a total of 2 courses to take. To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.
+
+Note:
+The input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.
+You may assume that there are no duplicate edges in the input prerequisites.
+click to show more hints.
+
+Hints:
+This problem is equivalent to finding if a cycle exists in a directed graph. If a cycle exists, no topological ordering exists and therefore it will be impossible to take all courses.
+Topological Sort via DFS - A great video tutorial (21 minutes) on Coursera explaining the basic concepts of Topological Sort.
+Topological sort could also be done via BFS.
+*/
+
 class Solution {
 public:
 	bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites) {
-		vector<unordered_set<int>> graph = this->generateGraph(numCourses, prerequisites);
-		vector<int> indegrees = this->generateIndegrees(numCourses, graph);
+		vector<vector<int>> graph(numCourses);
+		vector<int> indegrees(numCourses, 0), courses(numCourses, 0);
+		for (const auto & i : prerequisites) {
+			graph[i.second].push_back(i.first);
+			++indegrees[i.first];
+			++courses[i.first];
+			++courses[i.second];
+		}
+		list<int> current;
 		for (int i = 0; i < numCourses; ++i) {
-			int j;
-			for (j = 0; j < numCourses && indegrees[j]; ++j) ;
-			if (j == numCourses) return false;
-			indegrees[j] = numeric_limits<int>::min();
-			for (const auto &k : graph[j]) --indegrees[k];
+			if (courses[i] > 0 and indegrees[i] == 0) {
+				current.push_back(i);
+			}
+		}
+		while (!current.empty()) {
+			list<int> next;
+			for (const auto & i : current) {
+				for (const auto & j : graph[i]) {
+					if (--indegrees[j] == 0) {
+						next.push_back(j);
+					}
+				}
+				graph[i].clear();
+			}
+			current = next;
+		}
+		for (const auto & i : graph) {
+			if (!i.empty()) {
+				return false;
+			}
 		}
 		return true;
 	}
-private:
-	vector<unordered_set<int>> generateGraph(int numCourses, vector<pair<int, int>>& prerequisites) {
-		vector<unordered_set<int>> result(numCourses);
-		for (const auto &i : prerequisites) result[i.second].insert(i.first);
-		return result;
-	}
-	vector<int> generateIndegrees(int numCourses, vector<unordered_set<int>>& graph) {
-		vector<int> result(numCourses, 0);
-		for (const auto &i : graph)
-			for (const auto &j : i)
-				++result[j];
-		return result;
-	}
 };
-int main(void) {
-	Solution solution;
-	int numCourses = 2;
-	vector<pair<int, int>> prerequisites = {{1, 0}};
-	cout << boolalpha << solution.canFinish(numCourses, prerequisites) << "\tPassed\n";
-	numCourses = 2;
-	prerequisites = {{1, 0}, {0, 1}};
-	cout << boolalpha << solution.canFinish(numCourses, prerequisites) << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
