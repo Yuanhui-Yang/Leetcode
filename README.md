@@ -230,6 +230,7 @@ int main(void) {
 | 225 | [Implement Stack using Queues](https://leetcode.com/problems/implement-stack-using-queues/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/implement-stack-using-queues.cpp) | Easy |
 | 226 | [Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/invert-binary-tree.cpp) | Easy |
 | 227 | [Basic Calculator II](https://leetcode.com/problems/basic-calculator-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/basic-calculator-ii.cpp) | Medium |
+| 228 | [Summary Ranges](https://leetcode.com/problems/summary-ranges/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/summary-ranges.cpp) | Medium |
 | 229 | [Majority Element II](https://leetcode.com/problems/majority-element-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/majority-element-ii.cpp) | Medium |
 | 230 | [Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/kth-smallest-element-in-a-bst.cpp) | Medium |
 | 231 | [Power of Two](https://leetcode.com/problems/power-of-two/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/power-of-two.cpp) | Easy |
