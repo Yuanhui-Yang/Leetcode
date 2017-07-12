@@ -30,6 +30,63 @@ public:
 			A.push_back(Line(i[1], i[2], 1));
 		}
 		sort(begin(A), end(A));
+		multiset<int, greater<int>> B;
+		vector<pair<int, int>> result;
+		for (const auto & i : A) {
+			if (i.z < 0) {
+				if (B.empty()) {
+					result.push_back({i.x, i.y});
+				}
+				else if (*begin(B) < i.y) {
+					result.push_back({i.x, i.y});
+				}
+				B.insert(i.y);
+			}
+			else {
+				int h = *begin(B);
+				B.erase(B.find(i.y));
+				if (B.empty()) {
+					result.push_back({i.x, 0});
+				}
+				else if (*begin(B) < h) {
+					result.push_back({i.x, *begin(B)});
+				}
+			}
+		}
+		return result;
+	}
+private:
+	struct Line {
+		int x, y, z;
+		Line(int x, int y, int z) {
+			this->x = x;
+			this->y = y;
+			this->z = z;
+		}
+		bool operator< (const Line & other) {
+			if (this->x == other.x) {
+				if (this->z == other.z) {
+					if (this->z < 0) {
+						return this->y > other.y;
+					}
+					return this->y < other.y;
+				}
+				return this->z < other.z;
+			}
+			return this->x < other.x;
+		}
+	};
+};
+
+class Solution {
+public:
+	vector<pair<int, int>> getSkyline(vector<vector<int>>& buildings) {
+		vector<Line> A;
+		for (const auto & i : buildings) {
+			A.push_back(Line(i[0], i[2], -1));
+			A.push_back(Line(i[1], i[2], 1));
+		}
+		sort(begin(A), end(A));
 		multiset<int> B;
 		vector<pair<int, int>> result;
 		for (const auto & i : A) {
