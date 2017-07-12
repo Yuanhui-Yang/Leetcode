@@ -225,6 +225,7 @@ int main(void) {
 | 220 | [Contains Duplicate III](https://leetcode.com/problems/contains-duplicate-iii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/contains-duplicate-iii.cpp) | Medium |
 | 221 | [Maximal Square](https://leetcode.com/problems/maximal-square/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximal-square.cpp) | Medium |
 | 222 | [Count Complete Tree Nodes](https://leetcode.com/problems/count-complete-tree-nodes/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/count-complete-tree-nodes.cpp) | Medium |
+| 223 | [Rectangle Area](https://leetcode.com/problems/rectangle-area/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/rectangle-area.cpp) | Medium |
 | 224 | [Basic Calculator](https://leetcode.com/problems/basic-calculator/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/basic-calculator.cpp) | Hard |
 | 226 | [Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/invert-binary-tree.cpp) | Easy |
 | 227 | [Basic Calculator II](https://leetcode.com/problems/basic-calculator-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/basic-calculator-ii.cpp) | Medium |
