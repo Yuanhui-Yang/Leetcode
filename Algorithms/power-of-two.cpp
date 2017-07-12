@@ -1,17 +1,13 @@
-//231. Power of Two
-//https://leetcode.com/problems/power-of-two/
-//http://www.cnblogs.com/grandyang/p/4623394.html
-#include <iostream>
-using namespace std;
+// 231. Power of Two
+// https://leetcode.com/problems/power-of-two/
+
+/*
+Given an integer, write a function to determine if it is a power of two.
+*/
+
 class Solution {
 public:
 	bool isPowerOfTwo(int n) {
-		return n > 0 && !(n & (n - 1));
+		return n > 0 and !(n & (n - 1));
 	}
 };
-int main(int argc, char** argv) {
-	Solution solution;
-	cout << "Passed!\n";
-	getchar();
-	return 0;
-}
