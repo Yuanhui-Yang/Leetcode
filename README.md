@@ -227,6 +227,7 @@ int main(void) {
 | 222 | [Count Complete Tree Nodes](https://leetcode.com/problems/count-complete-tree-nodes/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/count-complete-tree-nodes.cpp) | Medium |
 | 223 | [Rectangle Area](https://leetcode.com/problems/rectangle-area/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/rectangle-area.cpp) | Medium |
 | 224 | [Basic Calculator](https://leetcode.com/problems/basic-calculator/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/basic-calculator.cpp) | Hard |
+| 225 | [Implement Stack using Queues](https://leetcode.com/problems/implement-stack-using-queues/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/implement-stack-using-queues.cpp) | Easy |
 | 226 | [Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/invert-binary-tree.cpp) | Easy |
 | 227 | [Basic Calculator II](https://leetcode.com/problems/basic-calculator-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/basic-calculator-ii.cpp) | Medium |
 | 229 | [Majority Element II](https://leetcode.com/problems/majority-element-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/majority-element-ii.cpp) | Medium |
