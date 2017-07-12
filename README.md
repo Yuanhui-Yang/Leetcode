@@ -234,6 +234,7 @@ int main(void) {
 | 229 | [Majority Element II](https://leetcode.com/problems/majority-element-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/majority-element-ii.cpp) | Medium |
 | 230 | [Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/kth-smallest-element-in-a-bst.cpp) | Medium |
 | 231 | [Power of Two](https://leetcode.com/problems/power-of-two/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/power-of-two.cpp) | Easy |
+| 232 | [Implement Queue using Stacks](https://leetcode.com/problems/implement-queue-using-stacks/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/implement-queue-using-stacks.cpp) | Easy |
 | 233 | [Number of Digit One](https://leetcode.com/problems/number-of-digit-one/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-digit-one.cpp) | Hard |
 | 235 | [Lowest Common Ancestor of a Binary Search Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/lowest-common-ancestor-of-a-binary-search-tree.cpp) | Easy |
 | 236 | [Lowest Common Ancestor of a Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/lowest-common-ancestor-of-a-binary-tree.cpp) | Medium |
