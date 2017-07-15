@@ -18,6 +18,21 @@ Supposed the linked list is 1 -> 2 -> 3 -> 4 and you are given the third node wi
 class Solution {
 public:
 	void deleteNode(ListNode* node) {
+		*node = *(node->next);
+	}
+};
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+	void deleteNode(ListNode* node) {
 		ListNode * prev = NULL;
 		while (node and node->next) {
 			prev = node;
