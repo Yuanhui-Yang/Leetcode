@@ -13,73 +13,37 @@ Given [5, 7, 7, 8, 8, 10] and target value 8,
 return [3, 4].
 */
 
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
 public:
 	vector<int> searchRange(vector<int>& nums, int target) {
-		return {lowerBound(nums, target), upperBound(nums, target)};
-	}
-private:
-	int lowerBound(vector<int>& nums, int target) {
 		int n = nums.size(), i = 0, j = n;
+		vector<int> result({-1, -1});
 		while (i < j) {
-			int mid = i + (j - i) / 2;
-			if (nums[mid] < target) {
-				i = mid + 1;
+			int k = i + (j - i) / 2;
+			if (nums[k] < target) {
+				i = k + 1;
 			}
 			else {
-				j = mid;
+				j = k;
 			}
 		}
-		return i >= 0 and i < n and nums[i] == target ? i : -1;
-	}
-	int upperBound(vector<int>& nums, int target) {
-		int n = nums.size(), i = 0, j = n;
+		if (i < n and nums[i] == target) {
+			result[0] = i;
+		}
+		i = 0;
+		j = n;
 		while (i < j) {
-			int mid = i + (j - i) / 2;
-			if (nums[mid] <= target) {
-				i = mid + 1;
+			int k = i + (j - i) / 2;
+			if (nums[k] <= target) {
+				i = k + 1;
 			}
 			else {
-				j = mid;
+				j = k;
 			}
 		}
-		--i;
-		return i >= 0 and i < n and nums[i] == target ? i : -1;
+		if (i > 0 and nums[i - 1] == target) {
+			result[1] = i - 1;
+		}
+		return result;
 	}
 };
-
-int main(void) {
-	Solution solution;
-	vector<int> nums, answer, result;
-	int target;
-
-	nums = {1};
-	target = 1;
-	answer = {0, 0};
-	result = solution.searchRange(nums, target);
-	assert(answer == result);
-
-	nums = {};
-	target = 0;
-	answer = {-1, -1};
-	result = solution.searchRange(nums, target);
-	assert(answer == result);
-
-	nums = {1};
-	target = 0;
-	answer = {-1, -1};
-	result = solution.searchRange(nums, target);
-	assert(answer == result);
-
-	nums = {5, 7, 7, 8, 8, 10};
-	target = 8;
-	answer = {3, 4};
-	result = solution.searchRange(nums, target);
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
-	return 0;
-}
