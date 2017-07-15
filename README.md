@@ -272,6 +272,7 @@ int main(void) {
 | 274 | [H-Index](https://leetcode.com/problems/h-index/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/h-index.cpp) | Medium |
 | 275 | [H-Index II](https://leetcode.com/problems/h-index-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/h-index-ii.cpp) | Medium |
 | 277 | [Find the Celebrity](https://leetcode.com/problems/find-the-celebrity/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-the-celebrity.cpp) | Medium |
+| 278 | [First Bad Version](https://leetcode.com/problems/first-bad-version/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/first-bad-version.cpp) | Easy |
 | 279 | [Perfect Squares](https://leetcode.com/problems/perfect-squares/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/perfect-squares.cpp) | Medium |
 | 280 | [Wiggle Sort](https://leetcode.com/problems/wiggle-sort/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/wiggle-sort.cpp) | Medium |
 | 281 | [Zigzag Iterator](https://leetcode.com/problems/zigzag-iterator/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/zigzag-iterator.cpp) | Medium |
