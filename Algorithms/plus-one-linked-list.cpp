@@ -1,72 +1,88 @@
 // 369. Plus One Linked List
 // https://leetcode.com/problems/plus-one-linked-list/
-#include <iostream>
-using namespace std;
-struct ListNode {
-	int val;
-	ListNode *next;
-	ListNode(int x) : val(x), next(NULL) {}
-};
+
+/*
+Given a non-negative integer represented as non-empty a singly linked list of digits, plus one to the integer.
+
+You may assume the integer do not contain any leading zero, except the number 0 itself.
+
+The digits are stored such that the most significant digit is at the head of the list.
+
+Example:
+Input:
+1->2->3
+
+Output:
+1->2->4
+*/
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
 class Solution {
 public:
 	ListNode* plusOne(ListNode* head) {
-		ListNode *dummy = new ListNode(0);
+		ListNode * dummy = new ListNode(0);
 		dummy->next = head;
-		ListNode *i = dummy;
-		ListNode *j = dummy;
-		while (j->next) {
-			j = j->next;
-			if (j->val < 9) i = j; 
+		head = dummy;
+		for (ListNode * it = dummy; it; it = it->next) {
+			if (it->val != 9) {
+				head = it;
+			}
 		}
-		if (j->val < 9) {
-			j->val++;
-			return dummy->next;
+		++(head->val);
+		head = head->next;
+		while (head) {
+			head->val = 0;
+			head = head->next;
 		}
-		i->val++;
-		for (ListNode *it = i->next; it; it = it->next) it->val = 0;
-		if (i == dummy) return dummy;
-		return dummy->next;
+		return dummy->val ? dummy : dummy->next;
 	}
 };
-// class Solution {
-// public:
-// 	ListNode* plusOne(ListNode* head) {
-// 		head = this->reverse(head);
-// 		for (ListNode *it = head; it; it = it->next) {
-// 			if (it->val < 9) {
-// 				it->val++;
-// 				break;
-// 			}
-// 			it->val = 0;
-// 			if (!it->next) {
-// 				it->next = new ListNode(1);
-// 				break;
-// 			}
-// 		}
-// 		return this->reverse(head);
-// 	}
-// private:
-// 	ListNode* reverse(ListNode* head) {
-// 		ListNode *result = NULL;
-// 		while (head) {
-// 			ListNode *next = head->next;
-// 			head->next = result;
-// 			result = head;
-// 			head = next;
-// 		}
-// 		return result;
-// 	}
-// };
-int main(void) {
-	Solution solution;
-	ListNode *head = new ListNode(1);
-	for (ListNode *it = solution.plusOne(head); it; it = it->next) cout << it->val << '\t';
-	cout << "\nPassed\n";
-	head = new ListNode(1);
-	head->next = new ListNode(2);
-	head->next->next = new ListNode(3);
-	for (ListNode *it = solution.plusOne(head); it; it = it->next) cout << it->val << '\t';
-	cout << "\nPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+	ListNode* plusOne(ListNode* head) {
+		head = f(head);
+		int carry = 1, base = 10;
+		ListNode dummy(0);
+		dummy.next = head;
+		head = &dummy;
+		while (head->next or carry > 0) {
+			if (head->next) {
+				head->next->val += carry;
+			}
+			else {
+				head->next = new ListNode(carry);
+			}
+			carry = head->next->val / base;
+			head->next->val %= base;
+			head = head->next;
+		}
+		return f(dummy.next);
+	}
+private:
+	ListNode * f(ListNode * head) {
+		ListNode * result = NULL;
+		while (head) {
+			ListNode * next = head->next;
+			head->next = result;
+			result = head;
+			head = next;
+		}
+		return result;
+	}
+};
