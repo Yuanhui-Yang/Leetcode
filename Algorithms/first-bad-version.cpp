@@ -16,7 +16,6 @@ class Solution {
 public:
 	int firstBadVersion(int n) {
 		long i = 1, j = n;
-		++j;
 		while (i < j) {
 			long k = i + (j - i) / 2;
 			if (!isBadVersion(k)) {
