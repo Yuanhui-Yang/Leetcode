@@ -12,44 +12,45 @@ Given n = 2, return ["11","69","88","96"].
 
 class Solution {
 public:
-vector<string> findStrobogrammatic(int n) {
-unordered_map<char, char> h;
-h['0'] = '0';
-h['1'] = '1';
-h['6'] = '9';
-h['8'] = '8';
-h['9'] = '6';
-vector<string> result;
-string s(n, ' ');
-f(result, s, h, n, 0);
-return result;
-}
+	vector<string> findStrobogrammatic(int n) {
+		vector<string> result;
+		string s;
+		f(result, s, n);
+		return result;
+	}
 private:
-	void f(vector<string>& result, string& s, unordered_map<char, char>& h, int n, int i) {
-		if (i == n / 2) {
+	void f(vector<string> & result, string & s, int n) {
+		char a[3] = {'0', '1', '8'}, b[5] = {'0', '1', '6', '8', '9'};
+		if (s.size() == n / 2) {
+			string t(s);
+			reverse(begin(t), end(t));
+			for (auto & i : t) {
+				if (i == '6') {
+					i = '9';
+					continue;
+				}
+				if (i == '9') {
+					i = '6';
+					continue;
+				}
+			}
 			if (n & 1) {
-				s[i] = '0';
-				result.push_back(s);
-				s[i] = '1';
-				result.push_back(s);
-				s[i] = '8';
-				result.push_back(s);
+				for (int i = 0; i < 3; ++i) {
+					s.push_back(a[i]);
+					result.push_back(s + t);
+					s.pop_back();
+				}
 			}
 			else {
-				result.push_back(s);
+				result.push_back(s + t);
 			}
-			return;
 		}
-		for (const auto &c : h) {
-			if (i == 0 and c.first == '0') {
-				continue;
+		else {
+			for (int i = s.empty(); i < 5; ++i) {
+				s.push_back(b[i]);
+				f(result, s, n);
+				s.pop_back();
 			}
-			char d = s[i], e = s[n - 1 - i];
-			s[i] = c.first;
-			s[n - 1 - i] = c.second;
-			f(result, s, h, n, i + 1);
-			s[i] = d;
-			s[n - 1 - i] = e;
 		}
 	}
 };
