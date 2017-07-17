@@ -1,75 +1,63 @@
 // 254. Factor Combinations
 // https://leetcode.com/problems/factor-combinations/
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <iterator>
-using namespace std;
+
+/*
+Numbers can be regarded as product of its factors. For example,
+
+8 = 2 x 2 x 2;
+  = 2 x 4.
+Write a function that takes an integer n and return all possible combinations of its factors.
+
+Note: 
+You may assume that n is always positive.
+Factors should be greater than 1 and less than n.
+Examples: 
+input: 1
+output: 
+[]
+input: 37
+output: 
+[]
+input: 12
+output:
+[
+  [2, 6],
+  [2, 2, 3],
+  [3, 4]
+]
+input: 32
+output:
+[
+  [2, 16],
+  [2, 2, 8],
+  [2, 2, 2, 4],
+  [2, 2, 2, 2, 2],
+  [2, 4, 4],
+  [4, 8]
+]
+*/
+
 class Solution {
 public:
 	vector<vector<int>> getFactors(int n) {
-		vector<vector<int>> result;
-		if (n == 1) return result;
-		if (this->isPrime(n)) return result;
-		vector<int> factor;
-		for (int i = 2; i < n; i++) if (n % i == 0) factor.push_back(i);
-		vector<int> path;
-		this->backTrack(result, path, factor, 0, n); 
-		return result;
+		if (n <= 1) {
+			return {};
+		}
+		return f(2, n);
 	}
 private:
-	void backTrack(vector<vector<int>>& result, vector<int>& path, vector<int>& factor, int start, int target) {
-		if (target == 1) {
-			result.push_back(path);
-			return;
+	vector<vector<int>> f(int low, int n) {
+		vector<vector<int>> result;
+		for (int m = sqrt(n), i = low; i <= m; ++i) {
+			if (n % i == 0) {
+				result.push_back({i, n / i});
+				vector<vector<int>> A = f(i, n / i);
+				for (auto & j : A) {
+					j.insert(begin(j), i);
+					result.push_back(j);
+				}
+			}
 		}
-		const int n = factor.size();
-		for (int i = start; i < n; i++) {
-			int x = factor[i];
-			if (target % x) continue;
-			path.push_back(x);
-			this->backTrack(result, path, factor, i, target / x);
-			path.pop_back();
-		}		
+		return result;
 	}
-// BEGIN: https://en.wikipedia.org/wiki/Primality_test
-	bool isPrime(int n) {
-		if (n == 1) return false;
-		if (n % 2 == 0) return false;
-		for (int i = 3; i <= this->sqrt(n); i += 2)
-			if (n % i == 0)
-				return false;
-		return true;
-	}
-	int sqrt(int n) {
-		size_t r = n;
-		while (r * r > (size_t)n) r = (r + n / r) / 2;
-		return (int)r;
-	}
-// END: https://en.wikipedia.org/wiki/Primality_test
 };
-int main(void) {
-	Solution solution;
-	for (const auto &i : solution.getFactors(1)) {
-		for (const auto &j : i) cout << j << '\t';
-		cout << '\n';
-	}
-	cout << "\nPassed\n";
-	for (const auto &i : solution.getFactors(37)) {
-		for (const auto &j : i) cout << j << '\t';
-		cout << '\n';
-	}
-	cout << "\nPassed\n";
-	for (const auto &i : solution.getFactors(12)) {
-		for (const auto &j : i) cout << j << '\t';
-		cout << '\n';
-	}
-	cout << "\nPassed\n";
-	for (const auto &i : solution.getFactors(32)) {
-		for (const auto &j : i) cout << j << '\t';
-		cout << '\n';
-	}
-	cout << "\nPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
