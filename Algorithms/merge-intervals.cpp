@@ -9,53 +9,34 @@ Given [1,3],[2,6],[8,10],[15,18],
 return [1,6],[8,10],[15,18].
 */
 
-#include <bits/stdc++.h>
-using namespace std;
-
-struct Interval {
-	int start;
-	int end;
-	Interval() : start(0), end(0) {}
-	Interval(int s, int e) : start(s), end(e) {}
-};
-
+/**
+ * Definition for an interval.
+ * struct Interval {
+ *     int start;
+ *     int end;
+ *     Interval() : start(0), end(0) {}
+ *     Interval(int s, int e) : start(s), end(e) {}
+ * };
+ */
 class Solution {
 public:
 	vector<Interval> merge(vector<Interval>& intervals) {
 		sort(begin(intervals), end(intervals), Comp());
 		vector<Interval> result;
-		for (int n = intervals.size(), i = 0; i < n; ++i) {
-			int x = intervals[i].start, y = intervals[i].end;
-			while (i + 1 < n and intervals[i + 1].start <= y) {
-				y = max(y, intervals[++i].end);
+		for (int sz = intervals.size(), i = 0; i < sz; ++i) {
+			int a = intervals[i].start, b = intervals[i].end;
+			while (i + 1 < sz and intervals[i + 1].start <= b) {
+				++i;
+				b = max(b, intervals[i].end);
 			}
-			result.push_back(Interval(x, y));
+			result.push_back({a, b});
 		}
 		return result;
 	}
 private:
 	struct Comp {
-		bool operator() (const Interval& a, const Interval& b) {
-			return a.start == b.start ? a.end < b.end : a.start < b.start;
+		bool operator () (const Interval & a, const Interval & b) {
+			return a.start < b.start;
 		}
 	};
 };
-
-int main(void) {
-	Solution solution;
-	vector<Interval> intervals, answer, result;
-
-	intervals = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
-	answer = {{1, 6}, {8, 10}, {15, 18}};
-	sort(begin(answer), end(answer), Comp());
-	result = solution.merge(intervals);
-	sort(begin(result), end(result), Comp());
-	assert(answer.size() == result.size());
-	for (size_t n = answer.size(), i = 0; i < n; ++i) {
-		assert(answer[i].start == result[i].start);
-		assert(answer[i].end == result[i].end);
-	}
-
-	cout << "\nPassed All\n";
-	return 0;
-}
