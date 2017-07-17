@@ -1,63 +1,65 @@
 // 250. Count Univalue Subtrees
 // https://leetcode.com/problems/count-univalue-subtrees/
-#include <iostream>
-#include <queue>
-using namespace std;
-struct TreeNode {
-	int val;
-	TreeNode *left;
-	TreeNode *right;
-	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
+
+/*
+Given a binary tree, count the number of uni-value subtrees.
+
+A Uni-value subtree means all nodes of the subtree have the same value.
+
+For example:
+Given binary tree,
+			  5
+			 / \
+			1   5
+		   / \   \
+		  5   5   5
+return 4.
+*/
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
 class Solution {
 public:
 	int countUnivalSubtrees(TreeNode* root) {
-		int result = 0;
-		if (!root) return result;
-		this->inOrderTraversal(root, result);
-		return result;
+		return f(root)[1];
 	}
 private:
-	bool isUnivalSubtrees(TreeNode* root) {
-		queue<TreeNode*> q;
-		q.push(root);
-		while (!q.empty()) {
-			TreeNode *top = q.front();
-			if (top->left) {
-				if (top->left->val != root->val) return false;
-				q.push(top->left);
-			}
-			if (top->right) {
-				if (top->right->val != root->val) return false;
-				q.push(top->right);				
-			}
-			q.pop();
+	array<int, 2> f(TreeNode * node) {
+		if (!node) {
+			return {1, 0};
 		}
-		return true;
-	}
-	void inOrderTraversal(TreeNode* root, int& result) {
-		if (!root) return;
-		this->inOrderTraversal(root->left, result);
-		if (this->isUnivalSubtrees(root)) ++result;
-		this->inOrderTraversal(root->right, result);
+		array<int, 2> left = f(node->left), right = f(node->right);
+		if (!node->left and !node->right) {
+			return {1, 1};
+		}
+		if (node->left and !node->right) {
+			if (left[0] and node->val == node->left->val) {
+				++left[1];
+			}
+			else {
+				left[0] = 0;
+			}
+			return left;
+		}
+		if (!node->left and node->right) {
+			if (right[0] and node->val == node->right->val) {
+				++right[1];
+			}
+			else {
+				right[0] = 0;
+			}
+			return right;
+		}
+		if (left[0] and right[0] and node->val == node->left->val and node->val == node->right->val) {
+			return {1, left[1] + 1 + right[1]};
+		}
+		return {0, left[1] + right[1]};
 	}
 };
-int main(void) {
-	Solution solution;
-	TreeNode *root = new TreeNode(5);
-	root->left = new TreeNode(1);
-	root->right = new TreeNode(5);
-	root->left->left = new TreeNode(5);
-	root->left->right = new TreeNode(5);
-	root->right->right = new TreeNode(5);
-	cout << solution.countUnivalSubtrees(root) << "\tPassed\n";
-	root = new TreeNode(5);
-	root->left = new TreeNode(5);
-	root->right = new TreeNode(5);
-	root->left->left = new TreeNode(5);
-	root->left->right = new TreeNode(5);
-	root->right->right = new TreeNode(5);
-	cout << solution.countUnivalSubtrees(root) << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
