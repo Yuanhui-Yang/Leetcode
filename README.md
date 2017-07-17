@@ -253,6 +253,7 @@ int main(void) {
 | 248 | [Strobogrammatic Number III](https://leetcode.com/problems/strobogrammatic-number-iii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/strobogrammatic-number-iii.cpp) | Hard |
 | 250 | [Count Univalue Subtrees](https://leetcode.com/problems/count-univalue-subtrees/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/count-univalue-subtrees.cpp) | Medium |
 | 251 | [Flatten 2D Vector](https://leetcode.com/problems/flatten-2d-vector/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/flatten-2d-vector.cpp) | Medium |
+| 252 | [Meeting Rooms](https://leetcode.com/problems/meeting-rooms/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/meeting-rooms.cpp) | Easy |
 | 253 | [Meeting Rooms II](https://leetcode.com/problems/meeting-rooms-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/meeting-rooms-ii.cpp) | Medium |
 | 254 | [Factor Combinations](https://leetcode.com/problems/factor-combinations/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/factor-combinations.cpp) | Medium |
 | 255 | [Verify Preorder Sequence in Binary Search Tree](https://leetcode.com/problems/verify-preorder-sequence-in-binary-search-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/verify-preorder-sequence-in-binary-search-tree.cpp) | Medium |
