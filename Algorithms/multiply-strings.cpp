@@ -12,49 +12,24 @@ Both num1 and num2 does not contain any leading zero.
 You must not use any built-in BigInteger library or convert the inputs to integer directly.
 */
 
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
 public:
 	string multiply(string num1, string num2) {
-		int m = num1.size(), n = num2.size(), base = 10;
-		string result(m + n, '0');
-		for (int i = m - 1; i >= 0; --i) {
-			int a = num1[i] - '0', carry = 0;
-			for (int j = n - 1; j >= 0; --j) {
-				int b = num2[j] - '0';
-				int c = a * b + carry + result[i + j + 1] - '0';
-				carry = c / base;
-				c %= base;
-				result[i + j + 1] = c + '0';
+		int M = num1.size(), N = num2.size(), base = 10;
+		string result(M + N, '0');
+		for (int i = M - 1; i >= 0; --i) {
+			int carry = 0, x = num1[i] - '0';
+			for (int j = N - 1; j >= 0; --j) {
+				int y = num2[j] - '0', z = x * y + carry + result[i + j + 1] - '0';
+				carry = z / base;
+				z %= base;
+				result[i + j + 1] = '0' + z;
 			}
 			result[i] += carry;
 		}
-		int k = 0;
-		while (k < m + n and result[k] == '0') {
-			++k;
+		while (!result.empty() and result.front() == '0') {
+			result.erase(begin(result));
 		}
-		return k < m + n ? result.substr(k) : "0";
+		return result.empty() ? string("0") : result;
 	}
 };
-
-int main(void) {
-	Solution solution;
-	string num1, num2, answer, result;
-
-	num1 = "9133";
-	num2 = "0";
-	answer = "0";
-	result = solution.multiply(num1, num2);
-	assert(answer == result);
-
-	num1 = "1234";
-	num2 = "345";
-	answer = "425730";
-	result = solution.multiply(num1, num2);
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
-	return 0;
-}
