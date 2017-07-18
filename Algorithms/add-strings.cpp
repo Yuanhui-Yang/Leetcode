@@ -15,8 +15,8 @@ You must not use any built-in BigInteger library or convert the inputs to intege
 class Solution {
 public:
 	string addStrings(string num1, string num2) {
-		int M = num1.size(), N = num2.size(), i = M - 1, j = N - 1, k = M + N, carry = 0, base = 10;
-		string result(M + N + 1, '0');
+		int M = num1.size(), N = num2.size(), i = M - 1, j = N - 1, k = max(M, N), carry = 0, base = 10;
+		string result(k + 1, '0');
 		while (i >= 0 or j >= 0 or carry > 0) {
 			int x = i >= 0 ? num1[i--] - '0' : 0;
 			int y = j >= 0 ? num2[j--] - '0' : 0;
