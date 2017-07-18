@@ -16,16 +16,21 @@ Because the range might be a large number, the low and high numbers are represen
 class Solution {
 public:
 	int strobogrammaticInRange(string low, string high) {
-		int a = low.size(), b = high.size();
+		size_t a = low.size(), b = high.size();
 		if (a > b) {
 			return 0;
 		}
-		if (a == b and low > high) {
-			return 0;
+		if (a == b) {
+			if (low > high) {
+				return 0;
+			}
+			return g(low, high, "", a);
 		}
 		int result = 0;
-		for (int i = a; i <= b; ++i) {
-			result += g(low, high, "", i);
+		result += g(low, high, "", a);
+		result += g(low, high, "", b);
+		for (size_t i = a + 1; i < b; ++i) {
+			result += h(i);
 		}
 		return result;
 	}
@@ -54,5 +59,14 @@ private:
 			result += g(low, high, "9" + s + "6", n);
 		}
 		return result;
+	}
+	int h(size_t n) {
+		if (n <= 1) {
+			return 3;
+		}
+		if (n & 1) {
+			return 3 * h(n / 2 * 2);
+		}
+		return 4 * pow(5, n / 2 - 1);
 	}
 };
