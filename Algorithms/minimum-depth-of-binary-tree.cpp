@@ -25,11 +25,11 @@ public:
 		if (!root->left and !root->right) {
 			return 1;
 		}
-		if (root->left and !root->right) {
-			return 1 + minDepth(root->left);
-		}
-		if (!root->left and root->right) {
+		if (!root->left) {
 			return 1 + minDepth(root->right);
+		}
+		if (!root->right) {
+			return 1 + minDepth(root->left);
 		}
 		return 1 + min(minDepth(root->left), minDepth(root->right));
 	}
