@@ -1,28 +1,44 @@
 // 264. Ugly Number II
 // https://leetcode.com/problems/ugly-number-ii/
-// https://discuss.leetcode.com/topic/21882/my-16ms-c-dp-solution-with-short-explanation
-// http://fisherlei.blogspot.ca/2015/10/leetcode-ugly-number-ii-solution.html
-// https://discuss.leetcode.com/topic/22206/java-solution-with-one-min-heap
-#include <iostream>
-#include <vector>
-#include <algorithm>
-using namespace std;
+
+/*
+Write a program to find the n-th ugly number.
+
+Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. For example, 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10 ugly numbers.
+
+Note that 1 is typically treated as an ugly number, and n does not exceed 1690.
+*/
+
 class Solution {
 public:
-	int nthUglyNumber(int n) {
-		vector<int> OPT(n, 1);
-		for (int i = 1, i2 = 0, i3 = 0, i5 = 0; i < n; ++i) {
-			OPT[i] = min(OPT[i2] * 2, min(OPT[i3] * 3, OPT[i5] * 5));
-			if (OPT[i] == OPT[i2] * 2) i2++;
-			if (OPT[i] == OPT[i3] * 3) i3++;
-			if (OPT[i] == OPT[i5] * 5) i5++;
+	int nthUglyNumber(size_t n) {
+		array<int, 3> A;
+		A[0] = 0;
+		A[1] = 0;
+		A[2] = 0;
+		vector<long long> B;
+		while (B.size() < n) {
+			if (B.empty()) {
+				B.push_back(1LL);
+				continue;
+			}
+			long long x = B[A[0]] * 2LL, y = B[A[1]] * 3LL, z = B[A[2]] * 5LL, minVal = -1LL;
+			if (x <= y and x <= z) {
+				minVal = x;
+				++A[0];
+			}
+			else if (y <= x and y <= z) {
+				minVal = y;
+				++A[1];
+			}
+			else if (z <= x and z <= y) {
+				minVal = z;
+				++A[2];
+			}
+			if (minVal != B.back()) {
+				B.push_back(minVal);
+			}
 		}
-		return OPT[n - 1];
+		return B.back();
 	}
 };
-int main(void) {
-	Solution solution;
-	for (int i = 1; i <= 10; ++i) cout << solution.nthUglyNumber(i) << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
