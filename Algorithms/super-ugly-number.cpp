@@ -1,49 +1,43 @@
 // 313. Super Ugly Number
 // https://leetcode.com/problems/super-ugly-number/
-// https://discuss.leetcode.com/topic/34841/java-three-methods-23ms-36-ms-58ms-with-heap-performance-explained
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <iterator>
-#include <climits>
-#include <queue>
-using namespace std;
+
+/*
+Write a program to find the nth super ugly number.
+
+Super ugly numbers are positive numbers whose all prime factors are in the given prime list primes of size k. For example, [1, 2, 4, 7, 8, 13, 14, 16, 19, 26, 28, 32] is the sequence of the first 12 super ugly numbers given primes = [2, 7, 13, 19] of size 4.
+
+Note:
+(1) 1 is a super ugly number for any given primes.
+(2) The given numbers in primes are in ascending order.
+(3) 0 < k ≤ 100, 0 < n ≤ 106, 0 < primes[i] < 1000.
+(4) The nth super ugly number is guaranteed to fit in a 32-bit signed integer.
+*/
+
 class Solution {
 public:
-	int nthSuperUglyNumber(int n, vector<int>& primes) {
-		vector<int> OPT(n, INT_MAX), index(primes.size(), 0);
-		OPT[0] = 1;
-		for (int i = 1; i < n; ++i) {
-			for (size_t j = 0; j < primes.size(); ++j)
-				OPT[i] = min(OPT[i], OPT[index[j]] * primes[j]);
-			for (size_t j = 0; j < primes.size(); ++j)
-				index[j] += OPT[i] == OPT[index[j]] * primes[j];
+	int nthSuperUglyNumber(size_t n, vector<int>& primes) {
+		sort(begin(primes), end(primes));
+		size_t k = primes.size();
+		vector<int> A(k, 0);
+		vector<long long> B;
+		while (B.size() < n) {
+			if (B.empty()) {
+				B.push_back(1LL);
+				continue;
+			}
+			size_t i = 0;
+			long long minVal = primes[i] * B[A[i]];
+			for (size_t j = 1; j < k; ++j) {
+				if (primes[j] * B[A[j]] < minVal) {
+					i = j;
+					minVal = primes[i] * B[A[i]];
+				}
+			}
+			if (B.back() < minVal) {
+				B.push_back(minVal);
+			}
+			++A[i];
 		}
-		return OPT[n - 1];
+		return B.back();
 	}
 };
-// Memory Limit Exceeded
-// class Solution {
-// public:
-// 	int nthSuperUglyNumber(int n, vector<int>& primes) {
-// 		priority_queue<size_t, vector<size_t>, greater<size_t>> minHeap;
-// 		size_t result;
-// 		minHeap.push(1);
-// 		while (n--) {
-// 			result = minHeap.top();
-// 			for (const auto &i : primes) minHeap.push(i * result);
-// 			while (result == minHeap.top()) minHeap.pop();
-// 		}
-// 		return result;
-// 	}
-// };
-// Memory Limit Exceeded
-int main(void) {
-	Solution solution;
-	vector<int> primes = {2, 7, 13, 19};
-	for (int i = 1; i <=12; ++i) cout << solution.nthSuperUglyNumber(i, primes) << "\tPassed\n";
-	primes = {7, 19, 29, 37, 41, 47, 53, 59, 61, 79, 83, 89, 101, 103, 109, 127, 131, 137, 139, 157, 167, 179, 181, 199, 211, 229, 233, 239, 241, 251};
-	cout << solution.nthSuperUglyNumber(100000, primes) << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
