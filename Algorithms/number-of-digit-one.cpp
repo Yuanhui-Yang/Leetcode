@@ -13,10 +13,10 @@ class Solution {
 public:
 	int countDigitOne(long long n) {
 		long long result = 0;
-		for (long long m = log10(n) + 1, x = 1LL, y = 0LL, i = 1; i <= m; ++i) {
+		for (long long m = log10(n) + 1, x = 1LL, y = 0LL, i = 1LL; i <= m; ++i) {
 			y = x;
 			x *= 10LL;
-			result += n / x * y + min(y, max(0LL, n % x - y + 1));
+			result += n / x * y + min(y, max(0LL, n % x - y + 1LL));
 		}
 		return result;
 	}
