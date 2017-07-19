@@ -17,6 +17,30 @@ class Solution {
 public:
 	int nthSuperUglyNumber(size_t n, vector<int>& primes) {
 		sort(begin(primes), end(primes));
+		long long k = primes.size();
+		vector<long long> A(k, 0LL), B;
+		priority_queue<array<long long, 2>, vector<array<long long, 2>>, greater<array<long long, 2>>> min_heap;
+		for (long long i = 0; i < k; ++i) {
+			min_heap.push({primes[i], i});
+		}
+		B.push_back(1LL);
+		while (B.size() < n) {
+			array<long long, 2> top = min_heap.top();
+			min_heap.pop();
+			if (B.back() < top[0]) {
+				B.push_back(top[0]);
+			}
+			++A[top[1]];
+			min_heap.push({primes[top[1]] * B[A[top[1]]], top[1]});
+		}
+		return B.back();
+	}
+};
+
+class Solution {
+public:
+	int nthSuperUglyNumber(size_t n, vector<int>& primes) {
+		sort(begin(primes), end(primes));
 		size_t k = primes.size();
 		vector<int> A(k, 0);
 		vector<long long> B;
