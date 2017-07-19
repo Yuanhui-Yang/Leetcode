@@ -260,6 +260,7 @@ int main(void) {
 | 256 | [Paint House](https://leetcode.com/problems/paint-house/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/paint-house.cpp) | Medium |
 | 261 | [Graph Valid Tree](https://leetcode.com/problems/graph-valid-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/graph-valid-tree.cpp) | Medium |
 | 258 | [Add Digits](https://leetcode.com/problems/add-digits/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/add-digits.cpp) | Easy |
+| 259 | [3Sum Smaller](https://leetcode.com/problems/3sum-smaller/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/3sum-smaller.cpp) | Medium |
 | 260 | [Single Number III](https://leetcode.com/problems/single-number-iii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/single-number-iii.cpp) | Medium |
 | 263 | [Ugly Number](https://leetcode.com/problems/ugly-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/ugly-number.cpp) | Easy |
 | 264 | [Ugly Number II](https://leetcode.com/problems/ugly-number-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/ugly-number-ii.cpp) | Medium |
