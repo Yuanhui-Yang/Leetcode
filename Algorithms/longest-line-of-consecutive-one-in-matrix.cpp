@@ -13,39 +13,126 @@ Output: 3
 Hint: The number of elements in the given matrix will not exceed 10,000.
 */
 
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
 public:
 	int longestLine(vector<vector<int>>& M) {
-		if (M.empty() or M.front().empty()) {
-			return 0;
+		int X = M.size(), Y = X == 0 ? 0 : M[0].size(), result = 0;
+		array<array<vector<int>, 2>, 4> A;
+		for (int i = 0; i < 4; ++i) {
+			for (int j = 0; j < 2; ++j) {
+				A[i][j].resize(Y, 0);
+			}
 		}
-		int p = M.size(), q = M.front().size(), result = 0;
-		vector<vector<int>> h(p, vector<int>(q, 0)), v(h), d(h), a(h); 
-		for (int i = 0; i < p; ++i) {
-			for (int j = 0; j < q; ++j) {
-				result = max(result, h[i][j] = j == 0 ? M[i][j] : (M[i][j] == 0 ? 0 : 1 + h[i][j - 1]));
-				result = max(result, v[i][j] = i == 0 ? M[i][j] : (M[i][j] == 0 ? 0 : 1 + v[i - 1][j]));
-				result = max(result, d[i][j] = (i == 0 or j == 0) ? M[i][j] : (M[i][j] == 0 ? 0 : 1 + d[i - 1][j - 1]));
-				result = max(result, a[i][q - 1 - j] = (i == 0 or j == 0) ? M[i][q - 1 - j] : (M[i][q - 1 - j] == 0 ? 0 : 1 + a[i - 1][q - j]));
+		for (int i = 0; i < X; ++i) {
+			for (int j = 0; j < Y; ++j) {
+				int x = i % 2, y = 1 - x;
+				if (M[i][j] == 0) {
+					A[0][x][j] = 0;
+					A[1][x][j] = 0;
+					A[2][x][j] = 0;
+				}
+				else if (i == 0 and j == 0) {
+					A[0][x][j] = 1;
+					A[1][x][j] = 1;
+					A[2][x][j] = 1;
+				}
+				else if (i == 0) {
+					A[0][x][j] = 1;
+					A[1][x][j] = 1 + A[1][x][j - 1];
+					A[2][x][j] = 1;
+				}
+				else if (j == 0) {
+					A[0][x][j] = 1 + A[0][y][j];
+					A[1][x][j] = 1;
+					A[2][x][j] = 1;
+				}
+				else {
+					A[0][x][j] = 1 + A[0][y][j];
+					A[1][x][j] = 1 + A[1][x][j - 1];
+					A[2][x][j] = 1 + A[2][y][j - 1];
+				}
+				result = max(result, A[0][x][j]);
+				result = max(result, A[1][x][j]);
+				result = max(result, A[2][x][j]);
+			}
+		}
+		for (int i = 0; i < X; ++i) {
+			for (int j = Y - 1; j >= 0; --j) {
+				int x = i % 2, y = 1 - x;
+				if (M[i][j] == 0) {
+					A[3][x][j] = 0;
+				}
+				else if (i == 0) {
+					A[3][x][j] = 1;
+				}
+				else if (j == Y - 1) {
+					A[3][x][j] = 1;
+				}
+				else {
+					A[3][x][j] = 1 + A[3][y][j + 1];
+				}
+				result = max(result, A[3][x][j]);
 			}
 		}
 		return result;
 	}
 };
 
-int main(void) {
-	Solution solution;
-	vector<vector<int>> M;
-	int answer, result;
-
-	M = {{0, 1, 1, 0}, {0, 1, 1, 0}, {0, 0, 0, 1}};
-	answer = 3;
-	result = solution.longestLine(M);
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
-	return 0;
-}
+class Solution {
+public:
+	int longestLine(vector<vector<int>>& M) {
+		int X = M.size(), Y = X == 0 ? 0 : M[0].size(), result = 0;
+		array<vector<vector<int>>, 4> A;
+		for (int i = 0; i < 4; ++i) {
+			A[i].resize(X, vector<int>(Y, 0));
+		}
+		for (int i = 0; i < X; ++i) {
+			for (int j = 0; j < Y; ++j) {
+				if (M[i][j] == 0) {
+					continue;
+				}
+				if (i == 0 and j == 0) {
+					A[0][i][j] = 1;
+					A[1][i][j] = 1;
+					A[2][i][j] = 1;
+				}
+				else if (i == 0) {
+					A[0][i][j] = 1;
+					A[1][i][j] = 1 + A[1][i][j - 1];
+					A[2][i][j] = 1;
+				}
+				else if (j == 0) {
+					A[0][i][j] = 1 + A[0][i - 1][j];
+					A[1][i][j] = 1;
+					A[2][i][j] = 1;
+				}
+				else {
+					A[0][i][j] = 1 + A[0][i - 1][j];
+					A[1][i][j] = 1 + A[1][i][j - 1];
+					A[2][i][j] = 1 + A[2][i - 1][j - 1];
+				}
+				result = max(result, A[0][i][j]);
+				result = max(result, A[1][i][j]);
+				result = max(result, A[2][i][j]);
+			}
+		}
+		for (int i = 0; i < X; ++i) {
+			for (int j = Y - 1; j >= 0; --j) {
+				if (M[i][j] == 0) {
+					continue;
+				}
+				if (i == 0) {
+					A[3][i][j] = 1;
+				}
+				else if (j == Y - 1) {
+					A[3][i][j] = 1;
+				}
+				else {
+					A[3][i][j] = 1 + A[3][i - 1][j + 1];
+				}
+				result = max(result, A[3][i][j]);
+			}
+		}
+		return result;
+	}
+};
