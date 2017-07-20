@@ -1,72 +1,43 @@
 // 322. Coin Change
 // https://leetcode.com/problems/coin-change/
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <iterator>
-#include <climits>
-using namespace std;
-// BEGIN: https://discuss.leetcode.com/topic/32475/c-o-n-amount-time-o-amount-space-dp-solution
+
+/*
+You are given coins of different denominations and a total amount of money amount. Write a function to compute the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.
+
+Example 1:
+coins = [1, 2, 5], amount = 11
+return 3 (11 = 5 + 5 + 1)
+
+Example 2:
+coins = [2], amount = 3
+return -1.
+
+Note:
+You may assume that you have an infinite number of each kind of coin.
+*/
+
 class Solution {
 public:
-	int coinChange(vector<int>& coins, int amount) {
-		if (amount == 0) return 0;
-		sort(begin(coins), end(coins));
-		if (coins.front() > amount) return -1;
-		size_t n = (size_t)amount + 1;
-		vector<size_t> OPT(n + 1, INT_MAX);
-		for (const auto &i : coins) if (i <= amount) OPT[i] = 1;
-		for (size_t i = 0; i < n; i++) {
-			if (OPT[i] == INT_MAX) {
-				for (const auto &j : coins) {
-					if (i >= (size_t)j) {
-						OPT[i] = min(OPT[i], 1 + OPT[i - j]);
-					}
-				}
+	int coinChange(vector<int>& coins, long amount) {
+		vector<long> A(amount + 1L, -1L);
+		A[0] = 0L;
+		for (const auto & i : coins) {
+			if (i <= amount) {
+				A[i] = 1L;
 			}
 		}
-		return OPT[amount] == INT_MAX ? -1 : OPT[amount];
+		for (long i = 1L; i <= amount; ++i) {
+			if (A[i] >= 0) {
+				continue;
+			}
+			long minCnt = -1L;
+			for (const auto & j : coins) {
+				if (j < i and A[i - j] > 0L and (minCnt < 0L or minCnt > 1L + A[i - j])) {
+					minCnt = 1L + A[i - j];
+				}
+			}
+			A[i] = minCnt;
+		}
+		return A[amount];
 	}
 };
-// END: https://discuss.leetcode.com/topic/32475/c-o-n-amount-time-o-amount-space-dp-solution
-
-// BEGIN: Time Limit Exceeded
-// class Solution {
-// public:
-// 	int coinChange(vector<int>& coins, int amount) {
-// 		if (amount == 0) return 0;
-// 		sort(begin(coins), end(coins));
-// 		if (coins.front() > amount) return -1;
-// 		size_t n = (size_t)amount + 1;
-// 		vector<size_t> OPT(n + 1, INT_MAX);
-// 		for (const auto &i : coins) if (i <= amount) OPT[i] = 1;
-// 		for (size_t i = 0; i < n; i++) {
-// 			if (OPT[i] == INT_MAX) {
-// 				for (size_t j = 1; j < i; j++) {
-// 					if (OPT[j] != INT_MAX && OPT[i - j] != INT_MAX) {
-// 						OPT[i] = min(OPT[i], OPT[j] + OPT[i - j]);
-// 					}
-// 				}
-// 			}
-// 		}
-// 		return OPT[amount] == INT_MAX ? -1 : OPT[amount];
-// 	}
-// };
-// END: Time Limit Exceeded
-int main(void) {
-	Solution solution;
-	vector<int> coins = {1, 2, 5};
-	cout << solution.coinChange(coins, 11) << "\tPassed\n";
-	coins = {2};
-	cout << solution.coinChange(coins, 3) << "\tPassed\n";
-	coins = {2147483647};
-	cout << solution.coinChange(coins, 2) << "\tPassed\n";
-	coins = {1,2147483647};
-	cout << solution.coinChange(coins, 2) << "\tPassed\n";
-	coins = {1};
-	cout << solution.coinChange(coins, 0) << "\tPassed\n";
-	coins = {442,295,365,485};
-	cout << solution.coinChange(coins, 8091) << "\tPassed\n";	
-	cout << "\nPassed All\n";
-	return 0;
-}
