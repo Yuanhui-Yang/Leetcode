@@ -22,19 +22,19 @@ You may assume both s and t have the same length.
 class Solution {
 public:
 	bool isIsomorphic(string s, string t) {
-		if (s.size() != t.size()) {
+		int X = s.size(), Y = t.size();
+		if (X != Y) {
 			return false;
 		}
-		int n = s.size();
-		array<int, 256> x, y;
-		x.fill(-1);
-		y.fill(-1);
-		for (int i = 0; i < n; ++i) {
-			if (x[s[i]] != y[t[i]]) {
+		array<int, 256> A, B;
+		A.fill(-1);
+		B.fill(-1);
+		for (int i = 0; i < X; ++i) {
+			if (A[s[i]] != B[t[i]]) {
 				return false;
 			}
-			x[s[i]] = i;
-			y[t[i]] = i;
+			A[s[i]] = i;
+			B[t[i]] = i;
 		}
 		return true;
 	}
