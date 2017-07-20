@@ -1,52 +1,57 @@
 // 329. Longest Increasing Path in a Matrix
 // https://leetcode.com/problems/longest-increasing-path-in-a-matrix/
-#include <iostream>
-#include <vector>
-#include <unordered_set>
-#include <utility>
-#include <algorithm>
-#include <climits>
-using namespace std;
-// BEGIN: https://discuss.leetcode.com/topic/35021/graph-theory-java-solution-o-v-2-no-dfs
+
+/*
+Given an integer matrix, find the length of the longest increasing path.
+
+From each cell, you can either move to four directions: left, right, up or down. You may NOT move diagonally or move outside of the boundary (i.e. wrap-around is not allowed).
+
+Example 1:
+
+nums = [
+  [9,9,4],
+  [6,6,8],
+  [2,1,1]
+]
+Return 4
+The longest increasing path is [1, 2, 6, 9].
+
+Example 2:
+
+nums = [
+  [3,4,5],
+  [3,2,6],
+  [2,2,1]
+]
+Return 4
+The longest increasing path is [3, 4, 5, 6]. Moving diagonally is not allowed.
+*/
+
 class Solution {
 public:
 	int longestIncreasingPath(vector<vector<int>>& matrix) {
-		vector<pair<int, int>> directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-		const int m = matrix.size();
-		if (m == 0) return 0;
-		const int n = matrix.front().size();
-		if (n == 0) return 0;
-		int number = m * n, result = 0;
-		while (number) {
-			unordered_set<int> zeroOutDegreeNodes;
-			for (int i = 0; i < m; i++) {
-				for (int j = 0; j < n; j++) {
-					if (matrix[i][j] == INT_MIN) continue;
-					bool top = (i == 0) || matrix[i][j] >= matrix[i - 1][j];
-					bool bottom = (i + 1 == m) || matrix[i][j] >= matrix[i + 1][j];
-					bool left = (j == 0) || matrix[i][j] >= matrix[i][j - 1];
-					bool right = (j + 1 == n) || matrix[i][j] >= matrix[i][j + 1];
-					if (top	 && bottom && left && right) zeroOutDegreeNodes.insert(j + n * i);
- 				}
+		int M = matrix.size(), N = M == 0 ? 0 : matrix[0].size(), result = 0;
+		vector<vector<int>> A(M, vector<int>(N, -1));
+		for (int i = 0; i < M; ++i) {
+			for (int j = 0; j < N; ++j) {
+				result = max(result, f(matrix, A, i, j));
 			}
-			for (const auto &i : zeroOutDegreeNodes) {
-				matrix[i / n][i % n] = INT_MIN;
-				number--;
-			}
-			result++;
 		}
 		return result;
 	}
+private:
+	int f(const vector<vector<int>>& matrix, vector<vector<int>> & A, int x, int y) {
+		if (A[x][y] >= 0) {
+			return A[x][y];
+		}
+		array<int, 4> dx = {-1, 0, 1, 0}, dy = {0, -1, 0, 1};
+		int result = 1, M = matrix.size(), N = M == 0 ? 0 : matrix[0].size();
+		for (int i = 0; i < 4; ++i) {
+			int nx = x + dx[i], ny = y + dy[i];
+			if (nx >= 0 and nx < M and ny >= 0 and ny < N and matrix[x][y] < matrix[nx][ny]) {
+				result = max(result, 1 + f(matrix, A, nx, ny));
+			}
+		}
+		return A[x][y] = result;
+	}
 };
-// END: https://discuss.leetcode.com/topic/35021/graph-theory-java-solution-o-v-2-no-dfs
-int main(void) {
-	Solution solution;
-	vector<vector<int>> matrix = { {9, 9, 4}, {6, 6, 8}, {2, 1, 1} };
-	cout << solution.longestIncreasingPath(matrix) << "\tPassed\n";
-	matrix = { {3, 4, 5}, {3, 2, 6}, {2, 2, 1} };
-	cout << solution.longestIncreasingPath(matrix) << "\tPassed\n";
-	matrix = { {9, 9, 4}, {6, 6, 8}, {2, 1, 1} };
-	cout << solution.longestIncreasingPath(matrix) << "\tPassed\n";
-	cout << "\nPassed All\n";	
-	return 0;
-}
