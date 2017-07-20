@@ -1,48 +1,66 @@
 // 271. Encode and Decode Strings
 // https://leetcode.com/problems/encode-and-decode-strings/
-#include <cassert>
-#include <iostream>
-#include <string>
-#include <vector>
-using namespace std;
-// BEGIN: https://discuss.leetcode.com/topic/22798/accepted-simple-c-solution
+
+/*
+Design an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings.
+
+Machine 1 (sender) has the function:
+
+string encode(vector<string> strs) {
+  // ... your code
+  return encoded_string;
+}
+Machine 2 (receiver) has the function:
+vector<string> decode(string s) {
+  //... your code
+  return strs;
+}
+So Machine 1 does:
+
+string encoded_string = encode(strs);
+and Machine 2 does:
+
+vector<string> strs2 = decode(encoded_string);
+strs2 in Machine 2 should be the same as strs in Machine 1.
+
+Implement the encode and decode methods.
+
+Note:
+The string may contain any possible characters out of 256 valid ascii characters. Your algorithm should be generalized enough to work on any possible characters.
+Do not use class member/global/static variables to store states. Your encode and decode algorithms should be stateless.
+Do not rely on any library method such as eval or serialize methods. You should implement your own encode/decode algorithm.
+*/
+
 class Codec {
 public:
 
 	// Encodes a list of strings to a single string.
 	string encode(vector<string>& strs) {
 		string result;
-		for (const auto&i : strs)
-			result += to_string(i.size()) + '@' + i;
+		for (const auto & str : strs) {
+			result.append(to_string(str.size()));
+			result.push_back(' ');
+			result.append(str);
+		}
 		return result;
 	}
 
 	// Decodes a single string to a list of strings.
 	vector<string> decode(string s) {
 		vector<string> result;
-		for (size_t i = 0, j = 0; i < s.size(); i++) {
-			if (s[i] != '@') continue;
-			int length = stoi(s.substr(j, i - j));
-			result.push_back(s.substr(i + 1, length));
-			i += length;
-			j = i + 1;
+		for (int sz = s.size(), base = 10, i = 0; i < sz; ++i) {
+			int j = 0;
+			while (i < sz and isdigit(s[i])) {
+				j = base * j + (s[i] - '0');
+				++i;
+			}
+			result.push_back(s.substr(i + 1, j));
+			i += j;
 		}
 		return result;
 	}
 };
-// END: https://discuss.leetcode.com/topic/22798/accepted-simple-c-solution
 
 // Your Codec object will be instantiated and called as such:
 // Codec codec;
 // codec.decode(codec.encode(strs));
-
-int main(void) {
-	Codec codec;
-	vector<string> strs = {"", "vn"};
-	string encoded_string = codec.encode(strs);
-	vector<string> strs2 = codec.decode(encoded_string);
-	assert(strs.size() == strs2.size());
-	for (size_t i = 0; i < strs.size(); i++) assert(strs[i] == strs2[i]);
-	cout << "\nPassed All\n";
-	return 0;
-}
