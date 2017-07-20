@@ -1,40 +1,41 @@
 // 296. Best Meeting Point
 // https://leetcode.com/problems/best-meeting-point/
-// https://discuss.leetcode.com/topic/28150/am-i-the-only-person-who-don-t-know-why-median-could-give-shortest-distance
-// http://math.stackexchange.com/questions/113270/the-median-minimizes-the-sum-of-absolute-deviations
-// https://discuss.leetcode.com/topic/27710/14ms-java-solution/3
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <iterator>
-using namespace std;
+
+/*
+A group of two or more people wants to meet and minimize the total travel distance. You are given a 2D grid of values 0 or 1, where each 1 marks the home of someone in the group. The distance is calculated using Manhattan Distance, where distance(p1, p2) = |p2.x - p1.x| + |p2.y - p1.y|.
+
+For example, given three people living at (0,0), (0,4), and (2,2):
+
+1 - 0 - 0 - 0 - 1
+|   |   |   |   |
+0 - 0 - 0 - 0 - 0
+|   |   |   |   |
+0 - 0 - 1 - 0 - 0
+The point (0,2) is an ideal meeting point, as the total travel distance of 2+2+2=6 is minimal. So return 6.
+*/
+
 class Solution {
 public:
 	int minTotalDistance(vector<vector<int>>& grid) {
-		vector<int> X;
-		vector<int> Y;
-		for (size_t i = 0; i < grid.size(); ++i) {
-			for (size_t j = 0; j < grid.front().size(); ++j) {
-				if (grid[i][j]) {
+		int M = grid.size(), N = M == 0 ? 0 : grid[0].size();
+		vector<int> X, Y;
+		for (int i = 0; i < M; ++i) {
+			for (int j = 0; j < N; ++j) {
+				if (grid[i][j] == 1) {
 					X.push_back(i);
 					Y.push_back(j);
 				}
 			}
 		}
-		return this->minTotalDistance(X) + this->minTotalDistance(Y);
-	}
-private:
-	int minTotalDistance(vector<int>& axis) {
-		sort(begin(axis), end(axis));
+		sort(begin(X), end(X));
+		sort(begin(Y), end(Y));
 		int result = 0;
-		for (size_t i = 0, j = axis.size() - 1; i < j; ++i, --j) result += axis[j] - axis[i];
+		for (int sz = X.size(), i = 0, j = sz / 2; i < sz; ++i) {
+			result += abs(X[i] - X[j]);
+		}
+		for (int sz = Y.size(), i = 0, j = sz / 2; i < sz; ++i) {
+			result += abs(Y[i] - Y[j]);
+		}
 		return result;
 	}
 };
-int main(void) {
-	Solution solution;
-	vector<vector<int>> grid = {{1, 0, 0, 0, 1}, {0, 0, 0, 0, 0}, {0, 0, 1, 0, 0}};
-	cout << solution.minTotalDistance(grid) << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
