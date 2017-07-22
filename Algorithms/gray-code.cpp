@@ -20,58 +20,17 @@ For example, [0,2,3,1] is also a valid gray code sequence according to the above
 For now, the judge is able to judge based on one instance of gray code sequence. Sorry about that.
 */
 
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
 public:
 	vector<int> grayCode(int n) {
 		vector<int> result;
-		for (int i = 0, j = 1 << n; i < j; ++i) {
-			result.push_back(i ^ (i >> 1));
+		result.push_back(0);
+		for (int i = 0; i < n; ++i) {
+			int val = 1 << i, sz = result.size();
+			for (int i = sz - 1; i >= 0; --i) {
+				result.push_back(result[i] | val);
+			}
 		}
 		return result;
 	}
 };
-
-// class Solution {
-// public:
-// 	vector<int> grayCode(int n) {
-// 		vector<int> result = {0};
-// 		while (n-- > 0) {
-// 			for (int m = result.size(), i = m - 1; i >= 0; --i) {
-// 				result.push_back(m | result[i]);
-// 			}
-// 		} 
-// 		return result;
-// 	}
-// };
-
-int main(void) {
-	Solution solution;
-	int n;
-	vector<int> answer, result;
-
-	n = 0;
-	answer = {0};
-	result = solution.grayCode(n);
-	assert(answer == result);
-
-	n = 1;
-	answer = {0, 1};
-	result = solution.grayCode(n);
-	assert(answer == result);
-
-	n = 2;
-	answer = {0, 1, 3, 2};
-	result = solution.grayCode(n);
-	assert(answer == result);
-
-	n = 3;
-	answer = {0, 1, 3, 2, 6, 7, 5, 4};
-	result = solution.grayCode(n);
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
-	return 0;
-}
