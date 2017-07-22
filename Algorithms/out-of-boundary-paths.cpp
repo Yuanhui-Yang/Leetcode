@@ -20,60 +20,35 @@ The length and height of the grid is in range [1,50].
 N is in range [0,50].
 */
 
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
 public:
 	int findPaths(int m, int n, int N, int i, int j) {
-		vector<vector<vector<size_t>>> OPT(m, vector<vector<size_t>>(n, vector<size_t>(N + 1, string::npos)));
-		return dfs(OPT, m, n, N, i, j) % D;
+		if (m <= 0 or n <= 0 or N <= 0 or i < 0 or i >= m or j < 0 or j >= n) {
+			return 0;
+		}
+		vector<vector<vector<long long>>> A(N + 1, vector<vector<long long>>(m, vector<long long>(n, -1LL)));
+		return f(A, m, n, N, i, j);
 	}
 private:
-	const size_t D = 1E9 + 7;
-	size_t dfs(vector<vector<vector<size_t>>>& OPT, int m, int n, int N, int i, int j) {
+	long long f(vector<vector<vector<long long>>> & A, int m, int n, int N, int x, int y) {
 		if (N < 0) {
 			return 0;
 		}
-		if (i < 0 or i >= m or j < 0 or j >= n) {
+		if (x < 0 or x >= m or y < 0 or y >= n) {
 			return 1;
 		}
-		if (OPT[i][j][N] != string::npos) {
-			return OPT[i][j][N] % D;
+		if (N == 0) {
+			return 0;
 		}
-		return OPT[i][j][N] = (dfs(OPT, m, n, N - 1, i - 1, j) % D + dfs(OPT, m, n, N - 1, i + 1, j) % D + dfs(OPT, m, n, N - 1, i, j - 1) % D + dfs(OPT, m, n, N - 1, i, j + 1) % D) % D;
+		if (A[N][x][y] >= 0) {
+			return A[N][x][y];
+		}
+		long long result = 0, C = 1e9 + 7;
+		result += f(A, m, n, N - 1, x - 1, y) % C;
+		result += f(A, m, n, N - 1, x + 1, y) % C;
+		result += f(A, m, n, N - 1, x, y - 1) % C;
+		result += f(A, m, n, N - 1, x, y + 1) % C;
+		result %= C;
+		return A[N][x][y] = result;
 	}
 };
-
-int main(void) {
-	Solution solution;
-	int m, n, N, i, j, answer, result;
-
-	m = 8; n = 50; N = 23; i = 5; j = 26;
-	answer = 914783380;
-	result = solution.findPaths(m, n, N, i, j);
-	assert(answer == result);
-
-	m = 1; n = 2; N = 50; i = 0; j = 0;
-	answer = 150;
-	result = solution.findPaths(m, n, N, i, j);
-	assert(answer == result);
-
-	m = 1; n = 3; N = 3; i = 0; j = 1;
-	answer = 12;
-	result = solution.findPaths(m, n, N, i, j);
-	assert(answer == result);
-
-	m = 2; n = 2; N = 2; i = 0; j = 0;
-	answer = 6;
-	result = solution.findPaths(m, n, N, i, j);
-	assert(answer == result);
-
-	m = 1; n = 3; N = 3; i = 0; j = 1;
-	answer = 12;
-	result = solution.findPaths(m, n, N, i, j);
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
-	return 0;
-}
