@@ -1,96 +1,51 @@
 // 408. Valid Word Abbreviation
 // https://leetcode.com/problems/valid-word-abbreviation/
-#include <iostream>
-#include <cassert>
-#include <string>
-using namespace std;
+
+/*
+Given a non-empty string s and an abbreviation abbr, return whether the string matches with the given abbreviation.
+
+A string such as "word" contains only the following valid abbreviations:
+
+["word", "1ord", "w1rd", "wo1d", "wor1", "2rd", "w2d", "wo2", "1o1d", "1or1", "w1r1", "1o2", "2r1", "3d", "w3", "4"]
+Notice that only the above abbreviations are valid abbreviations of the string "word". Any other string is not a valid abbreviation of "word".
+
+Note:
+Assume s contains only lowercase letters and abbr contains only lowercase letters and digits.
+
+Example 1:
+Given s = "internationalization", abbr = "i12iz4n":
+
+Return true.
+Example 2:
+Given s = "apple", abbr = "a2e":
+
+Return false.
+*/
 
 class Solution {
 public:
 	bool validWordAbbreviation(string word, string abbr) {
-		if (abbr.size() > word.size()) {
-			return false;
-		}
-		size_t i = 0, j = 0;
-		while (i < abbr.size() && j < word.size()) {
-			if (abbr[i] == '0') {
+		int M = word.size(), N = abbr.size(), i = 0, j = 0;
+		while (i < M and j < N) {
+			if (isalpha(abbr[j])) {
+				if (word[i] != abbr[j]) {
+					return false;
+				}
+				++i;
+				++j;
+			}
+			else if (abbr[j] == '0') {
 				return false;
 			}
-			if (abbr[i] >= 'a' && abbr[i] <= 'z') {
-				if (abbr[i] == word[j]) {
-					i++;
-					j++;
-					continue;
+			else {
+				int len = 0;
+				while (j < N and isdigit(abbr[j])) {
+					len = 10 * len + abbr[j] - '0';
+					++j;
 				}
-				return false;
-			}
-			if (abbr[i] >= '1' && abbr[i] <= '9') {
-				size_t step = 0;
-				while (i < abbr.size() && abbr[i] >= '0' && abbr[i] <= '9') {
-					step = abbr[i] - '0' + 10 * step;
-					i++;
-				}
-				j += step;
+				i += len;
 			}
 		}
-		return i == abbr.size() && j == word.size();
+		return i == M and j == N;
 	}
 };
-
-// class Solution {
-// public:
-// 	bool validWordAbbreviation(string word, string abbr) {
-// 		if (abbr.size() > word.size()) {
-// 			return false;
-// 		}
-// 		size_t i = 0, j = 0;
-// 		for (i = 0, j = 0; i < abbr.size(); i++) {
-// 			if (j >= word.size()) {
-// 				return false;
-// 			}
-// 			if (abbr[i] >= 'a' && abbr[i] <= 'z') {
-// 				if (abbr[i] == word[j]) {
-// 					j++;
-// 					continue;
-// 				}
-// 				if (abbr[i] != word[j]) {
-// 					return false;
-// 				}
-// 				continue;
-// 			}
-// 			if (abbr[i] >= '0' && abbr[i] <= '9') {
-// 				if (abbr[i] == '0') {
-// 					return false;
-// 				}
-// 				size_t k = i;
-// 				while (i < abbr.size() && abbr[i] >= '0' && abbr[i] <= '9') {
-// 					i++;
-// 				}
-// 				size_t step = stoul(abbr.substr(k, i--));
-// 				j += step;
-// 				continue;
-// 			}
-// 		}
-// 		return j == word.size();
-// 	}
-// };
-
-int main(void) {
-	Solution solution;
-	bool result;
-
-	result = solution.validWordAbbreviation("internationalization", "i12iz4n");
-	assert(true == result);
-
-	result = solution.validWordAbbreviation("apple", "a2e");
-	assert(false == result);
-
-	result = solution.validWordAbbreviation("abbreviation", "a10n");
-	assert(true == result);
-
-	result = solution.validWordAbbreviation("hi", "02");
-	assert(false == result);	
-
-	cout << "\nPassed All\n";
-	return 0;
-}
