@@ -23,6 +23,33 @@ Note: The length of path between two nodes is represented by the number of edges
  *     TreeNode *left;
  *     TreeNode *right;
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+	int diameterOfBinaryTree(TreeNode* root) {
+		int result = 0;
+		f(result, root);
+		return result;
+	}
+private:
+	int f(int & result, TreeNode * node) {
+		if (!node) {
+			return 0;
+		}
+		int left = f(result, node->left), right = f(result, node->right);
+		result = max(result, left + right);
+		return 1 + max(left, right);
+	}
+};
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };    int diameterOfBinaryTree(TreeNode* root) {
 
 	}
@@ -30,7 +57,7 @@ Note: The length of path between two nodes is represented by the number of edges
 class Solution {
 public:
 	int diameterOfBinaryTree(TreeNode* root) {
-		return max(0, f(root)[0] - 1);
+		return f(root)[0];
 	}
 private:
 	array<int, 2> f(TreeNode* node) {
@@ -41,7 +68,7 @@ private:
 			return result;
 		}
 		array<int, 2> left = f(node->left), right = f(node->right);
-		result[0] = 1 + left[1] + right[1];
+		result[0] = left[1] + right[1];
 		result[0] = max(result[0], left[0]);
 		result[0] = max(result[0], right[0]);
 		result[1] = 1 + max(left[1], right[1]);
