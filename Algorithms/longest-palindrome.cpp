@@ -1,36 +1,45 @@
 // 409. Longest Palindrome
 // https://leetcode.com/problems/longest-palindrome/
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <algorithm>
-using namespace std;
+
+/*
+Given a string which consists of lowercase or uppercase letters, find the length of the longest palindromes that can be built with those letters.
+
+This is case sensitive, for example "Aa" is not considered a palindrome here.
+
+Note:
+Assume the length of given string will not exceed 1,010.
+
+Example:
+
+Input:
+"abccccdd"
+
+Output:
+7
+
+Explanation:
+One longest palindrome that can be built is "dccaccd", whose length is 7.
+*/
+
 class Solution {
 public:
 	int longestPalindrome(string s) {
-		int hashMap[52];
-		memset(hashMap, 0, sizeof(hashMap));
-		for (const auto&i : s) {
-			if (i >= 'a') hashMap[i - 'a']++;
-			else hashMap[i - 'A' + 26]++;
+		array<int, 256> A;
+		A.fill(0);
+		for (const auto & i : s) {
+			++A[i];
 		}
-		int result = 0, hasOdd = 0;
-		for (int i = 0; i < 52; i++) {
-			if (hashMap[i] == 0) continue;
-			if ((hashMap[i] & 1) == 0)  result += hashMap[i];
+		array<int, 2> B;
+		B.fill(0);
+		for (int i = 0; i < 256; ++i) {
+			if (A[i] % 2) {
+				B[0] = 1;
+				B[1] += A[i] / 2 * 2;
+			}
 			else {
-				result += hashMap[i] - 1;
-				hasOdd = 1;
+				B[1] += A[i];
 			}
 		}
-		return result + hasOdd;
+		return B[0] + B[1];
 	}
 };
-int main(void) {
-	Solution solution;
-	cout << solution.longestPalindrome("abccccdd") << "\tPassed\n";
-	cout << solution.longestPalindrome("AAAAAA") << "\tPassed\n";
-	cout << solution.longestPalindrome("civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth") << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
