@@ -27,14 +27,15 @@ public:
 				}
 			}
 		}
-		sort(begin(X), end(X));
-		sort(begin(Y), end(Y));
 		int result = 0;
-		for (int sz = X.size(), i = 0, j = sz / 2; i < sz; ++i) {
-			result += abs(X[i] - X[j]);
+		nth_element(begin(X), next(begin(X), X.size() / 2), end(X));
+		nth_element(begin(Y), next(begin(Y), Y.size() / 2), end(Y));
+		int a = *next(begin(X), X.size() / 2), b = *next(begin(Y), Y.size() / 2);
+		for (const auto & i : X) {
+			result += abs(i - a);
 		}
-		for (int sz = Y.size(), i = 0, j = sz / 2; i < sz; ++i) {
-			result += abs(Y[i] - Y[j]);
+		for (const auto & i : Y) {
+			result += abs(i - b);
 		}
 		return result;
 	}
