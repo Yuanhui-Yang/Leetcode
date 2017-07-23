@@ -564,6 +564,7 @@ int main(void) {
 | 634 | [Find the Derangement of An Array](https://leetcode.com/problems/find-the-derangement-of-an-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-the-derangement-of-an-array.cpp) | Medium |
 | 635 | [Design Log Storage System](https://leetcode.com/problems/design-log-storage-system/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/design-log-storage-system.cpp) | Medium |
 | 645 | [Set Mismatch](https://leetcode.com/problems/set-mismatch/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/set-mismatch.cpp) | Easy |
+| 646 | [Maximum Length of Pair Chain](https://leetcode.com/problems/maximum-length-of-pair-chain/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-length-of-pair-chain.cpp) | Medium |
 
 ## Database
 | # | Title | Solution | Difficulty |
