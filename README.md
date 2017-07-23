@@ -566,6 +566,7 @@ int main(void) {
 | 645 | [Set Mismatch](https://leetcode.com/problems/set-mismatch/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/set-mismatch.cpp) | Easy |
 | 646 | [Maximum Length of Pair Chain](https://leetcode.com/problems/maximum-length-of-pair-chain/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-length-of-pair-chain.cpp) | Medium |
 | 647 | [Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/palindromic-substrings.cpp) | Medium |
+| 648 | [Replace Words](https://leetcode.com/problems/replace-words/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/replace-words.cpp) | Hard |
 
 ## Database
 | # | Title | Solution | Difficulty |
