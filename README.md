@@ -565,6 +565,7 @@ int main(void) {
 | 635 | [Design Log Storage System](https://leetcode.com/problems/design-log-storage-system/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/design-log-storage-system.cpp) | Medium |
 | 645 | [Set Mismatch](https://leetcode.com/problems/set-mismatch/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/set-mismatch.cpp) | Easy |
 | 646 | [Maximum Length of Pair Chain](https://leetcode.com/problems/maximum-length-of-pair-chain/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-length-of-pair-chain.cpp) | Medium |
+| 647 | [Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/palindromic-substrings.cpp) | Medium |
 
 ## Database
 | # | Title | Solution | Difficulty |
