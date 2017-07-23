@@ -563,6 +563,7 @@ int main(void) {
 | 633 | [Sum of Square Numbers](https://leetcode.com/problems/sum-of-square-numbers/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sum-of-square-numbers.cpp) | Easy |
 | 634 | [Find the Derangement of An Array](https://leetcode.com/problems/find-the-derangement-of-an-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-the-derangement-of-an-array.cpp) | Medium |
 | 635 | [Design Log Storage System](https://leetcode.com/problems/design-log-storage-system/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/design-log-storage-system.cpp) | Medium |
+| 645 | [Set Mismatch](https://leetcode.com/problems/set-mismatch/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/set-mismatch.cpp) | Easy |
 
 ## Database
 | # | Title | Solution | Difficulty |
