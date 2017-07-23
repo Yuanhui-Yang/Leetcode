@@ -1,39 +1,55 @@
 // 401. Binary Watch
 // https://leetcode.com/problems/binary-watch/
-// https://discuss.leetcode.com/topic/59373/0ms-c-back-tracking-solution-easy-to-understand
-#include <iostream>
-#include <string>
-#include <vector>
-using namespace std;
+
+/*
+A binary watch has 4 LEDs on the top which represent the hours (0-11), and the 6 LEDs on the bottom represent the minutes (0-59).
+
+Each LED represents a zero or one, with the least significant bit on the right.
+
+
+For example, the above binary watch reads "3:25".
+
+Given a non-negative integer n which represents the number of LEDs that are currently on, return all possible times the watch could represent.
+
+Example:
+
+Input: n = 1
+Return: ["1:00", "2:00", "4:00", "8:00", "0:01", "0:02", "0:04", "0:08", "0:16", "0:32"]
+Note:
+The order of output does not matter.
+The hour must not contain a leading zero, for example "01:00" is not valid, it should be "1:00".
+The minute must be consist of two digits and may contain a leading zero, for example "10:2" is not valid, it should be "10:02".
+*/
+
 class Solution {
 public:
 	vector<string> readBinaryWatch(int num) {
+		vector<int> A = {1, 2, 4, 8}, B = {1, 2, 4, 8, 16, 32};
 		vector<string> result;
-		this->backTracking(result, num, 0, 0, 0);
+		for (int i = 0; i <= num; ++i) {
+			int j = num - i;
+			vector<string> h = f(A, 0, 0, i, 11), m = f(B, 0, 0, j, 59);
+			for (const auto & x : h) {
+				for (const auto & y : m) {
+					result.push_back(x + ":" + (y.size() == 1 ? "0" + y : y));
+				}
+			}
+		}
 		return result;
 	}
 private:
-	void backTracking(vector<string>& result, int num, int hour, int minute, int idx) {
-		if (hour > 11 || minute > 59 || num < 0) return;
+	vector<string> f(const vector<int> & A, int index, int val, int num, int upper) {
+		if (val > upper) {
+			return {};
+		}
 		if (num == 0) {
-			string s = to_string(hour) + ':' + ((minute < 10) ? ('0' + to_string(minute)) : to_string(minute));
-			result.push_back(s);
-			return;
+			return {to_string(val)};
 		}
-		for (int i = idx; i < 10; ++i) {
-			if (i < 4)
-				this->backTracking(result, num - 1, hour + (1 << i), minute, i + 1);
-			else
-				this->backTracking(result, num - 1, hour, minute + (1 << (i - 4)), i + 1);
+		vector<string> result;
+		for (int sz = A.size(), i = index; i < sz; ++i) {
+			vector<string> v = f(A, i + 1, val + A[i], num - 1, upper);
+			result.insert(end(result), begin(v), end(v));
 		}
+		return result;
 	}
 };
-int main(void) {
-	Solution solution;
-	for (const auto &i : solution.readBinaryWatch(1)) cout << i << '\t';
-	cout << "\nPassed\n";
-	for (const auto &i : solution.readBinaryWatch(2)) cout << i << '\t';
-	cout << "\nPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
