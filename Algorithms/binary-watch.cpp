@@ -24,6 +24,39 @@ The minute must be consist of two digits and may contain a leading zero, for exa
 class Solution {
 public:
 	vector<string> readBinaryWatch(int num) {
+		vector<string> result;
+		for (int i = 0; i <= num; ++i) {
+			int j = num - i;
+			vector<string> h = f(4, 0, 0, i, 11), m = f(6, 0, 0, j, 59);
+			for (const auto & x : h) {
+				for (const auto & y : m) {
+					result.push_back(x + ":" + (y.size() == 1 ? "0" + y : y));
+				}
+			}
+		}
+		return result;
+	}
+private:
+	vector<string> f(int sz, int index, int val, int num, int upper) {
+		vector<string> result;
+		if (val > upper) {
+			return result;
+		}
+		if (num == 0) {
+			result.push_back(to_string(val));
+			return result;
+		}
+		for (; index < sz; ++index) {
+			vector<string> v = f(sz, index + 1, val + (1 << index), num - 1, upper);
+			result.insert(end(result), begin(v), end(v));
+		}
+		return result;
+	}
+};
+
+class Solution {
+public:
+	vector<string> readBinaryWatch(int num) {
 		vector<int> A = {1, 2, 4, 8}, B = {1, 2, 4, 8, 16, 32};
 		vector<string> result;
 		for (int i = 0; i <= num; ++i) {
