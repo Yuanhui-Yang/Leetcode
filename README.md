@@ -300,6 +300,7 @@ int main(void) {
 | 300 | [Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-increasing-subsequence.cpp) | Medium |
 | 301 | [Remove Invalid Parentheses](https://leetcode.com/problems/remove-invalid-parentheses/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-invalid-parentheses.cpp) | Hard |
 | 302 | [Smallest Rectangle Enclosing Black Pixels](https://leetcode.com/problems/smallest-rectangle-enclosing-black-pixels/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/smallest-rectangle-enclosing-black-pixels.cpp) | Hard |
+| 304 | [Range Sum Query 2D - Immutable](https://leetcode.com/problems/range-sum-query-2d-immutable/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/range-sum-query-2d-immutable.cpp) | Medium |
 | 305 | [Number of Islands II](https://leetcode.com/problems/number-of-islands-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-islands-ii.cpp) | Hard |
 | 306 | [Additive Number](https://leetcode.com/problems/additive-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/additive-number.cpp) | Medium |
 | 307 | [Range Sum Query - Mutable](https://leetcode.com/problems/range-sum-query-mutable/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/range-sum-query-mutable.cpp) | Medium |
