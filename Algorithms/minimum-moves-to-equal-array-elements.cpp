@@ -1,20 +1,30 @@
 // 453. Minimum Moves to Equal Array Elements
 // https://leetcode.com/problems/minimum-moves-to-equal-array-elements/
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <iterator>
-using namespace std;
+
+/*
+Given a non-empty integer array of size n, find the minimum number of moves required to make all array elements equal, where a move is incrementing n - 1 elements by 1.
+
+Example:
+
+Input:
+[1,2,3]
+
+Output:
+3
+
+Explanation:
+Only three moves are needed (remember each move increments two elements):
+
+[1,2,3]  =>  [2,3,3]  =>  [3,4,3]  =>  [4,4,4]
+*/
+
 class Solution {
 public:
 	int minMoves(vector<int>& nums) {
-		return accumulate(begin(nums), end(nums), 0) - nums.size() * (*min_element(begin(nums), end(nums)));
+		int minVal = *min_element(begin(nums), end(nums)), result = 0;
+		for (const auto & i : nums) {
+			result += i - minVal;
+		}
+		return result;
 	}
 };
-int main(void) {
-	Solution solution;
-	vector<int> nums = {1, 2, 3};
-	cout << solution.minMoves(nums) << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
