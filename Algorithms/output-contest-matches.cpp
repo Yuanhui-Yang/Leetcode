@@ -33,76 +33,26 @@ The n is in range [2, 212].
 We ensure that the input n can be converted into the form 2k, where k is a positive integer.
 */
 
-#include <iostream> // std::cout; std::cin
-#include <cstdlib> // rand
-#include <cassert> // assert
-#include <cctype> // isalnum; isalpha; isdigit; islower; isupper; isspace; tolower; toupper
-#include <cmath> // pow; sqrt; round; fabs; abs; log
-#include <climits> // INT_MIN; INT_MAX; LLONG_MIN; LLONG_MAX; ULLONG_MAX
-#include <cfloat> // DBL_EPSILON; LDBL_EPSILON
-#include <cstring> // memset
-#include <algorithm> // max; min; min_element; max_element; minmax_element; next_permutation; prev_permutation; nth_element; sort; swap; lower_bound; upper_bound; reverse
-#include <limits> // std::numeric_limits<int>::min; std::numeric_limits<int>::max; std::numeric_limits<double>::epsilon; std::numeric_limits<long double>::epsilon;
-#include <numeric> // std::accumulate; std::iota
-#include <string> // std::string::npos
-#include <list>
-#include <bitset>
-#include <vector>
-#include <deque>
-#include <stack> // std::stack::top; std::stack::pop; std::stack::push
-#include <queue>
-#include <set>
-#include <map>
-#include <unordered_set>
-#include <unordered_map>
-#include <utility> // pair; make_pair; swap
-#include <iterator>
-#include <functional> // std::less<int>; std::greater<int>
-using namespace std;
-
 class Solution {
 public:
 	string findContestMatch(int n) {
-		vector<string> v;
-		for (int i = 1; i <= n; i++) {
-			v.push_back(to_string(i));
+		vector<string> A;
+		for (int i = 1; i <= n; ++i) {
+			A.push_back(to_string(i));
 		}
-		do {
-			v = merge(v);
-		} while (v.size() > 1);
-		return v.front();
+		while (A.size() > 1) {
+			A = f(A);
+		}
+		return A[0];
 	}
 private:
-	vector<string> merge(vector<string>& v) {
+	vector<string> f(vector<string> & A) {
+		int sz = A.size(), n = sz / 2;
 		vector<string> result;
-		for (size_t i = 0, n = v.size(); i < n / 2; i++) {
-			string s = '(' + v.at(i) + ',' + v.at(n - i - 1) + ')';
+		for (int i = 0; i < n; ++i) {
+			string s = "(" + A[i] + "," + A[sz - i - 1] + ")";
 			result.push_back(s);
 		}
 		return result;
 	}
 };
-
-int main(void) {
-	Solution solution;
-	int n = 0;
-	string result, answer;
-
-	n = 2;
-	answer = "(1,2)";
-	result = solution.findContestMatch(n);
-	assert(answer == result);
-
-	n = 4;
-	answer = "((1,4),(2,3))";
-	result = solution.findContestMatch(n);
-	assert(answer == result);
-
-	n = 8;
-	answer = "(((1,8),(4,5)),((2,7),(3,6)))";
-	result = solution.findContestMatch(n);
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
-	return 0;
-}
