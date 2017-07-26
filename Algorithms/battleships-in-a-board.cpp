@@ -1,46 +1,44 @@
 // 419. Battleships in a Board
 // https://leetcode.com/problems/battleships-in-a-board/
-// BEGIN: https://discuss.leetcode.com/topic/62970/simple-java-solution
-#include <iostream>
-#include <vector>
-#include <string>
-using namespace std;
+
+/*
+Given an 2D board, count how many battleships are in it. The battleships are represented with 'X's, empty slots are represented with '.'s. You may assume the following rules:
+
+You receive a valid board, made of only battleships or empty slots.
+Battleships can only be placed horizontally or vertically. In other words, they can only be made of the shape 1xN (1 row, N columns) or Nx1 (N rows, 1 column), where N can be of any size.
+At least one horizontal or vertical cell separates between two battleships - there are no adjacent battleships.
+Example:
+X..X
+...X
+...X
+In the above board there are 2 battleships.
+Invalid Example:
+...X
+XXXX
+...X
+This is an invalid board that you will not receive - as battleships will always have a cell separating between them.
+Follow up:
+Could you do it in one-pass, using only O(1) extra memory and without modifying the value of the board?
+*/
+
 class Solution {
 public:
 	int countBattleships(vector<vector<char>>& board) {
-		int result = 0;
-		const int m = board.size(), n = m ? board.front().size() : 0;
-		for (int i = 0; i < m; i++) {
-			for (int j = 0; j < n; j++) {
-				if (board[i][j] == '.') continue;
-				if (i > 0 && board[i - 1][j] == 'X') continue;
-				if (j > 0 && board[i][j - 1] == 'X') continue;
-				result++;
+		int result = 0, M = board.size(), N = M == 0 ? 0 : board[0].size();
+		for (int i = 0; i < M; ++i) {
+			for (int j = 0; j < N; ++j) {
+				if (board[i][j] == '.') {
+					continue;
+				}
+				if (i == 0 or board[i - 1][j] == '.') {
+					++result;
+					while (j + 1 < N and board[i][j + 1] == 'X') {
+						++j;
+					}
+					continue;
+				}
 			}
 		}
 		return result;
 	}
-	int countBattleships(vector<string>& board) {
-		int result = 0;
-		const int m = board.size(), n = m ? board.front().size() : 0;
-		for (int i = 0; i < m; i++) {
-			for (int j = 0; j < n; j++) {
-				if (board[i][j] == '.') continue;
-				if (i > 0 && board[i - 1][j] == 'X') continue;
-				if (j > 0 && board[i][j - 1] == 'X') continue;
-				result++;
-			}
-		}
-		return result;
-	}	
 };
-// END: https://discuss.leetcode.com/topic/62970/simple-java-solution
-int main(void) {
-	Solution solution;
-	vector<string> board;
-	cout << solution.countBattleships(board) << "\tPassed\n";
-	board = {"X..X", "...X", "...X"};
-	cout << solution.countBattleships(board) << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
