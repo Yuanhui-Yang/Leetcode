@@ -1,62 +1,64 @@
 // 513. Find Bottom Left Tree Value
 // https://leetcode.com/problems/find-bottom-left-tree-value/
-#include <iostream>
-#include <cassert>
-#include <vector>
-#include <list>
-using namespace std;
-struct TreeNode {
-	int val;
-	TreeNode *left;
-	TreeNode *right;
-	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
+
+/*
+Given a binary tree, find the leftmost value in the last row of the tree.
+
+Example 1:
+Input:
+
+	2
+   / \
+  1   3
+
+Output:
+1
+Example 2: 
+Input:
+
+		1
+	   / \
+	  2   3
+	 /   / \
+	4   5   6
+	   /
+	  7
+
+Output:
+7
+Note: You may assume the tree (i.e., the given root node) is not NULL.
+*/
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
 class Solution {
 public:
 	int findBottomLeftValue(TreeNode* root) {
-		int result = 0;
-		list<TreeNode*> queue;
-		queue.push_back(root);
-		while (!queue.empty()) {
-			result = queue.front()->val;
-			list<TreeNode*> queue_tmp(begin(queue), end(queue));
-			queue.clear();
-			for (const auto &i : queue_tmp) {
+		list<TreeNode*> curr = {root};
+		while (!curr.empty()) {
+			list<TreeNode*> next;
+			for (const auto & i : curr) {
 				if (i->left) {
-					queue.push_back(i->left);
+					next.push_back(i->left);
 				}
 				if (i->right) {
-					queue.push_back(i->right);
+					next.push_back(i->right);
 				}
 			}
+			if (next.empty()) {
+				return curr.front()->val;
+			}
+			else {
+				curr = next;
+			}
 		}
-		return result;
+		return -1;
 	}
 };
-int main(void) {
-	Solution solution;
-	TreeNode *root = NULL;
-	int result = 0;
-	int answer = 0;
-
-	root = new TreeNode(2);
-	root->left = new TreeNode(1);
-	root->right = new TreeNode(3);
-	answer = 1;
-	result = solution.findBottomLeftValue(root);
-	assert(answer == result);
-
-	root = new TreeNode(1);
-	root->left = new TreeNode(2);
-	root->right = new TreeNode(3);
-	root->left->left = new TreeNode(4);
-	root->right->left = new TreeNode(5);
-	root->right->right = new TreeNode(6);
-	root->right->left->left = new TreeNode(7);
-	answer = 7;
-	result = solution.findBottomLeftValue(root);
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
-	return 0;
-}
