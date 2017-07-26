@@ -40,6 +40,28 @@ public:
 		for (int i = 1; i <= n; ++i) {
 			A.push_back(to_string(i));
 		}
+		while (n > 1) {
+			f(A, n);
+			n >>= 1;
+		}
+		return A[0];
+	}
+private:
+	void f(vector<string> & A, int n) {
+		for (int i = 0; i < n; ++i) {
+			string s = "(" + A[i] + "," + A[n - i - 1] + ")";
+			A[i] = s;
+		}
+	}
+};
+
+class Solution {
+public:
+	string findContestMatch(int n) {
+		vector<string> A;
+		for (int i = 1; i <= n; ++i) {
+			A.push_back(to_string(i));
+		}
 		while (A.size() > 1) {
 			A = f(A);
 		}
