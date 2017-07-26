@@ -7,8 +7,8 @@ Given two non-empty binary trees s and t, check whether tree t has exactly the s
 Example 1:
 Given tree s:
 
-     3
-    / \
+	 3
+	/ \
    4   5
   / \
  1   2
@@ -20,12 +20,12 @@ Return true, because t has the same structure and node values with a subtree of 
 Example 2:
 Given tree s:
 
-     3
-    / \
+	 3
+	/ \
    4   5
   / \
  1   2
-    /
+	/
    0
 Given tree t:
    4
@@ -34,72 +34,25 @@ Given tree t:
 Return false.
 */
 
-#include <bits/stdc++.h>
-using namespace std;
-
-struct TreeNode {
-	int val;
-	TreeNode *left;
-	TreeNode *right;
-	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
-
-void gc(TreeNode* root) {
-	if (root) {
-		gc(root->left);
-		gc(root->right);
-		delete root;
-	}
-}
-
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
 class Solution {
 public:
 	bool isSubtree(TreeNode* s, TreeNode* t) {
-		return isSameTree(s, t) or (s->left and isSubtree(s->left, t)) or (s->right and isSubtree(s->right, t));
+		return f(s, t) or (s and isSubtree(s->left, t)) or (s and isSubtree(s->right, t));
 	}
 private:
-	bool isSameTree(TreeNode* s, TreeNode* t) {
-		if (!s or !t) {
-			return s == t;
+	bool f(TreeNode * p, TreeNode * q) {
+		if (!p or !q) {
+			return p == q;
 		}
-		return s->val == t->val and isSameTree(s->left, t->left) and isSameTree(s->right, t->right);
+		return p->val == q->val and f(p->left, q->left) and f(p->right, q->right);
 	}
 };
-
-int main(void) {
-	Solution solution;
-	TreeNode *s, *t;
-	bool answer, result;
-
-	s = new TreeNode(3);
-	s->left = new TreeNode(4);
-	s->right = new TreeNode(5);
-	s->left->left = new TreeNode(1);
-	s->left->right = new TreeNode(2);
-	t = new TreeNode(4);
-	t->left = new TreeNode(1);
-	t->right = new TreeNode(2);
-	answer = true;
-	result = solution.isSubtree(s, t);
-	gc(s);
-	gc(t);
-	assert(answer == result);
-
-	s = new TreeNode(3);
-	s->left = new TreeNode(4);
-	s->right = new TreeNode(5);
-	s->left->left = new TreeNode(1);
-	s->left->right = new TreeNode(2);
-	s->left->right->left = new TreeNode(0);
-	t = new TreeNode(4);
-	t->left = new TreeNode(1);
-	t->right = new TreeNode(2);
-	answer = false;
-	result = solution.isSubtree(s, t);
-	gc(s);
-	gc(t);
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
-	return 0;
-}
