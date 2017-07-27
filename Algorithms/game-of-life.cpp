@@ -1,81 +1,61 @@
 // 289. Game of Life
 // https://leetcode.com/problems/game-of-life/
-#include <iostream>
-#include <utility>
-#include <vector>
-using namespace std;
-// BEGIN: https://discuss.leetcode.com/topic/29054/easiest-java-solution-with-explanation
+
+/*
+According to the Wikipedia's article: "The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970."
+
+Given a board with m by n cells, each cell has an initial state live (1) or dead (0). Each cell interacts with its eight neighbors (horizontal, vertical, diagonal) using the following four rules (taken from the above Wikipedia article):
+
+Any live cell with fewer than two live neighbors dies, as if caused by under-population.
+Any live cell with two or three live neighbors lives on to the next generation.
+Any live cell with more than three live neighbors dies, as if by over-population..
+Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
+Write a function to compute the next state (after one update) of the board given its current state.
+
+Follow up: 
+Could you solve it in-place? Remember that the board needs to be updated at the same time: You cannot update some cells first and then use their updated values to update other cells.
+In this question, we represent the board using a 2D array. In principle, the board is infinite, which would cause problems when the active area encroaches the border of the array. How would you address these problems?
+*/
+
 class Solution {
 public:
 	void gameOfLife(vector<vector<int>>& board) {
-		vector<pair<int, int>> directions = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
-		const int p = board.size(), q = p ? board.front().size() : 0;
-		for (int i = 0; i < p; i++) {
-			for (int j = 0; j < q; j++) {
-				int numberOfLives = 0;
-				for (const auto &k : directions) {
-					int x = i + k.first, y = j + k.second;
-					if (x < 0 || x >= p || y < 0 || y >= q) continue;
-					if (board[x][y] & 1) numberOfLives++;
-				}
-				if (board[i][j] & 1) {
-					if (numberOfLives < 2) board[i][j] = 1;
-					else if (numberOfLives == 2 || numberOfLives == 3) board[i][j] = 3;
-					else board[i][j] = 1;
-				}
-				else {
-					if (numberOfLives == 3) board[i][j] = 2;
-				}
+		int M = board.size(), N = M == 0 ? 0 : board[0].size();
+		for (int i = 0; i < M; ++i) {
+			for (int j = 0; j < N; ++j) {
+				board[i][j] = f(board, i, j, M, N);
 			}
 		}
-		for (auto &i : board)
-			for (auto &j : i)
-				j >>= 1;
+		for (int i = 0; i < M; ++i) {
+			for (int j = 0; j < N; ++j) {
+				board[i][j] = g(board, i, j);
+			}
+		}
+	}
+private:
+	int f(vector<vector<int>>& board, int x, int y, int M, int N) {
+		array<int, 8> dx = {-1, 0, 1, 0, -1, -1, 1, 1}, dy = {0, -1, 0, 1, -1, 1, -1, 1};
+		int cnt = 0;
+		for (int i = 0; i < 8; ++i) {
+			int nx = x + dx[i], ny = y + dy[i];
+			if (nx >= 0 and nx < M and ny >= 0 and ny < N and (1 & board[nx][ny])) {
+				++cnt;
+			}
+		}
+		int z = board[x][y], mask = 1 << 16;
+		if (1 & z) {
+			if (cnt == 2 or cnt == 3) {
+				return z | mask;
+			}
+			return z;
+		}
+		if (cnt == 3) {
+			return z | mask;
+		}
+		return z;
+	}
+	int g(vector<vector<int>>& board, int x, int y) {
+		int z = board[x][y], mask = 1 << 16;
+		return (z & mask) >> 16;
 	}
 };
-// END: https://discuss.leetcode.com/topic/29054/easiest-java-solution-with-explanation
-// class Solution {
-// public:
-// 	void gameOfLife(vector<vector<int>>& board) {
-// 		vector<vector<int>> forkOfBoard(board);
-// 		vector<pair<int, int>> directions = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
-// 		const int m = board.size(), n = m ? board.front().size() : 0;
-// 		for (int i = 0; i < m; i++) {
-// 			for (int j = 0; j < n; j++) {
-// 				int numberOfLives = 0;
-// 				for (const auto &k : directions) {
-// 					int x = i + k.first, y = j + k.second;
-// 					if (x < 0 || x >= m || y < 0 || y >= n) continue;
-// 					if (forkOfBoard[x][y] == 1) numberOfLives++;
-// 				}
-// 				if (board[i][j] == 1) {
-// 					if (numberOfLives < 2)
-// 						board[i][j] = 0;
-// 					else if (numberOfLives == 2 || numberOfLives == 3)
-// 						board[i][j] = 1;
-// 					else
-// 						board[i][j] = 0;
-// 				}
-// 				else {
-// 					if (numberOfLives == 3)
-// 						board[i][j] = 1;
-// 				}
-// 			}
-// 		}
-// 	}
-// };
-int main(void) {
-	Solution solution;
-	vector<vector<int>> board;
-	solution.gameOfLife(board);
-	board = {{1,1},{1,0}};
-	solution.gameOfLife(board);
-	for (const auto &i : board) {
-		for (const auto &j : i)
-			cout << j << '\t';
-		cout << '\n';
-	}
-	cout << "\nPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
