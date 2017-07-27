@@ -307,6 +307,7 @@ int main(void) {
 | 308 | [Range Sum Query 2D - Mutable](https://leetcode.com/problems/range-sum-query-2d-mutable/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/range-sum-query-2d-mutable.cpp) | Hard |
 | 309 | [Best Time to Buy and Sell Stock with Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/best-time-to-buy-and-sell-stock-with-cooldown.cpp) | Medium |
 | 310 | [Minimum Height Trees](https://leetcode.com/problems/minimum-height-trees/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-height-trees.cpp) | Medium |
+| 311 | [Sparse Matrix Multiplication](https://leetcode.com/problems/sparse-matrix-multiplication/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sparse-matrix-multiplication.cpp) | Medium |
 | 312 | [Burst Balloons](https://leetcode.com/problems/burst-balloons/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/burst-balloons.cpp) | Hard |
 | 313 | [Super Ugly Number](https://leetcode.com/problems/super-ugly-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/super-ugly-number.cpp) | Medium |
 | 314 | [Binary Tree Vertical Order Traversal](https://leetcode.com/problems/binary-tree-vertical-order-traversal/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/binary-tree-vertical-order-traversal.cpp) | Medium |
