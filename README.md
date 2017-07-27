@@ -286,6 +286,7 @@ int main(void) {
 | 285 | [Inorder Successor in BST](https://leetcode.com/problems/inorder-successor-in-bst/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/inorder-successor-in-bst.cpp) | Medium |
 | 286 | [Walls and Gates](https://leetcode.com/problems/walls-and-gates/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/walls-and-gates.cpp) | Medium |
 | 287 | [Find the Duplicate Number](https://leetcode.com/problems/find-the-duplicate-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-the-duplicate-number.cpp) | Hard |
+| 288 | [Unique Word Abbreviation](https://leetcode.com/problems/unique-word-abbreviation/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/unique-word-abbreviation.cpp) | Medium |
 | 289 | [Game of Life](https://leetcode.com/problems/game-of-life/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/game-of-life.cpp) | Medium |
 | 290 | [Word Pattern](https://leetcode.com/problems/word-pattern/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/word-pattern.cpp) | Easy |
 | 291 | [Word Pattern II](https://leetcode.com/problems/word-pattern-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/word-pattern-ii.cpp) | Hard |
