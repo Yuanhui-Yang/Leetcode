@@ -1,51 +1,49 @@
 // 377. Combination Sum IV
 // https://leetcode.com/problems/combination-sum-iv/
-// https://discuss.leetcode.com/topic/52186/my-3ms-java-dp-solution
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <iterator>
-using namespace std;
+
+/*
+Given an integer array with all positive numbers and no duplicates, find the number of possible combinations that add up to a positive integer target.
+
+Example:
+
+nums = [1, 2, 3]
+target = 4
+
+The possible combination ways are:
+(1, 1, 1, 1)
+(1, 1, 2)
+(1, 2, 1)
+(1, 3)
+(2, 1, 1)
+(2, 2)
+(3, 1)
+
+Note that different sequences are counted as different combinations.
+
+Therefore the output is 7.
+Follow up:
+What if negative numbers are allowed in the given array?
+How does it change the problem?
+What limitation we need to add to the question to allow negative numbers?
+*/
+
 class Solution {
 public:
 	int combinationSum4(vector<int>& nums, int target) {
+		if (nums.empty()) {
+			return 0;
+		}
 		sort(begin(nums), end(nums));
-		vector<int> OPT(target + 1, 0);
-		OPT[0] = 1;
-		for (int i = 1; i < target + 1; ++i) {
-			for (const auto &j : nums) {
-				if (j > i) break;
-				OPT[i] += OPT[i - j];
+		int M = max(target, nums.back());
+		vector<int> A(M + 1, 0);
+		A[0] = 1;
+		for (int i = 1; i <= M; ++i) {
+			vector<int>::iterator it = upper_bound(begin(nums), end(nums), i);
+			int N = distance(begin(nums), it);
+			for (int j = 0; j < N; ++j) {
+				A[i] += A[i - nums[j]];
 			}
 		}
-		return OPT.back();
+		return A[target];
 	}
 };
-// class Solution {
-// public:
-// 	int combinationSum4(vector<int>& nums, int target) {
-// 		sort(begin(nums), end(nums));
-// 		while (!nums.empty() && nums.back() > target) nums.pop_back();
-// 		if (nums.empty()) return 0;
-// 		const int n = nums.size();
-// 		vector<vector<int>> OPT(target + 1, vector<int>(n, 0));
-// 		for (int i = 0; i < n; ++i) OPT[nums[i]][i] = 1;
-// 		for (int i = 1; i < target + 1; ++i)
-// 			for (int j = 0; j < n; ++j)
-// 				OPT[i][j] = i > nums[j] ? accumulate(begin(OPT[i - nums[j]]), end(OPT[i - nums[j]]), 0) : OPT[i][j];
-// 		return accumulate(begin(OPT.back()), end(OPT.back()), 0);
-// 	}
-// };
-int main(void) {
-	Solution solution;
-	vector<int> nums = {1, 2, 3};
-	cout << solution.combinationSum4(nums, 4) << "\tPassed\n";
-	nums = {9};
-	cout << solution.combinationSum4(nums, 3) << "\tPassed\n";
-	nums = {};
-	cout << solution.combinationSum4(nums, 3) << "\tPassed\n";
-	nums = {3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25};
-	cout << solution.combinationSum4(nums, 10) << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
