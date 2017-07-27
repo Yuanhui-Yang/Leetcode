@@ -32,8 +32,7 @@ public:
 		if (!root) {
 			return result;
 		}
-		for (list<TreeNode*> curr({root}), next; !curr.empty(); curr = next) {
-			next.clear();
+		for (list<TreeNode*> curr({root}), next; !curr.empty(); curr = next, next.clear()) {
 			int maxVal = curr.front()->val;
 			for (const auto & i : curr) {
 				if (maxVal < i->val) {
