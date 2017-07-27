@@ -1,77 +1,71 @@
 // 451. Sort Characters By Frequency
 // https://leetcode.com/problems/sort-characters-by-frequency/
-#include <iostream>
-#include <cassert>
-#include <string>
-#include <algorithm>
-#include <iterator>
-#include <queue>
-#include <set>
-#include <unordered_set>
-#include <functional>
-using namespace std;
+
+/*
+Given a string, sort it in decreasing order based on the frequency of characters.
+
+Example 1:
+
+Input:
+"tree"
+
+Output:
+"eert"
+
+Explanation:
+'e' appears twice while 'r' and 't' both appear once.
+So 'e' must appear before both 'r' and 't'. Therefore "eetr" is also a valid answer.
+Example 2:
+
+Input:
+"cccaaa"
+
+Output:
+"cccaaa"
+
+Explanation:
+Both 'c' and 'a' appear three times, so "aaaccc" is also a valid answer.
+Note that "cacaca" is incorrect, as the same characters must be together.
+Example 3:
+
+Input:
+"Aabb"
+
+Output:
+"bbAa"
+
+Explanation:
+"bbaA" is also a valid answer, but "Aabb" is incorrect.
+Note that 'A' and 'a' are treated as two different characters.
+*/
+
 class Solution {
 public:
 	string frequencySort(string s) {
-		sort(begin(s), end(s));
-		const int s_size = s.size();
-		priority_queue<pair<int, char>> max_heap;
-		for (int i = 0; i < s_size; i++) {
-			if ((i + 1) < s_size && s[i] == s[i + 1]) {
-				int j = i;
-				while ((i + 1) < s_size && s[i] == s[i + 1]) i++;
-				max_heap.push(make_pair(i - j, s[j]));
-				i--;
+		array<int, 256> A;
+		A.fill(0);
+		int maxVal = 0;
+		for (const auto & i : s) {
+			++A[i];
+			maxVal = max(maxVal, A[i]);
+		}
+		vector<vector<char>> B(maxVal + 1);
+		for (int i = 0; i < 256; ++i) {
+			if (A[i] == 0) {
 				continue;
 			}
-			if (i < s_size) {
-				max_heap.push(make_pair(1, s[i]));
-				continue;
-			}
+			B[A[i]].push_back(i);
 		}
 		string result;
-		while (!max_heap.empty()) {
-			pair<int, char> max_heap_top = max_heap.top();
-			max_heap.pop();
-			result += string(max_heap_top.first, max_heap_top.second);
+		for (int i = maxVal; i >= 0; --i) {
+			if (B[i].empty()) {
+				continue;
+			}
+			for (const auto & j : B[i]) {
+				string s(i, j);
+				result.append(s);
+			}
 		}
 		return result;
 	}
 };
-// class Solution {
-// public:
-// 	string frequencySort(string s) {
-// 		sort(begin(s), end(s));
-// 		const int s_size = s.size();
-// 		set<pair<int, char>, greater<pair<int, char>>> BST;
-// 		for (int i = 0; i < s_size; i++) {
-// 			if (i + 1 < s_size && s[i] == s[i + 1]) {
-// 				int j = i;
-// 				while (i + 1 < s_size && s[i] == s[i + 1]) i++;
-// 				BST.insert(make_pair(i - j + 1, s[j]));
-// 				continue;
-// 			}
-// 			if (i < s_size) {
-// 				BST.insert(make_pair(1, s[i]));
-// 				continue;
-// 			}
-// 		}
-// 		string result;
-// 		for (const auto &i : BST) {
-// 			result += string(i.first, i.second);
-// 		}
-// 		return result;
-// 	}
-// };
-int main(void) {
-	Solution solution;
-	string result;
-	result = solution.frequencySort("tree");
-	assert(unordered_set<string>({"eert", "eetr"}).count(result));
-	result = solution.frequencySort("cccaaa");
-	assert(unordered_set<string>({"cccaaa", "aaaccc"}).count(result));
-	result = solution.frequencySort("Aabb");
-	assert(unordered_set<string>({"bbAa", "bbaA"}).count(result));
-	cout << "\nPassed All\n";
-	return 0;
-}
