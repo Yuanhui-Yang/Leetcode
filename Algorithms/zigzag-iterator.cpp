@@ -1,70 +1,58 @@
 // 281. Zigzag Iterator
 // https://leetcode.com/problems/zigzag-iterator/
-// https://discuss.leetcode.com/topic/24231/short-java-o-1-space
-// https://discuss.leetcode.com/topic/24548/c-with-queue-compatible-with-k-vectors
-#include <iostream>
-#include <vector>
-#include <iterator>
-#include <utility>
-using namespace std;
+
+/*
+Given two 1d vectors, implement an iterator to return their elements alternately.
+
+For example, given two 1d vectors:
+
+v1 = [1, 2]
+v2 = [3, 4, 5, 6]
+By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1, 3, 2, 4, 5, 6].
+
+Follow up: What if you are given k 1d vectors? How well can your code be extended to such cases?
+
+Clarification for the follow up question - Update (2015-09-18):
+The "Zigzag" order is not clearly defined and is ambiguous for k > 2 cases. If "Zigzag" does not look right to you, replace "Zigzag" with "Cyclic". For example, given the following input:
+
+[1,2,3]
+[4,5,6,7]
+[8,9]
+It should return [1,4,8,2,5,9,3,6,7].
+*/
+
 class ZigzagIterator {
 public:
-	ZigzagIterator(vector<int>& v1, vector<int>& v2): i(begin(v1)), j(begin(v2)), m(end(v1)), n(end(v2)) {}
+	ZigzagIterator(vector<int>& v1, vector<int>& v2) {
+		i = 0;
+		A[0] = begin(v1);
+		A[1] = begin(v2);
+		A[2] = end(v1);
+		A[3] = end(v2);
+	}
 
 	int next() {
-		if (i == m) return *j++;
-		if (j == n) return *i++;
-		int result = *i++;
-		swap(i, j);
-		swap(m, n);
+		if (A[i] == A[i + 2]) {
+			i = 1 - i;
+		}
+		int result = *A[i];
+		++A[i];
+		if (A[1 - i] != A[3 - i]) {
+			i = 1 - i;
+		}
 		return result;
 	}
 
 	bool hasNext() {
-		return i != m || j != n;
+		return !(A[0] >= A[2] and A[1] >= A[3]);
 	}
 private:
-	vector<int>::iterator i;
-	vector<int>::iterator j;
-	vector<int>::iterator m;
-	vector<int>::iterator n;
+	int i;
+	array<vector<int>::iterator, 4> A;
 };
-// class ZigzagIterator {
-// public:
-// 	ZigzagIterator(vector<int>& v1, vector<int>& v2): pointer(0) {
-// 		size_t i;
-// 		for (i = 0; (i >> 1) < v1.size() && (i >> 1) < v2.size(); ++i) {
-// 			if (i % 2 == 0) this->v.push_back(v1[i >> 1]);
-// 			else this->v.push_back(v2[i >> 1]);
-// 		}
-// 		if ((i >> 1) == v1.size()) this->v.insert(end(this->v), begin(v2) + v1.size(), end(v2));
-// 		else this->v.insert(end(this->v), begin(v1) + v2.size(), end(v1));
-// 	}
-
-// 	int next() {
-// 		return v[this->pointer++];
-// 	}
-
-// 	bool hasNext() {
-// 		return this->pointer < this->v.size();
-// 	}
-// private:
-// 	size_t pointer;
-// 	vector<int> v;
-// };
 
 /**
  * Your ZigzagIterator object will be instantiated and called as such:
  * ZigzagIterator i(v1, v2);
  * while (i.hasNext()) cout << i.next();
  */
-
-int main(void) {
-	vector<int> v1 = {1, 2};
-	vector<int> v2 = {3, 4, 5, 6};
-	ZigzagIterator i(v1, v2);
-	while (i.hasNext()) cout << i.next();
-	cout << "\tPassed\n";
-	cout << "\nPassed All\n";	
-	return 0;
-}
