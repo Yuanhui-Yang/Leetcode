@@ -546,6 +546,7 @@ int main(void) {
 | 575 | [Distribute Candies](https://leetcode.com/problems/distribute-candies/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/distribute-candies.cpp) | Easy |
 | 576 | [Out of Boundary Paths](https://leetcode.com/problems/out-of-boundary-paths/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/out-of-boundary-paths.cpp) | Hard |
 | 581 | [Shortest Unsorted Continuous Subarray](https://leetcode.com/problems/shortest-unsorted-continuous-subarray/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/shortest-unsorted-continuous-subarray.cpp) | Easy |
+| 582 | [Kill Process](https://leetcode.com/problems/kill-process/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/kill-process.cpp) | Medium |
 | 583 | [Delete Operation for Two Strings](https://leetcode.com/problems/delete-operation-for-two-strings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/delete-operation-for-two-strings.cpp) | Medium |
 | 587 | [Erect the Fence](https://leetcode.com/problems/erect-the-fence/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/erect-the-fence.cpp) | Hard |
 | 588 | [Design In-Memory File System](https://leetcode.com/problems/design-in-memory-file-system/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/design-in-memory-file-system.cpp) | Hard |
