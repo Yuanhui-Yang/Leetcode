@@ -20,27 +20,9 @@ Both strings' lengths will not exceed 100.
 Only letters from a ~ z will appear in input strings.
 */
 
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
 public:
 	int findLUSlength(string a, string b) {
 		return a == b ? -1 : max(a.size(), b.size());
 	}
 };
-
-int main(void) {
-	Solution solution;
-	string a, b;
-	int answer, result;
-
-	a = "aba";
-	b = "cdc";
-	answer = 3;
-	result = solution.findLUSlength(a, b);
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
-	return 0;
-}
