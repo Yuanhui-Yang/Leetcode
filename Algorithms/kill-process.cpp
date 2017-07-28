@@ -52,3 +52,28 @@ public:
 		return result;
 	}
 };
+
+class Solution {
+public:
+	vector<int> killProcess(vector<int>& pid, vector<int>& ppid, int kill) {
+		vector<int> result;
+		unordered_map<int, unordered_set<int>> A;
+		int sz = ppid.size();
+		for (int i = 0; i < sz; ++i) {
+			A[ppid[i]].insert(pid[i]);
+		}
+		stack<int> s;
+		s.push(kill);
+		while (!s.empty()) {
+			int i = s.top();
+			s.pop();
+			result.push_back(i);
+			if (A.count(i)) {
+				for (const auto & j : A[i]) {
+					s.push(j);
+				}
+			}
+		}
+		return result;
+	}
+};
