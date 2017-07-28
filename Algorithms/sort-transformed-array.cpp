@@ -49,11 +49,6 @@ public:
 				++i;
 			}
 			int j = i + 1;
-			if (j < sz and nums[j] == d) {
-				int y = f(nums[j], a, b, c);
-				result.push_back(y);
-				++j;
-			}
 			while (i >= 0 or j < sz) {
 				if (i < 0) {
 					int y = f(nums[j], a, b, c);
