@@ -1,46 +1,24 @@
 // 319. Bulb Switcher
 // https://leetcode.com/problems/bulb-switcher/
-// https://discuss.leetcode.com/topic/31929/math-solution
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <iterator>
-#include <cmath>
-using namespace std;
+
+/*
+There are n bulbs that are initially off. You first turn on all the bulbs. Then, you turn off every second bulb. On the third round, you toggle every third bulb (turning on if it's off or turning off if it's on). For the ith round, you toggle every i bulb. For the nth round, you only toggle the last bulb. Find how many bulbs are on after n rounds.
+
+Example:
+
+Given n = 3. 
+
+At first, the three bulbs are [off, off, off].
+After first round, the three bulbs are [on, on, on].
+After second round, the three bulbs are [on, off, on].
+After third round, the three bulbs are [on, off, off]. 
+
+So you should return 1, because there is only one bulb is on.
+*/
+
 class Solution {
 public:
 	int bulbSwitch(int n) {
 		return sqrt(n);
 	}
 };
-// BEGIN: Time Limit Exceeded
-// class Solution {
-// public:
-// 	int bulbSwitch(int n) {
-// 		vector<int> OPT(n, 0);
-// 			for (const auto & j : OPT)
-// 				cout << j << '\t';
-// 			cout << '\n';
-// 		for (int i = 1; i <= n; ++i) {
-// 			for (int j = i; j <= n; j += i)
-// 				OPT[j - 1] = 1 - OPT[j - 1];
-// 			for (const auto & j : OPT)
-// 				cout << j << '\t';
-// 			cout << '\n';
-// 		}
-// 		return accumulate(begin(OPT), end(OPT), 0);
-// 	}
-// };
-// END: Time Limit Exceeded
-int main(void) {
-	Solution solution;
-	for (int i = 0; i <= 9999999; ++i)
-		cout << solution.bulbSwitch(i) << "\tPassed\n";
-	// cout << solution.bulbSwitch(0) << "\tPassed\n";
-	// cout << solution.bulbSwitch(3) << "\tPassed\n";
-	// cout << solution.bulbSwitch(8) << "\tPassed\n";
-	// cout << solution.bulbSwitch(9) << "\tPassed\n";
-	// cout << solution.bulbSwitch(9999999) << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
