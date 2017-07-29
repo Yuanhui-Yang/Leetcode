@@ -22,40 +22,25 @@ Height and width are positive integers. 3 <= height * width <= 10,000.
 The given positions contain at least one nut, only one tree and one squirrel.
 */
 
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
 public:
 	int minDistance(int height, int width, vector<int>& tree, vector<int>& squirrel, vector<vector<int>>& nuts) {
-		int sum = 0;
-		for (const auto &nut : nuts) {
-			sum += abs(nut[0] - tree[0]) + abs(nut[1] - tree[1]);
+		if (tree.empty() or squirrel.empty() or nuts.empty() or nuts[0].empty()) {
+			return 0;
 		}
-		sum <<= 1;
-		int d = INT_MAX;
-		for (const auto &nut : nuts) {
-			d = min(d, abs(nut[0] - squirrel[0]) + abs(nut[1] - squirrel[1]) - abs(nut[0] - tree[0]) - abs(nut[1] - tree[1]));
+		int sz = nuts.size(), x = f(tree, nuts[0]), y = f(squirrel, nuts[0]) - x;
+		for (int i = 1; i < sz; ++i) {
+			int a = f(tree, nuts[i]);
+			int b = f(squirrel, nuts[i]) - a;
+			x += a;
+			if (b < y) {
+				y = b;
+			}
 		}
-		return sum + d;
+		return 2 * x + y;
+	}
+private:
+	int f(vector<int> & a, vector<int> & b) {
+		return abs(a[0] - b[0]) + abs(a[1] - b[1]);
 	}
 };
-
-int main(void) {
-	Solution solution;
-	int height, width, answer, result;
-	vector<int> tree, squirrel;
-	vector<vector<int>> nuts;
-
-	height = 5;
-	width = 7;
-	tree = {2, 2};
-	squirrel = {4, 4};
-	nuts = {{3, 0}, {2, 5}};
-	answer = 12;
-	result = solution.minDistance(height, width, tree, squirrel, nuts);
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
-	return 0;
-}
