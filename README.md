@@ -563,6 +563,7 @@ int main(void) {
 | 611 | [Valid Triangle Number](https://leetcode.com/problems/valid-triangle-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/valid-triangle-number.cpp) | Medium |
 | 616 | [Add Bold Tag in String](https://leetcode.com/problems/add-bold-tag-in-string/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/add-bold-tag-in-string.cpp) | Medium |
 | 617 | [Merge Two Binary Trees](https://leetcode.com/problems/merge-two-binary-trees/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/merge-two-binary-trees.cpp) | Easy |
+| 623 | [Add One Row to Tree](https://leetcode.com/problems/add-one-row-to-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/add-one-row-to-tree.cpp) | Medium |
 | 624 | [Maximum Distance in Arrays](https://leetcode.com/problems/maximum-distance-in-arrays/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-distance-in-arrays.cpp) | Easy |
 | 628 | [Maximum Product of Three Numbers](https://leetcode.com/problems/maximum-product-of-three-numbers/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-product-of-three-numbers.cpp) | Easy |
 | 633 | [Sum of Square Numbers](https://leetcode.com/problems/sum-of-square-numbers/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sum-of-square-numbers.cpp) | Easy |
