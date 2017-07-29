@@ -37,6 +37,7 @@ public:
 		A.fill(0);
 		A['+'] = 1;
 		A['-'] = 1;
+		A['*'] = 2;
 		A['/'] = 2;
 		if (expression[0] == '-') {
 			a.push({0, 1});
