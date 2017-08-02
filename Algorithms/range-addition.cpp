@@ -1,32 +1,52 @@
 // 370. Range Addition
 // https://leetcode.com/problems/range-addition/
-// https://discuss.leetcode.com/topic/49666/my-simple-c-solution
-#include <iostream>
-#include <vector>
-using namespace std;
+
+/*
+Assume you have an array of length n initialized with all 0's and are given k update operations.
+
+Each operation is represented as a triplet: [startIndex, endIndex, inc] which increments each element of subarray A[startIndex ... endIndex] (startIndex and endIndex inclusive) with inc.
+
+Return the modified array after all k operations were executed.
+
+Example:
+
+Given:
+
+	length = 5,
+	updates = [
+		[1,  3,  2],
+		[2,  4,  3],
+		[0,  2, -2]
+	]
+
+Output:
+
+	[-2, 0, 3, 5, 3]
+Explanation:
+
+Initial state:
+[ 0, 0, 0, 0, 0 ]
+
+After applying operation [1, 3, 2]:
+[ 0, 2, 2, 2, 0 ]
+
+After applying operation [2, 4, 3]:
+[ 0, 2, 5, 5, 3 ]
+
+After applying operation [0, 2, -2]:
+[-2, 0, 3, 5, 3 ]
+*/
+
 class Solution {
 public:
 	vector<int> getModifiedArray(int length, vector<vector<int>>& updates) {
-		vector<int> result(length, 0);
-		vector<int> nums(length + 1, 0);
-		for (const auto &v : updates) {
-			nums[v[0]] += v[2];
-			nums[v[1] + 1] -= v[2];
+		vector<int> result(length + 1, 0);
+		for (const auto & i : updates) {
+			result[i[0]] += i[2];
+			result[i[1] + 1] += -i[2];
 		}
-		int sum = 0;
-		for (int i = 0; i < length; ++i) {
-			sum += nums[i];
-			result[i] = sum;
-		}
+		partial_sum(begin(result), end(result), begin(result));
+		result.pop_back();
 		return result;
 	}
 };
-int main(void) {
-	Solution solution;
-	int length = 5;
-	vector<vector<int>> updates = {{1,  3,  2}, {2,  4,  3}, {0,  2, -2}};
-	for (const auto &i : solution.getModifiedArray(length, updates)) cout << i << '\t';
-	cout << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
