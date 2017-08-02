@@ -324,6 +324,7 @@ int main(void) {
 | 324 | [Wiggle Sort II](https://leetcode.com/problems/wiggle-sort-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/wiggle-sort-ii.cpp) | Medium |
 | 325 | [Maximum Size Subarray Sum Equals k](https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-size-subarray-sum-equals-k.cpp) | Medium |
 | 327 | [Count of Range Sum](https://leetcode.com/problems/count-of-range-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/count-of-range-sum.cpp) | Hard |
+| 328 | [Odd Even Linked List](https://leetcode.com/problems/odd-even-linked-list/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/odd-even-linked-list.cpp) | Medium |
 | 329 | [Longest Increasing Path in a Matrix](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-increasing-path-in-a-matrix.cpp) | Hard |
 | 330 | [Patching Array](https://leetcode.com/problems/patching-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/patching-array.cpp) | Hard |
 | 331 | [Verify Preorder Serialization of a Binary Tree](https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/verify-preorder-serialization-of-a-binary-tree.cpp) | Medium |
