@@ -13,43 +13,58 @@ The length of given words won't exceed 500.
 Characters in given words can only be lower-case letters.
 */
 
-#include <bits/stdc++.h>
-using namespace std;
+class Solution {
+public:
+	int minDistance(string word1, string word2) {
+		int M = word1.size(), N = word2.size();
+		if (M < N) {
+			return minDistance(word2, word1);
+		}
+		array<vector<int>, 2> A;
+		A[0].resize(N + 1, 0);
+		A[1].resize(N + 1, 0);
+		for (int i = 0; i <= M; ++i) {
+			int x = i % 2, y = 1 - x;
+			for (int j = 0; j <= N; ++j) {
+				if (i == 0) {
+					A[x][j] = j;
+				}
+				else if (j == 0) {
+					A[x][j] = i;
+				}
+				else if (word1[i - 1] == word2[j - 1]) {
+					A[x][j] = A[y][j - 1];
+				}
+				else {
+					A[x][j] = min(A[x][j - 1], A[y][j]) + 1;
+				}
+			}
+		}
+		return A[M % 2][N];
+	}
+};
 
 class Solution {
 public:
 	int minDistance(string word1, string word2) {
-		int m = word1.size(), n = word2.size();
-		vector<vector<int>> OPT(2, vector<int>(n + 1, 0));
-		for (int i = 0; i < m + 1; i++) {
-			for (int j = 0; j < n + 1; j++) {
-				int k = i % 2;
-				if (i == 0 or j == 0) {
-					OPT[k][j] = 0;
-				}
-				else if (word1[i - 1] == word2[j - 1]) {
-					OPT[k][j] = OPT[1 - k][j - 1] + 1;
+		int M = word1.size(), N = word2.size();
+		vector<vector<int>> A(M + 1, vector<int>(N + 1, 0));
+		for (int i = 0; i <= M; ++i) {
+			A[i][0] = i;
+		}
+		for (int j = 0; j <= N; ++j) {
+			A[0][j] = j;
+		}
+		for (int i = 1; i <= M; ++i) {
+			for (int j = 1; j <= N; ++j) {
+				if (word1[i - 1] == word2[j - 1]) {
+					A[i][j] = A[i - 1][j - 1];
 				}
 				else {
-					OPT[k][j] = max(OPT[1 - k][j], OPT[k][j - 1]);
+					A[i][j] = min(A[i - 1][j], A[i][j - 1]) + 1;
 				}
 			}
 		}
-		return m + n - 2 * OPT[m % 2][n];
+		return A[M][N];
 	}
 };
-
-int main(void) {
-	Solution solution;
-	string word1, word2;
-	int result, answer;
-
-	word1 = "sea";
-	word2 = "eat";
-	answer = 2;
-	result = solution.minDistance(word1, word2);
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
-	return 0;
-}
