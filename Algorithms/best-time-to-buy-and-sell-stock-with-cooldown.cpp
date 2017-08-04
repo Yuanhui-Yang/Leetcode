@@ -1,49 +1,36 @@
 // 309. Best Time to Buy and Sell Stock with Cooldown
 // https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
-#include <iostream>
-#include <vector>
-#include <algorithm>
-using namespace std;
-// BEGIN:
-// https://discuss.leetcode.com/topic/30680/share-my-dp-solution-by-state-machine-thinking
-// https://discuss.leetcode.com/topic/30421/share-my-thinking-process
+
+/*
+Say you have an array for which the ith element is the price of a given stock on day i.
+
+Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times) with the following restrictions:
+
+You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).
+After you sell your stock, you cannot buy stock on next day. (ie, cooldown 1 day)
+Example:
+
+prices = [1, 2, 3, 0, 2]
+maxProfit = 3
+transactions = [buy, sell, cooldown, buy, sell]
+*/
+
 class Solution {
 public:
 	int maxProfit(vector<int>& prices) {
-		if (prices.empty()) return 0;
-		const size_t n = prices.size();
-		int buy = -prices[0], sell = 0, stop = 0;
-		for (size_t i = 1; i < n; i++) {
-			int previousBuy = buy, previousSell = sell, previousStop = stop;
-			buy = max(previousBuy, previousStop - prices[i]);
-			sell = max(previousSell, previousBuy + prices[i]);
-			stop = max(previousStop, previousSell);
+		int sz = prices.size();
+		if (sz <= 1) {
+			return 0;
 		}
-		return sell;
+		vector<int> buy(sz, 0), sell(sz, 0);
+		buy[0] = -prices[0];
+		sell[0] = 0;
+		buy[1] = max(-prices[0], -prices[1]);
+		sell[1] = max(0, prices[1] - prices[0]);
+		for (int i = 2; i < sz; ++i) {
+			buy[i] = max(buy[i - 1], sell[i - 2] - prices[i]);
+			sell[i] = max(sell[i - 1], buy[i - 1] + prices[i]);
+		}
+		return sell[sz - 1];
 	}
 };
-// class Solution {
-// public:
-// 	int maxProfit(vector<int>& prices) {
-// 		if (prices.empty()) return 0;
-// 		const size_t n = prices.size();
-// 		vector<int> buy(n, 0), sell(n, 0), stop(n, 0);
-// 		buy[0] = -prices[0];
-// 		for (size_t i = 1; i < n; i++) {
-// 			buy[i] = max(buy[i - 1], stop[i - 1] - prices[i]);
-// 			sell[i] = max(sell[i - 1], buy[i - 1] + prices[i]);
-// 			stop[i] = max(stop[i - 1], sell[i - 1]);
-// 		}
-// 		return sell.back();
-// 	}
-// };
-// END:
-// https://discuss.leetcode.com/topic/30680/share-my-dp-solution-by-state-machine-thinking
-// https://discuss.leetcode.com/topic/30421/share-my-thinking-process
-int main(void) {
-	Solution solution;
-	vector<int> prices = {1, 2, 3, 0, 2};
-	cout << solution.maxProfit(prices) << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
