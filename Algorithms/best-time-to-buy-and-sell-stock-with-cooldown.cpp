@@ -22,6 +22,29 @@ public:
 		if (sz <= 1) {
 			return 0;
 		}
+		array<int, 2> buy;
+		array<int, 3> sell;
+		buy[0] = -prices[0];
+		sell[0] = 0;
+		buy[1] = max(-prices[0], -prices[1]);
+		sell[1] = max(0, prices[1] - prices[0]);
+		for (int i = 2; i < sz; ++i) {
+			int a = i % 2, b = (i - 1) % 2;
+			int c = i % 3, d = (i - 1) % 3, e = (i - 2) % 3;
+			buy[a] = max(buy[b], sell[e] - prices[i]);
+			sell[c] = max(sell[d], buy[b] + prices[i]);
+		}
+		return sell[(sz - 1) % 3];
+	}
+};
+
+class Solution {
+public:
+	int maxProfit(vector<int>& prices) {
+		int sz = prices.size();
+		if (sz <= 1) {
+			return 0;
+		}
 		vector<int> buy(sz, 0), sell(sz, 0);
 		buy[0] = -prices[0];
 		sell[0] = 0;
