@@ -62,3 +62,26 @@ public:
 		return false;
 	}
 };
+
+class Solution {
+public:
+	bool find132pattern(vector<int> & nums) {
+		int sz = nums.size();
+		if (sz < 3) {
+			return false;
+		}
+		multiset<int> right(next(begin(nums), 2), end(nums));
+		int left = nums[0];
+		for (int i = 1; i + 1 < sz; ++i) {
+			if (left < nums[i]) {
+				multiset<int>::iterator it = right.upper_bound(left);
+				if (it != end(right) and *it < nums[i]) {
+					return true;
+				}
+			}
+			left = min(left, nums[i]);
+			right.erase(right.find(nums[i + 1]));
+		}
+		return false;
+	}
+};
