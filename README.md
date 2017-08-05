@@ -570,6 +570,7 @@ int main(void) {
 | 633 | [Sum of Square Numbers](https://leetcode.com/problems/sum-of-square-numbers/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sum-of-square-numbers.cpp) | Easy |
 | 634 | [Find the Derangement of An Array](https://leetcode.com/problems/find-the-derangement-of-an-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-the-derangement-of-an-array.cpp) | Medium |
 | 635 | [Design Log Storage System](https://leetcode.com/problems/design-log-storage-system/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/design-log-storage-system.cpp) | Medium |
+| 640 | [Solve the Equation](https://leetcode.com/problems/solve-the-equation/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/solve-the-equation.cpp) | Medium |
 | 643 | [Maximum Average Subarray I](https://leetcode.com/problems/maximum-average-subarray-i/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-average-subarray-i.cpp) | Easy |
 | 645 | [Set Mismatch](https://leetcode.com/problems/set-mismatch/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/set-mismatch.cpp) | Easy |
 | 646 | [Maximum Length of Pair Chain](https://leetcode.com/problems/maximum-length-of-pair-chain/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-length-of-pair-chain.cpp) | Medium |
