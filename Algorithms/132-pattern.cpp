@@ -85,3 +85,25 @@ public:
 		return false;
 	}
 };
+
+class Solution {
+public:
+	bool find132pattern(vector<int>& nums) {
+		int sz = nums.size();
+		if (sz < 3) {
+			return false;
+		}
+		int left = nums[0];
+		for (int i = 1; i + 1 < sz; ++i) {
+			if (left < nums[i]) {
+				for (int j = i + 1; j < sz; ++j) {
+					if (left < nums[j] and nums[j] < nums[i]) {
+						return true;
+					}
+				}
+			}
+			left = min(left, nums[i]);
+		}
+		return false;
+	}
+};
