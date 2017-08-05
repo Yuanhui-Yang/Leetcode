@@ -47,20 +47,20 @@ Given the list [1,[4,[6]]], return 17. (one 1 at depth 3, one 4 at depth 2, and 
 class Solution {
 public:
 	int depthSumInverse(vector<NestedInteger>& nestedList) {
-		int a = 0, b = 0;
+		int curr = 0, prev = 0;
 		while (!nestedList.empty()) {
 			vector<NestedInteger> next;
 			for (const auto & i : nestedList) {
 				if (i.isInteger()) {
-					b += i.getInteger();
+					prev += i.getInteger();
 				}
 				else {
 					next.insert(end(next), begin(i.getList()), end(i.getList()));
 				}
 			}
-			a += b;
+			curr += prev;
 			nestedList = next;
 		}
-		return a;
+		return curr;
 	}
 };
