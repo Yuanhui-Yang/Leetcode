@@ -19,8 +19,8 @@ public:
 	}
 private:
 	void f(vector<string> & result, string & s, string & word, int i, int k) {
-		int sz = s.size();
-		if (i == word.size()) {
+		int M = s.size(), N = word.size();
+		if (i == N) {
 			if (k) {
 				s.append(to_string(k));	
 			}
@@ -34,6 +34,6 @@ private:
 			s.push_back(word[i]);
 			f(result, s, word, i + 1, 0);
 		}
-		s = s.substr(0, sz);
+		s = s.substr(0, M);
 	}
 };
