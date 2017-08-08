@@ -66,17 +66,16 @@ public:
 		}
 		sort(begin(A), end(A));
 		int result = 0;
-		while (A.back() > 0) {
-			int i = 0;
-			while (i <= n and A.back() > 0) {
+		while (A.back() > 1) {
+			result += n + 1;
+			for (int i = 0; i <= n; ++i) {
 				if (i < 26 and A[25 - i] > 0) {
 					--A[25 - i];
 				}
-				++i;
-				++result;
 			}
 			sort(begin(A), end(A));
 		}
+		result += accumulate(begin(A), end(A), 0);
 		return result;
 	}
 };
