@@ -578,6 +578,7 @@ int main(void) {
 | 648 | [Replace Words](https://leetcode.com/problems/replace-words/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/replace-words.cpp) | Hard |
 | 655 | [Print Binary Tree](https://leetcode.com/problems/print-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/print-binary-tree.cpp) | Medium |
 | 657 | [Judge Route Circle](https://leetcode.com/problems/judge-route-circle/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/judge-route-circle.cpp) | Easy |
+| 658 | [Find K Closest Elements](https://leetcode.com/problems/find-k-closest-elements/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-k-closest-elements.cpp) | Medium |
 
 ## Database
 | # | Title | Solution | Difficulty |
