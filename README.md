@@ -579,6 +579,7 @@ int main(void) {
 | 655 | [Print Binary Tree](https://leetcode.com/problems/print-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/print-binary-tree.cpp) | Medium |
 | 657 | [Judge Route Circle](https://leetcode.com/problems/judge-route-circle/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/judge-route-circle.cpp) | Easy |
 | 658 | [Find K Closest Elements](https://leetcode.com/problems/find-k-closest-elements/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-k-closest-elements.cpp) | Medium |
+| 659 | [Split Array into Consecutive Subsequences](https://leetcode.com/problems/split-array-into-consecutive-subsequences/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/split-array-into-consecutive-subsequences.cpp) | Medium |
 
 ## Database
 | # | Title | Solution | Difficulty |
