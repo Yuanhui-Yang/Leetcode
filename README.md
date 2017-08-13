@@ -577,6 +577,7 @@ int main(void) {
 | 647 | [Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/palindromic-substrings.cpp) | Medium |
 | 648 | [Replace Words](https://leetcode.com/problems/replace-words/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/replace-words.cpp) | Hard |
 | 655 | [Print Binary Tree](https://leetcode.com/problems/print-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/print-binary-tree.cpp) | Medium |
+| 657 | [Judge Route Circle](https://leetcode.com/problems/judge-route-circle/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/judge-route-circle.cpp) | Easy |
 
 ## Database
 | # | Title | Solution | Difficulty |
