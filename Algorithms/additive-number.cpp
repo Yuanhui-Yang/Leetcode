@@ -1,67 +1,69 @@
 // 306. Additive Number
 // https://leetcode.com/problems/additive-number/
-#include <iostream>
-#include <cassert>
-#include <string>
-using namespace std;
+
+/*
+Additive number is a string whose digits can form additive sequence.
+
+A valid additive sequence should contain at least three numbers. Except for the first two numbers, each subsequent number in the sequence must be the sum of the preceding two.
+
+For example:
+"112358" is an additive number because the digits can form an additive sequence: 1, 1, 2, 3, 5, 8.
+
+1 + 1 = 2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8
+"199100199" is also an additive number, the additive sequence is: 1, 99, 100, 199.
+1 + 99 = 100, 99 + 100 = 199
+Note: Numbers in the additive sequence cannot have leading zeros, so sequence 1, 2, 03 or 1, 02, 3 is invalid.
+
+Given a string containing only digits '0'-'9', write a function to determine if it's an additive number.
+
+Follow up:
+How would you handle overflow for very large input integers?
+*/
+
 class Solution {
 public:
 	bool isAdditiveNumber(string num) {
-		const int n = num.size();
-		if (n < 3) return false;
-		for (int i = 1; i <= n / 2; i++) {
-			if (num[0] == '0' && i > 1) return false;
-			string str1 = num.substr(0, i);
-			long val1 = stol(str1);
-			for (int j = 1; i + j < n; j++) {
-				if (num[i] == '0' && j > 1) break;
-				string str2 = num.substr(i, j);
-				long val2 = stol(str2);
-				long val3 = val1 + val2;
-				string str3 = to_string(val3);
-				int k = str3.size();
-				if (i + j + k > n) break;
-				if (str3 == num.substr(i + j, k)) {
-					if (helper(i, j, k, num)) {
-						return true;
-					}
+		int sz = num.size();
+		for (int i = 1; i <= sz / 2; ++i) {
+			if (num[0] == '0' and i > 1) {
+				return false;
+			}
+			for (int j = 1; i + j < sz; ++j) {
+				if (num[i] == '0' and j > 1) {
+					break;
+				}
+				if (f(num.substr(0, i), num.substr(i, j), i + j, num)) {
+					return true;
 				}
 			}
 		}
 		return false;
 	}
 private:
-	bool helper (int i, int j, int k, string& num) {
-		const int n = num.size();
-		if (n < 3) return false;
-		if (i + j + k > n) return false;
-		if (i + j + k == n) return true;
-		string str1 = num.substr(i, j);
-		long val1 = stol(str1);
-		string str2 = num.substr(i + j, k);
-		long val2 = stol(str2);
-		long val3 = val1 + val2;
-		string str3 = to_string(val3);
-		int l = str3.size();
-		if (i + j + k + l > n) return false;
-		if (str3 == num.substr(i + j + k, l)) {
-			if (helper(i + j, k, l, num)) {
-				return true;
-			}
+	bool f(string a, string b, int id, string num) {
+		int sz = num.size();
+		if (id == sz) {
+			return true;
 		}
-		return false;
+		if (id > sz) {
+			return false;
+		}
+		int m = a.size(), n = b.size(), l = max(m, n) + 1, i = m - 1, j = n - 1, k = l - 1, carry = 0, base = 10;
+		string c(l, '0');
+		while (i >= 0 or j >= 0 or carry > 0) {
+			int x = i >= 0 ? a[i--] - '0' : 0;
+			int y = j >= 0 ? b[j--] - '0' : 0;
+			int z = x + y + carry;
+			carry = z / base;
+			z %= base;
+			c[k--] += z;
+		}
+		while (!c.empty() and c.front() == '0') {
+			c.erase(begin(c));
+		}
+		if (c.empty()) {
+			c = "0";
+		}
+		return id + c.size() <= num.size() and c == num.substr(id, c.size()) and f(b, c, id + c.size(), num);
 	}
 };
-int main(void) {
-	Solution solution;
-	assert(true == solution.isAdditiveNumber("112358"));
-	assert(true == solution.isAdditiveNumber("199100199"));
-	assert(false == solution.isAdditiveNumber("11235813213455890144"));
-	assert(true == solution.isAdditiveNumber("011235"));
-	assert(false == solution.isAdditiveNumber("0235813"));
-	assert(false == solution.isAdditiveNumber("120122436"));
-	assert(false == solution.isAdditiveNumber("2461016264268110179"));
-	assert(true == solution.isAdditiveNumber("121474836472147483648"));
-	cout << "\nPassed All\n";
-	return 0;
-}
