@@ -28,149 +28,33 @@ M[i][i] = 1 for all students.
 If M[i][j] = 1, then M[j][i] = 1.
 */
 
-#include <iostream> // std::cout; std::cin
-#include <fstream> // std::fstream::open; std::fstream::close;
-#include <ctime>
-#include <cstdlib> // rand
-#include <cassert> // assert
-#include <cctype> // isalnum; isalpha; isdigit; islower; isupper; isspace; tolower; toupper
-#include <cmath> // pow; sqrt; round; fabs; abs; log
-#include <climits> // INT_MIN; INT_MAX; LLONG_MIN; LLONG_MAX; ULLONG_MAX
-#include <cfloat> // DBL_EPSILON; LDBL_EPSILON
-#include <cstring> // std::memset
-#include <algorithm> // std::swap; std::max; std::min; std::min_element; std::max_element; std::minmax_element; std::next_permutation; std::prev_permutation; std::nth_element; std::sort; std::lower_bound; std::upper_bound; std::reverse
-#include <limits> // std::numeric_limits<int>::min; std::numeric_limits<int>::max; std::numeric_limits<double>::epsilon; std::numeric_limits<long double>::epsilon;
-#include <numeric> // std::accumulate; std::iota
-#include <string> // std::to_string; std::string::npos; std::stoul; std::stoull; std::stoi; std::stol; std::stoll; std::stof; std::stod; std::stold; 
-#include <list> // std::list::merge; std::list::splice; std::list::merge; std::list::unique; std::list::sort
-#include <bitset>
-#include <vector>
-#include <deque>
-#include <stack> // std::stack::top; std::stack::pop; std::stack::push
-#include <queue> // std::queue::front; std::queue::back; std::queue::pop; std::queue::push; std::priority_queue; std::priority_queue::top; std::priority_queue::push; std::priority_queue::pop
-#include <set> // std::set::count; std::set::find; std::set::equal_range; std::set::lower_bound; std::set::upper_bound
-#include <map> // std::map::count; std::map::find; std::map::equal_range; std::map::lower_bound; std::map::upper_bound
-#include <unordered_set>
-#include <unordered_map>
-#include <utility> // std::pair; std::make_pair
-#include <iterator>
-#include <functional> // std::less<int>; std::greater<int>
-using namespace std;
-
-// BEGIN: https://leetcode.com/articles/friend-circles/
-// BEGIN: Time Complexity O(n ^ 2) and Space Complexity O(n)
 class Solution {
 public:
 	int findCircleNum(vector<vector<int>>& M) {
-		const int N = M.size();
-		int result = M.size();
-		vector<bool> unvisited(N, true);
-		for (int i = 0; i < N; i++) {
-			if (unvisited.at(i)) {
-				list<int> current;
-				current.push_back(i);
-				unvisited.at(i) = false;
-				while (!current.empty()) {
-					list<int> next;
-					for (const auto &j : current) {
-						for (int k = 0; k < N; k++) {
-							if (unvisited.at(k) and M.at(j).at(k)) {
-								unvisited.at(k) = false;
-								next.push_back(k);
-								result--;
-							}
+		int P = M.size(), Q = P == 0 ? 0 : M[0].size();
+		if (P == 0 or Q == 0 or P != Q) {
+			return 0;
+		}
+		vector<bool> A(P, true);
+		int result = 0;
+		for (int i = 0; i < P; ++i) {
+			if (A[i]) {
+				++result;
+				A[i] = false;
+				queue<int> q;
+				q.push(i);
+				while (!q.empty()) {
+					int front = q.front();
+					q.pop();
+					for (int j = 0; j < P; ++j) {
+						if (M[front][j] and A[j]) {
+							A[j] = false;
+							q.push(j);
 						}
 					}
-					current = next;
 				}
 			}
 		}
 		return result;
 	}
 };
-// END: Time Complexity O(n ^ 2) and Space Complexity O(n)
-// END: https://leetcode.com/articles/friend-circles/
-
-// BEGIN: https://leetcode.com/articles/friend-circles/
-// BEGIN: Time Complexity O(n ^ 2) and Space Complexity O(n)
-// class Solution {
-// public:
-// 	int findCircleNum(vector<vector<int>>& M) {
-// 		const int N = M.size();
-// 		int result = M.size();
-// 		vector<bool> unvisited(N, true);
-// 		for (int i = 0; i < N; i++) {
-// 			if (unvisited.at(i)) {
-// 				list<int> current;
-// 				current.push_back(i);
-// 				unvisited.at(i) = false;
-// 				while (!current.empty()) {
-// 					list<int> next;
-// 					for (const auto &j : current) {
-// 						for (int k = 0; k < N; k++) {
-// 							if (unvisited.at(k) and M.at(j).at(k)) {
-// 								unvisited.at(k) = false;
-// 								next.push_front(k);
-// 								result--;
-// 							}
-// 						}
-// 					}
-// 					current = next;
-// 				}
-// 			}
-// 		}
-// 		return result;
-// 	}
-// };
-// END: Time Complexity O(n ^ 2) and Space Complexity O(n)
-// END: https://leetcode.com/articles/friend-circles/
-
-// BEGIN: https://leetcode.com/articles/friend-circles/
-// BEGIN: Time Complexity O(n ^ 3) and Space Complexity O(n)
-// class Solution {
-// public:
-// 	int findCircleNum(vector<vector<int>>& M) {
-// 		const int N = M.size();
-// 		int result = M.size();
-// 		vector<int> root(M.size());
-// 		iota(begin(root), end(root), 0);
-// 		for (int i = 0; i < N; i++) {
-// 			for (int j = 0; j < N; j++) {
-// 				if (i != j and M.at(i).at(j)) {
-// 					int rootI = getRoot(i, root);
-// 					int rootJ = getRoot(j, root);
-// 					if (rootI != rootJ) {
-// 						root.at(rootI) = root.at(rootJ);
-// 						result--;
-// 					}
-// 				}
-// 			}
-// 		}
-// 		return result;
-// 	}
-// private:
-// 	int getRoot(int i, vector<int>& root) {
-// 		return root.at(i) = (root.at(i) == i ? i : getRoot(root.at(i), root));
-// 	}
-// };
-// END: Time Complexity O(n ^ 3) and Space Complexity O(n)
-// END: https://leetcode.com/articles/friend-circles/
-
-int main(void) {
-	Solution solution;
-	vector<vector<int>> M;
-	int result = 0, answer = 0;
-
-	M = {{1, 1, 0}, {1, 1, 0}, {0, 0, 1}};
-	answer = 2;
-	result = solution.findCircleNum(M);
-	assert(answer ==result);
-
-	M = {{1, 1, 0}, {1, 1, 1}, {0, 1, 1}};
-	answer = 1;
-	result = solution.findCircleNum(M);
-	assert(answer ==result);
-
-	cout << "\nPassed All\n";
-	return 0;
-}
