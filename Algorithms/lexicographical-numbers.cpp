@@ -1,48 +1,36 @@
 // 386. Lexicographical Numbers
 // https://leetcode.com/problems/lexicographical-numbers/
-#include <iostream>
-#include <vector>
-#include <string>
-#include <algorithm>
-#include <iterator>
-using namespace std;
-// BEGIN: https://discuss.leetcode.com/topic/55131/ac-200ms-c-solution-beats-98
+
+/*
+Given an integer n, return 1 - n in lexicographical order.
+
+For example, given 13, return: [1,10,11,12,13,2,3,4,5,6,7,8,9].
+
+Please optimize your algorithm to use less time and space. The input size may be as large as 5,000,000.
+*/
+
 class Solution {
 public:
 	vector<int> lexicalOrder(int n) {
 		vector<int> result;
-		for (int i = 0, x = 1; i < n; i++) {
-			result.push_back(x);
-			if (x * 10 <= n) {
-				x *= 10;
-				continue;
+		for (int i = 1, j = 0; j < n; ++j) {
+			result.push_back(i);
+			if (10 * i <= n) {
+				i *= 10;
 			}
-			if (x == n) x /= 10;
-			x++;
-			while (x % 10 == 0) x /= 10;
+			else if (i % 10 < 9 and i + 1 <= n) {
+				++i;
+			}
+			else {
+				if (i >= n) {
+					i /= 10;
+				}
+				while (i > 0 and i % 10 == 9) {
+					i /= 10;
+				}
+				++i;
+			}
 		}
 		return result;
 	}
 };
-// END: https://discuss.leetcode.com/topic/55131/ac-200ms-c-solution-beats-98
-// BEGIN: Time Limit Exceeded
-// class Solution {
-// public:
-// 	vector<int> lexicalOrder(int n) {
-// 		vector<int> result;
-// 		if (n == 0) return result = {0};
-// 		vector<string> V;
-// 		for (int i = 1; i <=n; i++) V.push_back(to_string(i));
-// 		sort(begin(V), end(V));
-// 		for (const auto &i : V) result.push_back(stoi(i));
-// 		return result;
-// 	}
-// };
-// END: Time Limit Exceeded
-int main(void) {
-	Solution solution;
-	for (const auto &i : solution.lexicalOrder(13)) cout << i << '\t';
-	cout << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
