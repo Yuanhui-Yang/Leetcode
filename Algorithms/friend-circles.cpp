@@ -58,3 +58,65 @@ public:
 		return result;
 	}
 };
+
+class Solution {
+public:
+	int findCircleNum(vector<vector<int>>& M) {
+		int P = M.size(), Q = P == 0 ? 0 : M[0].size();
+		if (P == 0 or Q == 0 or P != Q) {
+			return 0;
+		}
+		int result = P;
+		vector<int> A(P);
+		iota(begin(A), end(A), 0);
+		for (int i = 0; i < P; ++i) {
+			for (int j = 0; j < Q; ++j) {
+				if (i != j and M[i][j]) {
+					int x = f(A, i), y = f(A, j);
+					if (x != y) {
+						A[x] = y;
+						--result;
+					}
+				}
+			}
+		}
+		return result;
+	}
+private:
+	int f(vector<int> & A, int id) {
+		return A[id] == id ? id : A[id] = f(A, A[id]);
+	}
+};
+
+class Solution {
+public:
+	int findCircleNum(vector<vector<int>>& M) {
+		int P = M.size(), Q = P == 0 ? 0 : M[0].size();
+		if (P == 0 or Q == 0 or P != Q) {
+			return 0;
+		}
+		vector<int> A(P);
+		iota(begin(A), end(A), 0);
+		for (int i = 0; i < P; ++i) {
+			for (int j = 0; j < Q; ++j) {
+				if (i != j and M[i][j]) {
+					int x = f(A, i), y = f(A, j);
+					if (x != y) {
+						A[x] = y;
+					}
+				}
+			}
+		}
+		int result = 0;
+		for (int i = 0; i < P; ++i) {
+			if (A[i] == i) {
+				++result;
+			}
+		}
+		return result;
+	}
+private:
+	int f(vector<int> & A, int id) {
+		return A[id] == id ? id : A[id] = f(A, A[id]);
+	}
+};
