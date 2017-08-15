@@ -40,6 +40,56 @@ public:
 			int id = i - 'a';
 			++A[id];
 		}
+		priority_queue<pair<int, char>> pq;
+		for (int i = 0; i < 26; ++i) {
+			if (A[i] > 0) {
+				pq.push({A[i], 'a' + i});
+			}
+		}
+		string result;
+		while (!pq.empty() and pq.top().first > 1) {
+			queue<pair<int, char>> next;
+			int i = 0;
+			while (i < k and !pq.empty()) {
+				pair<int, char> top = pq.top();
+				pq.pop();
+				--(top.first);
+				result.push_back(top.second);
+				if (top.first > 0) {
+					next.push(top);
+				}
+				++i;
+			}
+			if (i < k) {
+				return "";
+			}
+			while (!next.empty()) {
+				pair<int, char> front = next.front();
+				next.pop();
+				pq.push(front);
+			}
+		}
+		while (!pq.empty()) {
+			pair<int, char> top = pq.top();
+			pq.pop();
+			result.push_back(top.second);
+		}
+		return result;
+	}
+};
+
+class Solution {
+public:
+	string rearrangeString(string s, int k) {
+		if (k <= 0) {
+			return s;
+		}
+		array<int, 26> A;
+		A.fill(0);
+		for (const auto & i : s) {
+			int id = i - 'a';
+			++A[id];
+		}
 		priority_queue<array<int, 2>> pq;
 		for (int i = 0; i < 26; ++i) {
 			if (A[i] > 0) {
