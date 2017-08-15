@@ -10,14 +10,17 @@ For example, given nums = [3, 5, 2, 1, 6, 4], one possible answer is [1, 6, 2, 5
 class Solution {
 public:
 	void wiggleSort(vector<int>& nums) {
-		for (int sz = nums.size(), i = 0; i + 1 < sz; ++i) {
-			if (i % 2 == 0 and nums[i] > nums[i + 1]) {
-				swap(nums[i], nums[i + 1]);
-				continue;
+		int sz = nums.size();
+		for (int i = 1; i < sz; ++i) {
+			if (i % 2) {
+				if (nums[i - 1] > nums[i]) {
+					swap(nums[i - 1], nums[i]);
+				}
 			}
-			if (i % 2 == 1 and nums[i] < nums[i + 1]) {
-				swap(nums[i], nums[i + 1]);
-				continue;
+			else {
+				if (nums[i - 1] < nums[i]) {
+					swap(nums[i - 1], nums[i]);
+				}
 			}
 		}
 	}
