@@ -1,93 +1,81 @@
 // 358. Rearrange String k Distance Apart
 // https://leetcode.com/problems/rearrange-string-k-distance-apart/
-#include <iostream>
-#include <cassert>
-#include <algorithm>
-#include <iterator>
-#include <utility>
-#include <vector>
-#include <list>
-#include <string>
-#include <map>
-using namespace std;
-// BEGIN: http://www.cnblogs.com/grandyang/p/5586009.html
+
+/*
+Given a non-empty string s and an integer k, rearrange the string such that the same characters are at least distance k from each other.
+
+All input strings are given in lowercase letters. If it is not possible to rearrange the string, return an empty string "".
+
+Example 1:
+s = "aabbcc", k = 3
+
+Result: "abcabc"
+
+The same letters are at least distance 3 from each other.
+Example 2:
+s = "aaabc", k = 3 
+
+Answer: ""
+
+It is not possible to rearrange the string.
+Example 3:
+s = "aaadbbcc", k = 2
+
+Answer: "abacabcd"
+
+Another possible answer is: "abcabcda"
+
+The same letters are at least distance 2 from each other.
+*/
+
 class Solution {
 public:
-	string rearrangeString(string str, int k) {
-		if (!k) {
-			return str;
+	string rearrangeString(string s, int k) {
+		if (k <= 0) {
+			return s;
 		}
-		vector<size_t> hashMap(26);
-		for (const auto &c : str) {
-			hashMap[c - 'a']++;
+		array<int, 26> A;
+		A.fill(0);
+		for (const auto & i : s) {
+			int id = i - 'a';
+			++A[id];
 		}
-		map<size_t, list<char>> treeMap;
-		for (int i = 0; i < 26; i++) {
-			if (hashMap[i]) {
-				treeMap[hashMap[i]].push_back('a' + i);
+		priority_queue<array<int, 2>> pq;
+		for (int i = 0; i < 26; ++i) {
+			if (A[i] > 0) {
+				pq.push({A[i], i});
 			}
 		}
 		string result;
-		size_t strLen = str.size();
-		while (!treeMap.empty()) {
-			const size_t upperBound = min(size_t(k), strLen);
-			vector<pair<size_t, char>> tmp4TreeMap;
-			for (size_t i = 0; i < upperBound; i++, strLen--) {
-				if (treeMap.empty()) {
-					return "";
+		while (!pq.empty() and pq.top()[0] > 1) {
+			queue<array<int, 2>> next;
+			int i = 0;
+			while (i < k and !pq.empty()) {
+				array<int, 2> top = pq.top();
+				pq.pop();
+				result.push_back(top[1] + 'a');
+				--top[0];
+				if (top[0] > 0) {
+					next.push(top);
 				}
-				map<size_t, list<char>>::iterator treeMapMaxElement = prev(end(treeMap));
-				result.push_back(treeMapMaxElement->second.front());
-				if (treeMapMaxElement->first > 1) {
-					tmp4TreeMap.push_back(make_pair(treeMapMaxElement->first - 1, treeMapMaxElement->second.front()));
-				}
-				treeMapMaxElement->second.pop_front();
-				if (treeMapMaxElement->second.empty()) {
-					treeMap.erase(treeMapMaxElement);
+				++i;
+			}
+			if (i < k) {
+				return "";
+			}
+			while (!next.empty()) {
+				array<int, 2> front = next.front();
+				next.pop();
+				if (front[0] > 0) {
+					pq.push(front);
 				}
 			}
-			for (const auto &j : tmp4TreeMap) {
-				treeMap[j.first].push_back(j.second);
-			}
+		}
+		while (!pq.empty()) {
+			array<int, 2> top = pq.top();
+			result.push_back(top[1] + 'a');
+			pq.pop();
 		}
 		return result;
 	}
-public:
-	bool validate(string str, int k) {
-		vector<vector<size_t>> hashMap(26);
-		for (size_t i = 0; i < str.size(); i++) {
-			hashMap[str[i] - 'a'].push_back(i);
-		}
-		for (int i = 0; i < 26; i++) {
-			if (hashMap[i].size() > 1) {
-				sort(begin(hashMap[i]), end(hashMap[i]));
-				for (size_t j = 1; j < hashMap[i].size(); j++) {
-					if (hashMap[i][j] - hashMap[i][j - 1] < size_t(k)) {
-						return false;
-					}
-				}
-			}
-		}
-		return true;
-	}
 };
-// END: http://www.cnblogs.com/grandyang/p/5586009.html
-int main(void) {
-	Solution solution;
-	string result;
-
-	result = solution.rearrangeString("a", 0);
-	assert(solution.validate(result, 0));
-
-	result = solution.rearrangeString("aabbcc", 3);
-	assert(solution.validate(result, 3));
-
-	result = solution.rearrangeString("aaabc", 3);
-	assert(solution.validate(result, 3));
-
-	result = solution.rearrangeString("aaadbbcc", 2);
-	assert(solution.validate(result, 2));
-
-	cout << "\nPassed All\n";
-	return 0;
-}
