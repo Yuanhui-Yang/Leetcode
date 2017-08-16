@@ -1,107 +1,76 @@
 // 317. Shortest Distance from All Buildings
 // https://leetcode.com/problems/shortest-distance-from-all-buildings/
-#include <iostream>
-#include <vector>
-#include <queue>
-#include <algorithm>
-#include <climits>
-using namespace std;
+
+/*
+You want to build a house on an empty land which reaches all buildings in the shortest amount of distance. You can only move up, down, left and right. You are given a 2D grid of values 0, 1 or 2, where:
+
+Each 0 marks an empty land which you can pass by freely.
+Each 1 marks a building which you cannot pass through.
+Each 2 marks an obstacle which you cannot pass through.
+For example, given three buildings at (0,0), (0,4), (2,2), and an obstacle at (0,2):
+
+1 - 0 - 2 - 0 - 1
+|   |   |   |   |
+0 - 0 - 0 - 0 - 0
+|   |   |   |   |
+0 - 0 - 1 - 0 - 0
+The point (1,2) is an ideal empty land to build a house, as the total travel distance of 3+3+1=7 is minimal. So return 7.
+
+Note:
+There will be at least one building. If it is not possible to build such house according to the above rules, return -1.
+*/
+
 class Solution {
 public:
 	int shortestDistance(vector<vector<int>>& grid) {
-		if (grid.empty()) return -1;
-		vector<pair<int, int>> buildings;
-		vector<pair<int, int>> obstacles;
-		for (int i = 0; i < (int)grid.size(); ++i) {
-			for (int j = 0; j < (int)grid.front().size(); ++j) {
+		int P = grid.size(), Q = P == 0 ? 0 : grid[0].size();
+		if (P == 0 or Q == 0) {
+			return -1;
+		}
+		array<int, 4> dx = {-1, 0, 1, 0}, dy = {0, -1, 0, 1}; 
+		array<vector<vector<int>>, 2> A;
+		A[0].resize(P, vector<int>(Q, 0));
+		A[1].resize(P, vector<int>(Q, 0));
+		int cnt = 0;
+		for (int i = 0; i < P; ++i) {
+			for (int j = 0; j < Q; ++j) {
 				if (grid[i][j] == 1) {
-					grid[i][j] = -1;
-					buildings.push_back(make_pair(i, j));
-				}
-				if (grid[i][j] == 2) {
-					grid[i][j] = -2;
-					obstacles.push_back(make_pair(i, j));					
-				}
-			}
-		}
-		if (buildings.size() + obstacles.size() == grid.size() * grid.front().size()) return -1;
-		vector<vector<vector<int>>> grids(buildings.size(), grid);
-		vector<pair<int, int>> directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-		for (int i = 0; i < (int)buildings.size(); ++i) {
-			queue<pair<int, int>> q;
-			grids[i][buildings[i].first][buildings[i].second] = 0;
-			int numberOfEmptyNeighbour = 0;
-			for (const auto &j : directions) {
-				int x = buildings[i].first + j.first, y = buildings[i].second + j.second;
-				if (x < 0 || x >= (int)grid.size() || y < 0 || y >= (int)grid.front().size()) continue;
-				if (grid[x][y] == 0) ++numberOfEmptyNeighbour;
-			}
-			if (numberOfEmptyNeighbour == 0) return -1;
-			q.push(buildings[i]);
-			while (!q.empty()) {
-				for (const auto &j : directions) {
-					int x = q.front().first + j.first, y = q.front().second + j.second;
-					if (x < 0 || x >= (int)grid.size() || y < 0 || y >= (int)grid.front().size()) continue;
-					if (grids[i][x][y] == 0) {
-						grids[i][x][y] = 1 + grids[i][q.front().first][q.front().second];
-						q.push(make_pair(x, y));
-						continue;
+					++cnt;
+					vector<vector<bool>> B(P, vector<bool>(Q, true));
+					list<array<int, 2>> curr;
+					curr.push_back({i, j});
+					B[i][j] = false;
+					int depth = 0;
+					while (!curr.empty()) {
+						++depth;
+						list<array<int, 2>> next;
+						for (const auto & k : curr) {
+							int x = k[0], y = k[1];
+							for (int l = 0; l < 4; ++l) {
+								int nx = x + dx[l], ny = y + dy[l];
+								if (nx >= 0 and nx < P and ny >= 0 and ny < Q and grid[nx][ny] == 0 and B[nx][ny]) {
+									B[nx][ny] = false;
+									++A[0][nx][ny];
+									A[1][nx][ny] += depth;
+									next.push_back({nx, ny});
+								}
+							}
+						}
+						curr = next;
 					}
-					if (grids[i][x][y] > 0 && grids[i][x][y] > 1 + grids[i][q.front().first][q.front().second]) {
-						grids[i][x][y] = 1 + grids[i][q.front().first][q.front().second];
-						q.push(make_pair(x, y));
-						continue;
-					}
-				}
-				grids[i][buildings[i].first][buildings[i].second] = -1;
-				q.pop();
-			}
-		}
-		vector<vector<int>> visited(grid.size(), vector<int>(grid.front().size(), 1));
-		for (int i = 0; i < (int)grid.size(); ++i) {
-			for (int j = 0; j < (int)grid.front().size(); ++j) {
-				for (int k = 0; k < (int)grids.size(); ++k) {
-					visited[i][j] = grids[k][i][j] == 0 || visited[i][j] == 0? 0 : 1;
-					grid[i][j] += grids[k][i][j];
 				}
 			}
 		}
 		int result = -1;
-		for (int i = 0; i < (int)grid.size(); ++i) {
-			for (int j = 0; j < (int)grid.front().size(); ++j) {
-				if (grid[i][j] <= 0 || visited[i][j] == 0) continue;
-				if (result == -1) result = grid[i][j];
-				else result = min(result, grid[i][j]);
+		for (int i = 0; i < P; ++i) {
+			for (int j = 0; j < Q; ++j) {
+				if (cnt > 0 and A[0][i][j] == cnt) {
+					if (result < 0 or A[1][i][j] < result) {
+						result = A[1][i][j];
+					}
+				}
 			}
 		}
-		// for (const auto& i : grid) {
-		// 	for (const auto& j : i) {
-		// 		cout << j << '\t';
-		// 	}
-		// 	cout << '\n';
-		// }
-		// cout << '\n';
-		// for (const auto& i : visited) {
-		// 	for (const auto& j : i) {
-		// 		cout << j << '\t';
-		// 	}
-		// 	cout << '\n';
-		// }
 		return result;
 	}
 };
-int main(void) {
-	Solution solution;
-	vector<vector<int>> grid = {{1, 0, 2, 0, 1}, {0, 0, 0, 0, 0}, {0, 0, 1, 0, 0}};
-	cout << solution.shortestDistance(grid) << "\tPassed\n";
-	grid = {{1}};
-	cout << solution.shortestDistance(grid) << "\tPassed\n";
-	grid = {{1, 0, 1, 0, 1}};
-	cout << solution.shortestDistance(grid) << "\tPassed\n";
-	grid = {{1, 1, 1, 1, 1, 0}, {0, 0, 0, 0, 0, 1}, {0, 1, 1, 0, 0, 1}, {1, 0, 0, 1, 0, 1}, {1, 0, 1, 0, 0, 1}, {1, 0, 0, 0, 0, 1}, {0, 1, 1, 1, 1, 0}};
-	cout << solution.shortestDistance(grid) << "\tPassed\n";
-	grid = {{1, 1, 1, 1, 1, 1, 1, 0}, {0, 0, 0, 0, 0, 0, 0, 1}, {1, 1, 1, 1, 1, 1, 0, 1}, {1, 0, 0, 0, 0, 1, 0, 1}, {1, 0, 1, 1, 0, 1, 0, 1}, {1, 0, 1, 0, 0, 1, 0, 1}, {1, 0, 1, 1, 1, 1, 0, 1}, {1, 0, 0, 0, 0, 0, 0, 1}, {0, 1, 1, 1, 1, 1, 1, 0}};
-	cout << solution.shortestDistance(grid) << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
