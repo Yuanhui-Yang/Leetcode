@@ -4,8 +4,8 @@
 /*
 One way to serialize a binary tree is to use pre-order traversal. When we encounter a non-null node, we record the node's value. If it is a null node, we record using a sentinel value such as #.
 
-     _9_
-    /   \
+	 _9_
+	/   \
    3     2
   / \   / \
  4   1  #  6
@@ -31,6 +31,26 @@ Example 3:
 "9,#,#,1"
 Return false
 */
+
+class Solution {
+public:
+	bool isValidSerialization(string preorder) {
+		int sz = preorder.size(), diff = 1;
+		for (int i = 0; i < sz; ++i) {
+			--diff;
+			if (diff < 0) {
+				return false;
+			}
+			if (isdigit(preorder[i])) {
+				diff += 2;
+			}
+			while (i < sz and preorder[i] != ',') {
+				++i;
+			}
+		}
+		return diff == 0;
+	}
+};
 
 class Solution {
 public:
