@@ -1,51 +1,40 @@
 // 312. Burst Balloons
 // https://leetcode.com/problems/burst-balloons/
-// https://discuss.leetcode.com/topic/30746/share-some-analysis-and-explanations
-#include <iostream>
-#include <vector>
-#include <iterator>
-#include <algorithm>
-using namespace std;
-// BEGIN: Bottom Up
+
+/*
+Given n balloons, indexed from 0 to n-1. Each balloon is painted with a number on it represented by array nums. You are asked to burst all the balloons. If the you burst balloon i you will get nums[left] * nums[i] * nums[right] coins. Here left and right are adjacent indices of i. After the burst, the left and right then becomes adjacent.
+
+Find the maximum coins you can collect by bursting the balloons wisely.
+
+Note: 
+(1) You may imagine nums[-1] = nums[n] = 1. They are not real therefore you can not burst them.
+(2) 0 ≤ n ≤ 500, 0 ≤ nums[i] ≤ 100
+
+Example:
+
+Given [3, 1, 5, 8]
+
+Return 167
+
+	nums = [3,1,5,8] --> [3,5,8] -->   [3,8]   -->  [8]  --> []
+   coins =  3*1*5      +  3*5*8    +  1*3*8      + 1*8*1   = 167
+*/
+
 class Solution {
 public:
 	int maxCoins(vector<int>& nums) {
 		nums.insert(begin(nums), 1);
-		nums.insert(end(nums), 1);
-		const int n = nums.size();
-		vector<vector<int>> OPT(n, vector<int>(n, 0));
-		for (int len = 2; len < n; ++len)
-			for (int i = 0, j = i + len; j < n; ++i, ++j)
-				for (int k = i + 1; k < j; ++k)
-					OPT[i][j] = max(OPT[i][j], OPT[i][k] + OPT[k][j] + nums[i] * nums[k] * nums[j]);
-		return OPT[0][n - 1];
+		nums.push_back(1);
+		int sz = nums.size();
+		vector<vector<int>> A(sz, vector<int>(sz, 0));
+		for (int len = 1; len <= sz - 2; ++len) {
+			for (int i = 1; i + len - 1 <= sz - 2; ++i) {
+				int j = i + len - 1;
+				for (int k = i; k <= j; ++k) {
+					A[i][j] = max(A[i][j], nums[i - 1] * nums[k] * nums[j + 1] + A[i][k - 1] + A[k + 1][j]);
+				}
+			}
+		}
+		return A[1][sz - 2];
 	}
 };
-// END: Bottom Up
-// BEGIN: Top Down
-// class Solution {
-// public:
-// 	int maxCoins(vector<int>& nums) {
-// 		nums.insert(begin(nums), 1);
-// 		nums.insert(end(nums), 1);
-// 		const int n = nums.size();
-// 		vector<vector<int>> memorization(n, vector<int>(n, 0));
-// 		return this->maxCoins(nums, memorization, 0, n - 1);
-// 	}
-// private:
-// 	int maxCoins(vector<int>& nums, vector<vector<int>> &memorization, int i, int j) {
-// 		if (i >= j + 1) return 0;
-// 		if (memorization[i][j]) return memorization[i][j];
-// 		for (int k = i + 1; k < j; ++k)
-// 			memorization[i][j] = max(memorization[i][j], nums[i] * nums[k] * nums[j] + this->maxCoins(nums, memorization, i, k) + this->maxCoins(nums, memorization, k, j));
-// 		return memorization[i][j];
-// 	}
-// };
-// END: Top Down
-int main(void) {
-	Solution solution;
-	vector<int> nums = {3, 1, 5, 8};
-	cout << solution.maxCoins(nums) << "\tPassed\n";
-	cout << "\nPassed\n";
-	return 0;
-}
