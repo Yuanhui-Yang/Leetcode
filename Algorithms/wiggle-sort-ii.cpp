@@ -17,6 +17,32 @@ Can you do it in O(n) time and/or in-place with O(1) extra space?
 
 class Solution {
 public:
+    void wiggleSort(vector<int>& nums) {
+        int sz = nums.size(), mid = sz / 2;
+        sort(begin(nums), end(nums));
+        if (sz < 3) {
+            return;
+        }
+        vector<int> A(sz);
+        int i = mid - 1 + sz % 2, j = sz - 1, k = 0;
+        while (k < sz) {
+            if (k < sz and i >= 0) {
+                A[k] = nums[i];
+                --i;
+                ++k;
+            }
+            if (k < sz and j >= 0) {
+                A[k] = nums[j];
+                --j;
+                ++k;
+            }
+        }
+        nums = A;
+    }
+};
+
+class Solution {
+public:
 	void wiggleSort(vector<int>& nums) {
 		int sz = nums.size(), mid = sz / 2;
 		sort(begin(nums), end(nums));
