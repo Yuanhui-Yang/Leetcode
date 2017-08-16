@@ -1,82 +1,64 @@
 // 331. Verify Preorder Serialization of a Binary Tree
 // https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/
-#include <iostream>
-#include <string>
-#include <vector>
-#include <iterator>
-using namespace std;
-// BEGIN: https://discuss.leetcode.com/topic/35976/7-lines-easy-java-solution/
+
+/*
+One way to serialize a binary tree is to use pre-order traversal. When we encounter a non-null node, we record the node's value. If it is a null node, we record using a sentinel value such as #.
+
+     _9_
+    /   \
+   3     2
+  / \   / \
+ 4   1  #  6
+/ \ / \   / \
+# # # #   # #
+For example, the above binary tree can be serialized to the string "9,3,4,#,#,1,#,#,2,#,6,#,#", where # represents a null node.
+
+Given a string of comma separated values, verify whether it is a correct preorder traversal serialization of a binary tree. Find an algorithm without reconstructing the tree.
+
+Each comma separated value in the string must be either an integer or a character '#' representing null pointer.
+
+You may assume that the input format is always valid, for example it could never contain two consecutive commas such as "1,,3".
+
+Example 1:
+"9,3,4,#,#,1,#,#,2,#,6,#,#"
+Return true
+
+Example 2:
+"1,#"
+Return false
+
+Example 3:
+"9,#,#,1"
+Return false
+*/
+
 class Solution {
 public:
 	bool isValidSerialization(string preorder) {
-		int diff = 1;
-		for (size_t i = 0, j = 0; i < preorder.size(); j = ++i) {
-			if (--diff < 0) return false;
-			while (i < preorder.size() && preorder[i] != ',') i++;
-			if (preorder.substr(j, i - j) != "#") diff += 2;
+		int sz = preorder.size();
+		stack<string> stk;
+		for (int i = 0; i < sz; ++i) {
+			if (isdigit(preorder[i])) {
+				string s;
+				while (isdigit(preorder[i])) {
+					s.push_back(preorder[i]);
+					++i;
+				}
+				stk.push(s);
+				continue;
+			}
+			if (preorder[i] == '#') {
+				while (!stk.empty() and stk.top() == "#") {
+					stk.pop();
+					if (stk.empty()) {
+						return false;
+					}
+					stk.pop();
+				}
+				stk.push("#");
+				continue;
+			}
 		}
-		return diff == 0;
+		return stk.size() == 1 and stk.top() == "#";
 	}
 };
-// END: https://discuss.leetcode.com/topic/35976/7-lines-easy-java-solution/
-// class Solution {
-// public:
-// 	bool isValidSerialization(string preorder) {
-// 		int diff = 0;
-// 		const int n = preorder.size();
-// 		for (int i = 0, j = 0; i < n; j = ++i) {
-// 			if (i == 0) {
-// 				while (i < n && preorder[i] != ',') i++;
-// 				if (preorder.substr(j, i - j) == "#") {
-// 					if (i == n) return true;
-// 					else return false;
-// 				}
-// 				diff = 2;
-// 				continue;
-// 			}
-// 			if (diff <= 0) return false;
-// 			while (i < n && preorder[i] != ',') i++;
-// 			if (preorder.substr(j, i - j) == "#") {
-// 				diff--;
-// 				continue;
-// 			}
-// 			diff++;
-// 		}
-// 		return diff == 0;
-// 	}
-// };
-// BEGIN: http://www.programcreek.com/2015/01/leetcode-verify-preorder-serialization-of-a-binary-tree-java/
-// BEGIN: https://discuss.leetcode.com/topic/35977/simple-python-solution-using-stack-with-explanation
-// class Solution {
-// public:
-// 	bool isValidSerialization(string preorder) {
-// 		vector<string> stack;
-// 		const int n = preorder.size();
-// 		for (int i = 0, j = 0; i < n; j = ++i) {
-// 			while (i < n && preorder[i] != ',') i++;
-// 			stack.push_back(preorder.substr(j, i - j));
-// 			while (stack.size() >= 3 && stack[stack.size() - 1] == "#" && stack[stack.size() - 2] == "#" && stack[stack.size() - 3] != "#") {
-// 				stack.pop_back();
-// 				stack.pop_back();
-// 				stack.pop_back();
-// 				stack.push_back("#");
-// 			}
-// 		}
-// 		return stack.size() == 1 && stack.front() == "#";
-// 	}
-// };
-// END: https://discuss.leetcode.com/topic/35977/simple-python-solution-using-stack-with-explanation
-// END: http://www.programcreek.com/2015/01/leetcode-verify-preorder-serialization-of-a-binary-tree-java/
-int main(void) {
-	Solution solution;
-	cout << boolalpha << solution.isValidSerialization("#") << "\tPassed\n";
-	cout << boolalpha << solution.isValidSerialization("#,#") << "\tPassed\n";
-	cout << boolalpha << solution.isValidSerialization("#,#,#") << "\tPassed\n";
-	cout << boolalpha << solution.isValidSerialization("1,#") << "\tPassed\n";
-	cout << boolalpha << solution.isValidSerialization("1,#,#,#,#") << "\tPassed\n";
-	cout << boolalpha << solution.isValidSerialization("7,2,#,2,#,#,#,6,#") << "\tPassed\n";
-	cout << boolalpha << solution.isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#") << "\tPassed\n";
-	cout << boolalpha << solution.isValidSerialization("9,#,#,1") << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
