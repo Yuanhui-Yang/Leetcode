@@ -1,53 +1,62 @@
 // 394. Decode String
 // https://leetcode.com/problems/decode-string/
-#include <iostream>
-#include <string>
-#include <vector>
-using namespace std;
+
+/*
+Given an encoded string, return it's decoded string.
+
+The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly k times. Note that k is guaranteed to be a positive integer.
+
+You may assume that the input string is always valid; No extra white spaces, square brackets are well-formed, etc.
+
+Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, k. For example, there won't be input like 3a or 2[4].
+
+Examples:
+
+s = "3[a]2[bc]", return "aaabcbc".
+s = "3[a2[c]]", return "accaccacc".
+s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
+*/
+
 class Solution {
 public:
 	string decodeString(string s) {
-		string result;
-		for (size_t i = 0; i < s.size();) {
-			if (s[i] >= '0' && s[i] <= '9') {
-				vector<size_t> a;
-				size_t j = i;
-				while (i < s.size() && s[i] >= '0' && s[i] <= '9') i++;
-				a.push_back(i);
-				int b = stoi(s.substr(j, i - j));
-				i++;
-				while (i < s.size() && !a.empty()) {
-					if (s[i] == '[') {
-						a.push_back(i++);
-						continue;
-					}
-					if (s[i] == ']') {
-						size_t k = a.back();
-						a.pop_back();
-						if (a.empty()) {
-							string t = this->decodeString(s.substr(k + 1, i - k - 1));
-							while (b--) result += t;
-							i++;
-							continue;
-						}
-						i++;
-						continue;
-					}
-					i++;
-					continue;
-				}
-				continue;
-			}
-			result.push_back(s[i++]);
+		int sz = s.size();
+		if (sz <= 1) {
+			return s;
 		}
+		string result;
+		int i = 0;
+		while (i < sz and !isdigit(s[i])) {
+			result.push_back(s[i]);
+			++i;
+		}
+		if (i >= sz) {
+			return result;
+		}
+		int val = 0;
+		while (i < sz and s[i] != '[') {
+			val = 10 * val + s[i] - '0';
+			++i;
+		}
+		int cnt = 1;
+		++i;
+		int j = i;
+		while (i < sz) {
+			if (s[i] == '[') {
+				++cnt;
+			}
+			else if (s[i] == ']') {
+				--cnt;
+			}
+			if (cnt <= 0) {
+				break;
+			}
+			++i;
+		}
+		for (int k = 0; k < val; ++k) {
+			result.append(decodeString(s.substr(j, i - j)));
+		}
+		result.append(decodeString(s.substr(i + 1)));
 		return result;
 	}
 };
-int main(void) {
-	Solution solution;
-	cout << solution.decodeString("3[a]2[bc]") << "\tPassed\n";
-	cout << solution.decodeString("3[a2[c]]") << "\tPassed\n";
-	cout << solution.decodeString("2[abc]3[cd]ef") << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
