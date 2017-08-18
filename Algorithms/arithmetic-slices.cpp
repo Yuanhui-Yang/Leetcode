@@ -43,3 +43,19 @@ public:
 		return result;
 	}
 };
+
+class Solution {
+public:
+	int numberOfArithmeticSlices(vector<int>& A) {
+		int result = 0, sz = A.size();
+		for (int i = 2; i < sz; ++i) {
+			int cnt = 0;
+			while (i < sz and A[i - 2] - A[i - 1] == A[i - 1] - A[i]) {
+				++cnt;
+				++i;
+				result += cnt;
+			}
+		}
+		return result;
+	}
+};
