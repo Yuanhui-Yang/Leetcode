@@ -11,7 +11,7 @@ public:
 		int sz = citations.size(), i = 0, j = sz;
 		while (i < j) {
 			int k = i + (j - i) / 2;
-			if (citations[k] + k < sz) {
+			if (citations[k] < sz - k) {
 				i = k + 1;
 			}
 			else {
