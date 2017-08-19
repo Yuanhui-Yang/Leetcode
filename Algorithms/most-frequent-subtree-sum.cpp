@@ -1,72 +1,66 @@
 // 508. Most Frequent Subtree Sum
 // https://leetcode.com/problems/most-frequent-subtree-sum/
-#include <iostream>
-#include <cassert>
-#include <string>
-#include <vector>
-#include <list>
-#include <map>
-#include <set>
-#include <unordered_map>
-#include <unordered_set>
-#include <functional>
-using namespace std;
-struct TreeNode {
-	int val;
-	TreeNode *left;
-	TreeNode *right;
-	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
+
+/*
+Given the root of a tree, you are asked to find the most frequent subtree sum. The subtree sum of a node is defined as the sum of all the node values formed by the subtree rooted at that node (including the node itself). So what is the most frequent subtree sum value? If there is a tie, return all the values with the highest frequency in any order.
+
+Examples 1
+Input:
+
+  5
+ /  \
+2   -3
+return [2, -3, 4], since all the values happen only once, return all of them in any order.
+Examples 2
+Input:
+
+  5
+ /  \
+2   -5
+return [2], since 2 happens twice, however -5 only occur once.
+Note: You may assume the sum of values in any subtree is in the range of 32-bit signed integer.
+*/
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
 class Solution {
 public:
 	vector<int> findFrequentTreeSum(TreeNode* root) {
-		if (!root) {
-			return {};
+		unordered_map<int, int> A;
+		f(A, root);
+		vector<int> result;
+		int highestFrequency = 0;
+		for (const auto & i : A) {
+			if (result.empty() or highestFrequency == i.second) {
+				highestFrequency = i.second;
+				result.push_back(i.first);
+			}
+			else if (highestFrequency < i.second) {
+				highestFrequency = i.second;
+				result.clear();
+				result.push_back(i.first);
+			}
 		}
-		unordered_map<int, int> hash_map;
-		findFrequentTreeSum(root, hash_map);
-		map<int, vector<int>, greater<int>> tree_map;
-		for (const auto &i : hash_map) {
-			tree_map[i.second].push_back(i.first);
-		}
-		return begin(tree_map)->second;
+		return result;
 	}
 private:
-	int findFrequentTreeSum(TreeNode* root, unordered_map<int, int>& hash_map) {
-		if (!root) {
+	int f(unordered_map<int, int> & A, TreeNode * node) {
+		if (!node) {
 			return 0;
 		}
-		if (!root->left && !root->right) {
-			hash_map[root->val]++;
-			return root->val;
+		if (!node->left and !node->right) {
+			++A[node->val];
+			return node->val;
 		}
-		int left = findFrequentTreeSum(root->left, hash_map);
-		int right = findFrequentTreeSum(root->right, hash_map);
-		int sum = left + root->val + right;
-		hash_map[sum]++;
+		int left = f(A, node->left), right = f(A, node->right), sum = left + right + node->val;
+		++A[sum];
 		return sum;
 	}
 };
-int main(void) {
-	Solution solution;
-	TreeNode* root = NULL;
-	vector<int> result;
-
-	result = solution.findFrequentTreeSum(root);
-	assert(unordered_multiset<int>({}) == unordered_multiset<int>(begin(result), end(result)));
-
-	root = new TreeNode(5);
-	root->left = new TreeNode(2);
-	root->right = new TreeNode(-3);
-	result = solution.findFrequentTreeSum(root);
-	assert(unordered_multiset<int>({2, -3, 4}) == unordered_multiset<int>(begin(result), end(result)));
-
-	root = new TreeNode(5);
-	root->left = new TreeNode(2);
-	root->right = new TreeNode(-5);
-	result = solution.findFrequentTreeSum(root);
-	assert(unordered_multiset<int>({2}) == unordered_multiset<int>(begin(result), end(result)));
-
-	cout << "\nPassed All\n";
-	return 0;
-}
