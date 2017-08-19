@@ -26,45 +26,27 @@ The elements of A are all distinct.
 Each element of array A is an integer within the range [0, N-1].
 */
 
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
 public:
 	int arrayNesting(vector<int>& nums) {
+		int sz = nums.size(), result = 0;
+		vector<bool> A(sz, true);
+		for (int i = 0; i < sz; ++i) {
+			result = max(result, f(A, nums, i));
+		}
+		return result;
+	}
+private:
+	int f(vector<bool> & A, vector<int>& nums, int id) {
+		if (!A[id]) {
+			return 0;
+		}
 		int result = 0;
-		for (auto &i : nums) {
-			if (i < 0) {
-				continue;
-			}
-			int j = i;
-			i = -1;
-			int m = 1;
-			while (1) {
-				int t = nums[j];
-				nums[j] = -1;
-				j = t;
-				if (j < 0) {
-					break;
-				}
-				m++;
-			}
-			result = max(result, m);
+		while (A[id]) {
+			++result;
+			A[id] = false;
+			id = nums[id];
 		}
 		return result;
 	}
 };
-
-int main(void) {
-	Solution solution;
-	vector<int> nums;
-	int result, answer;
-
-	nums = {5, 4, 0, 3, 1, 6, 2};
-	answer = 4;
-	result = solution.arrayNesting(nums);
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
-	return 0;
-}
