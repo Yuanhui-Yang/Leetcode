@@ -577,6 +577,7 @@ int main(void) {
 | 646 | [Maximum Length of Pair Chain](https://leetcode.com/problems/maximum-length-of-pair-chain/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-length-of-pair-chain.cpp) |
 | 647 | [Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/palindromic-substrings.cpp) |
 | 648 | [Replace Words](https://leetcode.com/problems/replace-words/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/replace-words.cpp) |
+| 651 | [4 Keys Keyboard](https://leetcode.com/problems/4-keys-keyboard/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/4-keys-keyboard.cpp) |
 | 655 | [Print Binary Tree](https://leetcode.com/problems/print-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/print-binary-tree.cpp) |
 | 657 | [Judge Route Circle](https://leetcode.com/problems/judge-route-circle/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/judge-route-circle.cpp) |
 | 658 | [Find K Closest Elements](https://leetcode.com/problems/find-k-closest-elements/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-k-closest-elements.cpp) |
