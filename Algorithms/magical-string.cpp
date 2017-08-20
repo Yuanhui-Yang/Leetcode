@@ -1,55 +1,48 @@
 // 481. Magical String
 // https://leetcode.com/problems/magical-string/
-#include <iostream>
-#include <cassert>
-#include <vector>
-using namespace std;
+
+/*
+A magical string S consists of only '1' and '2' and obeys the following rules:
+
+The string S is magical because concatenating the number of contiguous occurrences of characters '1' and '2' generates the string S itself.
+
+The first few elements of string S is the following: S = "1221121221221121122……"
+
+If we group the consecutive '1's and '2's in S, it will be:
+
+1 22 11 2 1 22 1 22 11 2 11 22 ......
+
+and the occurrences of '1's or '2's in each group are:
+
+1 2	2 1 1 2 1 2 2 1 2 2 ......
+
+You can see that the occurrence sequence above is the S itself.
+
+Given an integer N as input, return the number of '1's in the first N number in the magical string S.
+
+Note: N will not exceed 100,000.
+
+Example 1:
+Input: 6
+Output: 3
+Explanation: The first 6 elements of magical string S is "12211" and it contains three 1's, so return 3.
+*/
+
 class Solution {
 public:
 	int magicalString(int n) {
-		int result = 0;
-		vector<int> OPT;
-		for (size_t i = 1, j = 0; OPT.size() < size_t(n); i = 3 - i, j++) {
-			if (j < OPT.size()) {
-				if (OPT[j] == 1) {
-					OPT.push_back(i);
-					result += i == 1;
-					continue;
-				}
-				if (OPT[j] == 2) {
-					OPT.push_back(i);
-					OPT.push_back(i);
-					result += 2 * (i == 1);
-					continue;
-				}
-				continue;
-			}
-			if (j >= OPT.size()) {
-				if (i == 1) {
-					OPT.push_back(1);
-					result++;
-					continue;
-				}
-				if (i == 2) {
-					OPT.push_back(2);
-					OPT.push_back(2);
-					continue;					
-				}
-				continue;
+		string s("122");
+		int i = 2;
+		while (s.size() < n) {
+			char ch = s.back() == '1' ? '2' : '1';
+			int cnt = s[i++] - '0';
+			while (cnt-- > 0) {
+				s.push_back(ch);
 			}
 		}
-		while (OPT.size() > size_t(n)) {
-			result -= OPT.back() == 1;
-			OPT.pop_back();
+		while (s.size() > n) {
+			s.pop_back();
 		}
-		return result;
+		return count(begin(s), end(s), '1');
 	}
 };
-int main(void) {
-	Solution solution;
-	int result = 0;
-	result = solution.magicalString(6);
-	assert(3 == result);
-	cout << "\nPassed All\n";
-	return 0;
-}
