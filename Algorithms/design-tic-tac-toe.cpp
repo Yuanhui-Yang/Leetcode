@@ -1,15 +1,66 @@
 // 348. Design Tic-Tac-Toe
 // https://leetcode.com/problems/design-tic-tac-toe/
-// https://discuss.leetcode.com/topic/44538/simple-o-1-time-c-solution-following-provided-hints
-#include <iostream>
-#include <cstring>
-using namespace std;
+
+/*
+Design a Tic-tac-toe game that is played between two players on a n x n grid.
+
+You may assume the following rules:
+
+A move is guaranteed to be valid and is placed on an empty block.
+Once a winning condition is reached, no more moves is allowed.
+A player who succeeds in placing n of their marks in a horizontal, vertical, or diagonal row wins the game.
+Example:
+Given n = 3, assume that player 1 is "X" and player 2 is "O" in the board.
+
+TicTacToe toe = new TicTacToe(3);
+
+toe.move(0, 0, 1); -> Returns 0 (no one wins)
+|X| | |
+| | | |    // Player 1 makes a move at (0, 0).
+| | | |
+
+toe.move(0, 2, 2); -> Returns 0 (no one wins)
+|X| |O|
+| | | |    // Player 2 makes a move at (0, 2).
+| | | |
+
+toe.move(2, 2, 1); -> Returns 0 (no one wins)
+|X| |O|
+| | | |    // Player 1 makes a move at (2, 2).
+| | |X|
+
+toe.move(1, 1, 2); -> Returns 0 (no one wins)
+|X| |O|
+| |O| |    // Player 2 makes a move at (1, 1).
+| | |X|
+
+toe.move(2, 0, 1); -> Returns 0 (no one wins)
+|X| |O|
+| |O| |    // Player 1 makes a move at (2, 0).
+|X| |X|
+
+toe.move(1, 0, 2); -> Returns 0 (no one wins)
+|X| |O|
+|O|O| |    // Player 2 makes a move at (1, 0).
+|X| |X|
+
+toe.move(2, 1, 1); -> Returns 1 (player 1 wins)
+|X| |O|
+|O|O| |    // Player 1 makes a move at (2, 1).
+|X|X|X|
+Follow up:
+Could you do better than O(n2) per move() operation?
+*/
+
 class TicTacToe {
 public:
 	/** Initialize your data structure here. */
-	TicTacToe(int n): rows(new int[n]), columns(new int[n]), diagonal(0), antiDiagonal(0), size(n), winner(0) {
-		memset(rows, 0, sizeof(int) * n);
-		memset(columns, 0, sizeof(int) * n);
+	TicTacToe(int n) {
+		A.resize(n, 0);
+		B.resize(n, 0);
+		C = 0;
+		D = 0;
+		E = n;
 	}
 
 	/** Player {player} makes a move at ({row}, {col}).
@@ -17,83 +68,28 @@ public:
 		@param col The column of the board.
 		@param player The player, can be either 1 or 2.
 		@return The current winning condition, can be either:
-			0: No one wins.
-			1: Player 1 wins.
-			2: Player 2 wins. */
+				0: No one wins.
+				1: Player 1 wins.
+				2: Player 2 wins. */
 	int move(int row, int col, int player) {
-		if (this->winner) return this->winner;
-		int hashmap[2] = {-1, 1};
-		this->rows[row] += hashmap[player - 1];
-		this->columns[col] += hashmap[player - 1];
-		if (row == col) this->diagonal += hashmap[player - 1];
-		if (row + col == this->size - 1) this->antiDiagonal += hashmap[player - 1];
-		for (int i = 0; i < this->size; ++i) {
-			if (this->rows[i] == -size || this->columns[i] == -size) return this->winner = 1;
-			if (this->rows[i] == size || this->columns[i] == size) return this->winner = 2;
+		int val = player == 1 ? -1 : 1;
+		A[row] += val;
+		B[col] += val;
+		if (row == col) {
+			C += val;
 		}
-		if (this->diagonal == -size || this->antiDiagonal == -size) return this->winner = 1;
-		if (this->diagonal == size || this->antiDiagonal == size) return this->winner = 2;
-		return this->winner = 0;
+		if (row == E - 1 - col) {
+			D += val;
+		}
+		return (abs(A[row]) == E or abs(B[col]) == E or abs(C) == E or abs(D) == E) ? player : 0;
 	}
 private:
-	int *rows;
-	int *columns;
-	int diagonal;
-	int antiDiagonal;
-	int size;
-	int winner;
+	vector<int> A, B;
+	int C, D, E;
 };
-// class TicTacToe {
-// public:
-// 	/** Initialize your data structure here. */
-// 	TicTacToe(int n): matrix(n, vector<int>(n, 0)), state(0) {}
-
-// 	/** Player {player} makes a move at ({row}, {col}).
-// 		@param row The row of the board.
-// 		@param col The column of the board.
-// 		@param player The player, can be either 1 or 2.
-// 		@return The current winning condition, can be either:
-// 			0: No one wins.
-// 			1: Player 1 wins.
-// 			2: Player 2 wins. */
-// 	int move(int row, int col, int player) {
-// 		if (this->state) return this->state;
-// 		this->matrix[row][col] = player;
-// 		const int n = this->matrix.size();
-// 		vector<bool> checkSum(4, true);
-// 		for (int i = 0; i < n; ++i) {
-// 			checkSum[0] = checkSum[0] && this->matrix[row][i] == player;
-// 			checkSum[1] = checkSum[1] && this->matrix[i][col] == player;
-// 			checkSum[2] = checkSum[2] && this->matrix[i][i] == player;
-// 			checkSum[3] = checkSum[3] && this->matrix[i][n - 1 - i] == player;
-// 		}
-// 		for (int i = 0; i < 4; ++i) if (checkSum[i]) return this->state = player;
-// 		return this->state = 0;
-// 	}
-// private:
-// 	vector<vector<int>> matrix;
-// 	int state;
-// };
 
 /**
  * Your TicTacToe object will be instantiated and called as such:
  * TicTacToe obj = new TicTacToe(n);
  * int param_1 = obj.move(row,col,player);
  */
-
-int main(void) {
-	// TicTacToe toe(3);
-	// cout << toe.move(0, 0, 1) << "\tPassed\n";
-	// cout << toe.move(0, 2, 2) << "\tPassed\n";
-	// cout << toe.move(2, 2, 1) << "\tPassed\n";
-	// cout << toe.move(1, 1, 2) << "\tPassed\n";
-	// cout << toe.move(2, 0, 1) << "\tPassed\n";
-	// cout << toe.move(1, 0, 2) << "\tPassed\n";
-	// cout << toe.move(2, 1, 1) << "\tPassed\n";
-	TicTacToe toe(2);
-	cout << toe.move(0, 0, 2) << "\tPassed\n";
-	cout << toe.move(0, 1, 1) << "\tPassed\n";
-	cout << toe.move(1, 1, 2) << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
