@@ -582,6 +582,7 @@ int main(void) {
 | 657 | [Judge Route Circle](https://leetcode.com/problems/judge-route-circle/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/judge-route-circle.cpp) |
 | 658 | [Find K Closest Elements](https://leetcode.com/problems/find-k-closest-elements/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-k-closest-elements.cpp) |
 | 659 | [Split Array into Consecutive Subsequences](https://leetcode.com/problems/split-array-into-consecutive-subsequences/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/split-array-into-consecutive-subsequences.cpp) |
+| 660 | [Remove 9](https://leetcode.com/problems/remove-9/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-9.cpp) |
 | 661 | [Image Smoother](https://leetcode.com/problems/image-smoother/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/image-smoother.cpp) |
 
 ## Database
