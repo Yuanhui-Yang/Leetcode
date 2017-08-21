@@ -55,11 +55,10 @@ public:
 		stack<array<int, 2>> curr;
 		curr.push({start[0], start[1]});
 		maze[start[0]][start[1]] = -1;
-		array<int, 2> dest({destination[0], destination[1]});
 		while (!curr.empty()) {
 			array<int, 2> top = curr.top();
 			curr.pop();
-			if (top == dest) {
+			if (top[0] == destination[0] and top[1] == destination[1]) {
 				return true;
 			}
 			int x = top[0], y = top[1];
