@@ -569,6 +569,7 @@ int main(void) {
 | 623 | [Add One Row to Tree](https://leetcode.com/problems/add-one-row-to-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/add-one-row-to-tree.cpp) |
 | 624 | [Maximum Distance in Arrays](https://leetcode.com/problems/maximum-distance-in-arrays/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-distance-in-arrays.cpp) |
 | 628 | [Maximum Product of Three Numbers](https://leetcode.com/problems/maximum-product-of-three-numbers/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-product-of-three-numbers.cpp) |
+| 632 | [Smallest Range](https://leetcode.com/problems/smallest-range/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/smallest-range.cpp) |
 | 633 | [Sum of Square Numbers](https://leetcode.com/problems/sum-of-square-numbers/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sum-of-square-numbers.cpp) |
 | 634 | [Find the Derangement of An Array](https://leetcode.com/problems/find-the-derangement-of-an-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-the-derangement-of-an-array.cpp) |
 | 635 | [Design Log Storage System](https://leetcode.com/problems/design-log-storage-system/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/design-log-storage-system.cpp) |
