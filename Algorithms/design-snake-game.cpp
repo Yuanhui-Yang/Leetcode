@@ -63,7 +63,7 @@ public:
 		this->counter = 0;
 		curr.push_back({0, 0});
 		for (const auto & i : food) {
-			this->food.push_back({i.first, i.second});
+			foods.push_back({i.first, i.second});
 		}
 	}
 
@@ -88,7 +88,7 @@ public:
 		if (x < 0 or x >= height or y < 0 or y >= width) {
 		   return -1; 
 		}
-		if (food.empty() or food.front()[0] != x or food.front()[1] != y) {
+		if (foods.empty() or foods.front()[0] != x or foods.front()[1] != y) {
 			curr.pop_back();
 		}
 		for (const auto & i : curr) {
@@ -97,19 +97,13 @@ public:
 			}
 		}
 		curr.push_front({x, y});
-		if (!food.empty() and food.front()[0] == x and food.front()[1] == y) {
-			food.pop_front();
+		if (!foods.empty() and foods.front()[0] == x and foods.front()[1] == y) {
+			foods.pop_front();
 			++counter;
 		}
 		return counter;
 	}
 private:
 	int height, width, counter;
-	list<array<int, 2>> curr, food;
+	list<array<int, 2>> curr, foods;
 };
-
-/**
- * Your SnakeGame object will be instantiated and called as such:
- * SnakeGame obj = new SnakeGame(width, height, food);
- * int param_1 = obj.move(direction);
- */
