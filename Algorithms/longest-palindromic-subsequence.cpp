@@ -1,59 +1,47 @@
 // 516. Longest Palindromic Subsequence
 // https://leetcode.com/problems/longest-palindromic-subsequence/
-#include <iostream>
-#include <cassert>
-#include <string>
-#include <vector>
-#include <algorithm>
-using namespace std;
+
+/*
+Given a string s, find the longest palindromic subsequence's length in s. You may assume that the maximum length of s is 1000.
+
+Example 1:
+Input:
+
+"bbbab"
+Output:
+4
+One possible longest palindromic subsequence is "bbbb".
+Example 2:
+Input:
+
+"cbbd"
+Output:
+2
+One possible longest palindromic subsequence is "bb".
+*/
+
 class Solution {
 public:
 	int longestPalindromeSubseq(string s) {
-		if (s.empty()) {
+		int sz = s.size();
+		if (sz == 0) {
 			return 0;
 		}
-		vector<vector<int>> OPT(s.size(), vector<int>(s.size(), 1));
-		for (size_t len = 2; len <= s.size(); len++) {
-			for (size_t i = 0; i + len <= s.size(); i++) {
-				size_t j = i + len - 1;
-				if (s[i] == s[j]) {
-					if (len == 2) {
-						OPT[i][j] = 2;
-					}
-					else {
-						OPT[i][j] = max(OPT[i][j], 2 + OPT[i + 1][j - 1]);
-						OPT[i][j] = max(OPT[i][j], OPT[i][j - 1]);
-						OPT[i][j] = max(OPT[i][j], OPT[i + 1][j]);
-					}
+		vector<vector<int>> A(sz, vector<int>(sz, 0));
+		for (int len = 1; len <= sz; ++len) {
+			for (int i = 0; i + len <= sz; ++i) {
+				int j = i + len - 1;
+				if (len == 1) {
+					A[i][j] = 1;
+				}
+				else if (s[i] == s[j]) {
+					A[i][j] = 2 + A[i + 1][j - 1];
 				}
 				else {
-					if (len == 2) {
-						OPT[i][j] = 1;
-					}
-					else {
-						OPT[i][j] = max(OPT[i][j], OPT[i + 1][j - 1]);
-						OPT[i][j] = max(OPT[i][j], OPT[i][j - 1]);
-						OPT[i][j] = max(OPT[i][j], OPT[i + 1][j]);
-					}
+					A[i][j] = max(A[i + 1][j], A[i][j - 1]);
 				}
 			}
 		}
-		return OPT[0][s.size() - 1];
+		return A[0][sz - 1];
 	}
 };
-int main(void) {
-	Solution solution;
-	string s;
-	int result;
-
-	s = "bbbab";
-	result = solution.longestPalindromeSubseq(s);
-	assert(4 == result);
-
-	s = "cbbd";
-	result = solution.longestPalindromeSubseq(s);
-	assert(2 == result);
-
-	cout << "\nPasssed All\n";
-	return 0;
-}
