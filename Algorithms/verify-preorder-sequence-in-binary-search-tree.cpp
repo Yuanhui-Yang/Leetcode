@@ -13,35 +13,18 @@ Could you do it using only constant space complexity?
 class Solution {
 public:
 	bool verifyPreorder(vector<int>& preorder) {
-		int lower = INT_MIN, sz = preorder.size();
-		for (int i = 0, j = -1; i < sz; ++i) {
-			if (preorder[i] < lower) {
+		stack<int> curr;
+		int sz = preorder.size(), minVal = INT_MIN;
+		for (int i = 0; i < sz; ++i) {
+			int val = preorder[i];
+			if (val < minVal) {
 				return false;
 			}
-			while (j >= 0 and preorder[j] < preorder[i]) {
-				lower = preorder[j];
-				--j;
+			while (!curr.empty() and curr.top() < val) {
+				minVal = curr.top();
+				curr.pop();
 			}
-			preorder[++j] = preorder[i];
-		}
-		return true;
-	}
-};
-
-class Solution {
-public:
-	bool verifyPreorder(vector<int>& preorder) {
-		stack<int> s;
-		int lower = INT_MIN;
-		for (int sz = preorder.size(), i = 0; i < sz; ++i) {
-			if (preorder[i] < lower) {
-				return false;
-			}
-			while (!s.empty() and s.top() < preorder[i]) {
-				lower = s.top();
-				s.pop();
-			}
-			s.push(preorder[i]);
+			curr.push(val);
 		}
 		return true;
 	}
