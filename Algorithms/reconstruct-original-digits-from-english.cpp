@@ -1,62 +1,50 @@
 // 423. Reconstruct Original Digits from English
 // https://leetcode.com/problems/reconstruct-original-digits-from-english/
-#include <iostream>
-#include <string>
-#include <vector>
-using namespace std;
-// BEGIN: https://discuss.leetcode.com/topic/63386/one-pass-o-n-java-solution-simple-and-clear
+
+/*
+Given a non-empty string containing an out-of-order English representation of digits 0-9, output the digits in ascending order.
+
+Note:
+Input contains only lowercase English letters.
+Input is guaranteed to be valid and can be transformed to its original digits. That means invalid inputs such as "abc" or "zerone" are not permitted.
+Input length is less than 50,000.
+Example 1:
+Input: "owoztneoer"
+
+Output: "012"
+Example 2:
+Input: "fviefuro"
+
+Output: "45"
+*/
+
 class Solution {
 public:
 	string originalDigits(string s) {
-		string result;
-		// 0 = "zero", 1 = "one", 2 = "two", 3 = "three", 4 = "four", 5 = "five", 6 = "six", 7 = "seven", 8 = "eight", 9 = "nine"
-		// 'z': 0
-		// 'e': 0, 1, 3, 5, 7, 8, 9
-		// 'r': 0, 3, 4
-		// 'o': 0, 1, 2, 4
-		// 'n': 1, 7, 9(x2)
-		// 't': 2, 3, 8
-		// 'w': 2
-		// 'h': 3, 8
-		// 'f': 4, 5
-		// 'u': 4
-		// 'i': 5, 6, 8, 9
-		// 'v': 5, 7
-		// 's': 6, 7
-		// 'x': 6
-		// 'g': 8
-		vector<int> hashmap(10, 0);
-		for (const auto&i : s) {
-			if (i == 'z') hashmap[0]++;
-			if (i == 'w') hashmap[2]++;
-			if (i == 'u') hashmap[4]++;
-			if (i == 'x') hashmap[6]++;
-			if (i == 'g') hashmap[8]++;
-
-			if (i == 'r') hashmap[3]++;
-			if (i == 'f') hashmap[5]++;
-			if (i == 's') hashmap[7]++;
-
-			if (i == 'o') hashmap[1]++;
-			if (i == 'i') hashmap[9]++;
+		array<int, 26> A;
+		A.fill(0);
+		for (const auto & i : s) {
+			int id = i - 'a';
+			++A[id];
 		}
-		hashmap[1] -= hashmap[0] + hashmap[2] + hashmap[4];
-		hashmap[3] -= hashmap[0] + hashmap[4];
-		hashmap[5] -= hashmap[4];
-		hashmap[7] -= hashmap[6];
-		hashmap[9] -= hashmap[5] + hashmap[6] + hashmap[8];
-		for (int i = 0; i < 10; i++)
-			for (int j = 0; j < hashmap[i]; j++)
+		array<int, 10> B;
+		B.fill(0);
+		B[0] = A['z' - 'a'];
+		B[2] = A['w' - 'a'];
+		B[4] = A['u' - 'a'];
+		B[6] = A['x' - 'a'];
+		B[8] = A['g' - 'a'];
+		B[7] = A['s' - 'a'] - B[6];
+		B[5] = A['v' - 'a'] - B[7];
+		B[3] = A['h' - 'a'] - B[8];
+		B[9] = A['i' - 'a'] - B[5] - B[6] - B[8];
+		B[1] = A['o' - 'a'] - B[0] - B[2] - B[4];
+		string result;
+		for (int i = 0; i < 10; ++i) {
+			for (int j = 0; j < B[i]; ++j) {
 				result.push_back('0' + i);
+			}
+		}
 		return result;
 	}
 };
-// END: https://discuss.leetcode.com/topic/63386/one-pass-o-n-java-solution-simple-and-clear
-int main(void) {
-	Solution solution;
-	cout << solution.originalDigits("owoztneoer") << "\tPassed\n";
-	cout << solution.originalDigits("fviefuro") << "\tPassed\n";
-	cout << solution.originalDigits("esnve") << "\tPassed\n";
-	cout << "\nPassed All\n";
-	return 0;
-}
