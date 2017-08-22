@@ -21,31 +21,29 @@ The range of n is [1,8].
 
 class Solution {
 public:
-	int largestPalindrome(int n) {
+	int largestPalindrome(long long n) {
 		if (n <= 0) {
 			return 0;
 		}
 		if (n == 1) {
 			return 9;
 		}
-		long long C = 1337, lower = pow(10, n - 1), upper = pow(10, n);
-		for (long long left = upper - 1; left >= lower; --left) {
+		long long base = 1337;
+		for (long long left = pow(10, n) - 1; left >= pow(10, n - 1); --left) {
 			string leftStr = to_string(left), rightStr(leftStr);
 			reverse(begin(rightStr), end(rightStr));
-			long long result = stoll(leftStr + rightStr);
-			if (f(result, lower, upper)) {
-				return result % C;
+			string valStr = leftStr + rightStr;
+			long long val = stoll(valStr);
+			for (long long x = pow(10, n) - 1; x >= sqrt(val); --x) {
+				if (val % x == 0) {
+					long long y = val / x;
+					string yStr = to_string(y);
+					if (yStr.size() == n) {
+						return val % base;
+					}
+				}
 			}
 		}
-		return 0;
-	}
-private:
-	bool f(long long result, long long lower, long long upper) {
-		for (long long i = upper - 1; i > 0LL and i >= lower and i * i >= result; --i) {
-			if (result % i == 0 and lower <= result / i and result / i < upper) {
-				return true;
-			}
-		}
-		return false;
+		return base;
 	}
 };
