@@ -1,61 +1,54 @@
 // 484. Find Permutation
 // https://leetcode.com/problems/find-permutation/
-#include <iostream>
-#include <cassert>
-#include <cctype>
-#include <string>
-#include <vector>
-#include <set>
-#include <map>
-#include <unordered_set>
-#include <unordered_map>
-#include <algorithm>
-#include <numeric>
-#include <cfloat>
-#include <iterator>
-using namespace std;
+
+/*
+By now, you are given a secret signature consisting of character 'D' and 'I'. 'D' represents a decreasing relationship between two numbers, 'I' represents an increasing relationship between two numbers. And our secret signature was constructed by a special integer array, which contains uniquely all the different number from 1 to n (n is the length of the secret signature plus 1). For example, the secret signature "DI" can be constructed by array [2,1,3] or [3,1,2], but won't be constructed by array [3,2,4] or [2,1,3,4], which are both illegal constructing special string that can't represent the "DI" secret signature.
+
+On the other hand, now your job is to find the lexicographically smallest permutation of [1, 2, ... n] could refer to the given secret signature in the input.
+
+Example 1:
+Input: "I"
+Output: [1,2]
+Explanation: [1,2] is the only legal initial spectial string can construct secret signature "I", where the number 1 and 2 construct an increasing relationship.
+Example 2:
+Input: "DI"
+Output: [2,1,3]
+Explanation: Both [2,1,3] and [3,1,2] can construct the secret signature "DI", 
+but since we want to find the one with the smallest lexicographical permutation, you need to output [2,1,3]
+Note:
+
+The input string will only contain the character 'D' and 'I'.
+The length of input string is a positive integer and will not exceed 10,000
+*/
+
 class Solution {
 public:
 	vector<int> findPermutation(string s) {
-		vector<int> result(s.size() + 1, 0);
-		findPermutation(1, 0, s.size() + 1, s, result);
+		vector<int> result;
+		int sz = s.size(), val = 1;
+		if (sz == 0) {
+			return result;
+		}
+		for (int i = 0; i <= sz; ++i) {
+			if (i == sz or s[i] == 'I') {
+				result.push_back(val);
+				++val;
+			}
+			else {
+				int j = i;
+				while (i < sz and s[i] == 'D') {
+					++i;
+				}
+				val += i - j;
+				int tmp = val + 1;
+				while (j <= i) {
+					result.push_back(val);
+					--val;
+					++j;
+				}
+				val = tmp;
+			}
+		}
 		return result;
 	}
-private:
-	void findPermutation(const int minVal, const size_t lowerBound, const size_t upperBound, const string& s, vector<int>& result) {
-		if (lowerBound >= upperBound) {
-			return;
-		}
-		size_t i = lowerBound;
-		while (i + 1 < upperBound && s[i] == 'D') {
-			i++;
-		}
-		result[i] = minVal;
-		findPermutation(minVal + 1, lowerBound, i, s, result);
-		findPermutation(minVal + 1 + i - lowerBound, i + 1, upperBound, s, result);
-	}
 };
-int main(void) {
-	Solution solution;
-	string s;
-	vector<int> result;
-
-	s = "I";
-	result = solution.findPermutation(s);
-	assert(vector<int>({1, 2}) == result);
-
-	s = "DI";
-	result = solution.findPermutation(s);
-	assert(vector<int>({2, 1, 3}) == result);
-
-	s = "DDIIDI";
-	result = solution.findPermutation(s);
-	assert(vector<int>({3, 2, 1, 4, 6, 5, 7}) == result);
-
-	s = "DDDDIIIIIIDDDDDDDD";
-	result = solution.findPermutation(s);
-	assert(vector<int>({5, 4, 3, 2, 1, 6, 7, 8, 9, 10, 19, 18, 17, 16, 15, 14, 13, 12, 11}) == result);
-
-	cout << "\nPassed All\n";
-	return 0;
-}
