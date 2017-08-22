@@ -1,84 +1,57 @@
 // 524. Longest Word in Dictionary through Deleting
 // https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/
-#include <iostream>
-#include <cassert>
-#include <string>
-#include <vector>
-#include <set>
-#include <map>
-#include <unordered_set>
-#include <unordered_map>
-#include <algorithm>
-#include <iterator>
-using namespace std;
+
+/*
+Given a string and a string dictionary, find the longest string in the dictionary that can be formed by deleting some characters of the given string. If there are more than one possible results, return the longest word with the smallest lexicographical order. If there is no possible result, return the empty string.
+
+Example 1:
+Input:
+s = "abpcplea", d = ["ale","apple","monkey","plea"]
+
+Output: 
+"apple"
+Example 2:
+Input:
+s = "abpcplea", d = ["a","b","c"]
+
+Output: 
+"a"
+Note:
+All the strings in the input will only contain lower-case letters.
+The size of the dictionary won't exceed 1,000.
+The length of all the strings in the input won't exceed 1,000.
+*/
+
 class Solution {
 public:
 	string findLongestWord(string s, vector<string>& d) {
-		string result;
-		unordered_map<char, set<size_t>> hash_map;
-		for (size_t i = 0; i < s.size(); i++) {
-			hash_map[s.at(i)].insert(i);
+		sort(begin(d), end(d), Comp());
+		int sz = d.size(), i = 0;
+		while (i < sz and !f(d[i], s)) {
+			++i;
 		}
-		for (const auto &i : d) {
-			if (validate(i, hash_map)) {
-				if (result.empty()) {
-					result = i;
-					continue;
-				}
-				if (i.size() > result.size()) {
-					result = i;
-					continue;
-				}
-				if (i.size() == result.size()) {
-					result = min(result, i);
-					continue;
-				}
-			}
-		}
-		return result;
+		return i == sz ? "" : d[i];
 	}
 private:
-	bool validate(const string& s, const unordered_map<char, set<size_t>>& hash_map) {
-		for (size_t i = 0, j = 0; i < s.size(); i++) {
-			const char ch = s.at(i);
-			if (!hash_map.count(ch)) {
-				return false;
+	struct Comp {
+		bool operator() (const string & a, const string & b) {
+			if (a.size() == b.size()) {
+				return a < b;
 			}
-			const set<size_t>& rbtree = hash_map.at(ch);
-			if (i == 0) {
-				j = *begin(rbtree);
-				continue;
+			return a.size() > b.size();
+		}
+	};
+	bool f(const string & shortStr, const string & longStr) {
+		int P = shortStr.size(), Q = longStr.size(), i = 0, j = 0;
+		while (i < P and j < Q) {
+			if (shortStr[i] == longStr[j]) {
+				++i;
+				++j;
 			}
-			if (i > 0) {
-				if (rbtree.upper_bound(j) == end(rbtree)) {
-					return false;
-				}
-				j = *(rbtree.upper_bound(j));
-				continue;
+			else {
+				++j;
 			}
 		}
-		return true;
+		return i == P;
 	}
 };
-int main(void) {
-	Solution solution;
-	string s;
-	vector<string> d;
-	string result;
-	string answer;
-
-	s = "abpcplea";
-	d = {"ale", "apple", "monkey", "plea"};
-	answer = "apple";
-	result = solution.findLongestWord(s, d);
-	assert(answer == result);
-
-	s = "abpcplea";
-	d = {"a", "b", "c"};
-	answer = "a";
-	result = solution.findLongestWord(s, d);
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
-	return 0;
-}
