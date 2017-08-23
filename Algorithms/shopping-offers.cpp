@@ -51,7 +51,7 @@ private:
 		}
 		return result;
 	}
-	int g(map<vector<int>, int> & A, vector<int> & price, vector<vector<int>> & special, vector<int> & needs) {
+	int g(map<vector<int>, int> & A, const vector<int> & price, const vector<vector<int>> & special, vector<int> & needs) {
 		if (A.count(needs)) {
 			return A.at(needs);
 		}
