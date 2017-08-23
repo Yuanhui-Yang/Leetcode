@@ -37,6 +37,47 @@ You are not allowed to buy more items than you want, even if that would lower th
 class Solution {
 public:
 	int shoppingOffers(vector<int>& price, vector<vector<int>>& special, vector<int>& needs) {
+		map<vector<int>, int> A;
+		return g(A, price, special, needs);
+	}
+private:
+	int f(const vector<int> & A, const vector<int> & B) {
+		if (A.size() != B.size()) {
+			return 0;
+		}
+		int sz = A.size(), result = 0;
+		for (int i = 0; i < sz; ++i) {
+			result += A[i] * B[i];
+		}
+		return result;
+	}
+	int g(map<vector<int>, int> & A, vector<int> & price, vector<vector<int>> & special, vector<int> & needs) {
+		if (A.count(needs)) {
+			return A.at(needs);
+		}
+		int result = f(price, needs), P = special.size(), Q = needs.size();
+		for (int i = 0; i < P; ++i) {
+			int j = 0;
+			while (j < Q and special[i][j] <= needs[j]) {
+				++j;
+			}
+			if (j == Q) {
+				for (int k = 0; k < Q; ++k) {
+					needs[k] -= special[i][k];
+				}
+				result = min(result, special[i][Q] + g(A, price, special, needs));
+				for (int k = 0; k < Q; ++k) {
+					needs[k] += special[i][k];
+				}
+			}
+		}
+		return A[needs] = result;
+	}
+};
+
+class Solution {
+public:
+	int shoppingOffers(vector<int>& price, vector<vector<int>>& special, vector<int>& needs) {
 		int result = f(price, needs), P = special.size(), Q = needs.size();
 		for (int i = 0; i < P; ++i) {
 			int j = 0;
