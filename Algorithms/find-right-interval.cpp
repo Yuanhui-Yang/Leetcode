@@ -1,87 +1,68 @@
 // 436. Find Right Interval
 // https://leetcode.com/problems/find-right-interval/
-#include <iostream>
-#include <map>
-#include <vector>
-#include <algorithm>
-#include <climits>
-#include <iterator>
-using namespace std;
-struct Interval {
-	int start;
-	int end;
-	Interval() : start(0), end(0) {}
-	Interval(int s, int e) : start(s), end(e) {}
-};
+
+/*
+Given a set of intervals, for each of the interval i, check if there exists an interval j whose start point is bigger than or equal to the end point of the interval i, which can be called that j is on the "right" of i.
+
+For any interval i, you need to store the minimum interval j's index, which means that the interval j has the minimum start point to build the "right" relationship for interval i. If the interval j doesn't exist, store -1 for the interval i. Finally, you need output the stored value of each interval as an array.
+
+Note:
+You may assume the interval's end point is always bigger than its start point.
+You may assume none of these intervals have the same start point.
+Example 1:
+Input: [ [1,2] ]
+
+Output: [-1]
+
+Explanation: There is only one interval in the collection, so it outputs -1.
+Example 2:
+Input: [ [3,4], [2,3], [1,2] ]
+
+Output: [-1, 0, 1]
+
+Explanation: There is no satisfied "right" interval for [3,4].
+For [2,3], the interval [3,4] has minimum-"right" start point;
+For [1,2], the interval [2,3] has minimum-"right" start point.
+Example 3:
+Input: [ [1,4], [2,3], [3,4] ]
+
+Output: [-1, 2, -1]
+
+Explanation: There is no satisfied "right" interval for [1,4] and [3,4].
+For [2,3], the interval [3,4] has minimum-"right" start point.
+*/
+
+/**
+ * Definition for an interval.
+ * struct Interval {
+ *     int start;
+ *     int end;
+ *     Interval() : start(0), end(0) {}
+ *     Interval(int s, int e) : start(s), end(e) {}
+ * };
+ */
 class Solution {
 public:
 	vector<int> findRightInterval(vector<Interval>& intervals) {
-		vector<int> result;
-		map<int, int> start2index;
-		const int n = intervals.size();
-		for (int i = 0; i < n; i++) start2index[intervals[i].start] = i;
-		for (const auto &i : intervals) {
-			map<int, int>::iterator it = start2index.lower_bound(i.end);
-			result.push_back(it == end(start2index) ? -1 : it->second);
+		int sz = intervals.size();
+		if (sz == 0) {
+			return {};
+		}
+		vector<int> result(sz, -1);
+		if (sz == 1) {
+			return result;
+		}
+		multiset<array<int, 2>> tree;
+		for (int i = 0; i < sz; ++i) {
+			tree.insert({intervals[i].start, i});
+		}
+		for (int i = 0; i < sz; ++i) {
+			array<int, 2> a({intervals[i].start, i}), b({intervals[i].end, 0});
+			tree.erase(a);
+			multiset<array<int, 2>>::iterator it = tree.lower_bound(b);
+			result[i] = it == end(tree) ? -1 : it->at(1);
+			tree.insert(a);
 		}
 		return result;
 	}
 };
-// class Solution {
-// public:
-// 	vector<int> findRightInterval(vector<Interval>& intervals) {
-// 		vector<int> result;
-// 		vector<pair<int, int>> start2index;
-// 		const int n = intervals.size();
-// 		for (int i = 0; i < n; i++)
-// 			start2index.push_back(make_pair(intervals[i].start, i));
-// 		sort(begin(start2index), end(start2index));
-// 		// sort(begin(start2index), end(start2index), [](const pair<int, int>& a, const pair<int, int>& b) {
-// 		// 	return a.first < b.first;
-// 		// });
-// 		for (const auto &i : intervals) {
-// 			vector<pair<int, int>>::iterator it = lower_bound(begin(start2index), end(start2index), make_pair(i.end, INT_MIN));
-// 			// vector<pair<int, int>>::iterator it = lower_bound(begin(start2index), end(start2index), make_pair(i.end, INT_MIN), [](const pair<int, int>& a, const pair<int, int>& b) {
-// 			// 	return a.first < b.first;
-// 			// });
-// 			result.push_back(it == end(start2index) ? -1 : it->second);
-// 		}
-// 		return result;
-// 	}
-// };
-// BEGIN: Time Limit Exceeded
-// class Solution {
-// public:
-// 	vector<int> findRightInterval(vector<Interval>& intervals) {
-// 		const int n = intervals.size();
-// 		vector<int> result(n, -1);
-// 		for (int i = 0; i < n; i++) {
-// 			int distance = INT_MAX;
-// 			for (int j = 0; j < n; j++) {
-// 				if (j != i && intervals[j].start >= intervals[i].end && intervals[j].start - intervals[i].end < distance) {
-// 					result[i] = j;
-// 					distance = intervals[j].start - intervals[i].end;
-// 				}
-// 			}
-// 		}
-// 		return result;
-// 	}
-// };
-// END: Time Limit Exceeded
-int main (void) {
-	Solution solution;
-	vector<Interval> intervals;
-	for (const auto &i : solution.findRightInterval(intervals)) cout << i << '\t';
-	cout << "\tPassed\n";
-	intervals = { {1,2} };
-	for (const auto &i : solution.findRightInterval(intervals)) cout << i << '\t';
-	cout << "\tPassed\n";
-	intervals = { {3,4}, {2,3}, {1,2} };
-	for (const auto &i : solution.findRightInterval(intervals)) cout << i << '\t';
-	cout << "\tPassed\n";
-	intervals = { {1,4}, {2,3}, {3,4} };
-	for (const auto &i : solution.findRightInterval(intervals)) cout << i << '\t';
-	cout << "\tPassed\n";		
-	cout << "\nPassed All\n";	
-	return 0;
-}
