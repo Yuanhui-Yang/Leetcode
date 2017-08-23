@@ -53,9 +53,6 @@ public:
 private:
 	struct Comp {
 		bool operator() (const Interval & a, const Interval & b) {
-			if (a.end == b.end) {
-				return a.start < b.start;
-			}
 			return a.end < b.end;
 		}
 	};
