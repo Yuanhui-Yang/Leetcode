@@ -23,6 +23,26 @@ The n will be in the range [1, 1000].
 class Solution {
 public:
 	int minSteps(int n) {
+		vector<int> A(n + 1, 0);
+		A[0] = 0;
+		A[1] = 0;
+		for (int i = 2; i <= n; ++i) {
+			A[i] = i;
+		}
+		for (int i = 3; i <= n; ++i) {
+			for (int j = 1; j <= i - 1; ++j) {
+				if (i % j == 0) {
+					A[i] = min(A[i], A[j] + i / j);
+				}
+			}
+		}
+		return A[n];
+	}
+};
+
+class Solution {
+public:
+	int minSteps(int n) {
 		if (n <= 1) {
 			return 0;
 		}
