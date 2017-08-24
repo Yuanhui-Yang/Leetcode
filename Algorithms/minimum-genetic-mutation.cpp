@@ -1,90 +1,105 @@
 // 433. Minimum Genetic Mutation
 // https://leetcode.com/problems/minimum-genetic-mutation/
-#include <iostream>
-#include <cassert>
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
-using namespace std;
+
+/*
+A gene string can be represented by an 8-character long string, with choices from "A", "C", "G", "T".
+
+Suppose we need to investigate about a mutation (mutation from "start" to "end"), where ONE mutation is defined as ONE single character changed in the gene string.
+
+For example, "AACCGGTT" -> "AACCGGTA" is 1 mutation.
+
+Also, there is a given gene "bank", which records all the valid gene mutations. A gene must be in the bank to make it a valid gene string.
+
+Now, given 3 things - start, end, bank, your task is to determine what is the minimum number of mutations needed to mutate from "start" to "end". If there is no such a mutation, return -1.
+
+Note:
+
+Starting point is assumed to be valid, so it might not be included in the bank.
+If multiple mutations are needed, all mutations during in the sequence must be valid.
+You may assume start and end string is not the same.
+Example 1:
+
+start: "AACCGGTT"
+end:   "AACCGGTA"
+bank: ["AACCGGTA"]
+
+return: 1
+Example 2:
+
+start: "AACCGGTT"
+end:   "AAACGGTA"
+bank: ["AACCGGTA", "AACCGCTA", "AAACGGTA"]
+
+return: 2
+Example 3:
+
+start: "AAAAACCC"
+end:   "AACCCCCC"
+bank: ["AAAACCCC", "AAACCCCC", "AACCCCCC"]
+
+return: 3
+*/
+
 class Solution {
 public:
 	int minMutation(string start, string end, vector<string>& bank) {
-		unordered_set<string> nodes;
-		nodes.insert(start);
-		for (const auto &i : bank) {
-			if (i.size() == start.size()) {
-				nodes.insert(i);
-			}
+		if (start == end) {
+			return 0;
 		}
-		if (!nodes.count(end)) return -1;
-		unordered_map<string, unordered_set<string>> graph;
-		for (const auto &i : nodes) {
-			for (const auto &j : nodes) {
-				if (i != j) {
-					if (graph.count(i) && graph[i].count(j)) continue;
-					if (graph.count(j) && graph[j].count(i)) {
-						graph[i].insert(j);
-						continue;
-					}
-					size_t cnt = 0;
-					for (size_t k = 0; k < start.size(); k++) {
-						cnt += i[k] != j[k];
-					}
-					if (cnt == 1) {
-						graph[i].insert(j);
-						graph[j].insert(i);
-					}
+		if (bank.empty()) {
+			return -1;
+		}
+		unordered_map<string, unordered_set<string>> A;
+		for (int sz = bank.size(), i = 0; i + 1 < sz; ++i) {
+			for (int j = i + 1; j < sz; ++j) {
+				if (f(bank[i], bank[j])) {
+					A[bank[i]].insert(bank[j]);
+					A[bank[j]].insert(bank[i]);
 				}
 			}
 		}
-		unordered_set<string> visited;
-		vector<string> stack;
-		visited.insert(start);
-		stack.push_back(start);
-		unordered_map<string, int> distance;
-		distance[start] = 0;
-		while (!stack.empty()) {
-			const string stack_back = stack.back();
-			stack.pop_back();
-			for (const auto &i : graph[stack_back]) {
-				if (!visited.count(i)) {
-					if (i == end) return distance[stack_back] + 1;
-					visited.insert(i);
-					stack.push_back(i);
-					distance[i] = distance[stack_back] + 1;
+		for (int sz = bank.size(), i = 0; i < sz; ++i) {
+			if (f(start, bank[i])) {
+				A[start].insert(bank[i]);
+				A[bank[i]].insert(start);
+			}
+		}
+		unordered_set<string> B;
+		int result = -1;
+		B.insert(start);
+		list<string> curr;
+		curr.push_back(start);
+		while(!curr.empty()) {
+			list<string> next;
+			++result;
+			for (const auto & i : curr) {
+				if (i == end) {
+					return result;
+				}
+				if (A.count(i)) {
+					for (const auto & j : A[i]) {
+						if (!B.count(j)) {
+							B.insert(j);
+							next.push_back(j);
+						}
+					}
 				}
 			}
+			curr = next;
 		}
 		return -1;
 	}
+private:
+	bool f(const string & s, const string & t) {
+		if (s.size() != t.size()) {
+			return false;
+		}
+		int sz = s.size(), result = 0;
+		for (int i = 0; i < sz; ++i) {
+			if (s[i] != t[i]) {
+				++result;
+			}
+		}
+		return result == 1;
+	}
 };
-int main(void) {
-	Solution solution;
-	string start, end;
-	vector<string> bank;
-	int result = 0;
-	start = "AACCGGTT";
-	end = "AACCGGTA";
-	bank = {"AACCGGTA"};
-	result = solution.minMutation(start, end, bank);
-	assert(1 == result);
-	start = "AACCGGTT";
-	end = "AAACGGTA";
-	bank = {"AACCGGTA", "AACCGCTA", "AAACGGTA"};
-	result = solution.minMutation(start, end, bank);
-	assert(2 == result);
-	start = "AAAAACCC";
-	end = "AACCCCCC";
-	bank = {"AAAACCCC", "AAACCCCC", "AACCCCCC"};
-	result = solution.minMutation(start, end, bank);
-	assert(3 == result);
-	start = "AAAACCCC";
-	end = "CCCCCCCC";
-	bank = {"AAAACCCA","AAACCCCA","AACCCCCA","AACCCCCC","ACCCCCCC","CCCCCCCC","AAACCCCC","AACCCCCC"};
-	result = solution.minMutation(start, end, bank);
-	assert(4 == result);
-	cout << "\nPassed All\n";
-	return 0;
-}
