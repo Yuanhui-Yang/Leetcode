@@ -1,5 +1,22 @@
 // 341. Flatten Nested List Iterator
 // https://leetcode.com/problems/flatten-nested-list-iterator/
+
+/*
+Given a nested list of integers, implement an iterator to flatten it.
+
+Each element is either an integer, or a list -- whose elements may also be integers or other lists.
+
+Example 1:
+Given the list [[1,1],2,[1,1]],
+
+By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,1,2,1,1].
+
+Example 2:
+Given the list [1,[4,[6]]],
+
+By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,4,6].
+*/
+
 /**
  * // This is the interface that allows for creating nested lists.
  * // You should not implement it, or speculate about its implementation
@@ -17,37 +34,37 @@
  *     const vector<NestedInteger> &getList() const;
  * };
  */
-// BEGIN: https://discuss.leetcode.com/topic/41870/real-iterator-in-python-java-c
 class NestedIterator {
 public:
 	NestedIterator(vector<NestedInteger> &nestedList) {
-		this->begins.push(begin(nestedList));
-		this->ends.push(end(nestedList));
+		curr.push({nestedList.begin(), nestedList.end()});
 	}
 
 	int next() {
-		return (this->begins.top()++)->getInteger();
+		int result = curr.top()[0]->getInteger();
+		++curr.top()[0];
+		return result;
 	}
 
 	bool hasNext() {
-		while (!begins.empty()) {
-			if (begins.top() == ends.top()) {
-				begins.pop();
-				ends.pop();
-				continue;
+		while (!curr.empty()) {
+			if (curr.top()[0] ==  curr.top()[1]) {
+				curr.pop();
 			}
-			if (begins.top()->isInteger()) return true;
-			vector<NestedInteger> &current = begins.top()->getList();
-			begins.top()++;
-			begins.push(begin(current));
-			ends.push(end(current));
+			else if (curr.top()[0]->isInteger()) {
+				return true;
+			}
+			else {
+				array<vector<NestedInteger>::iterator, 2> top = curr.top();
+				++curr.top()[0];
+				curr.push({top[0]->getList().begin(), top[0]->getList().end()});
+			}
 		}
 		return false;
 	}
 private:
-	stack<vector<NestedInteger>::iterator> begins, ends;
+	stack<array<vector<NestedInteger>::iterator, 2>> curr;
 };
-// END: https://discuss.leetcode.com/topic/41870/real-iterator-in-python-java-c
 
 /**
  * Your NestedIterator object will be instantiated and called as such:
