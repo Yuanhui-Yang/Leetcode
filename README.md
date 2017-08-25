@@ -592,5 +592,5 @@ int main(void) {
 ## Database
 | # | Title | Solution |
 | --- | --- | --- |
-| 182 | [Duplicate Emails](https://leetcode.com/problems/duplicate-emails/) | [MySQL](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/duplicate-emails.sql) |
-| 595 | [Big Countries](https://leetcode.com/problems/big-countries/) | [MySQL](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/big-countries.sql) |
+| 182 | [Duplicate Emails](https://leetcode.com/problems/duplicate-emails/) | [MySQL](https://github.com/yuanhui-yang/LeetCode/blob/master/Database/duplicate-emails.sql) |
+| 595 | [Big Countries](https://leetcode.com/problems/big-countries/) | [MySQL](https://github.com/yuanhui-yang/LeetCode/blob/master/Database/big-countries.sql) |
