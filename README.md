@@ -594,6 +594,5 @@ int main(void) {
 | --- | --- | --- |
 | 182 | [Duplicate Emails](https://leetcode.com/problems/duplicate-emails/) | [MySQL](https://github.com/yuanhui-yang/LeetCode/blob/master/Database/duplicate-emails.sql) |
 | 580 | [Count Student Number in Departments](https://leetcode.com/problems/count-student-number-in-departments/) | [MySQL](https://github.com/yuanhui-yang/LeetCode/blob/master/Database/count-student-number-in-departments.sql) |
-| 580 | [Count Student Number in Departments](https://leetcode.com/problems/
 | 586 | [Customer Placing the Largest Number of Orders](https://leetcode.com/problems/customer-placing-the-largest-number-of-orders/) | [MySQL](https://github.com/yuanhui-yang/LeetCode/blob/master/Database/customer-placing-the-largest-number-of-orders.sql) |
 | 595 | [Big Countries](https://leetcode.com/problems/big-countries/) | [MySQL](https://github.com/yuanhui-yang/LeetCode/blob/master/Database/big-countries.sql) |
