@@ -593,4 +593,5 @@ int main(void) {
 | # | Title | Solution |
 | --- | --- | --- |
 | 182 | [Duplicate Emails](https://leetcode.com/problems/duplicate-emails/) | [MySQL](https://github.com/yuanhui-yang/LeetCode/blob/master/Database/duplicate-emails.sql) |
+| 586 | [Customer Placing the Largest Number of Orders](https://leetcode.com/problems/customer-placing-the-largest-number-of-orders/) | [MySQL](https://github.com/yuanhui-yang/LeetCode/blob/master/Database/customer-placing-the-largest-number-of-orders.sql) |
 | 595 | [Big Countries](https://leetcode.com/problems/big-countries/) | [MySQL](https://github.com/yuanhui-yang/LeetCode/blob/master/Database/big-countries.sql) |
