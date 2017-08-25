@@ -1,85 +1,110 @@
 // 468. Validate IP Address
 // https://leetcode.com/problems/validate-ip-address/
-#include <iostream>
-#include <cassert>
-#include <string>
-#include <unordered_set>
-using namespace std;
+
+/*
+Write a function to check whether an input string is a valid IPv4 address or IPv6 address or neither.
+
+IPv4 addresses are canonically represented in dot-decimal notation, which consists of four decimal numbers, each ranging from 0 to 255, separated by dots ("."), e.g.,172.16.254.1;
+
+Besides, leading zeros in the IPv4 is invalid. For example, the address 172.16.254.01 is invalid.
+
+IPv6 addresses are represented as eight groups of four hexadecimal digits, each group representing 16 bits. The groups are separated by colons (":"). For example, the address 2001:0db8:85a3:0000:0000:8a2e:0370:7334 is a valid one. Also, we could omit some leading zeros among four hexadecimal digits and some low-case characters in the address to upper-case ones, so 2001:db8:85a3:0:0:8A2E:0370:7334 is also a valid IPv6 address(Omit leading zeros and using upper cases).
+
+However, we don't replace a consecutive group of zero value with a single empty group using two consecutive colons (::) to pursue simplicity. For example, 2001:0db8:85a3::8A2E:0370:7334 is an invalid IPv6 address.
+
+Besides, extra leading zeros in the IPv6 is also invalid. For example, the address 02001:0db8:85a3:0000:0000:8a2e:0370:7334 is invalid.
+
+Note: You may assume there is no extra space or special characters in the input string.
+
+Example 1:
+Input: "172.16.254.1"
+
+Output: "IPv4"
+
+Explanation: This is a valid IPv4 address, return "IPv4".
+Example 2:
+Input: "2001:0db8:85a3:0:0:8A2E:0370:7334"
+
+Output: "IPv6"
+
+Explanation: This is a valid IPv6 address, return "IPv6".
+Example 3:
+Input: "256.256.256.256"
+
+Output: "Neither"
+
+Explanation: This is neither a IPv4 address nor a IPv6 address.
+*/
+
 class Solution {
 public:
 	string validIPAddress(string IP) {
-		const int IP_size = IP.size();
-		if (IP_size < 7 || IP_size > 39) return "Neither";
-		int cnt1 = 0;
-		int cnt2 = 0;
-		for (const auto &i : IP) {
-			cnt1 += (i == '.');
-			cnt2 += (i == ':');
+		int sz = IP.size(), dot = 0, colon = 0;
+		if (sz < 7) {
+			return "Neither";
 		}
-		if (cnt1 == 3 && cnt2 == 0) {
-			if (IP_size < 7 || IP_size > 15) return "Neither";
-			unordered_set<char> valid_char;
-			valid_char.insert('.');
-			for (int i = 0; i < 10; i++) {
-				char c = '0' + i;
-				valid_char.insert(c);
+		if (sz > 39) {
+			return "Neither";
+		}
+		if (IP.front() == '.' or IP.back() == '.') {
+			return "Neither";
+		}
+		if (IP.front() == ':' or IP.back() == ':') {
+			return "Neither";
+		}
+		for (int i = 0; i < sz; ++i) {
+			if (IP[i] == '.') {
+				++dot;
 			}
-			for (int i = 0, j = 0; i < IP_size; i++) {
-				const char c = IP[i];
-				if (!valid_char.count(c)) return "Neither";
-				if (i + 1 == IP_size && c == '.') return "Neither";
-				if (i + 1 < IP_size && c == '.') {
-					const string str = IP.substr(j, i - j);
-					const int str_size = str.size();
-					if (str_size == 0 || str_size > 3) return "Neither";
-					if (str[0] == '0' && str_size > 1) return "Neither"; 
-					const int str_val = stoi(str);
-					if (str_val < 0 || str_val > 255) return "Neither";
-					j = i + 1;
-					continue;
+			else if (IP[i] == ':') {
+				++colon;
+			}
+		}
+		if (dot > 0) {
+			if (dot != 3 or colon > 0) {
+				return "Neither";
+			}
+			for (int i = 0; i < sz; ++i) {
+				int j = i, val = 0;
+				while (i < sz and IP[i] != '.') {
+					if (!isdigit(IP[i])) {
+						return "Neither";
+					}
+					val = 10 * val + IP[i] - '0';
+					++i;
 				}
-				if (i + 1 == IP_size && c != '.') {
-					const string str = IP.substr(j, IP_size - j);
-					const int str_size = str.size();
-					if (str_size == 0 || str_size > 3) return "Neither";
-					if (str[0] == '0' && str_size > 1) return "Neither";
-					const int str_val = stoi(str);
-					if (str_val < 0 || str_val > 255) return "Neither";
-					continue;										
+				if (i == j) {
+					return "Neither";
+				}
+				if (i - j > 3) {
+					return "Neither";
+				}
+				if (i - j > 1 and IP[j] == '0') {//01.(2)
+					return "Neither";
+				}
+				if (val >= 256) {
+					return "Neither";
 				}
 			}
 			return "IPv4";
 		}
-		if (cnt1 == 0 && cnt2 == 7) {
-			if (IP_size < 7 || IP_size > 39) return "Neither";
-			unordered_set<char> valid_char;
-			valid_char.insert(':');
-			for (int i = 0; i < 10; i++) {
-				char c = '0' + i;
-				valid_char.insert(c);
-			}			
-			for (int i = 0; i < 6; i++) {
-				char c1 = 'a' + i;
-				char c2 = 'A' + i;
-				valid_char.insert(c1);
-				valid_char.insert(c2);
+		if (colon > 0) {
+			if (colon != 7 or dot > 0) {
+				return "Neither";
 			}
-			for (int i = 0, j = 0; i < IP_size; i++) {
-				const char c = IP[i];
-				if (!valid_char.count(c)) return "Neither";
-				if (i + 1 == IP_size && c == ':') return "Neither";
-				if (i + 1 < IP_size && c == ':') {
-					const string str = IP.substr(j, i - j);
-					const int str_size = str.size();
-					if (str_size == 0 || str_size > 4) return "Neither";
-					j = i + 1;
-					continue;
+			for (int i = 0; i < sz; ++i) {
+				int j = i;
+				while (i < sz and IP[i] != ':') {
+					if (!('0' <= IP[i] and IP[i] <= '9' or 'a' <= IP[i] and IP[i] <= 'f' or 'A' <= IP[i] and IP[i] <= 'F')) {
+						return "Neither";
+					}
+					++i;
 				}
-				if (i + 1 == IP_size && c != ':') {
-					const string str = IP.substr(j, IP_size - j);
-					const int str_size = str.size();
-					if (str_size == 0 || str_size > 4) return "Neither";
-					continue;
+				if (i == j) {
+					return "Neither";
+				}
+				if (i - j > 4) {
+					return "Neither";
 				}
 			}
 			return "IPv6";
@@ -87,15 +112,3 @@ public:
 		return "Neither";
 	}
 };
-int main(void) {
-	Solution solution;
-	assert("IPv4" == solution.validIPAddress("172.16.254.1"));
-	assert("Neither" == solution.validIPAddress("172.16.254.01"));
-	assert("Neither" == solution.validIPAddress("256.256.256.256"));
-	assert("IPv6" == solution.validIPAddress("2001:0db8:85a3:0000:0000:8a2e:0370:7334"));
-	assert("IPv6" == solution.validIPAddress("2001:0db8:85a3:0:0:8A2E:0370:7334"));
-	assert("Neither" == solution.validIPAddress("2001:0db8:85a3::8A2E:0370:7334"));
-	assert("Neither" == solution.validIPAddress("02001:0db8:85a3:0000:0000:8a2e:0370:7334"));
-	cout << "\nPassed All\n";
-	return 0;
-}
