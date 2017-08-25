@@ -590,6 +590,7 @@ int main(void) {
 | 661 | [Image Smoother](https://leetcode.com/problems/image-smoother/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/image-smoother.cpp) |
 
 ## Database
-| # | Title | Solution | Difficulty |
-| --- | --- | --- | --- |
+| # | Title | Solution |
+| --- | --- | --- |
 | 182 | [Duplicate Emails](https://leetcode.com/problems/duplicate-emails/) | [MySQL](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-vacation-days.sql) |
+| 595 | [Big Countries](https://leetcode.com/problems/big-countries/) | [MySQL](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/big-countries.sql) |
