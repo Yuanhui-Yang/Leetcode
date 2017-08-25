@@ -79,7 +79,7 @@ public:
 				if (i - j > 3) {
 					return "Neither";
 				}
-				if (i - j > 1 and IP[j] == '0') {//01.(2)
+				if (i - j > 1 and IP[j] == '0') {
 					return "Neither";
 				}
 				if (val >= 256) {
