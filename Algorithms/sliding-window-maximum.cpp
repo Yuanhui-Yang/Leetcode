@@ -27,13 +27,20 @@ Could you solve it in linear time?
 class Solution {
 public:
 	vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-		multiset<int, greater<int>> tree;
+		int sz = nums.size(), i = 0, j = 0;
 		vector<int> result;
-		for (int n = nums.size(), i = 0; i < n; ++i) {
-			tree.insert(nums[i]);
-			if (tree.size() == k) {
-				result.push_back(*begin(tree));
-				tree.erase(tree.find(nums[i + 1 - k]));
+		multiset<int, greater<int>> A;
+		while (j < sz or j - i > k) {
+			if (j - i <= k) {
+				A.insert(nums[j]);
+				++j;
+			}
+			else {
+				A.erase(A.find(nums[i]));
+				++i;
+			}
+			if (j - i == k) {
+				result.push_back(*begin(A));
 			}
 		}
 		return result;
