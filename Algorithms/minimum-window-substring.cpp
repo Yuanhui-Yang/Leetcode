@@ -15,62 +15,56 @@ If there is no such window in S that covers all characters in T, return the empt
 If there are multiple such windows, you are guaranteed that there will always be only one unique minimum window in S.
 */
 
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
 public:
 	string minWindow(string s, string t) {
-		int m = s.size(), n = t.size(), i = 0, j = 0, h[256];
-		if (m == 0 or n == 0 or m < n) {
-			return "";
-		}
-		memset(h, 0, sizeof(h));
-		for (const auto &i : t) {
-			++h[i - 0];
-		}
+		int sz1 = s.size(), sz2 = t.size(), i = 0, j = 0, cnt = 0;
 		string result;
-		while (j < m) {
-			while (j < m and n > 0) {
-				if (h[s[j++] - 0]-- > 0) {
-					--n;
+		array<int, 256> A, B;
+		A.fill(0);
+		B.fill(0);
+		for (const auto & i : t) {
+			++A[i];
+		}
+		while (j < sz1 or j - i > sz2) {
+			if (j - i  <= sz2) {
+				int y = s[j];
+				if (B[y] < A[y]) {
+					++cnt;
 				}
+				++B[y];
+				++j;
 			}
-			while (n == 0) {
-				if (result.empty() or j - i < int(result.size())) {
-					result = s.substr(i, j - i);
+			else if (j == sz1) {
+				int x = s[i];
+				if (B[x] == A[x]) {
+					--cnt;
 				}
-				if (i < j and h[s[i++] - 0]++ == 0) {
-					++n;
+				--B[x];
+				++i;
+			}
+			else if (cnt < sz2) {
+				int y = s[j];
+				if (B[y] < A[y]) {
+					++cnt;
+				}
+				++B[y];
+				++j;
+			}
+			else {
+				int x = s[i];
+				if (B[x] == A[x]) {
+					--cnt;
+				}
+				--B[x];
+				++i;
+			}
+			if (cnt == sz2) {
+				if (result.empty() or j - i < result.size()) {
+					result = s.substr(i, j - i);
 				}
 			}
 		}
 		return result;
 	}
 };
-
-int main(void) {
-	Solution solution;
-	string s, t, answer, result;
-
-	s = "aaaaaaaaaaaabbbbbcdd";
-	t = "abcdd";
-	answer = "abbbbbcdd";
-	result = solution.minWindow(s, t);
-	assert(answer == result);
-
-	s = "ab";
-	t = "b";
-	answer = "b";
-	result = solution.minWindow(s, t);
-	assert(answer == result);
-
-	s = "ADOBECODEBANC";
-	t = "ABC";
-	answer = "BANC";
-	result = solution.minWindow(s, t);
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
-	return 0;
-}
