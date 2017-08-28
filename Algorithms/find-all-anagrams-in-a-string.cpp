@@ -49,8 +49,8 @@ public:
 		array<int, 26> B;
 		B.fill(0);
 		int i = 0, j = 0, cnt = 0;
-		while (j < sz1) {
-			if (j - i < sz2) {
+		while (j < sz1 or j - i > sz2) {
+			if (j - i <= sz2) {
 				int y = s[j] - 'a';
 				if (A[y] > 0) {
 					if (B[y] < A[y]) {
@@ -61,13 +61,7 @@ public:
 				++j;
 			}
 			else {
-				int x = s[i] - 'a', y = s[j] - 'a';
-				if (A[y] > 0) {
-					if (B[y] < A[y]) {
-						++cnt;
-					}
-					++B[y];
-				}
+				int x = s[i] - 'a';
 				if (A[x] > 0) {
 					if (B[x] == A[x]) {
 						--cnt;
@@ -75,7 +69,6 @@ public:
 					--B[x];
 				}
 				++i;
-				++j;
 			}
 			if (cnt == sz2 and j - i == sz2) {
 				result.push_back(i);
