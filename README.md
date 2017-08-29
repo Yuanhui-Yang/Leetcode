@@ -588,6 +588,7 @@ int main(void) {
 | 659 | [Split Array into Consecutive Subsequences](https://leetcode.com/problems/split-array-into-consecutive-subsequences/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/split-array-into-consecutive-subsequences.cpp) |
 | 660 | [Remove 9](https://leetcode.com/problems/remove-9/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-9.cpp) |
 | 661 | [Image Smoother](https://leetcode.com/problems/image-smoother/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/image-smoother.cpp) |
+| 667 | [Beautiful Arrangement II](https://leetcode.com/problems/beautiful-arrangement-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/beautiful-arrangement-ii.cpp) |
 
 ## Database
 | # | Title | Solution |
