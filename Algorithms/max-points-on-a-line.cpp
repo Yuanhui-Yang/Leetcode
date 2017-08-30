@@ -17,47 +17,31 @@ Given n points on a 2D plane, find the maximum number of points that lie on the 
 class Solution {
 public:
 	int maxPoints(vector<Point>& points) {
-		int n = points.size();
-		if (n <= 2) {
-			return n;
-		}
-		sort(begin(points), end(points), Comp());
-		int result = 2;
-		for (int i = 0; i + 1 < n; ++i) {
-			unordered_map<long double, unordered_map<long double, int>> h;
-			int cnt = 1;
-			for (int j = i + 1; j < n; ++j) {
-				int x1 = points[i].x, y1 = points[i].y;
-				int x2 = points[j].x, y2 = points[j].y;
-				if (x1 == x2 and y1 == y2) {
-					result = max(result, ++cnt);
-					continue;
+		int sz = points.size(), result = 0;
+		for (int i = 0; i < sz; ++i) {
+			map<array<int, 2>, int> A;
+			int B = 1, C = 0;
+			for (int j = 0; j < sz; ++j) {
+				if (i != j) {
+					int x = points[j].x - points[i].x, y = points[j].y - points[i].y;
+					if (x == 0 and y == 0) {
+						++B;
+					}
+					else {
+						C = max(C, ++A[f1(x, y)]);
+					}
 				}
-				array<long double, 2> line = f(x1, y1, x2, y2);
-				result = max(result, ++h[line[0]][line[1]] + cnt);
 			}
+			result = max(result, B + C);
 		}
 		return result;
 	}
 private:
-	array<long double, 2> f(long long x1, long long y1, long long x2, long long y2) {
-		array<long double, 2> result;
-		if (x1 == x2) {
-			result[0] = x1;
-			result[1] = numeric_limits<long double>::max();
-		}
-		else {
-			result[0] = (long double)(x1 * y2 - x2 * y1) / (long double)(x1 - x2);
-			result[1] = (long double)(y1 - y2) / (long double)(x1 - x2);
-		}
-		return result;
+	array<int, 2> f1(int x, int y) {
+		int z = f2(x, y);
+		return {x / z, y / z};
 	}
-	struct Comp {
-		bool operator() (const Point & a, const Point &b) {
-			if (a.x == b.x) {
-				return a.y < b.y;
-			}
-			return a.x < b.x;
-		}
-	};
+	int f2(int x, int y) {
+		return y == 0 ? x : f2(y, x % y);
+	}
 };
