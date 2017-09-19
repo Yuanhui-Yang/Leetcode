@@ -32,7 +32,7 @@ public:
 		for (i = 1; i < len; ++i) {
 			j = 2 * x - i;
 			z = 2 * x - y;
-			if (j - A[j] > z) {
+			if (j >= 0 and j - A[j] > z) {
 				A[i] = A[j];
 			}
 			else {
