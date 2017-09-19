@@ -27,30 +27,30 @@ public:
 			t.push_back(i);
 			t.push_back('#');
 		}
-		int n = t.size(), x = 0, y = 0;
-		vector<int> vec(n, 0);
-		for (int i = 0; i < n and x - y >= 0 and x + y < n; ++i) {
-			int c = x - y, d = x + y;
-			int j = 2 * x - i;
-			if (j > c and j - vec[j] > c) {
-				vec[i] = vec[j];
+		int len = t.size(), i = 0, j = 0, k = 0, x = 0, y = 0, z = 0, maxCenter = 0, maxLen = 0;
+		vector<int> A(len, 0);
+		for (i = 1; i < len; ++i) {
+			j = 2 * x - i;
+			z = 2 * x - y;
+			if (j - A[j] > z) {
+				A[i] = A[j];
 			}
 			else {
-				int e = 0;
-				while (i - e >= 0 and i + e < n and t[i - e] == t[i + e]) {
-					++e;
+				k = 0;
+				while (i - k >= 0 and i + k < len and t[i - k] == t[i + k]) {
+					++k;
 				}
-				vec[i] = --e;
+				A[i] = --k;
 			}
-			if (y < vec[i]) {
+			if (i + A[i] > x + y) {
 				x = i;
-				y = vec[i];
+				y = A[i];
+			}
+			if (A[i] > maxLen) {
+				maxCenter = i;
+				maxLen = A[i];
 			}
 		}
-		string result;
-		for (int i = x - y + 1; i < x + y; i += 2) {
-			result.push_back(t[i]);
-		}
-		return result;
+		return s.substr((maxCenter - maxLen) / 2, maxLen);
 	}
 };
