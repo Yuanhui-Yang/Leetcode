@@ -19,28 +19,33 @@ Output: "bb"
 */
 
 class Solution {
-public:
-	string longestPalindrome(string s) {
-		string t;
-		t.push_back('#');
-		for (const auto & i : s) {
-			t.push_back(i);
-			t.push_back('#');
+	public String longestPalindrome(String s) {
+		if (s == null || s.length() <= 1) {
+			return s;
 		}
-		int len = t.size(), i = 0, j = 0, k = 0, x = 0, y = 0, z = 0, maxCenter = 0, maxLen = 0;
-		vector<int> A(len, 0);
+		char[] t = new char[2 * s.length() + 1];
+		int len = 2 * s.length() + 1, i = 0, j = 0, k = 0, x = 0, y = 0, z = 0, maxCenter = 0, maxLen = 0;
+		t[0] = '#';
+		for (i = 0, j = 1; i < s.length(); ++i) {
+			t[j] = s.charAt(i);
+			++j;
+			t[j] = '#';
+			++j;    
+		}
+		int[] A = new int[len];
+		A[0] = 0;
 		for (i = 1; i < len; ++i) {
 			j = 2 * x - i;
-			z = 2 * x - y;
-			if (j >= 0 and j - A[j] > z) {
+			z = x - y;
+			if (j >= 0 && j - A[j] > z) {
 				A[i] = A[j];
 			}
 			else {
 				k = 0;
-				while (i - k >= 0 and i + k < len and t[i - k] == t[i + k]) {
+				while (i - k >= 0 && i + k < len && t[i - k] == t[i + k]) {
 					++k;
 				}
-				A[i] = --k;
+				A[i] = k - 1;
 			}
 			if (i + A[i] > x + y) {
 				x = i;
@@ -51,6 +56,6 @@ public:
 				maxLen = A[i];
 			}
 		}
-		return s.substr((maxCenter - maxLen) / 2, maxLen);
+		return s.substring((maxCenter - maxLen) / 2, (maxCenter - maxLen) / 2 + maxLen);
 	}
-};
+}

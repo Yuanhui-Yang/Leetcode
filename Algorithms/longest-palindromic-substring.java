@@ -36,7 +36,7 @@ class Solution {
 		A[0] = 0;
 		for (i = 1; i < len; ++i) {
 			j = 2 * x - i;
-			z = 2 * x - y;
+			z = x - y;
 			if (j >= 0 && j - A[j] > z) {
 				A[i] = A[j];
 			}
