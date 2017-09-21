@@ -79,12 +79,12 @@ class Solution {
 				else {
 					A[j][k] = s.charAt(j) == s.charAt(k) && A[j + 1][k - 1];
 				}
-				if (A[j][k] && i > y - x + 1) {
+				if (A[j][k] && i > y - x) {
 					x = j;
-					y = k;
+					y = k + 1;
 				}
 			}
 		}
-		return s.substring(x, y + 1);
+		return s.substring(x, y);
 	}
 }
