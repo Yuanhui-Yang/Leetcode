@@ -52,7 +52,7 @@ class Solution {
 				y = A[i];
 			}
 			if (A[i] > maxLen) {
-				maxCenter = x;
+				maxCenter = i;
 				maxLen = A[i];
 			}
 		}
