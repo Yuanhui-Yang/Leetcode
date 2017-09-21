@@ -62,26 +62,24 @@ class Solution {
 
 class Solution {
 	public String longestPalindrome(String s) {
-		int len = s.length(), i, j, k, x = 0, y = 0;
-		boolean[][] DP = new boolean[len][len];
-		for (i = 0; i < len; ++i) {
-			for (j = 0; j < len; ++j) {
-				DP[i][j] = false;
-			}
+		if (s == null || s.length() <= 1) {
+			return s;
 		}
+		int len = s.length(), i = 0, j = 0, k = 0, x = 0, y = 0;
+		boolean[][] A = new boolean[len][len];
 		for (i = 1; i <= len; ++i) {
-			for (j = 0; j + i <= len; ++j) {
+			for (j = 0; i + j <= len; ++j) {
 				k = i + j - 1;
 				if (i == 1) {
-					DP[j][k] = true;
+					A[j][k] = true;
 				}
 				else if (i == 2) {
-					DP[j][k] = s.charAt(j) == s.charAt(k);
+					A[j][k] = s.charAt(j) == s.charAt(k);
 				}
 				else {
-					DP[j][k] = s.charAt(j) == s.charAt(k) && DP[j + 1][k - 1];
+					A[j][k] = s.charAt(j) == s.charAt(k) && A[j + 1][k - 1];
 				}
-				if (DP[j][k] && i > y - x) {
+				if (A[j][k] && i > y - x + 1) {
 					x = j;
 					y = k;
 				}
