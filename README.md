@@ -590,7 +590,7 @@ int main(void) {
 | 661 | [Image Smoother](https://leetcode.com/problems/image-smoother/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/image-smoother.cpp) |
 | 666 | [Path Sum IV](https://leetcode.com/problems/path-sum-iv/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/path-sum-iv.cpp) |
 | 667 | [Beautiful Arrangement II](https://leetcode.com/problems/beautiful-arrangement-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/beautiful-arrangement-ii.cpp) |
-| 669 | [Trim a Binary Search Tree](https://leetcode.com/problems/trim-a-binary-search-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/trim-a-binary-search-tree.cpp) |
+| 669 | [Trim a Binary Search Tree](https://leetcode.com/problems/trim-a-binary-search-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/trim-a-binary-search-tree.cpp), [Java](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/trim-a-binary-search-tree.java) |
 
 ## Database
 | # | Title | Solution |
