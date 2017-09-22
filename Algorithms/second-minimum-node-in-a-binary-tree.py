@@ -54,4 +54,4 @@ class Solution(object):
 				curr.append(right)
 			elif right and right.val < b:
 				b = right.val
-		return -1 if b == float('inf') else b;
+		return -1 if b == float('inf') else b
