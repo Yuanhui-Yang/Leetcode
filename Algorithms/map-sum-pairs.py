@@ -13,3 +13,55 @@
 # Input: insert("app", 2), Output: Null
 # Input: sum("ap"), Output: 5
 
+class Node(object):
+	def __init__(self):
+		self.next = {}
+		self.val = 0
+
+class MapSum(object):
+
+	def __init__(self):
+		"""
+		Initialize your data structure here.
+		"""
+		self.root = Node()
+
+	def insert(self, key, val):
+		"""
+		:type key: str
+		:type val: int
+		:rtype: void
+		"""
+		it = self.root
+		for ch in key:
+			if ch not in it.next:
+				it.next[ch] = Node()
+			it = it.next[ch]
+		it.val = val
+
+	def sum(self, prefix):
+		"""
+		:type prefix: str
+		:rtype: int
+		"""
+		def f(node):
+			if not node:
+				return 0
+			result = node.val
+			for i, j in node.next.items():
+				result += f(j)
+			return result
+		
+		it = self.root
+		sum = 0
+		for ch in prefix:
+			if ch not in it.next:
+				return 0
+			it = it.next[ch]
+		return f(it)
+
+
+# Your MapSum object will be instantiated and called as such:
+# obj = MapSum()
+# obj.insert(key,val)
+# param_2 = obj.sum(prefix)
