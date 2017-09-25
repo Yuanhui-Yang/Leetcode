@@ -1,66 +1,45 @@
 // 390. Elimination Game
 // https://leetcode.com/problems/elimination-game/
+
+/*
+There is a list of sorted integers from 1 to n. Starting from left to right, remove the first number and every other number afterward until you reach the end of the list.
+
+Repeat the previous step again, but this time from right to left, remove the right most number and every other number from the remaining numbers.
+
+We keep repeating the steps again, alternating left to right and right to left, until a single number remains.
+
+Find the last number that remains starting with a list of length n.
+
+Example:
+
+Input:
+n = 9,
+1 2 3 4 5 6 7 8 9
+2 4 6 8
+2 6
+6
+
+Output:
+6
+*/
+
 #include <iostream>
-#include <vector>
+
 using namespace std;
-// BEGIN: https://discuss.leetcode.com/topic/59293/java-easiest-solution-o-logn-with-explanation
+
 class Solution {
 public:
 	int lastRemaining(int n) {
-		bool left2right = true;
-		int head = 1;
-		int step = 1;
-		while (n > 1) {
-			if (left2right || (n & 1)) head += step;
-			step <<= 1;
-			n >>= 1;
-			left2right = 1 - left2right;
-		}
-		return head;
+		return n == 1 ? 1 : 2 * (n / 2 + 1 - lastRemaining(n / 2));
 	}
 };
-// END: https://discuss.leetcode.com/topic/59293/java-easiest-solution-o-logn-with-explanation
-// BEGIN: Memory Limit Exceeded
-// class Solution {
-// public:
-// 	int lastRemaining(int n) {
-// 		int result = 0;
-// 		vector<int> V(n, 0);
-// 		for (int i = 0; i < n; i++) V[i] = i + 1;
-// 		for (int i = n, j = 0, k = 0; i > 1; j = 1 - j, k++) {
-// 			if (j == 0) {
-// 				int l = 0;
-// 				while (l < n && V[l] < 0) l++;
-// 				while (l < n && V[l] > 0) {
-// 					V[l] = -1;
-// 					l += (2 << k);
-// 					i--;
-// 				}
-// 				continue;
-// 			}
-// 			int l = n - 1;
-// 			while (l >= 0 && V[l] < 0) l--;
-// 			while (l >= 0 && V[l] > 0) {
-// 				V[l] = -1;
-// 				l -= (2 << k);
-// 				i--;
-// 			}
 
-// 		}
-// 		for (int i = 0; i < n; i++) {
-// 			if (V[i] > 0) {
-// 				result = V[i];
-// 				break;
-// 			}
-// 		}  
-// 		return result;
-// 	}
-// };
-// END: Memory Limit Exceeded
 int main(void) {
 	Solution solution;
-	cout << solution.lastRemaining(9) << "\tPassed\n";
-	cout << solution.lastRemaining(100000000) << "\tPassed\n";
-	cout << "\nPassed All\n";
+	int n;
+
+	n = 9;
+	cout << solution.lastRemaining(n) << '\n';
+
 	return 0;
 }
