@@ -39,10 +39,11 @@ public:
 		for (const auto & i : nums) {
 			f1(root, i);
 		}
-		int result = 0;
+		int result = 0, val = 0;
 		for (const auto & i : nums) {
-			if (result < f2(root, i)) {
-				result = f2(root, i);
+			val = f2(root, i);
+			if (result < val) {
+				result = val;
 			}
 		}
 		return result;
