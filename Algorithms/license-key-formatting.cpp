@@ -1,48 +1,81 @@
 // 482. License Key Formatting
 // https://leetcode.com/problems/license-key-formatting/
+
+/*
+Now you are given a string S, which represents a software license key which we would like to format. The string S is composed of alphanumerical characters and dashes. The dashes split the alphanumerical characters within the string into groups. (i.e. if there are M dashes, the string is split into M+1 groups). The dashes in the given string are possibly misplaced.
+
+We want each group of characters to be of length K (except for possibly the first group, which could be shorter, but still must contain at least one character). To satisfy this requirement, we will reinsert dashes. Additionally, all the lower case letters in the string must be converted to upper case.
+
+So, you are given a non-empty string S, representing a license key to format, and an integer K. And you need to return the license key formatted according to the description above.
+
+Example 1:
+Input: S = "2-4A0r7-4k", K = 4
+
+Output: "24A0-R74K"
+
+Explanation: The string S has been split into two parts, each part has 4 characters.
+Example 2:
+Input: S = "2-4A0r7-4k", K = 3
+
+Output: "24-A0R-74K"
+
+Explanation: The string S has been split into three parts, each part has 3 characters except the first part as it could be shorter as said above.
+Note:
+The length of string S will not exceed 12,000, and K is a positive integer.
+String S consists only of alphanumerical characters (a-z and/or A-Z and/or 0-9) and dashes(-).
+String S is non-empty.
+*/
+
 #include <iostream>
-#include <cassert>
 #include <string>
+#include <cctype>
+
 using namespace std;
+
 class Solution {
 public:
 	string licenseKeyFormatting(string S, int K) {
-		string result;
-		string x;
-		for (const auto &i : S) {
+		if (K <= 0) {
+			return "";
+		}
+		string t;
+		for (const auto & i : S) {
 			if (i != '-') {
-				x.push_back(i);
+				t.push_back(toupper(i));
 			}
 		}
-		size_t y = x.size() % K;
-		y = y ? y : K;
-		for (size_t i = 0; i < y; i++) {
-			char c = x[i];
-			if (c >= 'a' && c <= 'z') {
-				c += 'A' - 'a';
-			}
-			result.push_back(c);
+		int sz = t.size(), i = sz % K, j = 0, n = sz / K;
+		if (sz <= K) {
+			return t;
 		}
-		for (size_t i = y; i < x.size(); i += K) {
+		if (i == 0) {
+			i = K;
+			--n;
+		}
+		string result(t.substr(0, i));
+		for (j = 0; j < n; ++j) {
 			result.push_back('-');
-			for (size_t j = 0; j < K; j++) {
-				char c = x[i + j];
-				if (c >= 'a' && c <= 'z') {
-					c += 'A' - 'a';
-				}
-				result.push_back(c);
-			}
+			result.append(t.substr(i, K));
+			i += K;
 		}
 		return result;
 	}
 };
+
 int main(void) {
 	Solution solution;
-	string result;
-	result = solution.licenseKeyFormatting("2-4A0r7-4k", 4);
-	assert("24A0-R74K" == result);
-	result = solution.licenseKeyFormatting("2-4A0r7-4k", 3);
-	assert("24-A0R-74K" == result);
-	cout << "\nPassed All\n";
+	string S, result;
+	int K;
+
+	S = "2-4A0r7-4k";
+	K = 4;
+	result = solution.licenseKeyFormatting(S, K);
+	cout << result << '\n';
+
+	S = "2-4A0r7-4k";
+	K = 3;
+	result = solution.licenseKeyFormatting(S, K);
+	cout << result << '\n';
+
 	return 0;
 }
