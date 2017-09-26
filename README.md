@@ -394,7 +394,7 @@ int main(void) {
 | 396 | [Rotate Function](https://leetcode.com/problems/rotate-function/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/rotate-function.cpp) |
 | 397 | [Integer Replacement](https://leetcode.com/problems/integer-replacement/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/integer-replacement.cpp) |
 | 398 | [Random Pick Index](https://leetcode.com/problems/random-pick-index/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/random-pick-index.cpp) |
-| 399 | [Evaluate Division](https://leetcode.com/problems/evaluate-division/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/evaluate-division.cpp) |
+| 399 | [Evaluate Division](https://leetcode.com/problems/evaluate-division/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/evaluate-division.cpp), [Java](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/evaluate-division.java) |
 | 400 | [Nth Digit](https://leetcode.com/problems/nth-digit/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/nth-digit.cpp) |
 | 401 | [Binary Watch](https://leetcode.com/problems/binary-watch/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/binary-watch.cpp) |
 | 402 | [Remove K Digits](https://leetcode.com/problems/remove-k-digits/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-k-digits.cpp) |
