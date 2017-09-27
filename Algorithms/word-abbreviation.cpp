@@ -71,6 +71,7 @@ private:
 		for (const auto & i : l) {
 			result[i] = f4(root, dict[i]);
 		}
+		f5(root);
 	}
 	void f3(Node * root, const string & s) {
 		++(root->cnt);
@@ -95,6 +96,16 @@ private:
 			}
 		}
 		return f1(s, depth);
+	}
+	void f5(Node * root) {
+		if (!root) {
+			return;
+		}
+		int i = 0;
+		for (i = 0; i < 26; ++i) {
+			f5(root->next[i]);
+		}
+		delete root;
 	}
 };
 
