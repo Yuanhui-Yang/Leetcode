@@ -31,10 +31,9 @@ public:
 		int X = matrix.size(), Y = X == 0 ? 0 : matrix[0].size(), result = INT_MIN, i = 0, j = 0, l = 0, m = 0, curr = 0;
 		set<int> A;
 		set<int>::iterator a, b;
-		vector<int> B;
+		vector<int> B(Y, 0);
 		for (i = 0; i < X; ++i) {
-			B.clear();
-			B.resize(Y, 0);
+			fill(begin(B), end(B), 0);
 			for (j = i; j < X; ++j) {
 				for (l = 0; l < Y; ++l) {
 					B[l] += matrix[j][l];
