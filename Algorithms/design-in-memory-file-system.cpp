@@ -41,6 +41,8 @@ struct Node{
 	unordered_map<string, Node*> next;
 	Node() {
 		isFile = false;
+		fileName.clear();
+		content.clear();
 		next.clear();
 	}
 };
@@ -179,12 +181,3 @@ int main(void) {
 	}
 	cout << '\n';
 }
-
-/**
- * Your FileSystem object will be instantiated and called as such:
- * FileSystem obj = new FileSystem();
- * vector<string> param_1 = obj.ls(path);
- * obj.mkdir(path);
- * obj.addContentToFile(filePath,content);
- * string param_4 = obj.readContentFromFile(filePath);
- */
