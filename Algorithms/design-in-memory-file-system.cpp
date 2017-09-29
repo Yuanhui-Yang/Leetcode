@@ -26,112 +26,119 @@ You can assume that all operations will be passed valid parameters and users wil
 You can assume that all directory names and file names only contain lower-case letters, and same names won't exist in the same directory.
 */
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string>
+#include <iterator>
+#include <algorithm>
+#include <unordered_map>
+
 using namespace std;
+
+struct Node{
+	bool isFile = false;
+	string fileName, content;
+	unordered_map<string, Node*> next;
+	Node() {
+		isFile = false;
+		next.clear();
+	}
+};
 
 class FileSystem {
 public:
 	FileSystem() {
-		root = new FsNode("/");
+		root = new Node();
 	}
-
+	
 	vector<string> ls(string path) {
-		vector<string> dirs = parse(path);
-		FsNode *it = root;
-		for (const auto &i : dirs) {
-			if (it->children.empty() or !it->children.count(i)) {
-				return {};
+		vector<string> A = f(path), result;
+		Node * node = root;
+		for (const auto & i : A) {
+			node = node->next[i];
+		}
+		if (node->isFile) {
+			result.push_back(node->fileName);
+		}
+		else {
+			for (const auto & i : node->next) {
+				result.push_back(i.first);
 			}
-			it = it->children[i];
+			sort(begin(result), end(result));   
 		}
-		if (!it->isDir) {
-			return {it->name};
-		}
-		vector<string> result;
-		for (const auto &i : it->children) {
-			result.push_back(i.first);
-		}
-		sort(begin(result), end(result));
 		return result;
 	}
-
+	
 	void mkdir(string path) {
-		vector<string> dirs = parse(path);
-		FsNode *it = root;
-		for (const auto &i : dirs) {
-			if (it->children.empty() or !it->children.count(i)) {
-				it->children[i] = new FsNode(i);
+		vector<string> A = f(path);
+		Node * node = root;
+		for (const auto & i : A) {
+			if (!node->next[i]) {
+				node->next[i] = new Node();
 			}
-			it = it->children[i];
+			node = node->next[i];
 		}
+		node->isFile = false;
 	}
-
+	
 	void addContentToFile(string filePath, string content) {
-		vector<string> dirs = parse(filePath);
-		FsNode *it = root;
-		for (size_t i = 0, n = dirs.size(); i < n; i++) {
-			string dir = dirs[i];
-			if (it->children.empty() or !it->children.count(dir)) {
-				if (i + 1 < n) {
-					return;
-				}
-				it->children[dir] = new FsNode(dir);
-				it = it->children[dir];
-				continue;
+		vector<string> A = f(filePath);
+		Node * node = root;
+		for (const auto & i : A) {
+			if (!node->next[i]) {
+				node->next[i] = new Node();
 			}
-			if (i + 1 < n and !it->children[dir]->isDir) {
-				return ;
-			}
-			it = it->children[dir];
+			node = node->next[i];
 		}
-		it->content.append(content);
-		it->isDir = false;
+		node->isFile = true;
+		node->fileName = A.back();
+		node->content.append(content);
 	}
-
+	
 	string readContentFromFile(string filePath) {
-		vector<string> dirs = parse(filePath);
-		FsNode *it = root;
-		for (size_t i = 0, n = dirs.size(); i < n; i++) {
-			string dir = dirs[i];
-			if (it->children.empty() or !it->children.count(dir)) {
-				return "";
-			}
-			if (i + 1 < n and !it->children[dir]->isDir) {
-				return "";
-			}
-			it = it->children[dir];
+		vector<string> A = f(filePath);
+		Node * node = root;
+		for (const auto & i : A) {
+			node = node->next[i];
 		}
-		if (it->isDir) {
-			return "";
-		}
-		return it->content;
+		return node->content;
 	}
 private:
-	struct FsNode {
-		string name;
-		bool isDir;
-		string content;
-		unordered_map<string, FsNode*> children;
-		FsNode(string str): name(str), isDir(true) {}
-	};
-
-	FsNode *root;
-
-	vector<string> parse(string path) {
+	Node * root = NULL;
+	vector<string> f(const string & path) {
+		int sz = path.size(), i = 0, j = 1;
 		vector<string> result;
-		for (size_t i = 0, n = path.size(); i < n; i++) {
-			if (!isalnum(path[i])) {
-				continue;
+		while (j < sz) {
+			i = j;
+			while (j < sz and path[j] != '/') {
+				++j;
 			}
-			size_t j = i;
-			while (i < n and path[i] != '/') {
-				i++;
-			}
-			result.push_back(path.substr(j, i - j));
+			result.push_back(path.substr(i, j - i));
+			++j;
 		}
 		return result;
 	}
 };
+
+
+int main(void) {
+	FileSystem obj;
+	vector<string> result;
+	
+	result = obj.ls("/");
+	for (const auto & i : result) {
+		cout << i << '\t';
+	}
+	cout << '\n';
+	obj.mkdir("/a/b/c");
+	obj.addContentToFile("/a/b/c/d", "hello");
+	result = obj.ls("/");
+	for (const auto & i : result) {
+		cout << i << '\t';
+	}
+	cout << '\n';
+	cout << obj.readContentFromFile("/a/b/c/d") << '\n';
+}
 
 /**
  * Your FileSystem object will be instantiated and called as such:
@@ -141,47 +148,3 @@ private:
  * obj.addContentToFile(filePath,content);
  * string param_4 = obj.readContentFromFile(filePath);
  */
-
- int main(void) {
-	vector<string> v, w;
-	string s, t;
-
-	FileSystem fs;
-	fs.mkdir("/goowmfn");
-	v = fs.ls("/goowmfn");
-	assert(v.empty());
-	v = fs.ls("/");
-	w = {"goowmfn"};
-	assert(w == v);
-	fs.mkdir("/z");
-	v = fs.ls("/");
-	w = {"goowmfn", "z"};
-	assert(w == v);
-	v = fs.ls("/");
-	w = {"goowmfn", "z"};
-	assert(w == v);
-	fs.addContentToFile("/goowmfn/c", "shetopcy");
-	v = fs.ls("/z");
-	assert(v.empty());
-	v = fs.ls("/goowmfn/c");
-	w = {"c"};
-	assert(w == v);
-	v = fs.ls("/goowmfn");
-	w = {"c"};
-	assert(w == v);
-
-	fs = FileSystem();
-	v = fs.ls("/");
-	assert(v.empty());
-	fs.mkdir("/a/b/c");
-	fs.addContentToFile("/a/b/c/d", "hello");
-	v = fs.ls("/");
-	w = {"a"};
-	assert(w == v);
-	s = fs.readContentFromFile("/a/b/c/d");
-	t = "hello";
-	assert(t == s);
-
- 	cout << "\nPassed All\n";
- 	return 0;
- }
