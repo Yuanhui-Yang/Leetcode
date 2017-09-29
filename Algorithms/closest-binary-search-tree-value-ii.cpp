@@ -26,21 +26,13 @@ struct TreeNode {
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-void gc(TreeNode * node) {
-	if (node) {
-		gc(node->left);
-		gc(node->right);
-		delete node;
-	}
-}
-
 class Solution {
 public:
 	vector<int> closestKValues(TreeNode * root, double target, int k) {
 		if (!root or k <= 0) {
 			return {};
 		}
-		list<int> A;
+		list<long> A;
 		TreeNode * pred = NULL;
 		while (root) {
 			if (!root->left) {
@@ -90,6 +82,16 @@ int main(void) {
 	int k;
 	vector<int> result;
 
+	root = new TreeNode(1500000000);
+	root->left = new TreeNode(1400000000);
+	target = -1500000000.0;
+	k = 1;
+	result = solution.closestKValues(root, target, k);
+	for (const auto & i : result) {
+		cout << i << '\t';
+	}
+	cout << '\n';
+
 	root = new TreeNode(5);
 	root->left = new TreeNode(3);
 	root->right = new TreeNode(6);
@@ -99,7 +101,6 @@ int main(void) {
 	target = 2.571429;
 	k = 1;
 	result = solution.closestKValues(root, target, k);
-	gc(root);
 	for (const auto & i : result) {
 		cout << i << '\t';
 	}
@@ -110,7 +111,6 @@ int main(void) {
 	target = 2147483647.0;
 	k = 1;
 	result = solution.closestKValues(root, target, k);
-	gc(root);
 	for (const auto & i : result) {
 		cout << i << '\t';
 	}
@@ -123,7 +123,6 @@ int main(void) {
 	target = 2;
 	k = 1;
 	result = solution.closestKValues(root, target, k);
-	gc(root);
 	for (const auto & i : result) {
 		cout << i << '\t';
 	}
