@@ -138,6 +138,46 @@ int main(void) {
 	}
 	cout << '\n';
 	cout << obj.readContentFromFile("/a/b/c/d") << '\n';
+
+	obj = FileSystem();
+	obj.mkdir("/goowmfn");
+	result = obj.ls("/goowmfn");
+	for (const auto & i : result) {
+		cout << i << '\t';
+	}
+	cout << '\n';
+	result = obj.ls("/");
+	for (const auto & i : result) {
+		cout << i << '\t';
+	}
+	cout << '\n';
+	obj.mkdir("/z");
+	result = obj.ls("/");
+	for (const auto & i : result) {
+		cout << i << '\t';
+	}
+	cout << '\n';
+	result = obj.ls("/");
+	for (const auto & i : result) {
+		cout << i << '\t';
+	}
+	cout << '\n';
+	obj.addContentToFile("/goowmfn/c", "shetopcy");
+	result = obj.ls("/z");
+	for (const auto & i : result) {
+		cout << i << '\t';
+	}
+	cout << '\n';
+	result = obj.ls("/goowmfn/c");
+	for (const auto & i : result) {
+		cout << i << '\t';
+	}
+	cout << '\n';
+	result = obj.ls("/goowmfn");
+	for (const auto & i : result) {
+		cout << i << '\t';
+	}
+	cout << '\n';
 }
 
 /**
