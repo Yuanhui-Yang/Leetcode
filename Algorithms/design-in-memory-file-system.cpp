@@ -122,7 +122,6 @@ private:
 	}
 };
 
-
 int main(void) {
 	FileSystem obj;
 	vector<string> result;
