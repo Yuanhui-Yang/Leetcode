@@ -101,19 +101,22 @@ public:
 	
 	vector<string> input(char c) {
 		vector<string> result;
-		int id = c == ' ' ? 26 : c - 'a';
+		int id = 0;
 		if (c == '#') {
-			f1(root, curr, 1);
+			node->isEnd = true;
+			++(node->time);
+			node->sentence = curr;
 			node = root;
 			curr.clear();
 		}
 		else {
+			id = c == ' ' ? 26 : c - 'a';
 			curr.push_back(c);
 			if (!node->next[id]) {
 				node->next[id] = new Node();
 			}
 			node = node->next[id];
-			f2(node, result);
+			f2(node, result, 3);
 		}
 		return result;
 	}
@@ -133,7 +136,7 @@ private:
 		node->time += time;
 		node->sentence = sentence;
 	}
-	void f2(Node * node, vector<string> & result) {
+	void f2(Node * node, vector<string> & result, int k) {
 		if (!node) {
 			return;
 		}
@@ -147,7 +150,7 @@ private:
 			if (node->isEnd) {
 				pq.push(node);
 			}
-			if (pq.size() > 3) {
+			if (pq.size() > k) {
 				pq.pop();
 			}
 			for (const auto & i : node->next) {
