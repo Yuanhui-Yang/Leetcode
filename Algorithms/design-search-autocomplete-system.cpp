@@ -130,7 +130,7 @@ private:
 		if (!node) {
 			return;
 		}
-		int id = 0, sz = 3;
+		int id = 0, sz = 0;
 		for (const auto & ch : curr) {
 			id = ch == ' ' ? 26 : ch - 'a';
 			node = node->next[id];
@@ -140,12 +140,15 @@ private:
 		}
 		queue<Node*> q;
 		q.push(node);
-		vector<Node*> A;
+		priority_queue<Node*, vector<Node*>, Comp> pq;
 		while (!q.empty()) {
 			node = q.front();
 			q.pop();
 			if (node->isEnd) {
-				A.push_back(node);
+				pq.push(node);
+			}
+			if (pq.size() > 3) {
+				pq.pop();
 			}
 			for (const auto & i : node->next) {
 				if (i) {
@@ -153,13 +156,13 @@ private:
 				}
 			}
 		}
-		sort(begin(A), end(A), Comp());
-		if (A.size() < sz) {
-			sz = A.size();
+		sz = pq.size();
+		result.resize(sz);
+		while (!pq.empty()) {
+			result[--sz] = pq.top()->sentence;
+			pq.pop();
 		}
-		for (id = 0; id < sz; ++id) {
-			result.push_back(A[id]->sentence);
-		}
+		
 	}
 };
 
