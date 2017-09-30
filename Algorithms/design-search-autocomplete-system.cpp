@@ -91,6 +91,154 @@ class AutocompleteSystem {
 public:
 	AutocompleteSystem(vector<string> sentences, vector<int> times) {
 		root = new Node();
+		node = root;
+		curr.clear();
+		int sz = sentences.size(), i = 0;
+		for (i = 0; i < sz; ++i) {
+			f1(root, sentences[i], times[i]);
+		}
+	}
+	
+	vector<string> input(char c) {
+		vector<string> result;
+		int id = c == ' ' ? 26 : c - 'a';
+		if (c == '#') {
+			f1(root, curr, 1);
+			node = root;
+			curr.clear();
+		}
+		else {
+			curr.push_back(c);
+			if (!node->next[id]) {
+				node->next[id] = new Node();
+			}
+			node = node->next[id];
+			f2(node, result);
+		}
+		return result;
+	}
+private:
+	Node * root = NULL, * node = NULL;
+	string curr;
+	void f1(Node * node, const string & sentence, const int time) {
+		int id = 0;
+		for (const auto & ch : sentence) {
+			id = ch == ' ' ? 26 : ch - 'a';
+			if (!node->next[id]) {
+				node->next[id] = new Node();
+			}
+			node = node->next[id];
+		}
+		node->isEnd = true;
+		node->time += time;
+		node->sentence = sentence;
+	}
+	void f2(Node * node, vector<string> & result) {
+		if (!node) {
+			return;
+		}
+		int sz = 0;
+		queue<Node*> q;
+		q.push(node);
+		priority_queue<Node*, vector<Node*>, Comp> pq;
+		while (!q.empty()) {
+			node = q.front();
+			q.pop();
+			if (node->isEnd) {
+				pq.push(node);
+			}
+			if (pq.size() > 3) {
+				pq.pop();
+			}
+			for (const auto & i : node->next) {
+				if (i) {
+					q.push(i);
+				}
+			}
+		}
+		sz = pq.size();
+		result.resize(sz);
+		while (!pq.empty()) {
+			result[--sz] = pq.top()->sentence;
+			pq.pop();
+		}
+		
+	}
+};
+
+int main(void) {
+	vector<string> sentences, result;
+	vector<int> times;
+	
+	sentences = {"i love you", "island","ironman", "i love leetcode"};
+	times = {5, 3, 2, 2};
+	AutocompleteSystem obj(sentences, times);
+	result = obj.input('i');
+	for (const auto & i : result) {
+		cout << i << '\t';
+	}
+	cout << '\n';
+	result = obj.input(' ');
+	for (const auto & i : result) {
+		cout << i << '\t';
+	}
+	cout << '\n';
+	result = obj.input('a');
+	for (const auto & i : result) {
+		cout << i << '\t';
+	}
+	cout << '\n';
+	result = obj.input('#');
+	for (const auto & i : result) {
+		cout << i << '\t';
+	}
+	cout << '\n';
+
+	return 0;
+}
+
+/**
+ * Your AutocompleteSystem object will be instantiated and called as such:
+ * AutocompleteSystem obj = new AutocompleteSystem(sentences, times);
+ * vector<string> param_1 = obj.input(c);
+ */
+
+#include <iostream>
+#include <vector>
+#include <array>
+#include <string>
+#include <queue>
+#include <algorithm>
+#include <iterator>
+
+using namespace std;
+
+struct Node {
+	bool isEnd = false;
+	int time = 0;
+	string sentence;
+	array<Node*, 27> next;
+	Node() {
+		isEnd = false;
+		time = 0;
+		sentence.clear();
+		next.fill(NULL);
+	}
+};
+
+struct Comp {
+	bool operator() (const Node * a, const Node * b) {
+		if (a->time == b->time) {
+			return a->sentence < b->sentence;
+		}
+		return a->time > b->time;
+	}
+};
+
+class AutocompleteSystem {
+public:
+	AutocompleteSystem(vector<string> sentences, vector<int> times) {
+		root = new Node();
 		curr.clear();
 		int sz = sentences.size(), i = 0;
 		for (i = 0; i < sz; ++i) {
