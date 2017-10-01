@@ -71,6 +71,131 @@ void gc(TreeNode * & root) {
 class Solution {
 public:
 	vector<int> boundaryOfBinaryTree(TreeNode* root) {
+		vector<int> result;
+		if (!root) {
+			return result;
+		}
+		result.push_back(root->val);
+		f1(root->left, result);
+		f2(root->left, result);
+		f2(root->right, result);
+		f3(root->right, result);
+		return result;
+	}
+	
+private:
+	void f1(TreeNode * root, vector<int> & result) {
+		if (!root) {
+			return;
+		}
+		while (root->left or root->right) {
+			result.push_back(root->val);
+			if (root->left) {
+				root = root->left;
+			}
+			else {
+				root = root->right;
+			}
+		}
+	}
+	void f2(TreeNode * root, vector<int> & result) {
+		if (!root) {
+			return;
+		}
+		if (!root->left and !root->right) {
+			result.push_back(root->val);
+			return;
+		}
+		f2(root->left, result);
+		f2(root->right, result);
+	}
+	void f3(TreeNode * root, vector<int> & result) {
+		if (!root) {
+			return;
+		}
+		int sz = result.size();
+		while (root->left or root->right) {
+			result.push_back(root->val);
+			if (root->right) {
+				root = root->right;
+			}
+			else {
+				root = root->left;
+			}
+		}
+		reverse(next(begin(result), sz), end(result));
+	}
+};
+
+int main(void) {
+	Solution solution;
+	TreeNode * root = NULL;
+	vector<int> result;
+
+	root = new TreeNode(1);
+	result = solution.boundaryOfBinaryTree(root);
+	gc(root);
+	for (const auto & i : result) {
+		cout << i << '\t';
+	}
+	cout << '\n';
+	
+	root = new TreeNode(1);
+	root->right = new TreeNode(2);
+	root->right->left = new TreeNode(3);
+	root->right->right = new TreeNode(4);
+	result = solution.boundaryOfBinaryTree(root);
+	gc(root);
+	for (const auto & i : result) {
+		cout << i << '\t';
+	}
+	cout << '\n';
+
+	root = new TreeNode(1);
+	root->left = new TreeNode(2);
+	root->right = new TreeNode(3);
+	root->left->left = new TreeNode(4);
+	root->left->right = new TreeNode(5);
+	root->right->left = new TreeNode(6);
+	root->left->right->left = new TreeNode(7);
+	root->left->right->right = new TreeNode(8);
+	root->right->left->left = new TreeNode(9);
+	root->right->left->right = new TreeNode(10);
+	result = solution.boundaryOfBinaryTree(root);
+	gc(root);
+	for (const auto & i : result) {
+		cout << i << '\t';
+	}
+	cout << '\n';
+
+	return 0;
+}
+
+#include <iostream>
+#include <vector>
+#include <iterator>
+#include <algorithm>
+
+using namespace std;
+
+struct TreeNode {
+	int val;
+	TreeNode * left, * right;
+	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+
+void gc(TreeNode * & root) {
+	if (root) {
+		gc(root->left);
+		gc(root->right);
+		delete root;
+		root = NULL;
+	}
+}
+
+class Solution {
+public:
+	vector<int> boundaryOfBinaryTree(TreeNode* root) {
 		vector<int> result, A, B, C;
 		if (!root) {
 			return result;
