@@ -23,48 +23,54 @@ If the first sequence of non-whitespace characters in str is not a valid integra
 If no valid conversion could be performed, a zero value is returned. If the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.
 */
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
+#include <climits>
+
 using namespace std;
 
 class Solution {
 public:
 	int myAtoi(string str) {
-		long long base = 0, sign = 1;
-		size_t i = 0, n = str.size();
-		while (i < n and str[i] == ' ') {
-			i++;
+		long long a = 1, b = 0;
+		int sz = str.size(), i = 0;
+		while (i < sz and str[i] == ' ') {
+			++i;
 		}
 		if (str[i] == '+' or str[i] == '-') {
-			sign = str[i++] == '+' ? 1 : -1;
+			a = str[i] == '+' ? 1 : -1;
+			++i;
 		}
-		while (i < n and isdigit(str[i])) {
-			base = base * 10 + (str[i++] - '0');
-			if (sign * base < (long long)INT_MIN) {
+		while (i < sz and isdigit(str[i])) {
+			b = 10 * b + str[i] - '0';
+			if (a * b < INT_MIN) {
 				return INT_MIN;
 			}
-			if (sign * base > (long long)INT_MAX) {
+			else if (a * b > INT_MAX) {
 				return INT_MAX;
 			}
+			++i;
 		}
-		return sign * base;
+		return a * b;
 	}
 };
 
 int main(void) {
 	Solution solution;
 	string str;
-	int answer, result;
+	int result;
 
-	str = "-1";
-	answer = -1;
+	str = "+-2";
 	result = solution.myAtoi(str);
-	assert(answer == result);
+	cout << result << '\n';
 
 	str = "1";
-	answer = 1;
 	result = solution.myAtoi(str);
-	assert(answer == result);
+	cout << result << '\n';
 
-	cout << "\nPassed All\n";
+	str = "-1";
+	result = solution.myAtoi(str);
+	cout << result << '\n';
+
 	return 0;
 }
