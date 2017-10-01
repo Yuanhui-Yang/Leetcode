@@ -608,6 +608,7 @@ int main(void) {
 | 682 | [Baseball Game](https://leetcode.com/problems/valid-palindrome-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/baseball-game.cpp), [Java](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/baseball-game.java), [Python](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/baseball-game.py) |
 | 686 | [Repeated String Match](https://leetcode.com/problems/repeated-string-match/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/repeated-string-match.cpp) |
 | 687 | [Longest Univalue Path](https://leetcode.com/problems/longest-univalue-path/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-univalue-path.cpp) |
+| 688 | [Knight Probability in Chessboard](https://leetcode.com/problems/knight-probability-in-chessboard/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/knight-probability-in-chessboard.cpp) |
 | 690 | [Employee Importance](https://leetcode.com/problems/employee-importance/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/employee-importance.cpp) |
 
 ## Database
