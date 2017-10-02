@@ -27,6 +27,7 @@ UPDATE (2017/1/20):
 The wordList parameter had been changed to a list of strings (instead of a set of strings). Please reload the code definition to get the latest changes.
 */
 
+
 #include <iostream>
 #include <string>
 #include <vector>
