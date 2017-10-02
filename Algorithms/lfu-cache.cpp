@@ -1,137 +1,113 @@
 // 460. LFU Cache
 // https://leetcode.com/problems/lfu-cache/
 
-// Design and implement a data structure for Least Frequently Used (LFU) cache. It should support the following operations: get and put.
+/*
+Design and implement a data structure for Least Frequently Used (LFU) cache. It should support the following operations: get and put.
 
-// get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
-// put(key, value) - Set or insert the value if the key is not already present. When the cache reaches its capacity, it should invalidate the least frequently used item before inserting a new item. For the purpose of this problem, when there is a tie (i.e., two or more keys that have the same frequency), the least recently used key would be evicted.
+get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
+put(key, value) - Set or insert the value if the key is not already present. When the cache reaches its capacity, it should invalidate the least frequently used item before inserting a new item. For the purpose of this problem, when there is a tie (i.e., two or more keys that have the same frequency), the least recently used key would be evicted.
 
-// Follow up:
-// Could you do both operations in O(1) time complexity?
+Follow up:
+Could you do both operations in O(1) time complexity?
 
-// Example:
+Example:
 
-// LFUCache cache = new LFUCache( 2 /* capacity */ );
+LFUCache cache = new LFUCache( 2 );
 
-// cache.put(1, 1);
-// cache.put(2, 2);
-// cache.get(1);       // returns 1
-// cache.put(3, 3);    // evicts key 2
-// cache.get(2);       // returns -1 (not found)
-// cache.get(3);       // returns 3.
-// cache.put(4, 4);    // evicts key 1.
-// cache.get(1);       // returns -1 (not found)
-// cache.get(3);       // returns 3
-// cache.get(4);       // returns 4
+cache.put(1, 1);
+cache.put(2, 2);
+cache.get(1);       // returns 1
+cache.put(3, 3);    // evicts key 2
+cache.get(2);       // returns -1 (not found)
+cache.get(3);       // returns 3.
+cache.put(4, 4);    // evicts key 1.
+cache.get(1);       // returns -1 (not found)
+cache.get(3);       // returns 3
+cache.get(4);       // returns 4
+*/
 
-#include <iostream> // std::cout; std::cin
-#include <fstream> // std::fstream::open; std::fstream::close; 
-#include <cstdlib> // rand
-#include <cassert> // assert
-#include <cctype> // isalnum; isalpha; isdigit; islower; isupper; isspace; tolower; toupper
-#include <cmath> // pow; sqrt; round; fabs; abs; log
-#include <climits> // INT_MIN; INT_MAX; LLONG_MIN; LLONG_MAX; ULLONG_MAX
-#include <cfloat> // DBL_EPSILON; LDBL_EPSILON
-#include <cstring> // std::memset
-#include <algorithm> // std::swap; std::max; std::min; std::min_element; std::max_element; std::minmax_element; std::next_permutation; std::prev_permutation; std::nth_element; std::sort; std::lower_bound; std::upper_bound; std::reverse
-#include <limits> // std::numeric_limits<int>::min; std::numeric_limits<int>::max; std::numeric_limits<double>::epsilon; std::numeric_limits<long double>::epsilon;
-#include <numeric> // std::accumulate; std::iota
-#include <string> // std::to_string; std::string::npos; std::stoul; std::stoull; std::stoi; std::stol; std::stoll; std::stof; std::stod; std::stold; 
-#include <list> // std::list::merge; std::list::splice; std::list::merge; std::list::unique; std::list::sort
-#include <bitset>
-#include <vector>
-#include <deque>
-#include <stack> // std::stack::top; std::stack::pop; std::stack::push
-#include <queue> // std::queue::front; std::queue::back; std::queue::pop; std::queue::push
-#include <set> // std::set::count; std::set::find; std::set::equal_range; std::set::lower_bound; std::set::upper_bound
-#include <map> // std::map::count; std::map::find; std::map::equal_range; std::map::lower_bound; std::map::upper_bound
-#include <unordered_set>
+#include <iostream>
+#include <list>
 #include <unordered_map>
-#include <utility> // std::pair; std::make_pair
 #include <iterator>
-#include <functional> // std::less<int>; std::greater<int>
+
 using namespace std;
 
 class LFUCache {
 public:
 	LFUCache(int capacity) {
-		this->capacity = capacity > 0 ? capacity : 0;
-		this->l.clear();
-		this->h.clear();
+		A.clear();
+		B.clear();
+		this->capacity = capacity;
 	}
-
+	
 	int get(int key) {
-		if (capacity == 0 or h.empty() or !h.count(key)) {
+		if (capacity <= 0 or !B.count(key)) {
 			return -1;
 		}
-		pair<list<pair<size_t, list<pair<int, int>>>>::iterator, list<pair<int, int>>::iterator> p = h.at(key);
-		list<pair<size_t, list<pair<int, int>>>>::iterator x = p.first;
+		pair<list<pair<int, list<pair<int, int>>>>::iterator, list<pair<int, int>>::iterator> p = B[key];
+		list<pair<int, list<pair<int, int>>>>::iterator x = p.first, nx = next(x);
 		list<pair<int, int>>::iterator y = p.second;
-		if (next(x) == end(l) or x->first + 1 < next(x)->first) {
-			list<pair<int, int>> nx;
-			nx.splice(end(nx), x->second, y);
-			l.insert(next(x), make_pair(x->first + 1, nx));
-			h.at(key) = make_pair(next(x), prev(end(next(x)->second)));
-			if (x->second.empty()) {
-				l.erase(x);
-			}
-			return nx.back().second;
+		int result = y->second;
+		if (nx == end(A) or x->first + 1 != nx->first) {
+			A.insert(nx, {x->first + 1, {}});
+			nx = next(x);
 		}
-		next(x)->second.splice(end(next(x)->second), x->second, y);
-		h.at(key).first = next(x);
+		nx->second.splice(end(nx->second), x->second, y);
+		B[key] = {nx, prev(end(nx->second))};
 		if (x->second.empty()) {
-			l.erase(x);
+			A.erase(x);
 		}
-		return y->second;
+		return result;
 	}
-
+	
 	void put(int key, int value) {
-		if (capacity == 0) {
-			return ;
-		}
-		if (!h.empty() and h.count(key)) {
-			pair<list<pair<size_t, list<pair<int, int>>>>::iterator, list<pair<int, int>>::iterator> p = h.at(key);
-			list<pair<size_t, list<pair<int, int>>>>::iterator x = p.first;
-			list<pair<int, int>>::iterator y = p.second;
-			y->second = value;
-			if (next(x) == end(l) or x->first + 1 < next(x)->first) {
-				list<pair<int, int>> nx;
-				nx.splice(end(nx), x->second, y);
-				l.insert(next(x), make_pair(x->first + 1, nx));
-				h.at(key) = make_pair(next(x), prev(end(next(x)->second)));
-				if (x->second.empty()) {
-					l.erase(x);
-				}
-				return ;
-			}
-			next(x)->second.splice(end(next(x)->second), x->second, y);
-			h.at(key).first = next(x);
-			if (x->second.empty()) {
-				l.erase(x);
-			}
+		if (capacity <= 0) {
 			return;
 		}
-		if (h.size() == capacity) {
-			h.erase(l.front().second.front().first);
-			l.front().second.pop_front();
-			if (l.front().second.empty()) {
-				l.pop_front();
-			}
-		}
-		if (l.empty() or 1 < begin(l)->first) {
-			list<pair<int, int>> nx({make_pair(key, value)});
-			l.push_front(make_pair(1, nx));
-			h[key] = make_pair(begin(l), prev(end(l.front().second)));
+		if (B.count(key)) {
+			get(key);
+			pair<list<pair<int, list<pair<int, int>>>>::iterator, list<pair<int, int>>::iterator> p = B[key];
+			p.second->second = value;
 			return;
 		}
-		l.front().second.push_back(make_pair(key, value));
-		h[key] = make_pair(begin(l), prev(end(l.front().second)));
+		if (B.size() == capacity) {
+			B.erase(A.front().second.front().first);
+			A.front().second.pop_front();
+			if (A.front().second.empty()) {
+				A.pop_front();
+			}
+		}
+		if (A.empty() or A.front().first != 1) {
+			A.push_front({1, {{key, value}}});
+		}
+		else {
+			A.front().second.push_back({key, value});
+		}
+		B[key] = {begin(A), prev(end(A.front().second))};
 	}
 private:
-	size_t capacity;
-	list<pair<size_t, list<pair<int, int>>>> l;
-	unordered_map<int, pair<list<pair<size_t, list<pair<int, int>>>>::iterator, list<pair<int, int>>::iterator>> h;
+	list<pair<int, list<pair<int, int>>>> A;
+	unordered_map<int, pair<list<pair<int, list<pair<int, int>>>>::iterator, list<pair<int, int>>::iterator>> B;
+	int capacity = 0;
 };
+
+int main(void) {
+	LFUCache cache( 2 /* capacity */ );
+
+	cache.put(1, 1);
+	cache.put(2, 2);
+	cout << cache.get(1) << '\n';       // returns 1
+	cache.put(3, 3);                    // evicts key 2
+	cout << cache.get(2) << '\n';       // returns -1 (not found)
+	cout << cache.get(3) << '\n';       // returns 3.
+	cache.put(4, 4);                    // evicts key 1.
+	cout << cache.get(1) << '\n';       // returns -1 (not found)
+	cout << cache.get(3) << '\n';       // returns 3
+	cout << cache.get(4) << '\n';       // returns 4
+
+	return 0;
+}
 
 /**
  * Your LFUCache object will be instantiated and called as such:
@@ -139,37 +115,3 @@ private:
  * int param_1 = obj.get(key);
  * obj.put(key,value);
  */
-
- int main(void) {
-	LFUCache cache(2);
-
-	assert(-1 == cache.get(2));
-	cache.put(2, 6);
-	assert(-1 == cache.get(1));
-	cache.put(1, 5);
-	cache.put(1, 2);
-	assert(2 == cache.get(1));
-	assert(6 == cache.get(2));
-
-	cache = LFUCache(2);
-	cache.put(3, 1);
-	cache.put(2, 1);
-	cache.put(2, 2);
-	cache.put(4, 4);
-	assert(2 == cache.get(2));
-
-	cache = LFUCache(2);
-	cache.put(1, 1);
-	cache.put(2, 2);
-	assert(1 == cache.get(1));       // returns 1
-	cache.put(3, 3);    // evicts key 2
-	assert(-1 == cache.get(2));       // returns -1 (not found)
-	assert(3 == cache.get(3));       // returns 3.
-	cache.put(4, 4);    // evicts key 1.
-	assert(-1 == cache.get(1));       // returns -1 (not found)
-	assert(3 == cache.get(3));       // returns 3
-	assert(4 == cache.get(4));       // returns 4
-
-	cout << "\nPassed All\n";
-	return 0;
-}
