@@ -591,6 +591,7 @@ int main(void) {
 | 659 | [Split Array into Consecutive Subsequences](https://leetcode.com/problems/split-array-into-consecutive-subsequences/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/split-array-into-consecutive-subsequences.cpp) |
 | 660 | [Remove 9](https://leetcode.com/problems/remove-9/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-9.cpp) |
 | 661 | [Image Smoother](https://leetcode.com/problems/image-smoother/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/image-smoother.cpp) |
+| 662 | [Maximum Width of Binary Tree](https://leetcode.com/problems/maximum-width-of-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-width-of-binary-tree.cpp) |
 | 665 | [Non-decreasing Array](https://leetcode.com/problems/non-decreasing-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/non-decreasing-array.cpp), [Java](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/non-decreasing-array.java), [Python](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/non-decreasing-array.py) |
 | 666 | [Path Sum IV](https://leetcode.com/problems/path-sum-iv/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/path-sum-iv.cpp) |
 | 667 | [Beautiful Arrangement II](https://leetcode.com/problems/beautiful-arrangement-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/beautiful-arrangement-ii.cpp) |
