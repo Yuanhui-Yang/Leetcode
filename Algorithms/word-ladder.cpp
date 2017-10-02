@@ -25,17 +25,10 @@ UPDATE (2017/1/20):
 The wordList parameter had been changed to a list of strings (instead of a set of strings). Please reload the code definition to get the latest changes.
 */
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <queue>
-
-using namespace std;
-
 class Solution {
 public:
 	int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
-		int sz = wordList.size(), i, j, k, l;
+		int sz = wordList.size(), i, j, k;
 		if (sz == 0 or beginWord == endWord) {
 			return 0;
 		}
