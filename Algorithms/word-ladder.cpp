@@ -90,12 +90,13 @@ private:
 		if (sz1 != sz2) {
 			return false;
 		}
-		for (i = 0; i < sz1; ++i) {
+		while (i < sz1 and cnt <= 1) {
 			if (x[i] != y[i]) {
 				++cnt;
 			}
+			++i;
 		}
-		return cnt <= 1;
+		return i == sz1 and cnt <= 1;
 	}
 };
 
