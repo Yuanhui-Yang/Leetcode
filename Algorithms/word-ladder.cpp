@@ -25,42 +25,91 @@ UPDATE (2017/1/20):
 The wordList parameter had been changed to a list of strings (instead of a set of strings). Please reload the code definition to get the latest changes.
 */
 
+#include <iostream>
+#include <string>
+#include <vector>
+#include <queue>
+
+using namespace std;
+
 class Solution {
 public:
 	int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
-		if (beginWord == endWord) {
-			return 2;
-		}
-		unordered_set<string> words(begin(wordList), end(wordList));
-		if (!words.count(endWord)) {
+		int sz = wordList.size(), i, j, k, l;
+		if (sz == 0 or beginWord == endWord) {
 			return 0;
 		}
-		int result = 0;
-		unordered_map<string, int> dist;
-		dist[beginWord] = 0;
-		queue<string> q;
-		q.push(beginWord);
-		while (!q.empty()) {
-			string s = q.front();
-			q.pop();
-			for (int n = s.size(), i = 0; i < n; ++i) {
-				for (char ch = 'a'; ch <= 'z'; ++ch) {
-					if (s[i] == ch) {
-						continue;
-					}
-					string t(s);
-					t[i] = ch;
-					if (!words.count(t) or dist.count(t)) {
-						continue;
-					}
-					dist[t] = dist[s] + 1;
-					if (t == endWord) {
-						return dist[t] + 1;
-					}
-					q.push(t);
+		i = 0;
+		while (i < sz and wordList[i] != endWord) {
+			++i;
+		}
+		if (i == sz) {
+			return 0;
+		}
+		k = i;
+		vector<vector<int>> A(sz);
+		for (i = 0; i + 1 < sz; ++i) {
+			for (j = i + 1; j < sz; ++j) {
+				if (f(wordList[i], wordList[j])) {
+					A[i].push_back(j);
+					A[j].push_back(i);
 				}
 			}
 		}
-		return result;
+		queue<int> curr;
+		vector<bool> B(sz, true);
+		for (i = 0; i < sz; ++i) {
+			if (f(beginWord, wordList[i])) {
+				curr.push(i);
+				B[i] = false;
+			}
+		}
+		int result = 1;
+		while (!curr.empty()) {
+			++result;
+			sz = curr.size();
+			for (i = 0; i < sz; ++i) {
+				j = curr.front();
+				if (j == k) {
+					return result;
+				}
+				curr.pop();
+				for (const auto & l : A[j]) {
+					if (B[l]) {
+						B[l] = false;
+						curr.push(l);
+					}
+				}
+			}
+		}
+		return 0;
+	}
+private:
+	bool f(const string & x, const string & y) {
+		int sz1 = x.size(), sz2 = y.size(), i = 0, cnt = 0;
+		if (sz1 != sz2) {
+			return false;
+		}
+		for (i = 0; i < sz1; ++i) {
+			if (x[i] != y[i]) {
+				++cnt;
+			}
+		}
+		return cnt <= 1;
 	}
 };
+
+int main(void) {
+	Solution solution;
+	string beginWord, endWord;
+	vector<string> wordList;
+	int result;
+	
+	beginWord = "hit";
+	endWord = "cog";
+	wordList = {"hot", "dot", "dog", "lot", "log", "cog"};
+	result = solution.ladderLength(beginWord, endWord, wordList);
+	cout << result << '\n';
+	
+	return 0;
+}
