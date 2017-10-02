@@ -96,7 +96,7 @@ private:
 			}
 			++i;
 		}
-		return i == sz1 and cnt <= 1;
+		return i == sz1 and cnt == 1;
 	}
 };
 
