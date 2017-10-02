@@ -28,6 +28,102 @@ The wordList parameter had been changed to a list of strings (instead of a set o
 #include <iostream>
 #include <string>
 #include <vector>
+#include <list>
+
+using namespace std;
+
+class Solution {
+public:
+	int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+		int sz = wordList.size(), i, j, k;
+		if (sz == 0 or beginWord == endWord) {
+			return 0;
+		}
+		i = 0;
+		while (i < sz and wordList[i] != endWord) {
+			++i;
+		}
+		if (i == sz) {
+			return 0;
+		}
+		k = i;
+		vector<vector<int>> A(sz);
+		for (i = 0; i + 1 < sz; ++i) {
+			for (j = i + 1; j < sz; ++j) {
+				if (f(wordList[i], wordList[j])) {
+					A[i].push_back(j);
+					A[j].push_back(i);
+				}
+			}
+		}
+		vector<bool> B(sz, true), C(sz, true), *b = &B, *c = &C;
+		list<int> X, Y, * x = &X, * y = &Y;
+		for (i = 0; i < sz; ++i) {
+			if (f(beginWord, wordList[i])) {
+				B[i] = false;
+				X.push_back(i);
+			}
+		}
+		Y.push_back(k);
+		C[k] = false;
+		int result = 1;
+		while (!x->empty() and !y->empty()) {
+			++result;
+			if (x->size() > y->size()) {
+				swap(x, y);
+				swap(b, c);
+			}
+			sz = x->size();
+			for (i = 0; i < sz; ++i) {
+				j = x->front();
+				x->pop_front();
+				if (!c->at(j)) {
+					return result;
+				}
+				for (const auto & l : A[j]) {
+					if (b->at(l)) {
+						b->at(l) = false;
+						x->push_back(l);
+					}
+				}
+			}
+		}
+		return 0;
+	}
+private:
+	bool f(const string & x, const string & y) {
+		int sz1 = x.size(), sz2 = y.size(), i = 0, cnt = 0;
+		if (sz1 != sz2) {
+			return false;
+		}
+		while (i < sz1 and cnt <= 1) {
+			if (x[i] != y[i]) {
+				++cnt;
+			}
+			++i;
+		}
+		return i == sz1 and cnt == 1;
+	}
+};
+
+int main(void) {
+	Solution solution;
+	string beginWord, endWord;
+	vector<string> wordList;
+	int result;
+	
+	beginWord = "hit";
+	endWord = "cog";
+	wordList = {"hot", "dot", "dog", "lot", "log", "cog"};
+	result = solution.ladderLength(beginWord, endWord, wordList);
+	cout << result << '\n';
+	
+	return 0;
+}
+
+#include <iostream>
+#include <string>
+#include <vector>
 
 using namespace std;
 
