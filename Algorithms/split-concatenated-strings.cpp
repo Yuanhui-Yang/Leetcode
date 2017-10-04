@@ -22,26 +22,35 @@ The input strings will only contain lowercase letters.
 The total length of all the strings will not over 1,000.
 */
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <iterator>
+#include <vector>
+#include <numeric>
+
 using namespace std;
 
 class Solution {
 public:
 	string splitLoopedString(vector<string>& strs) {
-		vector<string> reverse_strs, v;
-		for (const auto &s : strs) {
-			string t(s);
-			reverse(begin(t), end(t));
-			reverse_strs.push_back(t);
-			v.push_back(max(s, t));
+		vector<string> rstrs, A;
+		string r, s, t, result;
+		int sz = strs.size(), i, j, k;
+		for (i = 0; i < sz; ++i) {
+			r = strs[i];
+			s = r;
+			reverse(begin(r), end(r));
+			rstrs.push_back(r);
+			A.push_back(max(r, s));
 		}
-		string result = accumulate(begin(v), end(v), string(""));
-		for (int i = 0, n = strs.size(); i < n; ++i) {
-			const string &s = strs[i] , &t = reverse_strs[i];
-			string x = accumulate(next(begin(v), i + 1), end(v), string("")) + accumulate(begin(v), next(begin(v), i), string(""));
-			for (int j = 0, l = s.size(); j < l; ++j) {
-				string a = s.substr(j) + x + s.substr(0, j), b = t.substr(j) + x + t.substr(0, j);
-				result = max(result, max(a, b));
+		for (i = 0; i < sz; ++i) {
+			r = accumulate(next(begin(A), i + 1), end(A), string()) + accumulate(begin(A), next(begin(A), i), string());
+			k = strs[i].size();
+			for (j = 0; j < k; ++j) {
+				s = strs[i].substr(j) + r + strs[i].substr(0, j);
+				t = rstrs[i].substr(j) + r + rstrs[i].substr(0, j);
+				result = max(result, max(s, t));
 			}
 		}
 		return result;
@@ -51,28 +60,15 @@ public:
 int main(void) {
 	Solution solution;
 	vector<string> strs;
-	string answer, result;
-
-	strs = {"lc", "evol", "cdy"};
-	answer = "ylclovecd";
+	string result;
+	
+	strs = {"abc", "xyz"};
 	result = solution.splitLoopedString(strs);
-	assert(answer == result);
-
-	strs = {"a", "b", "c"};
-	answer = "cab";
-	result = solution.splitLoopedString(strs);
-	assert(answer == result);
+	cout << result << '\n';
 
 	strs = {"awef", "eawf", "zdaeff", "awefzewaf", "awefzewaf"};
-	answer = "zfewafewafwaezdaefffawezfewafawe";
 	result = solution.splitLoopedString(strs);
-	assert(answer == result);
+	cout << result << '\n';    
 
-	strs = {"abc", "xyz"};
-	answer = "zyxcba";
-	result = solution.splitLoopedString(strs);
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
 	return 0;
 }
