@@ -24,6 +24,56 @@ The total length of all the strings will not over 1,000.
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include <iterator>
+#include <algorithm>
+
+using namespace std;
+
+class Solution {
+public:
+	string splitLoopedString(vector<string>& strs) {
+		int sz = strs.size(), i, j, k, l;
+		string a, b, s, t, u, v, result;
+		for (i = 0; i < sz; ++i) {
+			s = strs[i];
+			t = s;
+			reverse(begin(t), end(t));
+			u.append(max(s, t));
+		}
+		for (i = 0, j = 0, k = strs[i].size(); i < sz; ++i, j += k, k = strs[i].size()) {
+			v = u.substr(j + k) + u.substr(0, j);
+			s = strs[i];
+			t = s;
+			reverse(begin(t), end(t));
+			for (l = 0; l < k; ++l) {
+				a = s.substr(l) + v + s.substr(0, l);
+				b = t.substr(l) + v + t.substr(0, l);
+				result = max(result, max(a, b));
+			}
+		}
+		return result;
+	}
+};
+
+int main(void) {
+	Solution solution;
+	vector<string> strs;
+	string result;
+	
+	strs = {"abc", "xyz"};
+	result = solution.splitLoopedString(strs);
+	cout << result << '\n';
+
+	strs = {"awef", "eawf", "zdaeff", "awefzewaf", "awefzewaf"};
+	result = solution.splitLoopedString(strs);
+	cout << result << '\n';
+	
+	return 0;
+};
+
+#include <iostream>
+#include <string>
 #include <algorithm>
 #include <iterator>
 #include <vector>
