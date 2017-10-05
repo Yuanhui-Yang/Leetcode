@@ -568,6 +568,7 @@ int main(void) {
 | 617 | [Merge Two Binary Trees](https://leetcode.com/problems/merge-two-binary-trees/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/merge-two-binary-trees.cpp) |
 | 623 | [Add One Row to Tree](https://leetcode.com/problems/add-one-row-to-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/add-one-row-to-tree.cpp) |
 | 624 | [Maximum Distance in Arrays](https://leetcode.com/problems/maximum-distance-in-arrays/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-distance-in-arrays.cpp) |
+| 625 | [Minimum Factorization](https://leetcode.com/problems/minimum-factorization/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-factorization.cpp) |
 | 628 | [Maximum Product of Three Numbers](https://leetcode.com/problems/maximum-product-of-three-numbers/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-product-of-three-numbers.cpp) |
 | 630 | [Course Schedule III](https://leetcode.com/problems/course-schedule-iii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/course-schedule-iii.cpp) |
 | 632 | [Smallest Range](https://leetcode.com/problems/smallest-range/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/smallest-range.cpp) |
