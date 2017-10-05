@@ -21,6 +21,63 @@ Output:
 */
 
 #include <iostream>
+#include <climits>
+#include <array>
+
+using namespace std;
+
+class Solution {
+public:
+	int smallestFactorization(int a) {
+		if (a <= 0) {
+			return 0;
+		}
+		if (a < 10) {
+			return a;
+		}
+		array<int, 10> A;
+		A.fill(0);
+		int i;
+		for (i = 9; i > 1; --i) {
+			while (a % i == 0) {
+				++A[i];
+				a /= i;
+			}
+		}
+		if (a != 1) {
+			return 0;
+		}
+		long long b = 0;
+		for (i = 2; i < 10; ++i) {
+			while (A[i] > 0) {
+				b = 10 * b + i;
+				--A[i];
+			}
+		}
+		return b > INT_MAX ? 0 : b;
+	}
+};
+
+int main(void) {
+	Solution solution;
+	int a, b;
+	
+	a = 48;
+	b = solution.smallestFactorization(a);
+	cout << b << '\n';
+	
+	a = 15;
+	b = solution.smallestFactorization(a);
+	cout << b << '\n';
+
+	a = 6000000;
+	b = solution.smallestFactorization(a);
+	cout << b << '\n';
+	
+	return 0;
+}
+
+#include <iostream>
 #include <cmath>
 #include <climits>
 #include <string>
