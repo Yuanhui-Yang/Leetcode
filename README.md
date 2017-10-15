@@ -618,6 +618,7 @@ int main(void) {
 | 690 | [Employee Importance](https://leetcode.com/problems/employee-importance/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/employee-importance.cpp) |
 | 693 | [Binary Number with Alternating Bits](https://leetcode.com/problems/binary-number-with-alternating-bits/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/binary-number-with-alternating-bits.cpp) |
 | 694 | [Number of Distinct Islands](https://leetcode.com/problems/number-of-distinct-islands/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-distinct-islands.cpp) |
+| 695 | [Max Area of Island](https://leetcode.com/problems/max-area-of-island/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/max-area-of-island.cpp) |
 
 ## Database
 | # | Title | Solution |
