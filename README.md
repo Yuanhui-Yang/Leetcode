@@ -616,6 +616,7 @@ int main(void) {
 | 688 | [Knight Probability in Chessboard](https://leetcode.com/problems/knight-probability-in-chessboard/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/knight-probability-in-chessboard.cpp) |
 | 689 | [Maximum Sum of 3 Non-Overlapping Subarrays](https://leetcode.com/problems/maximum-sum-of-3-non-overlapping-subarrays/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-sum-of-3-non-overlapping-subarrays.cpp) |
 | 690 | [Employee Importance](https://leetcode.com/problems/employee-importance/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/employee-importance.cpp) |
+| 694 | [Number of Distinct Islands](https://leetcode.com/problems/number-of-distinct-islands/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-distinct-islands.cpp) |
 
 ## Database
 | # | Title | Solution |
