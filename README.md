@@ -620,6 +620,7 @@ int main(void) {
 | 694 | [Number of Distinct Islands](https://leetcode.com/problems/number-of-distinct-islands/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-distinct-islands.cpp) |
 | 695 | [Max Area of Island](https://leetcode.com/problems/max-area-of-island/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/max-area-of-island.cpp) |
 | 696 | [Count Binary Substrings](https://leetcode.com/problems/count-binary-substrings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/count-binary-substrings.cpp) |
+| 697 | [Degree of an Array](https://leetcode.com/problems/degree-of-an-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/degree-of-an-array.cpp) |
 
 ## Database
 | # | Title | Solution |
