@@ -1,130 +1,112 @@
 // 417. Pacific Atlantic Water Flow
 // https://leetcode.com/problems/pacific-atlantic-water-flow/
+
+/*
+Given an m x n matrix of non-negative integers representing the height of each unit cell in a continent, the "Pacific ocean" touches the left and top edges of the matrix and the "Atlantic ocean" touches the right and bottom edges.
+
+Water can only flow in four directions (up, down, left, or right) from a cell to another one with height equal or lower.
+
+Find the list of grid coordinates where water can flow to both the Pacific and Atlantic ocean.
+
+Note:
+The order of returned grid coordinates does not matter.
+Both m and n are less than 150.
+Example:
+
+Given the following 5x5 matrix:
+
+  Pacific ~   ~   ~   ~   ~ 
+	   ~  1   2   2   3  (5) *
+	   ~  3   2   3  (4) (4) *
+	   ~  2   4  (5)  3   1  *
+	   ~ (6) (7)  1   4   5  *
+	   ~ (5)  1   1   2   4  *
+		  *   *   *   *   * Atlantic
+
+Return:
+
+[[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]] (positions with parentheses in above matrix).
+*/
+
 #include <iostream>
 #include <vector>
+#include <array>
+#include <queue>
+#include <utility>
+
 using namespace std;
+
 class Solution {
 public:
 	vector<pair<int, int>> pacificAtlantic(vector<vector<int>>& matrix) {
+		int X = matrix.size(), Y = X == 0 ? 0 : matrix[0].size(), i, j;
 		vector<pair<int, int>> result;
-		const int p = matrix.size(), q = p ? matrix.front().size() : 0;
-		if (!p || !q) return result;
-		vector<vector<pair<int, int>>> table(p, vector<pair<int, int>>(q, make_pair(-1, -1))); // first for Pacific and second for Atlantic
-		
-		for (int i = 0; i < p; i++) {
-			table[i][0].first = 1;
-			table[i][q - 1].second = 1;
+		vector<vector<bool>> A(X, vector<bool>(Y, true)), B(A);
+		array<int, 4> dx({0, -1, 0, 1}), dy({-1, 0, 1, 0});
+		array<int, 2> p;
+		queue<array<int, 2>> a, b;
+		for (i = 0; i < X; ++i) {
+			a.push({i, 0});
+			b.push({i, Y - 1});
+			A[i][0] = false;
+			B[i][Y - 1] = false;
 		}
-		for (int j = 0; j < q; j++) {
-			table[0][j].first = 1;
-			table[p - 1][j].second = 1;
+		for (j = 0; j < Y; ++j) {
+			a.push({0, j});
+			b.push({X - 1, j});
+			A[0][j] = false;
+			B[X - 1][j] = false;
 		}
-		for (int i = 0; i < p; i++) {
-			for (int j = 0; j < q; j++) {
-				dfs(i, j, table, matrix);
+		while (!a.empty()) {
+			p = a.front();
+			a.pop();
+			for (i = 0; i < 4; ++i) {
+				p[0] += dx[i];
+				p[1] += dy[i];
+				if (p[0] >= 0 and p[0] < X and p[1] >= 0 and p[1] < Y and A[p[0]][p[1]] and matrix[p[0] - dx[i]][p[1] - dy[i]] <= matrix[p[0]][p[1]]) {
+					A[p[0]][p[1]] = false;
+					a.push(p);
+				}
+				p[0] -= dx[i];
+				p[1] -= dy[i];
 			}
 		}
-		for (int i = 0; i < p; i++) {
-			for (int j = 0; j < q; j++) {
-				if (table[i][j].first > 0 && table[i][j].second > 0) {
-					result.push_back(make_pair(i, j));
+		while (!b.empty()) {
+			p = b.front();
+			b.pop();
+			for (i = 0; i < 4; ++i) {
+				p[0] += dx[i];
+				p[1] += dy[i];
+				if (p[0] >= 0 and p[0] < X and p[1] >= 0 and p[1] < Y and B[p[0]][p[1]] and matrix[p[0] - dx[i]][p[1] - dy[i]] <= matrix[p[0]][p[1]]) {
+					B[p[0]][p[1]] = false;
+					b.push(p);
+				}
+				p[0] -= dx[i];
+				p[1] -= dy[i];
+			}
+		}
+		for (i = 0; i < X; ++i) {
+			for (j = 0; j < Y; ++j) {
+				if (!A[i][j] and !B[i][j]) {
+					result.push_back({i, j});
 				}
 			}
 		}
 		return result;
 	}
-private:
-	void dfs(int x, int y, vector<vector<pair<int, int>>>& table, vector<vector<int>>& matrix) {
-		const int p = matrix.size(), q = p ? matrix.front().size() : 0;
-		if (!p || !q) return;
-		if (x < 0 || x >= p || y < 0 || y >= q) return;
-		if (table[x][y].first < 0 && table[x][y].second < 0) return;
-		vector<pair<int, int>> directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-		for (const auto &dir : directions) {
-			int i = x + dir.first;
-			int j = y + dir.second;
-			if (i < 0 || i >= p || j < 0 || j >= q || matrix[i][j] < matrix[x][y]) continue;
-			if (table[i][j].first > 0 && table[i][j].second > 0) continue;
-			if (table[x][y].first > 0) {
-				if (table[i][j].first < 0) {
-					table[i][j].first = 1;
-					dfs(i, j, table, matrix);
-				}
-			}
-			if (table[x][y].second > 0) {
-				if (table[i][j].second < 0) {
-					table[i][j].second = 1;
-					dfs(i, j, table, matrix);
-				}
-			}
-		}
-	}
 };
-// class Solution {
-// public:
-// 	vector<pair<int, int>> pacificAtlantic(vector<vector<int>>& matrix) {
-// 		vector<pair<int, int>> result;
-// 		const int p = matrix.size(), q = p ? matrix.front().size() : 0;
-// 		if (!p || !q) return result;
-// 		vector<vector<pair<int, int>>> table(p, vector<pair<int, int>>(q, make_pair(-1, -1))); // first for Pacific and second for Atlantic
-		
-// 		for (int i = 0; i < p; i++) {
-// 			table[i][0].first = 1;
-// 			table[i][q - 1].second = 1;
-// 		}
-// 		for (int j = 0; j < q; j++) {
-// 			table[0][j].first = 1;
-// 			table[p - 1][j].second = 1;
-// 		}
-// 		for (int i = 0; i < p; i++) {
-// 			for (int j = 0; j < q; j++) {
-// 				dfs(0, i, j, table, matrix); // 0 for Pacific
-// 				dfs(1, i, j, table, matrix); // 1 for Atlantic
-// 			}
-// 		}
-// 		for (int i = 0; i < p; i++) {
-// 			for (int j = 0; j < q; j++) {
-// 				if (table[i][j].first > 0 && table[i][j].second > 0) {
-// 					result.push_back(make_pair(i, j));
-// 				}
-// 			}
-// 		}
-// 		return result;
-// 	}
-// private:
-// 	void dfs(int mode, int x, int y, vector<vector<pair<int, int>>>& table, vector<vector<int>>& matrix) {
-// 		const int p = matrix.size(), q = p ? matrix.front().size() : 0;
-// 		if (!p || !q) return;
-// 		if (x < 0 || x >= p || y < 0 || y >= q) return;
-// 		if (table[x][y].first < 0 && table[x][y].second < 0) return;
-// 		if (mode == 0 && table[x][y].first < 0) return;
-// 		if (mode == 1 && table[x][y].second < 0) return;
-// 		vector<pair<int, int>> directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-// 		for (const auto &dir : directions) {
-// 			int i = x + dir.first;
-// 			int j = y + dir.second;
-// 			if (i < 0 || i >= p || j < 0 || j >= q || matrix[i][j] < matrix[x][y]) continue;
-// 			if (!mode) {
-// 				if (table[i][j].first < 0) {
-// 					table[i][j].first = 1;
-// 					dfs(0, i, j, table, matrix);
-// 				}
-// 			} else {
-// 				if (table[i][j].second < 0) {
-// 					table[i][j].second = 1;
-// 					dfs(1, i, j, table, matrix);
-// 				}
-// 			}
-// 		}
-// 	}
-// };
+
 int main(void) {
 	Solution solution;
-	vector<vector<int>> matrix = {{1, 2, 2, 3, 5}, {3, 2, 3, 4, 4}, {2, 4, 5, 3, 1}, {6, 7, 1, 4, 5}, {5, 1, 1, 2, 4}};
-	for (const auto &i : solution.pacificAtlantic(matrix)) {
-		cout << '[' << i.first << ',' << i.second << ']' << '\t';
+	vector<vector<int>> matrix;
+	vector<pair<int, int>> result;
+	
+	matrix = {{1, 2, 2, 3, 5}, {3, 2, 3, 4, 4}, {2, 4, 5, 3, 1}, {6, 7, 1, 4, 5}, {5, 1, 1, 2, 4}};
+	result = solution.pacificAtlantic(matrix);
+	for (const auto & i : result) {
+		cout << i.first << ',' << i.second << "\t";
 	}
-	cout << "\tPassed\n";
-	cout << "\nPassed All\n";
+	cout << '\n';
+	
 	return 0;
 }
