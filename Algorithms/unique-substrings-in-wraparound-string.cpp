@@ -1,76 +1,87 @@
 // 467. Unique Substrings in Wraparound String
 // https://leetcode.com/problems/unique-substrings-in-wraparound-string/
+
+/*
+Consider the string s to be the infinite wraparound string of "abcdefghijklmnopqrstuvwxyz", so s will look like this: "...zabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd....".
+
+Now we have another string p. Your job is to find out how many unique non-empty substrings of p are present in s. In particular, your input is the string p and you need to output the number of different non-empty substrings of p in the string s.
+
+Note: p consists of only lowercase English letters and the size of p might be over 10000.
+
+Example 1:
+Input: "a"
+Output: 1
+
+Explanation: Only the substring "a" of string "a" is in the string s.
+Example 2:
+Input: "cac"
+Output: 2
+Explanation: There are two substrings "a", "c" of string "cac" in the string s.
+Example 3:
+Input: "zab"
+Output: 6
+Explanation: There are six substrings "z", "a", "b", "za", "ab", "zab" of string "zab" in the string s.
+*/
+
 #include <iostream>
-#include <cassert>
-#include <algorithm>
-#include <numeric>
 #include <string>
-#include <vector>
-#include <unordered_set>
+#include <array>
+#include <numeric>
+#include <iterator>
+#include <algorithm>
+
 using namespace std;
-// BEGIN: http://bookshadow.com/weblog/2016/12/04/leetcode-unique-substrings-in-wraparound-string/
+
 class Solution {
 public:
 	int findSubstringInWraproundString(string p) {
-		if (p.empty()) return 0;
-		const int n = p.size();
-		vector<int> DICT(26, 0), OPT(n, 0);
-		for (int i = 1; i < n; i++) {
-			if ((p[i - 1] - 'a' + 1) % 26 == (p[i] - 'a')) {
-				OPT[i] = OPT[i - 1];
+		int sz = p.size(), i, j, k;
+		if (sz == 0) {
+			return 0;
+		}
+		array<int, 26> A;
+		A.fill(0);
+		j = p[0] - 'a';
+		k = 1;
+		A[j] = k;
+		for (i = 1; i < sz; ++i) {
+			j = p[i] - 'a';
+			if (p[i] - p[i - 1] == 1 or (p[i] == 'a' and p[i - 1] == 'z')) {
+				++k;
 			}
 			else {
-				OPT[i] = i;
+				k = 1;
 			}
+			A[j] = max(A[j], k);
 		}
-		for (int i = 0; i < n; i++) {
-			DICT[p[OPT[i]] - 'a'] = max(DICT[p[OPT[i]] - 'a'], i + 1 - OPT[i]);
-		}
-		for (int i = 0; i < 26; i++) {
-			for (int j = 1; j < DICT[i]; j++) {
-				int k = (i + j) % 26;
-				DICT[k] = max(DICT[k], DICT[i] - j);
-			}
-		}
-		return accumulate(begin(DICT), end(DICT), 0);
+		return accumulate(begin(A), end(A), 0);
 	}
 };
-// END: http://bookshadow.com/weblog/2016/12/04/leetcode-unique-substrings-in-wraparound-string/
-// BEGIN: Time Limit Exceeded
-// class Solution {
-// public:
-// 	int findSubstringInWraproundString(string p) {
-// 		if (p.empty()) return 0;
-// 		const int n = p.size();
-// 		vector<int> OPT(n, 0);
-// 		unordered_set<string> hashset;
-// 		hashset.insert(p.substr(0, 1));
-// 		for (int i = 1; i < n; i++) {
-// 			if ((p[i - 1] - 'a' + 1) % 26 == (p[i] - 'a')) {
-// 				OPT[i] = OPT[i - 1];
-// 				for (int j = OPT[i]; j <= i; j++) {
-// 					hashset.insert(p.substr(j, i + 1 - j));
-// 				}
-// 			}
-// 			else {
-// 				OPT[i] = i;
-// 				hashset.insert(p.substr(i, 1));
-// 			}
-// 		}
-// 		return (int)hashset.size();
-// 	}
-// };
-// END: Time Limit Exceeded
+
 int main(void) {
 	Solution solution;
-	assert(0 == solution.findSubstringInWraproundString(""));
-	assert(1 == solution.findSubstringInWraproundString("a"));
-	assert(2 == solution.findSubstringInWraproundString("cac"));
-	assert(6 == solution.findSubstringInWraproundString("zab"));
-	assert(6 == solution.findSubstringInWraproundString("zaba"));
-	assert(3 == solution.findSubstringInWraproundString("aabb"));
-	assert(339 == solution.findSubstringInWraproundString("cdefghefghijklmnopqrstuvwxmnijklmnopqrstuvbcdefghijklmnopqrstuvwabcddefghijklfghijklmabcdefghijklmnopqrstuvwxymnopqrstuvwxyz"));
-	assert(35503 == solution.findSubstringInWraproundString("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"));
-	cout << "\nPassed All\n";
+	string p;
+	int result;
+	
+	p = "a";
+	result = solution.findSubstringInWraproundString(p);
+	cout << result << '\n';
+
+	p = "cac";
+	result = solution.findSubstringInWraproundString(p);
+	cout << result << '\n';
+
+	p = "zab";
+	result = solution.findSubstringInWraproundString(p);
+	cout << result << '\n';
+
+	p = "zaba";
+	result = solution.findSubstringInWraproundString(p);
+	cout << result << '\n';
+
+	p = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
+	result = solution.findSubstringInWraproundString(p);
+	cout << result << '\n';
+
 	return 0;
 }
