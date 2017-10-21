@@ -587,6 +587,7 @@ int main(void) {
 | 649 | [Dota2 Senate](https://leetcode.com/problems/dota2-senate/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/dota2-senate.cpp) |
 | 650 | [2 Keys Keyboard](https://leetcode.com/problems/2-keys-keyboard/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/2-keys-keyboard.cpp) |
 | 651 | [4 Keys Keyboard](https://leetcode.com/problems/4-keys-keyboard/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/4-keys-keyboard.cpp) |
+| 652 | [Find Duplicate Subtrees](https://leetcode.com/problems/find-duplicate-subtrees/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-duplicate-subtrees.cpp) |
 | 655 | [Print Binary Tree](https://leetcode.com/problems/print-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/print-binary-tree.cpp) |
 | 657 | [Judge Route Circle](https://leetcode.com/problems/judge-route-circle/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/judge-route-circle.cpp) |
 | 658 | [Find K Closest Elements](https://leetcode.com/problems/find-k-closest-elements/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-k-closest-elements.cpp) |
