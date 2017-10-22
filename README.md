@@ -626,6 +626,7 @@ int main(void) {
 | 696 | [Count Binary Substrings](https://leetcode.com/problems/count-binary-substrings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/count-binary-substrings.cpp) |
 | 697 | [Degree of an Array](https://leetcode.com/problems/degree-of-an-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/degree-of-an-array.cpp) |
 | 698 | [Partition to K Equal Sum Subsets](https://leetcode.com/problems/partition-to-k-equal-sum-subsets/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/partition-to-k-equal-sum-subsets.cpp) |
+| 712 | [Minimum ASCII Delete Sum for Two Strings](https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-ascii-delete-sum-for-two-strings.cpp) |
 | 714 | [Best Time to Buy and Sell Stock with Transaction Fee](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/best-time-to-buy-and-sell-stock-with-transaction-fee.cpp) |
 
 ## Database
