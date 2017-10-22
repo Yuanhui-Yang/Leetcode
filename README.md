@@ -625,6 +625,7 @@ int main(void) {
 | 695 | [Max Area of Island](https://leetcode.com/problems/max-area-of-island/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/max-area-of-island.cpp) |
 | 696 | [Count Binary Substrings](https://leetcode.com/problems/count-binary-substrings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/count-binary-substrings.cpp) |
 | 697 | [Degree of an Array](https://leetcode.com/problems/degree-of-an-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/degree-of-an-array.cpp) |
+| 698 | [Partition to K Equal Sum Subsets](https://leetcode.com/problems/partition-to-k-equal-sum-subsets/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/partition-to-k-equal-sum-subsets.cpp) |
 
 ## Database
 | # | Title | Solution |
