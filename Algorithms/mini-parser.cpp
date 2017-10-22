@@ -1,5 +1,34 @@
 // 385. Mini Parser
 // https://leetcode.com/problems/mini-parser/
+
+/*
+Given a nested list of integers represented as a string, implement a parser to deserialize it.
+
+Each element is either an integer, or a list -- whose elements may also be integers or other lists.
+
+Note: You may assume that the string is well-formed:
+
+String is non-empty.
+String does not contain white spaces.
+String contains only digits 0-9, [, - ,, ].
+Example 1:
+
+Given s = "324",
+
+You should return a NestedInteger object which contains a single integer 324.
+Example 2:
+
+Given s = "[123,[456,[789]]]",
+
+Return a NestedInteger object containing a nested list with 2 elements:
+
+1. An integer containing value 123.
+2. A nested list containing two elements:
+	i.  An integer containing value 456.
+	ii. A nested list with one element:
+		 a. An integer containing value 789.
+*/
+
 /**
  * // This is the interface that allows for creating nested lists.
  * // You should not implement it, or speculate about its implementation
@@ -32,41 +61,39 @@
 class Solution {
 public:
 	NestedInteger deserialize(string s) {
-		return this->deserialize(s, 0, (int)s.size());
-	}
-private:
-	NestedInteger deserialize(const string& s, int x, int y) {
-		NestedInteger result;
-		if (s.empty()) return result;
-		if (s[x] != '[') {
-			result.setInteger(stoi(s.substr(x, y - x)));
-			return result;
+		int sz = s.size(), i, j, val, cnt;
+		if (sz == 0) {
+			return NestedInteger();
 		}
-		if (x + 2 == y) return result;
-		for (int i = x + 1, j = x + 1; i < y; ) {
-			if (s[i] == '[') {
-				int k = 1;
-				i++;
-				while (i < y && k) {
-					if (s[i] == '[') k++;
-					if (s[i] == ']') k--;
-					i++;
+		if (s[0] != '[') {
+			val = stoi(s);
+			return NestedInteger(val);
+		}
+		NestedInteger result;
+		for (i = 1; i + 1 < sz; ++i) {
+			if (s[i] != '[') {
+				j = i;
+				while (i + 1 < sz and s[i] != ',') {
+					++i;
 				}
-				result.add(this->deserialize(s, j, i));
-				j = ++i;
-				continue;
+				val = stoi(s.substr(j, i - j));
+				result.add(NestedInteger(val));
 			}
-			if (s[i] == ',') {
-				result.add(this->deserialize(s, j, i));
-				j = ++i;
-				continue;
-			}
-			if (i + 1 == y) {
-				result.add(this->deserialize(s, j, y));
+			else {
+				cnt = 1;
+				j = i;
 				++i;
-				continue;	
+				while (i + 1 < sz and cnt > 0) {
+					if (s[i] == '[') {
+						++cnt;
+					}
+					else if (s[i] == ']') {
+						--cnt;
+					}
+					++i;
+				}
+				result.add(deserialize(s.substr(j, i - j)));
 			}
-			++i;
 		}
 		return result;
 	}
