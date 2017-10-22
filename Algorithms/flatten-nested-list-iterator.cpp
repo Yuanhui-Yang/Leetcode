@@ -37,33 +37,36 @@ By calling next repeatedly until hasNext returns false, the order of elements re
 class NestedIterator {
 public:
 	NestedIterator(vector<NestedInteger> &nestedList) {
-		curr.push({nestedList.begin(), nestedList.end()});
+		int sz = nestedList.size(), i;
+		for (i = sz - 1; i >= 0; --i) {
+			stk.push(nestedList[i]);
+		}
 	}
 
 	int next() {
-		int result = curr.top()[0]->getInteger();
-		++curr.top()[0];
+		int result = stk.top().getInteger();
+		stk.pop();
 		return result;
 	}
 
 	bool hasNext() {
-		while (!curr.empty()) {
-			if (curr.top()[0] ==  curr.top()[1]) {
-				curr.pop();
-			}
-			else if (curr.top()[0]->isInteger()) {
+		vector<NestedInteger> A;
+		int sz, i;
+		while (!stk.empty()) {
+			if (stk.top().isInteger()) {
 				return true;
 			}
-			else {
-				array<vector<NestedInteger>::iterator, 2> top = curr.top();
-				++curr.top()[0];
-				curr.push({top[0]->getList().begin(), top[0]->getList().end()});
+			A = stk.top().getList();
+			stk.pop();
+			sz = A.size();
+			for (i = sz - 1; i >= 0; --i) {
+				stk.push(A[i]);
 			}
 		}
 		return false;
 	}
 private:
-	stack<array<vector<NestedInteger>::iterator, 2>> curr;
+	stack<NestedInteger> stk;
 };
 
 /**
