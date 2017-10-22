@@ -629,6 +629,7 @@ int main(void) {
 | 712 | [Minimum ASCII Delete Sum for Two Strings](https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-ascii-delete-sum-for-two-strings.cpp) |
 | 713 | [Subarray Product Less Than K](https://leetcode.com/problems/subarray-product-less-than-k/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/subarray-product-less-than-k.cpp) |
 | 714 | [Best Time to Buy and Sell Stock with Transaction Fee](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/best-time-to-buy-and-sell-stock-with-transaction-fee.cpp) |
+| 715 | [Range Module](https://leetcode.com/problems/range-module/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/range-module.cpp) |
 
 ## Database
 | # | Title | Solution |
