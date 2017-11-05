@@ -35,7 +35,7 @@ using namespace std;
 class Solution {
 public:
 	vector<vector<string>> accountsMerge(vector<vector<string>>& accounts) {
-		int sz = accounts.size(), sz1, n = 0, i, j, root1, root2;
+		int sz = accounts.size(), sz1, n = 0, i, j, root, root1;
 		unordered_map<string, int> A;
 		vector<int> B;
 		vector<string> C, D;
@@ -54,19 +54,19 @@ public:
 		vector<vector<string>> result;
 		for (i = 0; i < sz; ++i) {
 			sz1 = accounts[i].size();
-			root1 = f1(A[accounts[i][1]], B);
+			root = f1(A[accounts[i][1]], B);
 			for (j = 2; j < sz1; ++j) {
-				root2 = f1(A[accounts[i][j]], B);
-				if (root1 != root2) {
-					B[root2] = root1;
+				root1 = f1(A[accounts[i][j]], B);
+				if (root != root1) {
+					B[root1] = root;
 				}
 			}
 		}
 		for (i = 0; i < sz; ++i) {
 			sz1 = accounts[i].size();
 			for (j = 1; j < sz1; ++j) {
-				root1 = f1(A[accounts[i][j]], B);
-				E[root1].insert(accounts[i][j]);
+				root = f1(A[accounts[i][j]], B);
+				E[root].insert(accounts[i][j]);
 			}
 		}
 		for (i = 0; i < n; ++i) {
