@@ -630,6 +630,7 @@ int main(void) {
 | 713 | [Subarray Product Less Than K](https://leetcode.com/problems/subarray-product-less-than-k/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/subarray-product-less-than-k.cpp) |
 | 714 | [Best Time to Buy and Sell Stock with Transaction Fee](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/best-time-to-buy-and-sell-stock-with-transaction-fee.cpp) |
 | 715 | [Range Module](https://leetcode.com/problems/range-module/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/range-module.cpp) |
+| 720 | [Longest Word in Dictionary](https://leetcode.com/problems/longest-word-in-dictionary/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-word-in-dictionary.cpp) |
 
 ## Database
 | # | Title | Solution |
