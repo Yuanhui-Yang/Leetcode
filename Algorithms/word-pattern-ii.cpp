@@ -1,73 +1,73 @@
-// 291. Word Pattern II
-// https://leetcode.com/problems/word-pattern-ii/
 #include <iostream>
-#include <cassert>
 #include <string>
-#include <vector>
-#include <algorithm>
-#include <iterator> 
+#include <array>
+#include <unordered_set>
+
 using namespace std;
+
 class Solution {
 public:
-	bool wordPatternMatch(string pattern, string str) {
-		vector<string> OPT(pattern.size());
-		return helper(0, pattern, 0, str, OPT);
-	}
+    bool wordPatternMatch(string pattern, string str) {
+        array<string, 26> A;
+        A.fill(string(""));
+        unordered_set<string> B;
+        return f1(A, B, pattern, 0, pattern.size(), str, 0, str.size());
+    }
 private:
-	bool helper(size_t i, string pattern, size_t j, string str, vector<string>& OPT) {
-		if (i == pattern.size() && j == str.size()) {
-			return true;
-		}
-		if (i >= pattern.size() || j >= str.size()) {
-			return false;
-		}
-		size_t k = 0;
-		while (k < i && pattern[k] != pattern[i]) k++;
-		if (k < i) {
-			if (j + OPT[k].size() > str.size()) {
-				return false;
-			}
-			if (str.substr(j, OPT[k].size()) != OPT[k]) {
-				return false;
-			}
-			OPT[i] = OPT[k];
-			if (helper(i + 1, pattern, j + OPT[k].size(), str, OPT)) {
-				OPT[i].clear();
-				return true;
-			}
-			OPT[i].clear();
-			return false;
-		}
-		for (size_t l = j + 1; l <= str.size(); l++) {
-			OPT[i] = str.substr(j, l - j);
-			if (find(begin(OPT), next(begin(OPT), i), OPT[i]) != next(begin(OPT), i)) {
-				OPT[i].clear();
-				continue;
-			}
-			if (helper(i + 1, pattern, l, str, OPT)) {
-				OPT[i].clear();
-				return true;
-			}
-			OPT[i].clear();
-		}
-		return false;
-	}
+    bool f1(array<string, 26> & A, unordered_set<string> & B, const string & pattern, int begin1, const int end1, const string & str, int begin2, const int end2) {
+        if (begin1 == end1 or begin2 == end2) {
+            return begin1 == end1 and begin2 == end2;
+        }
+        int i = pattern[begin1] - 'a', j;
+        string s;
+        if (A[i].empty()) {
+            for (j = begin2 + 1; j <= end2; ++j) {
+                s = str.substr(begin2, j - begin2);
+                if (!B.count(s)) {
+                    A[i] = s;
+                    B.insert(s);
+                    if (f1(A, B, pattern, begin1 + 1, end1, str, j, end2)) {
+                        return true;
+                    }
+                    B.erase(s);
+                    A[i].clear();
+                }
+            }
+            return false;
+        }
+        j = begin2 + A[i].size();
+        s = str.substr(begin2, A[i].size());
+        if (A[i] == s) {
+            return f1(A, B, pattern, begin1 + 1, end1, str, j, end2);
+        }
+        return false;
+    }
 };
+
 int main(void) {
-	Solution solution;
-	bool result;
-	result = solution.wordPatternMatch("ab", "aa");
-	assert(false == result);
-	result = solution.wordPatternMatch("abab", "redblueredblue");
-	assert(true == result);
-	result = solution.wordPatternMatch("aaaa", "asdasdasdasd");
-	assert(true == result);
-	result = solution.wordPatternMatch("aabb", "xyzabcxzyabc");
-	assert(false == result);
-	result = solution.wordPatternMatch("itwasthebestoftimes", "ittwaastthhebesttoofttimes");
-	assert(true == result);
-	result = solution.wordPatternMatch("itwasthebestoftimes", "ittwaastthhebesttoofttimesss");
-	assert(false == result);
-	cout << "\nPassed All\n";
-	return 0;
+    Solution solution;
+    string pattern, str;
+    bool result;
+    
+    pattern = "abab";
+    str = "redblueredblue";
+    result = solution.wordPatternMatch(pattern, str);
+    cout << boolalpha << result << '\n';
+
+    pattern = "aaaa";
+    str = "asdasdasdasd";
+    result = solution.wordPatternMatch(pattern, str);
+    cout << boolalpha << result << '\n';
+
+    pattern = "aabb";
+    str = "xyzabcxzyabc";
+    result = solution.wordPatternMatch(pattern, str);
+    cout << boolalpha << result << '\n';
+
+    pattern = "ab";
+    str = "aa";
+    result = solution.wordPatternMatch(pattern, str);
+    cout << boolalpha << result << '\n';
+
+    return 0;
 }
