@@ -432,6 +432,7 @@ int main(void) {
 | 440 | [K-th Smallest in Lexicographical Order](https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/k-th-smallest-in-lexicographical-order.cpp) |
 | 441 | [Arranging Coins](https://leetcode.com/problems/arranging-coins/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/arranging-coins.cpp) |
 | 442 | [Find All Duplicates in an Array](https://leetcode.com/problems/find-all-duplicates-in-an-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-all-duplicates-in-an-array.cpp) |
+| 443 | [String Compression](https://leetcode.com/problems/string-compression/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/string-compression.cpp) |
 | 444 | [Sequence Reconstruction](https://leetcode.com/problems/sequence-reconstruction/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sequence-reconstruction.cpp) |
 | 445 | [Add Two Numbers II](https://leetcode.com/problems/add-two-numbers-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/add-two-numbers-ii.cpp) |
 | 446 | [Arithmetic Slices II - Subsequence](https://leetcode.com/problems/arithmetic-slices-ii-subsequence/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/arithmetic-slices-ii-subsequence.cpp) |
