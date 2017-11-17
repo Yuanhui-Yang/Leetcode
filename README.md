@@ -634,6 +634,7 @@ int main(void) {
 | 720 | [Longest Word in Dictionary](https://leetcode.com/problems/longest-word-in-dictionary/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-word-in-dictionary.cpp) |
 | 721 | [Accounts Merge](https://leetcode.com/problems/accounts-merge/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/accounts-merge.cpp) |
 | 724 | [Find Pivot Index](https://leetcode.com/problems/find-pivot-index/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-pivot-index.cpp) |
+| 725 | [Split Linked List in Parts](https://leetcode.com/problems/split-linked-list-in-parts/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/split-linked-list-in-parts.cpp) |
 
 ## Database
 | # | Title | Solution |
