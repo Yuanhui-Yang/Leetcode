@@ -45,7 +45,7 @@ public:
             A[start] = end;
             return true;
         }
-        map<int, int>::iterator y = A.upper_bound(start), x, a = A.begin(), b = A.end();
+        map<int, int>::iterator x, y = A.upper_bound(start), a = A.begin(), b = A.end();
         if (y == b) {
             x = prev(y);
             if (x->second <= start) {
