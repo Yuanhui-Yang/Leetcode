@@ -27,8 +27,7 @@ In calls to MyCalendar.book(start, end), start and end are integers in the range
 
 #include <iostream>
 #include <array>
-#include <set>
-#include <algorithm>
+#include <map>
 
 using namespace std;
 
@@ -42,36 +41,35 @@ public:
         if (start >= end) {
             return false;
         }
-        array<int, 2> target({start, end});
-        set<array<int, 2>>::iterator a = A.begin(), b = A.end(), x = A.upper_bound(target), y;
         if (A.empty()) {
-            A.insert(target);
+            A[start] = end;
             return true;
         }
-        if (x == b) {
-            y = prev(x);
-            if (y->at(1) <= start) {
-                A.insert(target);
+        map<int, int>::iterator y = A.upper_bound(start), x, a = A.begin(), b = A.end();
+        if (y == b) {
+            x = prev(y);
+            if (x->second <= start) {
+                A[start] = end;
                 return true;
             }
             return false;
         }
-        if (x == a) {
-            if (end <= x->at(0)) {
-                A.insert(target);
+        if (y == a) {
+            if (end <= y->first) {
+                A[start] = end;
                 return true;
             }
             return false;
         }
-        y = prev(x);
-        if (y->at(1) <= start and end <= x->at(0)) {
-            A.insert(target);
+        x = prev(y);
+        if (x->second <= start and end <= y->first) {
+            A[start] = end;
             return true;
         }
         return false;
     }
 private:
-    set<array<int, 2>> A;
+    map<int, int> A;
 };
 
 /**
