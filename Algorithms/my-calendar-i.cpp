@@ -27,6 +27,7 @@ In calls to MyCalendar.book(start, end), start and end are integers in the range
 
 #include <iostream>
 #include <map>
+#include <iterator>
 
 using namespace std;
 
