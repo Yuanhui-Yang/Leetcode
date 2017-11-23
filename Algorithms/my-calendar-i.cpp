@@ -148,3 +148,80 @@ int main(void) {
     
     return 0;
 }
+
+#include <iostream>
+#include <array>
+#include <vector>
+#include <algorithm>
+#include <iterator>
+
+using namespace std;
+
+class MyCalendar {
+public:
+    MyCalendar() {
+        A.clear();
+    }
+    
+    bool book(int start, int end) {
+        if (start >= end) {
+          return false;
+        }
+        int sz = A.size(), i = 0;
+        array<int, 2> a({start, end});
+        if (sz == 0) {
+          A.push_back(a);
+          return true;
+        }
+        while (i < sz) {
+          if (start < A[i][0]) {
+            break;
+          }
+          ++i;
+        }
+        if (i == 0) {
+          if (end <= A[i][0]) {
+            A.insert(A.begin(), a);
+            return true;
+          }
+          return false;
+        }
+        if (i == sz) {
+          if (A[i - 1][1] <= start) {
+            A.push_back(a);
+            return true;
+          }
+          return false;
+        }
+        if (A[i - 1][1] <= start and end <= A[i][0]) {
+            A.insert(next(A.begin(), i), a);
+            return true;
+        }
+        return false;
+    }
+private:
+    vector<array<int, 2>> A;
+};
+
+int main(void) {
+    MyCalendar obj;
+    bool result;
+    int start, end;
+    
+    start = 10;
+    end = 20;
+    result = obj.book(start, end);
+    cout << boolalpha << result << '\n';
+
+    start = 15;
+    end = 25;
+    result = obj.book(start, end);
+    cout << boolalpha << result << '\n';
+
+    start = 20;
+    end = 30;
+    result = obj.book(start, end);
+    cout << boolalpha << result << '\n';
+    
+    return 0;
+}
