@@ -26,6 +26,60 @@ In calls to MyCalendar.book(start, end), start and end are integers in the range
 */
 
 #include <iostream>
+#include <array>
+#include <vector>
+
+using namespace std;
+
+class MyCalendar {
+public:
+    MyCalendar() {
+        A.clear();
+    }
+    
+    bool book(int start, int end) {
+        int sz = A.size(), i = 0;
+        array<int, 2> a({start, end});
+        while (i < sz) {
+          if (f1(a, A[i])) {
+            return false;
+          }
+          ++i;
+        }
+        A.push_back(a);
+        return true;
+    }
+private:
+    vector<array<int, 2>> A;
+    bool f1(const array<int, 2> & a, const array<int, 2> & b) {
+      return !(a[1] <= b[0] or b[1] <= a[0]);
+    }
+};
+
+int main(void) {
+    MyCalendar obj;
+    bool result;
+    int start, end;
+    
+    start = 10;
+    end = 20;
+    result = obj.book(start, end);
+    cout << boolalpha << result << '\n';
+
+    start = 15;
+    end = 25;
+    result = obj.book(start, end);
+    cout << boolalpha << result << '\n';
+
+    start = 20;
+    end = 30;
+    result = obj.book(start, end);
+    cout << boolalpha << result << '\n';
+    
+    return 0;
+}
+
+#include <iostream>
 #include <map>
 #include <iterator>
 
@@ -71,12 +125,6 @@ public:
 private:
     map<int, int> A;
 };
-
-/**
- * Your MyCalendar object will be instantiated and called as such:
- * MyCalendar obj = new MyCalendar();
- * bool param_1 = obj.book(start,end);
- */
 
 int main(void) {
     MyCalendar obj;
