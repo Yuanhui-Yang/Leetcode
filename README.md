@@ -639,6 +639,7 @@ int main(void) {
 | 724 | [Find Pivot Index](https://leetcode.com/problems/find-pivot-index/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-pivot-index.cpp) |
 | 725 | [Split Linked List in Parts](https://leetcode.com/problems/split-linked-list-in-parts/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/split-linked-list-in-parts.cpp) |
 | 726 | [Number of Atoms](https://leetcode.com/problems/number-of-atoms/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-atoms.cpp) |
+| 727 | [Minimum Window Subsequence](https://leetcode.com/problems/minimum-window-subsequence/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-window-subsequence.cpp) |
 | 728 | [Self Dividing Numbers](https://leetcode.com/problems/self-dividing-numbers/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/self-dividing-numbers.cpp) |
 | 729 | [My Calendar I](https://leetcode.com/problems/my-calendar-i/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/my-calendar-i.cpp) |
 
