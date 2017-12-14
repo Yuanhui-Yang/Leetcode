@@ -643,6 +643,7 @@ int main(void) {
 | 728 | [Self Dividing Numbers](https://leetcode.com/problems/self-dividing-numbers/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/self-dividing-numbers.cpp) |
 | 729 | [My Calendar I](https://leetcode.com/problems/my-calendar-i/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/my-calendar-i.cpp) |
 | 731 | [My Calendar II](https://leetcode.com/problems/my-calendar-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/my-calendar-ii.cpp) |
+| 744 | [Find Smallest Letter Greater Than Target](https://leetcode.com/problems/find-smallest-letter-greater-than-target/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-smallest-letter-greater-than-target.cpp) |
 
 ## Database
 | # | Title | Solution |
