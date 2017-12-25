@@ -647,6 +647,7 @@ int main(void) {
 | 734 | [Sentence Similarity](https://leetcode.com/problems/sentence-similarity/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sentence-similarity.cpp) |
 | 744 | [Find Smallest Letter Greater Than Target](https://leetcode.com/problems/find-smallest-letter-greater-than-target/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-smallest-letter-greater-than-target.cpp) |
 | 746 | [Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/min-cost-climbing-stairs.cpp) |
+| 747 | [Largest Number Greater Than Twice of Others](https://leetcode.com/problems/largest-number-greater-than-twice-of-others/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-number-greater-than-twice-of-others.cpp) |
 | 748 | [Shortest Completing Word](https://leetcode.com/problems/shortest-completing-word/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/shortest-completing-word.cpp) |
 | 750 | [Number Of Corner Rectangles](https://leetcode.com/problems/number-of-corner-rectangles/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-corner-rectangles.cpp) |
 
