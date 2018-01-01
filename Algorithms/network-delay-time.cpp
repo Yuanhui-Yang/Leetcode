@@ -30,13 +30,13 @@ public:
             minHeap.pop();
             if (top[0] == dist[top[1]]) {
                 result = top[0];
-            }
-            for (const auto & neighbor : graph[top[1]]) {
-                if (dist[neighbor[0]] < 0 or top[0] + neighbor[1] < dist[neighbor[0]]) {
-                    dist[neighbor[0]] = top[0] + neighbor[1];
-                    minHeap.push({dist[neighbor[0]], neighbor[0]});
+                for (const auto & neighbor : graph[top[1]]) {
+                    if (dist[neighbor[0]] < 0 or top[0] + neighbor[1] < dist[neighbor[0]]) {
+                        dist[neighbor[0]] = top[0] + neighbor[1];
+                        minHeap.push({dist[neighbor[0]], neighbor[0]});
+                    }
+
                 }
-                
             }
         }
         for (const auto & i : dist) {
