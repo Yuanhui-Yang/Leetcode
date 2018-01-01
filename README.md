@@ -646,10 +646,10 @@ int main(void) {
 | 731 | [My Calendar II](https://leetcode.com/problems/my-calendar-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/my-calendar-ii.cpp) |
 | 733 | [Flood Fill](https://leetcode.com/problems/flood-fill/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/flood-fill.cpp) |
 | 734 | [Sentence Similarity](https://leetcode.com/problems/sentence-similarity/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sentence-similarity.cpp) |
-| 740 | [Delete and Earn](https://leetcode.com/problems/delete-and-earn/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/delete-and-earn.cpp) |
 | 735 | [Asteroid Collision](https://leetcode.com/problems/asteroid-collision/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/asteroid-collision.cpp) |
 | 737 | [Sentence Similarity II](https://leetcode.com/problems/sentence-similarity-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sentence-similarity-ii.cpp) |
 | 739 | [Daily Temperatures](https://leetcode.com/problems/daily-temperatures/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/daily-temperatures.cpp) |
+| 740 | [Delete and Earn](https://leetcode.com/problems/delete-and-earn/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/delete-and-earn.cpp) |
 | 744 | [Find Smallest Letter Greater Than Target](https://leetcode.com/problems/find-smallest-letter-greater-than-target/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-smallest-letter-greater-than-target.cpp) |
 | 746 | [Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/min-cost-climbing-stairs.cpp) |
 | 747 | [Largest Number Greater Than Twice of Others](https://leetcode.com/problems/largest-number-greater-than-twice-of-others/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-number-greater-than-twice-of-others.cpp) |
