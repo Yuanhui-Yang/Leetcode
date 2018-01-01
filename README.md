@@ -650,7 +650,8 @@ int main(void) {
 | 737 | [Sentence Similarity II](https://leetcode.com/problems/sentence-similarity-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sentence-similarity-ii.cpp) |
 | 739 | [Daily Temperatures](https://leetcode.com/problems/daily-temperatures/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/daily-temperatures.cpp) |
 | 740 | [Delete and Earn](https://leetcode.com/problems/delete-and-earn/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/delete-and-earn.cpp) |
-| 744 | [Find Smallest Letter Greater Than Target](https://leetcode.com/problems/find-smallest-letter-greater-than-target/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-smallest-letter-greater-than-target.cpp) |
+| 744 | [Network Delay Time](https://leetcode.com/problems/network-delay-time/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/network-delay-time.cpp) |
+| 745 | [Find Smallest Letter Greater Than Target](https://leetcode.com/problems/find-smallest-letter-greater-than-target/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-smallest-letter-greater-than-target.cpp) |
 | 746 | [Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/min-cost-climbing-stairs.cpp) |
 | 747 | [Largest Number Greater Than Twice of Others](https://leetcode.com/problems/largest-number-greater-than-twice-of-others/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-number-greater-than-twice-of-others.cpp) |
 | 748 | [Shortest Completing Word](https://leetcode.com/problems/shortest-completing-word/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/shortest-completing-word.cpp) |
