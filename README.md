@@ -635,7 +635,7 @@ int main(void) {
 | 717 | [1-bit and 2-bit Characters](https://leetcode.com/problems/1-bit-and-2-bit-characters/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/1-bit-and-2-bit-characters.cpp) |
 | 718 | [Maximum Length of Repeated Subarray](https://leetcode.com/problems/maximum-length-of-repeated-subarray/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-length-of-repeated-subarray.cpp) |
 | 720 | [Longest Word in Dictionary](https://leetcode.com/problems/longest-word-in-dictionary/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-word-in-dictionary.cpp) |
-| 721 | [Accounts Merge](https://leetcode.com/problems/accounts-merge/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/accounts-merge.cpp) |
+| 721 | [Accounts Merge](https://leetcode.com/problems/accounts-merge/) | [C++](https://github.com/yuanhui-yang/LeetCode/blo753b/master/Algorithms/accounts-merge.cpp) |
 | 722 | [Remove Comments](https://leetcode.com/problems/remove-comments/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-comments.cpp) |
 | 724 | [Find Pivot Index](https://leetcode.com/problems/find-pivot-index/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-pivot-index.cpp) |
 | 725 | [Split Linked List in Parts](https://leetcode.com/problems/split-linked-list-in-parts/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/split-linked-list-in-parts.cpp) |
@@ -656,6 +656,7 @@ int main(void) {
 | 748 | [Largest Number At Least Twice of Others](https://leetcode.com/problems/largest-number-at-least-twice-of-others/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-number-at-least-twice-of-others.cpp) |
 | 749 | [Shortest Completing Word](https://leetcode.com/problems/shortest-completing-word/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/shortest-completing-word.cpp) |
 | 750 | [Number Of Corner Rectangles](https://leetcode.com/problems/number-of-corner-rectangles/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-corner-rectangles.cpp) |
+| 753 | [Open the Lock](https://leetcode.com/problems/open-the-lock/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/open-the-lock.cpp) |
 
 ## Database
 | # | Title | Solution |
