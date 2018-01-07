@@ -1,23 +1,4 @@
 # [LeetCode](https://leetcode.com/)
-## C++11/14/17 Template
-```cpp
-#include <bits/stdc++.h>
-using namespace std;
-
-class Solution {
-public:
-	void helloWorld() {
-		cout << "\nHello World\n";
-	}
-};
-
-int main(void) {
-	Solution solution;
-	solution.helloWorld();
-	cout << "\nPassed All\n";
-	return 0;
-}
-```
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
