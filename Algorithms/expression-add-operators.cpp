@@ -25,7 +25,7 @@ public:
     }
 private:
     void f1(vector<string> & result, string path, string & num, int begin, long target, long eval, long mul) {
-        int end = num.size(), sz;
+        int end = num.size();
         long val;
         string s;
         if (begin == end) {
