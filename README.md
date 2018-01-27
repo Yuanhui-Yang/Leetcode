@@ -641,6 +641,7 @@
 | 753 | [Open the Lock](https://leetcode.com/problems/open-the-lock/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/open-the-lock.cpp) |
 | 760 | [Find Anagram Mappings](https://leetcode.com/problems/find-anagram-mappings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-anagram-mappings.cpp) |
 | 762 | [Prime Number of Set Bits in Binary Representation](https://leetcode.com/problems/prime-number-of-set-bits-in-binary-representation/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/prime-number-of-set-bits-in-binary-representation.cpp) |
+| 766 | [Toeplitz Matrix](https://leetcode.com/problems/toeplitz-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/toeplitz-matrix.cpp) |
 
 ## Database
 | # | Title | Solution |
