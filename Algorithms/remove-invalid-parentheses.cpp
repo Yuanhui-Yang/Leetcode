@@ -1,145 +1,83 @@
-// 301. Remove Invalid Parentheses
-// https://leetcode.com/problems/remove-invalid-parentheses/
+301. Remove Invalid Parentheses
+https://leetcode.com/problems/remove-invalid-parentheses/
+
+Remove the minimum number of invalid parentheses in order to make the input string valid. Return all possible results.
+
+Note: The input string may contain letters other than the parentheses ( and ).
+
+Examples:
+"()())()" -> ["()()()", "(())()"]
+"(a)())()" -> ["(a)()()", "(a())()"]
+")(" -> [""]
+
 #include <iostream>
-#include <cassert>
+#include <array>
 #include <string>
 #include <vector>
-#include <unordered_set>
 #include <algorithm>
-#include <iterator> 
+
 using namespace std;
+
 class Solution {
 public:
-	vector<string> removeInvalidParentheses(string s) {
-		if (s.empty()) {
-			return vector<string>({""});
-		}
-		if (isValid(s)) {
-			return vector<string>({s});
-		}
-		unordered_set<string> result;
-		vector<unordered_set<string>> OPT(s.size() + 1);
-		OPT[s.size()].insert(s);
-		for (size_t len = s.size() - 1; len >= 1; len--) {
-			for (const auto &parent : OPT[len + 1]) {
-				for (size_t i = 0; i < parent.size(); i++) {
-					const string candidate = parent.substr(0, i) + parent.substr(i + 1, parent.size() - i);
-					if (isValid(candidate)) {
-						result.insert(candidate);
-						continue;
-					}
-					OPT[len].insert(candidate);
-				}
-			}
-			if (!result.empty()) {
-				return vector<string>(begin(result), end(result));
-			}
-		}
-		return vector<string>({""});
-	}
+    vector<string> removeInvalidParentheses(string s) {
+        vector<string> result;
+        f1(result, s, 0, 0, {'(', ')'});
+        return result;
+    }
 private:
-	bool isValid(const string& s) {
-		vector<char> stack;
-		for (const auto &c : s) {
-			if (c == '(') {
-				stack.push_back(c);
-				continue;
-			}
-			if (c == ')') {
-				if (stack.empty()) {
-					return false;
-				}
-				stack.pop_back();
-				continue;
-			}
-		}
-		return stack.empty();
-	}
+    void f1(vector<string> & result, string s, int last_i, int last_j, array<char, 2> par) {
+        for (int sz = s.size(), i = last_i, stack = 0; i < sz; ++i) {
+            if (s[i] == par[0]) {
+                ++stack;
+            }
+            else if (s[i] == par[1]) {
+                --stack;
+            }
+            if (stack < 0) {
+                for (int j = last_j; j <= i; ++j) {
+                    if (s[j] == par[1] and (j == last_j or s[j] != s[j - 1])) {
+                        f1(result, s.substr(0, j) + s.substr(j + 1), i, j, par);
+                    }
+                }
+                return;
+            }
+        }
+        reverse(s.begin(), s.end());
+        if (par[0] == '(') {
+            f1(result, s, 0, 0, {')', '('});
+        }
+        else {
+            result.push_back(s);
+        }
+    }
 };
 
-// BEGIN: Time Limit Exceeded
-// class Solution {
-// public:
-// 	vector<string> removeInvalidParentheses(string s) {
-// 		if (s.empty()) {
-// 			return vector<string>({""});
-// 		}
-// 		if (isValid(s)) {
-// 			return vector<string>({s});
-// 		}
-// 		vector<string> result;
-// 		vector<vector<string>> OPT(s.size() + 1);
-// 		OPT[s.size()].push_back(s);
-// 		for (size_t len = s.size() - 1; len >= 1; len--) {
-// 			for (const auto &parent : OPT[len + 1]) {
-// 				for (size_t i = 0; i < parent.size(); i++) {
-// 					const string candidate = parent.substr(0, i) + parent.substr(i + 1, parent.size() - i);
-// 					if (isValid(candidate)) {
-// 						if (find(begin(result), end(result), candidate) == end(result)) {
-// 							result.push_back(candidate);
-// 						}						
-// 						continue;
-// 					}
-// 					if (find(begin(OPT[len]), end(OPT[len]), candidate) == end(OPT[len])) {
-// 						OPT[len].push_back(candidate);
-// 						continue;
-// 					}
-// 				}
-// 			}
-// 			if (!result.empty()) {
-// 				return result;
-// 			}
-// 		}
-// 		return vector<string>({""});
-// 	}
-// private:
-// 	bool isValid(const string& s) {
-// 		vector<char> stack;
-// 		for (const auto &c : s) {
-// 			if (c == '(') {
-// 				stack.push_back(c);
-// 				continue;
-// 			}
-// 			if (c == ')') {
-// 				if (stack.empty()) {
-// 					return false;
-// 				}
-// 				stack.pop_back();
-// 				continue;
-// 			}
-// 		}
-// 		return stack.empty();
-// 	}
-// };
-// END: Time Limit Exceeded
 int main(void) {
-	Solution solution;
-	vector<string> result;
+    Solution solution;
+    string s;
+    vector<string> result;
+    
+    s = "()())()";
+    result = solution.removeInvalidParentheses(s);
+    for (const auto & i : result) {
+        cout << i << '\t';
+    }
+    cout << '\n';
 
-	result = solution.removeInvalidParentheses("");
-	sort(begin(result), end(result));
-	assert(vector<string>({""}) == result);	
+    s = "(a)())()";
+    result = solution.removeInvalidParentheses(s);
+    for (const auto & i : result) {
+        cout << i << '\t';
+    }
+    cout << '\n';
 
-	result = solution.removeInvalidParentheses("()())()");
-	sort(begin(result), end(result));
-	assert(vector<string>({"(())()", "()()()"}) == result);
-
-	result = solution.removeInvalidParentheses("(a)())()");
-	sort(begin(result), end(result));
-	assert(vector<string>({"(a())()", "(a)()()"}) == result);
-	
-	result = solution.removeInvalidParentheses(")(");
-	sort(begin(result), end(result));
-	assert(vector<string>({""}) == result);
-
-	result = solution.removeInvalidParentheses("(r(()()(");
-	sort(begin(result), end(result));
-	assert(vector<string>({"(r())", "(r)()", "r(())", "r()()"}) == result);
-
-	result = solution.removeInvalidParentheses("i))((()(n(())i((((");
-	sort(begin(result), end(result));
-	assert(vector<string>({"i((()n))i", "i(()(n))i", "i(()n())i", "i()(n())i", "i()n(())i"}) == result);	
-
-	cout << "\nPassed All\n";
-	return 0;
+    s = ")(";
+    result = solution.removeInvalidParentheses(s);
+    for (const auto & i : result) {
+        cout << i << '\t';
+    }
+    cout << '\n';
+    
+    return 0;
 }
