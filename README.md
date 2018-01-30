@@ -632,11 +632,12 @@
 | 738 | [Monotone Increasing Digits](https://leetcode.com/problems/monotone-increasing-digits/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/monotone-increasing-digits.cpp) |
 | 739 | [Daily Temperatures](https://leetcode.com/problems/daily-temperatures/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/daily-temperatures.cpp) |
 | 740 | [Delete and Earn](https://leetcode.com/problems/delete-and-earn/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/delete-and-earn.cpp) |
-| 744 | [Network Delay Time](https://leetcode.com/problems/network-delay-time/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/network-delay-time.cpp) |
-| 745 | [Find Smallest Letter Greater Than Target](https://leetcode.com/problems/find-smallest-letter-greater-than-target/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-smallest-letter-greater-than-target.cpp) |
-| 747 | [Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/min-cost-climbing-stairs.cpp) |
-| 748 | [Largest Number At Least Twice of Others](https://leetcode.com/problems/largest-number-at-least-twice-of-others/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-number-at-least-twice-of-others.cpp) |
-| 749 | [Shortest Completing Word](https://leetcode.com/problems/shortest-completing-word/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/shortest-completing-word.cpp) |
+| 743 | [Network Delay Time](https://leetcode.com/problems/network-delay-time/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/network-delay-time.cpp) |
+| 744 | [Find Smallest Letter Greater Than Target](https://leetcode.com/problems/find-smallest-letter-greater-than-target/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-smallest-letter-greater-than-target.cpp) |
+| 745 | [Prefix and Suffix Search](https://leetcode.com/problems/prefix-and-suffix-search/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/prefix-and-suffix-search.cpp) |
+| 746 | [Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/min-cost-climbing-stairs.cpp) |
+| 747 | [Largest Number At Least Twice of Others](https://leetcode.com/problems/largest-number-at-least-twice-of-others/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-number-at-least-twice-of-others.cpp) |
+| 748 | [Shortest Completing Word](https://leetcode.com/problems/shortest-completing-word/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/shortest-completing-word.cpp) |
 | 750 | [Number Of Corner Rectangles](https://leetcode.com/problems/number-of-corner-rectangles/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-corner-rectangles.cpp) |
 | 753 | [Open the Lock](https://leetcode.com/problems/open-the-lock/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/open-the-lock.cpp) |
 | 760 | [Find Anagram Mappings](https://leetcode.com/problems/find-anagram-mappings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-anagram-mappings.cpp) |
