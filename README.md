@@ -643,6 +643,7 @@
 | 760 | [Find Anagram Mappings](https://leetcode.com/problems/find-anagram-mappings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-anagram-mappings.cpp) |
 | 762 | [Prime Number of Set Bits in Binary Representation](https://leetcode.com/problems/prime-number-of-set-bits-in-binary-representation/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/prime-number-of-set-bits-in-binary-representation.cpp) |
 | 766 | [Toeplitz Matrix](https://leetcode.com/problems/toeplitz-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/toeplitz-matrix.cpp) |
+| 771 | [Jewels and Stones](https://leetcode.com/problems/jewels-and-stones/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/jewels-and-stones.cpp) |
 
 ## Database
 | # | Title | Solution |
