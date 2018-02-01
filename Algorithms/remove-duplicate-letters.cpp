@@ -1,79 +1,60 @@
-// 316. Remove Duplicate Letters
-// https://leetcode.com/problems/remove-duplicate-letters/
+316. Remove Duplicate Letters
+https://leetcode.com/problems/remove-duplicate-letters/
+
+Given a string which contains only lowercase letters, remove duplicate letters so that every letter appear once and only once. You must make sure your result is the smallest in lexicographical order among all possible results.
+
+Example:
+Given "bcabc"
+Return "abc"
+
+Given "cbacdcbc"
+Return "acdb"
+
 #include <iostream>
-#include <cassert>
-#include <vector>
-#include <set>
-#include <map>
-#include <unordered_set>
-#include <unordered_map>
-#include <algorithm>
-#include <iterator>
+#include <string>
+#include <array>
+
 using namespace std;
+
 class Solution {
 public:
-	string removeDuplicateLetters(string s) {
-		if (s.empty()) {
-			return "";
-		}
-		map<char, set<size_t>> tree_map;
-		for (size_t i = 0; i < s.size(); i++) {
-			tree_map[s.at(i)].insert(i);
-		}
-		string result;
-		while (!tree_map.empty()) {
-			for (map<char, set<size_t>>::iterator it = begin(tree_map);
-				it != end(tree_map);
-				it++) {
-				if (validate(it, tree_map)) {
-					result.push_back(it->first);
-					tree_map.erase(it);
-					break;
-				}
-			}
-		}
-		return result;
-	}
-private:
-	bool validate(map<char, set<size_t>>::iterator it, map<char, set<size_t>>& tree_map) {
-			for (map<char, set<size_t>>::iterator jt = begin(tree_map);
-				jt != end(tree_map);
-				jt++) {
-				if (jt != it && jt->second.upper_bound(*begin(it->second)) == end(jt->second)) {
-					return false;
-				}
-			}
-			for (map<char, set<size_t>>::iterator jt = begin(tree_map);
-				jt != end(tree_map);
-				jt++) {
-				if (jt != it) {
-					jt->second.erase(begin(jt->second), jt->second.upper_bound(*begin(it->second)));
-				}
-			}
-			return true;
-	}
+    string removeDuplicateLetters(string s) {
+        array<int, 26> A;
+        A.fill(0);
+        array<bool, 26> B;
+        B.fill(false);
+        for (const auto & i : s) {
+            int id = i - 'a';
+            ++A[id];
+        }
+        string result;
+        for (const auto & i : s) {
+            int id = i - 'a';
+            if (!B[id]) {
+                while (!result.empty() and result.back() >= i and A[result.back() - 'a'] > 0) {
+                    B[result.back() - 'a'] = false;
+                    result.pop_back();
+                }
+                result.push_back(i);
+                B[id] = true;
+            }
+            --A[id];
+        }
+        return result;
+    }
 };
+
 int main(void) {
-	Solution solution;
-	string s;
-	string result;
-	string answer;
-
-	s = "bbcaac";
-	answer = "bac";
-	result = solution.removeDuplicateLetters(s);
-	assert(answer == result);
-
-	s = "bcabc";
-	answer = "abc";
-	result = solution.removeDuplicateLetters(s);
-	assert(answer == result);
-
-	s = "cbacdcbc";
-	answer = "acdb";
-	result = solution.removeDuplicateLetters(s);
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
-	return 0;
+    Solution solution;
+    string s, result;
+    
+    s = "bcabc";
+    result = solution.removeDuplicateLetters(s);
+    cout << result << '\n';
+    
+    s = "cbacdcbc";
+    result = solution.removeDuplicateLetters(s);
+    cout << result << '\n';
+    
+    return 0;
 }
