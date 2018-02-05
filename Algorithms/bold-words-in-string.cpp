@@ -15,61 +15,65 @@ S has length in range [0, 500].
 All characters in words[i] and S are lowercase letters.
 
 #include <iostream>
+#include <array>
 #include <vector>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
 class Solution {
 public:
     string boldWords(vector<string>& words, string S) {
-        int sz = S.size(), i;
-        vector<bool> A = f1(words, S);
+        int sz1 = S.size(), sz2 = 0, i = 0, j = 0;
+        vector<array<int, 2>> A = f1(words, S);
+        if (A.empty()) {
+            return S;
+        }
+        sz2 = A.size();
         string result;
-        for (i = 0; i < sz; ++i) {
-            if (A[i]) {
-                if (i == 0 or !A[i - 1]) {
-                    result.append("<b>");
-                }
-                result.push_back(S[i]);
-                if (i + 1 == sz) {
-                    result.append("</b>");
-                }
+        while (i < sz1) {
+            if (j < sz2) {
+                result.append(S.substr(i, A[j][0] - i));
+                result.append("<b>");
+                i = A[j][0];
+                result.append(S.substr(i, A[j][1] - A[j][0]));
+                i = A[j][1];
+                result.append("</b>");
+                ++j;
             }
             else {
-                if (i > 0 and A[i - 1]) {
-                    result.append("</b>");
-                }
-                result.push_back(S[i]);
+                result.append(S.substr(i, sz1 - i));
+                i = sz1;
             }
         }
         return result;
     }
 private:
-    vector<bool> f1(vector<string>& words, string & S) {
+    vector<array<int, 2>> f1(vector<string>& words, string & S) {
         int sz = S.size();
-        vector<bool> result(sz, false);
+        vector<array<int, 2>> result;
         for (auto & word : words) {
-            f2(result, S, word);
+            vector<array<int, 2>> curr = f2(S, word);
+            result.insert(result.end(), curr.begin(), curr.end());
         }
-        return result;
+        return f3(result);
     }
-    void f2(vector<bool> & A, string & text, string & pattern) {
-        int sz1 = text.size(), sz2 = pattern.size(), i, j, k;
+    vector<array<int, 2>> f2(string & text, string & pattern) {
+        int sz1 = text.size(), sz2 = pattern.size(), i, j;
         if (sz1 < sz2) {
-            return;
+            return {};
         }
         if (sz1 == sz2) {
             if (text == pattern) {
-                for (i = 0; i < sz1; ++i) {
-                    A[i] = true;
-                }
+                return {{0, sz1}};
             }
-            return;
+            return {};
         }
         if (sz1 == 0 or sz2 == 0) {
-            return;
+            return {};
         }
+        vector<array<int, 2>> result;
         vector<int> pi(sz2 + 1);
         pi[0] = -1;
         i = 0;
@@ -93,13 +97,27 @@ private:
                 j = pi[j];
             }
             if (j == sz2) {
-                for (k = 1; k <= sz2; ++k) {
-                    A[i - k] = true;
-                }
-                i -= sz2 - 1;
-                j = 0;
+                i -= sz2;
+                j = -1;
+                result.push_back({i, i + sz2});
             }
         }
+        return result;
+    }
+    vector<array<int, 2>> f3(vector<array<int, 2>> & A) {
+        sort(A.begin(), A.end());
+        vector<array<int, 2>> result;
+        int sz = A.size(), i = 0;
+        while (i < sz) {
+            int begin = A[i][0], end = A[i][1];
+            ++i;
+            while (i < sz and A[i][0] <= end) {
+                end = max(end, A[i][1]);
+                ++i;
+            }
+            result.push_back({begin, end});
+        }
+        return result;
     }
 };
 
