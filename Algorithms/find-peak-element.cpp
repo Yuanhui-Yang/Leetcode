@@ -1,14 +1,13 @@
-// 162. Find Peak Element
-// https://leetcode.com/problems/find-peak-element/
+162. Find Peak Element
+https://leetcode.com/problems/find-peak-element/
 
-/*
 A peak element is an element that is greater than its neighbors.
 
-Given an input array where num[i] ? num[i+1], find a peak element and return its index.
+Given an input array where num[i] ≠ num[i+1], find a peak element and return its index.
 
 The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.
 
-You may imagine that num[-1] = num[n] = -?.
+You may imagine that num[-1] = num[n] = -∞.
 
 For example, in array [1, 2, 3, 1], 3 is a peak element and your function should return the index number 2.
 
@@ -16,53 +15,65 @@ click to show spoilers.
 
 Note:
 Your solution should be in logarithmic complexity.
-*/
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
 
 class Solution {
 public:
-	int findPeakElement(vector<int>& nums) {
-		int n = nums.size(), i = 0, j = n;
-		while (i < j) {
-			int k = i + (j - i) / 2;
-			if (k + 1 < n and nums[k] < nums[k + 1]) {
-				i = k + 1;
-			}
-			else {
-				j = k;
-			}
-		}
-		return i;
-	}
+    int findPeakElement(vector<int>& nums) {
+        int sz = nums.size(), i = 0, j = sz - 1;
+        if (sz == 0) {
+            return -1;
+        }
+        if (sz == 1) {
+            return 0;
+        }
+        if (nums[0] > nums[1]) {
+            return 0;
+        }
+        if (nums[sz - 2] < nums[sz - 1]) {
+            return sz - 1;
+        }
+        while (i + 1 < j) {
+            int k = i + (j - i) / 2;
+            if (nums[k - 1] < nums[k]) {
+                if (nums[k] < nums[k + 1]) {
+                    i = k;
+                }
+                else {
+                    return k;
+                }
+            }
+            else {
+                if (nums[k] < nums[k + 1]) {
+                    i = k;
+                }
+                else {
+                    j = k;
+                }                
+            }
+        }
+        if (nums[i - 1] < nums[i] and nums[i] > nums[i + 1]) {
+            return i;
+        }
+        if (nums[j - 1] < nums[j] and nums[j] > nums[j + 1]) {
+            return j;
+        }
+        return -1;
+    }
 };
 
-class Solution {
-public:
-	int findPeakElement(vector<int>& nums) {
-		if (nums.empty()) {
-			return -1;
-		}
-		if (nums.size() == 1) {
-			return 0;
-		}
-		int n = nums.size(), i = 0, j = n - 1;
-		if (nums[0] > nums[1]) {
-			return 0;
-		}
-		if (nums[n - 2] < nums[n - 1]) {
-			return n - 1;
-		}
-		while (i + 1 < j) {
-			int k = i + (j - i) / 2;
-			if (nums[k] < nums[k + 1]) {
-				i = k;
-			}
-			else {
-				j = k;
-			}
-		}
-		if (nums[i - 1] < nums[i] and nums[i] > nums[i + 1]) {
-			return i;
-		}
-		return i + 1;
-	}
-};
+int main(void) {
+    Solution solution;
+    vector<int> nums;
+    int result;
+    
+    nums = {1, 2, 3, 1};
+    result = solution.findPeakElement(nums);
+    cout << result << '\n';
+    
+    return 0;
+}
