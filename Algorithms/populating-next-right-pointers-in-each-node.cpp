@@ -1,7 +1,6 @@
-// 116. Populating Next Right Pointers in Each Node
-// https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
+116. Populating Next Right Pointers in Each Node
+https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
 
-/*
 Given a binary tree
 
     struct TreeLinkNode {
@@ -30,7 +29,6 @@ After calling your function, the tree should look like:
       2 -> 3 -> NULL
      / \  / \
     4->5->6->7 -> NULL
-*/
 
 /**
  * Definition for binary tree with next pointer.
@@ -42,29 +40,38 @@ After calling your function, the tree should look like:
  */
 class Solution {
 public:
-	void connect(TreeLinkNode *root) {
-		if (!root) {
-			return;
-		}
-		vector<TreeLinkNode*> c = {root};
-		while (!c.empty()) {
-			vector<TreeLinkNode*> n;
-			for (int sz = c.size(), i = 0; i + 1 < sz; ++i) {
-				c[i]->next = c[i + 1];
-				if (c[i]->left) {
-					n.push_back(c[i]->left);
-				}
-				if (c[i]->right) {
-					n.push_back(c[i]->right);
-				}
-			}
-			if (c.back()->left) {
-				n.push_back(c.back()->left);
-			}
-			if (c.back()->right) {
-				n.push_back(c.back()->right);
-			}
-			c = n;
-		}
-	}
+    void connect(TreeLinkNode *root) {
+        if (!root) {
+            return;
+        }
+        TreeLinkNode * a = root, * b = NULL, * c = NULL;
+        while (a) {
+            b = NULL;
+            c = NULL;
+            while (a) {
+                if (a->left) {
+                    if (b) {
+                        c->next = a->left;
+                        c = c->next;
+                    }
+                    else {
+                        b = a->left;
+                        c = b;
+                    }
+                }
+                if (a->right) {
+                    if (b) {
+                        c->next = a->right;
+                        c = c->next;
+                    }
+                    else {
+                        b = a->right;
+                        c = b;
+                    }
+                }
+                a = a->next;
+            }
+            a = b;
+        }
+    }
 };
