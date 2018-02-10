@@ -1,7 +1,6 @@
-// 15. 3Sum
-// https://leetcode.com/problems/3sum/
+15. 3Sum
+https://leetcode.com/problems/3sum/
 
-/*
 Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
 
 Note: The solution set must not contain duplicate triplets.
@@ -13,66 +12,74 @@ A solution set is:
   [-1, 0, 1],
   [-1, -1, 2]
 ]
-*/
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
 using namespace std;
 
 class Solution {
 public:
-	vector<vector<int>> threeSum(vector<int>& nums) {
-		if (nums.size() < 3) {
-			return {};
-		}
-		vector<vector<int>> result;
-		sort(begin(nums), end(nums));
-		for (int i = 0, n = nums.size(); i + 3 <= n; i++) {
-			if (i > 0 and nums[i] == nums[i - 1]) {
-				continue;
-			}
-			if (nums[i] + nums[i + 1] + nums[i + 2] > 0) {
-				break;
-			}
-			if (nums[i] + nums[n - 2] + nums[n - 1] < 0) {
-				continue;
-			}
-			int left = i + 1, right = n - 1;
-			while (left < right) {
-				vector<int> v = {nums[i], nums[left], nums[right]};
-				int sum = accumulate(begin(v), end(v), 0);
-				if (sum < 0) {
-					left++;
-				}
-				else if (sum > 0) {
-					right--;
-				}
-				else {
-					result.push_back(v);
-					while (left < right and nums[left] == v[1]) {
-						left++;
-					}
-					while (left < right and nums[right] == v[2]) {
-						right--;
-					}
-				}
-			}
-		}
-		return result;
-	}
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> result;
+        for (int sz = nums.size(), i = 0; i < sz; ++i) {
+            if (i == 0 or nums[i - 1] != nums[i]) {
+                vector<vector<int>> v = f1(nums, -nums[i], i);
+                result.insert(result.end(), v.begin(), v.end());
+            }
+        }
+        return result;
+    }
+private:
+    vector<vector<int>> f1(vector<int>& nums, int target, int begin) {
+        int end = nums.size();
+        vector<vector<int>> result;
+        int i = begin + 1, j = end - 1;
+        while (i < j) {
+            int sum = nums[i] + nums[j];
+            if (sum == target) {
+                result.push_back({nums[begin], nums[i], nums[j]});
+                while (i + 1 < j and nums[i] == nums[i + 1]) {
+                    ++i;
+                }
+                ++i;
+                while (i < j - 1 and nums[j - 1] == nums[j]) {
+                    --j;
+                }
+                --j;
+            }
+            else if (sum < target) {
+                while (i + 1 < j and nums[i] == nums[i + 1]) {
+                    ++i;
+                }
+                ++i;
+            }
+            else {
+                while (i < j - 1 and nums[j - 1] == nums[j]) {
+                    --j;
+                }
+                --j;
+            }
+        }
+        return result;
+    }
 };
 
 int main(void) {
-	Solution solution;
-	vector<int> nums;
-	vector<vector<int>> result, answer;
+    Solution solution;
+    vector<int> nums;
+    vector<vector<int>> result;
 
-	nums = {-1, 0, 1, 2, -1, -4};
-	answer = {{-1, 0, 1}, {-1, -1, 2}};
-	sort(begin(answer), end(answer));
-	result = solution.threeSum(nums);
-	sort(begin(result), end(result));
-	assert(answer == result);
+    nums = {-1, 0, 1, 2, -1, -4};
+    result = solution.threeSum(nums);
+    for (const auto & i : result) {
+        for (const auto & j : i) {
+            cout << j << '\t';
+        }
+        cout << '\n';
+    }
 
-	cout << "\nPassed All\n";
-	return 0;
+    return 0;
 }
