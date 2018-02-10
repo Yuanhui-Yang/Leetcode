@@ -1,90 +1,29 @@
-// 14. Longest Common Prefix
-// https://leetcode.com/problems/longest-common-prefix/
+14. Longest Common Prefix
+https://leetcode.com/problems/longest-common-prefix/
 
-/*
 Write a function to find the longest common prefix string amongst an array of strings.
-*/
-
-#include <bits/stdc++.h>
-using namespace std;
 
 class Solution {
 public:
-	string longestCommonPrefix(vector<string>& strs) {
-		Trie trie;
-		for (const auto &s : strs) {
-			if (s.empty()) {
-				return "";
-			}
-			trie.insert(s);
-		}
-		string result;
-		Node *it = trie.root;
-		while ((it = trie.getNext(it))) {
-			result.push_back(it->ch);
-		}
-		return result;
-	}
+    string longestCommonPrefix(vector<string>& strs) {
+        return f1(strs, 0, strs.size());
+    }
 private:
-	struct Node {
-		Node(void) {
-			cnt = 0;
-			memset(nexts, 0, sizeof(nexts));
-		}
-		char ch;
-		int cnt;
-		Node* nexts[256];
-	};
-
-	struct Trie {
-		Trie(void) {
-			size = 0;
-			root = new Node();
-		}
-		void insert(const string& s) {
-			++size;
-			Node *it = root;
-			for (const auto &i : s) {
-				int id = i - 0;
-				if (!it->nexts[id]) {
-					it->nexts[id] = new Node();
-
-				}
-				it = it->nexts[id];
-				it->ch = i;
-				++it->cnt;
-			}
-		}
-		Node *getNext(Node* node) {
-			if (!node) {
-				return NULL;
-			}
-			int i = 0;
-			while (i < 256 and (!node->nexts[i] or node->nexts[i]->cnt != size)) {
-				++i;
-			}
-			return i < 256 ? node->nexts[i] : NULL;
-		}
-		int size;
-		Node* root;
-	};
+    string f1(vector<string>& strs, int begin, int end) {
+        if (begin == end) {
+            return "";
+        }
+        if (begin + 1 == end) {
+            return strs[begin];
+        }
+        int mid = begin + (end - begin) / 2;
+        string a = f1(strs, begin, mid), b = f1(strs, mid, end);
+        string result;
+        int sz = min(a.size(), b.size()), i = 0;
+        while (i < sz and a[i] == b[i]) {
+            result.push_back(a[i]);
+            ++i;
+        }
+        return result;
+    }
 };
-
-int main(void) {
-	Solution solution;
-	vector<string> strs;
-	string answer, result;
-
-	strs = {"", "b"};
-	answer = "";
-	result = solution.longestCommonPrefix(strs);
-	assert(answer == result);
-
-	strs = {"abcd", "abc", "ab"};
-	answer = "ab";
-	result = solution.longestCommonPrefix(strs);
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
-	return 0;
-}
