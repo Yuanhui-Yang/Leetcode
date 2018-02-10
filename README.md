@@ -648,6 +648,7 @@
 | 763 | [Partition Labels](https://leetcode.com/problems/partition-labels/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/partition-labels.cpp) |
 | 766 | [Toeplitz Matrix](https://leetcode.com/problems/toeplitz-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/toeplitz-matrix.cpp) |
 | 771 | [Jewels and Stones](https://leetcode.com/problems/jewels-and-stones/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/jewels-and-stones.cpp) |
+| 779 | [K-th Symbol in Grammar](https://leetcode.com/problems/k-th-symbol-in-grammar/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/k-th-symbol-in-grammar.cpp) |
 
 ## Database
 | # | Title | Solution |
