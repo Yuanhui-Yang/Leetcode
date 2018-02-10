@@ -1,7 +1,6 @@
-// 18. 4Sum
-// https://leetcode.com/problems/4sum/
+18. 4Sum
+https://leetcode.com/problems/4sum/
 
-/*
 Given an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d = target? Find all unique quadruplets in the array which gives the sum of target.
 
 Note: The solution set must not contain duplicate quadruplets.
@@ -14,95 +13,110 @@ A solution set is:
   [-2, -1, 1, 2],
   [-2,  0, 0, 2]
 ]
-*/
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
 using namespace std;
 
 class Solution {
 public:
-	vector<vector<int>> fourSum(vector<int>& nums, int target) {
-		if (nums.size() < 4) {
-			return {};
-		}
-		sort(begin(nums), end(nums));
-		vector<vector<int>> result;
-		for (int i = 0, n = nums.size(); i + 4 <= n; i++) {
-			if (i > 0 and nums[i] == nums[i - 1]) {
-				continue;
-			}
-			if (nums[i] + nums[i + 1] + nums[i + 2] + nums[i + 3] > target) {
-				break;
-			}
-			if (nums[i] + nums[n - 3] + nums[n - 2] + nums[n - 1] < target) {
-				continue;
-			}
-			for (int j = i + 1; j + 3 <= n; j++) {
-				if (j > i + 1 and nums[j] == nums[j - 1]) {
-					continue;
-				}
-				if (nums[i] + nums[j] + nums[j + 1] + nums[j + 2] > target) {
-					break;
-				}
-				if (nums[i] + nums[j] + nums[n - 2] + nums[n - 1] < target) {
-					continue;
-				}
-				int left = j + 1, right = n - 1;
-				while (left < right) {
-					vector<int> v = {nums[i], nums[j], nums[left], nums[right]};
-					int sum = accumulate(begin(v), end(v), 0);
-					if (sum < target) {
-						left++;
-					}
-					else if (sum > target) {
-						right--;
-					}
-					else {
-						result.push_back(v);
-						while (left < right and nums[left] == v[2]) {
-							left++;
-						}
-						while (left < right and nums[right] == v[3]) {
-							right--;
-						}
-					}
-				}
-			}
-		}
-		return result;
-	}
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> result;
+        for (int sz = nums.size(), i = 0; i < sz; ++i) {
+            if (i == 0 or nums[i - 1] != nums[i]) {
+                for (int j = i + 1; j < sz; ++j) {
+                    if (j == i + 1 or nums[j - 1] != nums[j]) {
+                        vector<vector<int>> v = f1(nums, target - nums[i] - nums[j], j + 1);
+                        for (const auto & x : v) {
+                            vector<int> w;
+                            w.push_back(nums[i]);
+                            w.push_back(nums[j]);
+                            for (const auto & y : x) {
+                                w.push_back(nums[y]);
+                            }
+                            result.push_back(w);
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
+private:
+    vector<vector<int>> f1(vector<int>& nums, int target, int begin) {
+        int end = nums.size(), i = begin, j = end - 1;
+        vector<vector<int>> result;
+        while (i < j) {
+            int sum = nums[i] + nums[j];
+            if (sum == target) {
+                result.push_back({i, j});
+                while (i + 1 < j and nums[i + 1] == nums[i]) {
+                    ++i;
+                }
+                ++i;
+                while (i < j - 1 and nums[j - 1] == nums[j]) {
+                    --j;
+                }
+                --j;
+            }
+            else if (sum < target) {
+                while (i + 1 < j and nums[i + 1] == nums[i]) {
+                    ++i;
+                }
+                ++i;
+            }
+            else {
+                while (i < j - 1 and nums[j - 1] == nums[j]) {
+                    --j;
+                }
+                --j;
+            }
+        }
+        return result;
+    }
 };
 
 int main(void) {
-	Solution solution;
-	int target;
-	vector<int> nums;
-	vector<vector<int>> result, answer;
+    Solution solution;
+    int target;
+    vector<int> nums;
+    vector<vector<int>> result;
 
-	target = 0;
-	nums = {0, 0, 0, 0};
-	answer = {{0, 0, 0, 0}};
-	sort(begin(answer), end(answer));
-	result = solution.fourSum(nums, target);
-	sort(begin(result), end(result));
-	assert(answer == result);
+    target = 0;
+    nums = {0, 0, 0, 0};
+    result = solution.fourSum(nums, target);
+    for (const auto & i : result) {
+        for (const auto & j : i) {
+            cout << j << '\t';
+        }
+        cout << '\n';
+    }
+    cout << '\n';
 
-	target = 0;
-	nums = {-3, -2, -1, 0, 0, 1, 2, 3};
-	answer = {{-3, -2, 2, 3}, {-3, -1, 1, 3}, {-3, 0, 0, 3}, {-3, 0, 1, 2}, {-2, -1, 0, 3}, {-2, -1, 1, 2}, {-2, 0, 0, 2}, {-1, 0, 0, 1}};
-	sort(begin(answer), end(answer));
-	result = solution.fourSum(nums, target);
-	sort(begin(result), end(result));
-	assert(answer == result);
+    target = 0;
+    nums = {-3, -2, -1, 0, 0, 1, 2, 3};
+    result = solution.fourSum(nums, target);
+    for (const auto & i : result) {
+        for (const auto & j : i) {
+            cout << j << '\t';
+        }
+        cout << '\n';
+    }
+    cout << '\n';
 
-	target = 0;
-	nums = {1, 0, -1, 0, -2, 2};
-	answer = {{-1, 0, 0, 1}, {-2, -1, 1, 2}, {-2, 0, 0, 2}};
-	sort(begin(answer), end(answer));
-	result = solution.fourSum(nums, target);
-	sort(begin(result), end(result));
-	assert(answer == result);
+    target = 0;
+    nums = {1, 0, -1, 0, -2, 2};
+    result = solution.fourSum(nums, target);
+    for (const auto & i : result) {
+        for (const auto & j : i) {
+            cout << j << '\t';
+        }
+        cout << '\n';
+    }
+    cout << '\n';
 
-	cout << "\nPassed All\n";
-	return 0;
+    return 0;
 }
