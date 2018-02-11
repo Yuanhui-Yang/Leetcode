@@ -1,7 +1,6 @@
-// 480. Sliding Window Median
-// https://leetcode.com/problems/sliding-window-median/
+480. Sliding Window Median
+https://leetcode.com/problems/sliding-window-median/
 
-/*
 Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle value.
 
 Examples: 
@@ -26,105 +25,60 @@ Therefore, return the median sliding window as [1,-1,-1,3,5,6].
 
 Note: 
 You may assume k is always valid, ie: k is always smaller than input array's size for non-empty array.
-*/
 
 #include <iostream>
 #include <vector>
 #include <set>
-#include <algorithm>
 #include <iterator>
 
 using namespace std;
 
 class Solution {
 public:
-	vector<double> medianSlidingWindow(vector<int>& nums, int k) {
-		vector<double> result;
-		int sz = nums.size(), i = 0, m = 0, n = 0;
-		if (k <= 0) {
-			return result;
-		}
-		multiset<int> A;
-		for (i = 0; i < sz; ++i) {
-			A.insert(nums[i]);
-			if (i >= k) {
-				A.erase(A.find(nums[i - k]));
-			}
-			if (i >= k - 1) {
-				m = *next(begin(A), (k - 1) / 2);
-				n = *next(begin(A), k / 2);
-				result.push_back(0.5 * m + 0.5 * n);
-			}
-		}
-		return result;
-	}
+    vector<double> medianSlidingWindow(vector<int>& nums, int k) {
+        vector<double> result;
+        int sz = nums.size(), i = 0;
+        multiset<int> A;
+        while (i < k and i < sz) {
+            A.insert(nums[i]);
+            ++i;
+        }
+        double median = f1(A);
+        result.push_back(median);
+        while (i < sz) {
+            A.erase(A.find(nums[i - k]));
+            A.insert(nums[i]);
+            median = f1(A);
+            result.push_back(median);
+            ++i;
+        }
+        return result;
+    }
+private:
+    double f1(multiset<int> & A) {
+        int k = A.size();
+        multiset<int>::iterator b = next(A.begin(), k / 2);
+        if (k % 2) {
+            return *b;
+        }
+        multiset<int>::iterator a = prev(b);
+        return 0.5 * (*a) + 0.5 * (*b);
+    }
 };
 
 int main(void) {
-	Solution solution;
-	vector<int> nums;
-	int k;
-	vector<double> result;
+    Solution solution;
+    vector<int> nums;
+    int k;
+    vector<double> result;
 
-	nums = {1, 3, -1, -3, 5, 3, 6, 7};
-	k = 3;
-	result = solution.medianSlidingWindow(nums, k);
-	for (const auto & i : result) {
-		cout << i << '\t';
-	}
-	cout << '\n';
-	
-	return 0;
-}
+    nums = {1, 3, -1, -3, 5, 3, 6, 7};
+    k = 3;
+    result = solution.medianSlidingWindow(nums, k);
+    for (const auto & i : result) {
+        cout << i << '\t';
+    }
+    cout << '\n';
 
-#include <iostream>
-#include <vector>
-#include <deque>
-#include <algorithm>
-#include <iterator>
-
-using namespace std;
-
-class Solution {
-public:
-	vector<double> medianSlidingWindow(vector<int>& nums, int k) {
-		vector<double> result;
-		int sz = nums.size(), i = 0, m = 0, n = 0;
-		if (k <= 0) {
-			return result;
-		}
-		deque<int> A, B;
-		for (i = 0; i < sz; ++i) {
-			A.push_back(nums[i]);
-			if (i >= k) {
-				A.pop_front();
-			}
-			if (i >= k - 1) {
-				B = A;
-				nth_element(begin(B), next(begin(B), (k - 1) / 2), end(B));
-				m = B[(k - 1) / 2];
-				nth_element(begin(B), next(begin(B), k / 2), end(B));
-				n = B[k / 2];
-				result.push_back(0.5 * m + 0.5 * n);
-			}
-		}
-		return result;
-	}
-};
-
-int main(void) {
-	Solution solution;
-	vector<int> nums;
-	int k;
-	vector<double> result;
-
-	nums = {1, 3, -1, -3, 5, 3, 6, 7};
-	k = 3;
-	result = solution.medianSlidingWindow(nums, k);
-	for (const auto & i : result) {
-		cout << i << '\t';
-	}
-	cout << '\n';
-	
-	return 0;
+    return 0;
 }
