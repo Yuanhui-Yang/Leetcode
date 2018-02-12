@@ -647,6 +647,7 @@
 | 762 | [Prime Number of Set Bits in Binary Representation](https://leetcode.com/problems/prime-number-of-set-bits-in-binary-representation/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/prime-number-of-set-bits-in-binary-representation.cpp) |
 | 763 | [Partition Labels](https://leetcode.com/problems/partition-labels/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/partition-labels.cpp) |
 | 766 | [Toeplitz Matrix](https://leetcode.com/problems/toeplitz-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/toeplitz-matrix.cpp) |
+| 769 | [Max Chunks To Make Sorted](https://leetcode.com/problems/max-chunks-to-make-sorted/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/max-chunks-to-make-sorted.cpp) |
 | 771 | [Jewels and Stones](https://leetcode.com/problems/jewels-and-stones/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/jewels-and-stones.cpp) |
 | 774 | [Minimize Max Distance to Gas Station](https://leetcode.com/problems/minimize-max-distance-to-gas-station/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimize-max-distance-to-gas-station.cpp) |
 | 777 | [Swap Adjacent in LR String](https://leetcode.com/problems/swap-adjacent-in-lr-string/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/swap-adjacent-in-lr-string.cpp) |
