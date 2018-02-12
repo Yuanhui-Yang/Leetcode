@@ -43,8 +43,11 @@ public:
             A.insert(nums[i]);
             ++i;
         }
-        double median = f1(A);
-        result.push_back(median);
+        double median = 0;
+        if (A.size() == k) {
+            median = f1(A);
+            result.push_back(median);
+        }
         while (i < sz) {
             A.erase(A.find(nums[i - k]));
             A.insert(nums[i]);
