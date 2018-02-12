@@ -29,7 +29,6 @@ matrix will have a number of rows and columns in range [1, 20].
 matrix[i][j] will be integers in range [0, 99].
 
 #include <iostream>
-#include <array>
 #include <vector>
 
 using namespace std;
@@ -37,30 +36,18 @@ using namespace std;
 class Solution {
 public:
     bool isToeplitzMatrix(vector<vector<int>>& matrix) {
-        int X = matrix.size(), Y = X == 0 ? 0 : matrix[0].size(), i;
-        for (i = 0; i < Y; ++i) {
-            if (!f1(matrix, {0, i})) {
-                return false;
-            }
-        }
-        for (i = 1; i < X; ++i) {
-            if (!f1(matrix, {i, 0})) {
-                return false;
-            }
-        }
-        return true;
-    }
-private:
-    bool f1(vector<vector<int>> & matrix, array<int, 2> pos) {
-        int X = matrix.size(), Y = X == 0 ? 0 : matrix[0].size(), i, j;
-        for (i = pos[0] + 1, j = pos[1] + 1; i < X and j < Y; ++i, ++j) {
-            if (matrix[i][j] != matrix[pos[0]][pos[1]]) {
-                return false;
+        int X = matrix.size(), Y = X == 0 ? 0 : matrix[0].size();
+        for (int i = 1; i < X; ++i) {
+            for (int j = 1; j < Y; ++j) {
+                if (matrix[i - 1][j - 1] != matrix[i][j]) {
+                    return false;
+                }
             }
         }
         return true;
     }
 };
+
 
 int main(void) {
     Solution solution;
@@ -70,10 +57,6 @@ int main(void) {
     matrix = {{1, 2, 3, 4}, {5, 1, 2, 3}, {9, 5, 1, 2}};
     result = solution.isToeplitzMatrix(matrix);
     cout << boolalpha << result << '\n';
-    
-    matrix = {{1, 2}, {2, 2}};
-    result = solution.isToeplitzMatrix(matrix);
-    cout << boolalpha << result << '\n';  
     
     return 0;
 }
