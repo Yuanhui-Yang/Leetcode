@@ -649,6 +649,7 @@
 | 766 | [Toeplitz Matrix](https://leetcode.com/problems/toeplitz-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/toeplitz-matrix.cpp) |
 | 771 | [Jewels and Stones](https://leetcode.com/problems/jewels-and-stones/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/jewels-and-stones.cpp) |
 | 774 | [Minimize Max Distance to Gas Station](https://leetcode.com/problems/minimize-max-distance-to-gas-station/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimize-max-distance-to-gas-station.cpp) |
+| 777 | [Swap Adjacent in LR String](https://leetcode.com/problems/swap-adjacent-in-lr-string/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/swap-adjacent-in-lr-string.cpp) |
 | 778 | [Swim in Rising Water](https://leetcode.com/problems/swim-in-rising-water/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/swim-in-rising-water.cpp) |
 | 779 | [K-th Symbol in Grammar](https://leetcode.com/problems/k-th-symbol-in-grammar/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/k-th-symbol-in-grammar.cpp) |
 
