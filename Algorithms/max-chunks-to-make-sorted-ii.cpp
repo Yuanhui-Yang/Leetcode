@@ -27,26 +27,24 @@ arr will have length in range [1, 2000].
 arr[i] will be an integer in range [0, 10**8].
 
 #include <iostream>
-#include <set>
+#include <algorithm>
 #include <vector>
+#include <climits>
 
 using namespace std;
 
 class Solution {
 public:
     int maxChunksToSorted(vector<int>& arr) {
-        int sz = arr.size();
-        if (sz <= 1) {
-            return sz;
+        int result = 0, sz = arr.size(), i = sz - 1, lmax = INT_MIN, rmin = INT_MAX;
+        vector<int> right(sz);
+        for (i = sz - 1; i >= 0; --i) {
+            rmin = min(rmin, arr[i]);
+            right[i] = rmin;
         }
-        int lmax = -1, result = 0;
-        multiset<int> right(arr.begin(), arr.end());
-        for (int i = 0; i < sz; ++i) {
-            if (lmax < arr[i]) {
-                lmax = arr[i];
-            }
-            right.erase(right.find(arr[i]));
-            if (right.empty() or lmax <= *(right.begin())) {
+        for (i = 0; i < sz; ++i) {
+            lmax = max(lmax, arr[i]);
+            if (i + 1 == sz or lmax <= right[i + 1]) {
                 ++result;
             }
         }
