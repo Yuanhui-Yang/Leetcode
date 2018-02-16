@@ -1,7 +1,6 @@
-// 748. Shortest Completing Word
-// https://leetcode.com/problems/shortest-completing-word/
+748. Shortest Completing Word
+https://leetcode.com/problems/shortest-completing-word/
 
-/*
 Find the minimum length word from a given dictionary words, which has all the letters from the string licensePlate. Such a word is said to complete the given string licensePlate
 
 Here, for letters we ignore case. For example, "P" on the licensePlate still matches "p" on the word.
@@ -26,7 +25,6 @@ licensePlate will be a string with length in range [1, 7].
 licensePlate will contain digits, spaces, or letters (uppercase or lowercase).
 words will have a length in the range [10, 1000].
 Every words[i] will consist of lowercase letters, and have length in range [1, 15].
-*/
 
 #include <iostream>
 #include <string>
@@ -37,12 +35,12 @@ using namespace std;
 
 class Solution {
 public:
-    string shortestCompletingWord(string licensePlate, vector<string> & words) {
-        array<int, 26> A = f1(licensePlate), B;
+    string shortestCompletingWord(string licensePlate, vector<string>& words) {
+        array<int, 26> a = f1(licensePlate);
         string result;
         for (const auto & word : words) {
-            B = f1(word);
-            if (f2(A, B)) {
+            array<int, 26> b = f1(word);
+            if (f2(a, b)) {
                 if (result.empty() or word.size() < result.size()) {
                     result = word;
                 }
@@ -54,21 +52,19 @@ private:
     array<int, 26> f1(const string & word) {
         array<int, 26> result;
         result.fill(0);
-        for (const auto & ch : word) {
-            if (isalpha(ch)) {
-                int id = tolower(ch) - 'a';
-                ++result[id];
+        for (const auto & i : word) {
+            if (isalpha(i)) {
+                int id = tolower(i) - 'a';
+                ++result[id];   
             }
         }
         return result;
     }
-    bool f2(const array<int, 26> & A, const array<int, 26> & B) {
-        int i = 0;
-        while (i < 26) {
+    bool f2(array<int, 26> & A, array<int, 26> & B) {
+        for (int i = 0; i < 26; ++i) {
             if (A[i] > B[i]) {
                 return false;
             }
-            ++i;
         }
         return true;
     }
