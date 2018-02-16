@@ -1,7 +1,6 @@
-// 734. Sentence Similarity
-// https://leetcode.com/problems/sentence-similarity/
+734. Sentence Similarity
+https://leetcode.com/problems/sentence-similarity/
 
-/*
 Given two sentences words1, words2 (each represented as an array of strings), and a list of similar word pairs pairs, determine if two sentences are similar.
 
 For example, "great acting skills" and "fine drama talent" are similar, if the similar word pairs are pairs = [["great", "fine"], ["acting","drama"], ["skills","talent"]].
@@ -20,14 +19,13 @@ The length of words1 and words2 will not exceed 1000.
 The length of pairs will not exceed 2000.
 The length of each pairs[i] will be 2.
 The length of each words[i] and pairs[i][j] will be in the range [1, 20].
-*/
 
 #include <iostream>
-#include <utility>
 #include <string>
 #include <vector>
-#include <unordered_set>
+#include <algorithm>
 #include <unordered_map>
+#include <unordered_set>
 
 using namespace std;
 
@@ -37,33 +35,53 @@ public:
         if (words1.size() != words2.size()) {
             return false;
         }
-        unordered_map<string, unordered_set<string>> A = f1(pairs);
-        int sz = words1.size(), i = 0;
-        for (i = 0; i < sz; ++i) {
-            string & s = words1[i], & t = words2[i];
-            if (s == t) {
-                continue;
+        unordered_map<string, int> A = f1(pairs);
+        vector<unordered_set<int>> B = f2(A, pairs);
+        return f3(A, B, words1, words2);
+    }
+private:
+    unordered_map<string, int> f1(vector<pair<string, string>> & pairs) {
+        unordered_map<string, int> result;
+        int cnt = 0;
+        for (const auto & i : pairs) {
+            const string & a = i.first, & b = i.second;
+            if (!result.count(a)) {
+                result[a] = cnt++;
             }
-            else if (A.count(s) and A[s].count(t)) {
-                continue;
+            if (!result.count(b)) {
+                result[b] = cnt++;
             }
-            else if (A.count(t) and A[t].count(s)) {
-                continue;
+        }
+        return result;
+    }
+    vector<unordered_set<int>> f2(unordered_map<string, int> & A, vector<pair<string, string>> & pairs) {
+        vector<unordered_set<int>> result(A.size());
+        for (const auto & i : pairs) {
+            const string & a = i.first, & b = i.second;
+            int x = A[a], y = A[b];
+            if (x != y) {
+                result[x].insert(y);
             }
-            else {
-                return false;
+        }
+        return result;
+    }
+    bool f3(unordered_map<string, int> & A, vector<unordered_set<int>> & B, vector<string>& words1, vector<string>& words2) {
+        int sz = min(words1.size(), words2.size());
+        for (int i = 0; i < sz; ++i) {
+            string & a = words1[i], & b = words2[i];
+            if (a != b) {
+                if (!A.count(a) or !A.count(b)) {
+                    return false;
+                }
+                int x = A[a], y = A[b];
+                if (x != y) {
+                    if (!B[x].count(y) and !B[y].count(x)) {
+                        return false;
+                    }
+                }
             }
         }
         return true;
-    }
-private:
-    unordered_map<string, unordered_set<string>> f1(vector<pair<string, string>> & pairs) {
-        unordered_map<string, unordered_set<string>> result;
-        for (const auto & i : pairs) {
-            result[i.first].insert(i.second);
-            result[i.second].insert(i.first);
-        }
-        return result;
     }
 };
 
