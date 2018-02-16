@@ -641,7 +641,8 @@
 | 748 | [Shortest Completing Word](https://leetcode.com/problems/shortest-completing-word/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/shortest-completing-word.cpp) |
 | 749 | [Contain Virus](https://leetcode.com/problems/contain-virus/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/contain-virus.cpp) |
 | 750 | [Number Of Corner Rectangles](https://leetcode.com/problems/number-of-corner-rectangles/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-corner-rectangles.cpp) |
-| 753 | [Open the Lock](https://leetcode.com/problems/open-the-lock/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/open-the-lock.cpp) |
+| 752 | [Open the Lock](https://leetcode.com/problems/open-the-lock/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/open-the-lock.cpp) |
+| 753 | [Cracking the Safe](https://leetcode.com/problems/cracking-the-safe/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/cracking-the-safe.cpp) |
 | 756 | [Pyramid Transition Matrix](https://leetcode.com/problems/pyramid-transition-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/pyramid-transition-matrix.cpp) |
 | 758 | [Bold Words in String](https://leetcode.com/problems/bold-words-in-string/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/bold-words-in-string.cpp) |
 | 760 | [Find Anagram Mappings](https://leetcode.com/problems/find-anagram-mappings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-anagram-mappings.cpp) |
