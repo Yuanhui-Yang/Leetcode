@@ -1,29 +1,34 @@
+739. Daily Temperatures
+https://leetcode.com/problems/daily-temperatures/
+
+Given a list of daily temperatures, produce a list that, for each day in the input, tells you how many days you would have to wait until a warmer temperature. If there is no future day for which this is possible, put 0 instead.
+
+For example, given the list temperatures = [73, 74, 75, 71, 69, 72, 76, 73], your output should be [1, 1, 4, 2, 1, 1, 0, 0].
+
+Note: The length of temperatures will be in the range [1, 30000]. Each temperature will be an integer in the range [30, 100].
+
 #include <iostream>
-#include <array>
-#include <stack>
 #include <vector>
+#include <stack>
 
 using namespace std;
 
 class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& temperatures) {
-        int sz = temperatures.size(), i = sz - 2;
-        stack<array<int, 2>> stk;
-        stk.push({temperatures.back(), sz - 1});
+        stack<int> A;
+        int sz = temperatures.size();
         vector<int> result(sz, 0);
-        while (i >= 0) {
-            while (!stk.empty() and stk.top()[0] <= temperatures[i]) {
-                stk.pop();
+        if (sz <= 1) {
+            return result;
+        }
+        for (int i = 0; i < sz; ++i) {
+            while (!A.empty() and temperatures[A.top()] < temperatures[i]) {
+                int top = A.top();
+                A.pop();
+                result[top] = i - top;
             }
-            if (stk.empty()) {
-                result[i] = 0;
-            }
-            else {
-                result[i] = stk.top()[1] - i;
-            }
-            stk.push({temperatures[i], i});
-            --i;
+            A.push(i);
         }
         return result;
     }
