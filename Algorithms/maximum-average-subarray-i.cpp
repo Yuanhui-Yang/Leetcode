@@ -19,22 +19,21 @@ using namespace std;
 class Solution {
 public:
     double findMaxAverage(vector<int>& nums, int k) {
-        int sz = nums.size(), i = 0, window = 0;
-        while (i < sz and i < k) {
+        int sz = nums.size(), window = 0, i = 0, max_window;
+        while (i < k) {
             window += nums[i];
             ++i;
         }
-        double result = double(window) / k;
+        max_window = window;
         while (i < sz) {
             window += nums[i];
             window -= nums[i - k];
-            double curr = double(window) / k;
-            if (result < curr) {
-                result = curr;
+            if (max_window < window) {
+                max_window = window;
             }
             ++i;
         }
-        return result;
+        return double(max_window) / k;
     }
 };
 
