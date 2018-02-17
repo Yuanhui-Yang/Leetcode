@@ -1,7 +1,6 @@
-// 726. Number of Atoms
-// https://leetcode.com/problems/number-of-atoms/
+726. Number of Atoms
+https://leetcode.com/problems/number-of-atoms/
 
-/*
 Given a chemical formula (given as a string), return the count of each atom.
 
 An atomic element always starts with an uppercase character, then zero or more lowercase letters, representing the name.
@@ -37,11 +36,11 @@ Note:
 All atom names consist of lowercase letters, except for the first character which is uppercase.
 The length of formula will be in the range [1, 1000].
 formula will only consist of letters, digits, and round parentheses, and is a valid formula as defined in the problem.
-*/
 
 #include <iostream>
-#include <vector>
 #include <string>
+#include <stack>
+#include <tuple>
 #include <map>
 
 using namespace std;
@@ -49,81 +48,71 @@ using namespace std;
 class Solution {
 public:
     string countOfAtoms(string formula) {
-        vector<pair<string, int>> A, B;
-        int sz = formula.size(), i = 0, num = 0;
-        char ch;
+        stack<tuple<string, int>> A;
+        int sz = formula.size(), i = 0;
         while (i < sz) {
-            ch = formula[i];
+            char ch = formula[i];
             if (ch == '(') {
-                A.push_back({"(", 1});
                 ++i;
+                tuple<string, int> curr = make_tuple("(", 1);
+                A.push(curr);
             }
             else if (ch == ')') {
-                if (!A.empty() and A.back().first == ")") {
-                    A.pop_back();
-                    B.clear();
-                    while (!A.empty() and A.back().first != "(") {
-                        B.push_back(A.back());
-                        A.pop_back();
-                    }
-                    if (!A.empty() and A.back().first == "(") {
-                        A.pop_back();
-                    }
-                    while (!B.empty()) {
-                        A.push_back(B.back());
-                        B.pop_back();
-                    }
-                }
-                A.push_back({")", 1});
                 ++i;
-            }
-            else if (isdigit(ch)) {
-                num = 0;
+                int times = 0;
                 while (i < sz and isdigit(formula[i])) {
-                    num = 10 * num + (formula[i] - '0');
+                    times = 10 * times + (formula[i] - '0');
                     ++i;
                 }
-                if (A.back().first == ")") {
-                    A.pop_back();
-                    B.clear();
-                    while (!A.empty() and A.back().first != "(") {
-                        B.push_back(A.back());
-                        A.pop_back();
-                    }
-                    if (!A.empty() and A.back().first == "(") {
-                        A.pop_back();
-                        while (!B.empty()) {
-                            B.back().second *= num;
-                            A.push_back(B.back());
-                            B.pop_back();
-                        }
-                    }
+                if (times == 0) {
+                    times = 1;
                 }
-                else {
-                    A.back().second *= num;
+                stack<tuple<string, int>> tmp;
+                while (!A.empty() and get<0>(A.top()) != "(") {
+                    tuple<string, int> top = A.top();
+                    A.pop();
+                    get<1>(top) *= times;
+                    tmp.push(top);
+                }
+                if (!A.empty() and get<0>(A.top()) == "(") {
+                    A.pop();
+                }
+                while (!tmp.empty()) {
+                    A.push(tmp.top());
+                    tmp.pop();
+                }
+            }
+            else if (isdigit(ch)) {
+                int times = 0;
+                while (i < sz and isdigit(formula[i])) {
+                    times = 10 * times + (formula[i] - '0');
+                    ++i;
+                }
+                if (times == 0) {
+                    times = 1;
+                }
+                if (!A.empty()) {
+                    get<1>(A.top()) *= times;
                 }
             }
             else if (isupper(ch)) {
-                A.push_back({formula.substr(i, 1), 1});
+                tuple<string, int> t;
+                get<0>(t).push_back(formula[i]);
                 ++i;
-            }
-            else if (islower(ch)) {
-                A.back().first.push_back(ch);
-                ++i;
-            }
-            else {
-                ++i;
+                while (i < sz and islower(formula[i])) {
+                    get<0>(t).push_back(formula[i]);
+                    ++i;
+                }
+                get<1>(t) = 1;
+                A.push(t);
             }
         }
-        return f1(A);
-    }
-private:
-    string f1(vector<pair<string, int>> & A) {
-        string result;
         map<string, int> B;
-        for (const auto & i : A) {
-            B[i.first] += i.second;
+        while (!A.empty()) {
+            B[get<0>(A.top())] += get<1>(A.top());
+            A.pop();
         }
+        string result;
         for (const auto & i : B) {
             result.append(i.first);
             if (i.second > 1) {
@@ -141,14 +130,6 @@ int main(void) {
     formula = "H2O";
     result = solution.countOfAtoms(formula);
     cout << result << '\n';
-
-    formula = "Mg(OH)2";
-    result = solution.countOfAtoms(formula);
-    cout << result << '\n';
-
-    formula = "K4(ON(SO3)2)2";
-    result = solution.countOfAtoms(formula);
-    cout << result << '\n';
-
+    
     return 0;
 }
