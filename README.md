@@ -562,6 +562,7 @@
 | 640 | [Solve the Equation](https://leetcode.com/problems/solve-the-equation/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/solve-the-equation.cpp) |
 | 642 | [Design Search Autocomplete System](https://leetcode.com/problems/design-search-autocomplete-system/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/design-search-autocomplete-system.cpp) |
 | 643 | [Maximum Average Subarray I](https://leetcode.com/problems/maximum-average-subarray-i/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-average-subarray-i.cpp) |
+| 644 | [Maximum Average Subarray II](https://leetcode.com/problems/maximum-average-subarray-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-average-subarray-ii.cpp) |
 | 645 | [Set Mismatch](https://leetcode.com/problems/set-mismatch/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/set-mismatch.cpp) |
 | 646 | [Maximum Length of Pair Chain](https://leetcode.com/problems/maximum-length-of-pair-chain/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-length-of-pair-chain.cpp) |
 | 647 | [Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/palindromic-substrings.cpp) |
