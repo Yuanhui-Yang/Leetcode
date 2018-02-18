@@ -662,6 +662,7 @@
 | 779 | [K-th Symbol in Grammar](https://leetcode.com/problems/k-th-symbol-in-grammar/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/k-th-symbol-in-grammar.cpp) |
 | 784 | [Letter Case Permutation](https://leetcode.com/problems/letter-case-permutation/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/letter-case-permutation.cpp) |
 | 785 | [Is Graph Bipartite?](https://leetcode.com/problems/is-graph-bipartite/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/is-graph-bipartite.cpp) |
+| 787 | [Cheapest Flights Within K Stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/cheapest-flights-within-k-stops.cpp) |
 
 ## Database
 | # | Title | Solution |
