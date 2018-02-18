@@ -660,6 +660,7 @@
 | 777 | [Swap Adjacent in LR String](https://leetcode.com/problems/swap-adjacent-in-lr-string/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/swap-adjacent-in-lr-string.cpp) |
 | 778 | [Swim in Rising Water](https://leetcode.com/problems/swim-in-rising-water/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/swim-in-rising-water.cpp) |
 | 779 | [K-th Symbol in Grammar](https://leetcode.com/problems/k-th-symbol-in-grammar/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/k-th-symbol-in-grammar.cpp) |
+| 784 | [Letter Case Permutation](https://leetcode.com/problems/letter-case-permutation/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/letter-case-permutation.cpp) |
 | 785 | [Is Graph Bipartite?](https://leetcode.com/problems/is-graph-bipartite/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/is-graph-bipartite.cpp) |
 
 ## Database
