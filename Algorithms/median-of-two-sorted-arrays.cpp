@@ -1,7 +1,6 @@
-// 4. Median of Two Sorted Arrays
-// https://leetcode.com/problems/median-of-two-sorted-arrays/
+4. Median of Two Sorted Arrays
+https://leetcode.com/problems/median-of-two-sorted-arrays/
 
-/*
 There are two sorted arrays nums1 and nums2 of size m and n respectively.
 
 Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
@@ -16,92 +15,68 @@ nums1 = [1, 2]
 nums2 = [3, 4]
 
 The median is (2 + 3)/2 = 2.5
-*/
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iterator>
+
 using namespace std;
 
 class Solution {
 public:
-	double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-		size_t m = nums1.size(), n = nums2.size(), k = (m + n) / 2;
-		return ((m + n) & 1) ? f(nums1, nums2, 0, 0, k + 1) : (f(nums1, nums2, 0, 0, k) + f(nums1, nums2, 0, 0, k + 1)) / 2.0;
-	}
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int sz1 = nums1.size(), sz2 = nums2.size(), sz = sz1 + sz2;
+        if (sz % 2) {
+            return f1(nums1, nums2, sz / 2 + 1);
+        }
+        return 0.5 * f1(nums1, nums2, sz / 2) + 0.5 * f1(nums1, nums2, sz / 2 + 1);
+    }
 private:
-	double f(vector<int>& nums1, vector<int>& nums2, int i, int j, int k) {
-		int m = nums1.size(), n = nums2.size();
-		if (m - i < n - j) {
-			return f(nums2, nums1, j, i, k);
-		}
-		if (j == n) {
-			return nums1[i + k - 1];
-		}
-		if (k == 1) {
-			return min(nums1[i], nums2[j]);
-		}
-		int dy = min(n - j, k / 2);
-		int dx = k - dy;
-		int x = i + dx, y = j + dy;
-		if (nums1[x - 1] < nums2[y - 1]) {
-			return f(nums1, nums2, x, j, dy);
-		}
-		return f(nums1, nums2, i, y, dx);
-	}
+    int f1(vector<int>& nums1, vector<int>& nums2, int k) {
+        int sz1 = nums1.size(), sz2 = nums2.size();
+        if (sz1 == 0) {
+            return nums2[k - 1];
+        }
+        if (sz2 == 0) {
+            return nums1[k - 1];
+        }
+        int a = min(nums1.front(), nums2.front()), b = max(nums1.back(), nums2.back());
+        while (a < b) {
+            int c = a + (b - a) / 2;
+            if (f2(nums1, nums2, c, k)) {
+                a = c + 1;
+            }
+            else {
+                b = c;
+            }
+        }
+        return a;
+    }
+    bool f2(vector<int>& nums1, vector<int>& nums2, int c, int k) {
+        int cnt = f3(nums1, nums2, c);
+        return cnt < k;
+    }
+    int f3(vector<int>& nums1, vector<int>& nums2, int c) {
+        vector<int>::iterator begin1 = nums1.begin(), end1 = nums1.end(), mid1 = upper_bound(begin1, end1, c), begin2 = nums2.begin(), end2 = nums2.end(), mid2 = upper_bound(begin2, end2, c);
+        return distance(begin1, mid1) + distance(begin2, mid2);
+    }
 };
 
 int main(void) {
-	Solution solution;
-	vector<int> nums1, nums2;
-	double result, answer;
-
-	nums1 = {3, 4, 5, 7, 8, 9, 10};
-	nums2 = {1, 2, 6};
-	answer = 5.5;
-	result = solution.findMedianSortedArrays(nums1, nums2);
-	assert(fabs(answer - result) < DBL_EPSILON);
-
-	nums1 = {1, 5};
-	nums2 = {2, 3, 4, 6, 7, 8, 9, 10};
-	answer = 5.5;
-	result = solution.findMedianSortedArrays(nums1, nums2);
-	assert(fabs(answer - result) < DBL_EPSILON);
-
-	nums1 = {1, 2};
-	nums2 = {3, 4, 5, 6, 7, 8};
-	answer = 4.5;
-	result = solution.findMedianSortedArrays(nums1, nums2); 
-	assert(fabs(answer - result) < DBL_EPSILON);
-
-	nums1 = {1, 2, 6};
-	nums2 = {3, 4, 5};
-	answer = 3.5;
-	result = solution.findMedianSortedArrays(nums1, nums2);
-	assert(fabs(answer - result) < DBL_EPSILON);
-
-	nums1 = {1, 4};
-	nums2 = {2, 3, 5, 6};
-	answer = 3.5;
-	result = solution.findMedianSortedArrays(nums1, nums2);
-	assert(fabs(answer - result) < DBL_EPSILON);
-
-	nums1 = {1};
-	nums2 = {2, 3, 4};
-	answer = 2.5;
-	result = solution.findMedianSortedArrays(nums1, nums2);
-	assert(fabs(answer - result) < DBL_EPSILON);
-
-	nums1 = {1, 3};
-	nums2 = {2};
-	answer = 2;
-	result = solution.findMedianSortedArrays(nums1, nums2);
-	assert(fabs(answer - result) < DBL_EPSILON);
-
-	nums1 = {1, 2};
-	nums2 = {3, 4};
-	answer = 2.5;
-	result = solution.findMedianSortedArrays(nums1, nums2);
-	assert(fabs(answer - result) < DBL_EPSILON);
-
-	cout << "\nPassed All\n";
-	return 0;
+    Solution solution;
+    vector<int> nums1, nums2;
+    double result;
+    
+    nums1 = {1, 3};
+    nums2 = {2};
+    result = solution.findMedianSortedArrays(nums1, nums2);
+    cout << result << '\n';
+    
+    nums1 = {1, 2};
+    nums2 = {3, 4};
+    result = solution.findMedianSortedArrays(nums1, nums2);
+    cout << result << '\n';
+    
+    return 0;
 }
