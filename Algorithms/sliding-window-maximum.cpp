@@ -1,7 +1,6 @@
-// 239. Sliding Window Maximum
-// https://leetcode.com/problems/sliding-window-maximum/
+239. Sliding Window Maximum
+https://leetcode.com/problems/sliding-window-maximum/
 
-/*
 Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position.
 
 For example,
@@ -22,27 +21,59 @@ You may assume k is always valid, ie: 1 ≤ k ≤ input array's size for non-emp
 
 Follow up:
 Could you solve it in linear time?
-*/
+
+#include <iostream>
+#include <vector>
+#include <list>
+
+using namespace std;
 
 class Solution {
 public:
-	vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-		int sz = nums.size(), i = 0, j = 0;
-		vector<int> result;
-		multiset<int, greater<int>> A;
-		while (j < sz or j - i > k) {
-			if (j - i <= k) {
-				A.insert(nums[j]);
-				++j;
-			}
-			else {
-				A.erase(A.find(nums[i]));
-				++i;
-			}
-			if (j - i == k) {
-				result.push_back(*begin(A));
-			}
-		}
-		return result;
-	}
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        vector<int> result;
+        list<int> curr;
+        int sz = nums.size(), i = 0;
+        while (i < sz and i < k) {
+            f1(curr, nums[i]);
+            ++i;
+        }
+        if (!curr.empty()) {
+            result.push_back(curr.front());
+        }
+        while (i < sz) {
+            if (nums[i - k] == curr.front()) {
+                curr.pop_front();
+            }
+            f1(curr, nums[i]);
+            if (!curr.empty()) {
+                result.push_back(curr.front());
+            }
+            ++i;
+        }
+        return result;
+    }
+private:
+    void f1(list<int> & curr, int val) {
+        while (!curr.empty() and curr.back() < val) {
+            curr.pop_back();
+        }
+        curr.push_back(val);
+    }
 };
+
+int main(void) {
+    Solution solution;
+    vector<int> nums, result;
+    int k;
+    
+    nums = {1, 3, -1, -3, 5, 3, 6, 7};
+    k = 3;
+    result = solution.maxSlidingWindow(nums, k);
+    for (const auto & i : result) {
+        cout << i << '\t';
+    }
+    cout << '\n';
+    
+    return 0;
+}
