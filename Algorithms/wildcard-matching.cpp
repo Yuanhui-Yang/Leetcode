@@ -1,7 +1,6 @@
-// 44. Wildcard Matching
-// https://leetcode.com/problems/wildcard-matching/
+44. Wildcard Matching
+https://leetcode.com/problems/wildcard-matching/
 
-/*
 Implement wildcard pattern matching with support for '?' and '*'.
 
 '?' Matches any single character.
@@ -20,84 +19,85 @@ isMatch("aa", "*") → true
 isMatch("aa", "a*") → true
 isMatch("ab", "?*") → true
 isMatch("aab", "c*a*b") → false
-*/
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
+#include <vector>
+
 using namespace std;
 
 class Solution {
 public:
-	bool isMatch(string s, string p) {
-		int m = s.size(), n = p.size();
-		vector<vector<bool>> matrix(m + 1, vector<bool>(n + 1, false));
-		matrix[0][0] = true;
-		for (int i = 0; i <= m; ++i) {
-			for (int j = 1; j <= n; ++j) {
-				if (p[j - 1] == '*') {
-					matrix[i][j] = matrix[i][j - 1] or (i > 0 and matrix[i - 1][j]);
-				}
-				else {
-					matrix[i][j] = i > 0 and matrix[i - 1][j - 1] and (p[j - 1] == s[i - 1] or p[j - 1] == '?');
-				}
-			}
-		}
-		return matrix[m][n];
-	}
+    bool isMatch(string s, string p) {
+        int sz1 = s.size(), sz2 = p.size();
+        vector<vector<bool>> A(sz1 + 1, vector<bool>(sz2 + 1, false));
+        A[0][0] = true;
+        for (int i = 0; i <= sz1; ++i) {
+            for (int j = 1; j <= sz2; ++j) {
+                if (p[j - 1] == '*') {
+                    for (int k = 0; k <= i; ++k) {
+                        if (A[k][j - 1]) {
+                            A[i][j] = true;
+                            break;
+                        }
+                    }
+                }
+                else if (i > 0 and p[j - 1] == '?') {
+                    A[i][j] = A[i - 1][j - 1];
+                }
+                else if (i > 0 and s[i - 1] == p[j - 1]) {
+                    A[i][j] = A[i - 1][j - 1];
+                }
+            }
+        }
+        return A[sz1][sz2];
+    }
 };
 
 int main(void) {
-	Solution solution;
-	string s, p;
-	bool answer, result;
+    Solution solution;
+    string s, p;
+    bool answer, result;
 
-	s = "";
-	p = "*";
-	answer = true;
-	result = solution.isMatch(s, p);
-	assert(answer == result);
+    s = "";
+    p = "*";
+    result = solution.isMatch(s, p);
+    cout << boolalpha << result << '\n';
 
-	s = "aa";
-	p = "a";
-	answer = false;
-	result = solution.isMatch(s, p);
-	assert(answer == result);
+    s = "aa";
+    p = "a";
+    result = solution.isMatch(s, p);
+    cout << boolalpha << result << '\n';
 
-	s = "aa";
-	p = "aa";
-	answer = true;
-	result = solution.isMatch(s, p);
-	assert(answer == result);
+    s = "aa";
+    p = "aa";
+    result = solution.isMatch(s, p);
+    cout << boolalpha << result << '\n';
 
-	s = "aa";
-	p = "aaa";
-	answer = false;
-	result = solution.isMatch(s, p);
-	assert(answer == result);
+    s = "aa";
+    p = "aaa";
+    result = solution.isMatch(s, p);
+    cout << boolalpha << result << '\n';
 
-	s = "aa";
-	p = "*";
-	answer = true;
-	result = solution.isMatch(s, p);
-	assert(answer == result);
+    s = "aa";
+    p = "*";
+    result = solution.isMatch(s, p);
+    cout << boolalpha << result << '\n';
 
-	s = "aa";
-	p = "a*";
-	answer = true;
-	result = solution.isMatch(s, p);
-	assert(answer == result);
+    s = "aa";
+    p = "a*";
+    result = solution.isMatch(s, p);
+    cout << boolalpha << result << '\n';
 
-	s = "aa";
-	p = "?*";
-	answer = true;
-	result = solution.isMatch(s, p);
-	assert(answer == result);
+    s = "aa";
+    p = "?*";
+    result = solution.isMatch(s, p);
+    cout << boolalpha << result << '\n';
 
-	s = "aab";
-	p = "c*a*b";
-	answer = false;
-	result = solution.isMatch(s, p);
-	assert(answer == result);
+    s = "aab";
+    p = "c*a*b";
+    result = solution.isMatch(s, p);
+    cout << boolalpha << result << '\n';
 
-	cout << "\nPassed All\n";
-	return 0;
+    return 0;
 }
