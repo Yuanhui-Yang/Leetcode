@@ -116,7 +116,7 @@ private:
         multiset<array<int, 2>>::iterator begin = A.begin(), end = A.end();
         while (begin != end) {
             int a = begin->at(0), b = begin->at(1);
-            while (begin != end and begin->at(0) < b) {
+            while (begin != end and begin->at(0) <= b) {
                 b = max(b, begin->at(1));
                 ++begin;
             }
