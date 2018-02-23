@@ -17,6 +17,42 @@ using namespace std;
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
+        int sz = nums.size(), a = nums[0], b = nums[0];
+        k = sz - k + 1;
+        for (const auto & i : nums) {
+            a = min(a, i);
+            b = max(b, i);
+        }
+        ++b;
+        while (a < b) {
+            int c = a + (b - a) / 2;
+            if (f1(nums, c, k)) {
+                a = c + 1;
+            }
+            else {
+                b = c;
+            }
+        }
+        return a;
+    }
+private:
+    bool f1(vector<int>& nums, int c, int k) {
+        return f2(nums, c) < k;
+    }
+    int f2(vector<int>& nums, int c) {  
+        int result = 0;
+        for (const auto & i : nums) {
+            if (i <= c) {
+                ++result;
+            }
+        }
+        return result;
+    }
+};
+
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
         int sz = nums.size(), i = 0, j = sz;
         k = sz - k;
         while (i < j) {
