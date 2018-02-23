@@ -20,33 +20,33 @@ public:
         int sz = nums.size(), i = 0, j = sz;
         k = sz - k;
         while (i < j) {
-            int id = partition(nums, i, j);
-            if (id == k) {
-                return nums[id];
+            int l = partition(nums, i, j);
+            if (k == l) {
+                return nums[l];
             }
-            else if (id < k) {
-                i = id + 1;
+            else if (l < k) {
+                i = l + 1;
             }
             else {
-                j = id;
+                j = l;
             }
         }
         return -1;
     }
 private:
-    int partition(vector<int>& nums, int begin, int end) {
+    int partition(vector<int> & nums, int begin, int end) {
         if (begin >= end) {
             return -1;
         }
-        if (begin + 1 == end) {
+        if (begin + 1 >= end) {
             return begin;
         }
-        int i = begin + 1, j = end - 1;
+        int pivot = nums[begin], i = begin + 1, j = end - 1;
         while (i <= j) {
-            if (nums[i] <= nums[begin]) {
+            if (nums[i] <= pivot) {
                 ++i;
             }
-            else if (nums[j] >= nums[begin]) {
+            else if (nums[j] >= pivot) {
                 --j;
             }
             else {
