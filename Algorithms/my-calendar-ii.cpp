@@ -1,7 +1,6 @@
-// 731. My Calendar II
-// https://leetcode.com/problems/my-calendar-ii/
+731. My Calendar II
+https://leetcode.com/problems/my-calendar-ii/
 
-/*
 Implement a MyCalendarTwo class to store your events. A new event can be added if adding the event will not cause a triple booking.
 
 Your class will have one method, book(int start, int end). Formally, this represents a booking on the half open interval [start, end), the range of real numbers x such that start <= x < end.
@@ -29,11 +28,9 @@ Note:
 
 The number of calls to MyCalendar.book per test case will be at most 1000.
 In calls to MyCalendar.book(start, end), start and end are integers in the range [0, 10^9].
-*/
 
 #include <iostream>
-#include <array>
-#include <vector>
+#include <map>
 
 using namespace std;
 
@@ -41,25 +38,31 @@ class MyCalendarTwo {
 public:
     MyCalendarTwo() {
         A.clear();
-        B.clear();
     }
     
     bool book(int start, int end) {
+        ++A[start];
+        --A[end];
+        int cnt = 0, max_cnt = 0;
         for (const auto & i : A) {
-            if (start < i[1] and i[0] < end) {
+            cnt += i.second;
+            max_cnt = max(max_cnt, cnt);
+            if (max_cnt >= 3) {
+                --A[start];
+                ++A[end];
+                if (A.count(start) and A[start] == 0) {
+                    A.erase(start);
+                }
+                if (A.count(end) and A[end] == 0) {
+                    A.erase(end);
+                }
                 return false;
             }
         }
-        for (const auto & i : B) {
-            if (start < i[1] and i[0] < end) {
-                A.push_back({max(start, i[0]), min(end, i[1])});
-            }
-        }
-        B.push_back({start, end});
         return true;
     }
 private:
-    vector<array<int, 2>> A, B;
+    map<int, int> A;
 };
 
 /**
