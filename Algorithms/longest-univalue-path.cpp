@@ -1,7 +1,6 @@
-// 687. Longest Univalue Path
-// https://leetcode.com/problems/longest-univalue-path/
+687. Longest Univalue Path
+https://leetcode.com/problems/longest-univalue-path/
 
-/*
 Given a binary tree, find the length of the longest path where each node in the path has the same value. This path may or may not pass through the root.
 
 Note: The length of path between two nodes is represented by the number of edges between them.
@@ -31,10 +30,8 @@ Output:
 
 2
 Note: The given binary tree has not more than 10000 nodes. The height of the tree is not more than 1000.
-*/
 
 #include <iostream>
-#include <array>
 #include <algorithm>
 
 using namespace std;
@@ -47,31 +44,23 @@ struct TreeNode {
 
 class Solution {
 public:
-	int longestUnivaluePath(TreeNode* root) {
-		return f(root)[0];
-	}
+    int longestUnivaluePath(TreeNode* root) {
+        int result = 0;
+        f1(result, root);
+        return result;
+    }
 private:
-	array<int, 2> f(TreeNode * node) {
-		array<int, 2> result;
-		result.fill(0);
-		if (!node) {
-			return result;
-		}
-		array<int, 2> left = f(node->left), right = f(node->right);
-		if (node->left and node->left->val == node->val) {
-			result[1] = max(result[1], 1 + left[1]);
-		}
-		if (node->right and node->right->val == node->val) {
-			result[1] = max(result[1], 1 + right[1]);
-		}
-		if (node->left and node->left->val == node->val and node->right and node->right->val == node->val) {
-			result[0] = max(result[0], 2 + left[1] + right[1]);
-		}
-		result[0] = max(result[0], result[1]);
-		result[0] = max(result[0], left[0]);
-		result[0] = max(result[0], right[0]);
-		return result;
-	}
+    int f1(int & result, TreeNode * root) {
+        if (!root) {
+            return 0;
+        }
+        int x = f1(result, root->left);
+        int y = f1(result, root->right);
+        int a = (root->left && root->left->val == root->val) ? 1 + x : 0;
+        int b = (root->right && root->right->val == root->val) ? 1 + y : 0;
+        result = max(result, a + b);
+        return max(a, b);
+    }
 };
 
 int main(void) {
