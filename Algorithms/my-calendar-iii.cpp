@@ -41,14 +41,12 @@ public:
     }
     
     int book(int start, int end) {
+        int result = 0, cnt = 0;
         ++A[start];
         --A[end];
-        int result = 0, curr = 0;
         for (const auto & i : A) {
-            curr += i.second;
-            if (result < curr) {
-                result = curr;
-            }
+            cnt += i.second;
+            result = max(result, cnt);
         }
         return result;
     }
