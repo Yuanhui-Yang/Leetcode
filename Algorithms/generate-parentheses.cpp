@@ -1,7 +1,6 @@
-// 22. Generate Parentheses
-// https://leetcode.com/problems/generate-parentheses/
+22. Generate Parentheses
+https://leetcode.com/problems/generate-parentheses/
 
-/*
 Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
 
 For example, given n = 3, a solution set is:
@@ -13,50 +12,52 @@ For example, given n = 3, a solution set is:
   "()(())",
   "()()()"
 ]
-*/
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
+#include <vector>
+
 using namespace std;
 
 class Solution {
 public:
-	vector<string> generateParenthesis(int n) {
-		vector<string> result;
-		string s;
-		dfs(result, s, 0, 0, n);
-		return result;
-	}
+    vector<string> generateParenthesis(int n) {
+        vector<string> result;
+        string path;
+        f1(result, path, 2 * n, 0, 0);
+        return result;
+    }
 private:
-	void dfs(vector<string>& result, string& s, int l,  int r, int n) {
-		if (l == n and r == n) {
-			result.push_back(s);
-			return;
-		}
-		if (l < n) {
-			s.push_back('(');
-			dfs(result, s, l + 1, r, n);
-			s.pop_back();
-		}
-		if (r < l) {
-			s.push_back(')');
-			dfs(result, s, l, r + 1, n);
-			s.pop_back();
-		}
-	}
+    void f1(vector<string> & result, string & path, int end, int start, int diff) {
+        if (diff < 0) {
+            return;
+        }
+        if (start == end) {
+            if (diff == 0) {
+                result.push_back(path);
+            }
+            return;
+        }
+        path.push_back('(');
+        f1(result, path, end, start + 1, diff + 1);
+        path.pop_back();
+        path.push_back(')');
+        f1(result, path, end, start + 1, diff - 1);
+        path.pop_back();
+    }
 };
 
 int main(void) {
-	Solution solution;
-	int n;
-	vector<string> answer, result;
-
-	n = 3;
-	answer = {"((()))", "(()())", "(())()", "()(())", "()()()"};
-	sort(begin(answer), end(answer));
-	result = solution.generateParenthesis(n);
-	sort(begin(result), end(result));
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
-	return 0;
+    Solution solution;
+    int n;
+    vector<string> result;
+    
+    n = 3;
+    result = solution.generateParenthesis(n);
+    for (const auto & i : result) {
+        cout << i << '\t';
+    }
+    cout << '\n';
+    
+    return 0;
 }
