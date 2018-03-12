@@ -1,46 +1,66 @@
-// 69. Sqrt(x)
-// https://leetcode.com/problems/sqrtx/
+69. Sqrt(x)
+https://leetcode.com/problems/sqrtx/
+
+Implement int sqrt(int x).
+
+Compute and return the square root of x.
+
+x is guaranteed to be a non-negative integer.
+
+
+Example 1:
+
+Input: 4
+Output: 2
+Example 2:
+
+Input: 8
+Output: 2
+Explanation: The square root of 8 is 2.82842..., and since we want to return an integer, the decimal part will be truncated.
+
 #include <iostream>
-#include <vector>
+
 using namespace std;
+
 class Solution {
 public:
-	int mySqrt(int x) {
-		size_t begin = 0, end = x, target = x;
-		while (begin + 1 < end) {
-			size_t mid = begin + (end - begin) / 2;
-			if (mid * mid == target) return (int)mid;
-			else if (mid * mid < target) begin = mid;
-			else end = mid;
-		}
-		if (end * end <= target) return (int)end;
-		return (int)begin;
-	}
+    int mySqrt(int x) {
+        return f2(x);
+    }
+private:
+    long f1(long x) {
+        long i = 0, j = x + 1;
+        while (i < j) {
+            long k = i + (j - i) / 2, value = k * k;
+            if (value <= x) {
+                i = k + 1;
+            }
+            else {
+                j = k;
+            }
+        }
+        return i - 1;
+    }
+    long f2(long x) {
+        long r = x;
+        while (r * r > x) {
+            r = (r + x / r) / 2; 
+        }
+        return r;
+    }
 };
-// BEGIN: http://www.cnblogs.com/AnnieKim/archive/2013/04/18/3028607.html
-// class Solution {
-// public:
-// 	int mySqrt(int x) {
-// 		size_t r = x;
-// 		while (r * r > (size_t)x) r = (r + x / r) / 2;
-// 		return (int) r; 
-// 	}
-// };
-// END: http://www.cnblogs.com/AnnieKim/archive/2013/04/18/3028607.html
+
 int main(void) {
-	Solution solution;
-	vector<int> a({2, 3, 7, 2147395599});
-	vector<int> b({1, 1, 2, 46339});
-	for (size_t i(0); i < b.size(); ++i) {
-		if (b[i] ^ solution.mySqrt(a[i])) {
-			cout << "\nError\n";
-			return 0;
-		}
-		else {
-			cout << "\nPassed\n";
-		}
-	}
-	cout << "\nPassed All\n";
-	cout << '\n';
-	return 0;
+    Solution solution;
+    int x, result;
+    
+    x = 4;
+    result = solution.mySqrt(x);
+    cout << result << '\n';
+
+    x = 8;
+    result = solution.mySqrt(x);
+    cout << result << '\n';
+    
+    return 0;
 }
