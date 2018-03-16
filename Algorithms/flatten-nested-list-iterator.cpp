@@ -1,21 +1,5 @@
-// 341. Flatten Nested List Iterator
-// https://leetcode.com/problems/flatten-nested-list-iterator/
-
-/*
-Given a nested list of integers, implement an iterator to flatten it.
-
-Each element is either an integer, or a list -- whose elements may also be integers or other lists.
-
-Example 1:
-Given the list [[1,1],2,[1,1]],
-
-By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,1,2,1,1].
-
-Example 2:
-Given the list [1,[4,[6]]],
-
-By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,4,6].
-*/
+341. Flatten Nested List Iterator
+https://leetcode.com/problems/flatten-nested-list-iterator/
 
 /**
  * // This is the interface that allows for creating nested lists.
@@ -36,37 +20,33 @@ By calling next repeatedly until hasNext returns false, the order of elements re
  */
 class NestedIterator {
 public:
-	NestedIterator(vector<NestedInteger> &nestedList) {
-		int sz = nestedList.size(), i;
-		for (i = sz - 1; i >= 0; --i) {
-			stk.push(nestedList[i]);
-		}
-	}
+    NestedIterator(vector<NestedInteger> &nestedList) {
+        for (int sz = nestedList.size(), i = sz - 1; i >= 0; --i) {
+            stk.push(nestedList[i]);
+        }
+    }
 
-	int next() {
-		int result = stk.top().getInteger();
-		stk.pop();
-		return result;
-	}
+    int next() {
+        int result = stk.top().getInteger();
+        stk.pop();
+        return result;
+    }
 
-	bool hasNext() {
-		vector<NestedInteger> A;
-		int sz, i;
-		while (!stk.empty()) {
-			if (stk.top().isInteger()) {
-				return true;
-			}
-			A = stk.top().getList();
-			stk.pop();
-			sz = A.size();
-			for (i = sz - 1; i >= 0; --i) {
-				stk.push(A[i]);
-			}
-		}
-		return false;
-	}
+    bool hasNext() {
+        while (!stk.empty()) {
+            if (stk.top().isInteger()) {
+                return true;
+            }
+            vector<NestedInteger> v = stk.top().getList();
+            stk.pop();
+            for (int sz = v.size(), i = sz - 1; i >= 0; --i) {
+                stk.push(v[i]);
+            }
+        }
+        return false;
+    }
 private:
-	stack<NestedInteger> stk;
+    stack<NestedInteger> stk;
 };
 
 /**
