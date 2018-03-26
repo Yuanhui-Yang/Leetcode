@@ -24,29 +24,11 @@ using namespace std;
 class Solution {
 public:
     int findPeakElement(vector<int>& nums) {
-        int sz = nums.size();
-        if (sz == 0) {
-            return -1;
-        }
-        if (sz == 1) {
-            return 0;
-        }
-        if (nums[0] > nums[1]) {
-            return 0;
-        }
-        if (nums[sz - 2] < nums[sz - 1]) {
-            return sz - 1;
-        }
-        int i = 1, j = sz - 1;
+        int sz = nums.size(), i = 0, j = sz;
         while (i < j) {
             int k = i + (j - i) / 2;
-            if (nums[k - 1] < nums[k]) {
-                if (nums[k] < nums[k + 1]) {
-                    i = k + 1;
-                }
-                else {
-                    return k;
-                }
+            if (k + 1 < sz and nums[k] < nums[k + 1]) {
+                i = k + 1;
             }
             else {
                 j = k;
