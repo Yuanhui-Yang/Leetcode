@@ -1,7 +1,6 @@
-// 348. Design Tic-Tac-Toe
-// https://leetcode.com/problems/design-tic-tac-toe/
+348. Design Tic-Tac-Toe
+https://leetcode.com/problems/design-tic-tac-toe/
 
-/*
 Design a Tic-tac-toe game that is played between two players on a n x n grid.
 
 You may assume the following rules:
@@ -50,42 +49,47 @@ toe.move(2, 1, 1); -> Returns 1 (player 1 wins)
 |X|X|X|
 Follow up:
 Could you do better than O(n2) per move() operation?
-*/
+
+#include <iostream>
+#include <cstdlib>
+#include <vector>
+
+using namespace std;
 
 class TicTacToe {
 public:
-	/** Initialize your data structure here. */
-	TicTacToe(int n) {
-		A.resize(n, 0);
-		B.resize(n, 0);
-		C = 0;
-		D = 0;
-		E = n;
-	}
-
-	/** Player {player} makes a move at ({row}, {col}).
-		@param row The row of the board.
-		@param col The column of the board.
-		@param player The player, can be either 1 or 2.
-		@return The current winning condition, can be either:
-				0: No one wins.
-				1: Player 1 wins.
-				2: Player 2 wins. */
-	int move(int row, int col, int player) {
-		int val = player == 1 ? -1 : 1;
-		A[row] += val;
-		B[col] += val;
-		if (row == col) {
-			C += val;
-		}
-		if (row == E - 1 - col) {
-			D += val;
-		}
-		return (abs(A[row]) == E or abs(B[col]) == E or abs(C) == E or abs(D) == E) ? player : 0;
-	}
+    /** Initialize your data structure here. */
+    TicTacToe(int n) {
+        A.resize(n, 0);
+        B.resize(n, 0);
+        C = 0;
+        D = 0;
+        E = n;
+    }
+    
+    /** Player {player} makes a move at ({row}, {col}).
+        @param row The row of the board.
+        @param col The column of the board.
+        @param player The player, can be either 1 or 2.
+        @return The current winning condition, can be either:
+                0: No one wins.
+                1: Player 1 wins.
+                2: Player 2 wins. */
+    int move(int row, int col, int player) {
+        int val = player == 1 ? 1 : -1;
+        A[row] += val;
+        B[col] += val;
+        if (row == col) {
+            C += val;
+        }
+        if (row + col == E - 1) {
+            D += val;
+        }
+        return abs(A[row]) == E or abs(B[col]) == E or abs(C) == E or abs(D) == E ? player : 0;
+    }
 private:
-	vector<int> A, B;
-	int C, D, E;
+    vector<int> A, B;
+    int C, D, E;
 };
 
 /**
@@ -93,3 +97,16 @@ private:
  * TicTacToe obj = new TicTacToe(n);
  * int param_1 = obj.move(row,col,player);
  */
+
+int main(void) {
+    TicTacToe toe(3);
+    cout << toe.move(0, 0, 1) << '\n';
+    cout << toe.move(0, 2, 2) << '\n';
+    cout << toe.move(2, 2, 1) << '\n';
+    cout << toe.move(1, 1, 2) << '\n';
+    cout << toe.move(2, 0, 1) << '\n';
+    cout << toe.move(1, 0, 2) << '\n';
+    cout << toe.move(2, 1, 1) << '\n';
+
+    return 0;
+}
