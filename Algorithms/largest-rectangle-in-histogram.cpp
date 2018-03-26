@@ -17,22 +17,21 @@ return 10.
 #include <vector>
 #include <stack>
 #include <algorithm>
-#include <climits>
 
 using namespace std;
 
 class Solution {
 public:
     int largestRectangleArea(vector<int>& heights) {
-        heights.push_back(INT_MIN);
-        int sz = heights.size(), i = 0, result = 0;
+        heights.push_back(0);
         stack<int> stk;
+        stk.push(-1);
+        int sz = heights.size(), i = 0, result = 0;
         while (i < sz) {
-            while (!stk.empty() and heights[stk.top()] > heights[i]) {
+            while (stk.top() >= 0 and heights[stk.top()] > heights[i]) {
                 int top = stk.top();
                 stk.pop();
-                int area = (stk.empty() ? i : (i - stk.top() - 1)) * heights[top];
-                result = max(result, area);
+                result = max(result, (i - stk.top() - 1) * heights[top]);
             }
             stk.push(i);
             ++i;
@@ -47,7 +46,7 @@ int main(void) {
     vector<int> heights;
     int result;
     
-    heights = {2,1,5,6,2,3};
+    heights = {2, 1, 5, 6, 2, 3};
     result = solution.largestRectangleArea(heights);
     cout << result << '\n';
     
