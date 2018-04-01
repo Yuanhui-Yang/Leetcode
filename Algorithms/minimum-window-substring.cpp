@@ -17,54 +17,41 @@ If there are multiple such windows, you are guaranteed that there will always be
 
 class Solution {
 public:
-	string minWindow(string s, string t) {
-		int sz1 = s.size(), sz2 = t.size(), i = 0, j = 0, cnt = 0;
-		string result;
-		array<int, 256> A, B;
-		A.fill(0);
-		B.fill(0);
-		for (const auto & i : t) {
-			++A[i];
-		}
-		while (j < sz1 or j - i > sz2) {
-			if (j - i  <= sz2) {
-				int y = s[j];
-				if (B[y] < A[y]) {
-					++cnt;
-				}
-				++B[y];
-				++j;
-			}
-			else if (j == sz1) {
-				int x = s[i];
-				if (B[x] == A[x]) {
-					--cnt;
-				}
-				--B[x];
-				++i;
-			}
-			else if (cnt < sz2) {
-				int y = s[j];
-				if (B[y] < A[y]) {
-					++cnt;
-				}
-				++B[y];
-				++j;
-			}
-			else {
-				int x = s[i];
-				if (B[x] == A[x]) {
-					--cnt;
-				}
-				--B[x];
-				++i;
-			}
-			if (cnt == sz2) {
-				if (result.empty() or j - i < result.size()) {
-					result = s.substr(i, j - i);
-				}
-			}
-		}
-		return result;
-	}
+    string minWindow(string s, string t) {
+        if (s.size() < t.size()) {
+            return "";
+        }
+        array<int, 512> A, B;
+        A.fill(0);
+        B.fill(0);
+        int sz = s.size(), i = 0, j = 0, k = 0, cnt = 0;
+        for (const auto & ch : t) {
+            int id = ch;
+            if (A[id] == 0) {
+                ++k;
+            }
+            ++A[id];
+        }
+        string result;
+        while (j < sz) {
+            int id = s[j];
+            ++B[id];
+            if (B[id] == A[id]) {
+                ++cnt;
+            }
+            ++j;
+            while (cnt == k) {
+                if (result.empty() or j - i < result.size()) {
+                    result = s.substr(i, j - i);
+                }
+                int id = s[i];
+                if (B[id] == A[id]) {
+                    --cnt;
+                }
+                --B[id];
+                ++i;
+            }
+        }
+        return result;
+    }
 };
