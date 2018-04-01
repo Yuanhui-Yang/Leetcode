@@ -15,20 +15,29 @@ Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer 
 
 class Solution {
 public:
-	int lengthOfLongestSubstring(string s) {
-		int n = s.size(), i = 0, j = 0, result = 0, h[256];
-		memset(h, 0, sizeof(h));
-		while (j < n) {
-			while (j < n and !h[s[j]]) {
-				++h[s[j]];
-				++j;
-			}
-			result = max(result, j - i);
-			if (i < j) {
-				--h[s[i]];
-				++i;
-			}
-		}
-		return result;
-	}
+    int lengthOfLongestSubstring(string s) {
+        array<int, 512> A;
+        A.fill(0);
+        int sz = s.size(), i = 0, j = 0, cnt = 0, result = 0;
+        while (j < sz) {
+            int id = s[j];
+            if (A[id] > 0) {
+                ++cnt;
+            }
+            ++A[id];
+            ++j;
+            while (cnt > 0) {
+                int id = s[i];
+                --A[id];
+                if (A[id] > 0) {
+                    --cnt;
+                }
+                ++i;
+            }
+            if (result < j - i) {
+                result = j - i;
+            }
+        }
+        return result;
+    }
 };
