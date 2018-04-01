@@ -11,30 +11,29 @@ T is "ece" which its length is 3.
 
 class Solution {
 public:
-	int lengthOfLongestSubstringTwoDistinct(string s) {
-		int h[256], n = s.size(), i = 0, j = 0, result = 0, cnt = 0;
-		memset(h, 0, sizeof(h));
-		while (j < n) {
-			while (j < n and cnt < 2) {
-				if (!h[s[j]]) {
-					++cnt;
-				}
-				++h[s[j]];
-				++j;
-			}
-			while (j < n and h[s[j]] > 0) {
-				++h[s[j]];
-				++j;
-			}
-			result = max(result, j - i);
-			while (i < j and cnt >= 2) {
-				--h[s[i] - 0];
-				if (!h[s[i]]) {
-					--cnt;
-				}
-				++i;
-			}
-		}
-		return result;
-	}
+    int lengthOfLongestSubstringTwoDistinct(string s) {
+        array<int, 512> A;
+        A.fill(0);
+        int sz = s.size(), i = 0, j = 0, cnt = 0, result = 0;
+        while (j < sz) {
+            int id = s[j];
+            if (A[id] == 0) {
+                ++cnt;
+            }
+            ++A[id];
+            ++j;
+            while (cnt > 2) {
+                int id = s[i];
+                --A[id];
+                if (A[id] == 0) {
+                    --cnt;
+                }
+                ++i;
+            }
+            if (result < j - i) {
+                result = j - i;
+            }
+        }
+        return result;
+    }
 };
