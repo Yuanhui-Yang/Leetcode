@@ -11,33 +11,29 @@ T is "ece" which its length is 3.
 
 class Solution {
 public:
-	int lengthOfLongestSubstringKDistinct(string s, int k) {
-		if (k <= 0) {
-			return 0;
-		}
-		int i = 0, j = 0, n = s.size(), result = 0, h[256], cnt = 0;
-		memset(h, 0, sizeof(h));
-		while (j < n) {
-			while (j < n and cnt < k) {
-				if (!h[s[j]]) {
-					++cnt;
-				}
-				++h[s[j]];
-				++j;
-			}
-			while (j < n and h[s[j]]) {
-				++h[s[j]];
-				++j;
-			}
-			result = max(result, j - i);
-			while (i < j and cnt >= k) {
-				--h[s[i]];
-				if (!h[s[i]]) {
-					--cnt;
-				}
-				++i;
-			}
-		}
-		return result;
-	}
+    int lengthOfLongestSubstringKDistinct(string s, int k) {
+        array<int, 512> A;
+        A.fill(0);
+        int sz = s.size(), i = 0, j = 0, cnt = 0, result = 0;
+        while (j < sz) {
+            int id = s[j];
+            if (A[id] == 0) {
+                ++cnt;
+            }
+            ++A[id];
+            ++j;
+            while (cnt > k) {
+                int id = s[i];
+                --A[id];
+                if (A[id] == 0) {
+                    --cnt;
+                }
+                ++i;
+            }
+            if (result < j - i) {
+                result = j - i;
+            }
+        }
+        return result;
+    }
 };
