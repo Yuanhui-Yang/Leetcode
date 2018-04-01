@@ -35,45 +35,38 @@ The substring with start index = 2 is "ab", which is an anagram of "ab".
 
 class Solution {
 public:
-	vector<int> findAnagrams(string s, string p) {
-		int sz1 = s.size(), sz2 = p.size();
-		if (sz1 < sz2) {
-			return {};
-		}
-		vector<int> result;
-		array<int, 26> A;
-		A.fill(0);
-		for (const auto & i : p) {
-			++A[i - 'a'];
-		}
-		array<int, 26> B;
-		B.fill(0);
-		int i = 0, j = 0, cnt = 0;
-		while (j < sz1 or j - i > sz2) {
-			if (j - i <= sz2) {
-				int y = s[j] - 'a';
-				if (A[y] > 0) {
-					if (B[y] < A[y]) {
-						++cnt;
-					}
-					++B[y];
-				}
-				++j;
-			}
-			else {
-				int x = s[i] - 'a';
-				if (A[x] > 0) {
-					if (B[x] == A[x]) {
-						--cnt;
-					}
-					--B[x];
-				}
-				++i;
-			}
-			if (cnt == sz2 and j - i == sz2) {
-				result.push_back(i);
-			}
-		}
-		return result;
-	}
+    vector<int> findAnagrams(string s, string p) {
+        array<int, 26> A, B;
+        A.fill(0);
+        B.fill(0);
+        int sz1 = s.size(), sz2 = p.size(), i = 0, j = 0, k = 0, cnt = 0;
+        vector<int> result;
+        for (const auto & ch : p) {
+            int id = ch - 'a';
+            if (A[id] == 0) {
+                ++k;
+            }
+            ++A[id];
+        }
+        while (j < sz1) {
+            int id = s[j] - 'a';
+            ++B[id];
+            if (B[id] == A[id]) {
+                ++cnt;
+            }
+            ++j;
+            while (cnt == k) {
+                if (j - i == sz2) {
+                    result.push_back(i);
+                }
+                int id = s[i] - 'a';
+                if (B[id] == A[id]) {
+                    --cnt;
+                }
+                --B[id];
+                ++i;
+            }
+        }
+        return result;
+    }
 };
