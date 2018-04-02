@@ -14,22 +14,23 @@ You must not use any built-in BigInteger library or convert the inputs to intege
 
 class Solution {
 public:
-	string multiply(string num1, string num2) {
-		int M = num1.size(), N = num2.size(), base = 10;
-		string result(M + N, '0');
-		for (int i = M - 1; i >= 0; --i) {
-			int carry = 0, x = num1[i] - '0';
-			for (int j = N - 1; j >= 0; --j) {
-				int y = num2[j] - '0', z = x * y + carry + result[i + j + 1] - '0';
-				carry = z / base;
-				z %= base;
-				result[i + j + 1] = '0' + z;
-			}
-			result[i] += carry;
-		}
-		while (!result.empty() and result.front() == '0') {
-			result.erase(begin(result));
-		}
-		return result.empty() ? string("0") : result;
-	}
+    string multiply(string num1, string num2) {
+        int sz1 = num1.size(), sz2 = num2.size(), i = sz1 - 1;
+        string result(sz1 + sz2, '0');
+        while (i >= 0) {
+            int j = sz2 - 1, carry = 0;
+            while (j >= 0) {
+                int value = (num1[i] - '0') * (num2[j] - '0') + (result[i + j + 1] - '0') + carry;
+                result[i + j + 1] = value % 10 + '0';
+                carry = value / 10;
+                --j;
+            }
+            result[i] += carry;
+            --i;
+        }
+        while (!result.empty() and result.front() == '0') {
+            result.erase(result.begin());
+        }
+        return result.empty() ? "0" : result;
+    }
 };
