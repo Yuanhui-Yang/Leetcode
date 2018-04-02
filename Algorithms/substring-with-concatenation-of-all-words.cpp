@@ -1,87 +1,74 @@
-// 30. Substring with Concatenation of All Words
-// https://leetcode.com/problems/substring-with-concatenation-of-all-words/
-// https://www.youtube.com/watch?v=Tua6hom2rZs
+30. Substring with Concatenation of All Words
+https://leetcode.com/problems/substring-with-concatenation-of-all-words/
+
+You are given a string, s, and a list of words, words, that are all of the same length. Find all starting indices of substring(s) in s that is a concatenation of each word in words exactly once and without any intervening characters.
+
+For example, given:
+s: "barfoothefoobarman"
+words: ["foo", "bar"]
+
+You should return the indices: [0,9].
+(order does not matter).
+
 #include <iostream>
 #include <vector>
 #include <string>
 #include <unordered_map>
+
 using namespace std;
+
 class Solution {
 public:
-	vector<int> findSubstring(const string& s, const vector<string>& words) {
-		vector<int> result;
-		int wordLength = words.front().size();
-		this->setTotalWordsLength(words);
-		int sLength = s.size();
-		if (sLength < this->totalWordsLength)
-			return result;
-		this->setWordsMap(words);
-		/*
-		s =  b  a  r  f  o  o  t  h  e  f  o  o  b  a  r  m  a  n
-		i = 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17
-		                                         b  a  r  f  o  o
-		*/
-		for (int i = 0; i <= sLength - this->totalWordsLength; ++i) {
-			string subStr = s.substr(i , this->totalWordsLength);
-			if (this->match(subStr, wordLength)) {
-				result.push_back(i);
-			}
-		}
-		return result;
-	}
-private:
-	int totalWordsLength;
-private:
-	void setTotalWordsLength(const vector<string>& words) {
-		this->totalWordsLength = words.front().size() * words.size();
-	}
-private:
-	unordered_map<string, int> wordsMap;
-private:
-	void setWordsMap(const vector<string>& words) {
-		for(const auto& i : words)
-			++this->wordsMap[i];
-	}
-private:
-	bool match(const string& s, const int& wordLength) {
-		/*
-		s =  b  a  r  f  o  o  t  h  e  f  o  o  b  a  r  m  a  n
-		i = 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17
-		*/
-		if (s.size() != this->totalWordsLength)
-			return false;
-		unordered_map<string, int> tempWordsMap;
-		for (int i = 0; i < this->totalWordsLength; i += wordLength) {
-			string subStr = s.substr(i, wordLength);
-			++tempWordsMap[subStr];
-		}
-		bool result = false;
-		for (const auto& i : this->wordsMap) {
-			if (!tempWordsMap.count(i.first)) {
-				result = false;
-				break;
-			}
-			else {
-				if (tempWordsMap[i.first] == i.second) {
-					result = true;
-				}
-				else {
-					result = false;
-					break;
-				}
-			}
-		}
-		return result;
-	}
+    vector<int> findSubstring(string s, vector<string>& words) {
+        vector<int> result;
+        unordered_map<string, int> A, B;
+        for (const auto & word : words) {
+            ++A[word];
+        }
+        int sz1 = s.size(), sz2 = words.size(), sz3 = words[0].size(), sz4 = sz2 * sz3, i = 0, j = 0, k = 0, cnt1 = A.size(), cnt2 = 0;
+        while (i < sz3) {
+            j = i;
+            k = i;
+            B.clear();
+            cnt2 = 0;
+            while (k + sz3 <= sz1) {
+                string t = s.substr(k, sz3);
+                ++B[t];
+                if (B[t] == A[t]) {
+                    ++cnt2;
+                }
+                k += sz3;
+                while (cnt2 == cnt1) {
+                    if (k - j == sz4) {
+                        result.push_back(j);
+                    }
+                    string t = s.substr(j, sz3);
+                    if (B[t] == A[t]) {
+                        --cnt2;
+                    }
+                    --B[t];
+                    j += sz3;
+                }
+            }
+            ++i;
+        }
+        return result;
+    }
 };
+
 int main(void) {
-	Solution solution;
-	string s = "barfoothefoobarman";
-	vector<string> words = { "foo", "bar" };
-	for (const auto& i : solution.findSubstring(s, words)) {
-		cout << i << '\t';
-	}
-	cout << "\nPassed\n";
-	getchar();
-	return 0;
+    Solution solution;
+    string s;
+    vector<string> words;
+    vector<int> result;
+  
+    s = "barfoothefoobarman";
+    words = { "foo", "bar" };
+    result = solution.findSubstring(s, words);
+    for (const auto & i : result) {
+        cout << i << '\t';
+    }
+    cout << '\n';
+
+    return 0;
 }
