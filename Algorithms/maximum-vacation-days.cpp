@@ -1,7 +1,6 @@
-// 568. Maximum Vacation Days
-// https://leetcode.com/problems/maximum-vacation-days/
+568. Maximum Vacation Days
+https://leetcode.com/problems/maximum-vacation-days/
 
-/*
 LeetCode wants to give one of its best employees the option to travel among N cities to collect algorithm problems. But all work and no play makes Jack a dull boy, you could take vacations in some particular cities and weeks. Your job is to schedule the traveling to maximize the number of vacation days you could take, but there are certain rules and restrictions you need to follow.
 
 Rules and restrictions:
@@ -48,87 +47,50 @@ In the matrix days, all the values are integers in the range [0, 7].
 You could stay at a city beyond the number of vacation days, but you should work on the extra days, which won't be counted as vacation days.
 If you fly from the city A to the city B and take the vacation on that day, the deduction towards vacation days will count towards the vacation days of city B in that week.
 We don't consider the impact of flight hours towards the calculation of vacation days.
-*/
 
-#include <iostream> // std::cout; std::cin
-#include <fstream> // std::fstream::open; std::fstream::close; 
-#include <cstdlib> // rand
-#include <cassert> // assert
-#include <cctype> // isalnum; isalpha; isdigit; islower; isupper; isspace; tolower; toupper
-#include <cmath> // pow; sqrt; round; fabs; abs; log
-#include <climits> // INT_MIN; INT_MAX; LLONG_MIN; LLONG_MAX; ULLONG_MAX
-#include <cfloat> // DBL_EPSILON; LDBL_EPSILON
-#include <cstring> // std::memset
-#include <algorithm> // std::swap; std::max; std::min; std::min_element; std::max_element; std::minmax_element; std::next_permutation; std::prev_permutation; std::nth_element; std::sort; std::lower_bound; std::upper_bound; std::reverse
-#include <limits> // std::numeric_limits<int>::min; std::numeric_limits<int>::max; std::numeric_limits<double>::epsilon; std::numeric_limits<long double>::epsilon;
-#include <numeric> // std::accumulate; std::iota
-#include <string> // std::to_string; std::string::npos; std::stoul; std::stoull; std::stoi; std::stol; std::stoll; std::stof; std::stod; std::stold; 
-#include <list> // std::list::merge; std::list::splice; std::list::merge; std::list::unique; std::list::sort
-#include <bitset>
+#include <iostream>
 #include <vector>
-#include <deque>
-#include <stack> // std::stack::top; std::stack::pop; std::stack::push
-#include <queue> // std::queue::front; std::queue::back; std::queue::pop; std::queue::push
-#include <set> // std::set::count; std::set::find; std::set::equal_range; std::set::lower_bound; std::set::upper_bound
-#include <map> // std::map::count; std::map::find; std::map::equal_range; std::map::lower_bound; std::map::upper_bound
-#include <unordered_set>
-#include <unordered_map>
-#include <utility> // std::pair; std::make_pair
-#include <iterator>
-#include <functional> // std::less<int>; std::greater<int>
+#include <algorithm>
+
 using namespace std;
 
 class Solution {
 public:
-	int maxVacationDays(vector<vector<int>>& flights, vector<vector<int>>& days) {
-		unordered_map<size_t, unordered_map<size_t, unordered_map<bool, int>>> OPT;
-		return helper(0, 0, true, flights, days, OPT);
-	}
-private:
-	int helper(size_t city, size_t week, bool available, vector<vector<int>>& flights, vector<vector<int>>& days, unordered_map<size_t, unordered_map<size_t, unordered_map<bool, int>>>& OPT) {
-		if (week >= days.front().size()) {
-			return 0;
-		}
-		if (!OPT.empty() and OPT.count(city) and OPT.at(city).count(week) and OPT.at(city).at(week).count(available)) {
-			return OPT.at(city).at(week).at(available);
-		}
-		int a = days.at(city).at(week) + helper(city, week + 1, true, flights, days, OPT);;
-		if (!available) {
-			return OPT[city][week][available] = a;
-		}
-		int b = 0;
-		for (size_t i = 0, n = flights.size(); i < n; i++) {
-			if (i != city and flights.at(city).at(i)) {
-				b = max(b, helper(i, week, false, flights, days, OPT));
-			}
-		}
-		return OPT[city][week][available] = max(a, b);
-	}
+    int maxVacationDays(vector<vector<int>>& flights, vector<vector<int>>& days) {
+        int N = days.size(), K = N ? days[0].size() : 0;
+        vector<vector<int>> A(K + 1, vector<int>(N, 0));
+        for (int k = K - 1; k >= 0; --k) {
+            for (int from = 0; from < N; ++from) {
+                for (int to = 0; to < N; ++to) {
+                    if (flights[from][to] or from == to) {
+                        A[k][from] = max(A[k][from], days[to][k] + A[k + 1][to]);
+                    }
+                }
+            }
+        }
+        return A[0][0];
+    }
 };
 
 int main(void) {
-	Solution solution;
-	vector<vector<int>> flights, days;
-	int result = 0, answer = 0;
+    Solution solution;
+    vector<vector<int>> flights, days;
+    int result;
+    
+    flights = {{0, 1, 1}, {1, 0, 1}, {1, 1, 0}};
+    days = {{1, 3, 1}, {6, 0, 3}, {3, 3, 3}};
+    result = solution.maxVacationDays(flights, days);
+    cout << result << '\n';
 
-	flights = {{0, 1, 1}, {1, 0, 1}, {1, 1, 0}};
-	days = {{1, 3, 1}, {6, 0, 3}, {3, 3, 3}};
-	answer = 12;
-	result = solution.maxVacationDays(flights, days);
-	assert(answer == result);
+    flights = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+    days = {{1, 1, 1}, {7, 7, 7}, {7, 7, 7}};
+    result = solution.maxVacationDays(flights, days);
+    cout << result << '\n';
 
-	flights = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
-	days = {{1, 1, 1}, {7, 7, 7}, {7, 7, 7}};
-	answer = 3;
-	result = solution.maxVacationDays(flights, days);
-	assert(answer == result);
-
-	flights = {{0, 1, 1}, {1, 0, 1}, {1, 1, 0}};
-	days = {{7, 0, 0}, {0, 7, 0}, {0, 0, 7}};
-	answer = 21;
-	result = solution.maxVacationDays(flights, days);
-	assert(answer == result);
-
-	cout << "\nPassed All\n";
-	return 0;
+    flights = {{0, 1, 1}, {1, 0, 1}, {1, 1, 0}};
+    days = {{7, 0, 0}, {0, 7, 0}, {0, 0, 7}};
+    result = solution.maxVacationDays(flights, days);
+    cout << result << '\n';
+    
+    return 0;
 }
