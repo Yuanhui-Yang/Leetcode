@@ -667,6 +667,7 @@
 | 802 | [Find Eventual Safe States](https://leetcode.com/problems/find-eventual-safe-states/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-eventual-safe-states.cpp) |
 | 808 | [Soup Servings](https://leetcode.com/problems/soup-servings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/soup-servings.cpp) |
 | 809 | [Expressive Words](https://leetcode.com/problems/expressive-words/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/expressive-words.cpp) |
+| 812 | [Largest Triangle Area](https://leetcode.com/problems/largest-triangle-area/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-triangle-area.cpp) |
 | 813 | [Largest Sum of Averages](https://leetcode.com/problems/largest-sum-of-averages/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-sum-of-averages.cpp) |
 | 815 | [Bus Routes](https://leetcode.com/problems/bus-routes/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/bus-routes.cpp) |
 
