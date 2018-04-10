@@ -18,31 +18,39 @@ The wordDict parameter had been changed to a list of strings (instead of a set o
 
 class Solution {
 public:
-	vector<string> wordBreak(string s, vector<string>& wordDict) {
-		int n = s.size();
-		unordered_set<string> words(begin(wordDict), end(wordDict));
-		vector<bool> vec(n + 1, false);
-		vec[0] = true;
-		for (int i = 1; i <= n; ++i) {
-			for (int j = 0; j < i and !vec[i]; ++j) {
-				vec[i] = vec[j] and words.count(s.substr(j, i - j));
-			}
-		}
-		if (!vec[n]) {
-			return {};
-		}
-		vector<vector<string>> mat(n + 1);
-		mat[0] = {""};
-		for (int i = 1; i <= n; ++i) {
-			for (int j = 0; j < i; ++j) {
-				string t = s.substr(j, i - j);
-				if (vec[j] and words.count(t)) {
-					for (const auto & k : mat[j]) {
-						mat[i].push_back(k == "" ? t : k + " " + t);
-					}
-				}
-			}
-		}
-		return mat[n];
-	}
+    vector<string> wordBreak(string s, vector<string>& wordDict) {
+        unordered_set<string> A(wordDict.begin(), wordDict.end());
+        int sz = s.size();
+        vector<bool> B(sz + 1, false);
+        B[0] = true;
+        for (int i = 1; i <= sz; ++i) {
+            for (int j = i - 1; j >= 0 and !B[i]; --j) {
+                string t = s.substr(j, i - j);
+                B[i] = B[j] and A.count(t);
+            }
+        }
+        if (!B[sz]) {
+            return {};
+        }
+        vector<vector<string>> C(sz + 1);
+        for (int i = 1; i <= sz; ++i) {
+            for (int j = 0; j < i; ++j) {
+                string t = s.substr(j, i - j);
+                if (A.count(t)) {
+                    if (j == 0) {
+                        C[i].push_back(t);
+                    }
+                    else {
+                        for (const auto & k : C[j]) {
+                            string l = k;
+                            l.push_back(' ');
+                            l.append(t);
+                            C[i].push_back(l);
+                        }
+                    }
+                }
+            }
+        }
+        return C[sz];
+    }
 };
