@@ -48,80 +48,82 @@ You may assume that all inputs are consist of lowercase letters a-z.
 #include <functional> // std::less<int>; std::greater<int>
 using namespace std;
 
+struct Node {
+    bool flag;
+    array<Node*, 26> next;
+    Node() {
+        flag = false;
+        next.fill(NULL);
+    }
+};
+
 class Solution {
 public:
-	vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
-		if (board.empty() or board.front().empty() or words.empty()) {
-			return {};
-		}
-		Trie trie;
-		size_t max_length = 0;
-		for (const auto &i : words) {
-			if (!i.empty()) {
-				max_length = max(max_length, i.size());
-				trie.insert(i);
-			}
-		}
-		const int p = board.size(), q = board.front().size();
-		vector<string> result;
-		for (int i = 0; i < p; i++) {
-			for (int j = 0; j < q; j++) {
-				string s;
-				trie.dfs(trie.root, s, result, i, j, max_length, board);
-			}
-		}
-		return result;
-	}
+    vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
+        f1(words);
+        return f3(board);
+    }
 private:
-	struct TrieNode {
-		TrieNode() {
-			memset(next, 0, sizeof(next));
-			isEnd = false;	
-		}
-		TrieNode* next[26];
-		bool isEnd;
-	};
-	struct Trie {
-		Trie() {
-			root = new TrieNode();
-		}
-		TrieNode* insert(const string& s) {
-			TrieNode* result = root;
-			for (const auto &i : s) {
-				const int id = i - 'a';
-				if (!result->next[id]) {
-					result->next[id] = new TrieNode();
-				}
-				result = result->next[id];
-			}
-			result->isEnd = true;
-			return result;
-		}
-		void dfs(TrieNode* node, string& s, vector<string>& result, const int x, const int y, const size_t max_length, vector<vector<char>>& board) {
-			const char ch = board.at(x).at(y);
-			const int id = ch - 'a';
-			if (!node or !node->next[id] or max_length < s.size()) {
-				return;
-			}
-			s.push_back(ch);
-			board.at(x).at(y) = 'X';
-			if (node->next[id]->isEnd) {
-				result.push_back(s);
-				node->next[id]->isEnd = false;
-			}
-			const int p = board.size(), q = board.front().size();
-			const int dx[4] = {-1, 0, 0, 1}, dy[4] = {0, -1, 1, 0};
-			for (int i = 0; i < 4; i++) {
-				const int nx = x + dx[i], ny = y + dy[i];
-				if (nx >= 0 and nx < p and ny >= 0 and ny < q and islower(board.at(nx).at(ny))) {
-					dfs(node->next[id], s, result, nx, ny, max_length, board);
-				}
-			}
-			board.at(x).at(y) = ch;
-			s.pop_back();
-		}
-		TrieNode* root;
-	};
+    Node * root;
+    int X, Y;
+    array<int, 4> dx, dy;
+    void f1(vector<string>& words) {
+        root = new Node();
+        for (auto & word : words) {
+            f2(word);
+        }
+    }
+    void f2(string & word) {
+        Node * node = root;
+        for (const auto & ch : word) {
+            int id = ch - 'a';
+            if (!node->next[id]) {
+                node->next[id] = new Node();
+            }
+            node = node->next[id];
+        }
+        node->flag = true;
+    }
+    vector<string> f3(vector<vector<char>>& board) {
+        dx = {-1, 0, 1, 0};
+        dy = {0, -1, 0, 1};
+        X = board.size();
+        Y = X ? board[0].size() : 0;
+        vector<string> result;
+        for (int i = 0; i < X; ++i) {
+            for (int j = 0; j < Y; ++j) {
+                string s;
+                vector<vector<bool>> A(X, vector<bool>(Y, true));
+                int id = board[i][j] - 'a';
+                f4(result, root->next[id], s, A, board, i, j);
+            }
+        }
+        return result;
+    }
+    void f4(vector<string> & result, Node * node, string & s, vector<vector<bool>> & A, vector<vector<char>>& board, int x, int y) {
+        if (!node or !A[x][y]) {
+            return;
+        }
+        A[x][y] = false;
+        char ch = board[x][y];
+        s.push_back(ch);
+        if (node->flag) {
+            result.push_back(s);
+            node->flag = false;
+        }
+        for (int i = 0; i < 4; ++i) {
+            x += dx[i];
+            y += dy[i];
+            if (x >= 0 and x < X and y >= 0 and y < Y) {
+                int id = board[x][y] - 'a';
+                f4(result, node->next[id], s, A, board, x, y);
+            }
+            x -= dx[i];
+            y -= dy[i];
+        }
+        A[x][y] = true;
+        s.pop_back();
+    }
 };
 
 int main(void) {
