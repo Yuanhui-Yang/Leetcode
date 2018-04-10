@@ -30,38 +30,44 @@ using namespace std;
 class Solution {
 public:
     vector<pair<int, int>> getSkyline(vector<vector<int>>& buildings) {
-        vector<array<int, 3>> A = f1(buildings);
-        multiset<int> B;
+        f1(buildings);
+        return f2();
+    }
+private:
+    vector<array<int, 3>> A;
+    multiset<int> B;
+    void f1(vector<vector<int>>& buildings) {
+        A.clear();
+        for (const auto & building : buildings) {
+            int x1 = building[0], x2 = building[1], y = building[2];
+            A.push_back({x1, y, -1});
+            A.push_back({x2, y, 1});
+        }
+        sort(A.begin(), A.end());
+    }
+    vector<pair<int, int>> f2() {
         vector<pair<int, int>> result;
         int sz = A.size(), i = 0;
         while (i < sz) {
-            int a = A[i][0];
-            while (i < sz and A[i][0] == a) {
-                int b = A[i][1];
+            int x = A[i][0];
+            while (i < sz and A[i][0] == x) {
                 if (A[i][2] < 0) {
-                    B.insert(b);
+                    B.insert(A[i][1]);
                 }
                 else {
-                    B.erase(B.find(b));
+                    B.erase(B.find(A[i][1]));
                 }
                 ++i;
             }
-            int c = B.empty() ? 0 : *(--B.end());
-            if (result.empty() or result.back().second != c) {
-                result.push_back({a, c});
+            int y = f3();
+            if (result.empty() or result.back().second != y) {
+                result.push_back({x, y});
             }
         }
         return result;
     }
-private:
-    vector<array<int, 3>> f1(vector<vector<int>>& buildings) {
-        vector<array<int, 3>> result;
-        for (const auto & i : buildings) {
-            result.push_back({i[0], i[2], -1});
-            result.push_back({i[1], i[2], 1});
-        }
-        sort(result.begin(), result.end());
-        return result;
+    int f3() {
+        return B.empty() ? 0 : *(prev(B.end()));
     }
 };
 
