@@ -11,59 +11,62 @@ You may assume that all inputs are consist of lowercase letters a-z.
 #include <bits/stdc++.h>
 using namespace std;
 
+struct Node {
+    bool isEnd;
+    array<Node*, 26> next;
+    Node() {
+        isEnd = false;
+        next.fill(NULL);
+    }
+};
+
 class Trie {
 public:
-	/** Initialize your data structure here. */
-	Trie() {
-	root = new Node();
-	}
-
-	/** Inserts a word into the trie. */
-	void insert(string word) {
-		Node *it = root;
-		for (const auto &ch : word) {
-			int d = ch - 'a';
-			if(!it->next[d]) {
-				it->next[d] = new Node();
-			}
-			it = it->next[d];
-		}
-		it->isEnd = true;
-	}
-
-	/** Returns if the word is in the trie. */
-	bool search(string word) {
-		Node *it = f(word);
-		return it and it->isEnd;
-	}
-
-	/** Returns if there is any word in the trie that starts with the given prefix. */
-	bool startsWith(string prefix) {
-		return f(prefix);
-	}
+    /** Initialize your data structure here. */
+    Trie() {
+        root = new Node();
+    }
+    
+    /** Inserts a word into the trie. */
+    void insert(string word) {
+        Node * node = root;
+        for (const auto & ch : word) {
+            int id = ch - 'a';
+            if (!node->next[id]) {
+                node->next[id] = new Node();
+            }
+            node = node->next[id];
+        }
+        node->isEnd = true;
+    }
+    
+    /** Returns if the word is in the trie. */
+    bool search(string word) {
+        Node * node = root;
+        for (const auto & ch : word) {
+            int id = ch - 'a';
+            if (!node->next[id]) {
+                return false;
+            }
+            node = node->next[id];
+        }
+        return node and node->isEnd;
+    }
+    
+    /** Returns if there is any word in the trie that starts with the given prefix. */
+    bool startsWith(string prefix) {
+        Node * node = root;
+        for (const auto & ch : prefix) {
+            int id = ch - 'a';
+            if (!node->next[id]) {
+                return false;
+            }
+            node = node->next[id];
+        }
+        return node;
+    }
 private:
-	struct Node {
-		Node(void) {
-			isEnd = false;
-			memset(next, 0, sizeof(next));
-		}
-		bool isEnd;
-		Node* next[26];
-	};
-	Node *root;
-	Node *f(const string& word) {
-		Node *it = root;
-		for (const auto &ch : word) {
-			int d = ch - 'a';
-			if (it->next[d]) {
-				it = it->next[d];
-			}
-			else {
-				return NULL;
-			}
-		}
-		return it;
-	}
+    Node * root;
 };
 
 /**
