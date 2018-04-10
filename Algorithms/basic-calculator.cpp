@@ -62,67 +62,69 @@ Note: Do not use the eval built-in library function.
 // BEGIN: Time Complexity O(n) and Space Complexity O(n)
 class Solution {
 public:
-	int calculate(string s) {
-		list<int> l1;
-		list<char> l2;
-		unordered_map<char, int> h;
-		h['+'] = 2; h['-'] = 2;
-		h['*'] = 3; h['/'] = 3;
-		h['^'] = 4;
-		for (size_t i = 0, j = 0, n = s.size(); i < n; i++) {
-			char ch = s.at(i);
-			j = i;
-			if (ch == ' ') {
-				continue;
-			}
-			if (isdigit(ch)) {
-				while (i < n and isdigit(s.at(i))) {
-					i++;
-				}
-				l1.push_back(stoi(s.substr(j, i-- - j)));
-				continue;
-			}
-			if (h.count(ch)) {
-				while (!l2.empty() and h.count(l2.back()) and h.at(ch) <= h.at(l2.back())) {
-					int b = l1.back(); l1.pop_back();
-					int a = l1.back(); l1.pop_back();
-					char op = l2.back();
-					int c = op == '+' ? a + b : op == '-' ? a - b : op == '*' ? a * b : op == '/' ? a / b : pow(a, b);
-					l2.pop_back();
-					l1.push_back(c);
-				}
-				l2.push_back(ch);
-				continue;
-			}
-			if (ch == '(') {
-				l2.push_back(ch);
-				continue;
-			}
-			if (ch == ')') {
-				while (!l2.empty() and l2.back() != '(') {
-					int b = l1.back(); l1.pop_back();
-					int a = l1.back(); l1.pop_back();
-					char op = l2.back();
-					int c = op == '+' ? a + b : op == '-' ? a - b : op == '*' ? a * b : op == '/' ? a / b : pow(a, b);
-					l2.pop_back();
-					l1.push_back(c);
-				}
-				l2.pop_back();
-				continue;
-			}
-		}
-		while (!l2.empty()) {
-			int b = l1.back();
-			l1.pop_back();
-			int a = l1.back();
-			l1.pop_back();
-			char op = l2.back();
-			int c = op == '+' ? a + b : op == '-' ? a - b : op == '*' ? a * b : op == '/' ? a / b : pow(a, b);
-			l2.pop_back();
-			l1.push_back(c);
-		}
-		return l1.front();
-	}
+    int calculate(string s) {
+        int sz = s.size(), i = 0;
+        stack<int> A;
+        stack<char> B;
+        while (i < sz) {
+            char ch = s[i];
+            if (ch == ' ') {
+                ++i;
+            }
+            else if (ch == '(') {
+                B.push(ch);
+                ++i;
+            }
+            else if (ch == ')') {
+                while (!B.empty() and B.top() != '(') {
+                    int b = A.top();
+                    A.pop();
+                    int a = A.top();
+                    A.pop();
+                    char op = B.top();
+                    B.pop();
+                    int c = op == '+' ? a + b : a - b;
+                    A.push(c);
+                }
+                B.pop();
+                ++i;
+            }
+            else if (isdigit(ch)) {
+                int value = 0;
+                while (isdigit(s[i])) {
+                    int offset = s[i] - '0';
+                    value = 10 * value + offset;
+                    ++i;
+                }
+                A.push(value);
+            }
+            else {
+                while (!B.empty() and B.top() != '(') {
+                    int b = A.top();
+                    A.pop();
+                    int a = A.top();
+                    A.pop();
+                    char op = B.top();
+                    B.pop();
+                    int c = op == '+' ? a + b : a - b;
+                    A.push(c);
+                }
+                B.push(ch);
+                ++i;
+            }
+        }
+        while (!B.empty()) {
+            int b = A.top();
+            A.pop();
+            int a = A.top();
+            A.pop();
+            char op = B.top();
+            B.pop();
+            int c = op == '+' ? a + b : a - b;
+            A.push(c);
+        }
+        return A.top();
+    }
 };
 // END: Time Complexity O(n) and Space Complexity O(n)
 // END: http://www.geeksforgeeks.org/expression-evaluation/
