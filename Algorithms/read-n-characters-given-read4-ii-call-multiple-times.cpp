@@ -17,32 +17,36 @@ int read4(char *buf);
 
 class Solution {
 public:
-	/**
-	 * @param buf Destination buffer
-	 * @param n   Maximum number of characters to read
-	 * @return    The number of characters read
-	 */
-	int read(char *buf, int n) {
-		if (n <= 0) {
-			return 0;
-		}
-		int i = 0;
-		while (i < n and id < cnt) {
-			buf[i++] = cache[id++];
-		}
-		while (i < n) {
-			cnt = read4(cache);
-			id = 0;
-			while (i < n and id < cnt) {
-				buf[i++] = cache[id++];
-			}
-			if (cnt != 4) {
-				break;
-			}
-		}
-		return i;
-	}
+    /**
+     * @param buf Destination buffer
+     * @param n   Maximum number of characters to read
+     * @return    The number of characters read
+     */
+    int read(char *buf, int n) {
+        if (!buf or n <= 0) {
+            return 0;
+        }
+        int i = 0;
+        while (i < n and j < sz) {
+            buf[i] = cache[j];
+            ++i;
+            ++j;
+        }
+        while (i < n) {
+            sz = read4(cache);
+            j = 0;
+            while (i < n and j < sz) {
+                buf[i] = cache[j];
+                ++i;
+                ++j;
+            }
+            if (sz < 4) {
+                break;
+            }
+        }
+        return i;
+    }
 private:
-	int id = 0, cnt = 0;
-	char cache[4];
+    char cache[4];
+    int j = 0, sz = 0;
 };
