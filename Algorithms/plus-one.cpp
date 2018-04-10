@@ -14,19 +14,22 @@ using namespace std;
 
 class Solution {
 public:
-	vector<int> plusOne(vector<int>& digits) {
-		size_t carry = 1, n = digits.size(), i = n - 1, base = 10;
-		while (i != string::npos) {
-			int x = digits[i] + carry;;
-			digits[i] = x % base;
-			carry = x / base;
-			--i;
-		}
-		if (carry) {
-			digits.insert(begin(digits), 1);
-		}
-		return digits;
-	}
+    vector<int> plusOne(vector<int>& digits) {
+        int carry = 1, sz = digits.size(), i = sz - 1;
+        while (i >= 0 or carry > 0) {
+            if (i >= 0) {
+                int value = digits[i] + carry;
+                digits[i] = value % 10;
+                carry = value / 10;
+            }
+            else {
+                digits.insert(digits.begin(), carry);
+                carry = 0;
+            }
+            --i;
+        }
+        return digits;
+    }
 };
 
 int main(void) {
