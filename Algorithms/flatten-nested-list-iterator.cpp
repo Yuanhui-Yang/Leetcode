@@ -1,6 +1,3 @@
-341. Flatten Nested List Iterator
-https://leetcode.com/problems/flatten-nested-list-iterator/
-
 /**
  * // This is the interface that allows for creating nested lists.
  * // You should not implement it, or speculate about its implementation
@@ -21,32 +18,38 @@ https://leetcode.com/problems/flatten-nested-list-iterator/
 class NestedIterator {
 public:
     NestedIterator(vector<NestedInteger> &nestedList) {
-        for (int sz = nestedList.size(), i = sz - 1; i >= 0; --i) {
-            stk.push(nestedList[i]);
-        }
+        A.push(nestedList.begin());
+        B.push(nestedList.end());
     }
 
     int next() {
-        int result = stk.top().getInteger();
-        stk.pop();
+        vector<NestedInteger>::iterator & top = A.top();
+        int result = top->getInteger();
+        ++top;
         return result;
     }
 
     bool hasNext() {
-        while (!stk.empty()) {
-            if (stk.top().isInteger()) {
+        while (!A.empty()) {
+            vector<NestedInteger>::iterator & a = A.top(), & b = B.top();
+            if (a == b) {
+                A.pop();
+                B.pop();
+            }
+            else if (a->isInteger()) {
                 return true;
             }
-            vector<NestedInteger> v = stk.top().getList();
-            stk.pop();
-            for (int sz = v.size(), i = sz - 1; i >= 0; --i) {
-                stk.push(v[i]);
+            else {
+                vector<NestedInteger> & v = a->getList();
+                ++a;
+                A.push(v.begin());
+                B.push(v.end());
             }
         }
         return false;
     }
 private:
-    stack<NestedInteger> stk;
+    stack<vector<NestedInteger>::iterator> A, B;
 };
 
 /**
