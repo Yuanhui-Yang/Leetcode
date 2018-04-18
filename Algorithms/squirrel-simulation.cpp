@@ -24,23 +24,20 @@ The given positions contain at least one nut, only one tree and one squirrel.
 
 class Solution {
 public:
-	int minDistance(int height, int width, vector<int>& tree, vector<int>& squirrel, vector<vector<int>>& nuts) {
-		if (tree.empty() or squirrel.empty() or nuts.empty() or nuts[0].empty()) {
-			return 0;
-		}
-		int sz = nuts.size(), x = f(tree, nuts[0]), y = f(squirrel, nuts[0]) - x;
-		for (int i = 1; i < sz; ++i) {
-			int a = f(tree, nuts[i]);
-			int b = f(squirrel, nuts[i]) - a;
-			x += a;
-			if (b < y) {
-				y = b;
-			}
-		}
-		return 2 * x + y;
-	}
+    int minDistance(int height, int width, vector<int>& tree, vector<int>& squirrel, vector<vector<int>>& nuts) {
+        int result = 0, diff = INT_MAX;
+        for (const auto & nut : nuts) {
+            int a = f1(nut, tree);
+            int b = f1(nut, squirrel);
+            int c = b - a;
+            diff = min(diff, c);
+            result += 2 * a;
+        }
+        result += diff;
+        return result;
+    }
 private:
-	int f(vector<int> & a, vector<int> & b) {
-		return abs(a[0] - b[0]) + abs(a[1] - b[1]);
-	}
+    int f1(const vector<int> & from, const vector<int> & to) {
+        return abs(from[0] - to[0]) + abs(from[1] - to[1]);
+    }
 };
