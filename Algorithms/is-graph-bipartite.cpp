@@ -46,6 +46,36 @@ class Solution {
 public:
     bool isBipartite(vector<vector<int>>& graph) {
         int sz = graph.size();
+        vector<int> colors(sz, -1);
+        for (int i = 0; i < sz; ++i) {
+            if (colors[i] < 0) {
+                colors[i] = 0;
+                stack<int> stk;
+                stk.push(i);
+                while (!stk.empty()) {
+                    int from = stk.top(), color = colors[from];
+                    stk.pop();
+                    for (const auto & to : graph[from]) {
+                        int & ncolor = colors[to];
+                        if (ncolor == color) {
+                            return false;
+                        }
+                        if (ncolor < 0) {
+                            ncolor = 1 - color;
+                            stk.push(to);
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+};
+
+class Solution {
+public:
+    bool isBipartite(vector<vector<int>>& graph) {
+        int sz = graph.size();
         vector<int> A(sz, -1);
         if (!f1(graph, A)) {
             return false;
