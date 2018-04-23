@@ -21,9 +21,54 @@ words[i] and prefix, suffix queries consist of lowercase letters only.
 #include <string>
 #include <array>
 #include <vector>
+#include <unordered_map>
 #include <algorithm>
 
 using namespace std;
+
+class WordFilter {
+public:
+    WordFilter(vector<string> words) {
+        for (int sz = words.size(), i = 0; i < sz; ++i) {
+            const string & word = words[i];
+            for (int len = word.size(), j = 0; j <= len; ++j) {
+                string a = word.substr(0, j), b = word.substr(len - j);
+                A[a].push_back(i);
+                B[b].push_back(i);
+            }
+        }
+    }
+    
+    int f(string prefix, string suffix) {
+        if (!A.count(prefix) or !B.count(suffix)) {
+            return -1;
+        }
+        const vector<int> & a = A[prefix], & b = B[suffix];
+        int i = a.size(), j = b.size();
+        --i;
+        --j;
+        while (i >= 0 and j >= 0) {
+            if (a[i] < b[j]) {
+                --j;
+            }
+            else if (a[i] > b[j]) {
+                --i;
+            }
+            else {
+                return a[i];
+            }
+        }
+        return -1;
+    }
+private:
+    unordered_map<string, vector<int>> A, B;
+};
+
+/**
+ * Your WordFilter object will be instantiated and called as such:
+ * WordFilter obj = new WordFilter(words);
+ * int param_1 = obj.f(prefix,suffix);
+ */
 
 struct Node {
     vector<int> weight;
