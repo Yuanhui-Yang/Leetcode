@@ -33,6 +33,18 @@ using namespace std;
 class Solution {
 public:
     int maxProfit(vector<int>& prices, int fee) {
+        int result = 0, hold = -prices[0];
+        for (int sz = prices.size(), i = 1; i < sz; ++i) {
+            result = max(result, hold + prices[i] - fee);
+            hold = max(hold, result - prices[i]);
+        }
+        return result;
+    }
+};
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices, int fee) {
         int sz = prices.size(), i;
         if (sz < 2) {
             return 0;
