@@ -104,6 +104,65 @@ public:
     }
 };
 
+class Solution {
+public:
+    int orderOfLargestPlusSign(int N, vector<vector<int>>& mines) {
+        vector<vector<int>> board(N, vector<int>(N, 1)), left(N, vector<int>(N, 0)), right(left), top(left), bottom(left);
+        for (const auto & mine : mines) {
+            board[mine[0]][mine[1]] = 0;
+        }
+        for (int i = 0; i < N; ++i) {
+            for (int j = 0; j < N; ++j) {
+                if (board[i][j] == 1) {
+                    if (i == 0) {
+                        top[i][j] = 1;
+                    }
+                    else {
+                        top[i][j] = top[i - 1][j] + 1;
+                    }
+                    if (j == 0) {
+                        left[i][j] = 1;
+                    }
+                    else {
+                        left[i][j] = left[i][j - 1] + 1;
+                    }
+                }
+            }
+        }
+        for (int i = N - 1; i >= 0; --i) {
+            for (int j = N - 1; j >= 0; --j) {
+                if (board[i][j] == 1) {
+                    if (i == N - 1) {
+                        bottom[i][j] = 1;
+                    }
+                    else {
+                        bottom[i][j] = bottom[i + 1][j] + 1;
+                    }
+                    if (j == N - 1) {
+                        right[i][j] = 1;
+                    }
+                    else {
+                        right[i][j] = right[i][j + 1] + 1;
+                    }   
+                }
+            }
+        }
+        int result = 0;
+        for (int i = 0; i < N; ++i) {
+            for (int j = 0; j < N; ++j) {
+                if (board[i][j] == 1) {
+                    int len = left[i][j];
+                    len = min(len, right[i][j]);
+                    len = min(len, top[i][j]);
+                    len = min(len, bottom[i][j]);
+                    result = max(result, len);
+                }
+            }
+        }
+        return result;
+    }
+};
+
 int main(void) {
     Solution solution;
     int N, result;
