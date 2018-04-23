@@ -620,7 +620,7 @@
 | 718 | [Maximum Length of Repeated Subarray](https://leetcode.com/problems/maximum-length-of-repeated-subarray/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-length-of-repeated-subarray.cpp) |
 | 719 | [Find K-th Smallest Pair Distance](https://leetcode.com/problems/find-k-th-smallest-pair-distance/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-k-th-smallest-pair-distance.cpp) |
 | 720 | [Longest Word in Dictionary](https://leetcode.com/problems/longest-word-in-dictionary/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-word-in-dictionary.cpp) |
-| 721 | [Accounts Merge](https://leetcode.com/problems/accounts-merge/) | [C++](https://github.com/yuanhui-yang/LeetCode/blo753b/master/Algorithms/accounts-merge.cpp) |
+| 721 | [Accounts Merge](https://leetcode.com/problems/accounts-merge/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/accounts-merge.cpp) |
 | 722 | [Remove Comments](https://leetcode.com/problems/remove-comments/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-comments.cpp) |
 | 724 | [Find Pivot Index](https://leetcode.com/problems/find-pivot-index/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-pivot-index.cpp) |
 | 725 | [Split Linked List in Parts](https://leetcode.com/problems/split-linked-list-in-parts/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/split-linked-list-in-parts.cpp) |
