@@ -18,18 +18,16 @@ Note: Length of the array will not exceed 10,000.
 
 class Solution {
 public:
-	int findLengthOfLCIS(vector<int>& nums) {
-		int len = nums.size(), i = 0, j, result = 0;
-		while (i < len) {
-			j = i;
-			while (i + 1 < len and nums[i] < nums[i + 1]) {
-				++i;
-			}
-			++i;
-			if (result < i - j) {
-				result = i - j;
-			}
-		}
-		return result;
-	}
+    int findLengthOfLCIS(vector<int>& nums) {
+        int sz = nums.size(), result = 0, i = 0, j = 0;
+        while (j < sz) {
+            int i = j;
+            while (j + 1 < sz and nums[j] < nums[j + 1]) {
+                ++j;
+            }
+            ++j;
+            result = max(result, j - i);
+        }
+        return result;
+    }
 };
