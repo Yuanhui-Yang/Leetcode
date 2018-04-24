@@ -18,68 +18,54 @@ nums[i] will be between 1 and 65535.
 k will be between 1 and floor(nums.length / 3).
 
 #include <iostream>
-#include <climits>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
 class Solution {
 public:
-  vector<int> maxSumOfThreeSubarrays(vector<int>& nums, int k) {
-    int sz = nums.size(), max_sum = INT_MIN;
-    vector<int> A = f1(nums), B = f2(A, sz, k), C = f3(A, sz, k), result;
-    for (int i = k; i <= sz - 2 * k; ++i) {
-      int curr_sum = 0;
-      curr_sum += A[B[i] + k] - A[B[i]];
-      curr_sum += A[i + k] - A[i];
-      curr_sum += A[C[i + k] + k] - A[C[i + k]];
-      if (curr_sum > max_sum) {
-        max_sum = curr_sum;
-        result = {B[i], i, C[i + k]};
-      }
+    vector<int> maxSumOfThreeSubarrays(vector<int>& nums, int k) {
+        int sz = nums.size();
+        vector<int> cumsums, left(sz, -1), right(sz, -1), result;
+        cumsums.push_back(0);
+        for (int i = 0; i < sz; ++i) {
+            cumsums.push_back(cumsums.back() + nums[i]);
+        }
+        for (int i = k - 1; i < sz; ++i) {
+            if (i == k - 1) {
+                left[i] = 0;
+            }
+            else if (cumsums[left[i - 1] + k] - cumsums[left[i - 1]] < cumsums[i + 1] - cumsums[i + 1 - k]) {
+                left[i] = i - k + 1;
+            }
+            else {
+                left[i] = left[i - 1];
+            }
+        }
+        for (int i = sz - k; i >= 0; --i) {
+            if (i == sz - k) {
+                right[i] = sz - k;
+            }
+            else if (cumsums[right[i + 1] + k] - cumsums[right[i + 1]] < cumsums[i + k] - cumsums[i]) {
+                right[i] = i;
+            }
+            else {
+                right[i] = right[i + 1];
+            }
+        }
+        for (int i = k, max_sum = 0; i + 2 * k <= sz; ++i) {
+            int center = cumsums[i + k] - cumsums[i];
+            int sum = cumsums[left[i - 1] + k] - cumsums[left[i - 1]];
+            sum += center;
+            sum += cumsums[right[i + k] + k] - cumsums[right[i + k]];
+            if (result.empty() or max_sum < sum) {
+                max_sum = sum;
+                result = {left[i - 1], i, right[i + k]};
+            }
+        }
+        return result;
     }
-    return result;
-  }
-private:
-  vector<int> f1(vector<int>& nums) {
-    vector<int> result;
-    result.push_back(0);
-    for (const auto & i : nums) {
-      result.push_back(result.back() + i);
-    }
-    return result;
-  }
-  vector<int> f2(vector<int>& A, int sz, int k) {
-    vector<int> result(sz + 1, 0);
-    result[k] = 0;
-    for (int i = k + 1, max_sum = A[k] - A[0]; i <= sz; ++i) {
-      int curr_sum = A[i] - A[i - k];
-      if (max_sum < curr_sum) {
-        max_sum = curr_sum;
-        result[i] = i - k;
-      }
-      else {
-        result[i] = result[i - 1];
-      }
-    }
-    return result;
-  }
-  vector<int> f3(vector<int>& A, int sz, int k) {
-    vector<int> result(sz + 1, 0);
-    int max_sum = A[sz] - A[sz - k];
-    result[sz - k] = sz - k;
-    for (int i = sz - k - 1; i >= 0; --i) {
-      int curr_sum = A[i + k] - A[i];
-      if (max_sum < curr_sum) {
-        max_sum = curr_sum;
-        result[i] = i;
-      }
-      else {
-        result[i] = result[i + 1];
-      }
-    }
-    return result;
-  }
 };
 
 int main(void) {
