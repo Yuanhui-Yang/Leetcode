@@ -18,10 +18,34 @@ The given number is in the range [0, 108]
 
 #include <iostream>
 #include <string>
+#include <array>
 #include <algorithm>
 #include <utility>
 
 using namespace std;
+
+class Solution {
+public:
+    int maximumSwap(int num) {
+        string s = to_string(num);
+        int sz = s.size();
+        array<int, 10> A;
+        A.fill(-1);
+        for (int i = 0; i < sz; ++i) {
+            int val = s[i] - '0';
+            A[val] = i;
+        }
+        for (int i = 0; i < sz; ++i) {
+            for (int j = 9; j > s[i] - '0'; --j) {
+                if (i < A[j]) {
+                    swap(s[i], s[A[j]]);
+                    return stoi(s);
+                }
+            }
+        }
+        return num;
+    }
+};
 
 class Solution {
 public:
