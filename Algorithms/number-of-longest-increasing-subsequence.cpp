@@ -22,34 +22,39 @@ using namespace std;
 
 class Solution {
 public:
-	int findNumberOfLIS(vector<int>& nums) {
-		if (nums.empty()) {
-			return 0;
-		}
-		int sz = nums.size(), i = 0, j = 0, maxLen = 1, result = 1;
-		vector<int> A(sz, 1), B(sz, 1);
-		for (i = 1; i < sz; ++i) {
-			for (j = 0; j < i; ++j) {
-				if (nums[i] > nums[j]) {
-					if (A[i] < A[j] + 1) {
-						A[i] = A[j] + 1;
-						B[i] = B[j];
-					}
-					else if (A[i] == A[j] + 1) {
-						B[i] += B[j];
-					}
-				}
-			}
-			if (maxLen < A[i]) {
-				result = B[i];
-				maxLen = A[i];
-			}
-			else if (maxLen == A[i]) {
-				result += B[i];
-			}
-		}
-		return result;
-	}
+    int findNumberOfLIS(vector<int>& nums) {
+        int sz = nums.size();
+        if (sz == 0) {
+            return 0;
+        }
+        int result = 1, max_len = 1;
+        vector<array<int, 2>> A(sz);
+        A[0].fill(1);
+        for (int i = 1; i < sz; ++i) {
+            int len = 1, cnt = 1;
+            for (int j = 0; j < i; ++j) {
+                if (nums[j] < nums[i]) {
+                    if (len < A[j][0] + 1) {
+                        len = A[j][0] + 1;
+                        cnt = A[j][1];
+                    }
+                    else if (A[j][0] + 1 == len) {
+                        cnt += A[j][1];
+                    }
+                }
+            }
+            A[i][0] = len;
+            A[i][1] = cnt;
+            if (max_len < len) {
+                max_len = len;
+                result = cnt;
+            }
+            else if (max_len == len) {
+                result += cnt;
+            }
+        }
+        return result;
+    }
 };
 
 int main(void) {
