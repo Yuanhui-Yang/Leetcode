@@ -30,26 +30,28 @@ struct TreeNode {
 class Solution {
 public:
     vector<double> averageOfLevels(TreeNode* root) {
-        vector<double> result;
         if (!root) {
-            return result;
+            return {};
         }
         queue<TreeNode*> q;
         q.push(root);
+        vector<double> result;
         while (!q.empty()) {
-            long sz = q.size(), sum = 0, k = sz;
-            while (sz-- > 0) {
+            int sz = q.size();
+            double val = 0;
+            for (int i = 0; i < sz; ++i) {
                 TreeNode * front = q.front();
                 q.pop();
-                sum += front->val;
                 if (front->left) {
                     q.push(front->left);
                 }
                 if (front->right) {
                     q.push(front->right);
                 }
+                val += front->val;
             }
-            result.push_back(double(sum) / k);
+            val /= sz;
+            result.push_back(val);
         }
         return result;
     }
