@@ -18,39 +18,32 @@ Note:
 S will consist of lowercase letters and have length in range [1, 500].
 
 #include <iostream>
+#include <vector>
 #include <array>
 #include <string>
 #include <queue>
+
 using namespace std;
 
 class Solution {
 public:
     string reorganizeString(string S) {
-        array<int, 26> A;
-        A.fill(0);
-        for (const auto & ch : S) {
-            int offset = ch - 'a';
-            ++A[offset];
-        }
-        priority_queue<array<int, 2>> pq;
-        for (int i = 0; i < 26; ++i) {
-            if (A[i] > 0) {
-                pq.push({A[i], i});
-            }
-        }
+        int sz = S.size();
+        array<int, 26> A = f1(S);
+        priority_queue<array<int, 2>> pq = f2(A);
         string result;
         while (!pq.empty()) {
             queue<array<int, 2>> q;
-            for (int i = 0; i < 2 and !pq.empty(); ++i) {
-                array<int, 2> top = pq.top();
-                pq.pop();
-                char ch = 'a' + top[1];
-                if (!result.empty() and ch == result.back()) {
+            for (int cnt = min(sz, 2), i = 0; i < cnt; ++i, --sz) {
+                if (pq.empty()) {
                     return "";
                 }
+                array<int, 2> top = pq.top();
+                pq.pop();
+                char ch = top[1] + 'a';
                 result.push_back(ch);
-                if (top[0] > 1) {
-                    --top[0];
+                --top[0];
+                if (top[0] > 0) {
                     q.push(top);
                 }
             }
@@ -62,12 +55,31 @@ public:
         }
         return result;
     }
+private:
+    array<int, 26> f1(string & S) {
+        array<int, 26> result;
+        result.fill(0);
+        for (const auto & ch : S) {
+            int id = ch - 'a';
+            ++result[id];
+        }
+        return result;
+    }
+    priority_queue<array<int, 2>> f2(array<int, 26> & A) {
+        priority_queue<array<int, 2>> result;
+        for (int i = 0; i < 26; ++i) {
+            if (A[i] > 0) {
+                result.push({A[i], i});
+            }
+        }
+        return result;
+    }
 };
 
 int main(void) {
     Solution solution;
     string S, result;
-    
+
     S = "aab";
     result = solution.reorganizeString(S);
     cout << result << '\n';
@@ -75,6 +87,6 @@ int main(void) {
     S = "aaab";
     result = solution.reorganizeString(S);
     cout << result << '\n';
-    
+
     return 0;
 }
