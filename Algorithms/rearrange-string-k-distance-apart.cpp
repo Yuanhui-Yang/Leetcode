@@ -36,44 +36,28 @@ using namespace std;
 class Solution {
 public:
     string rearrangeString(string s, int k) {
+        int sz = s.size();
         if (k < 0) {
             return "";
         }
         if (k <= 1) {
             return s;
         }
-        array<int, 26> A;
-        A.fill(0);
-        for (const auto & ch : s) {
-            int id = ch - 'a';
-            ++A[id];
-        }
-        priority_queue<array<int, 2>> pq;
-        for (int i = 0; i < 26; ++i) {
-            if (A[i] > 0) {
-                pq.push({A[i], i});
-            }
-        }
-        A.fill(0);
+        array<int, 26> A = f1(s);
+        priority_queue<array<int, 2>> pq = f2(A);
         string result;
         while (!pq.empty()) {
             queue<array<int, 2>> q;
-            for (int i = 0; i < k and !pq.empty(); ++i) {
-                array<int, 2> top = pq.top();
-                pq.pop();
-                if (A[top[1]] > 0) {
+            for (int cnt = min(k, sz), i = 0; i < cnt; ++i, --sz) {
+                if (pq.empty()) {
                     return "";
                 }
+                array<int, 2> top = pq.top();
+                pq.pop();
                 char ch = top[1] + 'a';
                 result.push_back(ch);
-                ++A[top[1]];
-                int l = result.size();
-                if (l >= k) {
-                    int id = result[l - k] - 'a';
-                    --A[id];
-                }
-                if (top[0] > 1) {
-                    --top[0];
+                --top[0];
+                if (top[0] > 0) {
                     q.push(top);
                 }
             }
@@ -81,6 +65,25 @@ public:
                 array<int, 2> front = q.front();
                 q.pop();
                 pq.push(front);
+            }
+        }
+        return result;
+    }
+private:
+    array<int, 26> f1(string & s) {
+        array<int, 26> result;
+        result.fill(0);
+        for (const auto & ch : s) {
+            int id = ch - 'a';
+            ++result[id];
+        }
+        return result;
+    }
+    priority_queue<array<int, 2>> f2(array<int, 26> & A) {
+        priority_queue<array<int, 2>> result;
+        for (int i = 0; i < 26; ++i) {
+            if (A[i] > 0) {
+                result.push({A[i], i});
             }
         }
         return result;
