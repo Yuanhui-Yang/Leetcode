@@ -657,6 +657,7 @@
 | 764 | [Largest Plus Sign](https://leetcode.com/problems/largest-plus-sign/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-plus-sign.cpp) |
 | 765 | [Couples Holding Hands](https://leetcode.com/problems/couples-holding-hands/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/couples-holding-hands.cpp) |
 | 766 | [Toeplitz Matrix](https://leetcode.com/problems/toeplitz-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/toeplitz-matrix.cpp) |
+| 767 | [Reorganize String](https://leetcode.com/problems/reorganize-string/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reorganize-string.cpp) |
 | 768 | [Max Chunks To Make Sorted II](https://leetcode.com/problems/max-chunks-to-make-sorted-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/max-chunks-to-make-sorted-ii.cpp) |
 | 769 | [Max Chunks To Make Sorted](https://leetcode.com/problems/max-chunks-to-make-sorted/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/max-chunks-to-make-sorted.cpp) |
 | 771 | [Jewels and Stones](https://leetcode.com/problems/jewels-and-stones/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/jewels-and-stones.cpp) |
