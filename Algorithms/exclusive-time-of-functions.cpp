@@ -1,7 +1,6 @@
-// 636. Exclusive Time of Functions
-// https://leetcode.com/problems/exclusive-time-of-functions/
+636. Exclusive Time of Functions
+https://leetcode.com/problems/exclusive-time-of-functions/
 
-/*
 Given the running logs of n functions that are executed in a nonpreemptive single threaded CPU, find the exclusive time of these functions.
 
 Each function has a unique id, start from 0 to n-1. A function may be called recursively or by another function.
@@ -30,86 +29,81 @@ Your output should be sorted by function id, which means the 0th element of your
 Two functions won't start or end at the same time.
 Functions could be called recursively, and will always end.
 1 <= n <= 100
-*/
 
 #include <iostream>
-#include <vector>
-#include <array>
-#include <stack>
 #include <string>
+#include <vector>
+#include <stack>
+
 using namespace std;
 
 class Solution {
 public:
-	vector<int> exclusiveTime(int n, vector<string>& logs) {
-		vector<int> result(n, 0);
-		stack<array<int, 3>> curr;
-		int time = 0;
-		for (const auto & i : logs) {
-			array<int, 3> j = f(i);
-			if (curr.empty()) {
-				curr.push(j);
-				time = j[2];
-			}
-			else if (j[1] == 0) {
-				result[curr.top()[0]] += j[2] - time;
-				time = j[2];
-				curr.push(j);
-			}
-			else {
-				result[j[0]] += j[2] + 1 - time;
-				time = j[2] + 1;
-				curr.pop();
-			}
-		}
-		return result;
-	}
+    vector<int> exclusiveTime(int n, vector<string>& logs) {
+        vector<int> result(n, 0);
+        stack<vector<string>> stk;
+        int time = 0;
+        for (const auto & log : logs) {
+            vector<string> fields = parse(log);
+            if (stk.empty()) {
+                stk.push(fields);
+                int ntime = stoi(fields[2]);
+                time = ntime;
+            }
+            else if (fields[1] == "start") {
+                vector<string> top = stk.top();
+                stk.push(fields);
+                int id = stoi(top[0]), ntime = stoi(fields[2]);
+                result[id] += ntime - time;
+                time = ntime;
+            }
+            else {
+                vector<string> top = stk.top();
+                stk.pop();
+                int id = stoi(top[0]), ntime = stoi(fields[2]) + 1;
+                result[id] += ntime - time;
+                time = ntime;
+            }
+        }
+        return result;
+    }
 private:
-	array<int, 3> f(const string & s) {
-		int sz = s.size(), i = 0, j = 0;
-		array<int, 3> result;
-		result.fill(0);
-		while (i < sz and s[i] != ':') {
-			++i;
-		}
-		result[0] = stoi(s.substr(j, i - j));
-		j = ++i;
-		while (i < sz and s[i] != ':') {
-			++i;
-		}
-		if (s.substr(j, i - j) == "start") {
-			result[1] = 0;
-		}
-		else {
-			result[1] = 1;
-		}
-		++i;
-		result[2] = stoi(s.substr(i));
-		return result;
-	}
+    vector<string> parse(string line) {
+        vector<string> result;
+        int sz = line.size(), j = 0;
+        while (j < sz) {
+            int i = j;
+            while (j < sz and line[j] != ':') {
+                ++j;
+            }
+            result.push_back(line.substr(i, j - i));
+            ++j;
+        }
+        return result;
+    }
 };
 
 int main(void) {
-	Solution solution;
-	int n;
-	vector<string> logs;
-	vector<int> result;
-	
-	n = 2;
-	logs = {"0:start:0", "1:start:2", "1:end:5", "0:end:6"};
-	result = solution.exclusiveTime(n,logs);
-	for (const auto & i : result) {
-		cout << i << '\t';
-	}
-	cout << '\n';
+    Solution solution;
+    int n;
+    vector<string> logs;
+    vector<int> result;
+    
+    n = 2;
+    logs = {"0:start:0", "1:start:2", "1:end:5", "0:end:6"};
+    result = solution.exclusiveTime(n,logs);
+    for (const auto & i : result) {
+        cout << i << '\t';
+    }
+    cout << '\n';
 
-	n = 2;
-	logs = {"0:start:0", "0:start:2", "0:end:5", "1:start:7", "1:end:7", "0:end:8"};
-	result = solution.exclusiveTime(n,logs);
-	for (const auto & i : result) {
-		cout << i << '\t';
-	}
-	cout << '\n';
+    n = 2;
+    logs = {"0:start:0", "0:start:2", "0:end:5", "1:start:7", "1:end:7", "0:end:8"};
+    result = solution.exclusiveTime(n,logs);
+    for (const auto & i : result) {
+        cout << i << '\t';
+    }
+    cout << '\n';
 
-	return 0;
+    return 0;
 }
