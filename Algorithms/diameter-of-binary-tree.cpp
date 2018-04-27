@@ -1,77 +1,59 @@
-// 543. Diameter of Binary Tree
-// https://leetcode.com/problems/diameter-of-binary-tree/
+543. Diameter of Binary Tree
+https://leetcode.com/problems/diameter-of-binary-tree/
 
-/*
 Given a binary tree, you need to compute the length of the diameter of the tree. The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
 
 Example:
 Given a binary tree 
-		  1
-		 / \
-		2   3
-	   / \     
-	  4   5    
+          1
+         / \
+        2   3
+       / \     
+      4   5    
 Return 3, which is the length of the path [4,2,1,3] or [5,2,1,3].
 
 Note: The length of path between two nodes is represented by the number of edges between them.
-*/
 
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-class Solution {
-public:
-	int diameterOfBinaryTree(TreeNode* root) {
-		int result = 0;
-		f(result, root);
-		return result;
-	}
-private:
-	int f(int & result, TreeNode * node) {
-		if (!node) {
-			return 0;
-		}
-		int left = f(result, node->left), right = f(result, node->right);
-		result = max(result, left + right);
-		return 1 + max(left, right);
-	}
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+struct TreeNode {
+    int val;
+    TreeNode * left, * right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };    int diameterOfBinaryTree(TreeNode* root) {
-
-	}
- */
 class Solution {
 public:
-	int diameterOfBinaryTree(TreeNode* root) {
-		return f(root)[0];
-	}
+    int diameterOfBinaryTree(TreeNode* root) {
+        int result = 1;
+        f1(root, result);
+        return result - 1;
+    }
 private:
-	array<int, 2> f(TreeNode* node) {
-		array<int, 2> result;
-		if (!node) {
-			result[0] = 0;
-			result[1] = 0;
-			return result;
-		}
-		array<int, 2> left = f(node->left), right = f(node->right);
-		result[0] = left[1] + right[1];
-		result[0] = max(result[0], left[0]);
-		result[0] = max(result[0], right[0]);
-		result[1] = 1 + max(left[1], right[1]);
-		return result;
-	}
+    int f1(TreeNode * node, int & result) {
+        if (!node) {
+            return 0;
+        }
+        int left = f1(node->left, result), right = f1(node->right, result), length = 1 + left + right;
+        result = max(result, length);
+        return max(left, right) + 1;
+    }
 };
+
+int main(void) {
+    Solution solution;
+    TreeNode * root = new TreeNode(1);
+    int result;
+
+    root->left = new TreeNode(2);
+    root->right = new TreeNode(3);
+    root->left->left = new TreeNode(4);
+    root->left->right = new TreeNode(5);
+    result = solution.diameterOfBinaryTree(root);
+    cout << result << '\n';
+
+    return 0;
+}
