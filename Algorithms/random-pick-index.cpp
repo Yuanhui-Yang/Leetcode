@@ -1,7 +1,6 @@
-// 398. Random Pick Index
-// https://leetcode.com/problems/random-pick-index/
+398. Random Pick Index
+https://leetcode.com/problems/random-pick-index/
 
-/*
 Given an array of integers with possible duplicates, randomly output the index of a given target number. You can assume that the given target number must exist in the array.
 
 Note:
@@ -17,31 +16,33 @@ solution.pick(3);
 
 // pick(1) should return 0. Since in the array only nums[0] is equal to 1.
 solution.pick(1);
-*/
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <cstdlib>
+#include <vector>
+
 using namespace std;
 
 class Solution {
 public:
-	Solution(vector<int> nums) {
-		this->nums.clear();
-		this->nums = nums;
-	}
-
-	int pick(int target) {
-		int result = -1;
-		for (int n = nums.size(), i = 0, cnt = 0; i < n; ++i) {
-			if (nums[i] == target) {
-				if (rand() % (++cnt) == 0) {
-					result = i;
-				}
-			}
-		}
-		return result;
-	}
+    Solution(vector<int> nums) {
+        this->nums = nums;
+    }
+    
+    int pick(int target) {
+        int result = -1;
+        for (int sz = nums.size(), cnt = 0, i = 0; i < sz; ++i) {
+            if (nums[i] == target) {
+                ++cnt;
+                if (rand() % cnt == 0) {
+                    result = i;
+                }
+            }
+        }
+        return result;
+    }
 private:
-	vector<int> nums;
+    vector<int> nums;
 };
 
 /**
@@ -51,20 +52,15 @@ private:
  */
 
 int main(void) {
-	vector<int> nums, results;
-	Solution solution(nums);
-	int result, target;
+    vector<int> nums;
+    int result;
 
-	nums = {1, 2, 3, 3, 3};
-	solution = Solution(nums);
-	target = 3;
-	result = solution.pick(target);
-	results.push_back(result);
-	result = solution.pick(target);
-	results.push_back(result);
-	result = solution.pick(target);
-	results.push_back(result);
+    nums = {1, 2, 3, 3, 3};
+    Solution solution(nums);
+    result = solution.pick(3);
+    cout << result << '\n';
+    result = solution.pick(1);
+    cout << result << '\n';
 
-	cout << "\nPassed All\n";
-	return 0;
+    return 0;
 }
