@@ -61,7 +61,7 @@ int main(void) {
     vector<int> nums;
     int m, result;
 
-    nums = {7,2,5,10,8};
+    nums = {7, 2, 5, 10, 8};
     m = 2;
     result = solution.splitArray(nums, m);
     cout << result << '\n';
@@ -116,7 +116,7 @@ int main(void) {
     vector<int> nums;
     int m, result;
 
-    nums = {7,2,5,10,8};
+    nums = {7, 2, 5, 10, 8};
     m = 2;
     result = solution.splitArray(nums, m);
     cout << result << '\n';
