@@ -68,3 +68,58 @@ int main(void) {
 
     return 0;
 }
+
+#include <iostream>
+#include <vector>
+#include <numeric>
+#include <algorithm>
+
+using namespace std;
+
+class Solution {
+public:
+    int splitArray(vector<int>& nums, int m) {
+        vector<long> A(nums.begin(), nums.end());
+        long left = *max_element(A.begin(), A.end());
+        long right = accumulate(A.begin(), A.end(), 0);
+        ++right;
+        while (left < right) {
+            long mid = left + (right - left) / 2;
+            if (f1(A, m, mid)) {
+                right = mid;
+            }
+            else {
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
+private:
+    bool f1(vector<long>& A, int m, long target) {
+        for (long sz = A.size(), sum = 0, i = 0; i < sz; ++i) {
+            long val = A[i];
+            sum += val;
+            if (sum > target) {
+                sum = val;
+                --m;
+                if (m <= 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+};
+
+int main(void) {
+    Solution solution;
+    vector<int> nums;
+    int m, result;
+
+    nums = {7,2,5,10,8};
+    m = 2;
+    result = solution.splitArray(nums, m);
+    cout << result << '\n';
+
+    return 0;
+}
