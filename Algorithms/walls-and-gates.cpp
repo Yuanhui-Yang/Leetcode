@@ -1,7 +1,6 @@
-// 286. Walls and Gates
-// https://leetcode.com/problems/walls-and-gates/
+286. Walls and Gates
+https://leetcode.com/problems/walls-and-gates/
 
-/*
 You are given a m x n 2D grid initialized with these three possible values.
 
 -1 - A wall or an obstacle.
@@ -19,36 +18,64 @@ After running your function, the 2D grid should be:
   2   2   1  -1
   1  -1   2  -1
   0  -1   3   4
-*/
+
+#include <iostream>
+#include <queue>
+#include <vector>
+#include <array>
+#include <climits>
+
+using namespace std;
 
 class Solution {
 public:
-	void wallsAndGates(vector<vector<int>>& rooms) {
-		int M = rooms.size(), N = M == 0 ? 0 : rooms[0].size();
-		for (int i = 0; i < M; ++i) {
-			for (int j = 0; j < N; ++j) {
-				f(rooms, i, j, M, N);
-			}
-		}
-	}
+    void wallsAndGates(vector<vector<int>>& rooms) {
+        int X = rooms.size(), Y = X ? rooms[0].size() : 0;
+        for (int i = 0; i < X; ++i) {
+            for (int j = 0; j < Y; ++j) {
+                f1(rooms, i, j);
+            }
+        }
+    }
 private:
-	void f(vector<vector<int>> & rooms, int x, int y, int M, int N) {
-		if (x < 0 or x >= M or y < 0 or y >= N or rooms[x][y] != 0) {
-			return;
-		}
-		queue<array<int, 2>> q;
-		q.push({x, y});
-		array<int, 4> dx = {0, -1, 0, 1}, dy = {-1, 0, 1, 0};
-		while (!q.empty()) {
-			array<int, 2> np = q.front();
-			q.pop();
-			for (int i = 0; i < 4; ++i) {
-				int nx = np[0] + dx[i], ny = np[1] + dy[i];
-				if (nx >= 0 and nx < M and ny >= 0 and ny < N and rooms[np[0]][np[1]] + 1 < rooms[nx][ny]) {
-					rooms[nx][ny] = rooms[np[0]][np[1]] + 1;
-					q.push({nx, ny});
-				}
-			}
-		}
-	}
+    void f1(vector<vector<int>>& rooms, int x, int y) {
+        if (rooms[x][y]) {
+            return;
+        }
+        int X = rooms.size(), Y = X ? rooms[0].size() : 0;
+        array<int, 4> dx = {0, -1, 0, 1}, dy = {-1, 0, 1, 0};
+        queue<array<int, 2>> q;
+        q.push({x, y});
+        while (!q.empty()) {
+            array<int, 2> front = q.front();
+            q.pop();
+            x = front[0];
+            y = front[1];
+            for (int i = 0; i < 4; ++i) {
+                int nx = x + dx[i], ny = y + dy[i];
+                if (nx >= 0 and nx < X and ny >= 0 and ny < Y) {
+                    if (rooms[x][y] + 1 < rooms[nx][ny]) {
+                        rooms[nx][ny] = rooms[x][y] + 1;
+                        q.push({nx, ny});
+                    }
+                }
+            }
+        }
+    }
 };
+
+int main(void) {
+    Solution solution;
+    vector<vector<int>> rooms;
+
+    rooms = {{INT_MAX, -1, 0, INT_MAX}, {INT_MAX, INT_MAX, INT_MAX, -1}, {INT_MAX, -1, INT_MAX, -1}, {0, -1, INT_MAX, INT_MAX}};
+    solution.wallsAndGates(rooms);
+    for (const auto & i : rooms) {
+        for (const auto & j : i) {
+            cout << j << '\t';
+        }
+        cout << '\n';
+    }
+
+    return 0;
+}
