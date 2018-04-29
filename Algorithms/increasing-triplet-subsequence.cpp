@@ -1,7 +1,6 @@
-// 334. Increasing Triplet Subsequence
-// https://leetcode.com/problems/increasing-triplet-subsequence/
+334. Increasing Triplet Subsequence
+https://leetcode.com/problems/increasing-triplet-subsequence/
 
-/*
 Given an unsorted array return whether an increasing subsequence of length 3 exists or not in the array.
 
 Formally the function should:
@@ -15,23 +14,44 @@ return true.
 
 Given [5, 4, 3, 2, 1],
 return false.
-*/
+
+#include <iostream>
+#include <climits>
+#include <vector>
+
+using namespace std;
 
 class Solution {
 public:
-	bool increasingTriplet(vector<int>& nums) {
-		int a = INT_MAX, b = INT_MAX;
-		for (const auto & i : nums) {
-			if (i <= a) {
-				a = i;
-			}
-			else if (i <= b) {
-				b = i;
-			}
-			else {
-				return true;
-			}
-		}
-		return false;
-	}
+    bool increasingTriplet(vector<int>& nums) {
+        int a = INT_MAX, b = INT_MAX;
+        for (const auto & i : nums) {
+            if (i <= a) {
+                a = i;
+            }
+            else if (i <= b) {
+                b = i;
+            }
+            else {
+                return true;
+            }
+        }
+        return false;
+    }
 };
+
+int main(void) {
+    Solution solution;
+    vector<int> nums;
+    bool result;
+
+    nums = {1, 2, 3, 4, 5};
+    result = solution.increasingTriplet(nums);
+    cout << boolalpha << result << '\n';
+
+    nums = {5, 4, 3, 2, 1};
+    result = solution.increasingTriplet(nums);
+    cout << boolalpha << result << '\n';
+
+    return 0;
+}
