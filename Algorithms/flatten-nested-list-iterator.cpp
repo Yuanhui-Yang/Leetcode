@@ -18,38 +18,34 @@
 class NestedIterator {
 public:
     NestedIterator(vector<NestedInteger> &nestedList) {
-        A.push(nestedList.begin());
-        B.push(nestedList.end());
+        stk.push({nestedList.begin(), nestedList.end()});
     }
 
     int next() {
-        vector<NestedInteger>::iterator & top = A.top();
-        int result = top->getInteger();
-        ++top;
+        array<vector<NestedInteger>::iterator, 2> top = stk.top();
+        int result = top[0]->getInteger();
+        ++stk.top()[0];
         return result;
     }
 
     bool hasNext() {
-        while (!A.empty()) {
-            vector<NestedInteger>::iterator & a = A.top(), & b = B.top();
-            if (a == b) {
-                A.pop();
-                B.pop();
+        while (!stk.empty()) {
+            array<vector<NestedInteger>::iterator, 2> top = stk.top();
+            if (top[0] == top[1]) {
+                stk.pop();
             }
-            else if (a->isInteger()) {
+            else if (top[0]->isInteger()) {
                 return true;
             }
             else {
-                vector<NestedInteger> & v = a->getList();
-                ++a;
-                A.push(v.begin());
-                B.push(v.end());
+                ++stk.top()[0];
+                stk.push({top[0]->getList().begin(), top[0]->getList().end()});
             }
         }
-        return false;
+        return !stk.empty();
     }
 private:
-    stack<vector<NestedInteger>::iterator> A, B;
+    stack<array<vector<NestedInteger>::iterator, 2>> stk;
 };
 
 /**
