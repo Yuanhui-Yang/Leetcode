@@ -1,7 +1,6 @@
-// 325. Maximum Size Subarray Sum Equals k
-// https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
+325. Maximum Size Subarray Sum Equals k
+https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
 
-/*
 Given an array nums and a target value k, find the maximum length of a subarray that sums to k. If there isn't one, return 0 instead.
 
 Note:
@@ -17,47 +16,47 @@ return 2. (because the subarray [-1, 2] sums to 1 and is the longest)
 
 Follow Up:
 Can you do it in O(n) time?
-*/
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+
 using namespace std;
 
 class Solution {
 public:
-	int maxSubArrayLen(vector<int>& nums, int k) {
-		unordered_map<int, int> h;
-		h[0] = -1;
-		int result = 0;
-		for (int n = nums.size(), sum = 0, i = 0; i < n; ++i) {
-			sum += nums[i];
-			if (h.count(sum - k)) {
-				result = max(result, i - h[sum - k]);
-			}
-			if (!h.count(sum)) {
-				h[sum] = i;
-			}
-		}
-		return result;
-	}
+    int maxSubArrayLen(vector<int>& nums, int k) {
+        int result = 0;
+        unordered_map<int, int> A;
+        A[0] = -1;
+        for (int sz = nums.size(), sum = 0, i = 0; i < sz; ++i) {
+            sum += nums[i];
+            int target = sum - k;
+            if (A.count(target)) {
+                result = max(result, i - A[target]);
+            }
+            if (!A.count(sum)) {
+                A[sum] = i;
+            }
+        }
+        return result;
+    }
 };
 
 int main(void) {
-	Solution solution;
-	vector<int> nums;
-	int k, answer, result;
+    Solution solution;
+    vector<int> nums;
+    int k, result;
 
-	nums = {1, -1, 5, -2, 3};
-	k = 3;
-	answer = 4;
-	result = solution.maxSubArrayLen(nums, k);
-	assert(answer == result);
+    nums = {1, -1, 5, -2, 3};
+    k = 3;
+    result = solution.maxSubArrayLen(nums, k);
+    cout << result << '\n';
 
-	nums = {-2, -1, 2, 1};
-	k = 1;
-	answer = 2;
-	result = solution.maxSubArrayLen(nums, k);
-	assert(answer == result);
+    nums = {-2, -1, 2, 1};
+    k = 1;
+    result = solution.maxSubArrayLen(nums, k); 
+    cout << result << '\n';
 
-	cout << "\nPassed All\n";
-	return 0;
+    return 0;
 }
