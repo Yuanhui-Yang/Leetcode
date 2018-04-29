@@ -11,7 +11,6 @@ Examples:
 ")(" -> [""]
 
 #include <iostream>
-#include <array>
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -22,30 +21,34 @@ class Solution {
 public:
     vector<string> removeInvalidParentheses(string s) {
         vector<string> result;
-        f1(result, s, 0, 0, {'(', ')'});
+        f1(result, s, "()", 0, 0);
         return result;
     }
 private:
-    void f1(vector<string> & result, string s, int last_i, int last_j, array<char, 2> par) {
-        for (int sz = s.size(), i = last_i, stack = 0; i < sz; ++i) {
-            if (s[i] == par[0]) {
-                ++stack;
+    void f1(vector<string> & result, string s, string pars, int start1, int start2) {
+        for (int sz = s.size(), stk = 0, i = start1; i < sz; ++i) {
+            char ch = s[i];
+            if (ch == pars[0]) {
+                ++stk;
             }
-            else if (s[i] == par[1]) {
-                --stack;
+            else if (ch == pars[1]) {
+                --stk;
             }
-            if (stack < 0) {
-                for (int j = last_j; j <= i; ++j) {
-                    if (s[j] == par[1] and (j == last_j or s[j] != s[j - 1])) {
-                        f1(result, s.substr(0, j) + s.substr(j + 1), i, j, par);
+            if (stk < 0) {
+                for (int j = start2; j <= i; ++j) {
+                    if (s[j] == pars[1]) {
+                        if (j == start2 or s[j - 1] != s[j]) {
+                            f1(result, s.substr(0, j) + s.substr(j + 1), pars, i, j);
+                        }
                     }
                 }
                 return;
             }
         }
         reverse(s.begin(), s.end());
-        if (par[0] == '(') {
-            f1(result, s, 0, 0, {')', '('});
+        if (pars[0] == '(') {
+            reverse(pars.begin(), pars.end());
+            f1(result, s, pars, 0, 0);
         }
         else {
             result.push_back(s);
