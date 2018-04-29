@@ -51,6 +51,25 @@ void gc(TreeNode*& root) {
 	}
 }
 
+class Solution {
+public:
+    TreeNode* inorderSuccessor(TreeNode* root, TreeNode* p) {
+        TreeNode * result = NULL;
+        while (root and p) {
+            if (p->val < root->val) {
+                if (!result or root->val - p->val < result->val - p->val) {
+                    result = root;
+                }
+                root = root->left;
+            }
+            else {
+                root = root->right;
+            }
+        }
+        return result;
+    }
+};
+
 // BEGIN: https://discuss.leetcode.com/topic/25052/10-and-4-lines-o-h-java-c
 // BEGIN: Time Complexity O(h) Space Complexity O(1)
 class Solution {
