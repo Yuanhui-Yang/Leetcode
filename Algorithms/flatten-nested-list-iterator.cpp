@@ -39,7 +39,8 @@ public:
             }
             else {
                 ++stk.top()[0];
-                stk.push({top[0]->getList().begin(), top[0]->getList().end()});
+                vector<NestedInteger> & v = top[0]->getList();
+                stk.push({v.begin(), v.end()});
             }
         }
         return !stk.empty();
