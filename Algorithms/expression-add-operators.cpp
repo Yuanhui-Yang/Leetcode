@@ -20,33 +20,31 @@ class Solution {
 public:
     vector<string> addOperators(string num, int target) {
         vector<string> result;
-        f1(result, "", num, 0, target, 0, 0);
+        f1(result, num, 0, "", 0, 0, target);
         return result;
     }
 private:
-    void f1(vector<string> & result, string path, string & num, int begin, long target, long eval, long mul) {
-        int end = num.size();
-        long val;
-        string s;
-        if (begin == end) {
-            if (target == eval) {
-                result.push_back(path);
+    void f1(vector<string> & result, string & num, int start, string s, long val, long mul, long target) {
+        int sz = num.size();
+        if (start >= sz) {
+            if (val == target) {
+                result.push_back(s);
             }
             return;
         }
-        for (int i = 1; i <= end - begin; ++i) {
-            if (i > 1 and num[begin] == '0') {
-                break;
+        for (int len = 1; len <= sz - start; ++len) {
+            if (num[start] == '0' and 2 <= len) {
+                return;
             }
-            s = num.substr(begin, i);
-            val = stol(s);
-            if (begin == 0) {
-                f1(result, s, num, begin + i, target, val, val);
+            string t = num.substr(start, len);
+            long ele = stol(t);
+            if (start == 0) {
+                f1(result, num, start + len, t, val + ele, ele, target);
             }
             else {
-                f1(result, path + "+" + s, num, begin + i, target, eval + val, val);
-                f1(result, path + "-" + s, num, begin + i, target, eval - val, -val);
-                f1(result, path + "*" + s, num, begin + i, target, eval - mul + mul * val, mul * val);
+                f1(result, num, start + len, s + "+" + t, val + ele, ele, target);
+                f1(result, num, start + len, s + "-" + t, val - ele, -ele, target);
+                f1(result, num, start + len, s + "*" + t, val - mul + mul * ele, mul * ele, target);   
             }
         }
     }
