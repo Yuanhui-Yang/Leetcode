@@ -11,26 +11,19 @@ Minimize the total number of operations.
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
-        int sz = nums.size(), i = 0, j = 0;
-        while (j < sz) {
-            while (j < sz and !nums[j]) {
-                ++j;
-            }
-            while (i < j and nums[i]) {
-                ++i;
-            }
-            if (j < sz) {
-                if (i < j) {
-                    swap(nums[i], nums[j]);
-                }
-                else {
-                    ++j;
+        for (int sz = nums.size(), i = 0; i < sz; ++i) {
+            if (nums[i]) {
+                int j = i;
+                while (j >= 1 and !nums[j - 1]) {
+                    swap(nums[j - 1], nums[j]);
+                    --j;
                 }
             }
         }
