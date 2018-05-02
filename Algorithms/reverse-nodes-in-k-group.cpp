@@ -46,31 +46,35 @@ vector<int> print(ListNode *head) {
 
 class Solution {
 public:
-	ListNode* reverseKGroup(ListNode* head, int k) {
-		ListNode dummy(0), *it = &dummy;
-		dummy.next = head;
-		while (h(head, k)) {
-			ListNode *prev = NULL;
-			for (int i = 0; i < k; ++i) {
-				ListNode *next = head->next;
-				head->next = prev;
-				prev = head;
-				head = next;
-			}
-			ListNode *tail = it->next;
-			tail->next = head;
-			it->next = prev;
-			it = tail;
-		}
-		return dummy.next;
-	}
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        if (!head or k <= 1) {
+            return head;
+        }
+        int len = f1(head);
+        ListNode * dummy = new ListNode(-1), * prev = dummy;
+        dummy->next = head;
+        while (len >= k) {
+            ListNode * curr = prev->next;
+            for (int i = 1; i < k; ++i) {
+                ListNode * next = curr->next;
+                curr->next = next->next;
+                next->next = prev->next;
+                prev->next = next;
+            }
+            prev = curr;
+            len -= k;
+        }
+        return dummy->next;
+    }
 private:
-	bool h(ListNode* head, int k) {
-		while (head and k-- > 0) {
-			head = head->next;
-		}
-		return k <= 0;
-	}
+    int f1(ListNode * head) {
+        int result = 0;
+        while (head) {
+            ++result;
+            head = head->next;
+        }
+        return result;
+    }
 };
 
 int main(void) {
