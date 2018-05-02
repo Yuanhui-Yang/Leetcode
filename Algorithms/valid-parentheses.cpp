@@ -14,25 +14,40 @@ using namespace std;
 class Solution {
 public:
     bool isValid(string s) {
-        stack<char> a;
+        stack<char> stk;
         for (const auto & i : s) {
-            if (i == '(' or i == '[' or i == '{') {
-                a.push(i);
+            if (stk.empty()) {
+                stk.push(i);
             }
-            else if (i == ')' and !a.empty() and a.top() == '(') {
-                a.pop();
+            else if (i == ')') {
+                if (stk.top() == '(') {
+                    stk.pop();
+                }
+                else {
+                    return false;
+                }
             }
-            else if (i == ']' and !a.empty() and a.top() == '[') {
-                a.pop();
+            else if (i == ']') {
+                if (stk.top() == '[') {
+                    stk.pop();
+                }
+                else {
+                    return false;
+                }
             }
-            else if (i == '}' and !a.empty() and a.top() == '{') {
-                a.pop();
+            else if (i == '}') {
+                if (stk.top() == '{') {
+                    stk.pop();
+                }
+                else {
+                    return false;
+                }
             }
             else {
-                return false;
+                stk.push(i);
             }
         }
-        return a.empty();
+        return stk.empty();
     }
 };
 
