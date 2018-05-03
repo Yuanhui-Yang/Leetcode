@@ -17,16 +17,16 @@ using namespace std;
 
 class Solution {
 public:
-	int removeDuplicates(vector<int>& nums) {
-		int result = 0;
-		for (int i = 0, n = nums.size(); i < n; ++i) {
-			if (i > 0 and nums[i] == nums[i - 1]) {
-				continue;
-			}
-			nums[result++] = nums[i];
-		}
-		return result;
-	}
+    int removeDuplicates(vector<int>& nums) {
+        int result = 0;
+        for (const auto & num : nums) {
+            if (result < 1 or nums[result - 1] < num) {
+                nums[result] = num;
+                ++result;
+            }
+        }
+        return result;
+    }
 };
 
 int main(void) {
