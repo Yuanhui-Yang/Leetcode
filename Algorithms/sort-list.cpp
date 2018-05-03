@@ -15,43 +15,42 @@ Sort a linked list in O(n log n) time using constant space complexity.
  */
 class Solution {
 public:
-	ListNode* sortList(ListNode* head) {
-		if (!head or !head->next) {
-			return head;
-		}
-		ListNode * slow = head, * fast = head, * prevSlow = NULL;
-		while (slow and fast and fast->next) {
-			prevSlow = slow;
-			slow = slow->next;
-			fast = fast->next;
-			fast = fast->next;
-		}
-		prevSlow->next = NULL;
-		ListNode * l1 = sortList(head), * l2 = sortList(slow);
-		return f(l1, l2);
-	}
+    ListNode* sortList(ListNode* head) {
+        if (!head or !head->next) {
+            return head;
+        }
+        ListNode * slow = head, * fast = head, * prev_slow = NULL;
+        while (slow and fast and fast->next) {
+            prev_slow = slow;
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        prev_slow->next = NULL;
+        return merge(sortList(head), sortList(slow));
+    }
 private:
-	ListNode * f(ListNode * l1, ListNode * l2) {
-		ListNode dummy(0), * l = &dummy;
-		while (l1 or l2) {
-			if (!l1) {
-				l->next = l2;
-				break;
-			}
-			if (!l2) {
-				l->next = l1;
-				break;
-			}
-			if (l1->val < l2->val) {
-				l->next = l1;
-				l1 = l1->next;
-			}
-			else {
-				l->next = l2;
-				l2 = l2->next;
-			}
-			l = l->next;
-		}
-		return dummy.next;
-	}
+    ListNode * merge(ListNode * l1, ListNode * l2) {
+        ListNode * dummy = new ListNode(-1), * it = dummy;
+        while (l1 or l2) {
+            if (!l1) {
+                it->next = l2;
+                break;
+            }
+            else if (!l2) {
+                it->next = l1;
+                break;
+            }
+            else if (l1->val < l2->val) {
+                it->next = l1;
+                l1 = l1->next;
+                it = it->next;
+            }
+            else {
+                it->next = l2;
+                l2 = l2->next;
+                it = it->next;
+            }
+        }
+        return dummy->next;
+    }
 };
