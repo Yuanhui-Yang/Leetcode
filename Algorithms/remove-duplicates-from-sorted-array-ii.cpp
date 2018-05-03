@@ -16,6 +16,20 @@ using namespace std;
 
 class Solution {
 public:
+    int removeDuplicates(vector<int>& nums) {
+        int sz = nums.size(), result = 0;
+        for (const auto & num : nums) {
+            if (result < 2 or nums[result - 2] < num) {
+                nums[result] = num;
+                ++result;
+            }
+        }
+        return result;
+    }
+};
+
+class Solution {
+public:
 	int removeDuplicates(vector<int>& nums) {
 		int i = 0, j = 0, n = nums.size();
 		while (i < n) {
