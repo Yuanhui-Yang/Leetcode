@@ -13,6 +13,14 @@ Sort a linked list in O(n log n) time using constant space complexity.
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
 class Solution {
 public:
     ListNode* sortList(ListNode* head) {
@@ -26,7 +34,8 @@ public:
             fast = fast->next->next;
         }
         prev_slow->next = NULL;
-        return merge(sortList(head), sortList(slow));
+        ListNode * l1 = sortList(head), * l2 = sortList(slow);
+        return merge(l1, l2);
     }
 private:
     ListNode * merge(ListNode * l1, ListNode * l2) {
