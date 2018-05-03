@@ -41,20 +41,20 @@ using namespace std;
 // BEGIN: https://discuss.leetcode.com/topic/29946/c-one-pass-concise-solution
 class Solution {
 public:
-	void sortColors(vector<int>& nums) {
-		size_t x = 0, i = 0, j = nums.size() - 1;
-		while (j != string::npos and i <= j) {
-			if (nums.at(i) == 0) {
-				swap(nums.at(i++), nums.at(x++));
-			}
-			else if (nums.at(i) == 1) {
-				i++;
-			}
-			else {
-				swap(nums.at(i), nums.at(j--));
-			}
-		}
-	}
+    void sortColors(vector<int>& nums) {
+        int sz = nums.size(), i = 0, j = sz - 1, zero = 0;
+        while (i <= j) {
+            if (nums[i] == 0) {
+                swap(nums[i++], nums[zero++]);
+            }
+            else if (nums[i] == 2) {
+                swap(nums[i], nums[j--]);
+            }
+            else {
+                ++i;
+            }
+        }
+    }
 };
 // END: https://discuss.leetcode.com/topic/29946/c-one-pass-concise-solution
 
