@@ -15,127 +15,25 @@ Could you solve it in O(nk) runtime?
 
 class Solution {
 public:
-	int minCostII(vector<vector<int>>& costs) {
-		int n = costs.size(), k = n == 0 ? 0 : costs[0].size();
-		if (n == 0 or k == 0) {
-			return 0;
-		}
-		if (n == 1) {
-			return *min_element(begin(costs[0]), end(costs[0]));
-		}
-		if (k == 1) {
-			return 0;
-		}
-		array<int, 3> curr({-1, 0, 0});
-		for (int i = 0; i < n; ++i) {
-			f(curr, costs[i]);
-		}
-		return curr[1];
-	}
-private:
-	void f(array<int, 3> & curr, const vector<int> & v) {
-		array<int, 3> next;
-		next.fill(-1);
-		for (int k = v.size(), j = 0; j < k; ++j) {
-			int val = (j == curr[0] ? curr[2] : curr[1]) + v[j];
-			if (next[1] < 0) {
-				next[0] = j;
-				next[1] = val;
-			}
-			else if (next[2] < 0) {
-				if (val < next[1]) {
-					next[2] = next[1];
-					next[1] = val;
-					next[0] = j;
-				}
-				else {
-					next[2] = val;
-				}
-			}
-			else if (val < next[1]) {
-				next[2] = next[1];
-				next[1] = val;
-				next[0] = j;
-			}
-			else if (val < next[2]) {
-				next[2] = val;
-			}
-		}
-		curr = next;
-	}
-};
-
-class Solution {
-public:
-	int minCostII(vector<vector<int>>& costs) {
-		int n = costs.size(), k = n == 0 ? 0 : costs[0].size();
-		if (n == 0 or k == 0) {
-			return 0;
-		}
-		if (n == 1) {
-			return *min_element(begin(costs[0]), end(costs[0]));
-		}
-		if (k == 1) {
-			return 0;
-		}
-		array<int, 3> curr;
-		curr.fill(-1);
-		for (int j = 0; j < k; ++j) {
-			int val = costs[0][j];
-			if (curr[1] == -1) {
-				curr[0] = j;
-				curr[1] = val;
-			}
-			else if (curr[2] == -1) {
-				if (val < curr[1]) {
-					curr[2] = curr[1];
-					curr[0] = j;
-					curr[1] = val;
-				}
-				else {
-					curr[2] = val;
-				}
-			}
-			else if (val < curr[1]) {
-				curr[2] = curr[1];
-				curr[0] = j;
-				curr[1] = val;
-			}
-			else if (val < curr[2]) {
-				curr[2] = val;
-			}
-		}
-		for (int i = 1; i < n; ++i) {
-			int nextFirstVal = -1, nextFirstId = -1, nextSecondVal = -1;
-			for (int j = 0; j < k; ++j) {
-				int val = costs[i][j] + (j == curr[0] ? curr[2] : curr[1]);
-				if (nextFirstVal == -1) {
-					nextFirstVal = val;
-					nextFirstId = j;
-				}
-				else if (nextSecondVal == -1) {
-					if (val < nextFirstVal) {
-						nextSecondVal = nextFirstVal;
-						nextFirstVal = val;
-						nextFirstId = j;
-					}
-					else {
-						nextSecondVal = val;
-					}
-				}
-				else if (val < nextFirstVal) {
-					nextSecondVal = nextFirstVal;
-					nextFirstVal = val;
-					nextFirstId = j;
-				}
-				else if (val < nextSecondVal) {
-					nextSecondVal = val;
-				}
-			}
-			curr[1] = nextFirstVal;
-			curr[0] = nextFirstId;
-			curr[2] = nextSecondVal;
-		}
-		return curr[1];
-	}
+    int minCostII(vector<vector<int>>& costs) {
+        int min1 = 0, idx1 = -1, min2 = 0;
+        for (const auto & cost : costs) {
+            int nmin1 = INT_MAX, nidx1 = -1, nmin2 = INT_MAX;
+            for (int sz = cost.size(), i = 0; i < sz; ++i) {
+                int sum = cost[i] + (i == idx1 ? min2 : min1);
+                if (sum < nmin1) {
+                    nmin2 = nmin1;
+                    nmin1 = sum;
+                    nidx1 = i;
+                }
+                else if (sum < nmin2) {
+                    nmin2 = sum;
+                }
+            }
+            min1 = nmin1;
+            idx1 = nidx1;
+            min2 = nmin2;
+        }
+        return min1;
+    }
 };
