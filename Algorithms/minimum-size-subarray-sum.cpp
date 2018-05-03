@@ -15,17 +15,19 @@ If you have figured out the O(n) solution, try coding another solution of which 
 
 class Solution {
 public:
-	int minSubArrayLen(int s, vector<int>& nums) {
-		int result = 0;
-		for (int sum = 0, n = nums.size(), i = 0, j = 0; j < n; ++j) {
-			sum += nums[j];
-			while (sum >= s) {
-				if (result == 0 or (j - i + 1 < result)) {
-					result = j - i + 1;
-				}
-				sum -= nums[i++];
-			}
-		}
-		return result;
-	}
+    int minSubArrayLen(int s, vector<int>& nums) {
+        int sz = nums.size(), i = 0, j = 0, sum = 0, result = 0;
+        while (j < sz) {
+            sum += nums[j];
+            ++j;
+            while (sum >= s) {
+                if (result == 0 or j - i < result) {
+                    result = j - i;
+                }
+                sum -= nums[i];
+                ++i;
+            }
+        }
+        return result;
+    }
 };
