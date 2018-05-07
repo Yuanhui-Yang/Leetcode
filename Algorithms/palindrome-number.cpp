@@ -44,17 +44,20 @@ using namespace std;
 
 class Solution {
 public:
-	bool isPalindrome(int x) {
-		if (x < 0) {
-			return false;
-		}
-		long long result = 0, val = x;
-		while (x) {
-			result = result * 10 + x % 10;
-			x /= 10;
-		}
-		return result == val;
-	}
+    bool isPalindrome(int x) {
+        if (x < 0) {
+            return false;
+        }
+        if (x and x % 10 == 0) {
+            return false;
+        }
+        int y = 0;
+        while (x > y) {
+            y = 10 * y + x % 10;
+            x /= 10;
+        }
+        return x == y or x == y / 10;
+    }
 };
 
 int main(void) {
