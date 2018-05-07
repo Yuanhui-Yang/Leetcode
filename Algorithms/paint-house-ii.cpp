@@ -18,21 +18,21 @@ public:
     int minCostII(vector<vector<int>>& costs) {
         int min1 = 0, idx1 = -1, min2 = 0;
         for (const auto & cost : costs) {
-            int nmin1 = INT_MAX, nidx1 = -1, nmin2 = INT_MAX;
+            int nextmin1 = INT_MAX, nextidx1 = -1, nextmin2 = INT_MAX;
             for (int sz = cost.size(), i = 0; i < sz; ++i) {
                 int sum = cost[i] + (i == idx1 ? min2 : min1);
-                if (sum < nmin1) {
-                    nmin2 = nmin1;
-                    nmin1 = sum;
-                    nidx1 = i;
+                if (sum < nextmin1) {
+                    nextmin2 = nextmin1;
+                    nextmin1 = sum;
+                    nextidx1 = i;
                 }
-                else if (sum < nmin2) {
-                    nmin2 = sum;
+                else if (sum < nextmin2) {
+                    nextmin2 = sum;
                 }
             }
-            min1 = nmin1;
-            idx1 = nidx1;
-            min2 = nmin2;
+            min1 = nextmin1;
+            idx1 = nextidx1;
+            min2 = nextmin2;
         }
         return min1;
     }
