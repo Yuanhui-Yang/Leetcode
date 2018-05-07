@@ -239,6 +239,7 @@
 | 254 | [Factor Combinations](https://leetcode.com/problems/factor-combinations/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/factor-combinations.cpp) |
 | 255 | [Verify Preorder Sequence in Binary Search Tree](https://leetcode.com/problems/verify-preorder-sequence-in-binary-search-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/verify-preorder-sequence-in-binary-search-tree.cpp) |
 | 256 | [Paint House](https://leetcode.com/problems/paint-house/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/paint-house.cpp) |
+| 257 | [Binary Tree Paths](https://leetcode.com/problems/binary-tree-paths/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/binary-tree-paths.cpp) |
 | 261 | [Graph Valid Tree](https://leetcode.com/problems/graph-valid-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/graph-valid-tree.cpp) |
 | 258 | [Add Digits](https://leetcode.com/problems/add-digits/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/add-digits.cpp) |
 | 259 | [3Sum Smaller](https://leetcode.com/problems/3sum-smaller/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/3sum-smaller.cpp) |
