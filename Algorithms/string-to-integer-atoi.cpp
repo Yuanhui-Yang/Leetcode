@@ -31,28 +31,27 @@ using namespace std;
 
 class Solution {
 public:
-	int myAtoi(string str) {
-		long long a = 1, b = 0;
-		int sz = str.size(), i = 0;
-		while (i < sz and str[i] == ' ') {
-			++i;
-		}
-		if (str[i] == '+' or str[i] == '-') {
-			a = str[i] == '+' ? 1 : -1;
-			++i;
-		}
-		while (i < sz and isdigit(str[i])) {
-			b = 10 * b + str[i] - '0';
-			if (a * b < INT_MIN) {
-				return INT_MIN;
-			}
-			else if (a * b > INT_MAX) {
-				return INT_MAX;
-			}
-			++i;
-		}
-		return a * b;
-	}
+    int myAtoi(string str) {
+        long sz = str.size(), i = 0, a = 1, b = 0;
+        while (i < sz and str[i] == ' ') {
+            ++i;
+        }
+        if (str[i] == '+' or str[i] == '-') {
+            a = str[i] == '+' ? 1 : -1;
+            ++i;
+        }
+        while (i < sz and isdigit(str[i])) {
+            b = 10 * b + (str[i] - '0');
+            if (a * b < INT_MIN) {
+                return INT_MIN;
+            }
+            else if (a * b > INT_MAX) {
+                return INT_MAX;
+            }
+            ++i;
+        }
+        return a * b;
+    }
 };
 
 int main(void) {
