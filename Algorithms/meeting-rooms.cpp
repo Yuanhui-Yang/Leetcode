@@ -18,21 +18,22 @@ return false.
  *     Interval(int s, int e) : start(s), end(e) {}
  * };
  */
+
+struct Comp {
+    bool operator() (const Interval & a, const Interval & b) {
+        return a.start < b.start;
+    }
+};
+
 class Solution {
 public:
-	bool canAttendMeetings(vector<Interval>& intervals) {
-		sort(begin(intervals), end(intervals), Comp());
-		for (int sz = intervals.size(), i = 0; i + 1 < sz; ++i) {
-			if (intervals[i].end > intervals[i + 1].start) {
-				return false;
-			}
-		}
-		return true;
-	}
-private:
-	struct Comp {
-		bool operator () (const Interval & a, const Interval & b) {
-			return a.start < b.start;
-		}
-	};
+    bool canAttendMeetings(vector<Interval>& intervals) {
+        sort(intervals.begin(), intervals.end(), Comp());
+        for (int sz = intervals.size(), i = 0; i + 1 < sz; ++i) {
+            if (intervals[i + 1].start < intervals[i].end) {
+                return false;
+            }
+        }
+        return true;
+    }
 };
