@@ -18,31 +18,39 @@ Could you do it in O(n) time and O(1) space?
  */
 class Solution {
 public:
-	bool isPalindrome(ListNode* head) {
-		if (!head or !head->next) {
-			return true;
-		}
-		ListNode * slow = head, * fast = head, * prev = NULL;
-		while (slow and fast and fast->next) {
-			prev = slow;
-			slow = slow->next;
-			fast = fast->next->next;
-		}
-		prev->next = NULL;
-		fast = NULL;
-		while (slow) {
-			ListNode * next = slow->next;
-			slow->next = fast;
-			fast = slow;
-			slow = next;
-		}
-		while (head and fast) {
-			if (head->val != fast->val) {
-				return false;
-			}
-			head = head->next;
-			fast = fast->next;
-		} 
-		return true;
-	}
+    bool isPalindrome(ListNode* head) {
+        if (!head or !head->next) {
+            return true;
+        }
+        ListNode * prevslow = NULL, * slow = head, * fast = head;
+        while (slow and fast and fast->next) {
+            prevslow = slow;
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        prevslow->next = NULL;
+        slow = reverse(slow);
+        fast = head;
+        while (slow and fast) {
+            if (slow->val == fast->val) {
+                slow = slow->next;
+                fast = fast->next;
+            }
+            else {
+                return false;
+            }
+        }
+        return true;
+    }
+private:
+    ListNode * reverse(ListNode * head) {
+        ListNode * result = NULL;
+        while (head) {
+            ListNode * next = head->next;
+            head->next = result;
+            result = head;
+            head = next;
+        }
+        return result;
+    }
 };
