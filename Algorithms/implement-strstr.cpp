@@ -12,43 +12,44 @@ using namespace std;
 
 class Solution {
 public:
-	int strStr(string haystack, string needle) {
-		int m = haystack.size(), n = needle.size(), i = 0, j = -1;
-		if (m < n) {
-			return -1;
-		}
-		if (m == n) {
-			return haystack == needle ? 0 : -1;
-		}
-		if (n == 0) {
-			return 0;
-		}
-		vector<int> pi(n + 1);
-		pi.front() = -1;
-		while (i < n) {
-			if (j == -1 or needle[i] == needle[j]) {
-				pi[++i] = ++j;
-			}
-			else {
-				j = pi[j];
-			}
-		}
-		i = 0;
-		j = 0;
-		while (i < m) {
-			if (j == -1 or haystack[i] == needle[j]) {
-				++i;
-				++j;
-			}
-			else {
-				j = pi[j];
-			}
-			if (j == n) {
-				return i - n;
-			}
-		}
-		return -1;
-	}
+    int strStr(string haystack, string needle) {
+        if (needle.empty()) {
+            return 0;
+        }
+        f1(needle);
+        return f2(haystack, needle);
+    }
+private:
+    vector<int> A;
+    void f1(string & s) {
+        int sz = s.size(), i = 0, j = -1;
+        A.resize(sz + 1);
+        A[0] = -1;
+        while (i < sz) {
+            if (j == -1 or s[i] == s[j]) {
+                A[++i] = ++j;
+            }
+            else {
+                j = A[j];
+            }
+        }
+    }
+    int f2(string & haystack, string & needle) {
+        int sz1 = haystack.size(), sz2 = needle.size(), i = 0, j = 0;
+        while (i < sz1) {
+            if (j == -1 or haystack[i] == needle[j]) {
+                ++i;
+                ++j;
+            }
+            else {
+                j = A[j];
+            }
+            if (j == sz2) {
+                return i - sz2;
+            }
+        }
+        return -1;
+    }
 };
 
 int main(void) {
