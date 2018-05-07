@@ -38,3 +38,29 @@ private:
 		}
 	};
 };
+
+/**
+ * Definition for an interval.
+ * struct Interval {
+ *     int start;
+ *     int end;
+ *     Interval() : start(0), end(0) {}
+ *     Interval(int s, int e) : start(s), end(e) {}
+ * };
+ */
+class Solution {
+public:
+    int minMeetingRooms(vector<Interval>& intervals) {
+        map<int, int> A;
+        for (const auto & interval : intervals) {
+            ++A[interval.start];
+            --A[interval.end];
+        }
+        int result = 0, cnt = 0;
+        for (const auto & i : A) {
+            cnt += i.second;
+            result = max(result, cnt);
+        }
+        return result;
+    }
+};
