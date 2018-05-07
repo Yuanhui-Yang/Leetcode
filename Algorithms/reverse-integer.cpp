@@ -53,14 +53,19 @@ using namespace std;
 // BEGIN: https://discuss.leetcode.com/topic/6005/shortest-code-possible-in-c
 class Solution {
 public:
-	int reverse(int x) {
-		long long result = 0;
-		while (x) {
-			result = 10 * result + x % 10;
-			x /= 10;
-		}
-		return (result <= INT_MIN or result >= INT_MAX) ? 0 : result;
-	}
+    int reverse(int x) {
+        long y = f1(x);
+        return INT_MIN <= y and y <= INT_MAX ? y : 0;
+    }
+private:
+    long f1(long x) {
+        long result = 0;
+        while (x) {
+            result = 10 * result + x % 10;
+            x /= 10;
+        }
+        return result;
+    }
 };
 // END: https://discuss.leetcode.com/topic/6005/shortest-code-possible-in-c
 
