@@ -19,37 +19,19 @@ using namespace std;
 
 class Solution {
 public:
-	string convert(string s, int numRows) {
-		if (numRows <= 0) {
-			return "";
-		}
-		if (numRows == 1) {
-			return s;
-		}
-		vector<string> v(numRows);
-		for (int i = 0, j = 0, k = 0, n = s.size(); i < n; ++i) {
-			v[j].push_back(s[i]);
-			if (k % 2 == 0) {
-				if (j + 1 < numRows) {
-					++j;
-				}
-				else {
-					--j;
-					++k;
-				}
-			}
-			else {
-				if (j > 0) {
-					--j;
-				}
-				else {
-					++j;
-					++k;
-				}
-			}
-		}
-		return accumulate(begin(v), end(v), string(""));;
-	}
+    string convert(string s, int numRows) {
+        vector<string> A(numRows);
+        int sz = s.size(), i = 0;
+        while (i < sz) {
+            for (int j = 0; j <= numRows - 1 and i < sz; ++j, ++i) {
+                A[j].push_back(s[i]);
+            }
+            for (int j = numRows - 2; j >= 1 and i < sz; --j, ++i) {
+                A[j].push_back(s[i]);
+            }
+        }
+        return accumulate(A.begin(), A.end(), string());
+    }
 };
 
 int main(void) {
