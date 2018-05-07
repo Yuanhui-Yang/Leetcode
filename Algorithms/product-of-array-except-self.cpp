@@ -14,17 +14,17 @@ Could you solve it with constant space complexity? (Note: The output array does 
 
 class Solution {
 public:
-	vector<int> productExceptSelf(vector<int>& nums) {
-		int left = 1, right = 1, n = nums.size();
-		vector<int> result(n, 1);
-		for (int i = 0; i < n; ++i) {
-			result[i] *= left;
-			left *= nums[i];
-		}
-		for (int i = n - 1; i >= 0; --i) {
-			result[i] *= right;
-			right *= nums[i];
-		}
-		return result;
-	}
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int sz = nums.size();
+        vector<int> result(sz);
+        for (int i = sz - 1, val = 1; i >= 0; --i) {
+            result[i] = val;
+            val *= nums[i];
+        }
+        for (int i = 0, val = 1; i < sz; ++i) {
+            result[i] *= val;
+            val *= nums[i];
+        }
+        return result;
+    }
 };
