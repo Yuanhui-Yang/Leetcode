@@ -4,42 +4,58 @@
 #include <vector>
 #include <utility>
 using namespace std;
+
 class Solution {
 public:
-	bool validTree(int n, vector<pair<int, int>>& edges) {
-		if (n != (int)edges.size() + 1) return false;
-		vector<int> roots(n, -1);
-		for (const auto &i : edges) {
-			int x = i.first, y = i.second;
-			if (roots[x] == -1 && roots[y] == -1) {
-				roots[x] = x;
-				roots[y] = x;
-				continue;
-			}
-			if (roots[x] == -1 && roots[y] != -1) {
-				while (y != roots[y]) y = roots[y] = roots[roots[y]];
-				roots[x] = y;
-				continue;
-			}
-			if (roots[x] != -1 && roots[y] == -1) {
-				while (x != roots[x]) x = roots[x] = roots[roots[x]];
-				roots[y] = x;
-				continue;
-			}
-			while (x != roots[x]) x = roots[x] = roots[roots[x]];
-			while (y != roots[y]) y = roots[y] = roots[roots[y]];
-			if (x == y) return false;
-			roots[y] = x;
-		}
-		for (int i = 0; i < n; ++i) {
-			int x = i;
-			while (x != roots[x]) x = roots[x] = roots[roots[x]];
-			roots[i] = x;
-		}
-		for (const auto &i : roots) if (i != roots.front()) return false;
-		return true; 
-	}
+    bool validTree(int n, vector<pair<int, int>>& edges) {
+        int sz = edges.size();
+        if (n != sz + 1) {
+            return false;
+        }
+        f1(n);
+        return f2(edges);
+    }
+private:
+    vector<int> A, B;
+    void f1(int n) {
+        A.resize(n, 0);
+        iota(A.begin(), A.end(), 0);
+        B.resize(n, 1);
+    }
+    bool f2(vector<pair<int, int>> & edges) {
+        for (auto & edge : edges) {
+            if (f3(edge)) {
+                return false;
+            }
+        }
+        for (auto & i : A) {
+            if (find(i) != find(A[0])) {
+                return false;
+            }
+        }
+        return true;
+    }
+    bool f3(pair<int, int> & edge) {
+        int x = find(edge.first), y = find(edge.second);
+        if (x == y) {
+            return true;
+        }
+        if (B[x] > B[y]) {
+            swap(x, y);
+        }
+        A[x] = y;
+        B[y] += B[x];
+        return false;
+    }
+    int find(int node) {
+        while (node != A[node]) {
+            A[node] = A[A[node]];
+            node = A[node];
+        }
+        return node;
+    }
 };
+
 int main(void) {
 	Solution solution;
 	int n = 5;
