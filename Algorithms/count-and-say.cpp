@@ -31,22 +31,30 @@ using namespace std;
 
 class Solution {
 public:
-	string countAndSay(int n) {
-		string s("1");
-		while (n-- > 1) {
-			string t;
-			for (int m = s.size(), i = 0; i < m; ++i) {
-				int j = i;
-				while (i + 1 < m and s[i] == s[i + 1]) {
-					++i;
-				}
-				t.append(to_string(i + 1 - j));
-				t.push_back(s[j]);
-			}
-			s =  t;
-			}
-		return s;
-	}
+    string countAndSay(int n) {
+        string result;
+        for (int i = 0; i < n; ++i) {
+            if (i == 0) {
+                result = "1";
+            }
+            else {
+                string s;
+                int sz = result.size(), j = 0;
+                while (j < sz) {
+                    int cnt = 1;
+                    while (j + 1 < sz and result[j] == result[j + 1]) {
+                        ++cnt;
+                        ++j;
+                    }
+                    s.append(to_string(cnt));
+                    s.push_back(result[j]);
+                    ++j;
+                }
+                result = s;
+            }
+        }
+        return result;
+    }
 };
 
 int main(void) {
