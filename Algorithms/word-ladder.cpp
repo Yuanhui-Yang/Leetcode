@@ -41,8 +41,7 @@ public:
         }
         queue<string> q;
         q.push(beginWord);
-        unordered_set<string> B;
-        B.insert(beginWord);
+        A.erase(beginWord);
         int result = 0;
         while (!q.empty()) {
             ++result;
@@ -58,9 +57,9 @@ public:
                     for (char i = 'a'; i <= 'z'; ++i) {
                         if (i != ch) {
                             ch = i;
-                            if (A.count(front) and !B.count(front)) {
-                                B.insert(front);
+                            if (A.count(front)) {
                                 q.push(front);
+                                A.erase(front);
                             }
                             ch = curr;
                         }
