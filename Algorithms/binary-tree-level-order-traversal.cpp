@@ -56,30 +56,31 @@ struct TreeNode {
 
 class Solution {
 public:
-	vector<vector<int>> levelOrder(TreeNode* root) {
-		if (!root) {
-			return {};
-		}
-		vector<vector<int>> result;
-		vector<TreeNode*> current;
-		current.push_back(root);
-		while (!current.empty()) {
-			vector<TreeNode*> next;
-			vector<int> v;
-			for (const auto &i : current) {
-				v.push_back(i->val);
-				if (i->left) {
-					next.push_back(i->left);
-				}
-				if (i->right) {
-					next.push_back(i->right);
-				}
-			}
-			result.push_back(v);
-			current = next;
-		}
-		return result;
-	}
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        if (!root) {
+            return {};
+        }
+        vector<vector<int>> result;
+        queue<TreeNode*> q;
+        q.push(root);
+        while (!q.empty()) {
+            int sz = q.size();
+            vector<int> v;
+            while (sz-- > 0) {
+                root = q.front();
+                q.pop();
+                v.push_back(root->val);
+                if (root->left) {
+                    q.push(root->left);
+                }
+                if (root->right) {
+                    q.push(root->right);
+                }
+            }
+            result.push_back(v);
+        }
+        return result;
+    }
 };
 
 void gc(TreeNode*& root) {
