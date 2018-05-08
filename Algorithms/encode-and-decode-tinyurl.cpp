@@ -38,38 +38,33 @@ using namespace std;
 class Solution {
 public:
 
-	// Encodes a URL to a shortened URL.
-	string encode(string longUrl) {
-		if (!h1.empty() and h1.count(longUrl)) {
-			return h1.at(longUrl)->second;
-		}
-		string shortUrl(shortUrlSize, table.front());
-		do {
-			for (auto &i : shortUrl) {
-				int id = rand() % table.size();
-				char ch = table.at(id);
-				i = ch;
-			}
-		} while (!h2.empty() and h2.count(shortUrl));
-		l.push_back(make_pair(longUrl, shortUrl));
-		h1[longUrl] = prev(end(l));
-		h2[shortUrl] = prev(end(l));
-		return shortUrl;
-	}
+    // Encodes a URL to a shortened URL.
+    string encode(string longUrl) {
+        string result = f1(8);
+        A[result] = longUrl;
+        return result;
+    }
 
-		// Decodes a shortened URL to its original URL.
-	string decode(string shortUrl) {
-		if (h2.empty() or !h2.count(shortUrl)) {
-			return "";
-		}
-		return h2.at(shortUrl)->first;
-	}
+    // Decodes a shortened URL to its original URL.
+    string decode(string shortUrl) {
+        return A[shortUrl];
+    }
 private:
-	size_t shortUrlSize = 6;
-	string table = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	list<pair<string, string>> l;
-	unordered_map<string, list<pair<string, string>>::iterator> h1, h2;
+    unordered_map<string, string> A;
+    string f1(int sz) {
+        string result(sz, 0);
+        do {
+            for (int i = 0; i < sz; ++i) {
+                result[i] = rand() % 128;
+            }
+        } while (A.count(result));
+        return result;
+    }
 };
+
+// Your Solution object will be instantiated and called as such:
+// Solution solution;
+// solution.decode(solution.encode(url));
 
 // Your Solution object will be instantiated and called as such:
 // Solution solution;
