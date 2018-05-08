@@ -24,6 +24,30 @@ using namespace std;
 
 class Solution {
 public:
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> result = {{}};
+        int sz = nums.size(), i = 0;
+        while (i < sz) {
+            int val = nums[i], cnt = 0;
+            while (i + cnt < sz and nums[i + cnt] == val) {
+                ++cnt;
+            }
+            for (int sz1 = result.size(), j = 0; j < sz1; ++j) {
+                vector<int> v = result[j];
+                for (int k = 0; k < cnt; ++k) {
+                    v.push_back(val);
+                    result.push_back(v);
+                }
+            }
+            i += cnt;
+        }
+        return result;
+    }
+};
+
+class Solution {
+public:
 	vector<vector<int>> subsetsWithDup(vector<int>& nums) {
 		sort(begin(nums), end(nums));
 		vector<vector<int>> result;
