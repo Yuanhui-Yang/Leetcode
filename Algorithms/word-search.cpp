@@ -24,41 +24,36 @@ using namespace std;
 
 class Solution {
 public:
-	bool exist(vector<vector<char>>& board, string word) {
-		int m = board.size(), n = !m ? 0 : board.front().size(), l = word.size();
-		if (!m or !n or !l) {
-			return false;
-		}
-		int dx[4] = {-1, 0, 1, 0}, dy[4] = {0, -1, 0, 1};
-		for (int i = 0; i < m; ++i) {
-			for (int j = 0; j < n; ++j) {
-				if (dfs(board, word, dx, dy, i, j, 0)) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+    bool exist(vector<vector<char>>& board, string word) {
+        for (int X = board.size(), i = 0; i < X; ++i) {
+            for (int Y = X ? board[0].size() : 0, j = 0; j < Y; ++j) {
+                if (f1(board, word, 0, i, j)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 private:
-	bool dfs(vector<vector<char>>& board, string& word, int *dx, int *dy, int i, int j, int k) {
-		int m = board.size(), n = !m ? 0 : board.front().size(), l = word.size();
-		if (k >= l) {
-			return true;
-		}
-		if (i < 0 or i >= m or j < 0 or j >= n or board[i][j] != word[k]) {
-			return false;
-		}
-		char ch = board[i][j];
-		board[i][j] = ' ';
-		for (int l = 0; l < 4; ++l) {
-			int nx = i + dx[l], ny = j + dy[l];
-			if (dfs(board, word, dx, dy, nx, ny, k + 1)) {
-				return true;
-			}
-		}
-		board[i][j] = ch;
-		return false;
-	}
+    bool f1(vector<vector<char>>& board, string & word, int start, int x, int y) {
+        int sz = word.size(), X = board.size(), Y = X ? board[0].size() : 0;
+        if (start == sz) {
+            return true;
+        }
+        if (x < 0 or x >= X or y < 0 or y >= Y or board[x][y] != word[start]) {
+            return false;
+        }
+        board[x][y] = -1;
+        array<int, 4> dx = {0, -1, 0, 1}, dy = {-1, 0, 1, 0};
+        for (int i = 0; i < 4; ++i) {
+            int nx = x + dx[i], ny = y + dy[i];
+            if (f1(board, word, start + 1, nx, ny)) {
+                return true;
+            }
+        }
+        board[x][y] = word[start];
+        return false;
+    }
 };
 
 int main(void) {
