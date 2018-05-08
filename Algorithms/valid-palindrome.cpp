@@ -19,31 +19,25 @@ using namespace std;
 
 class Solution {
 public:
-	bool isPalindrome(string s) {
-		int n = s.size(), i = 0, j = n - 1;
-		while (i < j) {
-			if(!isalnum(s[i])) {
-				++i;
-				continue;
-			}
-			if(!isalnum(s[j])) {
-				--j;
-				continue;
-			}
-			if (isdigit(s[i]) and isdigit(s[j]) and s[i] == s[j]) {
-				++i;
-				--j;
-			}
-			else if (isalpha(s[i]) and isalpha(s[j]) and tolower(s[i]) == tolower(s[j])) {
-				++i;
-				--j;
-			}
-			else {
-				return false;
-			}
-		}
-		return true;
-	}
+    bool isPalindrome(string s) {
+        int sz = s.size(), i = 0, j = sz - 1;
+        while (i < j) {
+            if (!isalnum(s[i])) {
+                ++i;
+            }
+            else if (!isalnum(s[j])) {
+                --j;
+            }
+            else if (tolower(s[i]) == tolower(s[j])) {
+                ++i;
+                --j;
+            }
+            else {
+                return false;
+            }
+        }
+        return true;
+    }
 };
 
 int main(void) {
