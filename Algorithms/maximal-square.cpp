@@ -15,6 +15,45 @@ Return 4.
 
 class Solution {
 public:
+    int maximalSquare(vector<vector<char>>& matrix) {
+        int result = 0, X = matrix.size(), Y = X ? matrix[0].size() : 0;
+        vector<int> A(Y, 0), B(Y, 0);
+        for (int i = 0; i < X; ++i) {
+            if (i == 0) {
+                for (int j = 0; j < Y; ++j) {
+                    if (matrix[i][j] == '1') {
+                        A[j] = 1;
+                    }
+                    else {
+                        A[j] = 0;
+                    }
+                    result = max(result, A[j]);
+                }
+            }
+            else {
+                for (int j = 0; j < Y; ++j) {
+                    if (j == 0) {
+                        B[j] = matrix[i][j] == '1';
+                    }
+                    else if (matrix[i][j] == '1') {
+                        B[j] = B[j - 1] + 1;
+                        B[j] = min(B[j], A[j - 1] + 1);
+                        B[j] = min(B[j], A[j] + 1);
+                    }
+                    else {
+                        B[j] = 0;
+                    }
+                    result = max(result, B[j]);
+                }
+                A = B;
+            }
+        }
+        return result * result;
+    }
+};
+
+class Solution {
+public:
 	int maximalSquare(vector<vector<char>>& matrix) {
 		int result = 0, p = matrix.size(), q = p > 0 ? matrix.front().size() : 0;
 		vector<vector<int>> A(2, vector<int>(q, 0));
