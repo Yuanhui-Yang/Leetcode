@@ -21,6 +21,34 @@ using namespace std;
 
 class Solution {
 public:
+    string simplifyPath(string path) {
+        string word, result;
+        stringstream ss(path);
+        vector<string> A;
+        while (getline(ss, word, '/')) {
+            if (word == "" or word == ".") {
+                
+            }
+            else if (word == ".." and !A.empty()) {
+                A.pop_back();
+            }
+            else if (word != "..") {
+                A.push_back(word);
+            }
+        }
+        for (const auto & i : A) {
+            result.push_back('/');
+            result.append(i);
+        }
+        if (result.empty()) {
+            result = "/";
+        }
+        return result;
+    }
+};
+
+class Solution {
+public:
 	string simplifyPath(string path) {
 		vector<string> v;
 		for (int n = path.size(), i = 0; i < n; ++i) {
