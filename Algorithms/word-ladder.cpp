@@ -47,6 +47,52 @@ public:
         if (A.count(beginWord)) {
             A.erase(beginWord);
         }
+        int result = 1;
+        while (!left.empty() and !right.empty()) {
+            ++result;
+            if (left.size() > right.size()) {
+                swap(left, right);
+            }
+            unordered_set<string> next;
+            for (auto word : left) {
+                for (auto & ch : word) {
+                    char c = ch;
+                    for (char i = 'a'; i <= 'z'; ++i) {
+                        if (i != c) {
+                            ch = i;
+                            if (right.count(word)) {
+                                return result;
+                            }
+                            if (A.count(word)) {
+                                next.insert(word);
+                                A.erase(word);
+                            }
+                            ch = c;
+                        }
+                    }
+                }
+            }
+            left = next;
+        }
+        return 0;
+    }
+};
+
+class Solution {
+public:
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+        unordered_set<string> A(wordList.begin(), wordList.end()), left, right;
+        left.insert(beginWord);
+        right.insert(endWord);
+        if (A.count(endWord)) {
+            A.erase(endWord);
+        }
+        else {
+            return 0;
+        }
+        if (A.count(beginWord)) {
+            A.erase(beginWord);
+        }
         int result = 0;
         while (!left.empty() and !right.empty()) {
             ++result;
