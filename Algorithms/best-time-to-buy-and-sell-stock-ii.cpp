@@ -9,11 +9,13 @@ Design an algorithm to find the maximum profit. You may complete as many transac
 
 class Solution {
 public:
-	int maxProfit(vector<int>& prices) {
-		int result = 0;
-		for (int n = prices.size(), i = 0; i + 1 < n; ++i) {
-			result += max(0, prices[i + 1] - prices[i]);
-		}
-		return result;
-	}
+    int maxProfit(vector<int>& prices) {
+        int result = 0;
+        for (int sz = prices.size(), i = 0; i + 1 < sz; ++i) {
+            if (prices[i] < prices[i + 1]) {
+                result += prices[i + 1] - prices[i];
+            }
+        }
+        return result;
+    }
 };
