@@ -20,12 +20,14 @@ In this case, no transaction is done, i.e. max profit = 0.
 
 class Solution {
 public:
-	int maxProfit(vector<int>& prices) {
-		int buy = INT_MIN, sell = 0;
-		for (const auto &price : prices) {
-			sell = max(sell, buy + price);
-			buy = max(buy, -price);
-		}
-		return sell;
-	}
+    int maxProfit(vector<int>& prices) {
+        int min_price = INT_MAX, result = 0;
+        for (const auto & price : prices) {
+            if (min_price < price) {
+                result = max(result, price - min_price);
+            }
+            min_price = min(min_price, price);
+        }
+        return result;
+    }
 };
