@@ -12,14 +12,18 @@ You may not engage in multiple transactions at the same time (ie, you must sell 
 
 class Solution {
 public:
-	int maxProfit(vector<int>& prices) {
-		vector<int> buys(3, INT_MIN), sells(3, 0);
-		for (const auto &price : prices) {
-			for (int i = 1; i <= 2; ++i) {
-				sells[i] = max(sells[i], buys[i] + price);
-				buys[i] = max(buys[i], sells[i - 1] - price);
-			}
-		}
-		return sells[2];
-	}
+    int maxProfit(vector<int>& prices) {
+        int sz = prices.size();
+        if (sz <= 1) {
+            return 0;
+        }
+        vector<int> nohold(3, 0), hold(3, INT_MIN);
+        for (const auto & price : prices) {
+            for (int i = 1; i < 3; ++i) {
+                hold[i] = max(hold[i], nohold[i - 1] - price);
+                nohold[i] = max(nohold[i], hold[i] + price);
+            }
+        }
+        return nohold.back();
+    }
 };
