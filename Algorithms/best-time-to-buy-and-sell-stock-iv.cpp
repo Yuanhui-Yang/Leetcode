@@ -12,22 +12,28 @@ You may not engage in multiple transactions at the same time (ie, you must sell 
 
 class Solution {
 public:
-	int maxProfit(int k, vector<int>& prices) {
-		int n = prices.size();
-		if (k >= n / 2) {
-			int result = 0;
-			for (int i = 0; i + 1 < n; ++i) {
-				result += max(0, prices[i + 1] - prices[i]);
-			}
-			return result;
-		}
-		vector<int> buys(k + 1, INT_MIN), sells(k + 1, 0);
-		for (const auto &price : prices) {
-			for (int i = 1; i <= k; ++i) {
-				sells[i] = max(sells[i], buys[i] + price);
-				buys[i] = max(buys[i], sells[i - 1] - price);
-			}
-		}
-		return sells[k];
-	}
+    int maxProfit(int k, vector<int>& prices) {
+        int sz = prices.size();
+        return k >= sz / 2 ? f1(prices) : f2(k, prices);
+    }
+private:
+    int f1(vector<int> & prices) {
+        int result = 0;
+        for (int sz = prices.size(), i = 0; i + 1 < sz; ++i) {
+            if (prices[i] < prices[i + 1]) {
+                result += prices[i + 1] - prices[i];
+            }
+        }
+        return result;
+    }
+    int f2(int k, vector<int>& prices) {
+        vector<int> hold(k + 1, INT_MIN), nohold(k + 1, 0);
+        for (const auto & price : prices) {
+            for (int i = 1; i <= k; ++i) {
+                hold[i] = max(hold[i], nohold[i - 1] - price);
+                nohold[i] = max(nohold[i], hold[i] + price);
+            }
+        }
+        return nohold.back();
+    }
 };
