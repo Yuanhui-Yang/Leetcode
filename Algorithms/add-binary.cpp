@@ -15,19 +15,27 @@ using namespace std;
 
 class Solution {
 public:
-	string addBinary(string a, string b) {
-		int m = a.size(), n = b.size(), i = m - 1, j = n - 1, k = max(m, n), carry = 0, base = 2;
-		string result(k + 1, '0');
-		while (carry or i >= 0 or j >= 0) {
-			int x = i >= 0 ? a[i--] - '0' : 0;
-			int y = j >= 0 ? b[j--] - '0' : 0;
-			int z = x + y + carry;
-			carry = z / base;
-			z %= base;
-			result[k--] = '0' + z;
-		}
-		return result.substr(k + 1);
-	}
+    string addBinary(string a, string b) {
+        int sz1 = a.size(), sz2 = b.size(), sz3 = max(sz1, sz2) + 1, carry = 0, i = sz1 - 1, j = sz2 - 1, k = sz3 - 1;
+        string result(sz3, '0');
+        while (i >= 0 or j >= 0 or carry > 0) {
+            int x = i >= 0 ? a[i] - '0' : 0;
+            int y = j >= 0 ? b[j] - '0' : 0;
+            int z = x + y + carry;
+            result[k] = '0' + z % 2;
+            carry = z / 2;
+            --i;
+            --j;
+            --k;
+        }
+        while (!result.empty() and result.front() == '0') {
+            result.erase(result.begin());
+        }
+        if (result.empty()) {
+            result = "0";
+        }
+        return result;
+    }
 };
 
 int main(void) {
