@@ -24,66 +24,61 @@ You may assume that all words are consist of lowercase letters a-z.
 #include <bits/stdc++.h>
 using namespace std;
 
+struct Node {
+    bool isEnd;
+    array<Node*, 26> next;
+    Node() {
+        isEnd = false;
+        next.fill(NULL);
+    }
+};
+
 class WordDictionary {
 public:
-	/** Initialize your data structure here. */
-	WordDictionary() {
-		root = new Node();
-	}
-
-	/** Adds a word into the data structure. */
-	void addWord(string word) {
-		Node* it = root;
-		for (const auto &ch : word) {
-			int d = ch - 'a';
-			if (!it->next[d]) {
-				it->next[d] = new Node();
-			}
-			it = it->next[d];
-		}
-		it->isEnd = true;
-	}
-
-	/** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
-	bool search(string word) {
-		return f(root, word);
-	}
+    /** Initialize your data structure here. */
+    WordDictionary() {
+        root = new Node();
+    }
+    
+    /** Adds a word into the data structure. */
+    void addWord(string word) {
+        Node * node = root;
+        for (const auto & ch : word) {
+            int id = ch - 'a';
+            if (!node->next[id]) {
+                node->next[id] = new Node();
+            }
+            node = node->next[id];
+        }
+        node->isEnd = true;
+    }
+    
+    /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
+    bool search(string word) {
+        return f1(word, 0, root);
+    }
 private:
-	struct Node {
-		Node(void) {
-			isEnd = false;
-			memset(next, 0, sizeof(next));
-		}
-		bool isEnd;
-		Node* next[26];
-	};
-	Node *root;
-	bool f(Node* root, const string& s) {
-		if (s.empty()) {
-			return root and root->isEnd;
-		}
-		if (!root) {
-			return false;
-		}
-		for (int n = s.size(), i = 0; i < n; ++i) {
-			char ch = s[i];
-			if (ch == '.') {
-				const string t = s.substr(i + 1);
-				for (int j = 0; j < 26; ++j) {
-					if (f(root->next[j], t)) {
-						return true;
-					}
-				}
-				return false;
-			}
-			int d = ch - 'a';
-			if (!root->next[d]) {
-				return false;
-			}
-			root = root->next[d];
-		}
-		return root->isEnd;
-	}
+    Node * root;
+    bool f1(const string & word, int start, Node * node) {
+        if (!node) {
+            return false;
+        }
+        int sz = word.size();
+        if (sz == start) {
+            return node->isEnd;
+        }
+        char ch = word[start];
+        int id = ch - 'a';
+        if (ch != '.') {
+            return f1(word, start + 1, node->next[id]);
+        }
+        for (int i = 0; i < 26; ++i) {
+            if (f1(word, start + 1, node->next[i])) {
+                return true;
+            }
+        }
+        return false;
+    }
 };
 
 /**
