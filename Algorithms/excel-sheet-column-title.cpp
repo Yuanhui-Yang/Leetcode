@@ -17,13 +17,15 @@ For example:
 
 class Solution {
 public:
-	string convertToTitle(int n) {
-		string result;
-		while (n > 0) {
-			result.push_back('A' + (n - 1) % 26);
-			n = (n - 1) / 26;
-		}
-		reverse(begin(result), end(result));
-		return result;
-	}
+    string convertToTitle(int n) {
+        string result;
+        while (n > 0) {
+            int id = (n - 1) % 26;
+            char ch = id + 'A';
+            result.push_back(ch);
+            n = (n - 1) / 26;
+        }
+        reverse(result.begin(), result.end());
+        return result;
+    }
 };
