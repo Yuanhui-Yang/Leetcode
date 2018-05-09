@@ -12,19 +12,20 @@ using namespace std;
 
 class Solution {
 public:
-	int maxArea(vector<int>& height) {
-		int result = 0, n = height.size(), i = 0, j = n - 1, h1 = height[i], h2 = height[j];
-		while (i < j) {
-			result = max(result, (j - i) * min(h1, h2));
-			if (h1 < h2) {
-				h1 = max(h1, height[++i]);
-			}
-			else {
-				h2 = max(h2, height[--j]);
-			}
-		}
-		return result;
-	}
+    int maxArea(vector<int>& height) {
+        int sz = height.size(), i = 0, j = sz - 1, result = 0;
+        while (i < j) {
+            if (height[i] < height[j]) {
+                result = max(result, height[i] * (j - i));
+                ++i;
+            }
+            else {
+                result = max(result, height[j] * (j - i));
+                --j;
+            }
+        }
+        return result;
+    }
 };
 
 int main(void) {
