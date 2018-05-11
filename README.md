@@ -680,9 +680,9 @@
 | 815 | [Bus Routes](https://leetcode.com/problems/bus-routes/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/bus-routes.cpp) |
 | 816 | [Ambiguous Coordinates](https://leetcode.com/problems/ambiguous-coordinates/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/ambiguous-coordinates.cpp) |
 | 817 | [Linked List Components](https://leetcode.com/problems/linked-list-components/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/linked-list-components.cpp) |
-| 818 | [Race Car](https://leetcode.com/problems/race-car/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/race-car.cpp) |
 | 824 | [Goat Latin](https://leetcode.com/problems/goat-latin/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/goat-latin.cpp) |
 | 825 | [Friends Of Appropriate Ages](https://leetcode.com/problems/friends-of-appropriate-ages/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/friends-of-appropriate-ages.cpp) |
+| 830 | [Positions of Large Groups](https://leetcode.com/problems/positions-of-large-groups/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/positions-of-large-groups.cpp) |
 
 ## Database
 | # | Title | Solution |
