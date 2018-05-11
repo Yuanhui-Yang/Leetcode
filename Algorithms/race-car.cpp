@@ -1,37 +1,33 @@
-818. Race Car
-https://leetcode.com/problems/race-car/
+830. Positions of Large Groups
+https://leetcode.com/problems/positions-of-large-groups/
 
-Your car starts at position 0 and speed +1 on an infinite number line.  (Your car can go into negative positions.)
+In a string S of lowercase letters, these letters form consecutive groups of the same character.
 
-Your car drives automatically according to a sequence of instructions A (accelerate) and R (reverse).
+For example, a string like S = "abbxxxxzyy" has the groups "a", "bb", "xxxx", "z" and "yy".
 
-When you get an instruction "A", your car does the following: position += speed, speed *= 2.
+Call a group large if it has 3 or more characters.  We would like the starting and ending positions of every large group.
 
-When you get an instruction "R", your car does the following: if your speed is positive then speed = -1 , otherwise speed = 1.  (Your position stays the same.)
+The final answer should be in lexicographic order.
 
-For example, after commands "AAR", your car goes to positions 0->1->3->3, and your speed goes to 1->2->4->-1.
-
-Now for some target position, say the length of the shortest sequence of instructions to get there.
-
-Example 1:
-Input: 
-target = 3
-Output: 2
-Explanation: 
-The shortest instruction sequence is "AA".
-Your position goes from 0->1->3.
-Example 2:
-Input: 
-target = 6
-Output: 5
-Explanation: 
-The shortest instruction sequence is "AAARA".
-Your position goes from 0->1->3->7->7->6.
  
 
-Note:
+Example 1:
 
-1 <= target <= 10000.
+Input: "abbxxxxzzy"
+Output: [[3,6]]
+Explanation: "xxxx" is the single large group with starting  3 and ending positions 6.
+Example 2:
+
+Input: "abc"
+Output: []
+Explanation: We have "a","b" and "c" but no large group.
+Example 3:
+
+Input: "abcdddeeeeaabbbcd"
+Output: [[3,5],[6,9],[12,14]]
+ 
+
+Note:  1 <= S.length <= 1000
 
 #include <iostream>
 #include <vector>
