@@ -76,3 +76,60 @@ int main(void) {
 
     return 0;
 }
+
+#include <iostream>
+#include <array>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+class Solution {
+public:
+    int numMatchingSubseq(string S, vector<string>& words) {
+        f1(S);
+        int result = 0;
+        for (auto & word : words) {
+            result += f2(word);
+        }
+        return result;
+    }
+private:
+    array<vector<int>, 26> A;
+    void f1(string & S) {
+        for (int sz = S.size(), i = 0; i < sz; ++i) {
+            int id = S[i] - 'a';
+            A[id].push_back(i);
+        }
+    }
+    bool f2(string & word) {
+        int prev = -1;
+        for (const auto & ch : word) {
+            int id = ch - 'a';
+            vector<int> & v = A[id];
+            vector<int>::iterator curr = upper_bound(v.begin(), v.end(), prev);
+            if (curr == v.end()) {
+                return false;
+            }
+            else {
+                prev = *curr;
+            }
+        }
+        return true;
+    }
+};
+
+int main(void) {
+    Solution solution;
+    string S;
+    vector<string> words;
+    int result;
+
+    S = "abcde";
+    words = {"a", "bb", "acd", "ace"};
+    result = solution.numMatchingSubseq(S, words);
+    cout << result << '\n';
+
+    return 0;
+}
