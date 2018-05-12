@@ -34,51 +34,50 @@ using namespace std;
 
 class Solution {
 public:
-	vector<string> fullJustify(vector<string>& words, int maxWidth) {
-		vector<string> result;
-		for (int n = words.size(), i = 0; i < n; ++i) {
-			int j = i, len = words[i].size(), sum = words[i].size();
-			while (i + 1 < n and len + int(words[i + 1].size()) + 1 <= maxWidth) {
-				len += words[i + 1].size() + 1;
-				sum += words[i + 1].size();
-				++i;
-			}
-			if (i + 1 == n) {
-				string s = words[j];
-				++j;
-				while (j <= i) {
-					s += ' ';
-					s += words[j];
-					++j;
-				}
-				s += string(maxWidth - len, ' ');
-				result.push_back(s);
-			}
-			else if (j == i) {
-				string s = words[i] + string(maxWidth - len, ' ');
-				result.push_back(s);
-			}
-			else {
-				int x = maxWidth - sum, y = i - j;
-				int a = x / y, b = x % y;
-				string s = words[j];
-				++j;
-				while (j <= i) {
-					s += string(a, ' ');
-					if (b > 0) {
-						s += ' ';
-						--b;
-					}
-					s += words[j];
-					++j;
-				}
-				result.push_back(s);
-			}
-		}
-		return result;
-	}
+    vector<string> fullJustify(vector<string>& words, int maxWidth) {
+        vector<string> result;
+        for (int sz = words.size(), i = 0; i < sz; ++i) {
+            int j = i, a = words[i].size(), b = words[i].size();
+            while (i + 1 < sz and a + words[i + 1].size() + 1 <= maxWidth) {
+                a += words[i + 1].size() + 1;
+                b += words[i + 1].size();
+                ++i;
+            }
+            string s;
+            if (i + 1 == sz) {
+                s.append(words[j]);
+                ++j;
+                while (j <= i) {
+                    s.push_back(' ');
+                    s.append(words[j]);
+                    ++j;
+                }
+            }
+            else if (i == j) {
+                s.append(words[i]);
+            }
+            else {
+                int c = maxWidth - b, d = i - j, x = c / d, y = c % d;
+                s.append(words[j]);
+                ++j;
+                while (j <= i) {
+                    if (y > 0) {
+                        --y;
+                        s.push_back(' ');
+                    }
+                    s.append(string(x, ' '));
+                    s.append(words[j]);
+                    ++j;
+                }
+            }
+            while (s.size() < maxWidth) {
+                s.push_back(' ');
+            }
+            result.push_back(s);
+        }
+        return result;
+    }
 };
-
 int main(void) {
 	Solution solution;
 	vector<string> words, answer, result;
