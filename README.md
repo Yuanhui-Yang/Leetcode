@@ -671,6 +671,7 @@
 | 785 | [Is Graph Bipartite?](https://leetcode.com/problems/is-graph-bipartite/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/is-graph-bipartite.cpp) |
 | 786 | [K-th Smallest Prime Fraction](https://leetcode.com/problems/k-th-smallest-prime-fraction/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/k-th-smallest-prime-fraction.cpp) |
 | 787 | [Cheapest Flights Within K Stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/cheapest-flights-within-k-stops.cpp) |
+| 792 | [Number of Matching Subsequences](https://leetcode.com/problems/number-of-matching-subsequences/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-matching-subsequences.cpp) |
 | 801 | [Minimum Swaps To Make Sequences Increasing](https://leetcode.com/problems/minimum-swaps-to-make-sequences-increasing/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-swaps-to-make-sequences-increasing.cpp) |
 | 802 | [Find Eventual Safe States](https://leetcode.com/problems/find-eventual-safe-states/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-eventual-safe-states.cpp) |
 | 808 | [Soup Servings](https://leetcode.com/problems/soup-servings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/soup-servings.cpp) |
