@@ -78,6 +78,7 @@ public:
         return result;
     }
 };
+
 int main(void) {
 	Solution solution;
 	vector<string> words, answer, result;
