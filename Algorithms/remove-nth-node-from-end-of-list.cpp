@@ -41,19 +41,19 @@ vector<int> print(ListNode* head) {
 
 class Solution {
 public:
-	ListNode* removeNthFromEnd(ListNode* head, int n) {
-		ListNode dummy(0), *fast = head, *slow = &dummy;
-		dummy.next = head;
-		while (n--) {
-			fast = fast->next;
-		}
-		while (fast) {
-			slow = slow->next;
-			fast = fast->next;
-		}
-		slow->next = slow->next->next;
-		return dummy.next;
-	}
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode * dummy = new ListNode(0), * node = dummy;
+        dummy->next = head;
+        while (n-- > 0) {
+            head = head->next;
+        }
+        while (head) {
+            node = node->next;
+            head = head->next;
+        }
+        node->next = node->next->next;
+        return dummy->next;
+    }
 };
 
 int main(void) {
