@@ -51,6 +51,20 @@ public:
     }
 };
 
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if (!head or !head->next) {
+            return head;
+        }
+        ListNode * next = head->next;
+        head->next = NULL;
+        ListNode * result = reverseList(next);
+        next->next = head;
+        return result;
+    }
+};
+
 int main(void) {
     Solution solution;
     ListNode* head;
