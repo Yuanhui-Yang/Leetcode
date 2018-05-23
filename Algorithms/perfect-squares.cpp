@@ -4,26 +4,35 @@
 #include <vector>
 #include <cmath>
 #include <climits>
+
 using namespace std;
+
 class Solution {
 public:
-	int numSquares(int n) {
-		if (n <= 0) return 0;
-		int r = sqrt(n);
-		if (r * r == n) return 1;
-		vector<int> OPT(1 + n, 0);
-		for (int i = 1; i < n + 1; ++i) {
-			int r = sqrt(i);
-			if (r * r == i) OPT[i] = 1;
-			else {
-				int num = INT_MAX;
-				for (int j = 1; j <= r; ++j) num = min(num, OPT[i - j * j]);
-				OPT[i] = 1 + num;
-			}
-		}
-		return OPT[n];
-	}
+    int numSquares(int n) {
+        vector<int> A(n + 1, 0);
+        for (int i = 1; i <= n; ++i) {
+            int bound = sqrt(i);
+            if (bound * bound == i) {
+                A[i] = 1;
+            }
+            else {
+                int val = 0;
+                for (int j = bound; j >= 1; --j) {
+                    if (A[i - j * j]) {
+                        int curr = A[i - j * j] + 1;
+                        if (val == 0 or curr < val) {
+                            val = curr;
+                        }
+                    }
+                }
+                A[i] = val;
+            }
+        }
+        return A[n];
+    }
 };
+
 int main(void) {
 	Solution solution;
 	cout << solution.numSquares(12) << "\tPassed\n";
