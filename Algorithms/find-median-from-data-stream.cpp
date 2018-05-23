@@ -24,36 +24,28 @@ findMedian() -> 2
 
 class MedianFinder {
 public:
-	/** initialize your data structure here. */
-	MedianFinder() {}
-
-	void addNum(int num) {
-		if (a.size() <= b.size()) {
-			a.push(num);
-		}
-		else {
-			b.push(num);
-		}
-		if (!a.empty() and !b.empty() and a.top() > b.top()) {
-			int x = a.top(), y = b.top();
-			a.pop(); b.pop();
-			a.push(y);
-			b.push(x);
-		}
-	}
-
-	double findMedian() {
-		if (a.size() < b.size()) {
-			return b.top();
-		}
-		if (a.size() > b.size()) {
-			return a.top();
-		}
-		return 0.5 * a.top() + 0.5 * b.top();
-	}
+    /** initialize your data structure here. */
+    MedianFinder() {}
+    
+    void addNum(int num) {
+        right.push(num);
+        left.push(right.top());
+        right.pop();
+        if (right.size() < left.size()) {
+            right.push(left.top());
+            left.pop();
+        }
+    }
+    
+    double findMedian() {
+        if (left.size() < right.size()) {
+            return right.top();
+        }
+        return 0.5 * left.top() + 0.5 * right.top();
+    }
 private:
-	priority_queue<int> a;
-	priority_queue<int, vector<int>, greater<int>> b;
+    priority_queue<double> left;
+    priority_queue<double, vector<double>, greater<double>> right;
 };
 
 /**
