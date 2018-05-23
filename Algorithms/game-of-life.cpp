@@ -70,43 +70,45 @@ private:
 
 class Solution {
 public:
-	void gameOfLife(vector<vector<int>>& board) {
-		int M = board.size(), N = M == 0 ? 0 : board[0].size();
-		for (int i = 0; i < M; ++i) {
-			for (int j = 0; j < N; ++j) {
-				board[i][j] = f(board, i, j, M, N);
-			}
-		}
-		for (int i = 0; i < M; ++i) {
-			for (int j = 0; j < N; ++j) {
-				board[i][j] = g(board, i, j);
-			}
-		}
-	}
+    void gameOfLife(vector<vector<int>>& board) {
+        int X = board.size(), Y = X ? board[0].size() : 0;
+        for (int x = 0; x < X; ++x) {
+            for (int y = 0; y < Y; ++y) {
+                int nlive = f1(board, x, y);
+                f2(board, x, y, nlive);
+            }
+        }
+        f3(board);
+    }
 private:
-	int f(vector<vector<int>>& board, int x, int y, int M, int N) {
-		array<int, 8> dx = {-1, 0, 1, 0, -1, -1, 1, 1}, dy = {0, -1, 0, 1, -1, 1, -1, 1};
-		int cnt = 0;
-		for (int i = 0; i < 8; ++i) {
-			int nx = x + dx[i], ny = y + dy[i];
-			if (nx >= 0 and nx < M and ny >= 0 and ny < N and (1 & board[nx][ny])) {
-				++cnt;
-			}
-		}
-		int z = board[x][y], mask = 1 << 16;
-		if (1 & z) {
-			if (cnt == 2 or cnt == 3) {
-				return z | mask;
-			}
-			return z;
-		}
-		if (cnt == 3) {
-			return z | mask;
-		}
-		return z;
-	}
-	int g(vector<vector<int>>& board, int x, int y) {
-		int z = board[x][y], mask = 1 << 16;
-		return (z & mask) >> 16;
-	}
+    int f1(vector<vector<int>>& board, int x, int y) {
+        int result = 0, X = board.size(), Y = X ? board[0].size() : 0;
+        array<int, 8> dx{-1, -1, -1, 0, 0, 1, 1, 1}, dy{-1, 0, 1, -1, 1, -1, 0, 1};
+        for (int i = 0; i < 8; ++i) {
+            int nx = x + dx[i], ny = y + dy[i];
+            if (nx >= 0 and nx < X and ny >= 0 and ny < Y) {
+                result += board[nx][ny] & 1;
+            }
+        }
+        return result;
+    }
+    void f2(vector<vector<int>>& board, int x, int y, int nlive) {
+        if (board[x][y]) {
+            if (nlive == 2 or nlive == 3) {
+                board[x][y] ^= 0b10;
+            }
+        }
+        else {
+            if (nlive == 3) {
+                board[x][y] ^= 0b10;
+            }
+        }
+    }
+    void f3(vector<vector<int>>& board) {
+        for (auto & i : board) {
+            for (auto & j : i) {
+                j >>= 1;
+            }
+        }
+    }
 };
