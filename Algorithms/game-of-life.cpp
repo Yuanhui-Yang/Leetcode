@@ -19,6 +19,52 @@ In this question, we represent the board using a 2D array. In principle, the boa
 
 class Solution {
 public:
+    void gameOfLife(vector<vector<int>>& board) {
+        int X = board.size(), Y = X ? board[0].size() : 0;
+        vector<int> prev_row(Y, -1);
+        array<int, 8> dx{-1, -1, -1, 0, 0, 1, 1, 1}, dy{-1, 0, 1, -1, 1, -1, 0, 1};
+        for (int x = 0; x < X; ++x) {
+            vector<int> curr_row(board[x]);
+            for (int y = 0; y < Y; ++y) {
+                int curr_col = board[x][y], nlive = 0, ndead = 0;
+                for (int i = 0; i < 8; ++i) {
+                    int nx = x + dx[i], ny = y + dy[i];
+                    if (nx >= 0 and nx < X and ny >= 0 and ny < Y) {
+                        if (nx == x) {
+                            nlive += curr_row[ny] == 1;
+                            ndead += curr_row[ny] == 0;
+                        }
+                        else if (nx < x) {
+                            nlive += prev_row[ny] == 1;
+                            ndead += prev_row[ny] == 0;
+                        }
+                        else {
+                            nlive += board[nx][ny] == 1;
+                            ndead += board[nx][ny] == 0;
+                        }
+                    }
+                }
+                if (board[x][y]) {
+                    if (nlive < 2) {
+                        board[x][y] = 0;
+                    }
+                    else if (nlive > 3) {
+                        board[x][y] = 0;
+                    }
+                }
+                else {
+                    if (nlive == 3) {
+                        board[x][y] = 1;
+                    }
+                }
+            }
+            prev_row = curr_row;
+        }
+    }
+};
+
+class Solution {
+public:
 	void gameOfLife(vector<vector<int>>& board) {
 		int M = board.size(), N = M == 0 ? 0 : board[0].size();
 		for (int i = 0; i < M; ++i) {
