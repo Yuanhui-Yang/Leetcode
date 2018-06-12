@@ -1,6 +1,3 @@
-1. Two Sum
-https://leetcode.com/problems/two-sum/
-
 using System;
 using System.Collections.Generic;
 
