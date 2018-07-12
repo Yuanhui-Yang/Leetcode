@@ -30,7 +30,9 @@ public:
         if (sz % 2) {
             return f1(nums1, nums2, sz / 2 + 1);
         }
-        return 0.5 * f1(nums1, nums2, sz / 2) + 0.5 * f1(nums1, nums2, sz / 2 + 1);
+        else {
+            return 0.5 * f1(nums1, nums2, sz / 2) + 0.5 * f1(nums1, nums2, sz / 2 + 1);
+        }
     }
 private:
     int f1(vector<int>& nums1, vector<int>& nums2, int k) {
@@ -41,25 +43,24 @@ private:
         if (sz2 == 0) {
             return nums1[k - 1];
         }
-        int a = min(nums1.front(), nums2.front()), b = max(nums1.back(), nums2.back());
-        while (a < b) {
-            int c = a + (b - a) / 2;
-            if (f2(nums1, nums2, c, k)) {
-                a = c + 1;
+        int left = min(nums1.front(), nums2.front());
+        int right = 1 + max(nums1.back(), nums2.back());
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (f2(nums1, nums2, mid, k)) {
+                left = mid + 1;
             }
             else {
-                b = c;
+                right = mid;
             }
         }
-        return a;
+        return left;
     }
-    bool f2(vector<int>& nums1, vector<int>& nums2, int c, int k) {
-        int cnt = f3(nums1, nums2, c);
+    bool f2(vector<int>& nums1, vector<int>& nums2, int val, int k) {
+        int cnt = 0;
+        cnt += distance(nums1.begin(), upper_bound(nums1.begin(), nums1.end(), val));
+        cnt += distance(nums2.begin(), upper_bound(nums2.begin(), nums2.end(), val));
         return cnt < k;
-    }
-    int f3(vector<int>& nums1, vector<int>& nums2, int c) {
-        vector<int>::iterator begin1 = nums1.begin(), end1 = nums1.end(), mid1 = upper_bound(begin1, end1, c), begin2 = nums2.begin(), end2 = nums2.end(), mid2 = upper_bound(begin2, end2, c);
-        return distance(begin1, mid1) + distance(begin2, mid2);
     }
 };
 
