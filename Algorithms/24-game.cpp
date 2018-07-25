@@ -25,6 +25,89 @@ using namespace std;
 
 class Solution {
 public:
+    bool judgePoint24(vector<int>& nums) {
+        vector<double> A(nums.begin(), nums.end());
+        return f1(A);
+    }
+private:
+    bool f1(vector<double> & nums) {
+        string ops = "+-*/";
+        int sz = nums.size(), i, j, k;
+        double x, y, z;
+        if (sz <= 0) {
+            return false;
+        }
+        if (sz == 1) {
+            return fabs(nums[0] - 24) < 1e-6;
+        }
+        for (i = 0; i + 1 < sz; ++i) {
+            for (j = i + 1; j < sz; ++j) {
+                vector<double> A;
+                for (k = 0; k < sz; ++k) {
+                    if (k != i and k != j) {
+                        A.push_back(nums[k]);
+                    }
+                }
+                x = nums[i];
+                y = nums[j];
+                for (const auto & op : ops) {
+                    if (op == '+') {
+                        z = x + y;
+                        A.push_back(z);
+                        if (f1(A)) {
+                            return true;
+                        }
+                        A.pop_back();
+                    }
+                    else if (op == '-') {
+                        z = x - y;
+                        A.push_back(z);
+                        if (f1(A)) {
+                            return true;
+                        }
+                        A.pop_back();
+                        z = y - x;
+                        A.push_back(z);
+                        if (f1(A)) {
+                            return true;
+                        }
+                        A.pop_back();
+                    }
+                    else if (op == '*') {
+                        z = x * y;
+                        A.push_back(z);
+                        if (f1(A)) {
+                            return true;
+                        }
+                        A.pop_back();
+                    }
+                    else if (op == '/') {
+                        if (fabs(y) >= 1e-6) {
+                            z = x / y;
+                            A.push_back(z);
+                            if (f1(A)) {
+                                return true;
+                            }
+                            A.pop_back();
+                        }
+                        if (fabs(x) >= 1e-6) {
+                            z = y / x;
+                            A.push_back(z);
+                            if (f1(A)) {
+                                return true;
+                            }
+                            A.pop_back();
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+};
+
+class Solution {
+public:
 	bool judgePoint24(vector<int>& nums) {
 		vector<double> A(begin(nums), end(nums));
 		return f(A);
