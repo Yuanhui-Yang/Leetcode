@@ -686,6 +686,7 @@
 | 824 | [Goat Latin](https://leetcode.com/problems/goat-latin/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/goat-latin.cpp) |
 | 825 | [Friends Of Appropriate Ages](https://leetcode.com/problems/friends-of-appropriate-ages/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/friends-of-appropriate-ages.cpp) |
 | 830 | [Positions of Large Groups](https://leetcode.com/problems/positions-of-large-groups/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/positions-of-large-groups.cpp) |
+| 858 | [Mirror Reflection](https://leetcode.com/problems/mirror-reflection/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/mirror-reflection.cpp) |
 | 859 | [Buddy Strings](https://leetcode.com/problems/buddy-strings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/buddy-strings.cpp) |
 
 ## Database
