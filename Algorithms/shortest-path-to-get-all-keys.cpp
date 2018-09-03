@@ -18,7 +18,7 @@ public:
                 char cell = grid[i][j];
                 if (cell == '@') {
                     if (unseen[i][j][0]) {
-                        array<int, 3> p = {i, j, 0};
+                        array<int, 3> p{{i, j, 0}};
                         q.push(p);
                         unseen[i][j][0] = false;
                     }
@@ -45,10 +45,10 @@ public:
                     int ny = y + dy[i];
                     if (nx >= 0 and nx < X and ny >= 0 and ny < Y) {
                         char cell = grid[nx][ny];
-                        if (cell == '.') {
+                        if (cell == '.' or cell == '@') {
                             int nz = z;
                             if (unseen[nx][ny][nz]) {
-                                array<int, 3> to = {nx, ny, nz};
+                                array<int, 3> to{{nx, ny, nz}};
                                 unseen[nx][ny][nz] = false;
                                 q.push(to);
                             }
@@ -59,7 +59,7 @@ public:
                                 int mask = 1 << offset;
                                 int nz = z | mask;
                                 if (unseen[nx][ny][nz]) {
-                                    array<int, 3> to = {nx, ny, nz};
+                                    array<int, 3> to{{nx, ny, nz}};
                                     unseen[nx][ny][nz] = false;
                                     q.push(to);
                                 }
@@ -70,10 +70,10 @@ public:
                                 if (mask & z) {
                                     int nz = z;
                                     if (unseen[nx][ny][nz]) {
-                                        array<int, 3> to = {nx, ny, nz};
+                                        array<int, 3> to{{nx, ny, nz}};
                                         unseen[nx][ny][nz] = false;
                                         q.push(to);
-                                    }   
+                                    }
                                 }
                             }
                         }
