@@ -689,6 +689,7 @@
 | 858 | [Mirror Reflection](https://leetcode.com/problems/mirror-reflection/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/mirror-reflection.cpp) |
 | 859 | [Buddy Strings](https://leetcode.com/problems/buddy-strings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/buddy-strings.cpp) |
 | 864 | [Shortest Path to Get All Keys](https://leetcode.com/problems/shortest-path-to-get-all-keys/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/shortest-path-to-get-all-keys.cpp) |
+| 887 | [Super Egg Drop](https://leetcode.com/problems/super-egg-drop/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/super-egg-drop.cpp) |
 
 ## Database
 | # | Title | Solution |
