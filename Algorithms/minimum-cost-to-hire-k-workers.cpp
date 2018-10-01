@@ -97,5 +97,11 @@ int main(void) {
     result = solution.mincostToHireWorkers(quality, wage, K);
     cout << result << '\n';
 
+    quality = {3, 1, 10, 10, 1};
+    wage = {4, 8, 2, 2, 7};
+    K = 3;
+    result = solution.mincostToHireWorkers(quality, wage, K);
+    cout << result << '\n';
+
     return 0;
 }
