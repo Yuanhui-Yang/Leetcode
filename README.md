@@ -688,6 +688,7 @@
 | 830 | [Positions of Large Groups](https://leetcode.com/problems/positions-of-large-groups/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/positions-of-large-groups.cpp) |
 | 847 | [Shortest Path Visiting All Nodes](https://leetcode.com/problems/shortest-path-visiting-all-nodes/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/shortest-path-visiting-all-nodes.cpp) |
 | 858 | [Mirror Reflection](https://leetcode.com/problems/mirror-reflection/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/mirror-reflection.cpp) |
+| 857 | [Minimum Cost to Hire K Workers](https://leetcode.com/problems/minimum-cost-to-hire-k-workers/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-cost-to-hire-k-workers.cpp) |
 | 859 | [Buddy Strings](https://leetcode.com/problems/buddy-strings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/buddy-strings.cpp) |
 | 864 | [Shortest Path to Get All Keys](https://leetcode.com/problems/shortest-path-to-get-all-keys/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/shortest-path-to-get-all-keys.cpp) |
 | 889 | [Construct Binary Tree from Preorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/construct-binary-tree-from-preorder-and-postorder-traversal.cpp) |
