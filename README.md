@@ -676,6 +676,7 @@
 | 792 | [Number of Matching Subsequences](https://leetcode.com/problems/number-of-matching-subsequences/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-matching-subsequences.cpp) |
 | 801 | [Minimum Swaps To Make Sequences Increasing](https://leetcode.com/problems/minimum-swaps-to-make-sequences-increasing/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-swaps-to-make-sequences-increasing.cpp) |
 | 802 | [Find Eventual Safe States](https://leetcode.com/problems/find-eventual-safe-states/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-eventual-safe-states.cpp) |
+| 805 | [Split Array With Same Average](https://leetcode.com/problems/split-array-with-same-average/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/split-array-with-same-average.cpp) |
 | 808 | [Soup Servings](https://leetcode.com/problems/soup-servings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/soup-servings.cpp) |
 | 809 | [Expressive Words](https://leetcode.com/problems/expressive-words/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/expressive-words.cpp) |
 | 812 | [Largest Triangle Area](https://leetcode.com/problems/largest-triangle-area/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-triangle-area.cpp) |
