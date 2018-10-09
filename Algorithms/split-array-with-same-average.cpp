@@ -29,10 +29,10 @@ public:
                 }   
             }
         }
-        int total = *(B[sz].begin());
-        for (int i = 1; i < sz; ++i) {
+        int sum = *(B[sz].begin());
+        for (int i = 1, bound = sz / 2; i <= bound; ++i) {
             for (const auto & j : B[i]) {
-                if (j * sz == total * i) {
+                if (j * sz == sum * i) {
                     return true;
                 }
             }
