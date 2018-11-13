@@ -693,7 +693,9 @@
 | 859 | [Buddy Strings](https://leetcode.com/problems/buddy-strings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/buddy-strings.cpp) |
 | 864 | [Shortest Path to Get All Keys](https://leetcode.com/problems/shortest-path-to-get-all-keys/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/shortest-path-to-get-all-keys.cpp) |
 | 889 | [Construct Binary Tree from Preorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/construct-binary-tree-from-preorder-and-postorder-traversal.cpp) |
-| 937 | [Reorder Log Files](https://leetcode.com/problems/reorder-log-files/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reorder-log-files.cpp) |) |
+| 937 | [Reorder Log Files](https://leetcode.com/problems/reorder-log-files/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reorder-log-files.cpp) |
+| 938 | [Range Sum of BST](https://leetcode.com/problems/range-sum-of-bst/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/range-sum-of-bst.cpp) |
+| 939 | [Minimum Area Rectangle](https://leetcode.com/problems/minimum-area-rectangle/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-area-rectangle.cpp) |
 
 ## Database
 | # | Title | Solution |
