@@ -697,6 +697,7 @@
 | 938 | [Range Sum of BST](https://leetcode.com/problems/range-sum-of-bst/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/range-sum-of-bst.cpp) |
 | 939 | [Minimum Area Rectangle](https://leetcode.com/problems/minimum-area-rectangle/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-area-rectangle.cpp) |
 | 943 | [Find the Shortest Superstring](https://leetcode.com/problems/find-the-shortest-superstring/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-the-shortest-superstring.cpp) |
+| 964 | [Least Operators to Express Number](https://leetcode.com/problems/least-operators-to-express-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/least-operators-to-express-number.cpp) |
 | 973 | [K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/k-closest-points-to-origin.cpp) |
 
 ## Database
