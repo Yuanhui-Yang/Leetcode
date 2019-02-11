@@ -9,6 +9,43 @@
 #include <iterator>
 #include <climits>
 using namespace std;
+
+class Solution {
+public:
+    int maxSumSubmatrix(vector<vector<int>>& matrix, int k) {
+        int X = matrix.size(), Y = X ? matrix[0].size() : 0;
+        for (int i = 0; i < X; ++i)
+        {
+            for (int j = 1; j < Y; ++j)
+            {
+                matrix[i][j] += matrix[i][j - 1];
+            }
+        }
+        int result = INT_MIN;
+        for (int col1 = 0; col1 < Y; ++col1)
+        {
+            for (int col2 = col1; col2 < Y; ++col2)
+            {
+                int sum = 0;
+                set<int> tree_set;
+                tree_set.insert(0);
+                for (int row = 0; row < X; ++row)
+                {
+                    sum += col1 ? (matrix[row][col2] - matrix[row][col1 - 1]) : matrix[row][col2];
+                    int target = sum - k;
+                    set<int>::iterator it = tree_set.lower_bound(target);
+                    if (it != tree_set.end())
+                    {
+                        result = max(result, sum - *it);
+                    }
+                    tree_set.insert(sum);
+                }
+            }
+        }
+        return result;
+    }
+};
+
 // BEGIN: http://www.cnblogs.com/grandyang/p/5617660.html
 class Solution {
 public:
