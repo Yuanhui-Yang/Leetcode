@@ -43,6 +43,35 @@ using namespace std;
 
 class Solution {
 public:
+    bool canCross(vector<int>& stones) {
+        unordered_map<int, unordered_set<int>> A;
+        A[stones[0]].insert(0);
+        array<int, 3> dk{-1, 0, 1};
+        for (int sz = stones.size(), i = 0; i < sz; ++i)
+        {
+            int pos = stones[i];
+            if (A.count(pos))
+            {
+                for (const auto & k : A[pos])
+                {
+                    for (int j = 0; j < 3; ++j)
+                    {
+                        int nk = k + dk[j];
+                        if (nk > 0)
+                        {
+                            int npos = pos + nk;
+                            A[npos].insert(nk);   
+                        }
+                    }
+                }
+            }
+        }
+        return A.count(stones.back()) and !A[stones.back()].empty();
+    }
+};
+
+class Solution {
+public:
 	bool canCross(vector<int>& stones) {
 		int sz = stones.size(), i, j, k;
 		if (sz == 0) {
