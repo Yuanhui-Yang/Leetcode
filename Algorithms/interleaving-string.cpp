@@ -15,35 +15,39 @@ When s3 = "aadbbbaccc", return false.
 
 #include <bits/stdc++.h>
 using namespace std;
-
 class Solution {
 public:
-	bool isInterleave(string s1, string s2, string s3) {
-		if (s1.size() + s2.size() != s3.size()) {
-			return false;
-		}
-		int a = s1.size(), b = s2.size();
-		vector<vector<bool>> M(a + 1, vector<bool>(b + 1, false));
-		for (int i = 0; i <= a; ++i) {
-			for (int j = 0; j <= b; ++j) {
-				if (i == 0 and j == 0) {
-					M[i][j] = true;
-					continue;
-				}
-				if (i == 0) {
-					M[i][j] = s2.substr(0, j) == s3.substr(0, j);
-					continue;
-				}
-				if (j == 0) {
-					M[i][j] = s1.substr(0, i) == s3.substr(0, i);
-					continue;
-				}
-				M[i][j] = M[i][j] or (M[i - 1][j] and s1[i - 1] == s3[i + j - 1]);
-				M[i][j] = M[i][j] or (M[i][j - 1] and s2[j - 1] == s3[i + j - 1]);
-			}
-		}
-		return M[a][b];
-	}
+    bool isInterleave(string s1, string s2, string s3) {
+        int sz1 = s1.size(), sz2 = s2.size(), sz3 = s3.size();
+        if (sz1 + sz2 != sz3)
+        {
+            return false;
+        }
+        vector<vector<bool>> A(sz1 + 1, vector<bool>(sz2 + 1, false));
+        for (int i = 0; i <= sz1; ++i)
+        {
+            for (int j = 0; j <= sz2; ++j)
+            {
+                if (i == 0 and j == 0)
+                {
+                    A[i][j] = true;
+                }
+                else if (i == 0)
+                {
+                    A[i][j] = A[i][j - 1] and s2[j - 1] == s3[i + j - 1];
+                }
+                else if (j == 0)
+                {
+                    A[i][j] = A[i - 1][j] and s1[i - 1] == s3[i + j - 1];
+                }
+                else
+                {
+                    A[i][j] = (A[i][j - 1] and s2[j - 1] == s3[i + j - 1]) or (A[i - 1][j] and s1[i - 1] == s3[i + j - 1]);
+                }
+            }
+        }
+        return A[sz1][sz2];
+    }
 };
 
 int main(void) {
