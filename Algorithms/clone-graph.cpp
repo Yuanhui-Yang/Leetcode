@@ -60,6 +60,81 @@ struct UndirectedGraphNode {
 	UndirectedGraphNode(int x) : label(x) {};
 };
 
+/**
+ * Definition for undirected graph.
+ * struct UndirectedGraphNode {
+ *     int label;
+ *     vector<UndirectedGraphNode *> neighbors;
+ *     UndirectedGraphNode(int x) : label(x) {};
+ * };
+ */
+class Solution {
+public:
+    UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) {
+        unordered_map<int, UndirectedGraphNode *> A;
+        return f1(node, A);
+    }
+private:
+    UndirectedGraphNode * f1(UndirectedGraphNode * node, unordered_map<int, UndirectedGraphNode *> & A)
+    {
+        if (!node)
+        {
+            return NULL;
+        }
+        if (A.count(node->label))
+        {
+            return A[node->label];
+        }
+        UndirectedGraphNode * result = new UndirectedGraphNode(node->label);
+        A[result->label] = result;
+        for (const auto & i : node->neighbors)
+        {
+            result->neighbors.push_back(f1(i, A));
+        }
+        return result;
+    }
+};
+
+/**
+ * Definition for undirected graph.
+ * struct UndirectedGraphNode {
+ *     int label;
+ *     vector<UndirectedGraphNode *> neighbors;
+ *     UndirectedGraphNode(int x) : label(x) {};
+ * };
+ */
+class Solution {
+public:
+    UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) {
+        if (!node)
+        {
+            return NULL;
+        }
+        queue<UndirectedGraphNode *> q;
+        q.push(node);
+        unordered_map<int, UndirectedGraphNode *> A;
+        A[node->label] = new UndirectedGraphNode(node->label);
+        while (!q.empty())
+        {
+            UndirectedGraphNode * from = q.front();
+            q.pop();
+            for (const auto & to : from->neighbors)
+            {
+                if (A.count(to->label))
+                {
+                    A[from->label]->neighbors.push_back(A[to->label]);
+                }
+                else
+                {
+                    A[from->label]->neighbors.push_back(A[to->label] = new UndirectedGraphNode(to->label));
+                    q.push(to);
+                }
+            }
+        }
+        return A[node->label];
+    }
+};
+
 // BEGIN: Time Complexicty O(E + V) Space Complexicty O(E + V)
 class Solution {
 public:
