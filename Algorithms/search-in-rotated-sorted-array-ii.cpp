@@ -20,6 +20,70 @@ using namespace std;
 
 class Solution {
 public:
+    bool search(vector<int>& nums, int target) {
+        int sz = nums.size(), i = 0, j = sz - 1;
+        if (sz == 0)
+        {
+            return false;
+        }
+        if (sz == 1)
+        {
+            return nums[0] == target;
+        }
+        if (nums[0] == target)
+        {
+            return true;
+        }
+        while (i < j and nums[i] == nums[j])
+        {
+            ++i;
+        }
+        if (i >= j)
+        {
+            return false;
+        }
+        int a = i, b = j;
+        ++j;
+        while (i < j)
+        {
+            int k = i + (j - i) / 2;
+            if (nums[a] <= nums[k])
+            {
+                if (nums[k] < target)
+                {
+                    i = k + 1;
+                }
+                else if (nums[a] <= target)
+                {
+                    j = k;
+                }
+                else
+                {
+                    i = k + 1;
+                }
+            }
+            else
+            {
+                if (nums[a] <= target)
+                {
+                    j = k;
+                }
+                else if (nums[k] < target)
+                {
+                    i = k + 1;
+                }
+                else
+                {
+                    j = k;
+                }
+            }
+        }
+        return i < sz and nums[i] == target;
+    }
+};
+
+class Solution {
+public:
 	bool search(vector<int>& nums, int target) {
 		if (nums.empty()) {
 			return false;
