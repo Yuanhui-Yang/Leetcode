@@ -18,6 +18,48 @@ class Solution {
 public:
     int search(vector<int>& nums, int target) {
         int sz = nums.size(), i = 0, j = sz;
+        while (i < j)
+        {
+            int k = i + (j - i) / 2;
+            if (nums[0] <= nums[k])
+            {
+                if (nums[k] < target)
+                {
+                    i = k + 1;
+                }
+                else if (nums[0] <= target)
+                {
+                    j = k;
+                }
+                else
+                {
+                    i = k + 1;
+                }
+            }
+            else
+            {
+                if (nums[0] <= target)
+                {
+                    j = k;
+                }
+                else if (nums[k] < target)
+                {
+                    i = k + 1;
+                }
+                else
+                {
+                    j = k;
+                }
+            }
+        }
+        return i < sz and nums[i] == target ? i : -1;
+    }
+};
+
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int sz = nums.size(), i = 0, j = sz;
         while (i < j) {
             int k = i + (j - i) / 2;
             if (target < nums[0]) {
