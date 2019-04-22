@@ -1,7 +1,7 @@
 # [LeetCode](https://leetcode.com/)
 ## Algorithms
-| # | Title | Solution | Time complexity | Time complexity | Space complexity |
-| --- | --- | --- | --- | --- |
+| # | Title | Solution | Time complexity |
+| --- | --- | --- |
 | 1 | [Two Sum](https://leetcode.com/problems/two-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/two-sum.cpp), [C#](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/two-sum.cs) |
 | 2 | [Add Two Numbers](https://leetcode.com/problems/add-two-numbers/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/add-two-numbers.cpp), [C#](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/add-two-numbers.cs) |
 | 3 | [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-substring-without-repeating-characters.cpp), [C#](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-substring-without-repeating-characters.cs) |
@@ -700,7 +700,7 @@
 | 964 | [Least Operators to Express Number](https://leetcode.com/problems/least-operators-to-express-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/least-operators-to-express-number.cpp) |
 | 973 | [K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/k-closest-points-to-origin.cpp) |
 | **1029** | [Two City Scheduling](https://leetcode.com/problems/two-city-scheduling/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/two-city-scheduling.cpp) |
-| 1030 | [Matrix Cells in Distance Order](https://leetcode.com/problems/matrix-cells-in-distance-order/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/matrix-cells-in-distance-order.cpp) | O(nlogn) | O(1) |
+| 1030 | [Matrix Cells in Distance Order](https://leetcode.com/problems/matrix-cells-in-distance-order/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/matrix-cells-in-distance-order.cpp) |
 
 ## Database
 | # | Title | Solution |
