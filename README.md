@@ -701,6 +701,7 @@
 | 973 | [K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/k-closest-points-to-origin.cpp) |
 | **1029** | [Two City Scheduling](https://leetcode.com/problems/two-city-scheduling/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/two-city-scheduling.cpp) |
 | 1030 | [Matrix Cells in Distance Order](https://leetcode.com/problems/matrix-cells-in-distance-order/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/matrix-cells-in-distance-order.cpp) |
+| 1033 | [Moving Stones Until Consecutive](https://leetcode.com/problems/moving-stones-until-consecutive/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/moving-stones-until-consecutive.cpp) |
 
 ## Database
 | # | Title | Solution |
