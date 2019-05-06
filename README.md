@@ -2,7 +2,9 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
-| 1036 | [Escape a Large Maze](https://leetcode.com/problems/escape-a-large-maze/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/escape-a-large-maze.cpp) || 1035 | [Uncrossed Lines](https://leetcode.com/problems/uncrossed-lines/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/uncrossed-lines.cpp) |
+| 1039 | [Minimum Score Triangulation of Polygon](https://leetcode.com/problems/minimum-score-triangulation-of-polygon/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-score-triangulation-of-polygon.cpp) |
+| 1036 | [Escape a Large Maze](https://leetcode.com/problems/escape-a-large-maze/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/escape-a-large-maze.cpp) |
+| 1035 | [Uncrossed Lines](https://leetcode.com/problems/uncrossed-lines/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/uncrossed-lines.cpp) |
 | 1034 | [Coloring A Border](https://leetcode.com/problems/coloring-a-border/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/coloring-a-border.cpp) |
 | 1033 | [Moving Stones Until Consecutive](https://leetcode.com/problems/moving-stones-until-consecutive/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/moving-stones-until-consecutive.cpp) |
 | 1032 | [Stream of Characters](https://leetcode.com/problems/stream-of-characters/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/stream-of-characters.cpp) |
