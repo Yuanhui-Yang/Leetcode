@@ -4,6 +4,7 @@
 | --- | --- | --- |
 | 1039 | [Minimum Score Triangulation of Polygon](https://leetcode.com/problems/minimum-score-triangulation-of-polygon/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-score-triangulation-of-polygon.cpp) |
 | 1038 | [Binary Search Tree to Greater Sum Tree](https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/binary-search-tree-to-greater-sum-tree.cpp) |
+| 1037 | [Valid Boomerang](https://leetcode.com/problems/valid-boomerang/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/valid-boomerang.cpp) |
 | 1036 | [Escape a Large Maze](https://leetcode.com/problems/escape-a-large-maze/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/escape-a-large-maze.cpp) |
 | 1035 | [Uncrossed Lines](https://leetcode.com/problems/uncrossed-lines/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/uncrossed-lines.cpp) |
 | 1034 | [Coloring A Border](https://leetcode.com/problems/coloring-a-border/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/coloring-a-border.cpp) |
