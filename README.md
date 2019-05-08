@@ -13,6 +13,7 @@
 | 1032 | [Stream of Characters](https://leetcode.com/problems/stream-of-characters/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/stream-of-characters.cpp) |
 | 1030 | [Matrix Cells in Distance Order](https://leetcode.com/problems/matrix-cells-in-distance-order/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/matrix-cells-in-distance-order.cpp) |
 | 1029 | [Two City Scheduling](https://leetcode.com/problems/two-city-scheduling/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/two-city-scheduling.cpp) |
+| 1027 | [Longest Arithmetic Sequence](https://leetcode.com/problems/longest-arithmetic-sequence/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-arithmetic-sequence.cpp) |
 | 973 | [K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/k-closest-points-to-origin.cpp) |
 | 964 | [Least Operators to Express Number](https://leetcode.com/problems/least-operators-to-express-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/least-operators-to-express-number.cpp) |
 | 943 | [Find the Shortest Superstring](https://leetcode.com/problems/find-the-shortest-superstring/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-the-shortest-superstring.cpp) |
