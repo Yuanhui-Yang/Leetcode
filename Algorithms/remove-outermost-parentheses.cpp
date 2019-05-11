@@ -43,6 +43,32 @@ S is a valid parentheses string
 class Solution {
 public:
     string removeOuterParentheses(string S) {
+        int cnt = 0;
+        string result;
+        for (const auto & ch : S)
+        {
+            if (ch == '(')
+            {
+                if (cnt++ > 0)
+                {
+                    result.push_back(ch);
+                }
+            }
+            else if (ch == ')')
+            {
+                if (--cnt > 0)
+                {
+                    result.push_back(ch);
+                }
+            }
+        }
+        return result;
+    }
+};
+
+class Solution {
+public:
+    string removeOuterParentheses(string S) {
         stack<int> stk;
         int sz = S.size();
         string result;
