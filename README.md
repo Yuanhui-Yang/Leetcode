@@ -17,6 +17,7 @@
 | 1024 | [Video Stitching](https://leetcode.com/problems/video-stitching/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/video-stitching.cpp) |
 | 1023 | [Camelcase Matching](https://leetcode.com/problems/camelcase-matching/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/camelcase-matching.cpp) |
 | 1021 | [Remove Outermost Parentheses](https://leetcode.com/problems/remove-outermost-parentheses/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-outermost-parentheses.cpp) |
+| 1020 | [Number of Enclaves](https://leetcode.com/problems/number-of-enclaves/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-enclaves.cpp) |
 | 973 | [K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/k-closest-points-to-origin.cpp) |
 | 964 | [Least Operators to Express Number](https://leetcode.com/problems/least-operators-to-express-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/least-operators-to-express-number.cpp) |
 | 943 | [Find the Shortest Superstring](https://leetcode.com/problems/find-the-shortest-superstring/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-the-shortest-superstring.cpp) |
