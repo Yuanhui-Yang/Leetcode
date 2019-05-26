@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1051 | [Height Checker](https://leetcode.com/problems/height-checker/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/height-checker.cpp) |
 | 1040 | [Moving Stones Until Consecutive II](https://leetcode.com/problems/moving-stones-until-consecutive-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/moving-stones-until-consecutive-ii.cpp) |
 | 1039 | [Minimum Score Triangulation of Polygon](https://leetcode.com/problems/minimum-score-triangulation-of-polygon/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-score-triangulation-of-polygon.cpp) |
 | 1038 | [Binary Search Tree to Greater Sum Tree](https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/binary-search-tree-to-greater-sum-tree.cpp) |
