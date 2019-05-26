@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1052 | [Grumpy Bookstore Owner](https://leetcode.com/problems/grumpy-bookstore-owner/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/grumpy-bookstore-owner.cpp) |
 | 1051 | [Height Checker](https://leetcode.com/problems/height-checker/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/height-checker.cpp) |
 | 1040 | [Moving Stones Until Consecutive II](https://leetcode.com/problems/moving-stones-until-consecutive-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/moving-stones-until-consecutive-ii.cpp) |
 | 1039 | [Minimum Score Triangulation of Polygon](https://leetcode.com/problems/minimum-score-triangulation-of-polygon/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-score-triangulation-of-polygon.cpp) |
