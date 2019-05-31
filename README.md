@@ -60,6 +60,7 @@
 | 774 | [Minimize Max Distance to Gas Station](https://leetcode.com/problems/minimize-max-distance-to-gas-station/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimize-max-distance-to-gas-station.cpp) |
 | 772 | [Basic Calculator III](https://leetcode.com/problems/basic-calculator-iii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/basic-calculator-iii.cpp) |
 | 771 | [Jewels and Stones](https://leetcode.com/problems/jewels-and-stones/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/jewels-and-stones.cpp) |
+| 770 | [Basic Calculator IV](https://leetcode.com/problems/basic-calculator-iv/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/basic-calculator-iv.cpp) |
 | 769 | [Max Chunks To Make Sorted](https://leetcode.com/problems/max-chunks-to-make-sorted/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/max-chunks-to-make-sorted.cpp) |
 | 768 | [Max Chunks To Make Sorted II](https://leetcode.com/problems/max-chunks-to-make-sorted-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/max-chunks-to-make-sorted-ii.cpp) |
 | 767 | [Reorganize String](https://leetcode.com/problems/reorganize-string/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reorganize-string.cpp) |
