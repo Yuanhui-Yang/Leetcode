@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1073 | [Adding Two Negabinary Numbers](https://leetcode.com/problems/adding-two-negabinary-numbers/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/adding-two-negabinary-numbers.cpp) |
 | 1054 | [Distant Barcodes](https://leetcode.com/problems/distant-barcodes/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/distant-barcodes.cpp) |
 | 1053 | [Previous Permutation With One Swap](https://leetcode.com/problems/previous-permutation-with-one-swap/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/previous-permutation-with-one-swap.cpp) |
 | 1052 | [Grumpy Bookstore Owner](https://leetcode.com/problems/grumpy-bookstore-owner/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/grumpy-bookstore-owner.cpp) |
