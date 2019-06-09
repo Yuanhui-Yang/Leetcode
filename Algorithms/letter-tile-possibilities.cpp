@@ -25,30 +25,6 @@ class Solution {
 public:
     int numTilePossibilities(string tiles) {
         unordered_set<string> A;
-        sort(tiles.begin(), tiles.end());
-        do
-        {
-            for (int sz = tiles.size(), status = 1; status < (1 << sz); ++status)
-            {
-                string s;
-                for (int i = 0; i < sz; ++i)
-                {
-                    if (status & (1 << i))
-                    {
-                        s.push_back(tiles[i]);
-                    }
-                }
-                A.insert(s);
-            }
-        } while (next_permutation(tiles.begin(), tiles.end()));
-        return A.size();
-    }
-};
-
-class Solution {
-public:
-    int numTilePossibilities(string tiles) {
-        unordered_set<string> A;
         string path;
         vector<bool> unvisited(tiles.size(), true);
         f1(A, tiles, path, unvisited);
@@ -72,5 +48,29 @@ private:
                 unvisited[i] = true;
             }
         }
+    }
+};
+
+class Solution {
+public:
+    int numTilePossibilities(string tiles) {
+        unordered_set<string> A;
+        sort(tiles.begin(), tiles.end());
+        do
+        {
+            for (int sz = tiles.size(), status = 1; status < (1 << sz); ++status)
+            {
+                string s;
+                for (int i = 0; i < sz; ++i)
+                {
+                    if (status & (1 << i))
+                    {
+                        s.push_back(tiles[i]);
+                    }
+                }
+                A.insert(s);
+            }
+        } while (next_permutation(tiles.begin(), tiles.end()));
+        return A.size();
     }
 };
