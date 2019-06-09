@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1083 | [Occurrences After Bigram](https://leetcode.com/problems/occurrences-after-bigram/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/occurrences-after-bigram.cpp) |
 | 1073 | [Adding Two Negabinary Numbers](https://leetcode.com/problems/adding-two-negabinary-numbers/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/adding-two-negabinary-numbers.cpp) |
 | 1066 | [Campus Bikes II](https://leetcode.com/problems/campus-bikes-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/campus-bikes-ii.cpp) |
 | 1057 | [Campus Bikes](https://leetcode.com/problems/campus-bikes/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/campus-bikes.cpp) |
