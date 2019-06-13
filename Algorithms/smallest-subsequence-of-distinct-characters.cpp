@@ -1,4 +1,4 @@
-1086. Smallest Subsequence of Distinct Characters
+1081. Smallest Subsequence of Distinct Characters
 https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/
 
 Return the lexicographically smallest subsequence of text that contains all the distinct characters of text exactly once.
