@@ -2,7 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
-| 1087 | [Letter Tile Possibilities](https://leetcode.com/problems/letter-tile-possibilities/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/letter-tile-possibilities.cpp) |
+| 1079 | [Letter Tile Possibilities](https://leetcode.com/problems/letter-tile-possibilities/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/letter-tile-possibilities.cpp) |
 | 1086 | [Smallest Subsequence of Distinct Characters](https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/smallest-subsequence-of-distinct-characters.cpp) |
 | 1084 | [Insufficient Nodes in Root to Leaf Paths](https://leetcode.com/problems/insufficient-nodes-in-root-to-leaf-paths/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/insufficient-nodes-in-root-to-leaf-paths.cpp) |
 | 1083 | [Occurrences After Bigram](https://leetcode.com/problems/occurrences-after-bigram/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/occurrences-after-bigram.cpp) |
