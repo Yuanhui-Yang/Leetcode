@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1087 | [Brace Expansion](https://leetcode.com/problems/brace-expansion/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/brace-expansion.cpp) |
 | 1081 | [Smallest Subsequence of Distinct Characters](https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/smallest-subsequence-of-distinct-characters.cpp) |
 | 1080 | [Insufficient Nodes in Root to Leaf Paths](https://leetcode.com/problems/insufficient-nodes-in-root-to-leaf-paths/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/insufficient-nodes-in-root-to-leaf-paths.cpp) |
 | 1079 | [Letter Tile Possibilities](https://leetcode.com/problems/letter-tile-possibilities/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/letter-tile-possibilities.cpp) |
