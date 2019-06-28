@@ -43,6 +43,7 @@
 | 857 | [Minimum Cost to Hire K Workers](https://leetcode.com/problems/minimum-cost-to-hire-k-workers/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-cost-to-hire-k-workers.cpp) |
 | 858 | [Mirror Reflection](https://leetcode.com/problems/mirror-reflection/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/mirror-reflection.cpp) |
 | 847 | [Shortest Path Visiting All Nodes](https://leetcode.com/problems/shortest-path-visiting-all-nodes/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/shortest-path-visiting-all-nodes.cpp) |
+| 840 | [Magic Squares In Grid](https://leetcode.com/problems/magic-squares-in-grid/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/magic-squares-in-grid.cpp) |
 | 830 | [Positions of Large Groups](https://leetcode.com/problems/positions-of-large-groups/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/positions-of-large-groups.cpp) |
 | 825 | [Friends Of Appropriate Ages](https://leetcode.com/problems/friends-of-appropriate-ages/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/friends-of-appropriate-ages.cpp) |
 | 824 | [Goat Latin](https://leetcode.com/problems/goat-latin/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/goat-latin.cpp) |
