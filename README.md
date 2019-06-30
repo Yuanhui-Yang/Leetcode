@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1104 | [Path In Zigzag Labelled Binary Tree](https://leetcode.com/problems/path-in-zigzag-labelled-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/path-in-zigzag-labelled-binary-tree.cpp) |
 | 1103 | [Distribute Candies to People](https://leetcode.com/problems/distribute-candies-to-people/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/distribute-candies-to-people.cpp) |
 | 1102 | [Path With Maximum Minimum Value](https://leetcode.com/problems/path-with-maximum-minimum-value/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/path-with-maximum-minimum-value.cpp) |
 | 1101 | [The Earliest Moment When Everyone Become Friends](https://leetcode.com/problems/the-earliest-moment-when-everyone-become-friends/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/the-earliest-moment-when-everyone-become-friends.cpp) |
