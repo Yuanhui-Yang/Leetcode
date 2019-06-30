@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1106 | [Parsing A Boolean Expression](https://leetcode.com/problems/parsing-a-boolean-expression/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/parsing-a-boolean-expression.cpp) |
 | 1105 | [Filling Bookcase Shelves](https://leetcode.com/problems/filling-bookcase-shelves/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/filling-bookcase-shelves.cpp) |
 | 1104 | [Path In Zigzag Labelled Binary Tree](https://leetcode.com/problems/path-in-zigzag-labelled-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/path-in-zigzag-labelled-binary-tree.cpp) |
 | 1103 | [Distribute Candies to People](https://leetcode.com/problems/distribute-candies-to-people/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/distribute-candies-to-people.cpp) |
