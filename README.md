@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1103 | [Distribute Candies to People](https://leetcode.com/problems/distribute-candies-to-people/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/distribute-candies-to-people.cpp) |
 | 1102 | [Path With Maximum Minimum Value](https://leetcode.com/problems/path-with-maximum-minimum-value/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/path-with-maximum-minimum-value.cpp) |
 | 1101 | [The Earliest Moment When Everyone Become Friends](https://leetcode.com/problems/the-earliest-moment-when-everyone-become-friends/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/the-earliest-moment-when-everyone-become-friends.cpp) |
 | 1100 | [Find K-Length Substrings With No Repeated Characters](https://leetcode.com/problems/find-k-length-substrings-with-no-repeated-characters/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-k-length-substrings-with-no-repeated-characters.cpp) |
