@@ -40,79 +40,40 @@ Constraints:
 class Solution {
 public:
     vector<int> maxDepthAfterSplit(string seq) {
-        int max_depth = 0, cnt = 0, sz = seq.size(), i = 0;
-        for (i = 0; i < sz; ++i)
+        int max_depth = 0, depth = 0;
+        for (auto ch : seq)
         {
-            char ch = seq[i];
             if (ch == '(')
             {
-                ++cnt;
+                ++depth;
             }
-            else if (ch == ')')
+            else
             {
-                --cnt;
+                --depth;
             }
-            if (max_depth < cnt)
-            {
-                max_depth = cnt;
-            }
+            max_depth = max(max_depth, depth);
         }
+        int sz = seq.size();
+        depth = 0;
         vector<int> result(sz, 0);
-        for (i = 0, cnt = 0; i < sz and max_depth >= 2; ++i)
+        for (int i = 0; i < sz; ++i)
         {
             char ch = seq[i];
             if (ch == '(')
             {
-                ++cnt;
+                if (++depth > max_depth / 2)
+                {
+                    result[i] = 1;
+                }
             }
-            else if (ch == ')')
+            else
             {
-                --cnt;
-            }
-            if (cnt > max_depth / 2)
-            {
-                f1(result, seq, i, max_depth);
+                if (depth-- > max_depth / 2)
+                {
+                    result[i] = 1;
+                }
             }
         }
         return result;
-    }
-private:
-    void f1(vector<int> & result, string seq, int candidate, int max_depth)
-    {
-        int cnt = 0, sz = seq.size();
-        int left = candidate;
-        while (left >= 0 and cnt < max_depth / 2)
-        {
-            char ch = seq[left];
-            if (ch == '(')
-            {
-               ++cnt; 
-            }
-            else if (ch == ')')
-            {
-                --cnt;
-            }
-            --left;
-        }
-        ++left;
-        cnt = 1;
-        int right = left + 1;
-        while (right < sz and cnt > 0)
-        {
-            char ch = seq[right];
-            if (ch == '(')
-            {
-                ++cnt;
-            }
-            else if (ch == ')')
-            {
-                --cnt;
-            }
-            ++right;
-        }
-        for (int i = left; i < right; ++i)
-        {
-            result[i] = 1;
-        }
     }
 };
