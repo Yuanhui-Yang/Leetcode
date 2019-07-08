@@ -2,6 +2,10 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1111 | [Maximum Nesting Depth of Two Valid Parentheses Strings](https://leetcode.com/problems/maximum-nesting-depth-of-two-valid-parentheses-strings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-nesting-depth-of-two-valid-parentheses-strings.cpp) |
+| 1110 | [Delete Nodes And Return Forest](https://leetcode.com/problems/delete-nodes-and-return-forest/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/delete-nodes-and-return-forest.cpp) |
+| 1109 | [Corporate Flight Bookings](https://leetcode.com/problems/corporate-flight-bookings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/corporate-flight-bookings.cpp) |
+| 1108 | [Defanging an IP Address](https://leetcode.com/problems/defanging-an-ip-address/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/defanging-an-ip-address.cpp) |
 | 1106 | [Parsing A Boolean Expression](https://leetcode.com/problems/parsing-a-boolean-expression/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/parsing-a-boolean-expression.cpp) |
 | 1105 | [Filling Bookcase Shelves](https://leetcode.com/problems/filling-bookcase-shelves/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/filling-bookcase-shelves.cpp) |
 | 1104 | [Path In Zigzag Labelled Binary Tree](https://leetcode.com/problems/path-in-zigzag-labelled-binary-tree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/path-in-zigzag-labelled-binary-tree.cpp) |
