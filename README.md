@@ -49,6 +49,7 @@
 | 939 | [Minimum Area Rectangle](https://leetcode.com/problems/minimum-area-rectangle/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-area-rectangle.cpp) |
 | 938 | [Range Sum of BST](https://leetcode.com/problems/range-sum-of-bst/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/range-sum-of-bst.cpp) |
 | 937 | [Reorder Log Files](https://leetcode.com/problems/reorder-log-files/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reorder-log-files.cpp) |
+| 919 | [Complete Binary Tree Inserter](https://leetcode.com/problems/complete-binary-tree-inserter/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/complete-binary-tree-inserter.cpp) |
 | 917 | [Reverse Only Letters](https://leetcode.com/problems/reverse-only-letters/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reverse-only-letters.cpp) |
 | 889 | [Construct Binary Tree from Preorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/construct-binary-tree-from-preorder-and-postorder-traversal.cpp) |
 | 864 | [Shortest Path to Get All Keys](https://leetcode.com/problems/shortest-path-to-get-all-keys/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/shortest-path-to-get-all-keys.cpp) |
