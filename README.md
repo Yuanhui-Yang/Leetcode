@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1118 | [Number of Days in a Month](https://leetcode.com/problems/number-of-days-in-a-month/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-days-in-a-month.cpp) |
 | 1111 | [Maximum Nesting Depth of Two Valid Parentheses Strings](https://leetcode.com/problems/maximum-nesting-depth-of-two-valid-parentheses-strings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-nesting-depth-of-two-valid-parentheses-strings.cpp) |
 | 1110 | [Delete Nodes And Return Forest](https://leetcode.com/problems/delete-nodes-and-return-forest/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/delete-nodes-and-return-forest.cpp) |
 | 1109 | [Corporate Flight Bookings](https://leetcode.com/problems/corporate-flight-bookings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/corporate-flight-bookings.cpp) |
