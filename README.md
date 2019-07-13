@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1120 | [Maximum Average Subtree](https://leetcode.com/problems/maximum-average-subtree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-average-subtree.cpp) |
 | 1119 | [Remove Vowels from a String](https://leetcode.com/problems/remove-vowels-from-a-string/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-vowels-from-a-string.cpp) |
 | 1118 | [Number of Days in a Month](https://leetcode.com/problems/number-of-days-in-a-month/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-days-in-a-month.cpp) |
 | 1111 | [Maximum Nesting Depth of Two Valid Parentheses Strings](https://leetcode.com/problems/maximum-nesting-depth-of-two-valid-parentheses-strings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-nesting-depth-of-two-valid-parentheses-strings.cpp) |
