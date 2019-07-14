@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1125 | [Smallest Sufficient Team](https://leetcode.com/problems/smallest-sufficient-team/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/smallest-sufficient-team.cpp) |
 | 1124 | [Longest Well-Performing Interval](https://leetcode.com/problems/longest-well-performing-interval/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-well-performing-interval.cpp) |
 | 1123 | [Lowest Common Ancestor of Deepest Leaves](https://leetcode.com/problems/lowest-common-ancestor-of-deepest-leaves/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/lowest-common-ancestor-of-deepest-leaves.cpp) |
 | 1122 | [Relative Sort Array](https://leetcode.com/problems/relative-sort-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/relative-sort-array.cpp) |
