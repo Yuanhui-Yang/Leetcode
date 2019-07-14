@@ -33,6 +33,30 @@ public:
         int i = 0;
         while (i < sz)
         {
+            int cnt = 0;
+            int val = nums[i];
+            while (i < sz and nums[i] == val)
+            {
+                ++cnt;
+                ++i;
+            }
+            if (N < cnt)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+class Solution {
+public:
+    bool canDivideIntoSubsequences(vector<int>& nums, int K) {
+        int sz = nums.size();
+        int N = sz / K;
+        int i = 0;
+        while (i < sz)
+        {
             int cnt = 1;
             while (i + 1 < sz and nums[i] == nums[i + 1])
             {
