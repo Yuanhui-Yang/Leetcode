@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1122 | [Relative Sort Array](https://leetcode.com/problems/relative-sort-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/relative-sort-array.cpp) |
 | 1121 | [Divide Array Into Increasing Sequences](https://leetcode.com/problems/divide-array-into-increasing-sequences/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/divide-array-into-increasing-sequences.cpp) |
 | 1120 | [Maximum Average Subtree](https://leetcode.com/problems/maximum-average-subtree/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-average-subtree.cpp) |
 | 1119 | [Remove Vowels from a String](https://leetcode.com/problems/remove-vowels-from-a-string/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-vowels-from-a-string.cpp) |
