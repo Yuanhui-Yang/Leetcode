@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1130 | [Minimum Cost Tree From Leaf Values](https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-cost-tree-from-leaf-values.cpp) |
 | 1129 | [Shortest Path with Alternating Colors](https://leetcode.com/problems/shortest-path-with-alternating-colors/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/shortest-path-with-alternating-colors.cpp) |
 | 1128 | [Number of Equivalent Domino Pairs](https://leetcode.com/problems/number-of-equivalent-domino-pairs/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-equivalent-domino-pairs.cpp) |
 | 1125 | [Smallest Sufficient Team](https://leetcode.com/problems/smallest-sufficient-team/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/smallest-sufficient-team.cpp) |
