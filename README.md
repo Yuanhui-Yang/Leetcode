@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1133 | [Largest Unique Number](https://leetcode.com/problems/largest-unique-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-unique-number.cpp) |
 | 1131 | [Maximum of Absolute Value Expression](https://leetcode.com/problems/maximum-of-absolute-value-expression/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-of-absolute-value-expression.cpp) |
 | 1130 | [Minimum Cost Tree From Leaf Values](https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-cost-tree-from-leaf-values.cpp) |
 | 1129 | [Shortest Path with Alternating Colors](https://leetcode.com/problems/shortest-path-with-alternating-colors/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/shortest-path-with-alternating-colors.cpp) |
