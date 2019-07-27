@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1135 | [Connecting Cities With Minimum Cost](https://leetcode.com/problems/connecting-cities-with-minimum-cost/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/connecting-cities-with-minimum-cost.cpp) |
 | 1134 | [Armstrong Number](https://leetcode.com/problems/armstrong-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/armstrong-number.cpp) |
 | 1133 | [Largest Unique Number](https://leetcode.com/problems/largest-unique-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-unique-number.cpp) |
 | 1131 | [Maximum of Absolute Value Expression](https://leetcode.com/problems/maximum-of-absolute-value-expression/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-of-absolute-value-expression.cpp) |
