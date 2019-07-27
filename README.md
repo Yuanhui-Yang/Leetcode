@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1131 | [Maximum of Absolute Value Expression](https://leetcode.com/problems/maximum-of-absolute-value-expression/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-of-absolute-value-expression.cpp) |
 | 1130 | [Minimum Cost Tree From Leaf Values](https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-cost-tree-from-leaf-values.cpp) |
 | 1129 | [Shortest Path with Alternating Colors](https://leetcode.com/problems/shortest-path-with-alternating-colors/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/shortest-path-with-alternating-colors.cpp) |
 | 1128 | [Number of Equivalent Domino Pairs](https://leetcode.com/problems/number-of-equivalent-domino-pairs/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-equivalent-domino-pairs.cpp) |
