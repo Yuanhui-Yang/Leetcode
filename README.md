@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1129 | [Shortest Path with Alternating Colors](https://leetcode.com/problems/shortest-path-with-alternating-colors/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/shortest-path-with-alternating-colors.cpp) |
 | 1128 | [Number of Equivalent Domino Pairs](https://leetcode.com/problems/number-of-equivalent-domino-pairs/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-equivalent-domino-pairs.cpp) |
 | 1125 | [Smallest Sufficient Team](https://leetcode.com/problems/smallest-sufficient-team/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/smallest-sufficient-team.cpp) |
 | 1124 | [Longest Well-Performing Interval](https://leetcode.com/problems/longest-well-performing-interval/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-well-performing-interval.cpp) |
