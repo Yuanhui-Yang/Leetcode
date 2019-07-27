@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1136 | [Parallel Courses](https://leetcode.com/problems/parallel-courses/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/parallel-courses.cpp) |
 | 1135 | [Connecting Cities With Minimum Cost](https://leetcode.com/problems/connecting-cities-with-minimum-cost/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/connecting-cities-with-minimum-cost.cpp) |
 | 1134 | [Armstrong Number](https://leetcode.com/problems/armstrong-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/armstrong-number.cpp) |
 | 1133 | [Largest Unique Number](https://leetcode.com/problems/largest-unique-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-unique-number.cpp) |
