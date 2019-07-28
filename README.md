@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1139 | [Largest 1-Bordered Square](https://leetcode.com/problems/largest-1-bordered-square/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-1-bordered-square.cpp) |
 | 1138 | [Alphabet Board Path](https://leetcode.com/problems/alphabet-board-path/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/alphabet-board-path.cpp) |
 | 1137 | [N-th Tribonacci Number](https://leetcode.com/problems/n-th-tribonacci-number/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/n-th-tribonacci-number.cpp) |
 | 1136 | [Parallel Courses](https://leetcode.com/problems/parallel-courses/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/parallel-courses.cpp) |
