@@ -37,33 +37,23 @@
 class Solution {
 public:
     int shortestDistance(vector<string>& words, string word1, string word2) {
-        unordered_map<string, vector<int>> A = f1(words);
-        vector<int>& x = A[word1], &y = A[word2];
-        int sz1 = x.size(), sz2 = y.size(), i = 0, j = 0, result = words.size();
-        while (i < sz1 and j < sz2)
+        int sz = words.size(), result = sz;
+        for (int i = 0, a = -1, b = -1; i < sz; ++i)
         {
-            int a = x[i], b = y[j];
-            result = min(result, abs(a - b));
-            if (a < b)
+            string& word = words[i];
+            if (word == word1)
             {
-                ++i;
+                a = i;
             }
-            else
+            else if (word == word2)
             {
-                ++j;
+                b = i;
             }
-        }
-        return result;
-    }
-private:
-    unordered_map<string, vector<int>> f1(vector<string>& words)
-    {
-        unordered_map<string, vector<int>> result;
-        for (int sz = words.size(), i = 0; i < sz; ++i)
-        {
-            result[words[i]].push_back(i);
+            if (a >= 0 and b >= 0)
+            {
+                result = min(result, abs(a - b));
+            }
         }
         return result;
     }
 };
-
