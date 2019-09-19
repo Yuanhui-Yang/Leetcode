@@ -232,6 +232,7 @@
 | 593 | [Valid Square](https://leetcode.com/problems/valid-square/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/valid-square.cpp) |
 | 592 | [Fraction Addition and Subtraction](https://leetcode.com/problems/fraction-addition-and-subtraction/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/fraction-addition-and-subtraction.cpp) |
 | 591 | [Tag Validator](https://leetcode.com/problems/tag-validator/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/tag-validator.cpp) |
+| 589 | [N-ary Tree Preorder Traversal](https://leetcode.com/problems/n-ary-tree-preorder-traversal/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/n-ary-tree-preorder-traversal.cpp) |
 | 588 | [Design In-Memory File System](https://leetcode.com/problems/design-in-memory-file-system/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/design-in-memory-file-system.cpp) |
 | 587 | [Erect the Fence](https://leetcode.com/problems/erect-the-fence/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/erect-the-fence.cpp) |
 | 583 | [Delete Operation for Two Strings](https://leetcode.com/problems/delete-operation-for-two-strings/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/delete-operation-for-two-strings.cpp) |
