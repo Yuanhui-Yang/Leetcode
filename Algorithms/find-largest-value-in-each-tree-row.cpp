@@ -1,21 +1,35 @@
-// 515. Find Largest Value in Each Tree Row
-// https://leetcode.com/problems/find-largest-value-in-each-tree-row/
-
 /*
-You need to find the largest value in each row of a binary tree.
-
-Example:
-Input: 
-
-		  1
-		 / \
-		3   2
-	   / \   \  
-	  5   3   9 
-
-Output: [1, 3, 9]
-*/
-
+ * @lc app=leetcode id=515 lang=cpp
+ *
+ * [515] Find Largest Value in Each Tree Row
+ *
+ * https://leetcode.com/problems/find-largest-value-in-each-tree-row/description/
+ *
+ * algorithms
+ * Medium (58.46%)
+ * Likes:    562
+ * Dislikes: 48
+ * Total Accepted:    71.6K
+ * Total Submissions: 122.4K
+ * Testcase Example:  '[1,3,2,5,3,null,9]'
+ *
+ * You need to find the largest value in each row of a binary tree.
+ * 
+ * Example:
+ * 
+ * Input: 
+ * 
+ * ⁠         1
+ * ⁠        / \
+ * ⁠       3   2
+ * ⁠      / \   \  
+ * ⁠     5   3   9 
+ * 
+ * Output: [1, 3, 9]
+ * 
+ * 
+ * 
+ */
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -27,26 +41,35 @@ Output: [1, 3, 9]
  */
 class Solution {
 public:
-	vector<int> largestValues(TreeNode* root) {
-		vector<int> result;
-		if (!root) {
-			return result;
-		}
-		for (list<TreeNode*> curr({root}), next; !curr.empty(); curr = next, next.clear()) {
-			int maxVal = curr.front()->val;
-			for (const auto & i : curr) {
-				if (maxVal < i->val) {
-					maxVal = i->val;
-				}
-				if (i->left) {
-					next.push_back(i->left);
-				}
-				if (i->right) {
-					next.push_back(i->right);
-				}
-			}
-			result.push_back(maxVal);
-		}
-		return result;
-	}
+    vector<int> largestValues(TreeNode* root) {
+        vector<int> result;
+        queue<TreeNode*> q;
+        if (root)
+        {
+            q.push(root);
+            while (!q.empty())
+            {
+                int sz = q.size();
+                int max_val = INT_MIN;
+                while (sz-- > 0)
+                {
+                    root = q.front();
+                    q.pop();
+                    int val = root->val;
+                    max_val = max(max_val, val);
+                    TreeNode* left = root->left, *right = root->right;
+                    if (left)
+                    {
+                        q.push(left);
+                    }
+                    if (right)
+                    {
+                        q.push(right);
+                    }
+                }
+                result.push_back(max_val);
+            }
+        }
+        return result;
+    }
 };
