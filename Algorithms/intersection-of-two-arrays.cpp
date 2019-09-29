@@ -14,29 +14,41 @@ The result can be in any order.
 
 class Solution {
 public:
-	vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
-		vector<int> result;
-		sort(begin(nums1), end(nums1));
-		sort(begin(nums2), end(nums2));
-		int M = nums1.size(), N = nums2.size(), i = 0, j = 0;
-		while (i < M and j < N) {
-			if (nums1[i] < nums2[j]) {
-				++i;
-			}
-			else if (nums1[i] > nums2[j]) {
-				++j;
-			}
-			else {
-				if (result.empty()) {
-					result.push_back(nums1[i]);
-				}
-				else if (result.back() != nums1[i]) {
-					result.push_back(nums1[i]);
-				}
-				++i;
-				++j;
-			}
-		}
-		return result;
-	}
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        sort(nums1.begin(), nums1.end());
+        sort(nums2.begin(), nums2.end());
+        int sz1 = nums1.size(), sz2 = nums2.size(), i = 0, j = 0;
+        vector<int> result;
+        while (i < sz1 and j < sz2)
+        {
+            int a = nums1[i], b = nums2[j];
+            if (a == b)
+            {
+                result.push_back(a);
+                while (i < sz1 and nums1[i] == a)
+                {
+                    ++i;
+                }
+                while (j < sz2 and nums2[j] == b)
+                {
+                    ++j;
+                }
+            }
+            else if (a < b)
+            {
+                while (i < sz1 and nums1[i] == a)
+                {
+                    ++i;
+                }
+            }
+            else
+            {
+                while (j < sz2 and nums2[j] == b)
+                {
+                    ++j;
+                }
+            }
+        }
+        return result;
+    }
 };
