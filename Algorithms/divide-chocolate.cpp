@@ -68,3 +68,45 @@ public:
     }
 };
 // END: Time Limit Exceeded
+
+class Solution {
+public:
+    int maximizeSweetness(vector<int>& sweetness, int K) {
+        int i = 0;
+        int j = accumulate(sweetness.begin(), sweetness.end(), 0);
+        ++j;
+        while (i < j)
+        {
+            int k = (i + j) >> 1;
+            if (f1(sweetness, K, k))
+            {
+                i = k + 1;
+            }
+            else
+            {
+                j = k;
+            }
+        }
+        return --i;
+    }
+private:
+    bool f1(vector<int>& sweetness, int K, int windowSum)
+    {
+        ++K;
+        int sz = sweetness.size(), i = 0;
+        while (i < sz and K > 0)
+        {
+            int sum = 0;
+            while (i < sz and sum < windowSum)
+            {
+                sum += sweetness[i];
+                ++i;
+            }
+            if (sum >= windowSum)
+            {
+                --K;
+            }
+        }
+        return K == 0;
+    }
+};
