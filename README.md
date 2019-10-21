@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1235 | [Maximum Profit in Job Scheduling](https://leetcode.com/problems/maximum-profit-in-job-scheduling/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-profit-in-job-scheduling.cpp) |
 | 1231 | [Divide Chocolate](https://leetcode.com/problems/divide-chocolate/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/divide-chocolate.cpp) |
 | 1166 | [Design File System](https://leetcode.com/problems/design-file-system/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/design-file-system.cpp) |
 | 1140 | [Stone Game II](https://leetcode.com/problems/stone-game-ii/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/stone-game-ii.cpp) |
