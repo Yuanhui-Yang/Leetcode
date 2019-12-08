@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1282 | [Group the People Given the Group Size They Belong To](https://leetcode.com/problems/group-the-people-given-the-group-size-they-belong-to/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/group-the-people-given-the-group-size-they-belong-to.cpp) |
 | 1281 | [Subtract the Product and Sum of Digits of an Integer](https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/subtract-the-product-and-sum-of-digits-of-an-integer.cpp) |
 | 1235 | [Maximum Profit in Job Scheduling](https://leetcode.com/problems/maximum-profit-in-job-scheduling/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-profit-in-job-scheduling.cpp) |
 | 1234 | [Replace the Substring for Balanced String](https://leetcode.com/problems/replace-the-substring-for-balanced-string/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/replace-the-substring-for-balanced-string.cpp) |
