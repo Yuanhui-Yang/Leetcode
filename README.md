@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1290 | [Convert Binary Number in a Linked List to Integer](https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/convert-binary-number-in-a-linked-list-to-integer.cpp) |
 | 1284 | [Minimum Number of Flips to Convert Binary Matrix to Zero Matrix](https://leetcode.com/problems/minimum-number-of-flips-to-convert-binary-matrix-to-zero-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-number-of-flips-to-convert-binary-matrix-to-zero-matrix.cpp) |
 | 1283 | [Find the Smallest Divisor Given a Threshold](https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-the-smallest-divisor-given-a-threshold.cpp) |
 | 1282 | [Group the People Given the Group Size They Belong To](https://leetcode.com/problems/group-the-people-given-the-group-size-they-belong-to/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/group-the-people-given-the-group-size-they-belong-to.cpp) |
