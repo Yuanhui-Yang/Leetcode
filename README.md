@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1292 | [Maximum Side Length of a Square with Sum Less than or Equal to Threshold](https://leetcode.com/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold.cpp) |
 | 1291 | [Sequential Digits](https://leetcode.com/problems/sequential-digits/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/sequential-digits.cpp) |
 | 1290 | [Convert Binary Number in a Linked List to Integer](https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/convert-binary-number-in-a-linked-list-to-integer.cpp) |
 | 1284 | [Minimum Number of Flips to Convert Binary Matrix to Zero Matrix](https://leetcode.com/problems/minimum-number-of-flips-to-convert-binary-matrix-to-zero-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-number-of-flips-to-convert-binary-matrix-to-zero-matrix.cpp) |
