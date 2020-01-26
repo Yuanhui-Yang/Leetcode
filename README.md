@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1334 | [Find the City With the Smallest Number of Neighbors at a Threshold Distance](https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance.cpp) |
 | 1333 | [Filter Restaurants by Vegan-Friendly, Price and Distance](https://leetcode.com/problems/filter-restaurants-by-vegan-friendly-price-and-distance/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/filter-restaurants-by-vegan-friendly-price-and-distance.cpp) |
 | 1332 | [Remove Palindromic Subsequences](https://leetcode.com/problems/remove-palindromic-subsequences/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-palindromic-subsequences.cpp) |
 | 1326 | [Minimum Number of Taps to Open to Water a Garden](https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-number-of-taps-to-open-to-water-a-garden.cpp) |
