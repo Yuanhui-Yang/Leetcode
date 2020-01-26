@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1335 | [Minimum Difficulty of a Job Schedule](https://leetcode.com/problems/minimum-difficulty-of-a-job-schedule/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-difficulty-of-a-job-schedule.cpp) |
 | 1334 | [Find the City With the Smallest Number of Neighbors at a Threshold Distance](https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance.cpp) |
 | 1333 | [Filter Restaurants by Vegan-Friendly, Price and Distance](https://leetcode.com/problems/filter-restaurants-by-vegan-friendly-price-and-distance/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/filter-restaurants-by-vegan-friendly-price-and-distance.cpp) |
 | 1332 | [Remove Palindromic Subsequences](https://leetcode.com/problems/remove-palindromic-subsequences/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-palindromic-subsequences.cpp) |
