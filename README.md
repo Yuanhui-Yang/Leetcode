@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1333 | [Filter Restaurants by Vegan-Friendly, Price and Distance](https://leetcode.com/problems/filter-restaurants-by-vegan-friendly-price-and-distance/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/filter-restaurants-by-vegan-friendly-price-and-distance.cpp) |
 | 1332 | [Remove Palindromic Subsequences](https://leetcode.com/problems/remove-palindromic-subsequences/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-palindromic-subsequences.cpp) |
 | 1326 | [Minimum Number of Taps to Open to Water a Garden](https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-number-of-taps-to-open-to-water-a-garden.cpp) |
 | 1325 | [Delete Leaves With a Given Value](https://leetcode.com/problems/delete-leaves-with-a-given-value/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/delete-leaves-with-a-given-value.cpp) |
