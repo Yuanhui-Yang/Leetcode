@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1553 | [Minimum Number of Days to Eat N Oranges](https://leetcode.com/problems/minimum-number-of-days-to-eat-n-oranges/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-number-of-days-to-eat-n-oranges.cpp) |
 | 1552 | [Magnetic Force Between Two Balls](https://leetcode.com/problems/magnetic-force-between-two-balls/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/magnetic-force-between-two-balls.cpp) |
 | 1551 | [Minimum Operations to Make Array Equal](https://leetcode.com/problems/minimum-operations-to-make-array-equal/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-operations-to-make-array-equal.cpp) |
 | 1550 | [Three Consecutive Odds](https://leetcode.com/problems/three-consecutive-odds/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/three-consecutive-odds.cpp) |
