@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution |
 | --- | --- | --- |
+| 1551 | [Minimum Operations to Make Array Equal](https://leetcode.com/problems/minimum-operations-to-make-array-equal/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-operations-to-make-array-equal.cpp) |
 | 1550 | [Three Consecutive Odds](https://leetcode.com/problems/three-consecutive-odds/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/three-consecutive-odds.cpp) |
 | 1349 | [Maximum Students Taking Exam](https://leetcode.com/problems/maximum-students-taking-exam/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-students-taking-exam.cpp) |
 | 1337 | [The K Weakest Rows in a Matrix](https://leetcode.com/problems/the-k-weakest-rows-in-a-matrix/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/the-k-weakest-rows-in-a-matrix.cpp) |
