@@ -2,6 +2,10 @@
 ## Algorithms
 | # | Title | Solution | Company |
 | --- | --- | --- | --- |
+| 1728 | [Cat and Mouse II](https://leetcode.com/problems/cat-and-mouse-ii/) | [Python3](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/cat-and-mouse-ii.py) | Google |
+| 1727 | [Largest Submatrix With Rearrangements](https://leetcode.com/problems/largest-submatrix-with-rearrangements/) | [Python3](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-submatrix-with-rearrangements.py) | Google |
+| 1726 | [Tuple with Same Product](https://leetcode.com/problems/tuple-with-same-product/) | [Python3](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/tuple-with-same-product.py) | Google |
+| 1725 | [Number Of Rectangles That Can Form The Largest Square](https://leetcode.com/problems/number-of-rectangles-that-can-form-the-largest-square/) | [Python3](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/number-of-rectangles-that-can-form-the-largest-square.py) | |
 | 1707 | [Maximum XOR With an Element From Array](https://leetcode.com/problems/maximum-xor-with-an-element-from-array/) | [Python3](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/maximum-xor-with-an-element-from-array.py) | Google |
 | 1706 | [Where Will the Ball Fall](https://leetcode.com/problems/where-will-the-ball-fall/) | [Python3](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/where-will-the-ball-fall.py) | Google |
 | 1553 | [Minimum Number of Days to Eat N Oranges](https://leetcode.com/problems/minimum-number-of-days-to-eat-n-oranges/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-number-of-days-to-eat-n-oranges.cpp) |
