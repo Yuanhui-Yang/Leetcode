@@ -778,7 +778,7 @@
 | 28 | [Implement strStr()](https://leetcode.com/problems/implement-strstr/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/implement-strstr.cpp) |
 | 27 | [Remove Element](https://leetcode.com/problems/remove-element/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-element.cpp) |
 | 26 | [Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/remove-duplicates-from-sorted-array.cpp) |
-| 25 | [Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reverse-nodes-in-k-group.cpp) |
+| 25 | [Reverse Nodes in k-Group](https://leetcode.com/problems/reverse-nodes-in-k-group/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reverse-nodes-in-k-group.cpp), [Python3](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/reverse-nodes-in-k-group.py) |
 | 24 | [Swap Nodes in Pairs](https://leetcode.com/problems/swap-nodes-in-pairs/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/swap-nodes-in-pairs.cpp) |
 | 23 | [Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/merge-k-sorted-lists.cpp) |
 | 22 | [Generate Parentheses](https://leetcode.com/problems/generate-parentheses/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/generate-parentheses.cpp) |
