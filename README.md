@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution | Company |
 | --- | --- | --- | --- |
+| 1738 | [Find Kth Largest XOR Coordinate Value](https://leetcode.com/problems/find-kth-largest-xor-coordinate-value/) | [Python3](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-kth-largest-xor-coordinate-value.py) | Google |
 | 1737 | [Change Minimum Characters to Satisfy One of Three Conditions](https://leetcode.com/problems/change-minimum-characters-to-satisfy-one-of-three-conditions/) | [Python3](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/change-minimum-characters-to-satisfy-one-of-three-conditions.py) | Google |
 | 1736 | [Latest Time by Replacing Hidden Digits](https://leetcode.com/problems/latest-time-by-replacing-hidden-digits/) | [Python3](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/latest-time-by-replacing-hidden-digits.py) | Google |
 | 1728 | [Cat and Mouse II](https://leetcode.com/problems/cat-and-mouse-ii/) | [Python3](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/cat-and-mouse-ii.py) | Google |
