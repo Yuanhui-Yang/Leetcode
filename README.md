@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution | Company |
 | --- | --- | --- | --- |
+| 1736 | [Latest Time by Replacing Hidden Digits](https://leetcode.com/problems/latest-time-by-replacing-hidden-digits/) | [Python3](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/latest-time-by-replacing-hidden-digits.py) | Google |
 | 1728 | [Cat and Mouse II](https://leetcode.com/problems/cat-and-mouse-ii/) | [Python3](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/cat-and-mouse-ii.py) | Google |
 | 1727 | [Largest Submatrix With Rearrangements](https://leetcode.com/problems/largest-submatrix-with-rearrangements/) | [Python3](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/largest-submatrix-with-rearrangements.py) | Google |
 | 1726 | [Tuple with Same Product](https://leetcode.com/problems/tuple-with-same-product/) | [Python3](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/tuple-with-same-product.py) | Google |
