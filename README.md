@@ -322,7 +322,7 @@
 | 530 | [Minimum Absolute Difference in BST](https://leetcode.com/problems/minimum-absolute-difference-in-bst/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minimum-absolute-difference-in-bst.cpp) |
 | 529 | [Minesweeper](https://leetcode.com/problems/minesweeper/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/minesweeper.cpp) |
 | 527 | [Word Abbreviation](https://leetcode.com/problems/word-abbreviation/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/word-abbreviation.cpp) |
-| 526 | [Beautiful Arrangement](https://leetcode.com/problems/beautiful-arrangement/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/beautiful-arrangement.cpp) |
+| 526 | [Beautiful Arrangement](https://leetcode.com/problems/beautiful-arrangement/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/beautiful-arrangement.cpp), [Python3](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/beautiful-arrangement.py) | Google |
 | 525 | [Contiguous Array](https://leetcode.com/problems/contiguous-array/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/contiguous-array.cpp) |
 | 524 | [Longest Word in Dictionary through Deleting](https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/longest-word-in-dictionary-through-deleting.cpp) |
 | 523 | [Continuous Subarray Sum](https://leetcode.com/problems/continuous-subarray-sum/) | [C++](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/continuous-subarray-sum.cpp) |
