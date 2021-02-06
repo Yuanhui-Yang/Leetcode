@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution | Company |
 | --- | --- | --- | --- |
+| 1748 | [Sum of Unique Elements](https://leetcode.com/problems/sum-of-unique-elements/) | [Python3](Algorithms/sum-of-unique-elements.py) |
 | 1739 | [Building Boxes](https://leetcode.com/problems/building-boxes/) | [Python3](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/building-boxes.py) | |
 | 1738 | [Find Kth Largest XOR Coordinate Value](https://leetcode.com/problems/find-kth-largest-xor-coordinate-value/) | [Python3](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/find-kth-largest-xor-coordinate-value.py) | Google |
 | 1737 | [Change Minimum Characters to Satisfy One of Three Conditions](https://leetcode.com/problems/change-minimum-characters-to-satisfy-one-of-three-conditions/) | [Python3](https://github.com/yuanhui-yang/LeetCode/blob/master/Algorithms/change-minimum-characters-to-satisfy-one-of-three-conditions.py) | Google |
