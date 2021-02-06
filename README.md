@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution | Company |
 | --- | --- | --- | --- |
+| 1751 | [Maximum Number of Events That Can Be Attended II](https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/) | [Python3](Algorithms/maximum-number-of-events-that-can-be-attended-ii.py) |
 | 1750 | [Minimum Length of String After Deleting Similar Ends](https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/) | [Python3](Algorithms/minimum-length-of-string-after-deleting-similar-ends.py) |
 | 1749 | [Maximum Absolute Sum of Any Subarray](https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/) | [Python3](Algorithms/maximum-absolute-sum-of-any-subarray.py) |
 | 1748 | [Sum of Unique Elements](https://leetcode.com/problems/sum-of-unique-elements/) | [Python3](Algorithms/sum-of-unique-elements.py) |
