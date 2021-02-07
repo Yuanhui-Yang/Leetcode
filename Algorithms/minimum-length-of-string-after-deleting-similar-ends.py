@@ -47,8 +47,6 @@ class Solution:
         j = sz - 1
         while i < j and s[i] == s[j]:
             a = s[i]
-            i += 1
-            j -= 1
             while i <= j and s[i] == a:
                 i += 1
             while i <= j and s[j] == a:
