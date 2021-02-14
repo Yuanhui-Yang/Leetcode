@@ -2,6 +2,10 @@
 ## Algorithms
 | # | Title | Solution | Company |
 | --- | --- | --- | --- |
+| 1761 | [Minimum Degree of a Connected Trio in a Graph](https://leetcode.com/problems/minimum-degree-of-a-connected-trio-in-a-graph/) | [Python3](Algorithms/minimum-degree-of-a-connected-trio-in-a-graph.py) |
+| 1760 | [Minimum Limit of Balls in a Bag](https://leetcode.com/problems/minimum-limit-of-balls-in-a-bag/) | [Python3](Algorithms/minimum-limit-of-balls-in-a-bag.py) |
+| 1759 | [Count Number of Homogenous Substrings](https://leetcode.com/problems/count-number-of-homogenous-substrings/) | [Python3](Algorithms/count-number-of-homogenous-substrings.py) |
+| 1758 | [Minimum Changes To Make Alternating Binary String](https://leetcode.com/problems/minimum-changes-to-make-alternating-binary-string/) | [Python3](Algorithms/minimum-changes-to-make-alternating-binary-string.py) |
 | 1751 | [Maximum Number of Events That Can Be Attended II](https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/) | [Python3](Algorithms/maximum-number-of-events-that-can-be-attended-ii.py) |
 | 1750 | [Minimum Length of String After Deleting Similar Ends](https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/) | [Python3](Algorithms/minimum-length-of-string-after-deleting-similar-ends.py) |
 | 1749 | [Maximum Absolute Sum of Any Subarray](https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/) | [Python3](Algorithms/maximum-absolute-sum-of-any-subarray.py) |
