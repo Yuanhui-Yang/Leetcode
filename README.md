@@ -826,3 +826,8 @@
 | 585 | [Investments in 2016](https://leetcode.com/problems/investments-in-2016/) | [MySQL](Database/investments-in-2016.sql) |
 | 580 | [Count Student Number in Departments](https://leetcode.com/problems/count-student-number-in-departments/) | [MySQL](Database/count-student-number-in-departments.sql) |
 | 182 | [Duplicate Emails](https://leetcode.com/problems/duplicate-emails/) | [MySQL](Database/duplicate-emails.sql) |
+
+## Concurrency
+| # | Title | Solution |
+| --- | --- | --- |
+| 1114 | [Print in Order](https://leetcode.com/problems/print-in-order/) | Concurrency/print-in-order.py |
