@@ -830,4 +830,4 @@
 ## Concurrency
 | # | Title | Solution |
 | --- | --- | --- |
-| 1114 | [Print in Order](https://leetcode.com/problems/print-in-order/) | Concurrency/print-in-order.py |
+| 1114 | [Print in Order](https://leetcode.com/problems/print-in-order/) | [Python3](Concurrency/print-in-order.py) |
