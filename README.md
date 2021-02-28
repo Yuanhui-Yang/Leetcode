@@ -3,6 +3,10 @@
 | # | Title | Solution | Company |
 | --- | --- | --- | --- |
 | 1808 | [Maximize Number of Nice Divisors](https://leetcode.com/problems/maximize-number-of-nice-divisors/) | [Python3](Algorithms/maximize-number-of-nice-divisors.py) |
+| 1776 | [Car Fleet II](https://leetcode.com/problems/car-fleet-ii/) | [Python3](Algorithms/car-fleet-ii.py) |
+| 1775 | [Equal Sum Arrays With Minimum Number of Operations](https://leetcode.com/problems/equal-sum-arrays-with-minimum-number-of-operations/) | [Python3](Algorithms/equal-sum-arrays-with-minimum-number-of-operations.py) |
+| 1774 | [Closest Dessert Cost](https://leetcode.com/problems/closest-dessert-cost/) | [Python3](Algorithms/closest-dessert-cost.py) |
+| 1773 | [Count Items Matching a Rule](https://leetcode.com/problems/count-items-matching-a-rule/) | [Python3](Algorithms/count-items-matching-a-rule.py) |
 | 1761 | [Minimum Degree of a Connected Trio in a Graph](https://leetcode.com/problems/minimum-degree-of-a-connected-trio-in-a-graph/) | [Python3](Algorithms/minimum-degree-of-a-connected-trio-in-a-graph.py) |
 | 1760 | [Minimum Limit of Balls in a Bag](https://leetcode.com/problems/minimum-limit-of-balls-in-a-bag/) | [Python3](Algorithms/minimum-limit-of-balls-in-a-bag.py) |
 | 1759 | [Count Number of Homogenous Substrings](https://leetcode.com/problems/count-number-of-homogenous-substrings/) | [Python3](Algorithms/count-number-of-homogenous-substrings.py) |
