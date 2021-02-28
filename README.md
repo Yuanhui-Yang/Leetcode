@@ -788,7 +788,7 @@
 | 32 | [Longest Valid Parentheses](https://leetcode.com/problems/longest-valid-parentheses/) | [C++](Algorithms/longest-valid-parentheses.cpp) |
 | 31 | [Next Permutation](https://leetcode.com/problems/next-permutation/) | [C++](Algorithms/next-permutation.cpp) |
 | 30 | [Substring with Concatenation of All Words](https://leetcode.com/problems/substring-with-concatenation-of-all-words/) | [C++](Algorithms/substring-with-concatenation-of-all-words.cpp) |
-| 29 | [Divide Two Integers](https://leetcode.com/problems/divide-two-integers/) | [C++](Algorithms/divide-two-integers.cpp) |
+| 29 | [Divide Two Integers](https://leetcode.com/problems/divide-two-integers/) | [C++](Algorithms/divide-two-integers.cpp), [Python3](Algorithms/divide-two-integers.py) |
 | 28 | [Implement strStr()](https://leetcode.com/problems/implement-strstr/) | [C++](Algorithms/implement-strstr.cpp) |
 | 27 | [Remove Element](https://leetcode.com/problems/remove-element/) | [C++](Algorithms/remove-element.cpp) |
 | 26 | [Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/) | [C++](Algorithms/remove-duplicates-from-sorted-array.cpp) |
