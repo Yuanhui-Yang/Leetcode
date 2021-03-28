@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution | Company |
 | --- | --- | --- | --- |
+| 1808 | [Maximize Number of Nice Divisors](https://leetcode.com/problems/maximize-number-of-nice-divisors/) | [Python3](Algorithms/maximize-number-of-nice-divisors.py) |
 | 1761 | [Minimum Degree of a Connected Trio in a Graph](https://leetcode.com/problems/minimum-degree-of-a-connected-trio-in-a-graph/) | [Python3](Algorithms/minimum-degree-of-a-connected-trio-in-a-graph.py) |
 | 1760 | [Minimum Limit of Balls in a Bag](https://leetcode.com/problems/minimum-limit-of-balls-in-a-bag/) | [Python3](Algorithms/minimum-limit-of-balls-in-a-bag.py) |
 | 1759 | [Count Number of Homogenous Substrings](https://leetcode.com/problems/count-number-of-homogenous-substrings/) | [Python3](Algorithms/count-number-of-homogenous-substrings.py) |
