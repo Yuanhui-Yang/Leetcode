@@ -274,6 +274,7 @@
 | 625 | [Minimum Factorization](https://leetcode.com/problems/minimum-factorization/) | [C++](Algorithms/minimum-factorization.cpp) |
 | 624 | [Maximum Distance in Arrays](https://leetcode.com/problems/maximum-distance-in-arrays/) | [C++](Algorithms/maximum-distance-in-arrays.cpp) |
 | 623 | [Add One Row to Tree](https://leetcode.com/problems/add-one-row-to-tree/) | [C++](Algorithms/add-one-row-to-tree.cpp) |
+| 622 | [Design Circular Queue](https://leetcode.com/problems/design-circular-queue/) | [Python3](Algorithms/design-circular-queue.py) | Google |
 | 617 | [Merge Two Binary Trees](https://leetcode.com/problems/merge-two-binary-trees/) | [C++](Algorithms/merge-two-binary-trees.cpp) |
 | 616 | [Add Bold Tag in String](https://leetcode.com/problems/add-bold-tag-in-string/) | [C++](Algorithms/add-bold-tag-in-string.cpp) |
 | 611 | [Valid Triangle Number](https://leetcode.com/problems/valid-triangle-number/) | [C++](Algorithms/valid-triangle-number.cpp) |
