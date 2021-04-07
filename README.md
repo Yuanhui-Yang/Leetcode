@@ -29,7 +29,7 @@
 | 1704 | [Determine if String Halves Are Alike](https://leetcode.com/problems/determine-if-string-halves-are-alike/) | [Python3](Algorithms/determine-if-string-halves-are-alike.py) ||
 | 1553 | [Minimum Number of Days to Eat N Oranges](https://leetcode.com/problems/minimum-number-of-days-to-eat-n-oranges/) | [C++](Algorithms/minimum-number-of-days-to-eat-n-oranges.cpp) |
 | 1552 | [Magnetic Force Between Two Balls](https://leetcode.com/problems/magnetic-force-between-two-balls/) | [C++](Algorithms/magnetic-force-between-two-balls.cpp) |
-| 1551 | [Minimum Operations to Make Array Equal](https://leetcode.com/problems/minimum-operations-to-make-array-equal/) | [C++](Algorithms/minimum-operations-to-make-array-equal.cpp) |
+| 1551 | [Minimum Operations to Make Array Equal](https://leetcode.com/problems/minimum-operations-to-make-array-equal/) | [C++](Algorithms/minimum-operations-to-make-array-equal.cpp), [Python3](Algorithms/minimum-operations-to-make-array-equal.py) |
 | 1550 | [Three Consecutive Odds](https://leetcode.com/problems/three-consecutive-odds/) | [C++](Algorithms/three-consecutive-odds.cpp) |
 | 1477 | [Find Two Non-overlapping Sub-arrays Each With Target Sum](https://leetcode.com/problems/find-two-non-overlapping-sub-arrays-each-with-target-sum/) | [C++](Algorithms/find-two-non-overlapping-sub-arrays-each-with-target-sum.cpp) |
 | 1349 | [Maximum Students Taking Exam](https://leetcode.com/problems/maximum-students-taking-exam/) | [C++](Algorithms/maximum-students-taking-exam.cpp) |
