@@ -2,6 +2,7 @@
 ## Algorithms
 | # | Title | Solution | Company |
 | --- | --- | --- | --- |
+| 1195 | [Fizz Buzz Multithreaded](https://leetcode.com/problems/fizz-buzz-multithreaded/) | [Python3](Algorithms/fizz-buzz-multithreaded.py) |
 | 1808 | [Maximize Number of Nice Divisors](https://leetcode.com/problems/maximize-number-of-nice-divisors/) | [Python3](Algorithms/maximize-number-of-nice-divisors.py) |
 | 1776 | [Car Fleet II](https://leetcode.com/problems/car-fleet-ii/) | [Python3](Algorithms/car-fleet-ii.py) |
 | 1775 | [Equal Sum Arrays With Minimum Number of Operations](https://leetcode.com/problems/equal-sum-arrays-with-minimum-number-of-operations/) | [Python3](Algorithms/equal-sum-arrays-with-minimum-number-of-operations.py) |
