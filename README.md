@@ -838,6 +838,7 @@
 ## Concurrency
 | # | Title | Solution |
 | --- | --- | --- |
+| 1226 | [The Dining Philosophers](https://leetcode.com/problems/the-dining-philosophers/) | [Python3](Concurrency/the-dining-philosophers.py) |
 | 1188 | [Design Bounded Blocking Queue](https://leetcode.com/problems/design-bounded-blocking-queue/) | [Python3](Concurrency/design-bounded-blocking-queue.py) |
 | 1117 | [Building H2O](https://leetcode.com/problems/building-h2o/) | [Python3](Concurrency/building-h2o.py) |
 | 1116 | [Print Zero Even Odd](https://leetcode.com/problems/print-zero-even-odd/) | [Python3](Concurrency/print-zero-even-odd.py) |
