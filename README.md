@@ -508,7 +508,7 @@
 | 344 | [Reverse String](https://leetcode.com/problems/reverse-string/) | [C++](Algorithms/reverse-string.cpp) |
 | 343 | [Integer Break](https://leetcode.com/problems/integer-break) | [C++](Algorithms/integer-break.cpp) |
 | 342 | [Power of Four](https://leetcode.com/problems/power-of-four/) | [C++](Algorithms/power-of-four.cpp) |
-| 341 | [Flatten Nested List Iterator](https://leetcode.com/problems/flatten-nested-list-iterator/) | [C++](Algorithms/flatten-nested-list-iterator.cpp) |
+| 341 | [Flatten Nested List Iterator](https://leetcode.com/problems/flatten-nested-list-iterator/) | [C++](Algorithms/flatten-nested-list-iterator.cpp), [Python3](Algorithms/flatten-nested-list-iterator.py) |
 | 340 | [Longest Substring with At Most K Distinct Characters](https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/) | [C++](Algorithms/longest-substring-with-at-most-k-distinct-characters.cpp) |
 | 339 | [Nested List Weight Sum](https://leetcode.com/problems/nested-list-weight-sum/) | [C++](Algorithms/nested-list-weight-sum.cpp) |
 | 337 | [House Robber III](https://leetcode.com/problems/house-robber-iii/) | [C++](Algorithms/house-robber-iii.cpp) |
