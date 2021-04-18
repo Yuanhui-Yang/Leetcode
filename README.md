@@ -97,6 +97,7 @@
 | 1080 | [Insufficient Nodes in Root to Leaf Paths](https://leetcode.com/problems/insufficient-nodes-in-root-to-leaf-paths/) | [C++](Algorithms/insufficient-nodes-in-root-to-leaf-paths.cpp) |
 | 1079 | [Letter Tile Possibilities](https://leetcode.com/problems/letter-tile-possibilities/) | [C++](Algorithms/letter-tile-possibilities.cpp) |
 | 1078 | [Occurrences After Bigram](https://leetcode.com/problems/occurrences-after-bigram/) | [C++](Algorithms/occurrences-after-bigram.cpp) |
+| 1074 | [Number of Submatrices That Sum to Target](https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/) | [Python3](Algorithms/number-of-submatrices-that-sum-to-target.py) |
 | 1073 | [Adding Two Negabinary Numbers](https://leetcode.com/problems/adding-two-negabinary-numbers/) | [C++](Algorithms/adding-two-negabinary-numbers.cpp) |
 | 1066 | [Campus Bikes II](https://leetcode.com/problems/campus-bikes-ii/) | [C++](Algorithms/campus-bikes-ii.cpp) |
 | 1057 | [Campus Bikes](https://leetcode.com/problems/campus-bikes/) | [C++](Algorithms/campus-bikes.cpp) |
